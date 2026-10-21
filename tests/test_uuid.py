@@ -6,7 +6,7 @@ from uuid import NAMESPACE_URL, UUID, uuid5
 
 import cimprofiles.cim17.cimhub_2023 as cim
 from cimprofiles.env_vars import get_model_authority, get_model_name
-from cimprofiles.identity import model_authority_namespace
+from cimprofiles.identity import model_authority_namespace, read_identifier
 
 
 class TestIdentityUUID(unittest.TestCase):
@@ -304,6 +304,41 @@ class TestModelAuthorityUUID(unittest.TestCase):
         second = self._feeder_uuid('ieee', 'feeder_2', mRID=mrid)
         self.assertEqual(first, UUID(mrid))
         self.assertEqual(second, UUID(mrid))
+
+
+    def test_renamed_object_gets_a_new_uuid(self):
+        # Built objects are the same object only with the same authority, model and name
+        self.assertEqual(cim.ConnectivityNode(name='bus 300').identifier,
+                         cim.ConnectivityNode(name='bus 300').identifier)
+        self.assertNotEqual(cim.ConnectivityNode(name='bus 300').identifier,
+                            cim.ConnectivityNode(name='bus 301').identifier)
+
+    def test_uuid_identifier_ignores_name(self):
+        # Read from a file, the identifier is the UUID whatever the object's name
+        uuid = UUID('49ad8e07-3bf9-4e2a-8b8f-c3722f837b62')
+        self.assertEqual(cim.ACLineSegment(identifier=str(uuid), name='650632').identifier, uuid)
+
+    def test_non_uuid_identifier_warns_and_is_replaced_deterministically(self):
+        with self.assertLogs('cimprofiles.identity', level='WARNING') as logs:
+            first = cim.ACLineSegment(identifier='LINE_650_632')
+        self.assertIn("'LINE_650_632' is not a UUID", logs.output[0])
+        self.assertIn(str(first.identifier), logs.output[0])
+        # Reading the same file again gives the same UUID; the original ID is kept as mRID
+        self.assertEqual(cim.ACLineSegment(identifier='LINE_650_632').identifier,
+                         first.identifier)
+        self.assertEqual(first.mRID, 'LINE_650_632')
+
+    def test_uuid_identifier_does_not_warn(self):
+        with self.assertNoLogs('cimprofiles.identity', level='WARNING'):
+            cim.ACLineSegment(identifier='_49AD8E07-3BF9-4E2A-8B8F-C3722F837B62')
+
+    def test_read_identifier_matches_identity(self):
+        # Readers key their graphs with read_identifier, so it must equal obj.identifier
+        for uri in ('LINE_650_632', '_LINE_650_632', '#_LINE_650_632',
+                    '_49AD8E07-3BF9-4E2A-8B8F-C3722F837B62',
+                    'urn:uuid:49ad8e07-3bf9-4e2a-8b8f-c3722f837b62'):
+            self.assertEqual(read_identifier('ACLineSegment', uri),
+                             cim.ACLineSegment(identifier=uri).identifier, uri)
 
 
 if __name__ == '__main__':

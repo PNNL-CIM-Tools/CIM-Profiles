@@ -9,25 +9,25 @@
 
 releases:
   - name: cim18gmdm
-    package: cimprofiles.cim18gmdm
+    package: cimprofiles.cim18.cim18gmdm
     parts:
-      - cimprofiles.cim18gmdm.connectivity
-      - cimprofiles.cim18gmdm.electrical
-      - cimprofiles.cim18gmdm.location
-      - cimprofiles.cim18gmdm.asset
-      - cimprofiles.cim18gmdm.marketnode
+      - cimprofiles.cim18.cim18gmdm.connectivity
+      - cimprofiles.cim18.cim18gmdm.electrical
+      - cimprofiles.cim18.cim18gmdm.location
+      - cimprofiles.cim18.cim18gmdm.asset
+      - cimprofiles.cim18.cim18gmdm.marketnode
     description: "EPRI GMDM CIM18 merged profile (replaces canonical.py)"
 
   - name: cgmes_3_0_0
-    package: cimprofiles.cgmes_3_0_0
+    package: cimprofiles.cim17.cgmes_3_0_0
     parts:
-      - cimprofiles.cgmes_3_0_0.core_equipment
-      - cimprofiles.cgmes_3_0_0.equipment_boundary
-      - cimprofiles.cgmes_3_0_0.operation
-      - cimprofiles.cgmes_3_0_0.short_circuit
-      - cimprofiles.cgmes_3_0_0.steady_state_hypothesis
-      - cimprofiles.cgmes_3_0_0.state_variables
-      - cimprofiles.cgmes_3_0_0.topology
-      - cimprofiles.cgmes_3_0_0.geographical_location
-      - cimprofiles.cgmes_3_0_0.diagram
+      - cimprofiles.cim17.cgmes_3_0_0.core_equipment
+      - cimprofiles.cim17.cgmes_3_0_0.equipment_boundary
+      - cimprofiles.cim17.cgmes_3_0_0.operation
+      - cimprofiles.cim17.cgmes_3_0_0.short_circuit
+      - cimprofiles.cim17.cgmes_3_0_0.steady_state_hypothesis
+      - cimprofiles.cim17.cgmes_3_0_0.state_variables
+      - cimprofiles.cim17.cgmes_3_0_0.topology
+      - cimprofiles.cim17.cgmes_3_0_0.geographical_location
+      - cimprofiles.cim17.cgmes_3_0_0.diagram
     description: "IEC CGMES 3.0 merged profile (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL)"

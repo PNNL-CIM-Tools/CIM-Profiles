@@ -67,6 +67,18 @@ def seeded_uuid(class_name: str, mRID: str = '', name: str = '', seed: str = '')
     return uuid5(model_authority_namespace(get_model_authority()), SEED_SEPARATOR.join(escaped))
 
 
+def read_identifier(class_name: str, uri: str) -> UUID:
+    """
+    Returns the identifier of an object read by its rdf:ID, rdf:about or a reference to it:
+    the UUID it contains, else the UUID seeded from it. This is the identifier
+    Identity(identifier=uri) gets, so readers can key their graphs by it.
+    """
+    identifier = as_uuid(uri)
+    if identifier is None:
+        identifier = seeded_uuid(class_name, uri)
+    return identifier
+
+
 class CIMStereotype(Enum):
     Abstract = 'Abstract'
     Concrete = 'Concrete'
@@ -255,6 +267,11 @@ class Identity:
         """
         Creates or updates the object's UUID.
 
+        Read from a file, the identifier (uri) is the UUID and name is not used; one that
+        is not a UUID is replaced, with a warning, by a UUID seeded from it, and kept as
+        the mRID. Built objects (no uri) are seeded from model, class, mRID, name and seed,
+        so a renamed object is a new object with a new UUID.
+
         Args:
             mRID: An mRID string that might be convertible to a UUID
             uri: A URI string that might be convertible to a UUID
@@ -269,9 +286,7 @@ class Identity:
         identifier, source = None, None
         if uri is not None:
             identifier = as_uuid(uri)
-            if identifier is None:
-                _log.log(get_validation_log_level(), f'URI {uri} not a valid UUID, generating new UUID')
-            else:
+            if identifier is not None:
                 source = uri
         if identifier is None and mRID is not None:
             identifier = as_uuid(mRID)
@@ -287,6 +302,10 @@ class Identity:
                 identifier = seeded_uuid(self.__class__.__name__, key, name or '', seed or '')
             else:
                 identifier = uuid4()
+        if uri is not None and source != uri:
+            _log.log(get_validation_log_level(),
+                     f'{self.__class__.__name__} identifier {uri!r} is not a UUID; '
+                     f'replaced with {identifier}')
         self.identifier = identifier
 
         if source is not None and normalize_identifier(source).lower() != normalize_identifier(source):

@@ -13,7 +13,7 @@ such as EQ + SSH + TP that together describe one network.
 
 Call it directly::
 
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import connectivity, electrical
     from cimprofiles.merge import merge_profiles
 
     cim = merge_profiles(connectivity, electrical)
@@ -22,8 +22,8 @@ In cim-graph, select a merged profile with the comma-spec
 ``CIMG_CIM_PROFILE`` environment variable, which ``get_cim_profile()``
 resolves (and memoises) automatically::
 
-    export CIMG_CIM_PROFILE="cimprofiles.cim18gmdm.connectivity,\
-        cimprofiles.cim18gmdm.electrical"
+    export CIMG_CIM_PROFILE="cimprofiles.cim18.cim18gmdm.connectivity,\
+        cimprofiles.cim18.cim18gmdm.electrical"
 
 For stable, pre-baked merged profiles (such as ``cim18gmdm``), run
 ``python -m cimprofiles.build_merged_profiles`` against ``merge_releases.yaml``
@@ -246,8 +246,8 @@ def merge_profiles(*modules: types.ModuleType) -> types.ModuleType:
 
     Args:
         *modules: Two or more imported profile modules, for example
-            ``cimprofiles.cim18gmdm.connectivity`` and
-            ``cimprofiles.cim18gmdm.electrical``.
+            ``cimprofiles.cim18.cim18gmdm.connectivity`` and
+            ``cimprofiles.cim18.cim18gmdm.electrical``.
 
     Returns:
         A ``types.ModuleType`` instance that behaves like a regular
@@ -256,7 +256,7 @@ def merge_profiles(*modules: types.ModuleType) -> types.ModuleType:
 
     Example::
 
-        from cimprofiles.cim18gmdm import connectivity, electrical
+        from cimprofiles.cim18.cim18gmdm import connectivity, electrical
         merged = merge_profiles(connectivity, electrical)
     """
     if len(modules) < 2:
@@ -346,7 +346,7 @@ def generate_type_stubs(
 
     Example::
 
-        from cimprofiles.cim18gmdm import connectivity, electrical
+        from cimprofiles.cim18.cim18gmdm import connectivity, electrical
         from cimprofiles.merge import generate_type_stubs
 
         generate_type_stubs(connectivity, electrical,
