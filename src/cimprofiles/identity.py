@@ -2,16 +2,70 @@ import json
 import logging
 from dataclasses import dataclass, field, is_dataclass
 from enum import Enum
-from random import Random
 from typing import Any, Dict, List, Optional, Union
-from uuid import UUID, uuid4
+from uuid import NAMESPACE_URL, UUID, uuid4, uuid5
 
-from cimgraph.core import get_model_authority, get_model_name, get_validation_log_level
-from cimgraph.data_profile.units.units import CIMUnit
+from cimprofiles.env_vars import get_model_authority, get_model_name, get_validation_log_level
+from cimprofiles.units.units import CIMUnit
 
 # Global configuration
 ARCHIVE_JSON_LD = True
 _log = logging.getLogger(__name__)
+
+# Joins the components of a seeded UUID's name. Not whitespace: names often contain spaces.
+SEED_SEPARATOR = '+'
+
+
+def model_authority_namespace(authority: str) -> UUID:
+    """
+    Returns the UUID namespace (RFC 9562 §6.6) of the identifiers a model authority issues.
+
+    The authority is a URI, as in md:Model.modelingAuthoritySet, so the namespace is
+    derived from it with the standard URL namespace: uuid5(NAMESPACE_URL, authority).
+    This is also the identifier of the cim:ModelAuthority object itself, so every seeded
+    UUID is scoped to its authority the way an RDF namespace scopes its local names.
+    """
+    return uuid5(NAMESPACE_URL, authority)
+
+
+def normalize_identifier(value: str) -> str:
+    """
+    Returns the local part of an rdf:about, rdf:ID or mRID value, so one object gets one
+    UUID whichever CIM serialization it was read from. Removes surrounding whitespace,
+    a 'urn:uuid:' prefix, everything up to the last '#' (rdf:about="#_x" or a full URI)
+    and one leading '_' (552-LEGACY and CGMES rdf:IDs start with '_').
+    Case is kept: only UUIDs are case-insensitive.
+    """
+    value = value.strip().removeprefix('urn:uuid:')
+    return value.rpartition('#')[2].removeprefix('_')
+
+
+def as_uuid(value: str) -> Optional[UUID]:
+    """Returns value as a UUID if it is one in any CIM serialization, else None."""
+    try:
+        return UUID(normalize_identifier(value).lower())
+    except ValueError:
+        return None
+
+
+def seeded_uuid(class_name: str, mRID: str = '', name: str = '', seed: str = '') -> UUID:
+    """
+    Returns the deterministic (version 5) UUID of an object whose identifier is not given
+    as a UUID:
+
+        uuid5(model_authority_namespace(authority),
+              model + '+' + class_name + '+' + mRID + '+' + name + '+' + seed)
+
+    mRID is normalized (normalize_identifier) and name and seed are whitespace-trimmed.
+    Every component keeps its position even when empty, and '%' and '+' inside a
+    component are escaped as '%25' and '%2B', so different inputs always give different
+    names. Other languages can reproduce these UUIDs from this description alone.
+    """
+    components = [get_model_name(), class_name, normalize_identifier(mRID), name.strip(),
+                  seed.strip()]
+    escaped = [component.replace('%', '%25').replace('+', '%2B') for component in components]
+    return uuid5(model_authority_namespace(get_model_authority()), SEED_SEPARATOR.join(escaped))
+
 
 class CIMStereotype(Enum):
     Abstract = 'Abstract'
@@ -31,103 +85,6 @@ def stereotype(stereotype: CIMStereotype):
         cls.__stereotype__ = stereotype
         return cls
     return decorator
-
-class UUID_Meta:
-    """
-    Helper class for managing UUID generation and metadata about the original identifiers.
-
-    This class maintains information about how URIs and mRIDs were formatted in the
-    source data to preserve capitalization and underscore conventions when needed.
-    """
-
-    def __init__(self):
-        """Initialize UUID metadata attributes."""
-        self.uuid: Optional[UUID] = None
-        self.uuid_str: str = ''
-        self.uri_has_underscore: bool = False
-        self.uri_is_capitalized: bool = False
-        self.mrid_has_underscore: bool = False
-        self.mrid_is_capitalized: bool = False
-
-    def generate_uuid(self, mRID: Optional[str] = None, uri: Optional[str] = None,
-                    name: Optional[str] = None, seed: Optional[str] = None) -> UUID:
-        """
-        Generate a consistent UUID from various input formats.
-
-        Tries to create a UUID from a URI or mRID if possible, or generates a new one
-        based on the provided seed or randomly if no valid inputs are available.
-
-        Args:
-            mRID: An mRID string that might be convertible to a UUID
-            uri: A URI string that might be convertible to a UUID
-            name: A name to use in seed generation
-            seed: Additional seed information for UUID generation
-
-        Returns:
-            UUID: The generated UUID object
-        """
-        if seed is None:
-            seed = ''
-
-        invalid_mrid = True
-
-        # Try creating UUID from URI first
-        if uri is not None:
-            # Track formatting characteristics
-            if uri.strip('_') != uri:
-                self.uri_has_underscore = True
-            if uri.lower() != uri:
-                self.uri_is_capitalized = True
-
-            try:
-                # Convert URI to UUID directly if possible
-                self.uuid = UUID(uri.strip('_').lower())
-                invalid_mrid = False
-            except ValueError:
-                # If URI is not a valid UUID, use it as seed
-                seed = seed + uri
-                log_level = get_validation_log_level()
-
-                _log.log(log_level, f'URI {uri} not a valid UUID, generating new UUID')
-                mRID = str(uri)
-
-        # Try creating UUID from mRID if URI failed or wasn't provided
-        if mRID is not None:
-            # Track formatting characteristics
-            if mRID.strip('_') != mRID:
-                self.mrid_has_underscore = True
-                if uri is None:
-                    self.uri_has_underscore = True
-
-            if mRID.lower() != mRID:
-                self.mrid_is_capitalized = True
-                if uri is None:
-                    self.uri_is_capitalized = True
-
-            # Try to create UUID from mRID if we don't have one yet
-            if self.uuid is None:
-                try:
-                    self.uuid = UUID(mRID.strip('_').lower())
-                    invalid_mrid = False
-                except ValueError:
-                    # If mRID is not a valid UUID, add to seed
-                    seed = seed + mRID
-
-        # If we couldn't create a UUID from inputs, generate a new one
-        if invalid_mrid:
-            if seed:
-                # Generate a deterministic UUID from the seed, scoped to the model authority and model
-                scoped_seed = f'{get_model_authority()}:{get_model_name()}:{seed}'
-                random_generator = Random(scoped_seed)
-                self.uuid = UUID(int=random_generator.getrandbits(128), version=4)
-            else:
-                # Generate a completely random UUID
-                self.uuid = uuid4()
-
-        # Store string representation
-        self.uuid_str = str(self.uuid)
-        return self.uuid
-
 
 @dataclass(eq=False)
 class Identity:
@@ -156,6 +113,11 @@ class Identity:
             'serialize': True
         })
 
+    # True only on objects whose identifier was read as an uppercase UUID (CIMHub and
+    # GridAPPS-D data), so uri() reproduces it and database queries still match. Set as an
+    # instance attribute only when True, so lowercase and generated identifiers cost nothing.
+    _uri_uppercase = False
+
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Identity):
             return NotImplemented
@@ -171,8 +133,7 @@ class Identity:
         Ensures that the identifier field is a valid UUID, creating one from
         other available identification fields if necessary.
         """
-        # Internal tracking attribute for JSON-LD representation
-        self.__uuid__ = None
+        # Cached minimal JSON-LD, so __repr__ stays cheap (debuggers preview whole graphs)
         self.__json_ld__ = None
 
         # Initialize identifier
@@ -209,7 +170,6 @@ class Identity:
         dump = dict(json.loads(self.__repr__()) | self.__dict__)
 
         # Remove internal attributes
-        dump.pop('__uuid__', None)
         dump.pop('__json_ld__', None)
 
         # Process each attribute present in the dump (dataclass fields plus any
@@ -274,13 +234,12 @@ class Identity:
         Returns:
             str: Minimal JSON-LD representation
         """
-        if ARCHIVE_JSON_LD:
+        if ARCHIVE_JSON_LD and self.__json_ld__ is not None:
             return self.__json_ld__
-        else:
-            return json.dumps({
-                '@id': f'{str(self.identifier)}',
-                '@type': f'{self.__class__.__name__}'
-            })
+        return json.dumps({
+            '@id': f'{str(self.identifier)}',
+            '@type': f'{self.__class__.__name__}'
+        })
 
     def pprint(self, print_mRID: bool = False) -> None:
         """
@@ -305,39 +264,46 @@ class Identity:
         Returns:
             UUID: The generated or updated UUID
         """
-        # Initialize UUID metadata
-        self.__uuid__ = UUID_Meta()
+        # Identity.identifier is a UUID (CIM 18): either the one given as the uri (else the
+        # mRID) in any serialization, or the seeded uuid5 construct below.
+        identifier, source = None, None
+        if uri is not None:
+            identifier = as_uuid(uri)
+            if identifier is None:
+                _log.log(get_validation_log_level(), f'URI {uri} not a valid UUID, generating new UUID')
+            else:
+                source = uri
+        if identifier is None and mRID is not None:
+            identifier = as_uuid(mRID)
+            if identifier is not None:
+                source = mRID
 
-        # Scope seeds to the class, so the same non-UUID mRID or name in two
-        # classes gives two different UUIDs. With no identifying input the seed
-        # stays empty and a random UUID is generated.
-        if seed is None:
-            seed = ''
-        if name is not None:
-            seed = seed + name
-        if seed or mRID is not None or uri is not None:
-            seed = f'{self.__class__.__name__}:{seed}'
+        if identifier is None:
+            # A non-UUID rdf:ID/rdf:about is the object's mRID (when no mRID is given).
+            # The class is part of every seeded UUID, so the same mRID or name in two
+            # classes gives two different UUIDs.
+            key = mRID if mRID is not None else (uri or '')
+            if normalize_identifier(key) or (name or '').strip() or (seed or '').strip():
+                identifier = seeded_uuid(self.__class__.__name__, key, name or '', seed or '')
+            else:
+                identifier = uuid4()
+        self.identifier = identifier
 
-        # Generate UUID using UUID_Meta helper
-        self.identifier = self.__uuid__.generate_uuid(
-            mRID=mRID, uri=uri, name=name, seed=seed)
+        if source is not None and normalize_identifier(source).lower() != normalize_identifier(source):
+            self._uri_uppercase = True
+        else:
+            self.__dict__.pop('_uri_uppercase', None)
 
         # Update mRID for backwards compatibility
         if 'mRID' in self.__dataclass_fields__:
             if mRID is not None:
                 self.mRID = mRID
             elif uri is not None:
-                # If uri was provided and couldn't be converted to UUID, use it as mRID
-                # This preserves the original non-UUID identifier
-                try:
-                    UUID(uri.strip('_').lower())
-                    # URI is a valid UUID, use the normalized identifier
-                    self.mRID = str(self.identifier)
-                except ValueError:
-                    # URI is not a valid UUID, preserve it as mRID
-                    self.mRID = uri
+                # A UUID uri gives the identifier; a non-UUID uri is kept as the mRID
+                # to preserve the original identifier
+                self.mRID = self.uri() if source is not None else uri
             else:
-                self.mRID = str(self.identifier)
+                self.mRID = str(identifier)
 
             # Update name if provided
             if name is not None:
@@ -350,28 +316,20 @@ class Identity:
                 '@type': f'{self.__class__.__name__}'
             })
 
-        return self.identifier
+        return identifier
 
     def uri(self) -> str:
         """
-        Returns the URI form of the identifier, respecting original formatting.
+        Returns the identifier as text: the UUID, uppercase if it was read uppercase.
+
+        Underscores and 'urn:uuid:' prefixes belong to the serialization style
+        (552-NEW, 552-LEGACY, CGMES), so writers add them, not this method.
 
         Returns:
-            str: The URI string representation with original capitalization and underscores
+            str: The UUID string
         """
         uri = str(self.identifier)
-
-        # Apply original formatting if available
-        try:
-            if self.__uuid__.uri_is_capitalized:
-                uri = uri.upper()
-            if self.__uuid__.uri_has_underscore:
-                uri = '_' + uri
-        except (AttributeError, TypeError):
-            # If __uuid__ is not available, use the identifier as is
-            pass
-
-        return uri
+        return uri.upper() if self._uri_uppercase else uri
 
     def to_json(self, show_mRID: bool = True, show_empty: bool = True,
                use_names: bool = False) -> str:
@@ -428,7 +386,6 @@ class Identity:
         dump = dict(json.loads(self.__repr__()) | self.__dict__)
 
         # Remove internal attributes
-        dump.pop('__uuid__', None)
         dump.pop('__json_ld__', None)
 
         # Process each attribute present in the dump (dataclass fields plus any
