@@ -24,3 +24,46 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Python bytecode and extensions
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python packaging and build output
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+sdist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.python-version
+
+# Test, coverage and type-checker caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Documentation site build (mkdocs)
+site/
+
+# Local environment files
+.env
