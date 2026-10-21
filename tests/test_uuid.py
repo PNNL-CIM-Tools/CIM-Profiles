@@ -4,7 +4,7 @@ import re
 import unittest
 from uuid import NAMESPACE_URL, UUID, uuid5
 
-import cimprofiles.cimhub_2023 as cim
+import cimprofiles.cim17.cimhub_2023 as cim
 from cimprofiles.env_vars import get_model_authority, get_model_name
 from cimprofiles.identity import model_authority_namespace
 

@@ -9,8 +9,8 @@ from typing import Optional
 
 from pint import Quantity, UnitRegistry
 
-import cimgraph.data_profile.units.cim_units as cim_units
-from cimgraph.data_profile.units.cim_units import UnitMultiplier, UnitSymbol
+import cimprofiles.units.cim_units as cim_units
+from cimprofiles.units.cim_units import UnitMultiplier, UnitSymbol
 
 units_file = impresources.files(cim_units).joinpath('units.txt')
 ureg = UnitRegistry()

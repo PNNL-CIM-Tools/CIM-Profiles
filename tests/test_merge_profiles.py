@@ -12,10 +12,12 @@ from pathlib import Path
 
 import pytest
 
+from cimprofiles.cim18.cim18gmdm import connectivity, electrical
+
 
 def test_merge_two_profiles():
     """Merge connectivity + electrical and check the result has a unified __all__."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -30,7 +32,7 @@ def test_merge_two_profiles():
 
 def test_merged_acline_segment_has_union_of_fields():
     """ACLineSegment should have fields from both connectivity and electrical."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -46,7 +48,7 @@ def test_merged_acline_segment_has_union_of_fields():
 
 def test_merged_conductor_has_length_field():
     """Conductor should gain the 'length' field from electrical."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -59,7 +61,7 @@ def test_merged_conductor_has_length_field():
 
 def test_merged_class_inherits_from_merged_parent():
     """ACLineSegment should be a subclass of the merged Conductor, not the original."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -71,7 +73,7 @@ def test_merged_class_inherits_from_merged_parent():
 
 def test_non_overlapping_classes_present():
     """Classes unique to one profile should still appear in the merged module."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -87,7 +89,7 @@ def test_non_overlapping_classes_present():
 
 def test_enums_preserved():
     """Enums like PhaseCode should be present and functional."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -97,7 +99,7 @@ def test_enums_preserved():
 
 def test_field_metadata_preserved():
     """Field metadata (namespace, serialize, inverse, etc.) should survive the merge."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -117,7 +119,7 @@ def test_field_metadata_preserved():
 
 def test_merged_class_is_instantiable():
     """Merged dataclasses should be instantiable with default values."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -131,7 +133,7 @@ def test_merged_class_is_instantiable():
 
 def test_stereotype_preserved():
     """Classes with __stereotype__ should retain it after merging."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical)
@@ -141,7 +143,7 @@ def test_stereotype_preserved():
 
 def test_merge_requires_two_modules():
     """merge_profiles should raise ValueError with fewer than 2 modules."""
-    from cimprofiles.cim18gmdm import connectivity
+    from cimprofiles.cim18.cim18gmdm import connectivity
     from cimprofiles.merge import merge_profiles
 
     with pytest.raises(ValueError):
@@ -150,7 +152,7 @@ def test_merge_requires_two_modules():
 
 def test_merge_three_profiles():
     """Merging three sub-profiles should work."""
-    from cimprofiles.cim18gmdm import connectivity, electrical, location
+    from cimprofiles.cim18.cim18gmdm import location
     from cimprofiles.merge import merge_profiles
 
     merged = merge_profiles(connectivity, electrical, location)
@@ -173,7 +175,7 @@ def test_merge_three_profiles():
 
 def test_generate_type_stubs_creates_file(tmp_path):
     """generate_type_stubs writes a .py file that can be imported."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import generate_type_stubs
 
     out = tmp_path / 'cim_stubs.py'
@@ -187,7 +189,7 @@ def test_generate_type_stubs_creates_file(tmp_path):
 
 def test_generate_type_stubs_has_all_names(tmp_path):
     """__all__ in the stub file should match merge_profiles output."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import generate_type_stubs, merge_profiles
 
     out = tmp_path / 'cim_stubs.py'
@@ -207,7 +209,7 @@ def test_generate_type_stubs_has_all_names(tmp_path):
 
 def test_generate_type_stubs_overlapping_classes(tmp_path):
     """Overlapping dataclasses should use multi-inheritance stub pattern."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import generate_type_stubs
 
     out = tmp_path / 'cim_stubs.py'
@@ -223,7 +225,7 @@ def test_generate_type_stubs_overlapping_classes(tmp_path):
 
 def test_generate_type_stubs_non_overlapping_reexported(tmp_path):
     """Non-overlapping classes should be simple re-exports."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import generate_type_stubs
 
     out = tmp_path / 'cim_stubs.py'
@@ -236,7 +238,7 @@ def test_generate_type_stubs_non_overlapping_reexported(tmp_path):
 
 def test_generate_type_stubs_importable(tmp_path):
     """The generated stub file should be importable without errors."""
-    from cimprofiles.cim18gmdm import connectivity, electrical
+    from cimprofiles.cim18.cim18gmdm import electrical
     from cimprofiles.merge import generate_type_stubs
 
     out = tmp_path / 'cim_stubs_import.py'
@@ -257,7 +259,7 @@ def test_generate_type_stubs_importable(tmp_path):
 
 def test_generate_type_stubs_requires_two_modules():
     """generate_type_stubs should raise ValueError with fewer than 2 modules."""
-    from cimprofiles.cim18gmdm import connectivity
+    from cimprofiles.cim18.cim18gmdm import connectivity
     from cimprofiles.merge import generate_type_stubs
 
     with pytest.raises(ValueError):
@@ -266,7 +268,7 @@ def test_generate_type_stubs_requires_two_modules():
 
 def test_generate_type_stubs_three_profiles(tmp_path):
     """Stub generation should work with three profiles."""
-    from cimprofiles.cim18gmdm import connectivity, electrical, location
+    from cimprofiles.cim18.cim18gmdm import location
     from cimprofiles.merge import generate_type_stubs
 
     out = tmp_path / 'cim_stubs_three.py'

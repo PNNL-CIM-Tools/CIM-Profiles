@@ -1,2 +1,2 @@
-from cimgraph.data_profile.units.cim_units.unit_multiplier import UnitMultiplier as UnitMultiplier
-from cimgraph.data_profile.units.cim_units.unit_symbol import UnitSymbol as UnitSymbol
+from cimprofiles.units.cim_units.unit_multiplier import UnitMultiplier as UnitMultiplier
+from cimprofiles.units.cim_units.unit_symbol import UnitSymbol as UnitSymbol
