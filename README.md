@@ -1,7 +1,7 @@
 # CIM-Profiles
 
 CIMTool workspaces for the CIM 16–18 profiles, and the `cimprofiles` Python package built from
-them.
+them. These files originally shipped as part of cim-graph 0.1.x through 0.5.x.
 
 `cimprofiles` ships the CIM profiles as Python dataclasses, together with the object model they
 are built on (`Identity`, `CIMUnit`, profile merging). It depends only on `pint`, and it is
