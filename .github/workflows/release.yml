@@ -8,8 +8,8 @@
 #      owner PNNL-CIM-Tools, repo CIM-Profiles, workflow release.yml, environment pypi
 #   2. GitHub repo -> Settings -> Environments -> create "pypi"
 #
-# After a full release, merge main back into develop so the next alpha
-# starts from the released version.
+# Merge develop -> main with a merge commit (not squash) so the post-release
+# fast-forward of develop succeeds and the next alpha starts from the release.
 name: Release
 
 on:
@@ -39,7 +39,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.2
         with:
           python-version: "3.10"
 
@@ -98,7 +98,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.3.2
 
       - uses: actions/download-artifact@v8
         with:
@@ -125,3 +125,11 @@ jobs:
             PRERELEASE_FLAG="--prerelease"
           fi
           gh release create "v$VERSION" dist/* --generate-notes $PRERELEASE_FLAG
+
+      - name: Fast-forward develop to the release
+        if: github.ref_name == 'main'
+        run: |
+          if ! git push origin HEAD:develop; then
+            echo "::error::develop has diverged from main; merge main into develop manually"
+            exit 1
+          fi
