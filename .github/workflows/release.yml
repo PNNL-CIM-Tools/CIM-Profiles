@@ -1,0 +1,127 @@
+---
+# Publishes cimprofiles to PyPI.
+#   develop -> alpha pre-release (0.1.0a1 -> 0.1.0a2, or 0.1.0 -> 0.1.1a1)
+#   main    -> full release      (0.1.0a2 -> 0.1.0)
+#
+# Uses PyPI Trusted Publishing (OIDC); no API token is stored. One-time setup:
+#   1. PyPI project -> Publishing -> add GitHub publisher:
+#      owner PNNL-CIM-Tools, repo CIM-Profiles, workflow release.yml, environment pypi
+#   2. GitHub repo -> Settings -> Environments -> create "pypi"
+#
+# After a full release, merge main back into develop so the next alpha
+# starts from the released version.
+name: Release
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "src/**"
+      - "pyproject.toml"
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  build:
+    if: github.ref_name == 'main' || github.ref_name == 'develop'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.bump.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.10"
+
+      - name: Bump version
+        id: bump
+        run: |
+          CURRENT=$(uv version --short)
+          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            # Strip pre-release suffix; a stable version is published as-is
+            if [[ "$CURRENT" =~ (a|b|rc)[0-9]+$ ]]; then
+              uv version --bump stable --no-sync
+            fi
+          elif [[ "$CURRENT" =~ a[0-9]+$ ]]; then
+            uv version --bump alpha --no-sync
+          else
+            uv version --bump patch --bump alpha --no-sync
+          fi
+          VERSION=$(uv version --short)
+          echo "$CURRENT -> $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Test
+        run: uv run --locked pytest
+
+      - name: Build
+        run: uv build
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/cimprofiles/${{ needs.build.outputs.version }}/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      VERSION: ${{ needs.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Commit version and tag
+        run: |
+          uv version "$VERSION" --no-sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git commit -am "Release v$VERSION"
+          fi
+          git tag "v$VERSION"
+          git push --atomic origin "HEAD:$GITHUB_REF_NAME" "v$VERSION"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRERELEASE_FLAG=""
+          if [[ "$GITHUB_REF_NAME" == "develop" ]]; then
+            PRERELEASE_FLAG="--prerelease"
+          fi
+          gh release create "v$VERSION" dist/* --generate-notes $PRERELEASE_FLAG
