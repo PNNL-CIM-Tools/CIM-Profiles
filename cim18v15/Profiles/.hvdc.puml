@@ -195,7 +195,7 @@ skinparam note {
 ' Add a note towards the upper left corner of the diagram
 note as hvdc_factsNote #lightyellow
    Profile: hvdc_facts
-   Namespace: http://www.ucaiug.org/profile#
+   Namespace: http://www.gridappsd.org/vfm#
 end note
 
 ' ACDCConverter inherits from Equipment

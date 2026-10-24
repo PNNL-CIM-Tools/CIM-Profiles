@@ -195,7 +195,7 @@ skinparam note {
 ' Add a note towards the upper left corner of the diagram
 note as market_commonNote #lightyellow
    Profile: market_common
-   Namespace: http://www.ucaiug.org/profile#
+   Namespace: http://www.gridappsd.org/vfm#
 end note
 
 @enduml

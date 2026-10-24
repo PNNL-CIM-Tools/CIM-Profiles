@@ -20,97 +20,97 @@ project:
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/asset_deployment.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/asset_info.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/connectivity_unbalanced.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/construction.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/electrical_balanced.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/electrical_unbalanced.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/facts.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/function_block_control.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/hvdc.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/location.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/market_common.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/measurement.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/regulating_control.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/steady_state_hypothesis.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/substation.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace
-              "http://www.ucaiug.org/profile#" .
+              "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Schema/GridAPPSD_CIM_Grid18v15_Enterprise14v04_Market04v18.eap>
       tool:schema_namespace

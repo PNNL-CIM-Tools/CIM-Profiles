@@ -21,7 +21,7 @@ class CIMStereotype(Enum):
     enumeration = "enumeration"
     profcim = "profcim"
 
-BASE_URI = 'http://www.ucaiug.org/profile#'
+BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 
 @dataclass(repr=False)
