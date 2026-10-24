@@ -122,3 +122,13 @@ def test_uml_conflict_is_logged(caplog):
         merged, _ = merge_sources({'a': part_a, 'b': part_b})
     assert 'UML conflict: X.Y' in caplog.text
     assert 'Optional[A]' in merged and 'Optional[B]' not in merged
+
+
+def test_cim18v17_uses_the_library_unit_enums():
+    """The parts no longer define UnitSymbol/UnitMultiplier, so CIMUnit.unit is the library enum."""
+    import cimprofiles.cim18.cim18v17 as cim
+    from cimprofiles.units import UnitMultiplier, UnitSymbol
+
+    assert cim.UnitSymbol is UnitSymbol and cim.UnitMultiplier is UnitMultiplier
+    assert cim.ActivePower(5, 'kW').unit is UnitSymbol.W
+    assert {'unitMultiplier', 'unitSymbol'} <= {f.name for f in dataclasses.fields(cim.Measurement)}

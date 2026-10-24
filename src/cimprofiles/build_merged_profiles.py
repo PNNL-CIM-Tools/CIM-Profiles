@@ -54,6 +54,8 @@ _CONFIG = Path(__file__).parent / 'merge_releases.yaml'
 
 # Defined in every part, but not exported by CIMTool init files
 _UNEXPORTED = {'CIMStereotype'}
+# Imported by every part from cimprofiles, and re-exported like the CIMTool init files do
+_LIBRARY_EXPORTS = {'UnitMultiplier', 'UnitSymbol'}
 
 
 def _load_config(config: Path) -> list[dict]:
@@ -263,7 +265,7 @@ def merge_sources(parts: dict[str, str]) -> tuple[str, list[str]]:
                   for name, candidates in assignments.items()) + '\n',
     ]
     sections += [_merge_class(name, classes[name], parents) for name in order]
-    exported = ['Identity'] + sorted(name for name in classes if name not in _UNEXPORTED)
+    exported = ['Identity'] + sorted((set(classes) - _UNEXPORTED) | _LIBRARY_EXPORTS)
     return '\n'.join(sections), exported
 
 

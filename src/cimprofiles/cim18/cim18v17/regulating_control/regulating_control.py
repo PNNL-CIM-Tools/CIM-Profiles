@@ -1701,153 +1701,6 @@ class RegulatingControlModeKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.enumeration)
-@stereotype(CIMStereotype.Attribute)
-class UnitMultiplier(Enum):
-    '''
-    The unit multipliers defined for the CIM. When applied to unit symbols,
-    the unit symbol is treated as a derived unit. Regardless of the contents
-    of the unit symbol text, the unit symbol shall be treated as if it were
-    a single-character unit symbol. Unit symbols should not contain multipliers,
-    and it should be left to the multiplier to define the multiple for an entire
-    data type.
-    For example, if a unit symbol is "m2Pers" and the multiplier is "k", then
-    the value is k(m**2/s), and the multiplier applies to the entire final
-    value, not to any individual part of the value. This can be conceptualized
-    by substituting a derived unit symbol for the unit type. If one imagines
-    that the symbol "&#222;" represents the derived unit "m2Pers", then applying
-    the multiplier "k" can be conceptualized simply as "k&#222;".
-    For example, the SI unit for mass is "kg" and not "g". If the unit symbol
-    is defined as "kg", then the multiplier is applied to "kg" as a whole and
-    does not replace the "k" in front of the "g". In this case, the multiplier
-    of "m" would be used with the unit symbol of "kg" to represent one gram.
-    As a text string, this violates the instructions in IEC 80000-1. However,
-    because the unit symbol in CIM is treated as a derived unit instead of
-    as an SI unit, it makes more sense to conceptualize the "kg" as if it were
-    replaced by one of the proposed replacements for the SI mass symbol. If
-    one imagines that the "kg" were replaced by a symbol "&#222;", then it
-    is easier to conceptualize the multiplier "m" as creating the proper unit
-    "m&#222;", and not the forbidden unit "mkg".
-    '''
-
-    E = 'E'
-    '''
-    Exa 10**18.
-    '''
-    
-    G = 'G'
-    '''
-    Giga 10**9.
-    '''
-    
-    M = 'M'
-    '''
-    Mega 10**6.
-    '''
-    
-    P = 'P'
-    '''
-    Peta 10**15.
-    '''
-    
-    T = 'T'
-    '''
-    Tera 10**12.
-    '''
-    
-    Y = 'Y'
-    '''
-    Yotta 10**24.
-    '''
-    
-    Z = 'Z'
-    '''
-    Zetta 10**21.
-    '''
-    
-    a = 'a'
-    '''
-    Atto 10**-18.
-    '''
-    
-    c = 'c'
-    '''
-    Centi 10**-2.
-    '''
-    
-    d = 'd'
-    '''
-    Deci 10**-1.
-    '''
-    
-    da = 'da'
-    '''
-    Deca 10**1.
-    '''
-    
-    f = 'f'
-    '''
-    Femto 10**-15.
-    '''
-    
-    h = 'h'
-    '''
-    Hecto 10**2.
-    '''
-    
-    k = 'k'
-    '''
-    Kilo 10**3.
-    '''
-    
-    m = 'm'
-    '''
-    Milli 10**-3.
-    '''
-    
-    micro = 'micro'
-    '''
-    Micro 10**-6.
-    '''
-    
-    n = 'n'
-    '''
-    Nano 10**-9.
-    '''
-    
-    none = 'none'
-    '''
-    No multiplier or equivalently multiply by 1.
-    '''
-    
-    p = 'p'
-    '''
-    Pico 10**-12.
-    '''
-    
-    y = 'y'
-    '''
-    Yocto 10**-24.
-    '''
-    
-    z = 'z'
-    '''
-    Zepto 10**-21.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Domain'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
 class ActivePower(CIMUnit):
@@ -1856,12 +1709,12 @@ class ActivePower(CIMUnit):
     of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.W
-    def __init__(self, value, input_unit: str='W', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1885,12 +1738,12 @@ class PerCent(CIMUnit):
     the defined base.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1913,12 +1766,12 @@ class Reactance(CIMUnit):
     Reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1941,12 +1794,12 @@ class Resistance(CIMUnit):
     Resistance (real part of impedance).
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1969,12 +1822,12 @@ class Seconds(CIMUnit):
     Time, in seconds.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.s
-    def __init__(self, value, input_unit: str='s', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='s', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1997,12 +1850,12 @@ class Voltage(CIMUnit):
     Electrical voltage, can be both AC and DC.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.V
-    def __init__(self, value, input_unit: str='V', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='V', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -2025,12 +1878,12 @@ class VoltagePerReactivePower(CIMUnit):
     Voltage variation with reactive power.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VPerVAr
-    def __init__(self, value, input_unit: str='VPerVAr', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VPerVAr', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

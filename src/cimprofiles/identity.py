@@ -91,8 +91,11 @@ class CIMStereotype(Enum):
     Enumeration = 'Enumeration'
     ByReference = 'ByReference'
 
-def stereotype(stereotype: CIMStereotype):
-    """Decorator to add UML stereotype metadata to dataclasses"""
+def stereotype(stereotype: Enum):
+    """
+    Decorator to add UML stereotype metadata to dataclasses. Takes any Enum, since
+    each generated profile defines its own CIMStereotype (with its custom namespaces).
+    """
     def decorator(cls):
         cls.__stereotype__ = stereotype
         return cls
