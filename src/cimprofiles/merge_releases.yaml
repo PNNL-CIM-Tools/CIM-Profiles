@@ -1,9 +1,11 @@
 # Stable merged profile releases.
-# Each entry produces a pre-baked __init__.py committed to the repo.
-# Run scripts/build_merged_profiles.py to regenerate after adding or changing entries.
+# Each entry writes <package>/<name>.py (the merged classes) and <package>/__init__.py,
+# both committed to the repo. Run `uv run python -m cimprofiles.build_merged_profiles`
+# to regenerate after adding or changing entries, or after regenerating a part.
 #
-# parts: ordered list of sub-profile module paths to merge.
-#   - Diagram is intentionally excluded (not part of the power-flow model).
+# parts: ordered list of the CIMTool-generated modules to merge (the module inside
+#   each sub-profile package, not the package). Earlier parts win where parts differ.
+#   - Diagram is intentionally excluded from cim18gmdm (not part of the power-flow model).
 #   - canonical/ is intentionally excluded (it is what this merge replaces).
 # description: human-readable note shown in the generated file header.
 
@@ -11,23 +13,43 @@ releases:
   - name: cim18gmdm
     package: cimprofiles.cim18.cim18gmdm
     parts:
-      - cimprofiles.cim18.cim18gmdm.connectivity
-      - cimprofiles.cim18.cim18gmdm.electrical
-      - cimprofiles.cim18.cim18gmdm.location
-      - cimprofiles.cim18.cim18gmdm.asset
-      - cimprofiles.cim18.cim18gmdm.marketnode
+      - cimprofiles.cim18.cim18gmdm.connectivity.connectivity
+      - cimprofiles.cim18.cim18gmdm.electrical.electrical
+      - cimprofiles.cim18.cim18gmdm.location.location
+      - cimprofiles.cim18.cim18gmdm.asset.asset
+      - cimprofiles.cim18.cim18gmdm.marketnode.marketnode
     description: "EPRI GMDM CIM18 merged profile (replaces canonical.py)"
 
   - name: cgmes_3_0_0
     package: cimprofiles.cim17.cgmes_3_0_0
     parts:
-      - cimprofiles.cim17.cgmes_3_0_0.core_equipment
-      - cimprofiles.cim17.cgmes_3_0_0.equipment_boundary
-      - cimprofiles.cim17.cgmes_3_0_0.operation
-      - cimprofiles.cim17.cgmes_3_0_0.short_circuit
-      - cimprofiles.cim17.cgmes_3_0_0.steady_state_hypothesis
-      - cimprofiles.cim17.cgmes_3_0_0.state_variables
-      - cimprofiles.cim17.cgmes_3_0_0.topology
-      - cimprofiles.cim17.cgmes_3_0_0.geographical_location
-      - cimprofiles.cim17.cgmes_3_0_0.diagram
+      - cimprofiles.cim17.cgmes_3_0_0.core_equipment.core_equipment
+      - cimprofiles.cim17.cgmes_3_0_0.equipment_boundary.equipment_boundary
+      - cimprofiles.cim17.cgmes_3_0_0.operation.operation
+      - cimprofiles.cim17.cgmes_3_0_0.short_circuit.short_circuit
+      - cimprofiles.cim17.cgmes_3_0_0.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim17.cgmes_3_0_0.state_variables.state_variables
+      - cimprofiles.cim17.cgmes_3_0_0.topology.topology
+      - cimprofiles.cim17.cgmes_3_0_0.geographical_location.geographical_location
+      - cimprofiles.cim17.cgmes_3_0_0.diagram.diagram_layout
     description: "IEC CGMES 3.0 merged profile (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL)"
+
+  - name: cim18v17
+    package: cimprofiles.cim18.cim18v17
+    parts:
+      - cimprofiles.cim18.cim18v17.substation.substation
+      - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
+      - cimprofiles.cim18.cim18v17.electrical_balanced.electrical_balanced
+      - cimprofiles.cim18.cim18v17.electrical_unbalanced.electrical_unbalanced
+      - cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim18.cim18v17.regulating_control.regulating_control
+      - cimprofiles.cim18.cim18v17.function_block_control.function_block_control
+      - cimprofiles.cim18.cim18v17.measurement.measurement
+      - cimprofiles.cim18.cim18v17.location.location
+      - cimprofiles.cim18.cim18v17.asset.asset
+      - cimprofiles.cim18.cim18v17.asset_info.asset_info
+      - cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment
+      - cimprofiles.cim18.cim18v17.construction.construction
+      - cimprofiles.cim18.cim18v17.facts.facts
+      - cimprofiles.cim18.cim18v17.hvdc.hvdc
+    description: "GridAPPS-D CIM18 merged profile, the 15 CIMTool profiles in cim18v15/Profiles"
