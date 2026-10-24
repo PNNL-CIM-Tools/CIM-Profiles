@@ -69,7 +69,7 @@
       prefs:profile_envelope
               "Profile" ;
       prefs:profile_namespace
-              "http://www.ucaiug.org/profile#" ;
+              "http://www.gridappsd.org/vfm#" ;
       prefs:schema_namespace
               "http://www.ucaiug.org/CIM-generic#" ;
       prefs:self_heal_on_import

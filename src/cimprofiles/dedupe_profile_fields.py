@@ -34,7 +34,7 @@ _log = logging.getLogger('dedupe_profile_fields')
 PROFILE_ROOT = Path(__file__).parent
 
 
-def _field_info(node: ast.AnnAssign) -> dict:
+def field_info(node: ast.AnnAssign) -> dict:
     """Extract the annotation and literal metadata entries of a field definition."""
     metadata = {}
     if isinstance(node.value, ast.Call):
@@ -72,7 +72,7 @@ def find_duplicates(source: str) -> list[dict]:
         definitions = {}
         for index, node in enumerate(class_node.body):
             if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-                info = _field_info(node)
+                info = field_info(node)
                 info['span'] = _definition_span(class_node.body, index)
                 definitions.setdefault(node.target.id, []).append(info)
 

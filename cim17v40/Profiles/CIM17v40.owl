@@ -22,11 +22,11 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:msg="http://langdale.com.au/2005/Message#"
-    xmlns="http://www.ucaiug.org/profile#"
+    xmlns="http://www.gridappsd.org/vfm#"
     xmlns:uml="http://langdale.com.au/2005/UML#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-  xml:base="http://www.ucaiug.org/profile" > 
+  xml:base="http://www.gridappsd.org/vfm" > 
   <rdf:Description rdf:nodeID="X73X9222766Xa3X1a15fc6e39aXa3X-2f18">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X73X9222766Xa3X1a15fc6e39aXa3X-2f19"/>

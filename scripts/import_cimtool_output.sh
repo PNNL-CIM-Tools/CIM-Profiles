@@ -4,8 +4,10 @@
 # CIMTool 2.3.1 builders emit cimprofiles imports themselves.
 #
 # usage: scripts/import_cimtool_output.sh <cim16|cim17|cim18> <Profiles/name.py> <Profiles/name.__init__.py> [package]
-#   package: the directory name under the CIM version, if not the envelope name
-#            (e.g. gridappsd_rc4_2021 for the rc4_2021 envelope)
+#   package: the directory under the CIM version, if not the envelope name
+#            (e.g. gridappsd_rc4_2021 for the rc4_2021 envelope). May be nested for a
+#            part of a merged profile (e.g. cim18v17/substation). The module is named
+#            after its last segment.
 set -euo pipefail
 
 if [ $# -lt 3 ] || [ $# -gt 4 ]; then
@@ -28,14 +30,16 @@ if [ -z "$envelope" ]; then
     exit 1
 fi
 package=${4:-$envelope}
+module=$(basename "$package")
+dotted_package=${package//\//.}
 
 dest="$(cd "$(dirname "$0")/.." && pwd)/src/cimprofiles/$cim_version/$package"
 mkdir -p "$dest"
-cp "$profile_py" "$dest/$envelope.py"
+cp "$profile_py" "$dest/$module.py"
 cp "$init_py" "$dest/__init__.py"
-# The profile's own package first, then identity and units
-sed -i -e "s/cimgraph\.data_profile\.$envelope\./cimprofiles.$cim_version.$package./g" \
-       -e 's/cimgraph\.data_profile\./cimprofiles./g' "$dest/$envelope.py" "$dest/__init__.py"
+# The profile's own module first, then identity and units
+sed -i -e "s/cimgraph\.data_profile\.$envelope\.$envelope\b/cimprofiles.$cim_version.$dotted_package.$module/g" \
+       -e 's/cimgraph\.data_profile\./cimprofiles./g' "$dest/$module.py" "$dest/__init__.py"
 
-echo "imported $envelope into $dest"
+echo "imported $envelope into $dest/$module.py"
 echo "next: uv run python -m cimprofiles.dedupe_profile_fields --check && uv run pytest"

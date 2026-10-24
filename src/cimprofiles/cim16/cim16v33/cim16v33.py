@@ -26,7 +26,7 @@ class CIMStereotype(Enum):
     enumeration = 'enumeration'
     informative = 'informative'
 
-BASE_URI = 'http://www.ucaiug.org/profile#'
+BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/2012/CIM-schema-cim16#'
 
 @dataclass(repr=False, eq=False)

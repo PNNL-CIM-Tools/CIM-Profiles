@@ -84,11 +84,12 @@ language with a UUID library can reproduce it from this description.
    scripts/import_cimtool_output.sh cim17 <Profiles/name.py> <Profiles/name.__init__.py>
    ```
    The first argument is the CIM version directory. A fourth argument names the package
-   directory when it differs from the envelope name (`gridappsd_rc4_2021` for `rc4_2021`).
-3. Check for duplicate field definitions, and rebuild the pre-baked merged profiles if it is one
-   of their parts:
+   directory when it differs from the envelope name (`gridappsd_rc4_2021` for `rc4_2021`),
+   or places a part of a merged profile (`cim18v17/substation`).
+3. Remove duplicate field definitions, and rebuild the pre-baked merged profiles (cim18gmdm,
+   cgmes_3_0_0, cim18v17) if it is one of their parts:
    ```bash
-   uv run python -m cimprofiles.dedupe_profile_fields --check
+   uv run python -m cimprofiles.dedupe_profile_fields
    uv run python -m cimprofiles.build_merged_profiles
    ```
 4. Run the tests: `uv run pytest`.
