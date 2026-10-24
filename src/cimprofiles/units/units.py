@@ -21,16 +21,16 @@ ureg = UnitRegistry()
 _pint_log = logging.getLogger('pint.util')
 _prev_level = _pint_log.level
 _pint_log.setLevel(logging.ERROR)
-ureg.load_definitions(units_file)
+ureg.load_definitions(units_file) # pyright: ignore[reportArgumentType]
 _pint_log.setLevel(_prev_level)
 
 
 class CIMUnit():
     value: Optional[float]|CIMUnit
-    unit: Optional[UnitSymbol]
-    multiplier: Optional[UnitMultiplier]
+    unit: UnitSymbol
+    multiplier: UnitMultiplier
 
-    def __pint__(self, value:float|CIMUnit, input_unit:str, input_multiplier:str=None):
+    def __pint__(self, value:float|CIMUnit, input_unit:str, input_multiplier:Optional[str]=None):
 
         if input_unit is None:
             input_unit = self.unit.value
