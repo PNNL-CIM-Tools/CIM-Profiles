@@ -5507,12 +5507,12 @@ class Frequency(CIMUnit):
     Cycles per second.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.Hz
-    def __init__(self, value, input_unit: str='Hz', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5536,12 +5536,12 @@ class PerCent(CIMUnit):
     the defined base.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5564,12 +5564,12 @@ class Seconds(CIMUnit):
     Time, in seconds.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.s
-    def __init__(self, value, input_unit: str='s', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='s', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

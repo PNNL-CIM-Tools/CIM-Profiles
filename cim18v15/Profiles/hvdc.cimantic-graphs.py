@@ -5878,12 +5878,12 @@ class ActivePower(CIMUnit):
     of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.W
-    def __init__(self, value, input_unit: str='W', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5906,12 +5906,12 @@ class ActivePowerPerCurrentFlow(CIMUnit):
     Active power variation with current flow.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.WPerA
-    def __init__(self, value, input_unit: str='WPerA', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='WPerA', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5934,12 +5934,12 @@ class AngleDegrees(CIMUnit):
     Measurement of angle in degrees.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.deg
-    def __init__(self, value, input_unit: str='deg', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5962,12 +5962,12 @@ class ApparentPower(CIMUnit):
     Product of the RMS value of the voltage and the RMS value of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VA
-    def __init__(self, value, input_unit: str='VA', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VA', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5990,12 +5990,12 @@ class Capacitance(CIMUnit):
     Capacitive part of reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.F
-    def __init__(self, value, input_unit: str='F', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='F', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6018,12 +6018,12 @@ class CapacitancePerLength(CIMUnit):
     Capacitance per unit of length.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.FPerm
-    def __init__(self, value, input_unit: str='FPerm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='FPerm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6047,12 +6047,12 @@ class CurrentFlow(CIMUnit):
     equipment into the connectivity node. Can be both AC and DC.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.A
-    def __init__(self, value, input_unit: str='A', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='A', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6075,12 +6075,12 @@ class Inductance(CIMUnit):
     Inductive part of reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.H
-    def __init__(self, value, input_unit: str='H', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='H', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6103,12 +6103,12 @@ class InductancePerLength(CIMUnit):
     Inductance per unit of length.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.HPerm
-    def __init__(self, value, input_unit: str='HPerm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='HPerm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6131,12 +6131,12 @@ class Length(CIMUnit):
     Unit of length. It shall be a positive value or zero.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.m
-    def __init__(self, value, input_unit: str='m', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6160,12 +6160,12 @@ class PU(CIMUnit):
     typically range from -10 to +10.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6189,12 +6189,12 @@ class PerCent(CIMUnit):
     the defined base.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6218,12 +6218,12 @@ class ReactivePower(CIMUnit):
     component of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VAr
-    def __init__(self, value, input_unit: str='VAr', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VAr', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6246,12 +6246,12 @@ class Resistance(CIMUnit):
     Resistance (real part of impedance).
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6274,12 +6274,12 @@ class ResistancePerLength(CIMUnit):
     Resistance (real part of impedance) per unit of length.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohmPerm
-    def __init__(self, value, input_unit: str='ohmPerm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohmPerm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6302,12 +6302,12 @@ class Seconds(CIMUnit):
     Time, in seconds.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.s
-    def __init__(self, value, input_unit: str='s', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='s', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6330,12 +6330,12 @@ class Voltage(CIMUnit):
     Electrical voltage, can be both AC and DC.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.V
-    def __init__(self, value, input_unit: str='V', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='V', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

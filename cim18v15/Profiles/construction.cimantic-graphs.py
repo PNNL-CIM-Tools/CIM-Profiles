@@ -2329,12 +2329,12 @@ class Displacement(CIMUnit):
     Unit of displacement relative to a reference position, hence can be negative.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.m
-    def __init__(self, value, input_unit: str='m', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -2357,12 +2357,12 @@ class Length(CIMUnit):
     Unit of length. It shall be a positive value or zero.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.m
-    def __init__(self, value, input_unit: str='m', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -2385,12 +2385,12 @@ class Resistance(CIMUnit):
     Resistance (real part of impedance).
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
