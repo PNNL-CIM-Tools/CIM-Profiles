@@ -1,0 +1,1003 @@
+@startuml
+
+sprite $choice_icon [32x32/16] {
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000FFFFF0000000000000
+00000000000000FFFFF0000000000000
+0000000000A000FFFFF00FFFFF000000
+000000000AFA00FFFFF000000F000000
+00000000AFA000FFFFF000000F000000
+0000000AFA000000000000000F000000
+000000AFA00000FFFFF000000F000000
+00000AFA000000FFFFF000000F000000
+0FFFFFA0000000FFFFF00FFFFFFFFFF0
+00000000000000FFFFF000000F000000
+00000000000000FFFFF000000F000000
+0000000000000000000000000F000000
+00000000000000FFFFF000000F000000
+00000000000000FFFFF000000F000000
+00000000000000FFFFF00FFFFF000000
+00000000000000FFFFF0000000000000
+00000000000000FFFFF0000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+}
+
+sprite $ref_icon {
+0
+}
+
+sprite $empty_icon [16x16/16] {
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+}
+
+top to bottom direction
+hide empty methods
+
+' Adjust the horizontal spacing for better spatial rendering (the PlantUML default is ~20)
+skinparam nodesep 20
+' Adjust the vertical spacing for better spatial rendering (the PlantUML default is ~30)
+skinparam ranksep 30
+
+skinparam BackgroundColor #FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 5
+skinparam BorderColor #454645
+skinparam ArrowColor #454645
+skinparam FontColor #000000
+
+skinparam class {
+  ' Document root element style definition
+  BackgroundColor<<Document Root>> #D3FBFE
+  FontColor<<Document Root>> #000000
+  FontSize<<Document Root>> 18
+  AttributeFontColor<<Document Root>> #000000
+  AttributeFontSize<<Document Root>> 18
+  StereotypeFontColor<<Document Root>> #000000
+  StereotypeFontSize<<Document Root>> 14
+  HeaderFontColor<<Document Root>> #000000
+  
+  ' Choice element style definition
+  BackgroundColor<<Choice>> #E6E6FF
+  FontColor<<Choice>> #000000
+  AttributeFontColor<<Choice>> #000000
+  StereotypeFontColor<<Choice>> #000000
+  HeaderFontColor<<Choice>> #000000
+  BorderColor<<Choice>> #454645
+  BorderThickness<<Choice>> 1
+  
+  ' Ref element style definition
+  BackgroundColor<<Ref>> #FFDBDB
+  FontColor<<Ref>> #000000
+  AttributeFontColor<<Ref>> #000000
+  StereotypeFontColor<<Ref>> #000000
+  HeaderFontColor<<Ref>> #000000
+  BorderColor<<Ref>> #454645
+  BorderThickness<<Ref>> 1
+  
+  ' Concrete classes style definition
+  BackgroundColor #FFFFE0
+  FontColor #000000
+  AttributeFontColor #000000
+  StereotypeFontColor #000000
+  HeaderFontColor #000000
+  BorderColor #454645
+  BorderThickness 1
+  
+  ' Abstract classes style definition
+  BackgroundColor<<abstract>> #E8E8E8
+  FontColor<<abstract>> #000000
+  AttributeFontColor<<abstract>> #000000
+  StereotypeFontColor<<abstract>> #000000
+  HeaderFontColor<<abstract>> #000000
+  BorderColor<<abstract>> #454645
+  BorderThickness<<abstract>> 1
+  
+  ' Enumerations style definition
+  BackgroundColor<<enumeration>> #A9F1A9
+  FontColor<<enumeration>> #000000
+  AttributeFontColor<<enumeration>> #000000
+  StereotypeFontColor<<enumeration>> #000000
+  HeaderFontColor <<enumeration>> #000000
+  BorderColor<<enumeration>> #454645
+  BorderThickness<<enumeration>> 1
+  
+  ' CIMDatatypes style definition
+  BackgroundColor<<CIMDatatype>> #FFEBCD
+  FontColor<<CIMDatatype>> #000000
+  AttributeFontColor<<CIMDatatype>> #000000
+  StereotypeFontColor<<CIMDatatype>> #000000
+  HeaderFontColor<<CIMDatatype>> #000000
+  BorderColor<<CIMDatatype>> #454645
+  BorderThickness<<CIMDatatype>> 1
+  
+  ' Compound classes style definition
+  BackgroundColor<<Compound>> #FFEBCD
+  FontColor<<Compound>> #000000
+  AttributeFontColor<<Compound>> #000000
+  StereotypeFontColor<<Compound>> #000000
+  HeaderFontColor<<Compound>> #000000
+  BorderColor<<Compound>> #454645
+  BorderThickness<<Compound>> 1
+  
+  ' Primitive classes style definition
+  BackgroundColor<<Primitive>> #E6E6FF
+  FontColor<<Primitive>> #000000
+  AttributeFontColor<<Primitive>> #000000
+  StereotypeFontColor<<Primitive>> #000000
+  HeaderFontColor<<Primitive>> #000000
+  BorderColor<<Primitive>> #454645
+  BorderThickness<<Primitive>> 1
+  
+  ' Errors classes style definition
+  BackgroundColor<<error>> #FFC0CB
+  FontColor<<error>> #000000
+  AttributeFontColor<<error>> #000000
+  StereotypeFontColor<<error>> #000000
+  HeaderFontColor<<error>> #000000
+  BorderColor<<error>> #454645
+  BorderThickness<<error>> 1
+  
+  ' Shadow classes style definition
+  BackgroundColor<<ShadowExtension>> #C0C0C0
+  FontColor<<ShadowExtension>> #000000
+  AttributeFontColor<<ShadowExtension>> #000000
+  StereotypeFontColor<<ShadowExtension>> #000000
+  HeaderFontColor<<ShadowExtension>> #000000
+  BorderColor<<ShadowExtension>> #454645
+  BorderThickness<<ShadowExtension>> 1
+  
+}
+
+skinparam shadowing true
+
+hide <<Document Root>> stereotype
+hide <<Choice>> stereotype
+hide <<Ref>> stereotype
+hide <<abstract>> stereotype
+hide <<error>> stereotype
+
+
+skinparam note {
+   BorderColor #454645
+   BorderThickness 1
+   FontSize 14
+   Font Bold
+   FontColor #000000
+}
+
+' Add a note towards the upper left corner of the diagram
+note as hvdc_factsNote #lightyellow
+   Profile: hvdc_facts
+   Namespace: http://www.ucaiug.org/profile#
+end note
+
+' ACDCConverter inherits from Equipment
+abstract class ACDCConverter  <<abstract>> {
+   +baseS: ApparentPower [0..1]
+   +idc: CurrentFlow [0..1]
+   +idleLoss: ActivePower [0..1]
+   +maxP: ActivePower [0..1]
+   +maxUdc: Voltage [0..1]
+   +minP: ActivePower [0..1]
+   +minUdc: Voltage [0..1]
+   +numberOfValves: Integer [0..1]
+   +p: ActivePower [0..1]
+   +poleLossP: ActivePower [0..1]
+   +q: ReactivePower [0..1]
+   +ratedUdc: Voltage [0..1]
+   +resistiveLoss: Resistance [0..1]
+   +switchingLoss: ActivePowerPerCurrentFlow [0..1]
+   +targetPpcc: ActivePower [0..1]
+   +targetUdc: Voltage [0..1]
+   +uc: Voltage [0..1]
+   +udc: Voltage [0..1]
+   +valveU0: Voltage [0..1]
+}
+
+Equipment <|-- ACDCConverter
+
+
+' ACDCConverterDCTerminal inherits from DCBaseTerminal
+class ACDCConverterDCTerminal   {
+   +polarity: DCPolarityKind [0..1]
+}
+
+DCBaseTerminal <|-- ACDCConverterDCTerminal
+
+ACDCConverterDCTerminal "+DCTerminals 0..*" --> "+DCConductingEquipment 1" ACDCConverter
+
+' ACDCTerminal inherits from IdentifiedObject
+abstract class ACDCTerminal  <<abstract>> {
+   +sequenceNumber: Integer [0..1]
+}
+
+IdentifiedObject <|-- ACDCTerminal
+
+ACDCTerminal "+Terminal 0..*" --> "+BusNameMarker 0..1" BusNameMarker
+
+' ACPointOfCommonCoupling inherits from IdentifiedObject
+class ACPointOfCommonCoupling   {
+}
+
+IdentifiedObject <|-- ACPointOfCommonCoupling
+
+
+' ACTieCorridor inherits from TieCorridor
+class ACTieCorridor   {
+}
+
+TieCorridor <|-- ACTieCorridor
+
+
+' AssessedElement inherits from IdentifiedObject
+class AssessedElement <<NC>>  {
+}
+
+IdentifiedObject <|-- AssessedElement
+
+
+' BipolarDCSystem inherits from DCSystem
+class BipolarDCSystem   {
+   +isRigid: Boolean [0..1]
+}
+
+DCSystem <|-- BipolarDCSystem
+
+BipolarDCSystem "+BipolarDCSystem 0..1" --> "+DCBiPole 0..1" DCBiPole
+
+' BusNameMarker inherits from IdentifiedObject
+class BusNameMarker   {
+   +priority: Integer [0..1]
+}
+
+IdentifiedObject <|-- BusNameMarker
+
+BusNameMarker "+BusNameMarker 0..*" --> "+TopologicalNode 0..1" TopologicalNode : <<ShadowExtension>>
+
+' ConnectivityNodeContainer inherits from PowerSystemResource
+abstract class ConnectivityNodeContainer  <<abstract>> {
+}
+
+PowerSystemResource <|-- ConnectivityNodeContainer
+
+
+' CsConverter inherits from ACDCConverter
+class CsConverter   {
+   +alpha: AngleDegrees [0..1]
+   +gamma: AngleDegrees [0..1]
+   +maxAlpha: AngleDegrees [0..1]
+   +maxGamma: AngleDegrees [0..1]
+   +maxIdc: CurrentFlow [0..1]
+   +minAlpha: AngleDegrees [0..1]
+   +minGamma: AngleDegrees [0..1]
+   +minIdc: CurrentFlow [0..1]
+   +operatingMode: CsOperatingModeKind [0..1]
+   +pPccControl: CsPpccControlKind [0..1]
+   +ratedIdc: CurrentFlow [0..1]
+   +targetAlpha: AngleDegrees [0..1]
+   +targetGamma: AngleDegrees [0..1]
+   +targetIdc: CurrentFlow [0..1]
+}
+
+ACDCConverter <|-- CsConverter
+
+
+enum CsOperatingModeKind <<enumeration>><<Attribute>>  {
+   inverter
+   rectifier
+}
+
+enum CsPpccControlKind <<enumeration>><<Attribute>>  {
+   activePower
+   dcCurrent
+   dcVoltage
+}
+
+' DCBaseTerminal inherits from ACDCTerminal
+abstract class DCBaseTerminal  <<abstract>> {
+}
+
+ACDCTerminal <|-- DCBaseTerminal
+
+DCBaseTerminal "+DCTerminals 0..*" --> "+DCNode 0..1" DCNode
+DCBaseTerminal "+DCTerminals 0..*" --> "+DCTopologicalNode 0..1" DCTopologicalNode
+
+' DCBiPole inherits from PowerSystemResource
+class DCBiPole   {
+}
+
+PowerSystemResource <|-- DCBiPole
+
+DCBiPole "+DCBiPole 0..1" --> "+BipolarDCSystem 0..1" BipolarDCSystem
+
+' DCBreaker inherits from DCSwitch
+class DCBreaker   {
+}
+
+DCSwitch <|-- DCBreaker
+
+
+' DCBusbar inherits from DCConductingEquipment
+class DCBusbar   {
+}
+
+DCConductingEquipment <|-- DCBusbar
+
+
+' DCBypassSwitch inherits from DCHighSpeedSwitch
+class DCBypassSwitch   {
+}
+
+DCHighSpeedSwitch <|-- DCBypassSwitch
+
+
+' DCChopper inherits from DCConductingEquipment
+class DCChopper   {
+}
+
+DCConductingEquipment <|-- DCChopper
+
+
+' DCCommutationSwitch inherits from DCHighSpeedSwitch
+abstract class DCCommutationSwitch  <<abstract>> {
+}
+
+DCHighSpeedSwitch <|-- DCCommutationSwitch
+
+
+' DCConductingEquipment inherits from Equipment
+abstract class DCConductingEquipment  <<abstract>> {
+   +ratedCurrent: CurrentFlow [0..1]
+   +ratedUdc: Voltage [0..1]
+}
+
+Equipment <|-- DCConductingEquipment
+
+
+enum DCConverterOperatingModeKind <<enumeration>><<Attribute>>  {
+   bipolar
+   monopolarGroundReturn
+   monopolarMetallicReturn
+}
+
+' DCConverterParallelingSwitch inherits from DCHighSpeedSwitch
+class DCConverterParallelingSwitch   {
+}
+
+DCHighSpeedSwitch <|-- DCConverterParallelingSwitch
+
+
+' DCConverterUnit inherits from DCEquipmentContainer
+class DCConverterUnit   {
+   +operationMode: DCConverterOperatingModeKind [0..1]
+}
+
+DCEquipmentContainer <|-- DCConverterUnit
+
+DCConverterUnit "+DCConverterUnit 0..1" --> "+ACPointOfCommonCoupling 1" ACPointOfCommonCoupling
+DCConverterUnit "+DCConverterUnit 0..1" --> "+DCPointOfCommonCoupling 1" DCPointOfCommonCoupling
+DCConverterUnit "+DCConverterUnit 0..*" --> "+DCPole 0..1" DCPole
+DCConverterUnit "+DCConverterUnit 0..*" --> "+DCSubstation 0..1" DCSubstation
+DCConverterUnit "+DCConverterUnit 0..*" --o "+Substation 0..1" Substation
+
+' DCDisconnector inherits from DCSwitch
+class DCDisconnector   {
+}
+
+DCSwitch <|-- DCDisconnector
+
+
+' DCEarthReturnTransferSwitch inherits from DCCommutationSwitch
+class DCEarthReturnTransferSwitch   {
+}
+
+DCCommutationSwitch <|-- DCEarthReturnTransferSwitch
+
+
+' DCEquipmentContainer inherits from EquipmentContainer
+abstract class DCEquipmentContainer  <<abstract>> {
+}
+
+EquipmentContainer <|-- DCEquipmentContainer
+
+DCEquipmentContainer "+DCEquipmentContainer 0..*" --> "+HVDCInterconnectionDynamics 0..1" HVDCInterconnectionDynamics
+
+' DCGround inherits from DCConductingEquipment
+class DCGround   {
+   +inductance: Inductance [0..1]
+   +r: Resistance [0..1]
+}
+
+DCConductingEquipment <|-- DCGround
+
+
+' DCHarmonicFilter inherits from DCSeriesDevice
+class DCHarmonicFilter   {
+}
+
+DCSeriesDevice <|-- DCHarmonicFilter
+
+
+' DCHighSpeedSwitch inherits from DCSwitch
+abstract class DCHighSpeedSwitch  <<abstract>> {
+}
+
+DCSwitch <|-- DCHighSpeedSwitch
+
+
+' DCLine inherits from DCEquipmentContainer
+class DCLine   {
+}
+
+DCEquipmentContainer <|-- DCLine
+
+DCLine "+DCLine 0..1" --> "+DCPole 0..1" DCPole
+DCLine "+DCLines 0..*" --> "+Region 0..1" SubGeographicalRegion
+
+' DCLineParallelingSwitch inherits from DCCommutationSwitch
+class DCLineParallelingSwitch   {
+}
+
+DCCommutationSwitch <|-- DCLineParallelingSwitch
+
+
+' DCLineSegment inherits from DCConductingEquipment
+class DCLineSegment   {
+   +capacitance: Capacitance [0..1]
+   +inductance: Inductance [0..1]
+   +length: Length [0..1]
+   +resistance: Resistance [0..1]
+}
+
+DCConductingEquipment <|-- DCLineSegment
+
+DCLineSegment "+DCLineSegments 0..*" --> "+PerLengthParameter 0..1" PerLengthDCLineParameter
+
+' DCMetalicReturnSwitch inherits from DCCommutationSwitch
+class DCMetalicReturnSwitch   {
+}
+
+DCCommutationSwitch <|-- DCMetalicReturnSwitch
+
+
+' DCNeutralBusGroundingSwitch inherits from DCCommutationSwitch
+class DCNeutralBusGroundingSwitch   {
+}
+
+DCCommutationSwitch <|-- DCNeutralBusGroundingSwitch
+
+
+' DCNeutralBusSwitch inherits from DCCommutationSwitch
+class DCNeutralBusSwitch   {
+}
+
+DCCommutationSwitch <|-- DCNeutralBusSwitch
+
+
+' DCNode inherits from IdentifiedObject
+class DCNode   {
+}
+
+IdentifiedObject <|-- DCNode
+
+DCNode "+DCNodes 0..*" --> "+DCEquipmentContainer 1" DCEquipmentContainer
+DCNode "+DCNode 0..1" --> "+DCPointOfCommonCoupling 0..1" DCPointOfCommonCoupling
+DCNode "+DCNodes 0..*" --> "+DCTopologicalNode 0..1" DCTopologicalNode
+
+' DCPointOfCommonCoupling inherits from IdentifiedObject
+class DCPointOfCommonCoupling   {
+}
+
+IdentifiedObject <|-- DCPointOfCommonCoupling
+
+DCPointOfCommonCoupling "+DCPointOfCommonCoupling 0..1" --> "+DCConverterUnit 0..1" DCConverterUnit
+DCPointOfCommonCoupling "+DCPointOfCommonCoupling 0..1" --> "+DCNode 0..1" DCNode
+
+enum DCPolarityKind <<enumeration>><<Attribute>>  {
+   middle
+   negative
+   positive
+}
+
+' DCPole inherits from PowerSystemResource
+class DCPole   {
+   +maxEconomicP: ActivePower [0..1]
+   +minEconomicP: ActivePower [0..1]
+   +normalParticipationFactor: Float [0..1]
+   +p: ActivePower [0..1]
+   +participationFactor: Float [0..1]
+}
+
+PowerSystemResource <|-- DCPole
+
+DCPole "+DCPole 0..1" --> "+AsymmetricMonopolarDCSystem 0..1" MonopolarDCSystem
+DCPole "+DCPole 0..*" --> "+DCBiPole 0..1" DCBiPole
+DCPole "+DCPole 0..1" --> "+DCLine 0..1" DCLine
+DCPole "+DCPole 0..*" --> "+DCTieCorridor 0..1" DCTieCorridor
+DCPole "+DCPole 0..1" --> "+DirectCurrentPoleController 0..1" DirectCurrentPoleController
+
+' DCSeriesDevice inherits from DCConductingEquipment
+abstract class DCSeriesDevice  <<abstract>> {
+   +inductance: Inductance [0..1]
+   +resistance: Resistance [0..1]
+}
+
+DCConductingEquipment <|-- DCSeriesDevice
+
+
+' DCShunt inherits from DCConductingEquipment
+class DCShunt   {
+   +capacitance: Capacitance [0..1]
+   +resistance: Resistance [0..1]
+}
+
+DCConductingEquipment <|-- DCShunt
+
+
+' DCSmoothingReactor inherits from DCSeriesDevice
+class DCSmoothingReactor   {
+}
+
+DCSeriesDevice <|-- DCSmoothingReactor
+
+
+' DCSmoothingReactorArrester inherits from DCSeriesDevice
+class DCSmoothingReactorArrester   {
+}
+
+DCSeriesDevice <|-- DCSmoothingReactorArrester
+
+
+' DCSubstation inherits from DCEquipmentContainer
+class DCSubstation   {
+   +isTapping: Boolean [0..1]
+}
+
+DCEquipmentContainer <|-- DCSubstation
+
+DCSubstation "+DCSubstation 0..*" --> "+Substation 0..1" Substation
+
+' DCSubstationBipole inherits from DCEquipmentContainer
+class DCSubstationBipole   {
+}
+
+DCEquipmentContainer <|-- DCSubstationBipole
+
+DCSubstationBipole "+DCSubstationBipole 0..*" --> "+DCSubstation 0..1" DCSubstation
+DCSubstationBipole "+DCSubstationBipole 0..1" --> "+DirectCurrentSubstationBipoleController 0..1" DirectCurrentSubstationBipoleController
+
+' DCSubstationPole inherits from DCEquipmentContainer
+class DCSubstationPole   {
+}
+
+DCEquipmentContainer <|-- DCSubstationPole
+
+DCSubstationPole "+DCSubstationPole 0..*" --> "+DCSubstation 0..1" DCSubstation
+DCSubstationPole "+DCSubstationPole 0..1" --> "+DirectCurrentSubstationPoleController 0..1" DirectCurrentSubstationPoleController
+
+' DCSwitch inherits from DCConductingEquipment
+abstract class DCSwitch  <<abstract>> {
+   +locked: Boolean [0..1]
+   +normalOpen: Boolean [0..1]
+   +open: Boolean [0..1]
+   +retained: Boolean [0..1]
+}
+
+DCConductingEquipment <|-- DCSwitch
+
+
+' DCSystem inherits from PowerSystemResource
+abstract class DCSystem  <<abstract>> {
+   +directionKind: DCSystemDirectionKind [0..1]
+   +transmissionKind: DCSystemTransmissionKind [0..1]
+}
+
+PowerSystemResource <|-- DCSystem
+
+
+enum DCSystemDirectionKind <<enumeration>><<Attribute>>  {
+   bidirectional
+   unidirectional
+}
+
+enum DCSystemTransmissionKind <<enumeration>><<Attribute>>  {
+   backToBack
+   multiTerminal
+   twoTerminal
+}
+
+' DCTerminal inherits from DCBaseTerminal
+class DCTerminal   {
+   +polarity: DCTerminalPolarityKind [0..1]
+}
+
+DCBaseTerminal <|-- DCTerminal
+
+DCTerminal "+DCTerminals 0..*" --> "+DCConductingEquipment 1" DCConductingEquipment
+
+enum DCTerminalPolarityKind <<enumeration>><<Attribute>>  {
+   negative
+   positive
+}
+
+' DCTieCorridor inherits from TieCorridor
+class DCTieCorridor   {
+   +maxRegulatingReserve: ActivePower [0..1]
+   +minRegulatingReserve: ActivePower [0..1]
+   +p: ActivePower [0..1]
+   +q: ReactivePower [0..1]
+   +rampingKind: RampingPrincipleKind [0..1]
+}
+
+TieCorridor <|-- DCTieCorridor
+
+DCTieCorridor "+DCTieCorridor 0..1" --> "+DirectCurrentMasterController 0..1" DirectCurrentMasterController
+DCTieCorridor "+DCTieCorridor 0..1" --> "+SchedulingArea 0..1" SchedulingArea : <<NC>>
+
+' DCTopologicalIsland inherits from IdentifiedObject
+class DCTopologicalIsland <<OfAggregate>>  {
+}
+
+IdentifiedObject <|-- DCTopologicalIsland
+
+
+' DCTopologicalNode inherits from IdentifiedObject
+class DCTopologicalNode   {
+}
+
+IdentifiedObject <|-- DCTopologicalNode
+
+DCTopologicalNode "+DCTopologicalNode 0..*" --> "+DCEquipmentContainer 0..1" DCEquipmentContainer
+DCTopologicalNode "+DCTopologicalNodes 0..*" --o "+DCTopologicalIsland 0..1" DCTopologicalIsland
+
+' DirectCurrentBipoleController inherits from PowerSystemResource
+class DirectCurrentBipoleController   {
+}
+
+PowerSystemResource <|-- DirectCurrentBipoleController
+
+DirectCurrentBipoleController "+DirectCurrentBipoleController 0..*" --> "+DirectCurrentMasterController 0..1" DirectCurrentMasterController
+
+' DirectCurrentMasterController inherits from PowerSystemResource
+class DirectCurrentMasterController   {
+}
+
+PowerSystemResource <|-- DirectCurrentMasterController
+
+DirectCurrentMasterController "+DirectCurrentMasterController 0..1" --> "+DCTieCorridor 0..1" DCTieCorridor
+
+' DirectCurrentPoleController inherits from PowerSystemResource
+class DirectCurrentPoleController   {
+}
+
+PowerSystemResource <|-- DirectCurrentPoleController
+
+DirectCurrentPoleController "+DirectCurrentPoleController 0..1" --> "+DCPole 1" DCPole
+DirectCurrentPoleController "+DirectCurrentPoleController 0..*" --> "+DirectCurrentBipoleController 0..1" DirectCurrentBipoleController
+DirectCurrentPoleController "+DirectCurrentPoleController 0..*" --> "+DirectCurrentMasterController 0..1" DirectCurrentMasterController
+
+' DirectCurrentSubstationBipoleController inherits from PowerSystemResource
+class DirectCurrentSubstationBipoleController   {
+}
+
+PowerSystemResource <|-- DirectCurrentSubstationBipoleController
+
+DirectCurrentSubstationBipoleController "+DirectCurrentSubstationBipoleController 0..1" --> "+DCSubstationBipole 1" DCSubstationBipole
+
+' DirectCurrentSubstationPoleController inherits from PowerSystemResource
+class DirectCurrentSubstationPoleController   {
+}
+
+PowerSystemResource <|-- DirectCurrentSubstationPoleController
+
+DirectCurrentSubstationPoleController "+DirectCurrentSubstationPoleController 0..1" --> "+DCSubstationPole 1" DCSubstationPole
+
+' Equipment inherits from PowerSystemResource
+abstract class Equipment  <<abstract>> {
+   +inService: Boolean [0..1]
+   +networkAnalysisEnabled: Boolean [0..1]
+   +normallyInService: Boolean [0..1]
+}
+
+PowerSystemResource <|-- Equipment
+
+
+' EquipmentContainer inherits from ConnectivityNodeContainer
+abstract class EquipmentContainer  <<abstract>> {
+}
+
+ConnectivityNodeContainer <|-- EquipmentContainer
+
+
+' GeographicalRegion inherits from IdentifiedObject
+class GeographicalRegion <<OfAggregate>>  {
+}
+
+IdentifiedObject <|-- GeographicalRegion
+
+
+' HVDCInterconnectionDynamics inherits from IdentifiedObject
+class HVDCInterconnectionDynamics   {
+}
+
+IdentifiedObject <|-- HVDCInterconnectionDynamics
+
+
+' IdentifiedObject
+abstract class IdentifiedObject  <<abstract>> {
+   +mRID: String [0..1]
+   +aliasName: String [0..1]
+   +description: String [0..1]
+   +name: String [0..1]
+}
+
+
+' Line inherits from EquipmentContainer
+class Line   {
+}
+
+EquipmentContainer <|-- Line
+
+
+' MonopolarDCSystem inherits from DCSystem
+class MonopolarDCSystem   {
+   +isSymmetrical: Boolean [0..1]
+}
+
+DCSystem <|-- MonopolarDCSystem
+
+MonopolarDCSystem "+AsymmetricMonopolarDCSystem 0..1" --> "+DCPole 0..1" DCPole
+
+' MustRunSchedule inherits from IdentifiedObject
+class MustRunSchedule <<OfAggregate>><<NC>>  {
+}
+
+IdentifiedObject <|-- MustRunSchedule
+
+MustRunSchedule "+MustRunSchedule 0..*" --> "+DCTieCorridor 0..1" DCTieCorridor
+
+' MustRunTimePoint
+class MustRunTimePoint <<NC>>  {
+   +<<NC>> atTime: DateTime [0..1]
+   +<<NC>> mustRun: Boolean [0..1]
+   +<<NC>> mustRunP: ActivePower [0..1]
+   +<<NC>> mustRunQ: ReactivePower [0..1]
+}
+
+MustRunTimePoint "+MustRunTimePoint 0..*" --o "+MustRunSchedule 1" MustRunSchedule : <<NC>>
+
+' PerLengthDCLineParameter inherits from IdentifiedObject
+class PerLengthDCLineParameter   {
+   +capacitance: CapacitancePerLength [0..1]
+   +inductance: InductancePerLength [0..1]
+   +resistance: ResistancePerLength [0..1]
+}
+
+IdentifiedObject <|-- PerLengthDCLineParameter
+
+
+' PinDCTerminal inherits from IdentifiedObject
+class PinDCTerminal   {
+   +kind: PinDCTerminalKind [0..1]
+}
+
+IdentifiedObject <|-- PinDCTerminal
+
+PinDCTerminal "+PinDCTerminal 0..*" --> "+DCTerminal 0..1" DCTerminal
+
+enum PinDCTerminalKind <<enumeration>><<Attribute>>  {
+   current
+   voltage
+}
+
+' PowerSchedule inherits from IdentifiedObject
+class PowerSchedule <<NC>>  {
+   +<<NC>> direction: RelativeDirectionKind [0..1]
+   +<<NC>> powerScheduleKind: PowerScheduleKind [0..1]
+}
+
+IdentifiedObject <|-- PowerSchedule
+
+PowerSchedule "+PowerSchedule 0..*" --> "+DCPole 0..1" DCPole
+PowerSchedule "+PowerSchedule 0..*" --> "+DCTieCorridor 0..1" DCTieCorridor
+
+enum PowerScheduleKind <<NC>><<enumeration>><<Attribute>>  {
+   meritOrder
+   mustRun
+   power
+   price
+}
+
+' PowerSystemResource inherits from IdentifiedObject
+abstract class PowerSystemResource <<ShadowExtension>> <<abstract>> {
+}
+
+IdentifiedObject <|-- PowerSystemResource
+
+
+enum RampingPrincipleKind <<enumeration>><<Attribute>>  {
+   continuous
+   fifteenMinutes
+   fiveMinutes
+   maxContinuous
+   tenMinutes
+}
+
+enum RelativeDirectionKind <<NC>><<enumeration>><<Attribute>>  {
+   down
+   none
+   up
+   upAndDown
+}
+
+' SchedulingArea inherits from PowerSystemResource
+class SchedulingArea <<NC>>  {
+}
+
+PowerSystemResource <|-- SchedulingArea
+
+SchedulingArea "+SchedulingArea 0..1" --> "+DCTieCorridor 0..1" DCTieCorridor
+
+' SubGeographicalRegion inherits from IdentifiedObject
+class SubGeographicalRegion <<OfAggregate>>  {
+}
+
+IdentifiedObject <|-- SubGeographicalRegion
+
+SubGeographicalRegion "+Regions 0..*" --o "+Region 0..1" GeographicalRegion
+
+' Substation inherits from EquipmentContainer
+class Substation <<OfAggregate>>  {
+}
+
+EquipmentContainer <|-- Substation
+
+Substation "+Substations 0..*" --o "+Region 0..1" SubGeographicalRegion
+
+' SvDCPowerFlow
+class SvDCPowerFlow   {
+   +p: ActivePower [0..1]
+}
+
+SvDCPowerFlow "+SvDCPowerFlow 0..*" --> "+DCTerminal 1" DCTerminal
+
+' SvDCVoltage
+class SvDCVoltage   {
+   +v: Voltage [0..1]
+}
+
+SvDCVoltage "+SvDCVoltage 0..*" --> "+DCTopologicalNode 1" DCTopologicalNode
+
+' Terminal inherits from ACDCTerminal
+class Terminal <<ShadowExtension>>  {
+}
+
+ACDCTerminal <|-- Terminal
+
+
+' TieCorridor inherits from PowerSystemResource
+abstract class TieCorridor  <<abstract>> {
+   +delayRegulatingReserve: Seconds [0..1]
+   +maxRegulatingReserveRamp: Float [0..1]
+   +thresholdRegulatingReserve: ActivePower [0..1]
+}
+
+PowerSystemResource <|-- TieCorridor
+
+
+' TopologicalNode inherits from IdentifiedObject
+class TopologicalNode <<ShadowExtension>>  {
+   +busName: String [0..1]
+   +busNumber: Integer [0..1]
+   +pInjection: ActivePower [0..1]
+   +qInjection: ReactivePower [0..1]
+}
+
+IdentifiedObject <|-- TopologicalNode
+
+
+' VSCDynamics inherits from IdentifiedObject
+class VSCDynamics   {
+}
+
+IdentifiedObject <|-- VSCDynamics
+
+
+' VsCapabilityCurve inherits from IdentifiedObject
+class VsCapabilityCurve   {
+   +referenceVoltage: Voltage [0..1]
+}
+
+IdentifiedObject <|-- VsCapabilityCurve
+
+VsCapabilityCurve "+CapabilityCurve 0..*" --> "+VsConverter 0..1" VsConverter
+
+' VsConverter inherits from ACDCConverter
+class VsConverter <<NC>>  {
+   +delta: AngleDegrees [0..1]
+   +droop: PU [0..1]
+   +droopCompensation: Resistance [0..1]
+   +maxModulationIndex: Float [0..1]
+   +maxValveCurrent: CurrentFlow [0..1]
+   +pPccControl: VsPpccControlKind [0..1]
+   +qPccControl: VsQpccControlKind [0..1]
+   +qShare: PerCent [0..1]
+   +targetPhasePcc: AngleDegrees [0..1]
+   +targetPowerFactorPcc: Float [0..1]
+   +targetPWMfactor: Float [0..1]
+   +targetQpcc: ReactivePower [0..1]
+   +targetUpcc: Voltage [0..1]
+   +uv: Voltage [0..1]
+}
+
+ACDCConverter <|-- VsConverter
+
+VsConverter "+VsConverter 0..1" --> "+VSCDynamics 0..1" VSCDynamics
+VsConverter "+VsConverter 0..1" --> "+VsConverterRegularSchedule 0..*" VsConverterRegularSchedule : <<NC>>
+
+' VsConverterRegularSchedule inherits from IdentifiedObject
+class VsConverterRegularSchedule <<NC>>  {
+}
+
+IdentifiedObject <|-- VsConverterRegularSchedule
+
+VsConverterRegularSchedule "+VsConverterRegularSchedule 0..*" --> "+VsConverter 0..1" VsConverter : <<NC>>
+
+' VsConverterSchedule inherits from IdentifiedObject
+class VsConverterSchedule <<OfAggregate>><<NC>>  {
+}
+
+IdentifiedObject <|-- VsConverterSchedule
+
+VsConverterSchedule "+VsConverterSchedule 0..*" --> "+VsConverter 0..1" VsConverter : <<NC>>
+
+' VsConverterTimePoint
+class VsConverterTimePoint <<NC>>  {
+}
+
+VsConverterTimePoint "+VsConverterTimePoint 0..*" --o "+VsConverterSchedule 1" VsConverterSchedule : <<NC>>
+
+enum VsPpccControlKind <<enumeration>><<Attribute>>  {
+   pPcc
+   pPccAndUdcDroop
+   pPccAndUdcDroopPilot
+   pPccAndUdcDroopWithCompensation
+   phasePcc
+   udc
+}
+
+enum VsQpccControlKind <<enumeration>><<Attribute>>  {
+   powerFactorPcc
+   pulseWidthModulation
+   reactivePcc
+   voltagePcc
+}
+
+@enduml
