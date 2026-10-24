@@ -8,6 +8,7 @@ class CIM_PROFILE(Enum):
     CIM16V33 = 'cim16v33'
     CIM17V40 = 'cim17v40'
     CIM18GMDM = 'cim18gmdm'
+    CIM18V17 = 'cim18v17'
 
 
 # Short profile names, as used by CIMG_CIM_PROFILE and cimgraph.data_profile -> package
@@ -19,6 +20,7 @@ PROFILE_PACKAGES = {
     'rc4_2021': 'cimprofiles.cim17.gridappsd_rc4_2021',
     'cim18gad': 'cimprofiles.cim18.cim18gad',
     'cim18gmdm': 'cimprofiles.cim18.cim18gmdm',
+    'cim18v17': 'cimprofiles.cim18.cim18v17',
     'cimhub_2026': 'cimprofiles.cim18.cimhub_2026',
 }
 
