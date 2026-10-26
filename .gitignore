@@ -2,7 +2,8 @@
 .metadata/*
 # Compiled class file
 *.class
-
+*.puml
+*/Profiles/*.py
 # Log file
 *.log
 

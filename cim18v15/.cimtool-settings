@@ -100,6 +100,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/short_circuit.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Profiles/steady_state_hypothesis.owl>
       tool:profile_envelope
               "Profile" ;

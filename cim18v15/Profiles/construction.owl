@@ -27,22 +27,23 @@
     xmlns="http://www.gridappsd.org/vfm/#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm/" > 
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a4">
-    <rdf:first rdf:resource="#PhaseShuntConnectionKind"/>
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd">
+    <rdf:first rdf:resource="#EarthModelKind"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a5">
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a6"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding.connection"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity.earthModelType"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a6">
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>connection</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseShuntConnectionKind"/>
-    <owl:unionOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a4"/>
+    <rdfs:label>earthModelType</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind"/>
+    <owl:unionOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-745c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -322,6 +323,23 @@
   <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-74dd">
     <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ConductorPositionKind.neutral"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a4">
+    <rdf:first rdf:resource="#PhaseShuntConnectionKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a6"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding.connection"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a6">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>connection</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseShuntConnectionKind"/>
+    <owl:unionOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a4"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7aaa">
     <rdf:first rdf:resource="#WireSpacing"/>
@@ -734,24 +752,6 @@
     <rdfs:label>designation</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af7">
-    <rdf:first rdf:resource="#EarthModelKind"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af9"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity.earthModelType"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af9">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>earthModelType</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind"/>
-    <owl:unionOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af7"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7b3e">
     <rdf:first rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind.deri"/>
     <rdf:rest rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7b3f"/>
@@ -1110,9 +1110,9 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>EarthResistivity</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe"/>
     <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-7493"/>
     <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-74b2"/>
-    <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7af8"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity"/>
     <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
   </rdf:Description>
