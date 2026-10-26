@@ -8,6 +8,8 @@
 #   - Diagram is intentionally excluded from cim18gmdm (not part of the power-flow model).
 #   - canonical/ is intentionally excluded (it is what this merge replaces).
 # description: human-readable note shown in the generated file header.
+# source: optional, the CIMTool Profiles folder (repo-relative) the parts are generated
+#   in. scripts/build_release.sh <name> re-imports every part from it before building.
 
 releases:
   - name: cim18gmdm
@@ -36,6 +38,7 @@ releases:
 
   - name: cim18v17
     package: cimprofiles.cim18.cim18v17
+    source: cim18v15/Profiles
     parts:
       - cimprofiles.cim18.cim18v17.substation.substation
       - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
@@ -52,4 +55,5 @@ releases:
       - cimprofiles.cim18.cim18v17.construction.construction
       - cimprofiles.cim18.cim18v17.facts.facts
       - cimprofiles.cim18.cim18v17.hvdc.hvdc
-    description: "GridAPPS-D CIM18 merged profile, the 15 CIMTool profiles in cim18v15/Profiles"
+      - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+    description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"

@@ -3,6 +3,7 @@
 Run with the development dependencies installed (needs pyyaml):
     uv run python -m cimprofiles.build_merged_profiles
     uv run python -m cimprofiles.build_merged_profiles --config path/to/releases.yaml
+    uv run python -m cimprofiles.build_merged_profiles --release cim18v17
 
 ``--config`` builds releases for a profile package outside this repo (e.g.
 cim-vfm-profiles). Each release's ``package`` must be importable; its files are
@@ -307,10 +308,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='Build pre-baked merged profile packages.')
     parser.add_argument('--config', type=Path, default=_CONFIG,
                         help=f'releases yaml (default: {_CONFIG.name})')
+    parser.add_argument('--release', help='build only the release with this name')
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
 
-    for release in _load_config(args.config):
+    releases = _load_config(args.config)
+    if args.release:
+        releases = [release for release in releases if release['name'] == args.release]
+        if not releases:
+            parser.error(f'no release named {args.release!r} in {args.config}')
+
+    for release in releases:
         package = release['package']
         print(f'Building {package} ...')
         package_dir = _package_dir(package)

@@ -3082,8 +3082,8 @@ class CsConverter(ACDCConverter):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
 class VsConverter(ACDCConverter):
     '''
@@ -4777,8 +4777,8 @@ class VsConverterSchedule(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.NC)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False)
 class MustRunTimePoint(Identity):
     '''

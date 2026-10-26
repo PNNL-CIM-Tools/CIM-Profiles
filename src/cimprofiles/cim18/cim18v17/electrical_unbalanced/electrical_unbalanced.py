@@ -99,14 +99,27 @@ class IdentifiedObject(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EarthResistivity(IdentifiedObject):
     '''
     Resistance of earth (soil)
     '''
 
+    earthModelType: Optional[ EarthModelKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     earthReturnGMR: Optional[ float | Length ] = field(
         default=None,
         metadata={
@@ -163,20 +176,6 @@ class EarthResistivity(IdentifiedObject):
         })
     '''
     The set of wire assemblies using this earth resistivity
-    '''
-    
-    earthModelType: Optional[EarthModelKind] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
     '''
     
     @property

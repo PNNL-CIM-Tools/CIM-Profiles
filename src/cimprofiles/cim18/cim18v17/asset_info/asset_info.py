@@ -57,9 +57,9 @@ class AgentRoleQualification(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.MCT)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.MCT)
 @dataclass(repr=False)
 class CableArmorInfo(Identity):
     '''
@@ -628,8 +628,8 @@ class AssetInfo(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class BundleConfiguration(AssetInfo):
     '''
@@ -3455,8 +3455,8 @@ class StorageInverterInfo(InverterInfo):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ServiceMeterInfo(ConductingAssetInfo):
     '''
@@ -4226,8 +4226,8 @@ class SolarArrayInfo(DCConductingAssetInfo):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SolarPanelInfo(DCConductingAssetInfo):
     '''
@@ -5337,8 +5337,8 @@ class VehicleInfo(AssetInfo):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class ElectricVehicleInfo(VehicleInfo):
     '''

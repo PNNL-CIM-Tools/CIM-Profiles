@@ -2577,7 +2577,6 @@ class Equipment(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Sensor(Equipment):
     '''
@@ -2597,6 +2596,126 @@ class Sensor(Equipment):
         'serialize': True,
         })
     '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'AuxiliaryEquipment'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class CurrentTransformer(Sensor):
+    '''
+    Instrument transformer used to measure electrical qualities of the circuit
+    that is being protected and/or monitored. Typically used as current transducer
+    for the purpose of metering or protection. A typical secondary current
+    rating would be 5A.
+    '''
+
+    usage: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Intended usage of the CT; i.e. metering, protection.
+    '''
+    
+    accuracyLimit: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Percent of rated current for which the CT remains accurate within specified
+    limits.
+    '''
+    
+    coreBurden: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Power burden of the CT core.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'AuxiliaryEquipment'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PotentialTransformer(Sensor):
+    '''
+    Instrument transformer (also known as Voltage Transformer) used to measure
+    electrical qualities of the circuit that is being protected and/or monitored.
+    Typically used as voltage transducer for the purpose of metering, protection,
+    or sometimes auxiliary substation supply. A typical secondary voltage rating
+    would be 120V.
+    '''
+
+    nominalRatio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Nominal ratio between the primary and secondary voltage.
+    '''
+    
+    type: Optional[ PotentialTransformerKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Potential transformer construction type.
     '''
     
     @property
@@ -2693,20 +2812,89 @@ class MeasurementSystem(PowerSystemResource):
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class DigitalFaultRecorder(MeasurementSystem):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class MergingUnit(MeasurementSystem):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
 class PhasorMeasurementUnit(MeasurementSystem):
     '''
     '''
 
+    timeSourceType: Optional[ TimeSourceKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    PMU must have a time source, which may be a dedicated GPS antenna for
+    each PMU or an alternate source (used to prevent vulnerabilities from
+    GPS spoofing). The PMU can only use one time source at a time.
+    '''
+    
+    PhasorDataConcentrator: Optional[PhasorDataConcentrator] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD', 'OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PhasorDataConcentrator.PhasorMeasurementUnits',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     PMUConfiguration: Optional[PMUConfiguration] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PMUConfiguration.PhasorMeasurementUnit',
         'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     '''
@@ -2715,12 +2903,116 @@ class PhasorMeasurementUnit(MeasurementSystem):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PMUStream.PMU',
         'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class DisturbanceRecorder(PhasorMeasurementUnit):
+    '''
+    PMU that is also capable of collecting point-on-wave data
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PointOnWaveSensor(MeasurementSystem):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.OfAggregate)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhasorDataConcentrator(PowerSystemResource):
+    '''
+    '''
+
+    LocalPDC: list[PhasorDataConcentrator] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PhasorDataConcentrator.CentralPDC',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
+        })
+    '''
+    '''
+    
+    PhasorMeasurementUnits: list[PhasorMeasurementUnit] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PhasorMeasurementUnit.PhasorDataConcentrator',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    CentralPDC: Optional[PhasorDataConcentrator] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PhasorDataConcentrator.LocalPDC',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
     '''
@@ -3406,8 +3698,8 @@ class MeasurementValueQuality(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class PMUValueQuality(MeasurementValueQuality):
     '''
@@ -4148,6 +4440,38 @@ class PhaseCode(Enum):
     
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
+class PotentialTransformerKind(Enum):
+    '''
+    The construction kind of the potential transformer.
+    '''
+
+    capacitiveCoupling = 'capacitiveCoupling'
+    '''
+    The potential transformer is using capacitive coupling to create secondary
+    voltage.
+    '''
+    
+    inductive = 'inductive'
+    '''
+    The potential transformer is using induction coils to create secondary
+    voltage.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'AuxiliaryEquipment'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class RemoteUnitType(Enum):
     '''
     Type of remote unit.
@@ -4250,6 +4574,61 @@ class SynchrophaserUsageKind(Enum):
     
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
+class TimeSourceKind(Enum):
+    '''
+    '''
+
+    atomicClock = 'atomicClock'
+    '''
+    local rubidium or cesium clock
+    '''
+    
+    crystalOscillator = 'crystalOscillator'
+    '''
+    quartz or other crystal oscillator
+    '''
+    
+    gnss = 'gnss'
+    '''
+    Other global navigation satellite systems, such as BeiDeo, Galileo,
+    or GLONASS
+    '''
+    
+    gps = 'gps'
+    '''
+    global positioning system
+    '''
+    
+    ntp = 'ntp'
+    '''
+    network time protocol
+    '''
+    
+    ptp = 'ptp'
+    '''
+    precision time protocol via IEEE Std. 1588
+    '''
+    
+    radioTime = 'radioTime'
+    '''
+    radio time source such WWVB or MSF
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'AuxEqEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class Validity(Enum):
     '''
     Validity for MeasurementValue.
@@ -4291,6 +4670,35 @@ class Validity(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ActivePower(CIMUnit):
+    '''
+    Product of RMS value of the voltage and the RMS value of the in-phase component
+    of the current.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.W
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
 class Frequency(CIMUnit):
