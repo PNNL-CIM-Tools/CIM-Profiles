@@ -1,15 +1,18 @@
 ---
 # Publishes cimprofiles to PyPI.
-#   develop -> alpha pre-release (0.1.0a1 -> 0.1.0a2, or 0.1.0 -> 0.1.1a1)
-#   main    -> full release      (0.1.0a2 -> 0.1.0)
+#   develop -> alpha pre-release (0.1.0a1, 0.1.0a2, ...)
+#   main    -> full release      (0.1.0)
+#
+# pyproject.toml holds the next release target (X.Y.Z). The published version
+# is derived from PyPI at build time and never committed, so nothing pushes to
+# the protected branches: alphas take the next free aN, and once the target is
+# released both branches move on to the next patch. Bump the target in a PR
+# for minor/major releases.
 #
 # Uses PyPI Trusted Publishing (OIDC); no API token is stored. One-time setup:
 #   1. PyPI project -> Publishing -> add GitHub publisher:
 #      owner PNNL-CIM-Tools, repo CIM-Profiles, workflow release.yml, environment pypi
 #   2. GitHub repo -> Settings -> Environments -> create "pypi"
-#
-# Merge develop -> main with a merge commit (not squash) so the post-release
-# fast-forward of develop succeeds and the next alpha starts from the release.
 name: Release
 
 on:
@@ -43,22 +46,25 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Bump version
+      - name: Set version
         id: bump
         run: |
-          CURRENT=$(uv version --short)
-          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
-            # Strip pre-release suffix; a stable version is published as-is
-            if [[ "$CURRENT" =~ (a|b|rc)[0-9]+$ ]]; then
-              uv version --bump stable --no-sync
-            fi
-          elif [[ "$CURRENT" =~ a[0-9]+$ ]]; then
-            uv version --bump alpha --no-sync
-          else
-            uv version --bump patch --bump alpha --no-sync
+          TARGET=$(uv version --short)
+          if [[ ! "$TARGET" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::pyproject.toml version must be the next release target X.Y.Z, got $TARGET"
+            exit 1
           fi
-          VERSION=$(uv version --short)
-          echo "$CURRENT -> $VERSION"
+          PUBLISHED=$(curl -sf https://pypi.org/pypi/cimprofiles/json | jq -r '.releases | keys[]')
+          while grep -qxF "$TARGET" <<< "$PUBLISHED"; do
+            TARGET=$(uv version --bump patch --no-sync --short)
+          done
+          if [[ "$GITHUB_REF_NAME" == "main" ]]; then
+            VERSION="$TARGET"
+          else
+            LAST_ALPHA=$(grep -E "^${TARGET//./\\.}a[0-9]+$" <<< "$PUBLISHED" | sed 's/.*a//' | sort -n | tail -1 || true)
+            VERSION="${TARGET}a$(( ${LAST_ALPHA:-0} + 1 ))"
+          fi
+          uv version "$VERSION" --no-sync
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Test
@@ -93,43 +99,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-      VERSION: ${{ needs.build.outputs.version }}
     steps:
-      - uses: actions/checkout@v7
-
-      - uses: astral-sh/setup-uv@v10.3.2
-
       - uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist/
 
-      - name: Commit version and tag
-        run: |
-          uv version "$VERSION" --no-sync
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet; then
-            git commit -am "Release v$VERSION"
-          fi
-          git tag "v$VERSION"
-          git push --atomic origin "HEAD:$GITHUB_REF_NAME" "v$VERSION"
-
+      # Tags the built commit through the API; tags aren't covered by the branch rulesets
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ needs.build.outputs.version }}
         run: |
           PRERELEASE_FLAG=""
           if [[ "$GITHUB_REF_NAME" == "develop" ]]; then
             PRERELEASE_FLAG="--prerelease"
           fi
-          gh release create "v$VERSION" dist/* --generate-notes $PRERELEASE_FLAG
-
-      - name: Fast-forward develop to the release
-        if: github.ref_name == 'main'
-        run: |
-          if ! git push origin HEAD:develop; then
-            echo "::error::develop has diverged from main; merge main into develop manually"
-            exit 1
-          fi
+          gh release create "v$VERSION" dist/* --target "$GITHUB_SHA" --generate-notes $PRERELEASE_FLAG
