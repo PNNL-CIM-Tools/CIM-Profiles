@@ -130,6 +130,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/topology.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.gridappsd.org/vfm#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Schema/GridAPPSD_CIM_Grid18v15_Enterprise14v04_Market04v18.eap>
       tool:schema_namespace
               "http://cim.ucaiug.io/cim101/draft#" .
