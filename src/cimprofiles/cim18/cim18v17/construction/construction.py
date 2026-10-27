@@ -904,6 +904,21 @@ class TransformerTank(Equipment):
     Bank this transformer belongs to.
     '''
     
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerTank',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The configuration template used by this transformer tank
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1045,6 +1060,21 @@ class TransformerPhaseEnd(TransformerEnd):
     with 4-wire ABCN service will have four transformer phase ends.
     '''
 
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerPhaseEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The tank configuration describing this transformer phase end
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -1359,6 +1389,21 @@ class TransformerLug(IdentifiedObject):
     The winding for which this end is seen as the "from" lug
     '''
     
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerLugs',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer tank configuration template in which this lug is used.
+    '''
+    
     ToTransformerWinding: Optional[TransformerWinding] = field(
         default=None,
         metadata={
@@ -1407,6 +1452,145 @@ class TransformerLug(IdentifiedObject):
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerTankConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    loadLoss: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at rated power
+    '''
+    
+    noLoadLoss: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at no load
+    '''
+    
+    percentImpedance: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Transformer impedance expressed in percent, calculated as short circuit
+    voltage divided by rated voltage when measured at rated current flow,
+    also known as %Z or %IZ
+    '''
+    
+    percentMagnetizingCurrent: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    TransformerLugs: list[TransformerLug] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerLug.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformer physical lugs described by this tank configuration
+    template.
+    '''
+    
+    TransformerPhaseEnd: list[TransformerPhaseEnd] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerPhaseEnd.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformer phase ends specified by this tank configuration
+    template
+    '''
+    
+    TransformerTank: list[TransformerTank] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerTank.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of TransformerTanks using this configuration
+    '''
+    
+    TransformerWinding: list[TransformerWinding] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerWinding.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformerwindings contained within this tank configuration
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
         return 'WiresEXT'
@@ -1507,6 +1691,21 @@ class TransformerWinding(IdentifiedObject):
     to a terminal-facing end, such as an internal junction. For balanced
     three-phase transformers, this is the only end that needs to be specified.
     For unbalanced per-tank modeling, the "from" and "to" need to be specified.
+    '''
+    
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerWinding',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer tank configuration template in which this winding appears
     '''
     
     ToTransformerEnd: Optional[TransformerEnd] = field(
@@ -2252,6 +2451,35 @@ class WireUsageKind(Enum):
     
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
+class ActivePower(CIMUnit):
+    '''
+    Product of RMS value of the voltage and the RMS value of the in-phase component
+    of the current.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.W
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
 class Displacement(CIMUnit):
     '''
     Unit of displacement relative to a reference position, hence can be negative.
@@ -2291,6 +2519,35 @@ class Length(CIMUnit):
     def unit(self):
         return UnitSymbol.m
     def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class PerCent(CIMUnit):
+    '''
+    Percentage on a defined base. For example, specify as 100 to indicate at
+    the defined base.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.none
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

@@ -56,4 +56,6 @@ releases:
       - cimprofiles.cim18.cim18v17.facts.facts
       - cimprofiles.cim18.cim18v17.hvdc.hvdc
       - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+      - cimprofiles.cim18.cim18v17.state_variable.state_variable
+      - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"

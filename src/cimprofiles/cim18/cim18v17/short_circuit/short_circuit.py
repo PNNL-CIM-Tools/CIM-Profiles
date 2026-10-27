@@ -763,6 +763,85 @@ class EnergyConsumer(EnergyConnection):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class EnergySource(EnergyConnection):
+    '''
+    A generic equivalent for an energy supplier on a transmission or distribution
+    voltage level.
+    '''
+
+    r0: Optional[ float | Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence Thevenin resistance.
+    '''
+    
+    r2: Optional[ float | Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence Thevenin resistance.
+    '''
+    
+    x0: Optional[ float | Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence Thevenin reactance.
+    '''
+    
+    x2: Optional[ float | Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence Thevenin reactance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class RegulatingCondEq(EnergyConnection):
     '''
@@ -1550,7 +1629,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
-        return 'Wires'
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'

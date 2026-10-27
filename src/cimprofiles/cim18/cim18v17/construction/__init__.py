@@ -37,14 +37,17 @@ from cimprofiles.cim18.cim18v17.construction.construction import (
     TransformerLug,
     TransformerPhaseEnd,
     TransformerTank,
+    TransformerTankConfiguration,
     TransformerWinding,
     WireConfiguration,
     WireInstallationKind,
     WireSpacing,
     WireUsageKind,
     XYSpacing,
+    ActivePower,
     Displacement,
     Length,
+    PerCent,
     Resistance
 )
 __all__ = [
@@ -82,13 +85,16 @@ __all__ = [
     'TransformerLug' ,
     'TransformerPhaseEnd' ,
     'TransformerTank' ,
+    'TransformerTankConfiguration' ,
     'TransformerWinding' ,
     'WireConfiguration' ,
     'WireInstallationKind' ,
     'WireSpacing' ,
     'WireUsageKind' ,
     'XYSpacing' ,
+    'ActivePower' ,
     'Displacement' ,
     'Length' ,
+    'PerCent' ,
     'Resistance'
 ]

@@ -27,23 +27,113 @@
     xmlns="http://www.gridappsd.org/vfm/#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm/" > 
-  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd">
-    <rdf:first rdf:resource="#EarthModelKind"/>
+  <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration.percentImpedance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>percentImpedance</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#PerCent"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fdf">
+    <rdf:first rdf:resource="#TransformerTankConfiguration"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe">
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity.earthModelType"/>
+    <owl:allValuesFrom rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe1"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerPhaseEnd.TankConfiguration"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe1">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>earthModelType</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind"/>
-    <owl:unionOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd"/>
+    <rdfs:label>TankConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <owl:unionOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fdf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe2">
+    <rdf:first rdf:resource="#TransformerTankConfiguration"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe4"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerWinding.TankConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe4">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TankConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <owl:unionOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe5">
+    <rdf:first rdf:resource="#TransformerTankConfiguration"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe7"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTank.TankConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe7">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TankConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <owl:unionOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff5">
+    <rdf:first rdf:resource="#TransformerTankConfiguration"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff7"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerLug.TankConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff7">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TankConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <owl:unionOf rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff9"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration.percentMagnetizingCurrent"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff9">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>percentMagnetizingCurrent</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#PerCent"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffd"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration.noLoadLoss"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>noLoadLoss</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration.loadLoss"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>loadLoss</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-745c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -900,6 +990,24 @@
     <rdfs:label>circuitNumber</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd">
+    <rdf:first rdf:resource="#EarthModelKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity.earthModelType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>earthModelType</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind"/>
+    <owl:unionOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffd"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#BundleConfigurationKind.symmetrical">
     <rdfs:label>symmetrical</rdfs:label>
   </rdf:Description>
@@ -1110,9 +1218,9 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>EarthResistivity</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe"/>
     <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-7493"/>
     <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-74b2"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7b0b3931Xa3X1a17973e263Xa3X-7ffe"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity"/>
     <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
   </rdf:Description>
@@ -1308,6 +1416,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerLug</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff6"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7ae7"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7aea"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7aed"/>
@@ -1323,6 +1432,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerPhaseEnd</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe0"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerPhaseEnd"/>
     <rdfs:subClassOf rdf:resource="#TransformerEnd"/>
   </rdf:Description>
@@ -1331,9 +1441,21 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerTank</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe6"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7ac5"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerTank"/>
     <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TransformerTankConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ffe"/>
+    <rdfs:subClassOf rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ff8"/>
+    <rdfs:subClassOf rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffc"/>
+    <rdfs:subClassOf rdf:nodeID="X33X59acdb9Xa3X1a17abf20a1Xa3X-7ffe"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
   </rdf:Description>
   <rdf:Description rdf:about="#TransformerWinding">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
@@ -1341,6 +1463,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerWinding</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23Xb92179aXa3X1a17ab26360Xa3X-7fe3"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-77a5"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7ad5"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7ad8"/>

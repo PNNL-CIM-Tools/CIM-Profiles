@@ -99,6 +99,246 @@ class IdentifiedObject(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class LoadResponseCharacteristic(IdentifiedObject):
+    '''
+    Models the characteristic response of the load demand due to changes in
+    system conditions such as voltage and frequency. It is not related to demand
+    response.
+    If LoadResponseCharacteristic.exponentModel is True, the exponential voltage
+    or frequency dependent models are specified and used as to calculate active
+    and reactive power components of the load model.
+    The equations to calculate active and reactive power components of the
+    load model are internal to the power flow calculation, hence they use different
+    quantities depending on the use case of the data exchange.
+    The equations for exponential voltage dependent load model injected power
+    are:
+    pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
+    qInjection= Qnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.qVoltageExponent
+    pInjection = Pnominal* (Frequency/(Nominal frequency))**cim:LoadResponseCharacteristic.pFrequencyExponent
+    qInjection = Qnominal* (Frequency/(Nominal frequency))**cim:LoadResponseCharacteristic.qFrequencyExponent
+    Note that both voltage and frequency exponents could be used together so
+    the full equation would be:
+    pInjection = Pnominal* (Voltage/(cim:BaseVoltage.nominalVoltage))**cim:LoadResponseCharacteristic.pVoltageExponent
+    * (Frequency/(base frequency))**cim:LoadResponseCharacteristic.pFrequencyExponent
+    qInjection = Qnominal* (Voltage/(cim:BaseVoltage.nominalVoltage))**cim:LoadResponseCharacteristic.qVoltageExponent
+    * (Frequency/(base frequency))**cim:LoadResponseCharacteristic.qFrequencyExponent
+    The voltage and frequency expressed in the equation are values obtained
+    from solved power flow. Base voltage and base frequency are those derived
+    from the connectivity of the static network model.
+    Where:
+    1) * means "multiply" and ** is "raised to the power of";
+    2) Pnominal and Qnominal represent the active power and reactive power
+    at nominal voltage as any load described by the voltage exponential model
+    shall be given at nominal voltage. This means that EnergyConsumer.p and
+    EnergyConsumer.q are at nominal voltage.
+    3) After power flow is solved:
+    -pInjection and qInjection correspond to SvPowerflow.p and SvPowerflow.q
+    respectively.
+    - Voltage corresponds to SvVoltage.v at the TopologicalNode where the load
+    is connected.
+    '''
+
+    exponentModel: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates the exponential voltage dependency model is to be used. If
+    false, the coefficient model is to be used.
+    The exponential voltage dependency model consist of the attributes:
+    - pVoltageExponent
+    - qVoltageExponent
+    - pFrequencyExponent
+    - qFrequencyExponent.
+    The coefficient model consist of the attributes:
+    - pConstantImpedance
+    - pConstantCurrent
+    - pConstantPower
+    - qConstantImpedance
+    - qConstantCurrent
+    - qConstantPower.
+    The sum of pConstantImpedance, pConstantCurrent and pConstantPower
+    shall equal 1.
+    The sum of qConstantImpedance, qConstantCurrent and qConstantPower
+    shall equal 1.
+    '''
+    
+    pConstantCurrent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant current.
+    '''
+    
+    pConstantImpedance: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant impedance.
+    '''
+    
+    pConstantPower: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant power.
+    '''
+    
+    pFrequencyExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit frequency effecting active power.
+    '''
+    
+    pVoltageExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit voltage effecting real power.
+    '''
+    
+    qConstantCurrent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant current.
+    '''
+    
+    qConstantImpedance: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant impedance.
+    '''
+    
+    qConstantPower: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant power.
+    '''
+    
+    qFrequencyExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit frequency effecting reactive power.
+    '''
+    
+    qVoltageExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit voltage effecting reactive power.
+    '''
+    
+    EnergyConsumer: list[EnergyConsumer] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EnergyConsumer.LoadResponse',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The set of loads that have the response characteristics.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'LoadModel'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.new)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
@@ -688,8 +928,8 @@ class EnergyConnection(ConductingEquipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EnergyConsumer(EnergyConnection):
     '''
@@ -723,6 +963,22 @@ class EnergyConsumer(EnergyConnection):
         'serialize': True,
         })
     '''
+    '''
+    
+    LoadResponse: Optional[LoadResponseCharacteristic] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'LoadResponseCharacteristic.EnergyConsumer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The load response characteristic of this load. If missing, this load
+    is assumed to be constant power.
     '''
     
     @property
@@ -794,6 +1050,89 @@ class StationSupply(EnergyConsumer):
     @property
     def __package__(self):
         return 'LoadModel'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class EnergySource(EnergyConnection):
+    '''
+    A generic equivalent for an energy supplier on a transmission or distribution
+    voltage level.
+    '''
+
+    pMax: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This is the maximum active power that can be produced by the source.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a TopologicalNode (bus) into the conducting equipment.
+    '''
+    
+    pMin: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This is the minimum active power that can be produced by the source.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a TopologicalNode (bus) into the conducting equipment.
+    '''
+    
+    r: Optional[ float | Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence Thevenin resistance.
+    '''
+    
+    x: Optional[ float | Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence Thevenin reactance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2464,7 +2803,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.FromMeshImpedance',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -2495,7 +2834,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.ToMeshImpedance',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -2507,7 +2846,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
-        return 'Wires'
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2545,6 +2884,8 @@ class TransformerWinding(IdentifiedObject):
     '''
     Base apparent power rating used for calculation of percent impedance
     and related electrical parameters.
+    For a split-phase center-tap transformer, the rating of the primary
+    winding is used as the basis for both secondary windings.
     '''
     
     baseU: Optional[ float | Voltage ] = field(
@@ -2558,9 +2899,13 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    Base phase-to-phase voltage used for calculation of percent impedance
-    and related electrical parameters. This is obtained from the nameplate
-    designation per Table 7 of IEEE c57.12.00-2021.
+    Base phase-to-phase or phase-to-neutral voltage used for calculation
+    of percent impedance and related electrical parameters. This is obtained
+    from the nameplate designation per Table 7 of IEEE c57.12.00-2021.
+    For delta-connected windings, this is the phase-to-phase voltage. For
+    wye-connected windings, this is phase-to-neutral voltage, matching
+    the nameplate designation string in Table 7 of IEEE c57.12.00-2021.
+    The attribute shall be a positive value.
     '''
     
     r: Optional[ float | Resistance ] = field(
@@ -2604,14 +2949,10 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    The voltage assigned to be applied, or developed at no-load, between
-    the line terminals of a winding of a polyphase transformer or reactor,
-    or between the terminals of a winding of a single-phase transformer
-    or reactor [source: IEV 421-04-01]
-    For delta-connected windings, this is the phase-to-phase voltage. For
-    wye-connected windings, this is phase-to-neutral voltage, matching
-    the nameplate designation string in Table 7 of IEEE c57.12.00-2021.
-    The attribute shall be a positive value.
+    The phase-to-phase voltage assigned to be applied, or developed at
+    no-load, between the line terminals of a winding of a polyphase transformer
+    or reactor, or between the terminals of a winding of a single-phase
+    transformer or reactor [source: IEV 421-04-01]
     '''
     
     rDC: Optional[ float | Resistance ] = field(
@@ -2637,7 +2978,7 @@ class TransformerWinding(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'TransformerMeshImpedance.FromWinding',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
@@ -2653,7 +2994,7 @@ class TransformerWinding(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'TransformerMeshImpedance.ToWinding',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''

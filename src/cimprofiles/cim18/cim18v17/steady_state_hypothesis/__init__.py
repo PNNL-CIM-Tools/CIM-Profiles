@@ -15,6 +15,8 @@ from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis 
     EnergyConnection,
     EnergyConsumer,
     EnergyConsumerPhase,
+    EnergySource,
+    EnergySourcePhase,
     Equipment,
     Fuse,
     HookstickSwitch,
@@ -44,8 +46,10 @@ from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis 
     SynchronousMachine,
     TapChanger,
     ActivePower,
+    AngleRadians,
     ReactivePower,
-    RealEnergy
+    RealEnergy,
+    Voltage
 )
 __all__ = [
     'Identity',
@@ -60,6 +64,8 @@ __all__ = [
     'EnergyConnection' ,
     'EnergyConsumer' ,
     'EnergyConsumerPhase' ,
+    'EnergySource' ,
+    'EnergySourcePhase' ,
     'Equipment' ,
     'Fuse' ,
     'HookstickSwitch' ,
@@ -89,6 +95,8 @@ __all__ = [
     'SynchronousMachine' ,
     'TapChanger' ,
     'ActivePower' ,
+    'AngleRadians' ,
     'ReactivePower' ,
-    'RealEnergy'
+    'RealEnergy' ,
+    'Voltage'
 ]
