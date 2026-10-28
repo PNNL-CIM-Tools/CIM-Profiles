@@ -2154,102 +2154,6 @@ class PowerTransformer(ConductingEquipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False, eq=False)
-class ProtectedSwitch(ConductingEquipment):
-    '''
-    A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
-    '''
-
-    breakingCapacity: Optional[ float | CurrentFlow ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The maximum fault current a breaking device can break safely under
-    prescribed conditions of use.
-    '''
-    
-    makingCapacity: Optional[ float | CurrentFlow ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['GB', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://GB/placeholder/ext#',
-        'serialize': True,
-        })
-    '''
-    The making current of the circuit breaker is the maximum peak value
-    of the current that the breaker can interrupt without any damage if
-    the breaker is closed at fault.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class Breaker(ProtectedSwitch):
-    '''
-    A mechanical switching device capable of making, carrying, and breaking
-    currents under normal circuit conditions and also making, carrying for
-    a specified time, and breaking currents under specified abnormal circuit
-    conditions e.g. those of short circuit.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class LoadBreakSwitch(ProtectedSwitch):
-    '''
-    A mechanical switching device capable of making, carrying, and breaking
-    currents under normal operating conditions.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
@@ -2922,6 +2826,58 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     Conductance per section for this phase if shunt compensator is wye
     connected. Conductance per section phase to phase if shunt compensator
     is delta connected.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class SwitchPhase(PowerSystemResource):
+    '''
+    Single phase of a multi-phase switch when its attributes might be different
+    per phase.
+    '''
+
+    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum continuous current carrying capacity in amps governed by
+    the device material and construction.
+    The attribute shall be a positive value.
+    '''
+    
+    Switch: Optional[Switch] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Switch.SwitchPhase',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The switch of the switch phase.
     '''
     
     @property
@@ -3691,6 +3647,157 @@ class WireConfiguration(IdentifiedObject):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False)
+class Switch(Identity):
+    '''
+    A generic device designed to close, or open, or both, one or more electric
+    circuits. All switches are two terminal devices including grounding switches.
+    The ACDCTerminal.connected at the two sides of the switch shall not be
+    considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen
+    and .locked are relevant.
+    '''
+
+    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum continuous current carrying capacity in amps governed by
+    the device material and construction.
+    The attribute shall be a positive value.
+    '''
+    
+    SwitchPhase: list[SwitchPhase] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SwitchPhase.Switch',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The individual switch phases for the switch.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class ProtectedSwitch(Switch):
+    '''
+    A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
+    '''
+
+    breakingCapacity: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum fault current a breaking device can break safely under
+    prescribed conditions of use.
+    '''
+    
+    makingCapacity: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GB', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://GB/placeholder/ext#',
+        'serialize': True,
+        })
+    '''
+    The making current of the circuit breaker is the maximum peak value
+    of the current that the breaker can interrupt without any damage if
+    the breaker is closed at fault.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Breaker(ProtectedSwitch):
+    '''
+    A mechanical switching device capable of making, carrying, and breaking
+    currents under normal circuit conditions and also making, carrying for
+    a specified time, and breaking currents under specified abnormal circuit
+    conditions e.g. those of short circuit.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class LoadBreakSwitch(ProtectedSwitch):
+    '''
+    A mechanical switching device capable of making, carrying, and breaking
+    currents under normal operating conditions.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'

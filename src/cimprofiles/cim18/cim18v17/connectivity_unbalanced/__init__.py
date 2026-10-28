@@ -10,6 +10,8 @@ from cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced 
     AirBreakSwitch,
     AsynchronousMachine,
     AsynchronousMachineKind,
+    BaseFrequency,
+    BasePower,
     BaseVoltage,
     Breaker,
     Clamp,
@@ -80,6 +82,8 @@ from cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced 
     WindingConnection,
     WireSegment,
     WireSegmentPhase,
+    ApparentPower,
+    Frequency,
     Length,
     Voltage
 )
@@ -91,6 +95,8 @@ __all__ = [
     'AirBreakSwitch' ,
     'AsynchronousMachine' ,
     'AsynchronousMachineKind' ,
+    'BaseFrequency' ,
+    'BasePower' ,
     'BaseVoltage' ,
     'Breaker' ,
     'Clamp' ,
@@ -161,6 +167,8 @@ __all__ = [
     'WindingConnection' ,
     'WireSegment' ,
     'WireSegmentPhase' ,
+    'ApparentPower' ,
+    'Frequency' ,
     'Length' ,
     'Voltage'
 ]

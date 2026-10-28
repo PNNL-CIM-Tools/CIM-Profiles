@@ -459,6 +459,45 @@ class TransformerCore(MagneticCore):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.new)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class MultiCircuitGroup(IdentifiedObject):
+    '''
+    Aggregates a set of line segments that are on the same tower, or in the
+    same right-of-way, close enough that mutual coupling impedances between
+    the lines need to be included in network analysis.
+    '''
+
+    XYSpacing: Optional[XYSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The XY spacing that applies to this coupled line segment group.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class PerLengthLineParameter(IdentifiedObject):
@@ -1275,7 +1314,209 @@ class ConductorPosition(SpacingPosition):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class BundlePosition(ConductorPosition):
+class MulticoreCablePosition(ConductorPosition):
+    '''
+    Position of a multicore cable: one cable with several cores in a common
+    sheath, which may include phase, neutral and ground conductors. The inherited
+    coordinates locate the reference point, typically the cable center. Each
+    core shall be described by a SubConductorPosition with coordinates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class SubConductorPosition(ConductorPosition):
+    '''
+    Position of one conductor within a ConductorGroupPosition: a member of
+    a bundle, or a core of a multicore cable.
+    Sub-conductors of an ArbitraryBundlePosition or MulticoreCablePosition
+    are located by xCoord and yCoord, relative to the group's reference point
+    before the group's orientation is applied. Sub-conductors of a RegularBundlePosition
+    are located by subConductorNumber, and their coordinates are left empty.
+    circuitNumber, kind and sequenceNumber may be left empty, in which case
+    the group's values apply.
+    '''
+
+    subConductorNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Corner of the regular polygon occupied by this sub-conductor, used
+    only for sub-conductors of a RegularBundlePosition.
+    Numbers run from 1 to subConductorCount, and each is used once within
+    the bundle. The angle of each numbered corner is defined in ConductorGroupPosition.orientation.
+    Shall be specified for every sub-conductor of a RegularBundlePosition,
+    and shall not be specified for sub-conductors of an ArbitraryBundlePosition
+    or MulticoreCablePosition, which are located by their coordinates.
+    '''
+    
+    ConductorGroupPosition: Optional[ConductorGroupPosition] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConductorGroupPosition.SubConductorPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Group this sub-conductor belongs to.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class XYConductorPosition(ConductorPosition):
+    '''
+    Location, within an XYSpacing, of a single conductor or of the reference
+    point of a group of conductors. Coordinates are in the frame of the XYSpacing;
+    y is positive above the reference level (typically ground) and negative
+    below it.
+    '''
+
+    XYSpacing: Optional[XYSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'XYSpacing.XYConductorPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    XY spacing this conductor position belongs to.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class ConductorGroupPosition(XYConductorPosition):
+    '''
+    Position of a group of conductors that share a reference point: a bundle
+    of separate wires or cables, or the cores of one multicore cable. The inherited
+    coordinates locate the reference point, which need not be the centroid
+    of the group. Individual conductors are described by SubConductorPositions.
+    The sub-conductors of a group may differ in kind, sequence number and circuit.
+    An example is an aerial bundled cable carrying a three-phase circuit, a
+    lighting circuit and a shared neutral. The group specifies circuitNumber,
+    kind and sequenceNumber only when all its sub-conductors share them; otherwise
+    each SubConductorPosition specifies its own.
+    '''
+
+    orientation: Optional[ float | AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Angle from the positive x axis of the spacing to the positive x' axis
+    of the group's frame, positive counterclockwise. The group's frame
+    has its origin at the group's reference point, and its y' axis is 90&#176;
+    counterclockwise from x'. If not specified, 0 is assumed, and the group's
+    frame is then parallel to the spacing frame. Orientation applies to
+    every ConductorGroupPosition.
+    A sub-conductor at (x', y') in the group's frame lies at x = X + x'&#183;cos
+    ? - y'&#183;sin ? and y = Y + x'&#183;sin ? + y'&#183;cos ? in the
+    spacing, where (X, Y) is the group's reference point and ? is the orientation.
+    For an ArbitraryBundlePosition or MulticoreCablePosition, (x', y')
+    are the sub-conductor's xCoord and yCoord. Orientation lets the same
+    set of coordinates, such as a cable's core layout, be reused at any
+    rotation.
+    For a RegularBundlePosition with n = subConductorCount, sub-conductor
+    i lies at angle 180&#176;/n - 90&#176; + (i - 1)&#183;360&#176;/n from
+    the positive x' axis, at distance subConductorSpacing / (2&#183;sin(180&#176;/n))
+    from the reference point. For example, sub-conductor 1 lies at 0&#176;
+    for n = 2, -30&#176; for n = 3 and -45&#176; for n = 4.
+    For cables twisted along the span, such as aerial bundled cables, orientation
+    describes a reference cross-section only.
+    For arbitrary groups, orientation is a convenience rather than a necessity:
+    you could always give coordinates already rotated and leave it at 0.
+    It earns its place for multicore cables and ABC, where the core layout
+    comes from a datasheet and only the installed rotation varies.
+    '''
+    
+    SubConductorPosition: list[SubConductorPosition] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SubConductorPosition.ConductorGroupPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Individual conductors of this group.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BundlePosition(ConductorGroupPosition):
     '''
     Reference position of a bundle: an ordered grouping of separate wires or
     cables at one position. Sub-conductors may share a sequence number, as
@@ -1299,20 +1540,76 @@ class BundlePosition(ConductorPosition):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class MulticoreCablePosition(ConductorPosition):
+class RegularBundlePosition(BundlePosition):
     '''
-    Position of a multicore cable: one cable with several cores in a common
-    sheath, which may include phase, neutral and ground conductors. The inherited
-    coordinates locate the reference point, typically the cable center. Each
-    core shall be described by a SubConductorPosition with coordinates.
+    Bundle whose sub-conductors sit at the corners of a regular polygon centered
+    on the reference point. subConductorCount, subConductorSpacing (the distance
+    between adjacent sub-conductors) and orientation fully define the geometry.
+    SubConductorPositions are needed only when sub-conductors differ in sequence
+    number or kind, as in a trefoil formation. When present, there shall be
+    exactly subConductorCount of them, each identified by subconductorNumber,
+    with coordinates left empty.
     '''
 
+    subConductorCount: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Number of sub-conductors in the regular bundle, that is, the number
+    of corners of the regular polygon. Shall be at least 2.
+    '''
+    
+    subConductorSpacing: Optional[ float | Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Distance between the centers of adjacent sub-conductors in the regular
+    bundle, that is, the side length of the regular polygon. Shall be specified.
+    When adjacent sub-conductors touch, as in a touching trefoil formation,
+    it equals their outer diameter.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
         return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WirePosition(XYConductorPosition):
+    '''
+    Position of a single wire or single-core cable in an XY spacing.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2019,6 +2316,89 @@ class ConductorDistanceSpacing(WireSpacing):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentDistanceSpacing(WireSpacing):
+    '''
+    Simplified spacing approach where positions are described through geometric
+    mean distances (GMD) and average height. Typically used when individual
+    phase and neutral conductor positions are unknown. It assumes that lines
+    are transposed.
+    '''
+
+    averageNeutralDistanceToGround: Optional[ float | Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Average vertical distance of positions hosting neutral conductors to
+    a common reference point.
+    '''
+    
+    averagePhaseDistanceToGround: Optional[ float | Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Average vertical distance of positions hosting phase conductors to
+    a common reference point.
+    '''
+    
+    phaseToNeutralGMD: Optional[ float | Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Geometric mean distance (GMD) between phase conductors and neutral
+    conductors in the spacing.
+    '''
+    
+    phaseToPhaseGMD: Optional[ float | Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Geometric mean distance (GMD) between phase and neutral conductors
+    in the spacing.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.MCT)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -2035,16 +2415,31 @@ class XYSpacing(WireSpacing):
     which gives the phase.
     '''
 
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
+    XYConductorPosition: list[XYConductorPosition] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'XYConductorPosition.XYSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Conductor positions placed directly in this spacing.
+    '''
+    
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'MultiCircuitGroup.XYSpacing',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     The multi circuit group of adjacent line segments defined by the XY
@@ -2057,45 +2452,6 @@ class XYSpacing(WireSpacing):
     @property
     def __package__(self):
         return 'New Classes'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.new)
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
-class MultiCircuitGroup(Identity):
-    '''
-    Aggregates a set of line segments that are on the same tower, or in the
-    same right-of-way, close enough that mutual coupling impedances between
-    the lines need to be included in network analysis.
-    '''
-
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The XY spacing that applies to this coupled line segment group.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2463,6 +2819,34 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class AngleDegrees(CIMUnit):
+    '''
+    Measurement of angle in degrees.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.deg
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

@@ -335,6 +335,79 @@ class Terminal(ACDCTerminal):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BaseFrequency(IdentifiedObject):
+    '''
+    The BaseFrequency class describes a base frequency for a power system network.
+    In case of multiple power networks with different frequencies, e.g. 50
+    Hz or 60 Hz each network will have its own base frequency class. Hence
+    it is assumed that power system objects having different base frequencies
+    appear in separate documents where each document has a single base frequency
+    instance.
+    '''
+
+    frequency: Optional[ float | Frequency ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The base frequency.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BasePower(IdentifiedObject):
+    '''
+    The BasePower class defines the base power used in the per unit calculations.
+    '''
+
+    basePower: Optional[ float | ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Value used as base power.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -2228,21 +2301,6 @@ class Switch(ConductingEquipment):
     '''
     Explicitly marks a switch as boundary as an input flag for topology
     processing of connected areas
-    '''
-    
-    gangOperated: Optional[bool] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Indicates whether the phases of the switch are mechanically linked
-    together or can be operated separately
     '''
     
     normalOpen: Optional[bool] = field(
@@ -4441,6 +4499,62 @@ class WindingConnection(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ApparentPower(CIMUnit):
+    '''
+    Product of the RMS value of the voltage and the RMS value of the current.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.VA
+    def __init__(self, value, input_unit: str='VA', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Frequency(CIMUnit):
+    '''
+    Cycles per second.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.Hz
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
 class Length(CIMUnit):

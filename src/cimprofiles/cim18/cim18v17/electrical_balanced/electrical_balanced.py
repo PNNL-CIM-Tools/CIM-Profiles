@@ -928,7 +928,6 @@ class EnergyConnection(ConductingEquipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EnergyConsumer(EnergyConnection):
@@ -1161,7 +1160,6 @@ class RegulatingCondEq(EnergyConnection):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerElectronicsConnection(RegulatingCondEq):
     '''
@@ -1776,7 +1774,51 @@ class Switch(ConductingEquipment):
     and .locked are relevant.
     '''
 
+    gangOperated: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Indicates whether the phases of the switch are mechanically linked
+    together or can be operated separately
+    '''
+    
+    loadBreak: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Indicates whether a switch that typically could not be opened under
+    load (e.g. a sectionaliser) has retrofitted with a device that enables
+    it to extinguish the arc.
+    '''
+    
     motorOperated: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    remotelyOperated: Optional[bool] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1818,6 +1860,153 @@ class Switch(ConductingEquipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@dataclass(repr=False, eq=False)
+class Disconnector(Switch):
+    '''
+    A mechanical switching device which provides, in the open position, an
+    isolating distance in accordance with specified requirements.
+    A disconnector is capable of opening and closing a circuit when either
+    negligible current is broken or made, or when no significant change in
+    the voltage across the terminals of each of the poles of the disconnector
+    occurs. It is also capable of carrying currents under normal circuit conditions
+    and carrying for a specified time currents under abnormal conditions such
+    as those of short circuit.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AirBreakSwitch(Disconnector):
+    '''
+    An overhead switch utilizing a mechanical linkage to provide a visible
+    airgap for feeder sectionalizing and isolation of substation equipment.
+    Depending on its design configuration, it can either feature interrupter
+    attachments to break load current or serve purely as a non-loadbreak isolation
+    point.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Elbow(Disconnector):
+    '''
+    An underground deadfront cable connector that provides a fully insulated,
+    plug-in connection to transformers, switchgear, and sectionalizing cabinets.
+    It functions as a single-phase manual switch that can safely connect or
+    disconnect energized circuits under standard operational load conditions.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class HookstickSwitch(Disconnector):
+    '''
+    A non-gang-operated overhead switch designed to be manually opened or closed
+    one phase at a time using an insulated utility hot stick. It lacks advanced
+    arc-suppression capabilities and is strictly intended to isolate circuits
+    or reconfigure loops only after the load has been removed (unless fitted
+    with a load break arc chute).
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ServiceDisconnect(Disconnector):
+    '''
+    A safety-grade switch mechanism installed at commercial, industrial, or
+    residential facilities to completely cut off incoming electrical service.
+    From an electrical connectivity standpoint, this class models a self-contained
+    unit that physically houses and integrates the electrical meter and meter
+    base alongside the main circuit-breaking or disconnect contacts.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Fuse(Switch):
+    '''
+    An overcurrent protective device with a circuit opening fusible part that
+    is heated and severed by the passage of overcurrent through it. A fuse
+    is considered a switching device because it breaks current.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.GB)
 @dataclass(repr=False, eq=False)
 class ProtectedSwitch(Switch):
@@ -1825,6 +2014,37 @@ class ProtectedSwitch(Switch):
     A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
     '''
 
+    breakingCapacity: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum fault current a breaking device can break safely under
+    prescribed conditions of use.
+    '''
+    
+    makingCapacity: Optional[ float | CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GB', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://GB/placeholder/ext#',
+        'serialize': True,
+        })
+    '''
+    The making current of the circuit breaker is the maximum peak value
+    of the current that the breaker can interrupt without any damage if
+    the breaker is closed at fault.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1876,6 +2096,72 @@ class Breaker(ProtectedSwitch):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class LoadBreakSwitch(ProtectedSwitch):
+    '''
+    A mechanical switching device capable of making, carrying, and breaking
+    currents under normal operating conditions.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Recloser(ProtectedSwitch):
+    '''
+    Pole-mounted fault interrupter with built-in phase and ground relays, current
+    transformer (CT), and supplemental controls.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Sectionaliser(Switch):
+    '''
+    Automatic switch that will lock open to isolate a faulted section. It may,
+    or may not, have load breaking capability. Its primary purpose is to provide
+    fault sectionalising at locations where the fault current is either too
+    high, or too low, for proper coordination of fuses.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class GeneratingUnit(Equipment):
     '''
@@ -1963,7 +2249,6 @@ class GeneratingUnit(Equipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerElectronicsUnit(Equipment):
     '''
@@ -2030,7 +2315,6 @@ class PowerElectronicsUnit(Equipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class BatteryUnit(PowerElectronicsUnit):

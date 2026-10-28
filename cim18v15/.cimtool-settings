@@ -100,6 +100,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/protection.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Profiles/regulating_control.owl>
       tool:profile_envelope
               "Profile" ;
