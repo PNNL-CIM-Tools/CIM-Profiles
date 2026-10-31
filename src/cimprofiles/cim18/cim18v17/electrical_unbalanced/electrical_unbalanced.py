@@ -675,20 +675,6 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.MatrixImpedanceRows',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -1108,6 +1094,89 @@ class PowerSystemResource(IdentifiedObject):
     @property
     def __package__(self):
         return 'CoreEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EnergyConsumerPhase(PowerSystemResource):
+    '''
+    A single phase of an energy consumer.
+    '''
+
+    pfixed: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    pfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed active power as per cent of load group fixed active power. Load
+    sign convention is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixed: Optional[ float | ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed reactive power as per cent of load group fixed reactive power.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a node.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1975,21 +2044,6 @@ class ShuntCompensator(RegulatingCondEq):
     in voltage/reactive power.
     '''
     
-    ShuntCompensatorPhase: list[ShuntCompensatorPhase] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ShuntCompensatorPhase.ShuntCompensator',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The individual phases models for the shunt compensator.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -2040,105 +2094,6 @@ class LinearShuntCompensator(ShuntCompensator):
         })
     '''
     Positive sequence shunt (charging) conductance per section.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class PowerTransformer(ConductingEquipment):
-    '''
-    An electrical device consisting of two or more coupled windings, with or
-    without a magnetic core, for introducing mutual coupling between electric
-    circuits. Transformers can be used to control voltage and phase shift (active
-    power flow).
-    A power transformer may be composed of separate transformer tanks that
-    need not be identical.
-    A power transformer can be modelled with or without tanks and is intended
-    for use in both balanced and unbalanced representations. A power transformer
-    typically has two terminals, but may have one (grounding), three or more
-    terminals.
-    The inherited association ConductingEquipment.BaseVoltage should not be
-    used. The association from TransformerEnd to BaseVoltage should be used
-    instead.
-    '''
-
-    vectorGroup: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Vector group of the transformer for protective relaying, e.g., Dyn1.
-    For unbalanced transformers, this may not be simply determined from
-    the constituent winding connections and phase angle displacements.
-    The vectorGroup string consists of the following components in the
-    order listed: high voltage winding connection, mid voltage winding
-    connection (for three winding transformers), phase displacement clock
-    number from 0 to 11, low voltage winding connection
-    phase displacement clock number from 0 to 11. The winding connections
-    are D (delta), Y (wye), YN (wye with neutral), Z (zigzag), ZN (zigzag
-    with neutral), A (auto transformer). Upper case means the high voltage,
-    lower case mid or low. The high voltage winding always has clock position
-    0 and is not included in the vector group string. Some examples: YNy0
-    (two winding wye to wye with no phase displacement), YNd11 (two winding
-    wye to delta with 330 degrees phase displacement), YNyn0d5 (three winding
-    transformer wye with neutral high voltage, wye with neutral mid voltage
-    and no phase displacement, delta low voltage with 150 degrees displacement).
-    Phase displacement is defined as the angular difference between the
-    phasors representing the voltages between the neutral point (real or
-    imaginary) and the corresponding terminals of two windings, a positive
-    sequence voltage system being applied to the high-voltage terminals,
-    following each other in alphabetical sequence if they are lettered,
-    or in numerical sequence if they are numbered: the phasors are assumed
-    to rotate in a counter-clockwise sense.
-    '''
-    
-    PowerTransformerEnd: list[PowerTransformerEnd] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'PowerTransformerEnd.PowerTransformer',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The ends of this power transformer.
-    '''
-    
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.PowerTransformer',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
     '''
     
     @property
@@ -2706,8 +2661,8 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class ShuntCompensatorPhase(PowerSystemResource):
     '''
@@ -2755,21 +2710,6 @@ class ShuntCompensatorPhase(PowerSystemResource):
         'serialize': True,
         })
     '''
-    '''
-    
-    ShuntCompensator: Optional[ShuntCompensator] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ShuntCompensator.ShuntCompensatorPhase',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Shunt compensator of this shunt compensator phase.
     '''
     
     @property
@@ -3138,9 +3078,9 @@ class TransformerEnd(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerTransformerEnd(TransformerEnd):
     '''
@@ -3194,21 +3134,6 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     The phase-to-phase rated voltage at no load, assigned to this end of
     the power transformer.
-    '''
-    
-    PowerTransformer: Optional[PowerTransformer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PowerTransformer.PowerTransformerEnd',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The power transformer of this power transformer end.
     '''
     
     @property
@@ -3813,34 +3738,6 @@ class TranformerImpedanceMatrix(Identity):
     Template class for specifying
     '''
 
-    MatrixImpedanceRows: list[MatrixImpedanceData] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'MatrixImpedanceData.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    PowerTransformer: Optional[PowerTransformer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PowerTransformer.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'

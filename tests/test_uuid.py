@@ -210,8 +210,9 @@ class TestModelAuthorityUUID(unittest.TestCase):
                          uuid5(namespace, 'feeder_1+Feeder++f1+'))
         self.assertEqual(self._feeder_uuid(authority, 'feeder_1', mRID='FDR_1'),
                          uuid5(namespace, 'feeder_1+Feeder+FDR_1++'))
+        # mRID route: the name is not part of the seed
         self.assertEqual(self._feeder_uuid(authority, 'feeder_1', mRID='FDR_1', name='f1'),
-                         uuid5(namespace, 'feeder_1+Feeder+FDR_1+f1+'))
+                         uuid5(namespace, 'feeder_1+Feeder+FDR_1++'))
 
     def test_namespace_is_the_model_authority_identifier(self):
         # cim-graph writes uuid5(NAMESPACE_URL, authority) as the cim:ModelAuthority identifier
@@ -307,11 +308,23 @@ class TestModelAuthorityUUID(unittest.TestCase):
 
 
     def test_renamed_object_gets_a_new_uuid(self):
-        # Built objects are the same object only with the same authority, model and name
+        # Name route (no mRID): the same object only with the same authority, model and name
         self.assertEqual(cim.ConnectivityNode(name='bus 300').identifier,
                          cim.ConnectivityNode(name='bus 300').identifier)
         self.assertNotEqual(cim.ConnectivityNode(name='bus 300').identifier,
                             cim.ConnectivityNode(name='bus 301').identifier)
+
+    def test_renamed_object_with_mrid_keeps_its_uuid(self):
+        # mRID route: the mRID is the key, so a rename is the same object
+        self.assertEqual(cim.ConnectivityNode(mRID='bus_300', name='bus 300').identifier,
+                         cim.ConnectivityNode(mRID='bus_300', name='Main St 300').identifier)
+        self.assertEqual(cim.ConnectivityNode(mRID='bus_300', name='bus 300').identifier,
+                         cim.ConnectivityNode(mRID='bus_300').identifier)
+
+    def test_non_uuid_identifier_ignores_name(self):
+        # A non-UUID rdf:ID stands in for the mRID, so it takes the mRID route too
+        self.assertEqual(cim.ACLineSegment(identifier='LINE_1', name='650632').identifier,
+                         cim.ACLineSegment(mRID='LINE_1').identifier)
 
     def test_uuid_identifier_ignores_name(self):
         # Read from a file, the identifier is the UUID whatever the object's name

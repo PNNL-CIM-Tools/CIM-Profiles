@@ -11423,20 +11423,6 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.MatrixImpedanceRows',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -17360,6 +17346,67 @@ class EnergyConsumerPhase(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    pfixed: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    pfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed active power as per cent of load group fixed active power. Load
+    sign convention is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixed: Optional[ float | ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed reactive power as per cent of load group fixed reactive power.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a node.
+    '''
+    
     p: Optional[ float | ActivePower ] = field(
         default=None,
         metadata={
@@ -22625,20 +22672,6 @@ class PowerTransformer(ConductingEquipment):
     value well established from long-term operating experience of the system.
     It is used for calculation of the impedance correction factor KG defined
     in IEC 60909-0.
-    '''
-    
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.PowerTransformer',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
     '''
     
     beforeShCircuitHighestOperatingCurrent: Optional[ float | CurrentFlow ] = field(
@@ -34972,34 +35005,6 @@ class TranformerImpedanceMatrix(Identity):
     Template class for specifying
     '''
 
-    MatrixImpedanceRows: list[MatrixImpedanceData] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'MatrixImpedanceData.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    PowerTransformer: Optional[PowerTransformer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PowerTransformer.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'

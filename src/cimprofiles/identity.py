@@ -56,7 +56,8 @@ def seeded_uuid(class_name: str, mRID: str = '', name: str = '', seed: str = '')
         uuid5(model_authority_namespace(authority),
               model + '+' + class_name + '+' + mRID + '+' + name + '+' + seed)
 
-    mRID is normalized (normalize_identifier) and name and seed are whitespace-trimmed.
+    Identity.uuid passes the mRID or the name, never both (the mRID route and the name
+    route). mRID is normalized (normalize_identifier) and name and seed are whitespace-trimmed.
     Every component keeps its position even when empty, and '%' and '+' inside a
     component are escaped as '%25' and '%2B', so different inputs always give different
     names. Other languages can reproduce these UUIDs from this description alone.
@@ -272,8 +273,9 @@ class Identity:
 
         Read from a file, the identifier (uri) is the UUID and name is not used; one that
         is not a UUID is replaced, with a warning, by a UUID seeded from it, and kept as
-        the mRID. Built objects (no uri) are seeded from model, class, mRID, name and seed,
-        so a renamed object is a new object with a new UUID.
+        the mRID. Built objects (no uri) are seeded from model, class and seed plus either
+        the mRID (name not used, so a rename keeps the UUID) or, with no mRID, the name
+        (so a renamed object is a new object with a new UUID).
 
         Args:
             mRID: An mRID string that might be convertible to a UUID
@@ -299,10 +301,13 @@ class Identity:
         if identifier is None:
             # A non-UUID rdf:ID/rdf:about is the object's mRID (when no mRID is given).
             # The class is part of every seeded UUID, so the same mRID or name in two
-            # classes gives two different UUIDs.
+            # classes gives two different UUIDs. Two routes: an mRID is the object's key, so
+            # the name is left out and a rename keeps the UUID; without one, the name is.
             key = mRID if mRID is not None else (uri or '')
-            if normalize_identifier(key) or (name or '').strip() or (seed or '').strip():
-                identifier = seeded_uuid(self.__class__.__name__, key, name or '', seed or '')
+            if normalize_identifier(key):
+                identifier = seeded_uuid(self.__class__.__name__, mRID=key, seed=seed or '')
+            elif (name or '').strip() or (seed or '').strip():
+                identifier = seeded_uuid(self.__class__.__name__, name=name or '', seed=seed or '')
             else:
                 identifier = uuid4()
         if uri is not None and source != uri:

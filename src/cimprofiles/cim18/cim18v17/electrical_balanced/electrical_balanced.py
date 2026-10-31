@@ -928,6 +928,8 @@ class EnergyConnection(ConductingEquipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EnergyConsumer(EnergyConnection):

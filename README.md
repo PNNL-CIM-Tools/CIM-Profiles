@@ -43,9 +43,14 @@ replaced, with a warning, by the UUID seeded from it (below), so reading the sam
 gives the same UUIDs. The original string is kept as the mRID, unless the file has an mRID.
 Readers key their graphs with `cimprofiles.identity.read_identifier`, which gives the same UUID.
 
-**Built** (converters, notebooks): a new object, deterministic only for the same model
-authority, model, class, mRID and name. A renamed object (bus 300 to bus 301) is a different
-object and gets a different UUID. A UUID given as the mRID is used directly.
+**Built** (converters, notebooks, `.cimtbl`): a new object, deterministic only for the same model
+authority, model and class, plus one of two keys. A UUID given as the mRID is used directly.
+
+- **mRID route** - with a (non-UUID) mRID, the mRID is the key and the name is not used, so a
+  renamed object keeps its UUID. CIM 18 relaxes the mRID to a freeform string unique within the
+  model, so this is the route for models keyed by mRID.
+- **Name route** - with no mRID, the name is the key, so a renamed object (bus 300 to bus 301) is
+  a different object and gets a different UUID.
 
 The seeded UUID is version 5 (RFC 9562 §5.5):
 
@@ -63,7 +68,8 @@ uuid = uuid5(namespace, f'{model_name}+{ClassName}+{mRID}+{name}+{seed}')
   file. It is normalized so every serialization of one object agrees: surrounding whitespace, a
   `urn:uuid:` prefix, everything up to the last `#` and one leading `_` are removed.
   `rdf:ID="_LINE1"`, `rdf:about="#_LINE1"` and `mRID="LINE1"` give the same UUID. Case is kept.
-- `name` (whitespace-trimmed) and `seed` (passed to `obj.uuid(seed=...)`) are optional.
+- `name` (whitespace-trimmed) is used only when there is no mRID, so one of the two is always
+  empty. `seed` (passed to `obj.uuid(seed=...)`) is optional.
 - Every component keeps its position even when empty, and `%` and `+` inside a component are
   escaped as `%25` and `%2B`, so two different inputs never produce the same string.
 - No identifying input at all (or only empty/blank values) gives a random version 4 UUID.
