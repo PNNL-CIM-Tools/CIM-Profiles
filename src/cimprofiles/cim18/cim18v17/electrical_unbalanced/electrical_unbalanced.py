@@ -27,8 +27,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#', 'gb': 'http://GB/placeholder/ext#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -908,169 +909,6 @@ class PerLengthPhaseImpedance(PerLengthImpedance):
     @property
     def __package__(self):
         return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class PhaseImpedanceData(IdentifiedObject):
-    '''
-    Per length phase impedance matrix entry describes impedance and conductance
-    matrix element values for a specific row and column of the matrix.
-    The phases to which each entry applies can be determined by means of the
-    row and column attributes which bind to a sequence number provided in either
-    ACLineSegmentPhase or WirePosition (which also specify phase). Due to physical
-    symmetry that is reflected in the matrix, only the lower triangle of the
-    matrix is populated with the row and column method. That is, the column
-    attribute is always less than or equal to the row attribute.
-    '''
-
-    column: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The matrix entry's column number has a range of possible values from
-    1 to the conductor count of the matrix, but due to symmetry, only entries
-    in the lower triangle (including diagonal) of the matrix need be defined.
-    Column number binds to the sequence number in either ACLineSegmentPhase
-    or WirePosition, which then identifies the phase for this entry.
-    '''
-    
-    row: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The matrix entry's row number has a range of possible values from 1
-    to the conductor count of the matrix, but due to symmetry, only entries
-    in the lower triangle (including diagonal) of the matrix need be defined.
-    Row number binds to the sequence number in either ACLineSegmentPhase
-    or WirePosition, which then identifies the phase for this entry.
-    '''
-    
-    b: Optional[ float | SusceptancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Susceptance matrix entry value, per length of unit.
-    '''
-    
-    fromPhase: Optional[ SinglePhaseKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Refer to the class description.
-    '''
-    
-    g: Optional[ float | ConductancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductance matrix entry value, per length of unit.
-    '''
-    
-    r: Optional[ float | ResistancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Resistance matrix entry value, per length of unit.
-    '''
-    
-    toPhase: Optional[ SinglePhaseKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Refer to the class description.
-    '''
-    
-    x: Optional[ float | ReactancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Reactance matrix entry value, per length of unit.
-    '''
-    
-    PhaseImpedance: Optional[PerLengthPhaseImpedance] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PerLengthPhaseImpedance.PhaseImpedanceData',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductor phase impedance to which this data belongs.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -3580,7 +3418,170 @@ class WireConfiguration(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseImpedanceData(Identity):
+    '''
+    Per length phase impedance matrix entry describes impedance and conductance
+    matrix element values for a specific row and column of the matrix.
+    The phases to which each entry applies can be determined by means of the
+    row and column attributes which bind to a sequence number provided in either
+    ACLineSegmentPhase or WirePosition (which also specify phase). Due to physical
+    symmetry that is reflected in the matrix, only the lower triangle of the
+    matrix is populated with the row and column method. That is, the column
+    attribute is always less than or equal to the row attribute.
+    '''
+
+    column: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The matrix entry's column number has a range of possible values from
+    1 to the conductor count of the matrix, but due to symmetry, only entries
+    in the lower triangle (including diagonal) of the matrix need be defined.
+    Column number binds to the sequence number in either ACLineSegmentPhase
+    or WirePosition, which then identifies the phase for this entry.
+    '''
+    
+    row: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The matrix entry's row number has a range of possible values from 1
+    to the conductor count of the matrix, but due to symmetry, only entries
+    in the lower triangle (including diagonal) of the matrix need be defined.
+    Row number binds to the sequence number in either ACLineSegmentPhase
+    or WirePosition, which then identifies the phase for this entry.
+    '''
+    
+    b: Optional[ float | SusceptancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Susceptance matrix entry value, per length of unit.
+    '''
+    
+    fromPhase: Optional[ SinglePhaseKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Refer to the class description.
+    '''
+    
+    g: Optional[ float | ConductancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductance matrix entry value, per length of unit.
+    '''
+    
+    r: Optional[ float | ResistancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Resistance matrix entry value, per length of unit.
+    '''
+    
+    toPhase: Optional[ SinglePhaseKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Refer to the class description.
+    '''
+    
+    x: Optional[ float | ReactancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactance matrix entry value, per length of unit.
+    '''
+    
+    PhaseImpedance: Optional[PerLengthPhaseImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthPhaseImpedance.PhaseImpedanceData',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductor phase impedance to which this data belongs.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
 class Switch(Identity):
     '''
     A generic device designed to close, or open, or both, one or more electric
@@ -3732,7 +3733,7 @@ class LoadBreakSwitch(ProtectedSwitch):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TranformerImpedanceMatrix(Identity):
     '''
     Template class for specifying

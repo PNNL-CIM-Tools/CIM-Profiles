@@ -22,8 +22,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class GeometricElement(Identity):
     '''
     Exists solely as the parent of the separate geometry types (Point, Line,
@@ -422,7 +423,7 @@ class LinearCoordinate(PositionPoint):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -866,7 +867,7 @@ class ConductingEquipment(Equipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RelativeHeight(Identity):
     '''
     Used to specify the height of a physical object relative to a specified

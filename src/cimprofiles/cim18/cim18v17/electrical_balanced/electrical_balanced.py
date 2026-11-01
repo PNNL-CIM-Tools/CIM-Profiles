@@ -27,8 +27,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#', 'gb': 'http://GB/placeholder/ext#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -964,6 +965,70 @@ class EnergyConsumer(EnergyConnection):
         'serialize': True,
         })
     '''
+    '''
+    
+    pfixed: Optional[ float | ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power of the load that is a fixed quantity and does not vary
+    as load group value varies. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    '''
+    
+    pfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed active power as a percentage of load group fixed active power.
+    Used to represent the time-varying components. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixed: Optional[ float | ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power of the load that is a fixed quantity and does not vary
+    as load group value varies. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    '''
+    
+    qfixedPct: Optional[ float | PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed reactive power as a percentage of load group fixed reactive power.
+    Used to represent the time-varying components. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
     '''
     
     LoadResponse: Optional[LoadResponseCharacteristic] = field(

@@ -131,6 +131,20 @@ def test_merged_class_is_instantiable():
     assert obj.PerLengthImpedance is None
 
 
+def test_merged_class_type_hints_resolve():
+    """typing.get_type_hints must work on merged classes (cimtables and cim-graph
+    reflect on them): their string annotations need Optional and the merged
+    classes, so they are evaluated in the merged module."""
+    import typing
+    from cimprofiles.cim18.cim18v17 import connectivity_unbalanced, electrical_unbalanced
+    from cimprofiles.merge import merge_profiles
+
+    merged = merge_profiles(connectivity_unbalanced, electrical_unbalanced)
+    hints = typing.get_type_hints(merged.ACLineSegment)
+    assert merged.BaseVoltage in typing.get_args(hints['BaseVoltage'])
+    assert sys.modules[merged.ACLineSegment.__module__] is merged
+
+
 def test_stereotype_preserved():
     """Classes with __stereotype__ should retain it after merging."""
     from cimprofiles.cim18.cim18gmdm import electrical
@@ -279,3 +293,55 @@ def test_generate_type_stubs_three_profiles(tmp_path):
     assert '_p0_ACLineSegment' in content
     assert '_p1_ACLineSegment' in content
     assert '_p2_ACLineSegment' in content
+
+
+def test_merge_namespaces_unions_maps():
+    from cimprofiles.merge import merge_namespaces
+
+    assert merge_namespaces({'cim': 'http://cim#'}, {'cim': 'http://cim#', 'gad': 'http://gad#'}) == {
+        'cim': 'http://cim#', 'gad': 'http://gad#'}
+
+
+def test_merge_namespaces_rejects_a_prefix_bound_twice():
+    from cimprofiles.merge import merge_namespaces
+
+    with pytest.raises(ValueError, match="XML prefix 'cim' is bound to both"):
+        merge_namespaces({'cim': 'http://cim.ucaiug.io/cim101/draft#'},
+                         {'cim': 'http://cim.ucaiug.io/CIM101/draft#'})
+
+
+def test_merge_namespaces_rejects_a_namespace_with_two_prefixes():
+    from cimprofiles.merge import merge_namespaces
+
+    with pytest.raises(ValueError, match='has two XML prefixes'):
+        merge_namespaces({'gad': 'http://gridappsd.org/CIM/extension#'},
+                         {'gridappsd': 'http://gridappsd.org/CIM/extension#'})
+
+
+_CIM18V17_MODULES = ['cimprofiles.cim18.cim18v17.cim18v17'] + [
+    f'cimprofiles.cim18.cim18v17.{part}.{part}' for part in (
+        'connectivity_unbalanced', 'electrical_unbalanced', 'electrical_balanced', 'substation',
+        'topology', 'steady_state_hypothesis', 'measurement', 'asset_info')]
+
+
+@pytest.mark.parametrize('module_name', _CIM18V17_MODULES)
+def test_profile_declares_a_prefix_for_every_namespace_it_uses(module_name):
+    """cimantic-graphs.xsl output: NAMESPACES covers the ontology and every field's namespace."""
+    module = importlib.import_module(module_name)
+    used = {module.ONTOLOGY_URI}
+    for value in vars(module).values():
+        if is_dataclass(value) and isinstance(value, type):
+            used |= {f.metadata['namespace'] for f in fields(value) if 'namespace' in f.metadata}
+    assert module.NAMESPACES['cim'] == module.ONTOLOGY_URI
+    assert used <= set(module.NAMESPACES.values())
+
+
+def test_runtime_merge_unions_part_namespaces():
+    from cimprofiles.cim18.cim18v17 import connectivity_unbalanced, electrical_unbalanced
+    from cimprofiles.merge import merge_profiles
+
+    merged = merge_profiles(connectivity_unbalanced, electrical_unbalanced)
+    assert merged.NAMESPACES['cim'] == 'http://cim.ucaiug.io/cim101/draft#'
+    for part in (connectivity_unbalanced, electrical_unbalanced):
+        part_module = importlib.import_module(f'{part.__name__}.{part.__name__.rsplit(".", 1)[1]}')
+        assert part_module.NAMESPACES.items() <= merged.NAMESPACES.items()

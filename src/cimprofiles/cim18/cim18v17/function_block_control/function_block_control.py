@@ -28,9 +28,10 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AutomationBlockGroup(Identity):
     '''
     Grouping of function block that are operated with the same priority as
@@ -96,7 +97,7 @@ class AutomationBlockGroup(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentDroopOverride(Identity):
     '''
     Current droop override uses the following logic:
@@ -259,7 +260,7 @@ class CurrentDroopOverride(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurveData(Identity):
     '''
     Multi-purpose data points for defining a curve. The use of this generic
@@ -355,7 +356,7 @@ class CurveData(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FrequencyMonitoringTerminal(Identity):
     '''
     Frequency monitoring terminal provides location in the model where the
@@ -440,7 +441,7 @@ class FrequencyMonitoringTerminal(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -5264,7 +5265,7 @@ class TapSchedule(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ImpedanceTapChangerTablePoint(Identity):
     '''
     Describes each tap step in the impedance tap changer tabular curve.
@@ -5462,7 +5463,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PropertyReference(Identity):
     '''
     The reference to a class and one of its properties.
@@ -5533,7 +5534,7 @@ class PropertyReference(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SSSCSimulationSettings(Identity):
     '''
     SSSC control simulation settings used by the algorithm for power flow calculations.
@@ -5668,7 +5669,7 @@ class SSSCSimulationSettings(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TCSCCompensationPoint(Identity):
     '''
     Compensation point of a TCSC compensator.
@@ -5750,7 +5751,7 @@ class TCSCCompensationPoint(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TapChangerTablePoint(Identity):
     '''
     Describes each tap step in the tabular curve. Note that the upper boundary

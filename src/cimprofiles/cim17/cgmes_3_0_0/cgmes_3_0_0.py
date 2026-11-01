@@ -24,6 +24,12 @@ from cimprofiles.units import CIMUnit, UnitMultiplier, UnitSymbol
 _log = logging.getLogger(__name__)
 BASE_URI = 'http://ucaiug.org/ns/CGMES/CoreEquipment-EU/3.0#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/CIM100#'
+NAMESPACES = {
+    'cim': 'http://iec.ch/TC57/CIM100#',
+    'eu': 'http://iec.ch/TC57/CIM100-European#',
+    'gb': 'http://GB/placeholder/ext#',
+    'nc': 'http://entsoe.eu/ns/nc#',
+}
 
 class CIMStereotype(Enum):
     AggregateOf = 'AggregateOf'

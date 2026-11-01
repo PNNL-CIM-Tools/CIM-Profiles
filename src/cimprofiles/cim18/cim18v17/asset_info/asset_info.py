@@ -34,9 +34,10 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AgentRoleQualification(Identity):
     '''
     A qualification required for an agent to play an agent role. For example,
@@ -60,7 +61,7 @@ class AgentRoleQualification(Identity):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.MCT)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CableArmorInfo(Identity):
     '''
     '''
@@ -171,7 +172,7 @@ class CableArmorInfo(Identity):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CapacitorBankPhaseInfo(Identity):
     '''
     '''
@@ -190,7 +191,7 @@ class CapacitorBankPhaseInfo(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ComModuleInfo(Identity):
     '''
     Communication module asset informtion
@@ -237,7 +238,7 @@ class ComModuleInfo(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -6572,7 +6573,7 @@ class TypeAssetCatalogue(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class InverterCapabilities(Identity):
     '''
     Based on IEEE 1547-2018 Table 28:
@@ -6594,7 +6595,7 @@ class InverterCapabilities(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MeterInfo(Identity):
     '''
     Datasheet of a smart meter, possibly integrating other metering functions
@@ -6845,7 +6846,7 @@ class MeterInfo(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ShortCircuitResponse(Identity):
     '''
     In a short circuit circumstance, the device may be modeled as current source.
@@ -6941,7 +6942,7 @@ class ShortCircuitResponse(Identity):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Status(Identity):
     '''
     Current status information relevant to an entity.
@@ -6963,7 +6964,7 @@ class Status(Identity):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class StringQuantity(Identity):
     '''
     Quantity with string value (when it is not important whether it is an integral
@@ -6986,7 +6987,7 @@ class StringQuantity(Identity):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TimeInterval(Identity):
     '''
     Interval between two times.
@@ -7006,7 +7007,7 @@ class TimeInterval(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class UserAttribute(Identity):
     '''
     Generic name-value pair class, with optional sequence number and units

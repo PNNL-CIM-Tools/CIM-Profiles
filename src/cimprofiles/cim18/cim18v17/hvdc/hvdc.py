@@ -25,8 +25,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -4779,7 +4780,7 @@ class VsConverterSchedule(IdentifiedObject):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MustRunTimePoint(Identity):
     '''
     Must-run instruction value at a given point in time.
@@ -4875,7 +4876,7 @@ class MustRunTimePoint(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SvDCPowerFlow(Identity):
     '''
     State variable for power flow. Load convention is used for flow direction.
@@ -4927,7 +4928,7 @@ class SvDCPowerFlow(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SvDCVoltage(Identity):
     '''
     State variable for direct current voltage.
@@ -4977,7 +4978,7 @@ class SvDCVoltage(Identity):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VsConverterTimePoint(Identity):
     '''
     VS converter values for a given point in time.

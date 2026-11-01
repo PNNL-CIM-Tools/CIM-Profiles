@@ -5,9 +5,10 @@
                 xmlns:a="http://langdale.com.au/2005/Message#"
                 xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:local="urn:local-functions"
                 xmlns="http://langdale.com.au/2009/Indent"
-                exclude-result-prefixes="xs fn local">
+                exclude-result-prefixes="xs fn map local">
 
     <xsl:output indent="yes" method="xml" encoding="utf-8"/>
 
@@ -31,6 +32,26 @@
             'raise', 'return', 'try', 'while', 'with', 'yield'
         )"/>
 
+    <!-- XML prefix for each namespace a profile may use (CIMTool passes builders no
+         prefixes; same approach as the shipped linkml.xsl). The profile's own ontology
+         is always 'cim'. Add an entry here when a profile uses a new extension namespace:
+         generation stops on any used namespace that has no prefix. -->
+    <xsl:variable name="cim_namespace" as="xs:string" select="concat($ontologyURI, '#')"/>
+    <xsl:variable name="prefixes" as="map(xs:string, xs:string)" select="map:merge((
+            map {$cim_namespace: 'cim'},
+            map {
+                'http://iec.ch/TC57/CIM100-European#': 'eu',
+                'http://entsoe.eu/ns/nc#': 'nc',
+                'http://GB/placeholder/ext#': 'gb',
+                'http://gridappsd.org/CIM/extension#': 'gad',
+                'http://epri.com/gmdm/2025#': 'gmdm'
+            }), map {'duplicates': 'use-first'})"/>
+
+    <!-- Namespaces of every class and property in this profile, the ontology first -->
+    <xsl:variable name="used_namespaces" as="xs:string*" select="distinct-values((
+            $cim_namespace,
+            //(@baseClass | @baseProperty)[contains(., '#')] ! concat(substring-before(., '#'), '#')))"/>
+
     <!-- Template for top-level item in schema file -->
     <xsl:template match="a:Catalog">
         <document>
@@ -46,6 +67,7 @@
             <!-- Constants -->
             <item>BASE_URI = '<xsl:value-of select="$baseURI"/>'</item>
             <item>ONTOLOGY_URI = '<xsl:value-of select="$ontologyURI"/>#'</item>
+            <xsl:call-template name="generate_namespaces"/>
             <item/>
 
             <!-- Process classes hierarchically, excluding Identity -->
@@ -75,6 +97,21 @@
     </xsl:template>
 
     <!-- Generate documentation section -->
+    <!-- NAMESPACES = {prefix: uri} for every namespace the profile uses, 'cim' first.
+         Serializers read the XML prefixes from here. -->
+    <xsl:template name="generate_namespaces">
+        <xsl:for-each select="$used_namespaces[not(map:contains($prefixes, .))]">
+            <xsl:message terminate="yes">cimantic-graphs: namespace <xsl:value-of select="."/> has no XML prefix; add it to $prefixes in cimantic-graphs.xsl</xsl:message>
+        </xsl:for-each>
+        <xsl:variable name="entries" as="xs:string*">
+            <xsl:for-each select="$used_namespaces">
+                <xsl:sort select="if (. eq $cim_namespace) then '' else $prefixes(.)"/>
+                <xsl:sequence select="concat('''', $prefixes(.), ''': ''', ., '''')"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <item>NAMESPACES = {<xsl:value-of select="string-join($entries, ', ')"/>}</item>
+    </xsl:template>
+
     <xsl:template name="generate_documentation">
         <list begin="'''" indent="" end="'''">
             <item>Annotated CIMantic Graphs data profile for <xsl:value-of select="$envelope"/></item>

@@ -34,8 +34,15 @@ from cimprofiles.units import CIMUnit, UnitSymbol, UnitMultiplier
 _log = logging.getLogger(__name__)
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {
+    'cim': 'http://cim.ucaiug.io/cim101/draft#',
+    'eu': 'http://iec.ch/TC57/CIM100-European#',
+    'gad': 'http://gridappsd.org/CIM/extension#',
+    'gb': 'http://GB/placeholder/ext#',
+    'nc': 'http://entsoe.eu/ns/nc#',
+}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Anchor(Identity):
     '''
     Anchor.
@@ -110,7 +117,7 @@ class Anchor(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AssetOwner(Identity):
     '''
     Owner of the asset.
@@ -144,7 +151,7 @@ class AssetOwner(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AssetUser(Identity):
     '''
     Organisation that is a user of the asset.
@@ -363,7 +370,7 @@ class AgentRoleKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AgentRoleQualification(Identity):
     '''
     A qualification required for an agent to play an agent role. For example,
@@ -544,7 +551,7 @@ class Area(CIMUnit):
     
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AreaConfiguration(Identity):
     '''
     Configuration by which switch open/close positions group quasi-static connected
@@ -757,7 +764,7 @@ class AsynchronousMachineKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AutomationBlockGroup(Identity):
     '''
     Grouping of function block that are operated with the same priority as
@@ -916,7 +923,7 @@ class BatteryTypeKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class BranchGroupTerminal(Identity):
     '''
     A specific directed terminal flow for a branch group.
@@ -1237,7 +1244,7 @@ class BushingInsulationKind(Enum):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.MCT)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CableArmorInfo(Identity):
     '''
     '''
@@ -1559,7 +1566,7 @@ class CapacitancePerLength(CIMUnit):
 
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CapacitorBankPhaseInfo(Identity):
     '''
     '''
@@ -1765,7 +1772,7 @@ class ComDirectionKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ComModuleInfo(Identity):
     '''
     Communication module asset informtion
@@ -2568,7 +2575,7 @@ class CsPpccControlKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentDroopOverride(Identity):
     '''
     Current droop override uses the following logic:
@@ -2760,7 +2767,7 @@ class CurrentFlow(CIMUnit):
     
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurveData(Identity):
     '''
     Multi-purpose data points for defining a curve. The use of this generic
@@ -3238,7 +3245,7 @@ class DCTerminalPolarityKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Compound)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class DeploymentDate(Identity):
     '''
     Dates for deployment events of an asset. May have multiple deployment type
@@ -3522,7 +3529,7 @@ class Frequency(CIMUnit):
     
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FrequencyMonitoringTerminal(Identity):
     '''
     Frequency monitoring terminal provides location in the model where the
@@ -3607,7 +3614,7 @@ class FrequencyMonitoringTerminal(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class GeometricElement(Identity):
     '''
     Exists solely as the parent of the separate geometry types (Point, Line,
@@ -3732,7 +3739,7 @@ class Guy(Anchor):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -9715,7 +9722,7 @@ class ImpedanceTapChangerTable(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ImpedanceTapChangerTablePoint(Identity):
     '''
     Describes each tap step in the impedance tap changer tabular curve.
@@ -10273,7 +10280,7 @@ class InterruptingMediumKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class InverterCapabilities(Identity):
     '''
     Based on IEEE 1547-2018 Table 28:
@@ -12349,7 +12356,7 @@ class DiscreteValue(MeasurementValue):
         return 'unbounded'
     
 @stereotype(CIMStereotype.AggregateOf)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MeasurementValueQuality(Identity):
     '''
     Measurement quality flags. Bits 0-10 are defined for substation automation
@@ -12649,7 +12656,7 @@ class MeterFormKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MeterInfo(Identity):
     '''
     Datasheet of a smart meter, possibly integrating other metering functions
@@ -13086,7 +13093,7 @@ class MustRunSchedule(IdentifiedObject):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MustRunTimePoint(Identity):
     '''
     Must-run instruction value at a given point in time.
@@ -14012,7 +14019,7 @@ class Manufacturer(OrganisationRole):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Ownership(Identity):
     '''
     Ownership of e.g. asset.
@@ -14329,7 +14336,7 @@ class PMUConfiguration(IdentifiedObject):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PMUStream(Identity):
     '''
     '''
@@ -14363,7 +14370,7 @@ class PMUStream(Identity):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PMUValueConcentration(Identity):
     '''
     '''
@@ -15386,7 +15393,7 @@ class PhaseCountKind(Enum):
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class PhaseImpedanceData(IdentifiedObject):
+class PhaseImpedanceData(Identity):
     '''
     Per length phase impedance matrix entry describes impedance and conductance
     matrix element values for a specific row and column of the matrix.
@@ -19750,22 +19757,6 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    LoadResponse: Optional[LoadResponseCharacteristic] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'LoadResponseCharacteristic.EnergyConsumer',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The load response characteristic of this load. If missing, this load
-    is assumed to be constant power.
-    '''
-    
     pfixed: Optional[ float | ActivePower ] = field(
         default=None,
         metadata={
@@ -19828,6 +19819,22 @@ class EnergyConsumer(EnergyConnection):
     Fixed reactive power as a percentage of load group fixed reactive power.
     Used to represent the time-varying components. Load sign convention
     is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    LoadResponse: Optional[LoadResponseCharacteristic] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'LoadResponseCharacteristic.EnergyConsumer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The load response characteristic of this load. If missing, this load
+    is assumed to be constant power.
     '''
     
     p: Optional[ float | ActivePower ] = field(
@@ -23052,7 +23059,7 @@ class ProductAssetModel(IdentifiedObject):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PropertyReference(Identity):
     '''
     The reference to a class and one of its properties.
@@ -24930,7 +24937,7 @@ class RelativeDirectionKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RelativeHeight(Identity):
     '''
     Used to specify the height of a physical object relative to a specified
@@ -26204,7 +26211,7 @@ class SSSCController(EquipmentController):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SSSCSimulationSettings(Identity):
     '''
     SSSC control simulation settings used by the algorithm for power flow calculations.
@@ -27228,7 +27235,7 @@ class SetPoint(AnalogControl):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ShortCircuitResponse(Identity):
     '''
     In a short circuit circumstance, the device may be modeled as current source.
@@ -28634,7 +28641,7 @@ class Specimen(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class StatCom(Identity):
     '''
     StatCom - Static Synchronous Compensator High speed continuous reactor
@@ -28748,7 +28755,7 @@ class StatComInfo(FACTSInfo):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class StateVariable(Identity):
     '''
     An abstract class for state variables.
@@ -28967,7 +28974,7 @@ class StationSupply(EnergyConsumer):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Status(Identity):
     '''
     Current status information relevant to an entity.
@@ -29210,7 +29217,7 @@ class StringMeasurementValue(MeasurementValue):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class StringQuantity(Identity):
     '''
     Quantity with string value (when it is not important whether it is an integral
@@ -32119,7 +32126,7 @@ class PowerFrequencyController(SystemControl):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TCSCCompensationPoint(Identity):
     '''
     Compensation point of a TCSC compensator.
@@ -33387,7 +33394,7 @@ class TapChangerInfo(ConductingAssetInfo):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TapChangerTablePoint(Identity):
     '''
     Describes each tap step in the tabular curve. Note that the upper boundary
@@ -34399,7 +34406,7 @@ class DCTieCorridor(TieCorridor):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
 @stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TimeInterval(Identity):
     '''
     Interval between two times.
@@ -34473,7 +34480,7 @@ class TimeSourceKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Tool(Identity):
     '''
     Tool asset.
@@ -34999,7 +35006,7 @@ class TopologicalUsageKind(Enum):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class TranformerImpedanceMatrix(Identity):
     '''
     Template class for specifying
@@ -37787,7 +37794,7 @@ class UnifiedPowerFlowController(EquipmentController):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class UserAttribute(Identity):
     '''
     Generic name-value pair class, with optional sequence number and units
@@ -38024,7 +38031,7 @@ class ValueToAlias(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Vehicle(Identity):
     '''
     Vehicle asset.
@@ -39048,7 +39055,7 @@ class VsConverterSchedule(IdentifiedObject):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VsConverterTimePoint(Identity):
     '''
     VS converter values for a given point in time.
@@ -39191,7 +39198,7 @@ class VsQpccControlKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Warranty(Identity):
     '''
     The document stipulates what is guaranteed and what repairs or remediations

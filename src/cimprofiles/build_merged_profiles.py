@@ -47,7 +47,7 @@ from pathlib import Path
 import yaml
 
 from cimprofiles.dedupe_profile_fields import field_info
-from cimprofiles.merge import _topo_sort, most_specific_base
+from cimprofiles.merge import _topo_sort, merge_namespaces, most_specific_base
 
 _log = logging.getLogger(__name__)
 
@@ -210,7 +210,18 @@ def _merge_class(name: str, definitions: list[_ClassDefinition],
 
 
 def _merge_assignment(name: str, candidates: list[tuple[str, str]]) -> str:
-    """Module-level assignments (BASE_URI, _log) come from the first part."""
+    """
+    Module-level assignments (BASE_URI, _log) come from the first part, except
+    NAMESPACES, which is the union of the parts' (see merge_namespaces).
+    """
+    if name == 'NAMESPACES':
+        namespaces = merge_namespaces(*(ast.literal_eval(ast.parse(text).body[0].value)
+                                        for _part, text in candidates))
+        # One entry per line (the union outgrows the parts' line width), ordered
+        # like cimantic-graphs.xsl: 'cim' first, then by prefix
+        prefixes = sorted(namespaces, key=lambda prefix: (prefix != 'cim', prefix))
+        entries = ''.join(f'    {prefix!r}: {namespaces[prefix]!r},\n' for prefix in prefixes)
+        return f'NAMESPACES = {{\n{entries}}}'
     if len({text for _part, text in candidates}) > 1:
         _log.warning('Parts disagree on %s; using %s from %s', name,
                      candidates[0][1], candidates[0][0])
@@ -249,6 +260,12 @@ def merge_sources(parts: dict[str, str]) -> tuple[str, list[str]]:
                 classes[node.name].append(_class_definition(node, lines, segment.last_line))
             elif not _is_docstring(node):
                 raise ValueError(f'{part}: unexpected top-level statement {ast.unparse(node)!r}')
+
+    # Every part or none: a union over only some parts would drop their prefixes
+    declared = {part for part, _text in assignments.get('NAMESPACES', [])}
+    if declared and declared != set(parts):
+        raise ValueError(f'{sorted(set(parts) - declared)} declare no NAMESPACES; '
+                         f'regenerate them with cimantic-graphs.xsl')
 
     parents = {name: {_base_name(d.node) for d in definitions}
                for name, definitions in classes.items()}
