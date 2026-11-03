@@ -334,6 +334,12 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment"/>
     <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#EquipmentConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EquipmentConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#IdentifiedObject">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>IdentifiedObject</rdfs:label>
@@ -415,7 +421,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerBankConfiguration"/>
-    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+    <rdfs:subClassOf rdf:resource="#EquipmentConfiguration"/>
   </rdf:Description>
   <rdf:Description rdf:about="#WireInfo">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
@@ -425,6 +431,14 @@
     <rdfs:label>WireInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInfo"/>
     <rdfs:subClassOf rdf:resource="#ConductingAssetInfo"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#WireSequenceConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireSequenceConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#EquipmentConfiguration"/>
   </rdf:Description>
   <rdf:Description rdf:about="#global_package">
     <rdfs:label>Global</rdfs:label>

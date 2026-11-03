@@ -20,6 +20,14 @@ from cimprofiles.units import CIMUnit, UnitMultiplier, UnitSymbol
 _log = logging.getLogger(__name__)
 BASE_URI = 'http://www.ucaiug.org/gmdm/connectivity/unbalanced#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/CIM101/draft#'
+NAMESPACES = {
+    'cim': 'http://cim.ucaiug.io/cim101/draft#',
+    'eu': 'http://iec.ch/TC57/CIM100-European#',
+    'gad': 'http://gridappsd.org/CIM/extension#',
+    'gb': 'http://GB/placeholder/ext#',
+    'nc': 'http://entsoe.eu/ns/nc#',
+    'gmdm': 'http://epri.com/gmdm/2025#'
+}
 
 class CIMStereotype(Enum):
     AggregateOf = 'AggregateOf'

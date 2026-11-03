@@ -22,8 +22,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class GeometricElement(Identity):
     '''
     Exists solely as the parent of the separate geometry types (Point, Line,
@@ -67,7 +68,7 @@ class Circle(GeometricElement):
     be excluded from the area within the outer radius, forming a ring shape.
     '''
 
-    innerRadius: Optional[ float | Length ] = field(
+    innerRadius: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -83,7 +84,7 @@ class Circle(GeometricElement):
     radius, forming a ring shape.
     '''
     
-    outerRadius: Optional[ float | Length ] = field(
+    outerRadius: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -422,7 +423,7 @@ class LinearCoordinate(PositionPoint):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -866,7 +867,7 @@ class ConductingEquipment(Equipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RelativeHeight(Identity):
     '''
     Used to specify the height of a physical object relative to a specified
@@ -897,7 +898,7 @@ class RelativeHeight(Identity):
     �Ground Level�, �Pole Top�, �Tower Top�, etc.
     '''
     
-    verticalOffset: Optional[ float | Length ] = field(
+    verticalOffset: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

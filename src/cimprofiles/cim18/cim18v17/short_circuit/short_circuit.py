@@ -20,12 +20,14 @@ class CIMStereotype(Enum):
     Primitive = "Primitive"
     ShadowExtension = "ShadowExtension"
     enumeration = "enumeration"
+    new = "new"
     profcim = "profcim"
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -177,7 +179,7 @@ class MutualCoupling(IdentifiedObject):
     This class represents the zero sequence line mutual coupling.
     '''
 
-    b0ch: Optional[ float | Susceptance ] = field(
+    b0ch: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -192,7 +194,7 @@ class MutualCoupling(IdentifiedObject):
     distributed, of the entire line section.
     '''
     
-    distance11: Optional[ float | Length ] = field(
+    distance11: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -207,7 +209,7 @@ class MutualCoupling(IdentifiedObject):
     having sequence number equal to 1.
     '''
     
-    distance12: Optional[ float | Length ] = field(
+    distance12: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -222,7 +224,7 @@ class MutualCoupling(IdentifiedObject):
     with sequence number equal to 1.
     '''
     
-    distance21: Optional[ float | Length ] = field(
+    distance21: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -237,7 +239,7 @@ class MutualCoupling(IdentifiedObject):
     with sequence number equal to 1.
     '''
     
-    distance22: Optional[ float | Length ] = field(
+    distance22: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -252,7 +254,7 @@ class MutualCoupling(IdentifiedObject):
     with sequence number equal to 1.
     '''
     
-    g0ch: Optional[ float | Conductance ] = field(
+    g0ch: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -267,7 +269,7 @@ class MutualCoupling(IdentifiedObject):
     distributed, of the entire line section.
     '''
     
-    r0: Optional[ float | Resistance ] = field(
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -281,7 +283,7 @@ class MutualCoupling(IdentifiedObject):
     Zero sequence branch-to-branch mutual impedance coupling, resistance.
     '''
     
-    x0: Optional[ float | Reactance ] = field(
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -394,7 +396,7 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     x0 = xself + xmutual.
     '''
 
-    b0ch: Optional[ float | SusceptancePerLength ] = field(
+    b0ch: Optional[ SusceptancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -408,7 +410,7 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     Zero sequence shunt (charging) susceptance, per unit of length.
     '''
     
-    g0ch: Optional[ float | ConductancePerLength ] = field(
+    g0ch: Optional[ ConductancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -422,7 +424,7 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     Zero sequence shunt (charging) conductance, per unit of length.
     '''
     
-    r0: Optional[ float | ResistancePerLength ] = field(
+    r0: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -436,7 +438,7 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     Zero sequence series resistance, per unit of length.
     '''
     
-    x0: Optional[ float | ReactancePerLength ] = field(
+    x0: Optional[ ReactancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -622,7 +624,7 @@ class ACLineSegment(Conductor):
     </ul>
     '''
 
-    b0ch: Optional[ float | Susceptance ] = field(
+    b0ch: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -637,7 +639,7 @@ class ACLineSegment(Conductor):
     of the entire line segment.
     '''
     
-    g0ch: Optional[ float | Conductance ] = field(
+    g0ch: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -652,7 +654,7 @@ class ACLineSegment(Conductor):
     of the entire line segment.
     '''
     
-    r0: Optional[ float | Resistance ] = field(
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -666,7 +668,7 @@ class ACLineSegment(Conductor):
     Zero sequence series resistance of the entire line segment.
     '''
     
-    x0: Optional[ float | Reactance ] = field(
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -724,7 +726,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -737,7 +739,7 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -756,6 +758,85 @@ class EnergyConsumer(EnergyConnection):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class EnergySource(EnergyConnection):
+    '''
+    A generic equivalent for an energy supplier on a transmission or distribution
+    voltage level.
+    '''
+
+    r0: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence Thevenin resistance.
+    '''
+    
+    r2: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence Thevenin resistance.
+    '''
+    
+    x0: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence Thevenin reactance.
+    '''
+    
+    x2: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence Thevenin reactance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -793,7 +874,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    maxIFault: Optional[ float | PU ] = field(
+    maxIFault: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -874,7 +955,7 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -889,7 +970,7 @@ class SynchronousMachine(RotatingMachine):
     for the unit.
     '''
     
-    minQ: Optional[ float | ReactivePower ] = field(
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -956,7 +1037,7 @@ class ShuntCompensator(RegulatingCondEq):
     zero and ShuntCompensator.maximumSections.
     '''
     
-    nomU: Optional[ float | Voltage ] = field(
+    nomU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -972,7 +1053,7 @@ class ShuntCompensator(RegulatingCondEq):
     is connected to the network.
     '''
     
-    voltageSensitivity: Optional[ float | VoltagePerReactivePower ] = field(
+    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1025,7 +1106,7 @@ class LinearShuntCompensator(ShuntCompensator):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1039,7 +1120,7 @@ class LinearShuntCompensator(ShuntCompensator):
     Positive sequence shunt (charging) susceptance per section.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1053,7 +1134,7 @@ class LinearShuntCompensator(ShuntCompensator):
     Positive sequence shunt (charging) conductance per section.
     '''
     
-    rPerSection: Optional[ float | Resistance ] = field(
+    rPerSection: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1068,7 +1149,7 @@ class LinearShuntCompensator(ShuntCompensator):
     resistance]
     '''
     
-    xPerSection: Optional[ float | Reactance ] = field(
+    xPerSection: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1117,7 +1198,7 @@ class PowerTransformer(ConductingEquipment):
     instead.
     '''
 
-    beforeShCircuitHighestOperatingCurrent: Optional[ float | CurrentFlow ] = field(
+    beforeShCircuitHighestOperatingCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1134,7 +1215,7 @@ class PowerTransformer(ConductingEquipment):
     in IEC 60909-0.
     '''
     
-    beforeShCircuitHighestOperatingVoltage: Optional[ float | Voltage ] = field(
+    beforeShCircuitHighestOperatingVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1151,7 +1232,7 @@ class PowerTransformer(ConductingEquipment):
     (3.7.1 of IEC 60909:2001). Used to define operating conditions.
     '''
     
-    beforeShortCircuitAnglePf: Optional[ float | AngleDegrees ] = field(
+    beforeShortCircuitAnglePf: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1205,7 +1286,7 @@ class SeriesCompensator(ConductingEquipment):
     line without charging susceptance. It is a two terminal device.
     '''
 
-    r0: Optional[ float | Resistance ] = field(
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1219,7 +1300,7 @@ class SeriesCompensator(ConductingEquipment):
     Zero sequence resistance.
     '''
     
-    x0: Optional[ float | Reactance ] = field(
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1322,7 +1403,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1338,7 +1419,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     connected.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1418,7 +1499,7 @@ class PowerTransformerEnd(TransformerEnd):
     transformer end.
     '''
 
-    b0: Optional[ float | Susceptance ] = field(
+    b0: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1432,7 +1513,7 @@ class PowerTransformerEnd(TransformerEnd):
     Zero sequence magnetizing branch susceptance.
     '''
     
-    g0: Optional[ float | Conductance ] = field(
+    g0: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1446,7 +1527,7 @@ class PowerTransformerEnd(TransformerEnd):
     Zero sequence magnetizing branch conductance (star-model).
     '''
     
-    r0: Optional[ float | Resistance ] = field(
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1460,7 +1541,7 @@ class PowerTransformerEnd(TransformerEnd):
     Zero sequence series resistance (star-model) of the transformer end.
     '''
     
-    x0: Optional[ float | Reactance ] = field(
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1502,6 +1583,60 @@ class PowerTransformerEnd(TransformerEnd):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.new)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerCore(IdentifiedObject):
+    '''
+    The magnetizing core of a transformer tank around which the windings are
+    wrapped.
+    The shunt conductance and susceptance may be specified as no load loss
+    / magnetizing current on the transformer tank or as b / b0 / g/ g0 admittance
+    values on the core.
+    '''
+
+    b0: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence magnetizing branch susceptance.
+    '''
+    
+    g0: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence magnetizing branch conductance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -1515,7 +1650,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     ends are modelled the cardinalities are larger than 1.
     '''
 
-    r0: Optional[ float | Resistance ] = field(
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1530,7 +1665,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     from the 'from' end.
     '''
     
-    x0: Optional[ float | Reactance ] = field(
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1550,7 +1685,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
-        return 'Wires'
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'

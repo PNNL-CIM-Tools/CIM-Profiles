@@ -25,8 +25,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -644,7 +645,7 @@ class TapChangerControl(RegulatingControl):
     '''
     '''
     
-    lineDropR: Optional[ float | Resistance ] = field(
+    lineDropR: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -659,7 +660,7 @@ class TapChangerControl(RegulatingControl):
     flow.
     '''
     
-    lineDropX: Optional[ float | Reactance ] = field(
+    lineDropX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -674,7 +675,7 @@ class TapChangerControl(RegulatingControl):
     flow.
     '''
     
-    maxLimitVoltage: Optional[ float | Voltage ] = field(
+    maxLimitVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -692,7 +693,7 @@ class TapChangerControl(RegulatingControl):
     then TapChanger.ptRatio must be supplied.
     '''
     
-    minLimitVoltage: Optional[ float | Voltage ] = field(
+    minLimitVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -710,7 +711,7 @@ class TapChangerControl(RegulatingControl):
     then TapChanger.ptRatio must be supplied.
     '''
     
-    reverseLineDropR: Optional[ float | Resistance ] = field(
+    reverseLineDropR: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -724,7 +725,7 @@ class TapChangerControl(RegulatingControl):
     Line drop compensator resistance setting for reverse power flow.
     '''
     
-    reverseLineDropX: Optional[ float | Reactance ] = field(
+    reverseLineDropX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -738,7 +739,7 @@ class TapChangerControl(RegulatingControl):
     Line drop compensator reactance setting for reverse power flow.
     '''
     
-    reversingDelay: Optional[ float | Seconds ] = field(
+    reversingDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -751,7 +752,7 @@ class TapChangerControl(RegulatingControl):
     '''
     '''
     
-    reversingPowerThreshold: Optional[ float | ActivePower ] = field(
+    reversingPowerThreshold: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -926,7 +927,7 @@ class ShuntCompensator(RegulatingCondEq):
     is a reactor. ShuntCompensator is a single terminal device. Ground is implied.
     '''
 
-    aVRDelay: Optional[ float | Seconds ] = field(
+    aVRDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -942,7 +943,7 @@ class ShuntCompensator(RegulatingCondEq):
     change state. This filters out temporary changes in voltage.
     '''
     
-    voltageSensitivity: Optional[ float | VoltagePerReactivePower ] = field(
+    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1164,7 +1165,7 @@ class TapChanger(PowerSystemResource):
     or less than highStep.
     '''
     
-    initialDelay: Optional[ float | Seconds ] = field(
+    initialDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1179,7 +1180,7 @@ class TapChanger(PowerSystemResource):
     change).
     '''
     
-    neutralU: Optional[ float | Voltage ] = field(
+    neutralU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1214,7 +1215,7 @@ class TapChanger(PowerSystemResource):
     '''
     '''
     
-    subsequentDelay: Optional[ float | Seconds ] = field(
+    subsequentDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1306,7 +1307,7 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    stepVoltageIncrement: Optional[ float | PerCent ] = field(
+    stepVoltageIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

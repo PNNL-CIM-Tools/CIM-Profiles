@@ -132,3 +132,25 @@ def test_cim18v17_uses_the_library_unit_enums():
     assert cim.UnitSymbol is UnitSymbol and cim.UnitMultiplier is UnitMultiplier
     assert cim.ActivePower(5, 'kW').unit is UnitSymbol.W
     assert {'unitMultiplier', 'unitSymbol'} <= {f.name for f in dataclasses.fields(cim.Measurement)}
+
+
+def _part_source(namespaces: dict | None) -> str:
+    source = "BASE_URI = 'http://example.com/profile#'\n"
+    if namespaces is not None:
+        source += f'NAMESPACES = {namespaces!r}\n'
+    return source
+
+
+def test_merge_sources_unions_part_namespaces():
+    merged, _exported = merge_sources({
+        'part_a': _part_source({'cim': 'http://cim#', 'nc': 'http://nc#'}),
+        'part_b': _part_source({'cim': 'http://cim#', 'gad': 'http://gad#'}),
+    })
+    assert ("NAMESPACES = {\n    'cim': 'http://cim#',\n    'gad': 'http://gad#',\n    'nc': 'http://nc#',\n}"
+            in merged)
+
+
+def test_merge_sources_rejects_a_part_without_namespaces():
+    with pytest.raises(ValueError, match=r"\['part_b'\] declare no NAMESPACES"):
+        merge_sources({'part_a': _part_source({'cim': 'http://cim#'}),
+                       'part_b': _part_source(None)})

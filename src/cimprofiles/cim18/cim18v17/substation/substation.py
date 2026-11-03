@@ -25,8 +25,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -758,7 +759,7 @@ class VoltageLevel(EquipmentContainer):
     these.
     '''
 
-    highVoltageLimit: Optional[ float | Voltage ] = field(
+    highVoltageLimit: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -776,7 +777,7 @@ class VoltageLevel(EquipmentContainer):
     present.
     '''
     
-    lowVoltageLimit: Optional[ float | Voltage ] = field(
+    lowVoltageLimit: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1027,7 +1028,7 @@ class BusbarSection(Connector):
     terminals but for analysis is modelled with exactly one logical terminal.
     '''
 
-    ipMax: Optional[ float | CurrentFlow ] = field(
+    ipMax: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

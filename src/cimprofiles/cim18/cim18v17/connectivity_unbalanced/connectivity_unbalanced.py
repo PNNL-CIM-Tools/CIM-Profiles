@@ -28,8 +28,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -335,6 +336,79 @@ class Terminal(ACDCTerminal):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BaseFrequency(IdentifiedObject):
+    '''
+    The BaseFrequency class describes a base frequency for a power system network.
+    In case of multiple power networks with different frequencies, e.g. 50
+    Hz or 60 Hz each network will have its own base frequency class. Hence
+    it is assumed that power system objects having different base frequencies
+    appear in separate documents where each document has a single base frequency
+    instance.
+    '''
+
+    frequency: Optional[ Frequency ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The base frequency.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BasePower(IdentifiedObject):
+    '''
+    The BasePower class defines the base power used in the per unit calculations.
+    '''
+
+    basePower: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Value used as base power.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -344,7 +418,7 @@ class BaseVoltage(IdentifiedObject):
     than the rated voltage.
     '''
 
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1000,6 +1074,42 @@ class Feeder(EquipmentContainer):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Line(EquipmentContainer):
+    '''
+    Contains equipment beyond a substation belonging to a power transmission
+    line.
+    '''
+
+    Region: Optional[SubGeographicalRegion] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'SubGeographicalRegion.Lines',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The sub-geographical region of the line.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -1390,7 +1500,7 @@ class Clamp(ConductingEquipment):
     Clamp ConnectivityNode.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1442,7 +1552,7 @@ class Conductor(ConductingEquipment):
     in the power system.
     '''
 
-    length: Optional[ float | Length ] = field(
+    length: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1756,7 +1866,7 @@ class EnergySource(EnergyConnection):
     '''
     '''
     
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2230,21 +2340,6 @@ class Switch(ConductingEquipment):
     processing of connected areas
     '''
     
-    gangOperated: Optional[bool] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Indicates whether the phases of the switch are mechanically linked
-    together or can be operated separately
-    '''
-    
     normalOpen: Optional[bool] = field(
         default=None,
         metadata={
@@ -2352,7 +2447,7 @@ class Cut(Switch):
     equipment can be connected at them.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3333,7 +3428,7 @@ class TransformerPhaseEnd(TransformerEnd):
     to form the terminal-facing connection on this side of the transformer.
     '''
     
-    phaseNeutralU: Optional[ float | Voltage ] = field(
+    phaseNeutralU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3438,6 +3533,21 @@ class SubGeographicalRegion(IdentifiedObject):
     A subset of a geographical region of a power system network model.
     '''
 
+    Lines: list[Line] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Line.Region',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The lines within the sub-geographical region.
+    '''
+    
     Substations: list[Substation] = field(
         default_factory=list,
         metadata={
@@ -3667,7 +3777,7 @@ class TransformerWinding(IdentifiedObject):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SwitchPhase(Identity):
     '''
     Single phase of a multi-phase switch when its attributes might be different
@@ -4441,6 +4551,62 @@ class WindingConnection(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ApparentPower(CIMUnit):
+    '''
+    Product of the RMS value of the voltage and the RMS value of the current.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.VA
+    def __init__(self, value, input_unit: str='VA', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Frequency(CIMUnit):
+    '''
+    Cycles per second.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.Hz
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
 class Length(CIMUnit):

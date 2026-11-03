@@ -28,8 +28,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm/#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -217,7 +218,7 @@ class ConductorDistance(IdentifiedObject):
     pair of conductors in the conductor distance.
     '''
     
-    distance: Optional[ float | Displacement ] = field(
+    distance: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -306,7 +307,7 @@ class EarthResistivity(IdentifiedObject):
     '''
     '''
     
-    earthReturnGMR: Optional[ float | Length ] = field(
+    earthReturnGMR: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -321,7 +322,7 @@ class EarthResistivity(IdentifiedObject):
     impedance as the earth return, per Carson's Equations
     '''
     
-    rho: Optional[ float | Resistance ] = field(
+    rho: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -347,6 +348,352 @@ class EarthResistivity(IdentifiedObject):
         })
     '''
     The set of wire assemblies using this earth resistivity
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EquipmentConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerTankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    loadLoss: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at rated power
+    '''
+    
+    noLoadLoss: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at no load
+    '''
+    
+    percentImpedance: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Transformer impedance expressed in percent, calculated as short circuit
+    voltage divided by rated voltage when measured at rated current flow,
+    also known as %Z or %IZ
+    '''
+    
+    percentMagnetizingCurrent: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Magnetizing current expressed as percentage of base current
+    '''
+    
+    TransformerLugs: list[TransformerLug] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerLug.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformer physical lugs described by this tank configuration
+    template.
+    '''
+    
+    TransformerPhaseEnd: list[TransformerPhaseEnd] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerPhaseEnd.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformer phase ends specified by this tank configuration
+    template
+    '''
+    
+    TransformerTank: list[TransformerTank] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerTank.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of TransformerTanks using this configuration
+    '''
+    
+    TransformerWinding: list[TransformerWinding] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerWinding.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformerwindings contained within this tank configuration
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WireConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    numberOfPhases: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    installationType: Optional[ WireInstallationKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    usage: Optional[ WireUsageKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    ACLineSegements: list[ACLineSegment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACLineSegment.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of lines sharing this assembly specification
+    '''
+    
+    WireSequence: list[WireSequenceConfiguration] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSequenceConfiguration.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of sequencing configuration templates for specifying usage
+    of an associated wire info in a given sequence number position
+    '''
+    
+    EarthResistivity: Optional[EarthResistivity] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EarthResistivity.WireAssemblies',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The earth resistivity of lines using this wire assembly template
+    '''
+    
+    PerLengthImpedance: Optional[PerLengthImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthImpedance.WireAssembly',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The per-length impedance template used by all lines following this
+    assembly specification
+    '''
+    
+    WireSpacing: Optional[WireSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireSpacing.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The wire spacing used by this wire configuration
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WireSequenceConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    sequenceNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Sequence number of the line segment phase for which this wire info
+    is associated in the overall wire configuration template.
+    '''
+    
+    WireConfiguration: Optional[WireConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireConfiguration.WireSequence',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The overall wire configuration template in which this wire sequencing
+    template is used
     '''
     
     @property
@@ -444,6 +791,45 @@ class TransformerCore(MagneticCore):
         })
     '''
     The transformer tank in which the transformer core is contained.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.new)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class MultiCircuitGroup(IdentifiedObject):
+    '''
+    Aggregates a set of line segments that are on the same tower, or in the
+    same right-of-way, close enough that mutual coupling impedances between
+    the lines need to be included in network analysis.
+    '''
+
+    XYSpacing: Optional[XYSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The XY spacing that applies to this coupled line segment group.
     '''
     
     @property
@@ -600,6 +986,21 @@ class Equipment(PowerSystemResource):
     The parts of a power system that are physical devices, electronic or mechanical.
     '''
 
+    EquipmentContainer: Optional[EquipmentContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquipmentContainer.Equipments',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Container of this equipment.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -723,7 +1124,7 @@ class ACLineSegment(Conductor):
     of the ConductorPosition in an XYSpacing.
     '''
     
-    spacingYOffset: Optional[ float | Displacement ] = field(
+    spacingYOffset: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -904,12 +1305,61 @@ class TransformerTank(Equipment):
     Bank this transformer belongs to.
     '''
     
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerTank',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The configuration template used by this transformer tank
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquipmentContainer(PowerSystemResource):
+    '''
+    A modelling construct to provide a root class for containing equipment.
+    '''
+
+    Equipments: list[Equipment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Equipment.EquipmentContainer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Contained equipment.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1045,6 +1495,21 @@ class TransformerPhaseEnd(TransformerEnd):
     with 4-wire ABCN service will have four transformer phase ends.
     '''
 
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerPhaseEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The tank configuration describing this transformer phase end
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -1067,7 +1532,7 @@ class SpacingPosition(IdentifiedObject):
     the subclass.
     '''
 
-    xCoord: Optional[ float | Displacement ] = field(
+    xCoord: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1086,7 +1551,7 @@ class SpacingPosition(IdentifiedObject):
     are located by subConductorNumber.
     '''
     
-    yCoord: Optional[ float | Displacement ] = field(
+    yCoord: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1245,7 +1710,209 @@ class ConductorPosition(SpacingPosition):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class BundlePosition(ConductorPosition):
+class MulticoreCablePosition(ConductorPosition):
+    '''
+    Position of a multicore cable: one cable with several cores in a common
+    sheath, which may include phase, neutral and ground conductors. The inherited
+    coordinates locate the reference point, typically the cable center. Each
+    core shall be described by a SubConductorPosition with coordinates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class SubConductorPosition(ConductorPosition):
+    '''
+    Position of one conductor within a ConductorGroupPosition: a member of
+    a bundle, or a core of a multicore cable.
+    Sub-conductors of an ArbitraryBundlePosition or MulticoreCablePosition
+    are located by xCoord and yCoord, relative to the group's reference point
+    before the group's orientation is applied. Sub-conductors of a RegularBundlePosition
+    are located by subConductorNumber, and their coordinates are left empty.
+    circuitNumber, kind and sequenceNumber may be left empty, in which case
+    the group's values apply.
+    '''
+
+    subConductorNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Corner of the regular polygon occupied by this sub-conductor, used
+    only for sub-conductors of a RegularBundlePosition.
+    Numbers run from 1 to subConductorCount, and each is used once within
+    the bundle. The angle of each numbered corner is defined in ConductorGroupPosition.orientation.
+    Shall be specified for every sub-conductor of a RegularBundlePosition,
+    and shall not be specified for sub-conductors of an ArbitraryBundlePosition
+    or MulticoreCablePosition, which are located by their coordinates.
+    '''
+    
+    ConductorGroupPosition: Optional[ConductorGroupPosition] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConductorGroupPosition.SubConductorPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Group this sub-conductor belongs to.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class XYConductorPosition(ConductorPosition):
+    '''
+    Location, within an XYSpacing, of a single conductor or of the reference
+    point of a group of conductors. Coordinates are in the frame of the XYSpacing;
+    y is positive above the reference level (typically ground) and negative
+    below it.
+    '''
+
+    XYSpacing: Optional[XYSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'XYSpacing.XYConductorPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    XY spacing this conductor position belongs to.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class ConductorGroupPosition(XYConductorPosition):
+    '''
+    Position of a group of conductors that share a reference point: a bundle
+    of separate wires or cables, or the cores of one multicore cable. The inherited
+    coordinates locate the reference point, which need not be the centroid
+    of the group. Individual conductors are described by SubConductorPositions.
+    The sub-conductors of a group may differ in kind, sequence number and circuit.
+    An example is an aerial bundled cable carrying a three-phase circuit, a
+    lighting circuit and a shared neutral. The group specifies circuitNumber,
+    kind and sequenceNumber only when all its sub-conductors share them; otherwise
+    each SubConductorPosition specifies its own.
+    '''
+
+    orientation: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Angle from the positive x axis of the spacing to the positive x' axis
+    of the group's frame, positive counterclockwise. The group's frame
+    has its origin at the group's reference point, and its y' axis is 90&#176;
+    counterclockwise from x'. If not specified, 0 is assumed, and the group's
+    frame is then parallel to the spacing frame. Orientation applies to
+    every ConductorGroupPosition.
+    A sub-conductor at (x', y') in the group's frame lies at x = X + x'&#183;cos
+    ? - y'&#183;sin ? and y = Y + x'&#183;sin ? + y'&#183;cos ? in the
+    spacing, where (X, Y) is the group's reference point and ? is the orientation.
+    For an ArbitraryBundlePosition or MulticoreCablePosition, (x', y')
+    are the sub-conductor's xCoord and yCoord. Orientation lets the same
+    set of coordinates, such as a cable's core layout, be reused at any
+    rotation.
+    For a RegularBundlePosition with n = subConductorCount, sub-conductor
+    i lies at angle 180&#176;/n - 90&#176; + (i - 1)&#183;360&#176;/n from
+    the positive x' axis, at distance subConductorSpacing / (2&#183;sin(180&#176;/n))
+    from the reference point. For example, sub-conductor 1 lies at 0&#176;
+    for n = 2, -30&#176; for n = 3 and -45&#176; for n = 4.
+    For cables twisted along the span, such as aerial bundled cables, orientation
+    describes a reference cross-section only.
+    For arbitrary groups, orientation is a convenience rather than a necessity:
+    you could always give coordinates already rotated and leave it at 0.
+    It earns its place for multicore cables and ABC, where the core layout
+    comes from a datasheet and only the installed rotation varies.
+    '''
+    
+    SubConductorPosition: list[SubConductorPosition] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SubConductorPosition.ConductorGroupPosition',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Individual conductors of this group.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BundlePosition(ConductorGroupPosition):
     '''
     Reference position of a bundle: an ordered grouping of separate wires or
     cables at one position. Sub-conductors may share a sequence number, as
@@ -1269,20 +1936,76 @@ class BundlePosition(ConductorPosition):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class MulticoreCablePosition(ConductorPosition):
+class RegularBundlePosition(BundlePosition):
     '''
-    Position of a multicore cable: one cable with several cores in a common
-    sheath, which may include phase, neutral and ground conductors. The inherited
-    coordinates locate the reference point, typically the cable center. Each
-    core shall be described by a SubConductorPosition with coordinates.
+    Bundle whose sub-conductors sit at the corners of a regular polygon centered
+    on the reference point. subConductorCount, subConductorSpacing (the distance
+    between adjacent sub-conductors) and orientation fully define the geometry.
+    SubConductorPositions are needed only when sub-conductors differ in sequence
+    number or kind, as in a trefoil formation. When present, there shall be
+    exactly subConductorCount of them, each identified by subconductorNumber,
+    with coordinates left empty.
     '''
 
+    subConductorCount: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Number of sub-conductors in the regular bundle, that is, the number
+    of corners of the regular polygon. Shall be at least 2.
+    '''
+    
+    subConductorSpacing: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Distance between the centers of adjacent sub-conductors in the regular
+    bundle, that is, the side length of the regular polygon. Shall be specified.
+    When adjacent sub-conductors touch, as in a touching trefoil formation,
+    it equals their outer diameter.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
         return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WirePosition(XYConductorPosition):
+    '''
+    Position of a single wire or single-core cable in an XY spacing.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1357,6 +2080,21 @@ class TransformerLug(IdentifiedObject):
         })
     '''
     The winding for which this end is seen as the "from" lug
+    '''
+    
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerLugs',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer tank configuration template in which this lug is used.
     '''
     
     ToTransformerWinding: Optional[TransformerWinding] = field(
@@ -1509,6 +2247,21 @@ class TransformerWinding(IdentifiedObject):
     For unbalanced per-tank modeling, the "from" and "to" need to be specified.
     '''
     
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerWinding',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer tank configuration template in which this winding appears
+    '''
+    
     ToTransformerEnd: Optional[TransformerEnd] = field(
         default=None,
         metadata={
@@ -1591,126 +2344,6 @@ class TransformerWinding(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class WireConfiguration(IdentifiedObject):
-    '''
-    '''
-
-    numberOfPhases: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    installationType: Optional[ WireInstallationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    usage: Optional[ WireUsageKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    ACLineSegements: list[ACLineSegment] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ACLineSegment.WireConfiguration',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    The set of lines sharing this assembly specification
-    '''
-    
-    EarthResistivity: Optional[EarthResistivity] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'EarthResistivity.WireAssemblies',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The earth resistivity of lines using this wire assembly template
-    '''
-    
-    PerLengthImpedance: Optional[PerLengthImpedance] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PerLengthImpedance.WireAssembly',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The per-length impedance template used by all lines following this
-    assembly specification
-    '''
-    
-    WireSpacing: Optional[WireSpacing] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'WireSpacing.WireConfiguration',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The wire spacing used by this wire configuration
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.MCT)
 @dataclass(repr=False, eq=False)
 class WireSpacing(IdentifiedObject):
@@ -1720,6 +2353,21 @@ class WireSpacing(IdentifiedObject):
     the arrangement.
     '''
 
+    isTemplate: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates that the wire spacing is used as part of a configuration
+    template / data warehouse exchange.
+    '''
+    
     ACLineSegment: list[ACLineSegment] = field(
         default_factory=list,
         metadata={
@@ -1820,6 +2468,89 @@ class ConductorDistanceSpacing(WireSpacing):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentDistanceSpacing(WireSpacing):
+    '''
+    Simplified spacing approach where positions are described through geometric
+    mean distances (GMD) and average height. Typically used when individual
+    phase and neutral conductor positions are unknown. It assumes that lines
+    are transposed.
+    '''
+
+    averageNeutralDistanceToGround: Optional[ Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Average vertical distance of positions hosting neutral conductors to
+    a common reference point.
+    '''
+    
+    averagePhaseDistanceToGround: Optional[ Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Average vertical distance of positions hosting phase conductors to
+    a common reference point.
+    '''
+    
+    phaseToNeutralGMD: Optional[ Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Geometric mean distance (GMD) between phase conductors and neutral
+    conductors in the spacing.
+    '''
+    
+    phaseToPhaseGMD: Optional[ Displacement ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Geometric mean distance (GMD) between phase and neutral conductors
+    in the spacing.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'New Classes'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.MCT)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -1836,16 +2567,31 @@ class XYSpacing(WireSpacing):
     which gives the phase.
     '''
 
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
+    XYConductorPosition: list[XYConductorPosition] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'XYConductorPosition.XYSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Conductor positions placed directly in this spacing.
+    '''
+    
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'MultiCircuitGroup.XYSpacing',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     The multi circuit group of adjacent line segments defined by the XY
@@ -1858,45 +2604,6 @@ class XYSpacing(WireSpacing):
     @property
     def __package__(self):
         return 'New Classes'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.new)
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
-class MultiCircuitGroup(Identity):
-    '''
-    Aggregates a set of line segments that are on the same tower, or in the
-    same right-of-way, close enough that mutual coupling impedances between
-    the lines need to be included in network analysis.
-    '''
-
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The XY spacing that applies to this coupled line segment group.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2252,6 +2959,63 @@ class WireUsageKind(Enum):
     
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
+class ActivePower(CIMUnit):
+    '''
+    Product of RMS value of the voltage and the RMS value of the in-phase component
+    of the current.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.W
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class AngleDegrees(CIMUnit):
+    '''
+    Measurement of angle in degrees.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.deg
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
 class Displacement(CIMUnit):
     '''
     Unit of displacement relative to a reference position, hence can be negative.
@@ -2291,6 +3055,35 @@ class Length(CIMUnit):
     def unit(self):
         return UnitSymbol.m
     def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class PerCent(CIMUnit):
+    '''
+    Percentage on a defined base. For example, specify as 100 to indicate at
+    the defined base.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.none
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

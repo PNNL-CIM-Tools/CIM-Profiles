@@ -27,8 +27,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#', 'gb': 'http://GB/placeholder/ext#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -120,7 +121,7 @@ class EarthResistivity(IdentifiedObject):
     '''
     '''
     
-    earthReturnGMR: Optional[ float | Length ] = field(
+    earthReturnGMR: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -135,7 +136,7 @@ class EarthResistivity(IdentifiedObject):
     impedance as the earth return, per Carson's Equations
     '''
     
-    rho: Optional[ float | Resistance ] = field(
+    rho: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -184,6 +185,246 @@ class EarthResistivity(IdentifiedObject):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class LoadResponseCharacteristic(IdentifiedObject):
+    '''
+    Models the characteristic response of the load demand due to changes in
+    system conditions such as voltage and frequency. It is not related to demand
+    response.
+    If LoadResponseCharacteristic.exponentModel is True, the exponential voltage
+    or frequency dependent models are specified and used as to calculate active
+    and reactive power components of the load model.
+    The equations to calculate active and reactive power components of the
+    load model are internal to the power flow calculation, hence they use different
+    quantities depending on the use case of the data exchange.
+    The equations for exponential voltage dependent load model injected power
+    are:
+    pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
+    qInjection= Qnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.qVoltageExponent
+    pInjection = Pnominal* (Frequency/(Nominal frequency))**cim:LoadResponseCharacteristic.pFrequencyExponent
+    qInjection = Qnominal* (Frequency/(Nominal frequency))**cim:LoadResponseCharacteristic.qFrequencyExponent
+    Note that both voltage and frequency exponents could be used together so
+    the full equation would be:
+    pInjection = Pnominal* (Voltage/(cim:BaseVoltage.nominalVoltage))**cim:LoadResponseCharacteristic.pVoltageExponent
+    * (Frequency/(base frequency))**cim:LoadResponseCharacteristic.pFrequencyExponent
+    qInjection = Qnominal* (Voltage/(cim:BaseVoltage.nominalVoltage))**cim:LoadResponseCharacteristic.qVoltageExponent
+    * (Frequency/(base frequency))**cim:LoadResponseCharacteristic.qFrequencyExponent
+    The voltage and frequency expressed in the equation are values obtained
+    from solved power flow. Base voltage and base frequency are those derived
+    from the connectivity of the static network model.
+    Where:
+    1) * means "multiply" and ** is "raised to the power of";
+    2) Pnominal and Qnominal represent the active power and reactive power
+    at nominal voltage as any load described by the voltage exponential model
+    shall be given at nominal voltage. This means that EnergyConsumer.p and
+    EnergyConsumer.q are at nominal voltage.
+    3) After power flow is solved:
+    -pInjection and qInjection correspond to SvPowerflow.p and SvPowerflow.q
+    respectively.
+    - Voltage corresponds to SvVoltage.v at the TopologicalNode where the load
+    is connected.
+    '''
+
+    exponentModel: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates the exponential voltage dependency model is to be used. If
+    false, the coefficient model is to be used.
+    The exponential voltage dependency model consist of the attributes:
+    - pVoltageExponent
+    - qVoltageExponent
+    - pFrequencyExponent
+    - qFrequencyExponent.
+    The coefficient model consist of the attributes:
+    - pConstantImpedance
+    - pConstantCurrent
+    - pConstantPower
+    - qConstantImpedance
+    - qConstantCurrent
+    - qConstantPower.
+    The sum of pConstantImpedance, pConstantCurrent and pConstantPower
+    shall equal 1.
+    The sum of qConstantImpedance, qConstantCurrent and qConstantPower
+    shall equal 1.
+    '''
+    
+    pConstantCurrent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant current.
+    '''
+    
+    pConstantImpedance: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant impedance.
+    '''
+    
+    pConstantPower: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of active power load modelled as constant power.
+    '''
+    
+    pFrequencyExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit frequency effecting active power.
+    '''
+    
+    pVoltageExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit voltage effecting real power.
+    '''
+    
+    qConstantCurrent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant current.
+    '''
+    
+    qConstantImpedance: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant impedance.
+    '''
+    
+    qConstantPower: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Portion of reactive power load modelled as constant power.
+    '''
+    
+    qFrequencyExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit frequency effecting reactive power.
+    '''
+    
+    qVoltageExponent: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Exponent of per unit voltage effecting reactive power.
+    '''
+    
+    EnergyConsumer: list[EnergyConsumer] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EnergyConsumer.LoadResponse',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The set of loads that have the response characteristics.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'LoadModel'
     @property
     def __minOccurs__(self):
         return '0'
@@ -250,7 +491,7 @@ class TransformerCore(MagneticCore):
     values on the core.
     '''
 
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -261,8 +502,7 @@ class TransformerCore(MagneticCore):
         'serialize': True,
         })
     '''
-    Magnetizing branch susceptance (B mag). The value can be positive or
-    negative.
+    Magnetizing branch susceptance (B mag).
     '''
     
     form: Optional[ CoreConstructionKind ] = field(
@@ -282,7 +522,7 @@ class TransformerCore(MagneticCore):
     windings (shell form)
     '''
     
-    g: Optional[ float | Conductance ] = field(
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -357,7 +597,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -383,7 +623,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    g: Optional[ float | Conductance ] = field(
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -396,7 +636,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -422,27 +662,13 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.MatrixImpedanceRows',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -469,7 +695,7 @@ class PerLengthLineParameter(IdentifiedObject):
     Common type for per-length electrical line parameters.
     '''
 
-    calculatedTemperature: Optional[ float | Temperature ] = field(
+    calculatedTemperature: Optional[ Temperature ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -519,6 +745,21 @@ class PerLengthImpedance(PerLengthLineParameter):
     Common type for per-length electrical impedances.
     '''
 
+    isTemplate: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Indicates that the wire spacing is used as part of a configuration
+    template / data warehouse exchange.
+    '''
+    
     userDefined: Optional[bool] = field(
         default=None,
         metadata={
@@ -532,7 +773,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     '''
     '''
     
-    calculatedFrequency: Optional[ float | Frequency ] = field(
+    calculatedFrequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -545,7 +786,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     '''
     '''
     
-    rg: Optional[ float | ResistancePerLength ] = field(
+    rg: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -561,7 +802,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     impedance values for frequency for harmonics studies.
     '''
     
-    xg: Optional[ float | ReactancePerLength ] = field(
+    xg: Optional[ ReactancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -690,169 +931,6 @@ class PerLengthPhaseImpedance(PerLengthImpedance):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class PhaseImpedanceData(IdentifiedObject):
-    '''
-    Per length phase impedance matrix entry describes impedance and conductance
-    matrix element values for a specific row and column of the matrix.
-    The phases to which each entry applies can be determined by means of the
-    row and column attributes which bind to a sequence number provided in either
-    ACLineSegmentPhase or WirePosition (which also specify phase). Due to physical
-    symmetry that is reflected in the matrix, only the lower triangle of the
-    matrix is populated with the row and column method. That is, the column
-    attribute is always less than or equal to the row attribute.
-    '''
-
-    column: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The matrix entry's column number has a range of possible values from
-    1 to the conductor count of the matrix, but due to symmetry, only entries
-    in the lower triangle (including diagonal) of the matrix need be defined.
-    Column number binds to the sequence number in either ACLineSegmentPhase
-    or WirePosition, which then identifies the phase for this entry.
-    '''
-    
-    row: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The matrix entry's row number has a range of possible values from 1
-    to the conductor count of the matrix, but due to symmetry, only entries
-    in the lower triangle (including diagonal) of the matrix need be defined.
-    Row number binds to the sequence number in either ACLineSegmentPhase
-    or WirePosition, which then identifies the phase for this entry.
-    '''
-    
-    b: Optional[ float | SusceptancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Susceptance matrix entry value, per length of unit.
-    '''
-    
-    fromPhase: Optional[ SinglePhaseKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Refer to the class description.
-    '''
-    
-    g: Optional[ float | ConductancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductance matrix entry value, per length of unit.
-    '''
-    
-    r: Optional[ float | ResistancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Resistance matrix entry value, per length of unit.
-    '''
-    
-    toPhase: Optional[ SinglePhaseKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Refer to the class description.
-    '''
-    
-    x: Optional[ float | ReactancePerLength ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Reactance matrix entry value, per length of unit.
-    '''
-    
-    PhaseImpedance: Optional[PerLengthPhaseImpedance] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PerLengthPhaseImpedance.PhaseImpedanceData',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductor phase impedance to which this data belongs.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class PowerSystemResource(IdentifiedObject):
     '''
@@ -868,6 +946,110 @@ class PowerSystemResource(IdentifiedObject):
     @property
     def __package__(self):
         return 'CoreEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EnergyConsumerPhase(PowerSystemResource):
+    '''
+    A single phase of an energy consumer.
+    '''
+
+    pfixed: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    pfixedPct: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed active power as per cent of load group fixed active power. Load
+    sign convention is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixed: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power of the load that is a fixed quantity. Load sign convention
+    is used, i.e. positive sign means flow out from a node.
+    '''
+    
+    qfixedPct: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Fixed reactive power as per cent of load group fixed reactive power.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a node.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EnergySourcePhase(PowerSystemResource):
+    '''
+    Represents the single phase information of an unbalanced energy source.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1076,7 +1258,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1089,7 +1271,7 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1102,7 +1284,7 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    pfixed: Optional[ float | ActivePower ] = field(
+    pfixed: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1118,7 +1300,7 @@ class EnergyConsumer(EnergyConnection):
     sign means flow out from a node.
     '''
     
-    pfixedPct: Optional[ float | PerCent ] = field(
+    pfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1134,7 +1316,7 @@ class EnergyConsumer(EnergyConnection):
     is used, i.e. positive sign means flow out from a node.
     '''
     
-    qfixed: Optional[ float | ReactivePower ] = field(
+    qfixed: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1150,7 +1332,7 @@ class EnergyConsumer(EnergyConnection):
     sign means flow out from a node.
     '''
     
-    qfixedPct: Optional[ float | PerCent ] = field(
+    qfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1166,12 +1348,111 @@ class EnergyConsumer(EnergyConnection):
     is used, i.e. positive sign means flow out from a node.
     '''
     
+    LoadResponse: Optional[LoadResponseCharacteristic] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'LoadResponseCharacteristic.EnergyConsumer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The load response characteristic of this load. If missing, this load
+    is assumed to be constant power.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class EnergySource(EnergyConnection):
+    '''
+    A generic equivalent for an energy supplier on a transmission or distribution
+    voltage level.
+    '''
+
+    pMax: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This is the maximum active power that can be produced by the source.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a TopologicalNode (bus) into the conducting equipment.
+    '''
+    
+    pMin: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This is the minimum active power that can be produced by the source.
+    Load sign convention is used, i.e. positive sign means flow out from
+    a TopologicalNode (bus) into the conducting equipment.
+    '''
+    
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence Thevenin resistance.
+    '''
+    
+    x: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence Thevenin reactance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1209,7 +1490,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1224,7 +1505,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     for the unit.
     '''
     
-    minQ: Optional[ float | ReactivePower ] = field(
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1239,7 +1520,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     limit for the unit.
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1254,7 +1535,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     The attribute shall have a positive value.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1323,7 +1604,7 @@ class RotatingMachine(RegulatingCondEq):
     value.
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1338,7 +1619,7 @@ class RotatingMachine(RegulatingCondEq):
     The attribute shall have a positive value.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1408,7 +1689,7 @@ class AsynchronousMachine(RotatingMachine):
     Used for short circuit data exchange according to IEC 60909.
     '''
     
-    efficiency: Optional[ float | PerCent ] = field(
+    efficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1424,7 +1705,7 @@ class AsynchronousMachine(RotatingMachine):
     according to IEC 60909.
     '''
     
-    nominalFrequency: Optional[ float | Frequency ] = field(
+    nominalFrequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1438,7 +1719,7 @@ class AsynchronousMachine(RotatingMachine):
     Nameplate data indicates if the machine is 50 Hz or 60 Hz.
     '''
     
-    nominalSpeed: Optional[ float | RotationSpeed ] = field(
+    nominalSpeed: Optional[ RotationSpeed ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1452,7 +1733,7 @@ class AsynchronousMachine(RotatingMachine):
     Nameplate data. Depends on the slip and number of pole pairs.
     '''
     
-    ratedMechanicalPower: Optional[ float | ActivePower ] = field(
+    ratedMechanicalPower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1489,7 +1770,7 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1504,7 +1785,7 @@ class SynchronousMachine(RotatingMachine):
     for the unit.
     '''
     
-    minQ: Optional[ float | ReactivePower ] = field(
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1571,7 +1852,7 @@ class ShuntCompensator(RegulatingCondEq):
     zero and ShuntCompensator.maximumSections.
     '''
     
-    nomQ: Optional[ float | ReactivePower ] = field(
+    nomQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1584,7 +1865,7 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     '''
     
-    nomU: Optional[ float | Voltage ] = field(
+    nomU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1600,7 +1881,7 @@ class ShuntCompensator(RegulatingCondEq):
     is connected to the network.
     '''
     
-    voltageSensitivity: Optional[ float | VoltagePerReactivePower ] = field(
+    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1613,21 +1894,6 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     Voltage sensitivity required for the device to regulate the bus voltage,
     in voltage/reactive power.
-    '''
-    
-    ShuntCompensatorPhase: list[ShuntCompensatorPhase] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ShuntCompensatorPhase.ShuntCompensator',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The individual phases models for the shunt compensator.
     '''
     
     @property
@@ -1654,7 +1920,7 @@ class LinearShuntCompensator(ShuntCompensator):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1668,7 +1934,7 @@ class LinearShuntCompensator(ShuntCompensator):
     Positive sequence shunt (charging) susceptance per section.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1682,201 +1948,6 @@ class LinearShuntCompensator(ShuntCompensator):
     Positive sequence shunt (charging) conductance per section.
     '''
     
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class PowerTransformer(ConductingEquipment):
-    '''
-    An electrical device consisting of two or more coupled windings, with or
-    without a magnetic core, for introducing mutual coupling between electric
-    circuits. Transformers can be used to control voltage and phase shift (active
-    power flow).
-    A power transformer may be composed of separate transformer tanks that
-    need not be identical.
-    A power transformer can be modelled with or without tanks and is intended
-    for use in both balanced and unbalanced representations. A power transformer
-    typically has two terminals, but may have one (grounding), three or more
-    terminals.
-    The inherited association ConductingEquipment.BaseVoltage should not be
-    used. The association from TransformerEnd to BaseVoltage should be used
-    instead.
-    '''
-
-    vectorGroup: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Vector group of the transformer for protective relaying, e.g., Dyn1.
-    For unbalanced transformers, this may not be simply determined from
-    the constituent winding connections and phase angle displacements.
-    The vectorGroup string consists of the following components in the
-    order listed: high voltage winding connection, mid voltage winding
-    connection (for three winding transformers), phase displacement clock
-    number from 0 to 11, low voltage winding connection
-    phase displacement clock number from 0 to 11. The winding connections
-    are D (delta), Y (wye), YN (wye with neutral), Z (zigzag), ZN (zigzag
-    with neutral), A (auto transformer). Upper case means the high voltage,
-    lower case mid or low. The high voltage winding always has clock position
-    0 and is not included in the vector group string. Some examples: YNy0
-    (two winding wye to wye with no phase displacement), YNd11 (two winding
-    wye to delta with 330 degrees phase displacement), YNyn0d5 (three winding
-    transformer wye with neutral high voltage, wye with neutral mid voltage
-    and no phase displacement, delta low voltage with 150 degrees displacement).
-    Phase displacement is defined as the angular difference between the
-    phasors representing the voltages between the neutral point (real or
-    imaginary) and the corresponding terminals of two windings, a positive
-    sequence voltage system being applied to the high-voltage terminals,
-    following each other in alphabetical sequence if they are lettered,
-    or in numerical sequence if they are numbered: the phasors are assumed
-    to rotate in a counter-clockwise sense.
-    '''
-    
-    PowerTransformerEnd: list[PowerTransformerEnd] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'PowerTransformerEnd.PowerTransformer',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The ends of this power transformer.
-    '''
-    
-    TransformerImpedanceMatrix: Optional[TranformerImpedanceMatrix] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TranformerImpedanceMatrix.PowerTransformer',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class ProtectedSwitch(ConductingEquipment):
-    '''
-    A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
-    '''
-
-    breakingCapacity: Optional[ float | CurrentFlow ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The maximum fault current a breaking device can break safely under
-    prescribed conditions of use.
-    '''
-    
-    makingCapacity: Optional[ float | CurrentFlow ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['GB', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://GB/placeholder/ext#',
-        'serialize': True,
-        })
-    '''
-    The making current of the circuit breaker is the maximum peak value
-    of the current that the breaker can interrupt without any damage if
-    the breaker is closed at fault.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class Breaker(ProtectedSwitch):
-    '''
-    A mechanical switching device capable of making, carrying, and breaking
-    currents under normal circuit conditions and also making, carrying for
-    a specified time, and breaking currents under specified abnormal circuit
-    conditions e.g. those of short circuit.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class LoadBreakSwitch(ProtectedSwitch):
-    '''
-    A mechanical switching device capable of making, carrying, and breaking
-    currents under normal operating conditions.
-    '''
-
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1916,7 +1987,7 @@ class SeriesCompensator(ConductingEquipment):
     short circuit calculations.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1930,7 +2001,7 @@ class SeriesCompensator(ConductingEquipment):
     Positive sequence resistance.
     '''
     
-    varistorRatedCurrent: Optional[ float | CurrentFlow ] = field(
+    varistorRatedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1947,7 +2018,7 @@ class SeriesCompensator(ConductingEquipment):
     The attribute shall be a positive value.
     '''
     
-    varistorVoltageThreshold: Optional[ float | Voltage ] = field(
+    varistorVoltageThreshold: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1963,7 +2034,7 @@ class SeriesCompensator(ConductingEquipment):
     is true.
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2028,7 +2099,7 @@ class GeneratingUnit(Equipment):
     the set.
     '''
 
-    maxOperatingP: Optional[ float | ActivePower ] = field(
+    maxOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2043,7 +2114,7 @@ class GeneratingUnit(Equipment):
     enter for this unit.
     '''
     
-    minOperatingP: Optional[ float | ActivePower ] = field(
+    minOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2058,7 +2129,7 @@ class GeneratingUnit(Equipment):
     enter for this unit.
     '''
     
-    nominalP: Optional[ float | ActivePower ] = field(
+    nominalP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2112,7 +2183,7 @@ class PowerElectronicsUnit(Equipment):
     using power electronics rather than rotating machines.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2127,7 +2198,7 @@ class PowerElectronicsUnit(Equipment):
     the unit.
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2179,7 +2250,7 @@ class BatteryUnit(PowerElectronicsUnit):
     An electrochemical energy storage device.
     '''
 
-    chargingEfficiency: Optional[ float | PerCent ] = field(
+    chargingEfficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2192,7 +2263,7 @@ class BatteryUnit(PowerElectronicsUnit):
     '''
     '''
     
-    dischargingEfficiency: Optional[ float | PerCent ] = field(
+    dischargingEfficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2205,7 +2276,7 @@ class BatteryUnit(PowerElectronicsUnit):
     '''
     '''
     
-    idlingP: Optional[ float | ActivePower ] = field(
+    idlingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2219,7 +2290,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Real power consumed while idling
     '''
     
-    idlingQ: Optional[ float | ReactivePower ] = field(
+    idlingQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2236,7 +2307,7 @@ class BatteryUnit(PowerElectronicsUnit):
     power (kvar) while idling. Default =
     '''
     
-    minimumE: Optional[ float | RealEnergy ] = field(
+    minimumE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2253,7 +2324,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Cannot be less than zero.
     '''
     
-    ratedE: Optional[ float | RealEnergy ] = field(
+    ratedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2334,7 +2405,7 @@ class TransformerTank(Equipment):
     and 3-phase transformers.
     '''
 
-    loadLoss: Optional[ float | ActivePower ] = field(
+    loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2348,7 +2419,7 @@ class TransformerTank(Equipment):
     Active power thermal loss at rated power
     '''
     
-    noLoadLoss: Optional[ float | ActivePower ] = field(
+    noLoadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2362,7 +2433,7 @@ class TransformerTank(Equipment):
     Active power thermal loss at no load
     '''
     
-    percentImpedance: Optional[ float | PerCent ] = field(
+    percentImpedance: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2378,7 +2449,7 @@ class TransformerTank(Equipment):
     also known as %Z or %IZ
     '''
     
-    percentMagnetizingCurrent: Optional[ float | PerCent ] = field(
+    percentMagnetizingCurrent: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2442,8 +2513,8 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class ShuntCompensatorPhase(PowerSystemResource):
     '''
@@ -2480,7 +2551,7 @@ class ShuntCompensatorPhase(PowerSystemResource):
     The value shall be between zero and ShuntCompensatorPhase.maximumSections.
     '''
     
-    nomQ: Optional[ float | ReactivePower ] = field(
+    nomQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2491,21 +2562,6 @@ class ShuntCompensatorPhase(PowerSystemResource):
         'serialize': True,
         })
     '''
-    '''
-    
-    ShuntCompensator: Optional[ShuntCompensator] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ShuntCompensator.ShuntCompensatorPhase',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Shunt compensator of this shunt compensator phase.
     '''
     
     @property
@@ -2532,7 +2588,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2548,7 +2604,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     connected.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2562,6 +2618,58 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     Conductance per section for this phase if shunt compensator is wye
     connected. Conductance per section phase to phase if shunt compensator
     is delta connected.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class SwitchPhase(PowerSystemResource):
+    '''
+    Single phase of a multi-phase switch when its attributes might be different
+    per phase.
+    '''
+
+    ratedCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum continuous current carrying capacity in amps governed by
+    the device material and construction.
+    The attribute shall be a positive value.
+    '''
+    
+    Switch: Optional[Switch] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Switch.SwitchPhase',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The switch of the switch phase.
     '''
     
     @property
@@ -2676,7 +2784,7 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    stepVoltageIncrement: Optional[ float | PerCent ] = field(
+    stepVoltageIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2732,7 +2840,7 @@ class TransformerEnd(PowerSystemResource):
     within a star or mesh model.
     '''
 
-    rground: Optional[ float | Resistance ] = field(
+    rground: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2747,7 +2855,7 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
-    xground: Optional[ float | Reactance ] = field(
+    xground: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2822,9 +2930,9 @@ class TransformerEnd(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerTransformerEnd(TransformerEnd):
     '''
@@ -2849,7 +2957,7 @@ class PowerTransformerEnd(TransformerEnd):
     transformer end.
     '''
 
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2865,7 +2973,7 @@ class PowerTransformerEnd(TransformerEnd):
     the values for the high and low voltage sides shall be identical.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2878,21 +2986,6 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     The phase-to-phase rated voltage at no load, assigned to this end of
     the power transformer.
-    '''
-    
-    PowerTransformer: Optional[PowerTransformer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PowerTransformer.PowerTransformerEnd',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The power transformer of this power transformer end.
     '''
     
     @property
@@ -2951,7 +3044,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     ends are modelled the cardinalities are larger than 1.
     '''
 
-    cs: Optional[ float | Capacitance ] = field(
+    cs: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2967,7 +3060,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     often reported in pF in datasheets
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2982,7 +3075,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     end.
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3021,7 +3114,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.FromMeshImpedance',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -3052,7 +3145,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.ToMeshImpedance',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -3064,7 +3157,7 @@ class TransformerMeshImpedance(IdentifiedObject):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
-        return 'Wires'
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -3089,7 +3182,7 @@ class TransformerWinding(IdentifiedObject):
     polarity.
     '''
 
-    baseS: Optional[ float | ApparentPower ] = field(
+    baseS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3102,9 +3195,11 @@ class TransformerWinding(IdentifiedObject):
     '''
     Base apparent power rating used for calculation of percent impedance
     and related electrical parameters.
+    For a split-phase center-tap transformer, the rating of the primary
+    winding is used as the basis for both secondary windings.
     '''
     
-    baseU: Optional[ float | Voltage ] = field(
+    baseU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3115,12 +3210,16 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    Base phase-to-phase voltage used for calculation of percent impedance
-    and related electrical parameters. This is obtained from the nameplate
-    designation per Table 7 of IEEE c57.12.00-2021.
+    Base phase-to-phase or phase-to-neutral voltage used for calculation
+    of percent impedance and related electrical parameters. This is obtained
+    from the nameplate designation per Table 7 of IEEE c57.12.00-2021.
+    For delta-connected windings, this is the phase-to-phase voltage. For
+    wye-connected windings, this is phase-to-neutral voltage, matching
+    the nameplate designation string in Table 7 of IEEE c57.12.00-2021.
+    The attribute shall be a positive value.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3134,7 +3233,7 @@ class TransformerWinding(IdentifiedObject):
     AC resistance of the individual winding
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3150,7 +3249,7 @@ class TransformerWinding(IdentifiedObject):
     the values for the high and low voltage sides shall be identical.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3161,17 +3260,13 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    The voltage assigned to be applied, or developed at no-load, between
-    the line terminals of a winding of a polyphase transformer or reactor,
-    or between the terminals of a winding of a single-phase transformer
-    or reactor [source: IEV 421-04-01]
-    For delta-connected windings, this is the phase-to-phase voltage. For
-    wye-connected windings, this is phase-to-neutral voltage, matching
-    the nameplate designation string in Table 7 of IEEE c57.12.00-2021.
-    The attribute shall be a positive value.
+    The phase-to-phase voltage assigned to be applied, or developed at
+    no-load, between the line terminals of a winding of a polyphase transformer
+    or reactor, or between the terminals of a winding of a single-phase
+    transformer or reactor [source: IEV 421-04-01]
     '''
     
-    rDC: Optional[ float | Resistance ] = field(
+    rDC: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3194,7 +3289,7 @@ class TransformerWinding(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'TransformerMeshImpedance.FromWinding',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
@@ -3210,7 +3305,7 @@ class TransformerWinding(IdentifiedObject):
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'TransformerMeshImpedance.ToWinding',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
@@ -3336,42 +3431,328 @@ class WireConfiguration(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
-class TranformerImpedanceMatrix(Identity):
+@dataclass(repr=False, eq=False)
+class PhaseImpedanceData(Identity):
     '''
-    Template class for specifying
+    Per length phase impedance matrix entry describes impedance and conductance
+    matrix element values for a specific row and column of the matrix.
+    The phases to which each entry applies can be determined by means of the
+    row and column attributes which bind to a sequence number provided in either
+    ACLineSegmentPhase or WirePosition (which also specify phase). Due to physical
+    symmetry that is reflected in the matrix, only the lower triangle of the
+    matrix is populated with the row and column method. That is, the column
+    attribute is always less than or equal to the row attribute.
     '''
 
-    MatrixImpedanceRows: list[MatrixImpedanceData] = field(
+    column: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The matrix entry's column number has a range of possible values from
+    1 to the conductor count of the matrix, but due to symmetry, only entries
+    in the lower triangle (including diagonal) of the matrix need be defined.
+    Column number binds to the sequence number in either ACLineSegmentPhase
+    or WirePosition, which then identifies the phase for this entry.
+    '''
+    
+    row: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The matrix entry's row number has a range of possible values from 1
+    to the conductor count of the matrix, but due to symmetry, only entries
+    in the lower triangle (including diagonal) of the matrix need be defined.
+    Row number binds to the sequence number in either ACLineSegmentPhase
+    or WirePosition, which then identifies the phase for this entry.
+    '''
+    
+    b: Optional[ SusceptancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Susceptance matrix entry value, per length of unit.
+    '''
+    
+    fromPhase: Optional[ SinglePhaseKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Refer to the class description.
+    '''
+    
+    g: Optional[ ConductancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductance matrix entry value, per length of unit.
+    '''
+    
+    r: Optional[ ResistancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Resistance matrix entry value, per length of unit.
+    '''
+    
+    toPhase: Optional[ SinglePhaseKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Refer to the class description.
+    '''
+    
+    x: Optional[ ReactancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactance matrix entry value, per length of unit.
+    '''
+    
+    PhaseImpedance: Optional[PerLengthPhaseImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthPhaseImpedance.PhaseImpedanceData',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductor phase impedance to which this data belongs.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class Switch(Identity):
+    '''
+    A generic device designed to close, or open, or both, one or more electric
+    circuits. All switches are two terminal devices including grounding switches.
+    The ACDCTerminal.connected at the two sides of the switch shall not be
+    considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen
+    and .locked are relevant.
+    '''
+
+    ratedCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum continuous current carrying capacity in amps governed by
+    the device material and construction.
+    The attribute shall be a positive value.
+    '''
+    
+    SwitchPhase: list[SwitchPhase] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'MatrixImpedanceData.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'inverse': 'SwitchPhase.Switch',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
+    The individual switch phases for the switch.
     '''
     
-    PowerTransformer: Optional[PowerTransformer] = field(
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class ProtectedSwitch(Switch):
+    '''
+    A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
+    '''
+
+    breakingCapacity: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'PowerTransformer.TransformerImpedanceMatrix',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
+    The maximum fault current a breaking device can break safely under
+    prescribed conditions of use.
     '''
     
+    makingCapacity: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GB', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://GB/placeholder/ext#',
+        'serialize': True,
+        })
+    '''
+    The making current of the circuit breaker is the maximum peak value
+    of the current that the breaker can interrupt without any damage if
+    the breaker is closed at fault.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Breaker(ProtectedSwitch):
+    '''
+    A mechanical switching device capable of making, carrying, and breaking
+    currents under normal circuit conditions and also making, carrying for
+    a specified time, and breaking currents under specified abnormal circuit
+    conditions e.g. those of short circuit.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class LoadBreakSwitch(ProtectedSwitch):
+    '''
+    A mechanical switching device capable of making, carrying, and breaking
+    currents under normal operating conditions.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TranformerImpedanceMatrix(Identity):
+    '''
+    Template class for specifying
+    '''
+
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'

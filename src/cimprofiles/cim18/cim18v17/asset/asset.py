@@ -23,8 +23,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Anchor(Identity):
     '''
     Anchor.
@@ -58,7 +59,7 @@ class Anchor(Identity):
     Kind of anchor.
     '''
     
-    anchorRodLength: Optional[ float | Length ] = field(
+    anchorRodLength: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -140,7 +141,7 @@ class Guy(Anchor):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AssetOwner(Identity):
     '''
     Owner of the asset.
@@ -174,7 +175,7 @@ class AssetOwner(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AssetUser(Identity):
     '''
     Organisation that is a user of the asset.
@@ -193,7 +194,7 @@ class AssetUser(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class BusSegment(Identity):
     '''
     A two terminal and power conducting device of negligible impedance and
@@ -230,7 +231,7 @@ class BusSegment(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -991,7 +992,7 @@ class Weight(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Ownership(Identity):
     '''
     Ownership of e.g. asset.
@@ -1026,7 +1027,7 @@ class Ownership(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PowerSystemResource(Identity):
     '''
     A power system resource (PSR) can be an item of equipment such as a switch,
@@ -1067,7 +1068,7 @@ class Equipment(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class StatCom(Identity):
     '''
     StatCom - Static Synchronous Compensator High speed continuous reactor
@@ -1088,7 +1089,7 @@ class StatCom(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Terminal(Identity):
     '''
     An AC electrical connection point to a piece of conducting equipment. Terminals
@@ -1122,7 +1123,7 @@ class Terminal(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Tool(Identity):
     '''
     Tool asset.
@@ -1141,7 +1142,7 @@ class Tool(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Vehicle(Identity):
     '''
     Vehicle asset.
@@ -1160,7 +1161,7 @@ class Vehicle(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Warranty(Identity):
     '''
     The document stipulates what is guaranteed and what repairs or remediations

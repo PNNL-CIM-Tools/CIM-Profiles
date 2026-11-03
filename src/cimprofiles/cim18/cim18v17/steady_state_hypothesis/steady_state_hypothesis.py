@@ -26,8 +26,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -130,7 +131,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     A single phase of an energy consumer.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -147,7 +148,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -164,6 +165,27 @@ class EnergyConsumerPhase(PowerSystemResource):
     Starting value for a steady state solution.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EnergySourcePhase(PowerSystemResource):
+    '''
+    Represents the single phase information of an unbalanced energy source.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -260,6 +282,89 @@ class ConductingEquipment(Equipment):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
+class Conductor(ConductingEquipment):
+    '''
+    Combination of conducting material with consistent electrical characteristics,
+    building a single electrical system, used to carry current between points
+    in the power system.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ACLineSegment(Conductor):
+    '''
+    A line segment is a conductor or combination of conductors, with consistent
+    electrical characteristics along its length, building a single electrical
+    system that carries alternating current between two points in the power
+    system.
+    The BaseVoltage at the two ends of a line segment shall have the same BaseVoltage.nominalVoltage.
+    However, boundary lines may have slightly different BaseVoltage.nominalVoltages
+    and variation is allowed. Larger voltage difference in general requires
+    use of an equivalent branch.
+    Line segment impedances can be either directly described in electrical
+    terms or physical line detail can be provided from which impedances can
+    be calculated.
+    <b>Directly described impedances</b>
+    For symmetrical, transposed three phase line segments, it is sufficient
+    to use attributes of the line segment, which describe impedances and admittances
+    for the entire length of the line segment. Additionally, line segment impedances
+    can be computed by using line segment length and associated per length
+    impedances.
+    Unbalanced modeling of impedances is supported by the per length phase
+    impedance matrix (PerLengthPhaseImpedance) in conjunction with phase-to-sequence
+    number mapping supplied by either ACLineSegmentPhase or WirePosition. The
+    sequence numbers are referenced by the row and column attributes of the
+    per length phase impedance matrix. This method enables single-phase and
+    two-phase line segments, and transpositions of phases, to be described
+    using the same per length phase impedance matrix. The length of the line
+    segment is used in the computation of total impedance values for the line
+    segment.
+    <b>Line detail characteristics</b>
+    There are three approaches to providing line detail and all use WireAssembly
+    to supply line positions:
+    <ul>
+    <li>Option 1 - WireAssembly supplies only line positions. ACLineSegmentPhase
+    points to wire type and intraphase spacing and supplies the phase-to-sequence
+    number mapping.</li>
+    <li>Option 2 - WireAssembly supplies line position and, for each position,
+    also supplies wire type and intraphase spacing. ACLineSegmentPhase supplies
+    the phase-to-sequence number mapping.</li>
+    <li>Option 3 - WireAssembly supplies line position and, for each position,
+    also supplies wire type and intraphase spacing and phase. WireAssembly
+    therefore supplies the phase-to-sequence number mapping and ACLineSegmentPhase
+    is not needed.</li>
+    </ul>
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class EnergyConnection(ConductingEquipment):
     '''
     A connection of energy generation or consumption on the power system model.
@@ -291,7 +396,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -308,7 +413,7 @@ class EnergyConsumer(EnergyConnection):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -331,6 +436,97 @@ class EnergyConsumer(EnergyConnection):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.ShadowExtension)
+@dataclass(repr=False, eq=False)
+class EnergySource(EnergyConnection):
+    '''
+    A generic equivalent for an energy supplier on a transmission or distribution
+    voltage level.
+    '''
+
+    activePower: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    High voltage source active injection. Load sign convention is used,
+    i.e. positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    reactivePower: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    High voltage source reactive injection. Load sign convention is used,
+    i.e. positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    voltageAngle: Optional[ AngleRadians ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phase angle of a-phase open circuit used when voltage characteristics
+    need to be imposed at the node associated with the terminal of the
+    energy source, such as when voltages and angles from the transmission
+    level are used as input to the distribution network. The attribute
+    shall be a positive value or zero.
+    '''
+    
+    voltageMagnitude: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phase-to-phase open circuit voltage magnitude used when voltage characteristics
+    need to be imposed at the node associated with the terminal of the
+    energy source, such as when voltages and angles from the transmission
+    level are used as input to the distribution network. The attribute
+    shall be a positive value or zero.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -368,7 +564,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -384,7 +580,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -437,7 +633,7 @@ class RotatingMachine(RegulatingCondEq):
     A rotating machine which may be used as a generator or motor.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -453,7 +649,7 @@ class RotatingMachine(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -966,7 +1162,7 @@ class BatteryUnit(PowerElectronicsUnit):
     The current state of the battery (charging, full, etc.).
     '''
     
-    storedE: Optional[ float | RealEnergy ] = field(
+    storedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1090,7 +1286,7 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     A single phase of a power electronics connection.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1105,7 +1301,7 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     sign means flow into the equipment from the network.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1387,6 +1583,34 @@ class ActivePower(CIMUnit):
 
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
+class AngleRadians(CIMUnit):
+    '''
+    Phase angle in radians.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.rad
+    def __init__(self, value, input_unit: str='rad', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
 class ReactivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the quadrature
@@ -1427,6 +1651,34 @@ class RealEnergy(CIMUnit):
     def unit(self):
         return UnitSymbol.Wh
     def __init__(self, value, input_unit: str='Wh', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Voltage(CIMUnit):
+    '''
+    Electrical voltage, can be both AC and DC.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.V
+    def __init__(self, value, input_unit: str='V', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

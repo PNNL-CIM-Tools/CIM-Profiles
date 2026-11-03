@@ -40,6 +40,7 @@ from __future__ import annotations
 
 import dataclasses
 import logging
+import sys
 import types
 from collections import defaultdict
 from dataclasses import dataclass, field, is_dataclass
@@ -229,6 +230,9 @@ def _build_class(name: str, definitions: list[type],
         namespace[pname] = prop
 
     namespace['__annotations__'] = annotations
+    # The annotations are strings (from __future__ import annotations), so
+    # typing.get_type_hints evaluates them in the class's module: the merged one
+    namespace['__module__'] = merged_module.__name__
 
     # ── 5. Create the class ────────────────────────────────────────────
     new_cls = type(name, (merged_base,), namespace)
@@ -247,6 +251,28 @@ def _build_class(name: str, definitions: list[type],
             break
 
     return new_cls
+
+
+# ── namespaces ─────────────────────────────────────────────────────────
+
+def merge_namespaces(*namespace_maps: dict[str, str]) -> dict[str, str]:
+    """
+    Union of ``{prefix: namespace URI}`` maps, such as the parts' ``NAMESPACES``.
+
+    Raises ``ValueError`` if a prefix is bound to two URIs, or a URI to two prefixes,
+    since an XML document can't declare both.
+    """
+    merged: dict[str, str] = {}
+    prefix_of: dict[str, str] = {}
+    for namespaces in namespace_maps:
+        for prefix, uri in namespaces.items():
+            if merged.get(prefix, uri) != uri:
+                raise ValueError(f'XML prefix {prefix!r} is bound to both {merged[prefix]} and {uri}')
+            if prefix_of.get(uri, prefix) != prefix:
+                raise ValueError(f'namespace {uri} has two XML prefixes, {prefix_of[uri]!r} and {prefix!r}')
+            merged[prefix] = uri
+            prefix_of[uri] = prefix
+    return merged
 
 
 # ── main entry point ───────────────────────────────────────────────────
@@ -301,8 +327,24 @@ def merge_profiles(*modules: types.ModuleType) -> types.ModuleType:
     sorted_names = _topo_sort(all_names, parents)
 
     # ── 3. Build the merged module ─────────────────────────────────────
-    merged = types.ModuleType('merged_cim_profile')
+    # Registered in sys.modules, with the non-class globals (Optional, CIMUnit,
+    # ...) of the modules defining its classes, so typing.get_type_hints
+    # resolves merged classes' annotations
+    merged = types.ModuleType('merged_cim_profile:' + ','.join(mod.__name__ for mod in modules))
+    defining_modules = [sys.modules[module_name] for module_name in
+                        sorted({cls.__module__ for definitions in class_defs.values() for cls in definitions})]
+    for module in defining_modules:
+        for global_name, value in vars(module).items():
+            if not global_name.startswith('__') and global_name not in class_defs and global_name != 'NAMESPACES':
+                merged.__dict__.setdefault(global_name, value)
+    # Only when every part declares NAMESPACES (cimantic-graphs.xsl output): a partial
+    # union would silently drop prefixes
+    part_namespaces = [vars(module).get('NAMESPACES') for module in defining_modules
+                       if hasattr(module, 'ONTOLOGY_URI')]
+    if all(namespaces is not None for namespaces in part_namespaces):
+        merged.NAMESPACES = merge_namespaces(*part_namespaces)
     merged.__all__ = []
+    sys.modules[merged.__name__] = merged
 
     # Pre-populate with Identity so merged bases can resolve to it
     setattr(merged, 'Identity', Identity)

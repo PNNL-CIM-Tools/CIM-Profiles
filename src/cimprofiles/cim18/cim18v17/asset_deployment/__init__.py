@@ -17,6 +17,7 @@ from cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment import (
     DeploymentStateKind,
     EnergyConnection,
     Equipment,
+    EquipmentConfiguration,
     IdentifiedObject,
     PowerElectronicsConnection,
     PowerSystemResource,
@@ -24,7 +25,8 @@ from cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment import (
     RegulatingCondEq,
     TransformerApplicationKind,
     TransformerBankConfiguration,
-    WireInfo
+    WireInfo,
+    WireSequenceConfiguration
 )
 __all__ = [
     'Identity',
@@ -41,6 +43,7 @@ __all__ = [
     'DeploymentStateKind' ,
     'EnergyConnection' ,
     'Equipment' ,
+    'EquipmentConfiguration' ,
     'IdentifiedObject' ,
     'PowerElectronicsConnection' ,
     'PowerSystemResource' ,
@@ -48,5 +51,6 @@ __all__ = [
     'RegulatingCondEq' ,
     'TransformerApplicationKind' ,
     'TransformerBankConfiguration' ,
-    'WireInfo'
+    'WireInfo' ,
+    'WireSequenceConfiguration'
 ]

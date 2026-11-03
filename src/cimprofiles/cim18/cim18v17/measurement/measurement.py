@@ -29,8 +29,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -817,7 +818,7 @@ class MeasurementValue(IOPoint):
     The time when the value was last updated.
     '''
     
-    sensorAccuracy: Optional[ float | PerCent ] = field(
+    sensorAccuracy: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2636,7 +2637,7 @@ class CurrentTransformer(Sensor):
     Intended usage of the CT; i.e. metering, protection.
     '''
     
-    accuracyLimit: Optional[ float | PerCent ] = field(
+    accuracyLimit: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2651,7 +2652,7 @@ class CurrentTransformer(Sensor):
     limits.
     '''
     
-    coreBurden: Optional[ float | ActivePower ] = field(
+    coreBurden: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2737,7 +2738,7 @@ class MeasurementSystem(PowerSystemResource):
     '''
     '''
 
-    reportingRate: Optional[ float | Frequency ] = field(
+    reportingRate: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3265,7 +3266,7 @@ class RemoteSource(RemotePoint):
     The minimum value the telemetry item can return.
     '''
     
-    scanInterval: Optional[ float | Seconds ] = field(
+    scanInterval: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3407,7 +3408,7 @@ class SynchrophaserFrame(IdentifiedObject):
     Frame synchronization word from IEEE c37.118
     '''
     
-    leapByte: Optional[ float | Seconds ] = field(
+    leapByte: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3662,7 +3663,7 @@ class ValueToAlias(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.AggregateOf)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MeasurementValueQuality(Identity):
     '''
     Measurement quality flags. Bits 0-10 are defined for substation automation
@@ -4012,7 +4013,7 @@ class Quality61850(MeasurementValueQuality):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PMUStream(Identity):
     '''
     '''
@@ -4046,7 +4047,7 @@ class PMUStream(Identity):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PMUValueConcentration(Identity):
     '''
     '''

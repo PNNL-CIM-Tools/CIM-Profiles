@@ -1,0 +1,1409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+
+	Copyright 2026 UCAIug
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+-->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns="http://www.gridappsd.org/vfm#"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b3">
+    <rdf:first rdf:resource="#FuseCharacteristicCurve"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b5"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#Fuse.TotalClearingTimeCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TotalClearingTimeCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCharacteristicCurve"/>
+    <owl:unionOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b6">
+    <rdf:first rdf:resource="#FuseCharacteristicCurve"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b8"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#Fuse.MiinimumMeltCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>MiinimumMeltCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCharacteristicCurve"/>
+    <owl:unionOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fd"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction.type"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>type</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction.PartOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78ff">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7900"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction.PartOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7900">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PartOf</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction"/>
+    <rdfs:subClassOf rdf:resource="#AutomationFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7901">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.AutoreclosingFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7902">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7903"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.AutoreclosingFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7903">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutoreclosingFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutoreclosingFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#AutoreclosingFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7904">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7905"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction.normalEnabled"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7905">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>normalEnabled</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7906">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.ProtectionSettingsGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7907">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7908"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.ProtectionSettingsGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7908">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionSettingsGroup</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionSettingsGroup"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionSettingsGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7909">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionBlock.operatingQuantityType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790b"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionBlock.operatingQuantityType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790b">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>operatingQuantityType</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionOperatingQuantityKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790d"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#Breaker.inTransitTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790d">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>inTransitTime</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Seconds"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790f"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.recloseDelay"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790f">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>recloseDelay</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Seconds"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7910">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.operatingQuantityType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7911">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7912"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.operatingQuantityType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7912">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>operatingQuantityType</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionOperatingQuantityKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7913">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7914"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction.enabled"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7914">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>enabled</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7915">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7916"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.recloseStep"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7916">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>recloseStep</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7917">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7918"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationBlockGroup.priority"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7918">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>priority</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7919">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.ProtectedSwitch"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791b"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence.ProtectedSwitch"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791b">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectedSwitch</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectedSwitch"/>
+    <rdfs:subClassOf rdf:resource="#ProtectedSwitch"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationBlockGroup.AutomationFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791e"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationBlockGroup.AutomationFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791e">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutomationFunction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction"/>
+    <rdfs:subClassOf rdf:resource="#AutomationFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.ProtectionEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7920">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7921"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock.ProtectionEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7921">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionEquipment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionEquipment"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7922">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7923"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#UnderFrequencyProtectionFunctionBlock.operateValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7923">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>operateValue</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Frequency"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7924">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.mainProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7925"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7925">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.scheme"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7926"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7926">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.backupProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7927"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7927">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.functionBlockCombination"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7928">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.negativeSequence"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7929"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7929">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.negativeSequenceTimesThree"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792a">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.maxPhasePhase"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792b">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.zeroSequenceTimesThree"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792c">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.maxPhase"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792d"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792d">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.positiveSequence"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792e">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.minPhase"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-792f">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.zeroSequence"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7930"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7930">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.minPhasePhase"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7931">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCurveKind.totalClearingTimeCurve"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7932"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7932">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCurveKind.minimumMeltCurve"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7933">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#DirectionKind.forward"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7934"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7934">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#DirectionKind.reverse"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7935">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.other"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7936"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7936">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.outOfStepProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7937"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7937">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.busbarProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7938"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7938">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.abnormalFrequencyProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7939"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7939">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.powerTransformerProtetion"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793a">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.distributionLineProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793b">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.transmissionLineProtection"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793c">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.generatorProtection"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793d">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.N"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793e">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s12"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793f">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.ABC"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7940"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7940">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.C"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7941"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7941">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.B"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7942"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7942">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.CA"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7943"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7943">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.A"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7944"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7944">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.BC"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7945"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7945">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.AB"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7946"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7946">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s1"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7947"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7947">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s2"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7948">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurveKind.damageCurve"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7949"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7949">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurveKind.inrushCurve"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794a">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeExtremelyInverse"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794b">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveC"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794c">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveB"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794d"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794d">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveA"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794e">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.definiteTime"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794f">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveLTI"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7950"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7950">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.inverseTime"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7951"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7951">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.inversedDefiniteTime"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7952"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7952">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeVeryInverse"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7953"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7953">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.other"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7954"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7954">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeModerateInverse"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7955">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.SQL"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7956"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7956">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.R"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7957"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7957">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Rust"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7958"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7958">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Delphi"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7959"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7959">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.JavaScript"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795a">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Matlab"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795b">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Pascal"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795c"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795c">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Java"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795d"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795d">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Perl"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795e">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Lua"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795f"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795f">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PLCopen"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7960"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7960">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PHP"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7961"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7961">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.StructuredText"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7962"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7962">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Julia"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7963"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7963">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7964"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7964">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Fortran"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7965"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7965">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Python"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7966"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7966">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Swift"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7967"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7967">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.VBA"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7968"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7968">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.other"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7969"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7969">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Go"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796a">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Modelica"/>
+    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796b">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C++"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#DirectionKind.forward">
+    <rdfs:label>forward</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#DirectionKind.reverse">
+    <rdfs:label>reverse</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#FuseCurveKind.minimumMeltCurve">
+    <rdfs:label>minimumMeltCurve</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#FuseCurveKind.totalClearingTimeCurve">
+    <rdfs:label>totalClearingTimeCurve</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.A">
+    <rdfs:label>A</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.AB">
+    <rdfs:label>AB</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.ABC">
+    <rdfs:label>ABC</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.B">
+    <rdfs:label>B</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.BC">
+    <rdfs:label>BC</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.C">
+    <rdfs:label>C</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.CA">
+    <rdfs:label>CA</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.N">
+    <rdfs:label>N</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s1">
+    <rdfs:label>s1</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s12">
+    <rdfs:label>s12</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection.s2">
+    <rdfs:label>s2</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C">
+    <rdfs:label>C</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C++">
+    <rdfs:label>C++</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Delphi">
+    <rdfs:label>Delphi</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Fortran">
+    <rdfs:label>Fortran</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Go">
+    <rdfs:label>Go</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Java">
+    <rdfs:label>Java</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.JavaScript">
+    <rdfs:label>JavaScript</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Julia">
+    <rdfs:label>Julia</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Lua">
+    <rdfs:label>Lua</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Matlab">
+    <rdfs:label>Matlab</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Modelica">
+    <rdfs:label>Modelica</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PHP">
+    <rdfs:label>PHP</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PLCopen">
+    <rdfs:label>PLCopen</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Pascal">
+    <rdfs:label>Pascal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Perl">
+    <rdfs:label>Perl</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Python">
+    <rdfs:label>Python</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.R">
+    <rdfs:label>R</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Rust">
+    <rdfs:label>Rust</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.SQL">
+    <rdfs:label>SQL</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.StructuredText">
+    <rdfs:label>StructuredText</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Swift">
+    <rdfs:label>Swift</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.VBA">
+    <rdfs:label>VBA</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.other">
+    <rdfs:label>other</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.backupProtection">
+    <rdfs:label>backupProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.functionBlockCombination">
+    <rdfs:label>functionBlockCombination</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.mainProtection">
+    <rdfs:label>mainProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind.scheme">
+    <rdfs:label>scheme</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.abnormalFrequencyProtection">
+    <rdfs:label>abnormalFrequencyProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.busbarProtection">
+    <rdfs:label>busbarProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.distributionLineProtection">
+    <rdfs:label>distributionLineProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.generatorProtection">
+    <rdfs:label>generatorProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.other">
+    <rdfs:label>other</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.outOfStepProtection">
+    <rdfs:label>outOfStepProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.powerTransformerProtetion">
+    <rdfs:label>powerTransformerProtetion</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd.transmissionLineProtection">
+    <rdfs:label>transmissionLineProtection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.maxPhase">
+    <rdfs:label>maxPhase</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.maxPhasePhase">
+    <rdfs:label>maxPhasePhase</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.minPhase">
+    <rdfs:label>minPhase</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.minPhasePhase">
+    <rdfs:label>minPhasePhase</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.negativeSequence">
+    <rdfs:label>negativeSequence</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.negativeSequenceTimesThree">
+    <rdfs:label>negativeSequenceTimesThree</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.positiveSequence">
+    <rdfs:label>positiveSequence</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.zeroSequence">
+    <rdfs:label>zeroSequence</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind.zeroSequenceTimesThree">
+    <rdfs:label>zeroSequenceTimesThree</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.definiteTime">
+    <rdfs:label>definiteTime</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveA">
+    <rdfs:label>iecCurveA</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveB">
+    <rdfs:label>iecCurveB</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveC">
+    <rdfs:label>iecCurveC</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.iecCurveLTI">
+    <rdfs:label>iecCurveLTI</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeExtremelyInverse">
+    <rdfs:label>ieeeExtremelyInverse</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeModerateInverse">
+    <rdfs:label>ieeeModerateInverse</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeVeryInverse">
+    <rdfs:label>ieeeVeryInverse</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.inverseTime">
+    <rdfs:label>inverseTime</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.inversedDefiniteTime">
+    <rdfs:label>inversedDefiniteTime</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.other">
+    <rdfs:label>other</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurveKind.damageCurve">
+    <rdfs:label>damageCurve</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurveKind.inrushCurve">
+    <rdfs:label>inrushCurve</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#__init__.py">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#cimantic-graphs.py">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>protection</rdfs:label>
+    <owl:imports rdf:resource="http://cim.ucaiug.io/cim101/draft"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AutomationBlockGroup">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutomationBlockGroup</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7917"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791c"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791d"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationBlockGroup"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AutomationFunction">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutomationFunction</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fc"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78fe"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-78ff"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7904"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7913"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutomationFunction"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AutoreclosingFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutoreclosingFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AutoreclosingFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionRelatedFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#BooleanLogic">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>BooleanLogic</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BooleanLogic"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Breaker">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Breaker</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790c"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Breaker"/>
+    <rdfs:subClassOf rdf:resource="#ProtectedSwitch"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#BreakerFailureFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>BreakerFailureFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BreakerFailureFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionRelatedFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConductingEquipment">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ConductingEquipment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConductingEquipment"/>
+    <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConductorCharacteristicCurve">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ConductorCharacteristicCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConductorCharacteristicCurve"/>
+    <rdfs:subClassOf rdf:resource="#TimeCurrentCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConstantFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ConstantFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConstantFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CurrentProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>CurrentProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FaultClearanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CurrentRelay">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>CurrentRelay</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentRelay"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CurrentTransformer">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>CurrentTransformer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentTransformer"/>
+    <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DelayTimer">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DelayTimer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DelayTimer"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DifferentialProtectionFuntionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DifferentialProtectionFuntionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DifferentialProtectionFuntionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FaultClearanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DirectionKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DirectionKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DirectionKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7933"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DirectionalProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DirectionalProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DirectionalProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FaultClearanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DistanceProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DistanceProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DistanceProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FaultClearanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EdgeDetector">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>EdgeDetector</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EdgeDetector"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Equipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Equipment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FaultClearanceProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FaultClearanceProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FaultClearanceProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FlipFlop">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FlipFlop</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FlipFlop"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Frequency">
+    <rdfs:label>Frequency</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FrequencyProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FrequencyProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FrequencyProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#WideAreaProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FunctionBlockType">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FunctionBlockType</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FunctionBlockType"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FunctionFunctionLink">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FunctionFunctionLink</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FunctionFunctionLink"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FunctionLogicDescription">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FunctionLogicDescription</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FunctionLogicDescription"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FunctionTypeInput">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FunctionTypeInput</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FunctionTypeInput"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FunctionTypeOutput">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FunctionTypeOutput</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FunctionTypeOutput"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Fuse">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Fuse</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b4"/>
+    <rdfs:subClassOf rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b7"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Fuse"/>
+    <rdfs:subClassOf rdf:resource="#Switch"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FuseCharacteristicCurve">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FuseCharacteristicCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCharacteristicCurve"/>
+    <rdfs:subClassOf rdf:resource="#TimeCurrentCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FuseCurveKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FuseCurveKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseCurveKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7931"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FuseInfo">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FuseInfo</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#FuseInfo"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GroundDistanceProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>GroundDistanceProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#GroundDistanceProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#DistanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>IdentifiedObject</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ImpedanceLocusTypeFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ImpedanceLocusTypeFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ImpedanceLocusTypeFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#OutOfStepProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LogicalOperation">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>LogicalOperation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#LogicalOperation"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#NumericOperation">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>NumericOperation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#NumericOperation"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutOfStepProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OutOfStepProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OutOfStepProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#WideAreaProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverCurrentProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverCurrentProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverCurrentProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#CurrentProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverCurrentTypeFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverCurrentTypeFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverCurrentTypeFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#OverLoadProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverFrequencyProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverFrequencyProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverFrequencyProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FrequencyProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverLoadProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverLoadProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverLoadProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#WideAreaProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverPowerDirectionProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverPowerDirectionProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverPowerDirectionProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#DirectionalProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OverVoltageProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OverVoltageProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverVoltageProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#VoltageProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_AuxiliaryEquipment">
+    <rdfs:label>AuxiliaryEquipment</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_AvistaExtensions">
+    <rdfs:label>AvistaExtensions</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Base">
+    <rdfs:label>Base</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_CIM">
+    <rdfs:label>CIM</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Control">
+    <rdfs:label>Control</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Core">
+    <rdfs:label>Core</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Grid">
+    <rdfs:label>Grid</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Protection">
+    <rdfs:label>Protection</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Wires">
+    <rdfs:label>Wires</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package__62361Draft">
+    <rdfs:label>62361Draft</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCodeProtection">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PhaseCodeProtection</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeProtection"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-793d"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PotentialTransformer">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PotentialTransformer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PotentialTransformer"/>
+    <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProgrammingLanguageKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProgrammingLanguageKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7955"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProprietarySettingValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProprietarySettingValue</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProprietarySettingValue"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProprietaryThresholdvalue">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProprietaryThresholdvalue</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProprietaryThresholdvalue"/>
+    <rdfs:subClassOf rdf:resource="#ProprietarySettingValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProprietaryTimerValue">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProprietaryTimerValue</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProprietaryTimerValue"/>
+    <rdfs:subClassOf rdf:resource="#ProprietarySettingValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectedSwitch">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectedSwitch</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectedSwitch"/>
+    <rdfs:subClassOf rdf:resource="#Switch"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectedSwitchSettings">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#avista"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectedSwitchSettings</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectedSwitchSettings"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionEquipment">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionEquipment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionEquipment"/>
+    <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionFunction">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionFunction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunction"/>
+    <rdfs:subClassOf rdf:resource="#AutomationFunction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7909"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790a"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionFunctionRoleKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionFunctionRoleKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionRoleKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7924"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionFunctionSchemeKInd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionFunctionSchemeKInd</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionFunctionSchemeKInd"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7935"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionOperatingQuantityKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionOperatingQuantityKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperatingQuantityKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7928"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionOperationCharacteristicCurve">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionOperationCharacteristicCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicCurve"/>
+    <rdfs:subClassOf rdf:resource="#TimeCurrentCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionOperationCharacteristicKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionOperationCharacteristicKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-794a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionRelatedFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionRelatedFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7906"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7907"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7910"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7911"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791f"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7920"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionRelatedFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionSettingsGroup">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionSettingsGroup</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionSettingsGroup"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProtectionTripConditioningFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ProtectionTripConditioningFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionTripConditioningFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#RateOfChangeOfFrequencyProtectionFunction">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>RateOfChangeOfFrequencyProtectionFunction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#RateOfChangeOfFrequencyProtectionFunction"/>
+    <rdfs:subClassOf rdf:resource="#FrequencyProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#RecloseSequence">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>RecloseSequence</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7901"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7902"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-790e"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7915"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7919"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-791a"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#RecloseSequence"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Recloser">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Recloser</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Recloser"/>
+    <rdfs:subClassOf rdf:resource="#ProtectedSwitch"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Seconds">
+    <rdfs:label>Seconds</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Switch">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Switch</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Switch"/>
+    <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SynchrocheckFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SynchrocheckFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchrocheckFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionRelatedFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SynchrocheckRelay">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SynchrocheckRelay</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchrocheckRelay"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TemperatureCalculationTypeFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TemperatureCalculationTypeFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TemperatureCalculationTypeFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#OverLoadProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TimeCurrentCurve">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TimeCurrentCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TimeCurrentCurve"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TransformerCharacteristicCurve">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TransformerCharacteristicCurve</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurve"/>
+    <rdfs:subClassOf rdf:resource="#TimeCurrentCurve"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TransformerCharacteristicCurveKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TransformerCharacteristicCurveKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerCharacteristicCurveKind"/>
+    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7948"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnderCurrentProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>UnderCurrentProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnderCurrentProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#CurrentProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnderFrequencyProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>UnderFrequencyProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7922"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnderFrequencyProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FrequencyProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnderPowerDirectionProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>UnderPowerDirectionProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnderPowerDirectionProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#DirectionalProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnderVoltageProtectionFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>UnderVoltageProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnderVoltageProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#VoltageProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UpDownCounter">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>UpDownCounter</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UpDownCounter"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#VoltagePhaseComparisontypeFunctionBlock">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>VoltagePhaseComparisontypeFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltagePhaseComparisontypeFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#OutOfStepProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#VoltageProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>VoltageProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltageProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#FaultClearanceProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#WideAreaProtectionFunctionBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>WideAreaProtectionFunctionBlock</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WideAreaProtectionFunctionBlock"/>
+    <rdfs:subClassOf rdf:resource="#ProtectionFunctionBlock"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#global_package">
+    <rdfs:label>Global</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>

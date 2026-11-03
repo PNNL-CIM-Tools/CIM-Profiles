@@ -24,8 +24,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -431,6 +432,82 @@ class BaseVoltage(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EquipmentConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerBankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    AssetDeployments: list[PowerTransformerAssetDeployment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PowerTransformerAssetDeployment.TransformerBankAssembly',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of asset deployments using this transformer bank assembly template
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WireSequenceConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class PowerSystemResource(IdentifiedObject):
@@ -605,42 +682,6 @@ class PowerElectronicsConnection(RegulatingCondEq):
     @property
     def __package__(self):
         return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class TransformerBankConfiguration(IdentifiedObject):
-    '''
-    '''
-
-    AssetDeployments: list[PowerTransformerAssetDeployment] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'PowerTransformerAssetDeployment.TransformerBankAssembly',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    The set of asset deployments using this transformer bank assembly template
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -910,7 +951,7 @@ class TransformerApplicationKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Compound)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class DeploymentDate(Identity):
     '''
     Dates for deployment events of an asset. May have multiple deployment type

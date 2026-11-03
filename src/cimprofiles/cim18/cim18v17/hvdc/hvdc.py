@@ -25,8 +25,9 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -929,7 +930,7 @@ class PerLengthDCLineParameter(IdentifiedObject):
     Common type for per-length electrical catalogues describing DC line parameters.
     '''
 
-    capacitance: Optional[ float | CapacitancePerLength ] = field(
+    capacitance: Optional[ CapacitancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -944,7 +945,7 @@ class PerLengthDCLineParameter(IdentifiedObject):
     for cables only.
     '''
     
-    inductance: Optional[ float | InductancePerLength ] = field(
+    inductance: Optional[ InductancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -958,7 +959,7 @@ class PerLengthDCLineParameter(IdentifiedObject):
     Inductance per unit of length of the DC line segment.
     '''
     
-    resistance: Optional[ float | ResistancePerLength ] = field(
+    resistance: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1819,7 +1820,7 @@ class DCPole(PowerSystemResource):
     allocated energy first.
     '''
     
-    maxEconomicP: Optional[ float | ActivePower ] = field(
+    maxEconomicP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1834,7 +1835,7 @@ class DCPole(PowerSystemResource):
     maximum operating active power limit.
     '''
     
-    minEconomicP: Optional[ float | ActivePower ] = field(
+    minEconomicP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1849,7 +1850,7 @@ class DCPole(PowerSystemResource):
     to the minimum operating active power limit.
     '''
     
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2501,7 +2502,7 @@ class ACDCConverter(Equipment):
     Number of valves in the converter. Used in loss calculations.
     '''
     
-    baseS: Optional[ float | ApparentPower ] = field(
+    baseS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2516,7 +2517,7 @@ class ACDCConverter(Equipment):
     positive value.
     '''
     
-    idc: Optional[ float | CurrentFlow ] = field(
+    idc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2531,7 +2532,7 @@ class ACDCConverter(Equipment):
     result from power flow.
     '''
     
-    idleLoss: Optional[ float | ActivePower ] = field(
+    idleLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2547,7 +2548,7 @@ class ACDCConverter(Equipment):
     value.
     '''
     
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2562,7 +2563,7 @@ class ACDCConverter(Equipment):
     if present.
     '''
     
-    maxUdc: Optional[ float | Voltage ] = field(
+    maxUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2578,7 +2579,7 @@ class ACDCConverter(Equipment):
     shall be a positive value.
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2593,7 +2594,7 @@ class ACDCConverter(Equipment):
     if present.
     '''
     
-    minUdc: Optional[ float | Voltage ] = field(
+    minUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2609,7 +2610,7 @@ class ACDCConverter(Equipment):
     shall be a positive value.
     '''
     
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2626,7 +2627,7 @@ class ACDCConverter(Equipment):
     power flow model is used.
     '''
     
-    poleLossP: Optional[ float | ActivePower ] = field(
+    poleLossP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2646,7 +2647,7 @@ class ACDCConverter(Equipment):
     shall be a positive value.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2663,7 +2664,7 @@ class ACDCConverter(Equipment):
     power flow model is used.
     '''
     
-    ratedUdc: Optional[ float | Voltage ] = field(
+    ratedUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2680,7 +2681,7 @@ class ACDCConverter(Equipment):
     400kV difference between the dc lines.
     '''
     
-    resistiveLoss: Optional[ float | Resistance ] = field(
+    resistiveLoss: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2695,7 +2696,7 @@ class ACDCConverter(Equipment):
     to poleLossP. The attribute shall be a positive value.
     '''
     
-    switchingLoss: Optional[ float | ActivePowerPerCurrentFlow ] = field(
+    switchingLoss: Optional[ ActivePowerPerCurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2710,7 +2711,7 @@ class ACDCConverter(Equipment):
     to poleLossP. The attribute shall be a positive value.
     '''
     
-    targetPpcc: Optional[ float | ActivePower ] = field(
+    targetPpcc: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2726,7 +2727,7 @@ class ACDCConverter(Equipment):
     a node.
     '''
     
-    targetUdc: Optional[ float | Voltage ] = field(
+    targetUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2741,7 +2742,7 @@ class ACDCConverter(Equipment):
     value.
     '''
     
-    uc: Optional[ float | Voltage ] = field(
+    uc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2757,7 +2758,7 @@ class ACDCConverter(Equipment):
     shall be a positive value.
     '''
     
-    udc: Optional[ float | Voltage ] = field(
+    udc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2773,7 +2774,7 @@ class ACDCConverter(Equipment):
     value.
     '''
     
-    valveU0: Optional[ float | Voltage ] = field(
+    valveU0: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2849,7 +2850,7 @@ class CsConverter(ACDCConverter):
     place. The range is typically 17 to 20 degrees.
     '''
 
-    alpha: Optional[ float | AngleDegrees ] = field(
+    alpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2866,7 +2867,7 @@ class CsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    gamma: Optional[ float | AngleDegrees ] = field(
+    gamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2883,7 +2884,7 @@ class CsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    maxAlpha: Optional[ float | AngleDegrees ] = field(
+    maxAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2898,7 +2899,7 @@ class CsConverter(ACDCConverter):
     in power flow. The attribute shall be a positive value.
     '''
     
-    maxGamma: Optional[ float | AngleDegrees ] = field(
+    maxGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2913,7 +2914,7 @@ class CsConverter(ACDCConverter):
     used in power flow. The attribute shall be a positive value.
     '''
     
-    maxIdc: Optional[ float | CurrentFlow ] = field(
+    maxIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2929,7 +2930,7 @@ class CsConverter(ACDCConverter):
     flow. The attribute shall be a positive value.
     '''
     
-    minAlpha: Optional[ float | AngleDegrees ] = field(
+    minAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2944,7 +2945,7 @@ class CsConverter(ACDCConverter):
     in power flow. The attribute shall be a positive value.
     '''
     
-    minGamma: Optional[ float | AngleDegrees ] = field(
+    minGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2959,7 +2960,7 @@ class CsConverter(ACDCConverter):
     used in power flow. The attribute shall be a positive value.
     '''
     
-    minIdc: Optional[ float | CurrentFlow ] = field(
+    minIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3004,7 +3005,7 @@ class CsConverter(ACDCConverter):
     Kind of active power control.
     '''
     
-    ratedIdc: Optional[ float | CurrentFlow ] = field(
+    ratedIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3020,7 +3021,7 @@ class CsConverter(ACDCConverter):
     power flow.
     '''
     
-    targetAlpha: Optional[ float | AngleDegrees ] = field(
+    targetAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3037,7 +3038,7 @@ class CsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    targetGamma: Optional[ float | AngleDegrees ] = field(
+    targetGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3054,7 +3055,7 @@ class CsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    targetIdc: Optional[ float | CurrentFlow ] = field(
+    targetIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3136,7 +3137,7 @@ class VsConverter(ACDCConverter):
     value.
     '''
     
-    delta: Optional[ float | AngleDegrees ] = field(
+    delta: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3152,7 +3153,7 @@ class VsConverter(ACDCConverter):
     value or zero.
     '''
     
-    droop: Optional[ float | PU ] = field(
+    droop: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3167,7 +3168,7 @@ class VsConverter(ACDCConverter):
     The attribute shall be a positive value.
     '''
     
-    droopCompensation: Optional[ float | Resistance ] = field(
+    droopCompensation: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3182,7 +3183,7 @@ class VsConverter(ACDCConverter):
     voltage at a distant bus. The attribute shall be a positive value.
     '''
     
-    maxValveCurrent: Optional[ float | CurrentFlow ] = field(
+    maxValveCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3225,7 +3226,7 @@ class VsConverter(ACDCConverter):
     Kind of reactive power control.
     '''
     
-    qShare: Optional[ float | PerCent ] = field(
+    qShare: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3240,7 +3241,7 @@ class VsConverter(ACDCConverter):
     The attribute shall be a positive value or zero.
     '''
     
-    targetPhasePcc: Optional[ float | AngleDegrees ] = field(
+    targetPhasePcc: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3255,7 +3256,7 @@ class VsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    targetQpcc: Optional[ float | ReactivePower ] = field(
+    targetQpcc: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3271,7 +3272,7 @@ class VsConverter(ACDCConverter):
     a node.
     '''
     
-    targetUpcc: Optional[ float | Voltage ] = field(
+    targetUpcc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3286,7 +3287,7 @@ class VsConverter(ACDCConverter):
     shall be a positive value.
     '''
     
-    uv: Optional[ float | Voltage ] = field(
+    uv: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3383,7 +3384,7 @@ class DCConductingEquipment(Equipment):
     that are conductively connected through DC terminals.
     '''
 
-    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+    ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3399,7 +3400,7 @@ class DCConductingEquipment(Equipment):
     The attribute shall be a positive value.
     '''
     
-    ratedUdc: Optional[ float | Voltage ] = field(
+    ratedUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3490,7 +3491,7 @@ class DCGround(DCConductingEquipment):
     A ground within a DC system.
     '''
 
-    inductance: Optional[ float | Inductance ] = field(
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3504,7 +3505,7 @@ class DCGround(DCConductingEquipment):
     Inductance to ground.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3540,7 +3541,7 @@ class DCLineSegment(DCConductingEquipment):
     in the DC region of the power system.
     '''
 
-    capacitance: Optional[ float | Capacitance ] = field(
+    capacitance: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3554,7 +3555,7 @@ class DCLineSegment(DCConductingEquipment):
     Capacitance of the DC line segment. Significant for cables only.
     '''
     
-    inductance: Optional[ float | Inductance ] = field(
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3569,7 +3570,7 @@ class DCLineSegment(DCConductingEquipment):
     used for smoothing.
     '''
     
-    length: Optional[ float | Length ] = field(
+    length: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3583,7 +3584,7 @@ class DCLineSegment(DCConductingEquipment):
     Segment length for calculating line section capabilities.
     '''
     
-    resistance: Optional[ float | Resistance ] = field(
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3632,7 +3633,7 @@ class DCSeriesDevice(DCConductingEquipment):
     or smoothing. Needed for transient and short circuit studies.
     '''
 
-    inductance: Optional[ float | Inductance ] = field(
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3646,7 +3647,7 @@ class DCSeriesDevice(DCConductingEquipment):
     Inductance of the device.
     '''
     
-    resistance: Optional[ float | Resistance ] = field(
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3746,7 +3747,7 @@ class DCShunt(DCConductingEquipment):
     for transient and short circuit studies.
     '''
 
-    capacitance: Optional[ float | Capacitance ] = field(
+    capacitance: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3760,7 +3761,7 @@ class DCShunt(DCConductingEquipment):
     Capacitance of the DC shunt.
     '''
     
-    resistance: Optional[ float | Resistance ] = field(
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4196,7 +4197,7 @@ class TieCorridor(PowerSystemResource):
     Maximum authorized ramp for regulating reserve.
     '''
     
-    delayRegulatingReserve: Optional[ float | Seconds ] = field(
+    delayRegulatingReserve: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4212,7 +4213,7 @@ class TieCorridor(PowerSystemResource):
     the tie corridor.
     '''
     
-    thresholdRegulatingReserve: Optional[ float | ActivePower ] = field(
+    thresholdRegulatingReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4268,7 +4269,7 @@ class DCTieCorridor(TieCorridor):
     control areas.
     '''
 
-    maxRegulatingReserve: Optional[ float | ActivePower ] = field(
+    maxRegulatingReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4282,7 +4283,7 @@ class DCTieCorridor(TieCorridor):
     Maximum regulating reserve.
     '''
     
-    minRegulatingReserve: Optional[ float | ActivePower ] = field(
+    minRegulatingReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4296,7 +4297,7 @@ class DCTieCorridor(TieCorridor):
     Minimum regulating reserve.
     '''
     
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4313,7 +4314,7 @@ class DCTieCorridor(TieCorridor):
     power flow model is used.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4540,7 +4541,7 @@ class TopologicalNode(IdentifiedObject):
     '''
     '''
     
-    pInjection: Optional[ float | ActivePower ] = field(
+    pInjection: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4557,7 +4558,7 @@ class TopologicalNode(IdentifiedObject):
     Starting value for a steady state solution.
     '''
     
-    qInjection: Optional[ float | ReactivePower ] = field(
+    qInjection: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4647,7 +4648,7 @@ class VsCapabilityCurve(IdentifiedObject):
     and Qmin and Qmax on Y1-axis and Y2-axis.
     '''
 
-    referenceVoltage: Optional[ float | Voltage ] = field(
+    referenceVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4779,7 +4780,7 @@ class VsConverterSchedule(IdentifiedObject):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MustRunTimePoint(Identity):
     '''
     Must-run instruction value at a given point in time.
@@ -4814,7 +4815,7 @@ class MustRunTimePoint(Identity):
     false.
     '''
     
-    mustRunP: Optional[ float | ActivePower ] = field(
+    mustRunP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4830,7 +4831,7 @@ class MustRunTimePoint(Identity):
     sign convention is used, i.e. positive sign means flow out from a node.
     '''
     
-    mustRunQ: Optional[ float | ReactivePower ] = field(
+    mustRunQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4875,14 +4876,14 @@ class MustRunTimePoint(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SvDCPowerFlow(Identity):
     '''
     State variable for power flow. Load convention is used for flow direction.
     This means flow out from the DCTopologicalNode into the equipment is positive.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4927,13 +4928,13 @@ class SvDCPowerFlow(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SvDCVoltage(Identity):
     '''
     State variable for direct current voltage.
     '''
 
-    v: Optional[ float | Voltage ] = field(
+    v: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4977,7 +4978,7 @@ class SvDCVoltage(Identity):
     
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VsConverterTimePoint(Identity):
     '''
     VS converter values for a given point in time.
