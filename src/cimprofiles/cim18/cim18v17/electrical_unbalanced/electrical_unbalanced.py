@@ -121,7 +121,7 @@ class EarthResistivity(IdentifiedObject):
     '''
     '''
     
-    earthReturnGMR: Optional[ float | Length ] = field(
+    earthReturnGMR: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -136,7 +136,7 @@ class EarthResistivity(IdentifiedObject):
     impedance as the earth return, per Carson's Equations
     '''
     
-    rho: Optional[ float | Resistance ] = field(
+    rho: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -491,7 +491,7 @@ class TransformerCore(MagneticCore):
     values on the core.
     '''
 
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -502,8 +502,7 @@ class TransformerCore(MagneticCore):
         'serialize': True,
         })
     '''
-    Magnetizing branch susceptance (B mag). The value can be positive or
-    negative.
+    Magnetizing branch susceptance (B mag).
     '''
     
     form: Optional[ CoreConstructionKind ] = field(
@@ -523,7 +522,7 @@ class TransformerCore(MagneticCore):
     windings (shell form)
     '''
     
-    g: Optional[ float | Conductance ] = field(
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -598,7 +597,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -624,7 +623,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    g: Optional[ float | Conductance ] = field(
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -637,7 +636,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -663,7 +662,7 @@ class MatrixImpedanceData(IdentifiedObject):
     '''
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -696,7 +695,7 @@ class PerLengthLineParameter(IdentifiedObject):
     Common type for per-length electrical line parameters.
     '''
 
-    calculatedTemperature: Optional[ float | Temperature ] = field(
+    calculatedTemperature: Optional[ Temperature ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -746,6 +745,21 @@ class PerLengthImpedance(PerLengthLineParameter):
     Common type for per-length electrical impedances.
     '''
 
+    isTemplate: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Indicates that the wire spacing is used as part of a configuration
+    template / data warehouse exchange.
+    '''
+    
     userDefined: Optional[bool] = field(
         default=None,
         metadata={
@@ -759,7 +773,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     '''
     '''
     
-    calculatedFrequency: Optional[ float | Frequency ] = field(
+    calculatedFrequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -772,7 +786,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     '''
     '''
     
-    rg: Optional[ float | ResistancePerLength ] = field(
+    rg: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -788,7 +802,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     impedance values for frequency for harmonics studies.
     '''
     
-    xg: Optional[ float | ReactancePerLength ] = field(
+    xg: Optional[ ReactancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -948,7 +962,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     A single phase of an energy consumer.
     '''
 
-    pfixed: Optional[ float | ActivePower ] = field(
+    pfixed: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -963,7 +977,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     is used, i.e. positive sign means flow out from a node.
     '''
     
-    pfixedPct: Optional[ float | PerCent ] = field(
+    pfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -978,7 +992,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     sign convention is used, i.e. positive sign means flow out from a node.
     '''
     
-    qfixed: Optional[ float | ReactivePower ] = field(
+    qfixed: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -993,7 +1007,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     is used, i.e. positive sign means flow out from a node.
     '''
     
-    qfixedPct: Optional[ float | PerCent ] = field(
+    qfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1244,7 +1258,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1257,7 +1271,7 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1270,7 +1284,7 @@ class EnergyConsumer(EnergyConnection):
     '''
     '''
     
-    pfixed: Optional[ float | ActivePower ] = field(
+    pfixed: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1286,7 +1300,7 @@ class EnergyConsumer(EnergyConnection):
     sign means flow out from a node.
     '''
     
-    pfixedPct: Optional[ float | PerCent ] = field(
+    pfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1302,7 +1316,7 @@ class EnergyConsumer(EnergyConnection):
     is used, i.e. positive sign means flow out from a node.
     '''
     
-    qfixed: Optional[ float | ReactivePower ] = field(
+    qfixed: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1318,7 +1332,7 @@ class EnergyConsumer(EnergyConnection):
     sign means flow out from a node.
     '''
     
-    qfixedPct: Optional[ float | PerCent ] = field(
+    qfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1373,7 +1387,7 @@ class EnergySource(EnergyConnection):
     voltage level.
     '''
 
-    pMax: Optional[ float | ActivePower ] = field(
+    pMax: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1389,7 +1403,7 @@ class EnergySource(EnergyConnection):
     a TopologicalNode (bus) into the conducting equipment.
     '''
     
-    pMin: Optional[ float | ActivePower ] = field(
+    pMin: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1405,7 +1419,7 @@ class EnergySource(EnergyConnection):
     a TopologicalNode (bus) into the conducting equipment.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1419,7 +1433,7 @@ class EnergySource(EnergyConnection):
     Positive sequence Thevenin resistance.
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1476,7 +1490,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1491,7 +1505,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     for the unit.
     '''
     
-    minQ: Optional[ float | ReactivePower ] = field(
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1506,7 +1520,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     limit for the unit.
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1521,7 +1535,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     The attribute shall have a positive value.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1590,7 +1604,7 @@ class RotatingMachine(RegulatingCondEq):
     value.
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1605,7 +1619,7 @@ class RotatingMachine(RegulatingCondEq):
     The attribute shall have a positive value.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1675,7 +1689,7 @@ class AsynchronousMachine(RotatingMachine):
     Used for short circuit data exchange according to IEC 60909.
     '''
     
-    efficiency: Optional[ float | PerCent ] = field(
+    efficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1691,7 +1705,7 @@ class AsynchronousMachine(RotatingMachine):
     according to IEC 60909.
     '''
     
-    nominalFrequency: Optional[ float | Frequency ] = field(
+    nominalFrequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1705,7 +1719,7 @@ class AsynchronousMachine(RotatingMachine):
     Nameplate data indicates if the machine is 50 Hz or 60 Hz.
     '''
     
-    nominalSpeed: Optional[ float | RotationSpeed ] = field(
+    nominalSpeed: Optional[ RotationSpeed ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1719,7 +1733,7 @@ class AsynchronousMachine(RotatingMachine):
     Nameplate data. Depends on the slip and number of pole pairs.
     '''
     
-    ratedMechanicalPower: Optional[ float | ActivePower ] = field(
+    ratedMechanicalPower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1756,7 +1770,7 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1771,7 +1785,7 @@ class SynchronousMachine(RotatingMachine):
     for the unit.
     '''
     
-    minQ: Optional[ float | ReactivePower ] = field(
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1838,7 +1852,7 @@ class ShuntCompensator(RegulatingCondEq):
     zero and ShuntCompensator.maximumSections.
     '''
     
-    nomQ: Optional[ float | ReactivePower ] = field(
+    nomQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1851,7 +1865,7 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     '''
     
-    nomU: Optional[ float | Voltage ] = field(
+    nomU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1867,7 +1881,7 @@ class ShuntCompensator(RegulatingCondEq):
     is connected to the network.
     '''
     
-    voltageSensitivity: Optional[ float | VoltagePerReactivePower ] = field(
+    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1906,7 +1920,7 @@ class LinearShuntCompensator(ShuntCompensator):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1920,7 +1934,7 @@ class LinearShuntCompensator(ShuntCompensator):
     Positive sequence shunt (charging) susceptance per section.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1973,7 +1987,7 @@ class SeriesCompensator(ConductingEquipment):
     short circuit calculations.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1987,7 +2001,7 @@ class SeriesCompensator(ConductingEquipment):
     Positive sequence resistance.
     '''
     
-    varistorRatedCurrent: Optional[ float | CurrentFlow ] = field(
+    varistorRatedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2004,7 +2018,7 @@ class SeriesCompensator(ConductingEquipment):
     The attribute shall be a positive value.
     '''
     
-    varistorVoltageThreshold: Optional[ float | Voltage ] = field(
+    varistorVoltageThreshold: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2020,7 +2034,7 @@ class SeriesCompensator(ConductingEquipment):
     is true.
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2085,7 +2099,7 @@ class GeneratingUnit(Equipment):
     the set.
     '''
 
-    maxOperatingP: Optional[ float | ActivePower ] = field(
+    maxOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2100,7 +2114,7 @@ class GeneratingUnit(Equipment):
     enter for this unit.
     '''
     
-    minOperatingP: Optional[ float | ActivePower ] = field(
+    minOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2115,7 +2129,7 @@ class GeneratingUnit(Equipment):
     enter for this unit.
     '''
     
-    nominalP: Optional[ float | ActivePower ] = field(
+    nominalP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2169,7 +2183,7 @@ class PowerElectronicsUnit(Equipment):
     using power electronics rather than rotating machines.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2184,7 +2198,7 @@ class PowerElectronicsUnit(Equipment):
     the unit.
     '''
     
-    minP: Optional[ float | ActivePower ] = field(
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2236,7 +2250,7 @@ class BatteryUnit(PowerElectronicsUnit):
     An electrochemical energy storage device.
     '''
 
-    chargingEfficiency: Optional[ float | PerCent ] = field(
+    chargingEfficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2249,7 +2263,7 @@ class BatteryUnit(PowerElectronicsUnit):
     '''
     '''
     
-    dischargingEfficiency: Optional[ float | PerCent ] = field(
+    dischargingEfficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2262,7 +2276,7 @@ class BatteryUnit(PowerElectronicsUnit):
     '''
     '''
     
-    idlingP: Optional[ float | ActivePower ] = field(
+    idlingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2276,7 +2290,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Real power consumed while idling
     '''
     
-    idlingQ: Optional[ float | ReactivePower ] = field(
+    idlingQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2293,7 +2307,7 @@ class BatteryUnit(PowerElectronicsUnit):
     power (kvar) while idling. Default =
     '''
     
-    minimumE: Optional[ float | RealEnergy ] = field(
+    minimumE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2310,7 +2324,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Cannot be less than zero.
     '''
     
-    ratedE: Optional[ float | RealEnergy ] = field(
+    ratedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2391,7 +2405,7 @@ class TransformerTank(Equipment):
     and 3-phase transformers.
     '''
 
-    loadLoss: Optional[ float | ActivePower ] = field(
+    loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2405,7 +2419,7 @@ class TransformerTank(Equipment):
     Active power thermal loss at rated power
     '''
     
-    noLoadLoss: Optional[ float | ActivePower ] = field(
+    noLoadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2419,7 +2433,7 @@ class TransformerTank(Equipment):
     Active power thermal loss at no load
     '''
     
-    percentImpedance: Optional[ float | PerCent ] = field(
+    percentImpedance: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2435,7 +2449,7 @@ class TransformerTank(Equipment):
     also known as %Z or %IZ
     '''
     
-    percentMagnetizingCurrent: Optional[ float | PerCent ] = field(
+    percentMagnetizingCurrent: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2537,7 +2551,7 @@ class ShuntCompensatorPhase(PowerSystemResource):
     The value shall be between zero and ShuntCompensatorPhase.maximumSections.
     '''
     
-    nomQ: Optional[ float | ReactivePower ] = field(
+    nomQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2574,7 +2588,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2590,7 +2604,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     connected.
     '''
     
-    gPerSection: Optional[ float | Conductance ] = field(
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2627,7 +2641,7 @@ class SwitchPhase(PowerSystemResource):
     per phase.
     '''
 
-    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+    ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2770,7 +2784,7 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    stepVoltageIncrement: Optional[ float | PerCent ] = field(
+    stepVoltageIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2826,7 +2840,7 @@ class TransformerEnd(PowerSystemResource):
     within a star or mesh model.
     '''
 
-    rground: Optional[ float | Resistance ] = field(
+    rground: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2841,7 +2855,7 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
-    xground: Optional[ float | Reactance ] = field(
+    xground: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2943,7 +2957,7 @@ class PowerTransformerEnd(TransformerEnd):
     transformer end.
     '''
 
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2959,7 +2973,7 @@ class PowerTransformerEnd(TransformerEnd):
     the values for the high and low voltage sides shall be identical.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3030,7 +3044,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     ends are modelled the cardinalities are larger than 1.
     '''
 
-    cs: Optional[ float | Capacitance ] = field(
+    cs: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3046,7 +3060,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     often reported in pF in datasheets
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3061,7 +3075,7 @@ class TransformerMeshImpedance(IdentifiedObject):
     end.
     '''
     
-    x: Optional[ float | Reactance ] = field(
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3168,7 +3182,7 @@ class TransformerWinding(IdentifiedObject):
     polarity.
     '''
 
-    baseS: Optional[ float | ApparentPower ] = field(
+    baseS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3185,7 +3199,7 @@ class TransformerWinding(IdentifiedObject):
     winding is used as the basis for both secondary windings.
     '''
     
-    baseU: Optional[ float | Voltage ] = field(
+    baseU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3205,7 +3219,7 @@ class TransformerWinding(IdentifiedObject):
     The attribute shall be a positive value.
     '''
     
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3219,7 +3233,7 @@ class TransformerWinding(IdentifiedObject):
     AC resistance of the individual winding
     '''
     
-    ratedS: Optional[ float | ApparentPower ] = field(
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3235,7 +3249,7 @@ class TransformerWinding(IdentifiedObject):
     the values for the high and low voltage sides shall be identical.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3252,7 +3266,7 @@ class TransformerWinding(IdentifiedObject):
     transformer or reactor [source: IEV 421-04-01]
     '''
     
-    rDC: Optional[ float | Resistance ] = field(
+    rDC: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3468,7 +3482,7 @@ class PhaseImpedanceData(Identity):
     or WirePosition, which then identifies the phase for this entry.
     '''
     
-    b: Optional[ float | SusceptancePerLength ] = field(
+    b: Optional[ SusceptancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3496,7 +3510,7 @@ class PhaseImpedanceData(Identity):
     Refer to the class description.
     '''
     
-    g: Optional[ float | ConductancePerLength ] = field(
+    g: Optional[ ConductancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3510,7 +3524,7 @@ class PhaseImpedanceData(Identity):
     Conductance matrix entry value, per length of unit.
     '''
     
-    r: Optional[ float | ResistancePerLength ] = field(
+    r: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3538,7 +3552,7 @@ class PhaseImpedanceData(Identity):
     Refer to the class description.
     '''
     
-    x: Optional[ float | ReactancePerLength ] = field(
+    x: Optional[ ReactancePerLength ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3591,7 +3605,7 @@ class Switch(Identity):
     and .locked are relevant.
     '''
 
-    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+    ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3641,7 +3655,7 @@ class ProtectedSwitch(Switch):
     A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
     '''
 
-    breakingCapacity: Optional[ float | CurrentFlow ] = field(
+    breakingCapacity: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3656,7 +3670,7 @@ class ProtectedSwitch(Switch):
     prescribed conditions of use.
     '''
     
-    makingCapacity: Optional[ float | CurrentFlow ] = field(
+    makingCapacity: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

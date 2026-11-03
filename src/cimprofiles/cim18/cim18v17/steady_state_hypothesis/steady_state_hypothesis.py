@@ -131,7 +131,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     A single phase of an energy consumer.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -148,7 +148,7 @@ class EnergyConsumerPhase(PowerSystemResource):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -282,6 +282,89 @@ class ConductingEquipment(Equipment):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
+class Conductor(ConductingEquipment):
+    '''
+    Combination of conducting material with consistent electrical characteristics,
+    building a single electrical system, used to carry current between points
+    in the power system.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ACLineSegment(Conductor):
+    '''
+    A line segment is a conductor or combination of conductors, with consistent
+    electrical characteristics along its length, building a single electrical
+    system that carries alternating current between two points in the power
+    system.
+    The BaseVoltage at the two ends of a line segment shall have the same BaseVoltage.nominalVoltage.
+    However, boundary lines may have slightly different BaseVoltage.nominalVoltages
+    and variation is allowed. Larger voltage difference in general requires
+    use of an equivalent branch.
+    Line segment impedances can be either directly described in electrical
+    terms or physical line detail can be provided from which impedances can
+    be calculated.
+    <b>Directly described impedances</b>
+    For symmetrical, transposed three phase line segments, it is sufficient
+    to use attributes of the line segment, which describe impedances and admittances
+    for the entire length of the line segment. Additionally, line segment impedances
+    can be computed by using line segment length and associated per length
+    impedances.
+    Unbalanced modeling of impedances is supported by the per length phase
+    impedance matrix (PerLengthPhaseImpedance) in conjunction with phase-to-sequence
+    number mapping supplied by either ACLineSegmentPhase or WirePosition. The
+    sequence numbers are referenced by the row and column attributes of the
+    per length phase impedance matrix. This method enables single-phase and
+    two-phase line segments, and transpositions of phases, to be described
+    using the same per length phase impedance matrix. The length of the line
+    segment is used in the computation of total impedance values for the line
+    segment.
+    <b>Line detail characteristics</b>
+    There are three approaches to providing line detail and all use WireAssembly
+    to supply line positions:
+    <ul>
+    <li>Option 1 - WireAssembly supplies only line positions. ACLineSegmentPhase
+    points to wire type and intraphase spacing and supplies the phase-to-sequence
+    number mapping.</li>
+    <li>Option 2 - WireAssembly supplies line position and, for each position,
+    also supplies wire type and intraphase spacing. ACLineSegmentPhase supplies
+    the phase-to-sequence number mapping.</li>
+    <li>Option 3 - WireAssembly supplies line position and, for each position,
+    also supplies wire type and intraphase spacing and phase. WireAssembly
+    therefore supplies the phase-to-sequence number mapping and ACLineSegmentPhase
+    is not needed.</li>
+    </ul>
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class EnergyConnection(ConductingEquipment):
     '''
     A connection of energy generation or consumption on the power system model.
@@ -313,7 +396,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -330,7 +413,7 @@ class EnergyConsumer(EnergyConnection):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -370,7 +453,7 @@ class EnergySource(EnergyConnection):
     voltage level.
     '''
 
-    activePower: Optional[ float | ActivePower ] = field(
+    activePower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -386,7 +469,7 @@ class EnergySource(EnergyConnection):
     Starting value for steady state solutions.
     '''
     
-    reactivePower: Optional[ float | ReactivePower ] = field(
+    reactivePower: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -402,7 +485,7 @@ class EnergySource(EnergyConnection):
     Starting value for steady state solutions.
     '''
     
-    voltageAngle: Optional[ float | AngleRadians ] = field(
+    voltageAngle: Optional[ AngleRadians ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -420,7 +503,7 @@ class EnergySource(EnergyConnection):
     shall be a positive value or zero.
     '''
     
-    voltageMagnitude: Optional[ float | Voltage ] = field(
+    voltageMagnitude: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -481,7 +564,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -497,7 +580,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -550,7 +633,7 @@ class RotatingMachine(RegulatingCondEq):
     A rotating machine which may be used as a generator or motor.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -566,7 +649,7 @@ class RotatingMachine(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1079,7 +1162,7 @@ class BatteryUnit(PowerElectronicsUnit):
     The current state of the battery (charging, full, etc.).
     '''
     
-    storedE: Optional[ float | RealEnergy ] = field(
+    storedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1203,7 +1286,7 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     A single phase of a power electronics connection.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1218,7 +1301,7 @@ class PowerElectronicsConnectionPhase(PowerSystemResource):
     sign means flow into the equipment from the network.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

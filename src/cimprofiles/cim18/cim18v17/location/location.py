@@ -68,7 +68,7 @@ class Circle(GeometricElement):
     be excluded from the area within the outer radius, forming a ring shape.
     '''
 
-    innerRadius: Optional[ float | Length ] = field(
+    innerRadius: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -84,7 +84,7 @@ class Circle(GeometricElement):
     radius, forming a ring shape.
     '''
     
-    outerRadius: Optional[ float | Length ] = field(
+    outerRadius: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -898,7 +898,7 @@ class RelativeHeight(Identity):
     �Ground Level�, �Pole Top�, �Tower Top�, etc.
     '''
     
-    verticalOffset: Optional[ float | Length ] = field(
+    verticalOffset: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

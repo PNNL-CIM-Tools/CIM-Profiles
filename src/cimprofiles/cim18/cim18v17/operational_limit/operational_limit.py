@@ -291,7 +291,7 @@ class BranchGroup(IdentifiedObject):
     Monitor the reactive power flow.
     '''
     
-    maximumActivePower: Optional[ float | ActivePower ] = field(
+    maximumActivePower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -305,7 +305,7 @@ class BranchGroup(IdentifiedObject):
     The maximum active power flow.
     '''
     
-    maximumReactivePower: Optional[ float | ReactivePower ] = field(
+    maximumReactivePower: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -319,7 +319,7 @@ class BranchGroup(IdentifiedObject):
     The maximum reactive power flow.
     '''
     
-    minimumActivePower: Optional[ float | ActivePower ] = field(
+    minimumActivePower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -333,7 +333,7 @@ class BranchGroup(IdentifiedObject):
     The minimum active power flow.
     '''
     
-    minimumReactivePower: Optional[ float | ReactivePower ] = field(
+    minimumReactivePower: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -455,7 +455,7 @@ class ActivePowerLimit(OperationalLimit):
     Limit on active power flow.
     '''
 
-    normalValue: Optional[ float | ActivePower ] = field(
+    normalValue: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -470,7 +470,7 @@ class ActivePowerLimit(OperationalLimit):
     value or zero.
     '''
     
-    value: Optional[ float | ActivePower ] = field(
+    value: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -505,7 +505,7 @@ class ApparentPowerLimit(OperationalLimit):
     Apparent power limit.
     '''
 
-    normalValue: Optional[ float | ApparentPower ] = field(
+    normalValue: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -520,7 +520,7 @@ class ApparentPowerLimit(OperationalLimit):
     value or zero.
     '''
     
-    value: Optional[ float | ApparentPower ] = field(
+    value: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -555,7 +555,7 @@ class CurrentLimit(OperationalLimit):
     Operational limit on current.
     '''
 
-    normalValue: Optional[ float | CurrentFlow ] = field(
+    normalValue: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -570,7 +570,7 @@ class CurrentLimit(OperationalLimit):
     a positive value or zero.
     '''
     
-    value: Optional[ float | CurrentFlow ] = field(
+    value: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -622,7 +622,7 @@ class VoltageAngleLimit(OperationalLimit):
     When it is not given, the limit is the same for both directions.
     '''
     
-    normalValue: Optional[ float | AngleDegrees ] = field(
+    normalValue: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -639,7 +639,7 @@ class VoltageAngleLimit(OperationalLimit):
     shall be positive (greater than zero).
     '''
     
-    value: Optional[ float | AngleDegrees ] = field(
+    value: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -693,7 +693,7 @@ class VoltageLimit(OperationalLimit):
     at VoltageLevel. The operational VoltageLimits are used, if present.
     '''
 
-    normalValue: Optional[ float | Voltage ] = field(
+    normalValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -709,7 +709,7 @@ class VoltageLimit(OperationalLimit):
     shall be a positive value or zero.
     '''
     
-    value: Optional[ float | Voltage ] = field(
+    value: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -849,7 +849,7 @@ class OperationalLimitType(IdentifiedObject):
     attribute shall be absoluteValue.
     '''
     
-    acceptableDuration: Optional[ float | Seconds ] = field(
+    acceptableDuration: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

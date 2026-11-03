@@ -175,7 +175,7 @@ class CurrentDroopOverride(Identity):
     false.
     '''
     
-    offsetCapacitiveI: Optional[ float | CurrentFlow ] = field(
+    offsetCapacitiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -189,7 +189,7 @@ class CurrentDroopOverride(Identity):
     Offset in capacitive region.
     '''
     
-    offsetInductiveI: Optional[ float | CurrentFlow ] = field(
+    offsetInductiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -203,7 +203,7 @@ class CurrentDroopOverride(Identity):
     Offset in capacitive region.
     '''
     
-    targetValueCapacitiveI: Optional[ float | CurrentFlow ] = field(
+    targetValueCapacitiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -217,7 +217,7 @@ class CurrentDroopOverride(Identity):
     Setpoint when control is active in capacitive region.
     '''
     
-    targetValueInductiveI: Optional[ float | CurrentFlow ] = field(
+    targetValueInductiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -815,7 +815,7 @@ class ReactiveCapabilityCurve(Curve):
     the Y2 axis values represent reactive maximum.
     '''
 
-    coolantTemperature: Optional[ float | Temperature ] = field(
+    coolantTemperature: Optional[ Temperature ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -830,7 +830,7 @@ class ReactiveCapabilityCurve(Curve):
     water).
     '''
     
-    hydrogenPressure: Optional[ float | Pressure ] = field(
+    hydrogenPressure: Optional[ Pressure ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -844,7 +844,7 @@ class ReactiveCapabilityCurve(Curve):
     The hydrogen coolant pressure.
     '''
     
-    referenceVoltage: Optional[ float | Voltage ] = field(
+    referenceVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1056,7 +1056,7 @@ class ControlFunctionBlock(FunctionBlock):
     is 2 kV the range is from 99 to 101 kV.
     '''
     
-    maxAllowedTargetValue: Optional[ float | PerCent ] = field(
+    maxAllowedTargetValue: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1071,7 +1071,7 @@ class ControlFunctionBlock(FunctionBlock):
     The allowed value range is [0,100].
     '''
     
-    minAllowedTargetValue: Optional[ float | PerCent ] = field(
+    minAllowedTargetValue: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1086,7 +1086,7 @@ class ControlFunctionBlock(FunctionBlock):
     The allowed value range is [0,100].
     '''
     
-    normalMaxAllowedTargetValue: Optional[ float | PerCent ] = field(
+    normalMaxAllowedTargetValue: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1102,7 +1102,7 @@ class ControlFunctionBlock(FunctionBlock):
     The allowed value range is [0,100].
     '''
     
-    normalMinAllowedTargetValue: Optional[ float | PerCent ] = field(
+    normalMinAllowedTargetValue: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1168,7 +1168,7 @@ class ACEmulationControlFunction(ControlFunctionBlock):
     is the active power transfer at steady state.
     '''
     
-    referenceP: Optional[ float | ActivePower ] = field(
+    referenceP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1183,7 +1183,7 @@ class ACEmulationControlFunction(ControlFunctionBlock):
     of the AC emulation control.
     '''
     
-    timeConstant: Optional[ float | Seconds ] = field(
+    timeConstant: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1222,7 +1222,7 @@ class ActivePowerControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target active power.
     '''
 
-    targetValue: Optional[ float | ActivePower ] = field(
+    targetValue: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1258,7 +1258,7 @@ class CurrentControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target current.
     '''
 
-    targetValue: Optional[ float | CurrentFlow ] = field(
+    targetValue: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1322,7 +1322,7 @@ class CurrentDroopControlFunction(ControlFunctionBlock):
     Droop in inductive region. The unit is V/A.
     '''
     
-    offsetCapacitive: Optional[ float | CurrentFlow ] = field(
+    offsetCapacitive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1336,7 +1336,7 @@ class CurrentDroopControlFunction(ControlFunctionBlock):
     Offset in capacitive region.
     '''
     
-    offsetInductive: Optional[ float | CurrentFlow ] = field(
+    offsetInductive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1350,7 +1350,7 @@ class CurrentDroopControlFunction(ControlFunctionBlock):
     Offset in capacitive region.
     '''
     
-    targetValueCapacitive: Optional[ float | CurrentFlow ] = field(
+    targetValueCapacitive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1364,7 +1364,7 @@ class CurrentDroopControlFunction(ControlFunctionBlock):
     Setpoint when control is active in capacitive region.
     '''
     
-    targetValueInductive: Optional[ float | CurrentFlow ] = field(
+    targetValueInductive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1399,7 +1399,7 @@ class DCCurrentControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target current.
     '''
 
-    droop: Optional[ float | PU ] = field(
+    droop: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1414,7 +1414,7 @@ class DCCurrentControlFunction(ControlFunctionBlock):
     The attribute shall be a positive value.
     '''
     
-    droopCompensation: Optional[ float | Resistance ] = field(
+    droopCompensation: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1429,7 +1429,7 @@ class DCCurrentControlFunction(ControlFunctionBlock):
     voltage at a distant bus. The attribute shall be a positive value.
     '''
     
-    targetValue: Optional[ float | CurrentFlow ] = field(
+    targetValue: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1465,7 +1465,7 @@ class DCVoltageControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target voltage.
     '''
 
-    targetValue: Optional[ float | Voltage ] = field(
+    targetValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1516,7 +1516,7 @@ class FrequencyControlFunction(ControlFunctionBlock):
     to achieve by adjusting the operational setting to the controlled equipment.
     '''
     
-    targetValue: Optional[ float | Frequency ] = field(
+    targetValue: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1552,7 +1552,7 @@ class ImpedanceControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target impedance.
     '''
 
-    targetValue: Optional[ float | Impedance ] = field(
+    targetValue: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1588,7 +1588,7 @@ class PhaseControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target voltage.
     '''
 
-    targetValue: Optional[ float | AngleDegrees ] = field(
+    targetValue: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1661,7 +1661,7 @@ class ReactivePowerControlFunction(ControlFunctionBlock):
     power.
     '''
 
-    targetValue: Optional[ float | ReactivePower ] = field(
+    targetValue: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1697,7 +1697,7 @@ class VoltageControlFunction(ControlFunctionBlock):
     point of the controlled equipment to achieve the target voltage.
     '''
 
-    targetValue: Optional[ float | Voltage ] = field(
+    targetValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1734,7 +1734,7 @@ class VoltageInjectionControlFunction(ControlFunctionBlock):
     injection. The controlled point is the Terminal with sequenceNumber =1.
     '''
 
-    targetValue: Optional[ float | Voltage ] = field(
+    targetValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3031,7 +3031,7 @@ class TapChangerControl(RegulatingControl):
     '''
     '''
     
-    lineDropR: Optional[ float | Resistance ] = field(
+    lineDropR: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3046,7 +3046,7 @@ class TapChangerControl(RegulatingControl):
     flow.
     '''
     
-    lineDropX: Optional[ float | Reactance ] = field(
+    lineDropX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3061,7 +3061,7 @@ class TapChangerControl(RegulatingControl):
     flow.
     '''
     
-    maxLimitVoltage: Optional[ float | Voltage ] = field(
+    maxLimitVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3079,7 +3079,7 @@ class TapChangerControl(RegulatingControl):
     then TapChanger.ptRatio must be supplied.
     '''
     
-    minLimitVoltage: Optional[ float | Voltage ] = field(
+    minLimitVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3097,7 +3097,7 @@ class TapChangerControl(RegulatingControl):
     then TapChanger.ptRatio must be supplied.
     '''
     
-    reverseLineDropR: Optional[ float | Resistance ] = field(
+    reverseLineDropR: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3111,7 +3111,7 @@ class TapChangerControl(RegulatingControl):
     Line drop compensator resistance setting for reverse power flow.
     '''
     
-    reverseLineDropX: Optional[ float | Reactance ] = field(
+    reverseLineDropX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3125,7 +3125,7 @@ class TapChangerControl(RegulatingControl):
     Line drop compensator reactance setting for reverse power flow.
     '''
     
-    reversingDelay: Optional[ float | Seconds ] = field(
+    reversingDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3138,7 +3138,7 @@ class TapChangerControl(RegulatingControl):
     '''
     '''
     
-    reversingPowerThreshold: Optional[ float | ActivePower ] = field(
+    reversingPowerThreshold: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3221,7 +3221,7 @@ class SSSCController(EquipmentController):
     The controller of a Static synchronous series compensator (SSSC).
     '''
 
-    maxInjectionU: Optional[ float | Voltage ] = field(
+    maxInjectionU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3235,7 +3235,7 @@ class SSSCController(EquipmentController):
     Maximum voltage that the device can inject.
     '''
     
-    maxLimitI: Optional[ float | CurrentFlow ] = field(
+    maxLimitI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3250,7 +3250,7 @@ class SSSCController(EquipmentController):
     by any of the available control functions.
     '''
     
-    minInjectionU: Optional[ float | Voltage ] = field(
+    minInjectionU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3264,7 +3264,7 @@ class SSSCController(EquipmentController):
     Minimum voltage that the device can inject.
     '''
     
-    minLimitI: Optional[ float | CurrentFlow ] = field(
+    minLimitI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3498,7 +3498,7 @@ class AreaInterchangeController(SystemControl):
     Area interchange control is set to control active power of an area.
     '''
 
-    pTolerance: Optional[ float | ActivePower ] = field(
+    pTolerance: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3643,7 +3643,7 @@ class ControlArea(PowerSystemResource):
     flag FALSE.
     '''
 
-    netInterchange: Optional[ float | ActivePower ] = field(
+    netInterchange: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3658,7 +3658,7 @@ class ControlArea(PowerSystemResource):
     positive sign means flow into the area.
     '''
     
-    pTolerance: Optional[ float | ActivePower ] = field(
+    pTolerance: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3812,7 +3812,7 @@ class DCTieCorridor(PowerSystemResource):
     control areas.
     '''
 
-    maxRegulatingReserve: Optional[ float | ActivePower ] = field(
+    maxRegulatingReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3826,7 +3826,7 @@ class DCTieCorridor(PowerSystemResource):
     Maximum regulating reserve.
     '''
     
-    minRegulatingReserve: Optional[ float | ActivePower ] = field(
+    minRegulatingReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3840,7 +3840,7 @@ class DCTieCorridor(PowerSystemResource):
     Minimum regulating reserve.
     '''
     
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3857,7 +3857,7 @@ class DCTieCorridor(PowerSystemResource):
     power flow model is used.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4192,7 +4192,7 @@ class StaticVarCompensator(FACTSEquipment):
     is zero.
     '''
 
-    capacitiveRating: Optional[ float | Reactance ] = field(
+    capacitiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4207,7 +4207,7 @@ class StaticVarCompensator(FACTSEquipment):
     be positive.
     '''
     
-    inductiveRating: Optional[ float | Reactance ] = field(
+    inductiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4222,7 +4222,7 @@ class StaticVarCompensator(FACTSEquipment):
     be negative.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4238,7 +4238,7 @@ class StaticVarCompensator(FACTSEquipment):
     Starting value for a steady state solution.
     '''
     
-    slope: Optional[ float | VoltagePerReactivePower ] = field(
+    slope: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4269,7 +4269,7 @@ class StaticVarCompensator(FACTSEquipment):
     SVC control mode.
     '''
     
-    voltageSetPoint: Optional[ float | Voltage ] = field(
+    voltageSetPoint: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4648,7 +4648,7 @@ class TapChanger(PowerSystemResource):
     or less than highStep.
     '''
     
-    initialDelay: Optional[ float | Seconds ] = field(
+    initialDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4663,7 +4663,7 @@ class TapChanger(PowerSystemResource):
     change).
     '''
     
-    neutralU: Optional[ float | Voltage ] = field(
+    neutralU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4698,7 +4698,7 @@ class TapChanger(PowerSystemResource):
     '''
     '''
     
-    subsequentDelay: Optional[ float | Seconds ] = field(
+    subsequentDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4841,7 +4841,7 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     The voltage magnitude of both sides is the same.
     '''
 
-    stepPhaseShiftIncrement: Optional[ float | AngleDegrees ] = field(
+    stepPhaseShiftIncrement: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4860,7 +4860,7 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     if those are available.
     '''
     
-    xMax: Optional[ float | Reactance ] = field(
+    xMax: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4899,7 +4899,7 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     61970-301.
     '''
 
-    voltageStepIncrement: Optional[ float | PerCent ] = field(
+    voltageStepIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4919,7 +4919,7 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     step increases.
     '''
     
-    xMax: Optional[ float | Reactance ] = field(
+    xMax: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -4961,7 +4961,7 @@ class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
     magnitude and the winding connection angle.
     '''
 
-    windingConnectionAngle: Optional[ float | AngleDegrees ] = field(
+    windingConnectionAngle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5065,7 +5065,7 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    stepVoltageIncrement: Optional[ float | PerCent ] = field(
+    stepVoltageIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5303,7 +5303,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     The tap step.
     '''
     
-    angle: Optional[ float | AngleDegrees ] = field(
+    angle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5319,7 +5319,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     the TapChanger is located, into the transformer.
     '''
     
-    rEnd1: Optional[ float | PerCent ] = field(
+    rEnd1: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5338,7 +5338,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    rEnd2: Optional[ float | PerCent ] = field(
+    rEnd2: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5357,7 +5357,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    rEnd3: Optional[ float | PerCent ] = field(
+    rEnd3: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5376,7 +5376,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    xEnd1: Optional[ float | PerCent ] = field(
+    xEnd1: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5395,7 +5395,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    xEnd2: Optional[ float | PerCent ] = field(
+    xEnd2: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5414,7 +5414,7 @@ class ImpedanceTapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    xEnd3: Optional[ float | PerCent ] = field(
+    xEnd3: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5591,7 +5591,7 @@ class SSSCSimulationSettings(Identity):
     sure low-currents are observed on various consecutive iterations.
     '''
     
-    deltaX: Optional[ float | Reactance ] = field(
+    deltaX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5608,7 +5608,7 @@ class SSSCSimulationSettings(Identity):
     or subtracting this �delta�. The �seed� is assumed to be 0 ohms.
     '''
     
-    maxCorrectionX: Optional[ float | Reactance ] = field(
+    maxCorrectionX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5624,7 +5624,7 @@ class SSSCSimulationSettings(Identity):
     control target value.
     '''
     
-    maxMismatch: Optional[ float | Voltage ] = field(
+    maxMismatch: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5709,7 +5709,7 @@ class TCSCCompensationPoint(Identity):
     The number of the section.
     '''
     
-    compensationZ: Optional[ float | Impedance ] = field(
+    compensationZ: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5790,7 +5790,7 @@ class TapChangerTablePoint(Identity):
     The tap step.
     '''
     
-    b: Optional[ float | PerCent ] = field(
+    b: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5809,7 +5809,7 @@ class TapChangerTablePoint(Identity):
     the star impedance (pi model) form.
     '''
     
-    g: Optional[ float | PerCent ] = field(
+    g: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5829,7 +5829,7 @@ class TapChangerTablePoint(Identity):
     not constrained to 100 percent.
     '''
     
-    r: Optional[ float | PerCent ] = field(
+    r: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5849,7 +5849,7 @@ class TapChangerTablePoint(Identity):
     100 percent.
     '''
     
-    x: Optional[ float | PerCent ] = field(
+    x: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5889,7 +5889,7 @@ class PhaseTapChangerTablePoint(TapChangerTablePoint):
     Describes each tap step in the phase tap changer tabular curve.
     '''
 
-    angle: Optional[ float | AngleDegrees ] = field(
+    angle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

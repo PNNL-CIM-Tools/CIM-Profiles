@@ -383,6 +383,15 @@
     <rdfs:label>tier4_steady_state_hypothesis</rdfs:label>
     <owl:imports rdf:resource="http://cim.ucaiug.io/cim101/draft"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ACLineSegment"/>
+    <rdfs:subClassOf rdf:resource="#ACLineSegment"/>
+    <rdfs:subClassOf rdf:resource="#Conductor"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#ActivePower">
     <rdfs:label>ActivePower</rdfs:label>
   </rdf:Description>
@@ -436,6 +445,11 @@
     <rdfs:label>ConductingEquipment</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConductingEquipment"/>
     <rdfs:subClassOf rdf:resource="#Equipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Conductor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductor"/>
+    <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Disconnector">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>

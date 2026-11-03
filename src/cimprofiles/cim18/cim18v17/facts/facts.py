@@ -105,7 +105,7 @@ class CurrentDroopOverride(Identity):
     false.
     '''
     
-    offsetCapacitiveI: Optional[ float | CurrentFlow ] = field(
+    offsetCapacitiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -119,7 +119,7 @@ class CurrentDroopOverride(Identity):
     Offset in capacitive region.
     '''
     
-    offsetInductiveI: Optional[ float | CurrentFlow ] = field(
+    offsetInductiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -133,7 +133,7 @@ class CurrentDroopOverride(Identity):
     Offset in capacitive region.
     '''
     
-    targetValueCapacitiveI: Optional[ float | CurrentFlow ] = field(
+    targetValueCapacitiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -147,7 +147,7 @@ class CurrentDroopOverride(Identity):
     Setpoint when control is active in capacitive region.
     '''
     
-    targetValueInductiveI: Optional[ float | CurrentFlow ] = field(
+    targetValueInductiveI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -493,7 +493,7 @@ class CurrentDroopControlFunction(IdentifiedObject):
     Droop in inductive region. The unit is V/A.
     '''
     
-    offsetCapacitive: Optional[ float | CurrentFlow ] = field(
+    offsetCapacitive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -507,7 +507,7 @@ class CurrentDroopControlFunction(IdentifiedObject):
     Offset in capacitive region.
     '''
     
-    offsetInductive: Optional[ float | CurrentFlow ] = field(
+    offsetInductive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -521,7 +521,7 @@ class CurrentDroopControlFunction(IdentifiedObject):
     Offset in capacitive region.
     '''
     
-    targetValueCapacitive: Optional[ float | CurrentFlow ] = field(
+    targetValueCapacitive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -535,7 +535,7 @@ class CurrentDroopControlFunction(IdentifiedObject):
     Setpoint when control is active in capacitive region.
     '''
     
-    targetValueInductive: Optional[ float | CurrentFlow ] = field(
+    targetValueInductive: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -831,7 +831,7 @@ class SSSCController(EquipmentController):
     The controller of a Static synchronous series compensator (SSSC).
     '''
 
-    maxInjectionU: Optional[ float | Voltage ] = field(
+    maxInjectionU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -845,7 +845,7 @@ class SSSCController(EquipmentController):
     Maximum voltage that the device can inject.
     '''
     
-    maxLimitI: Optional[ float | CurrentFlow ] = field(
+    maxLimitI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -860,7 +860,7 @@ class SSSCController(EquipmentController):
     by any of the available control functions.
     '''
     
-    minInjectionU: Optional[ float | Voltage ] = field(
+    minInjectionU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -874,7 +874,7 @@ class SSSCController(EquipmentController):
     Minimum voltage that the device can inject.
     '''
     
-    minLimitI: Optional[ float | CurrentFlow ] = field(
+    minLimitI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1101,7 +1101,7 @@ class FACTSEquipment(RegulatingCondEq):
     Flexible Alternating Current Transmission System regulating equipment.
     '''
 
-    maxC: Optional[ float | Reactance ] = field(
+    maxC: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1115,7 +1115,7 @@ class FACTSEquipment(RegulatingCondEq):
     Capacitive reactance at maximum reactive power. Shall always be positive.
     '''
     
-    maxL: Optional[ float | Reactance ] = field(
+    maxL: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1130,7 +1130,7 @@ class FACTSEquipment(RegulatingCondEq):
     be negative.
     '''
     
-    minC: Optional[ float | Reactance ] = field(
+    minC: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1144,7 +1144,7 @@ class FACTSEquipment(RegulatingCondEq):
     Capacitive reactance at minimum reactive power. Shall always be positive.
     '''
     
-    minL: Optional[ float | Reactance ] = field(
+    minL: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1159,7 +1159,7 @@ class FACTSEquipment(RegulatingCondEq):
     be negative.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1175,7 +1175,7 @@ class FACTSEquipment(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    ratedC: Optional[ float | Reactance ] = field(
+    ratedC: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1189,7 +1189,7 @@ class FACTSEquipment(RegulatingCondEq):
     Capacitive reactance at maximum reactive power. Shall always be positive.
     '''
     
-    ratedI: Optional[ float | CurrentFlow ] = field(
+    ratedI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1203,7 +1203,7 @@ class FACTSEquipment(RegulatingCondEq):
     Rated current of the FACTS equipment.
     '''
     
-    ratedL: Optional[ float | Reactance ] = field(
+    ratedL: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1218,7 +1218,7 @@ class FACTSEquipment(RegulatingCondEq):
     be negative.
     '''
     
-    ratedU: Optional[ float | Voltage ] = field(
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1232,7 +1232,7 @@ class FACTSEquipment(RegulatingCondEq):
     Rated voltage of the FACTS equipment.
     '''
     
-    slope: Optional[ float | VoltagePerReactivePower ] = field(
+    slope: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1344,7 +1344,7 @@ class StaticVarCompensator(FACTSEquipment):
     is zero.
     '''
 
-    capacitiveRating: Optional[ float | Reactance ] = field(
+    capacitiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1359,7 +1359,7 @@ class StaticVarCompensator(FACTSEquipment):
     be positive.
     '''
     
-    inductiveRating: Optional[ float | Reactance ] = field(
+    inductiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1374,7 +1374,7 @@ class StaticVarCompensator(FACTSEquipment):
     be negative.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1390,7 +1390,7 @@ class StaticVarCompensator(FACTSEquipment):
     Starting value for a steady state solution.
     '''
     
-    slope: Optional[ float | VoltagePerReactivePower ] = field(
+    slope: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1421,7 +1421,7 @@ class StaticVarCompensator(FACTSEquipment):
     SVC control mode.
     '''
     
-    voltageSetPoint: Optional[ float | Voltage ] = field(
+    voltageSetPoint: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1465,7 +1465,7 @@ class ThyristorControlledSeriesCompensator(FACTSEquipment):
     losses.
     '''
 
-    compensationZ: Optional[ float | Impedance ] = field(
+    compensationZ: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1482,7 +1482,7 @@ class ThyristorControlledSeriesCompensator(FACTSEquipment):
     the inductive rating.
     '''
     
-    flexibleCapacitiveZ: Optional[ float | Impedance ] = field(
+    flexibleCapacitiveZ: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1497,7 +1497,7 @@ class ThyristorControlledSeriesCompensator(FACTSEquipment):
     in the capacitive range. Shall always be positive.
     '''
     
-    flexibleInductiveZ: Optional[ float | Impedance ] = field(
+    flexibleInductiveZ: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1512,7 +1512,7 @@ class ThyristorControlledSeriesCompensator(FACTSEquipment):
     in the inductive range. Shall always be negative.
     '''
     
-    minI: Optional[ float | CurrentFlow ] = field(
+    minI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1526,7 +1526,7 @@ class ThyristorControlledSeriesCompensator(FACTSEquipment):
     Minimum current below which the device bypassed.
     '''
     
-    reconnectionI: Optional[ float | CurrentFlow ] = field(
+    reconnectionI: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1577,7 +1577,7 @@ class VoltageInjectionControlFunction(IdentifiedObject):
     injection. The controlled point is the Terminal with sequenceNumber =1.
     '''
 
-    targetValue: Optional[ float | Voltage ] = field(
+    targetValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1663,7 +1663,7 @@ class SSSCSimulationSettings(Identity):
     sure low-currents are observed on various consecutive iterations.
     '''
     
-    deltaX: Optional[ float | Reactance ] = field(
+    deltaX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1680,7 +1680,7 @@ class SSSCSimulationSettings(Identity):
     or subtracting this �delta�. The �seed� is assumed to be 0 ohms.
     '''
     
-    maxCorrectionX: Optional[ float | Reactance ] = field(
+    maxCorrectionX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1696,7 +1696,7 @@ class SSSCSimulationSettings(Identity):
     control target value.
     '''
     
-    maxMismatch: Optional[ float | Voltage ] = field(
+    maxMismatch: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1781,7 +1781,7 @@ class TCSCCompensationPoint(Identity):
     The number of the section.
     '''
     
-    compensationZ: Optional[ float | Impedance ] = field(
+    compensationZ: Optional[ Impedance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

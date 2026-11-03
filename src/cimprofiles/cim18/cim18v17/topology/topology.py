@@ -88,6 +88,57 @@ class IdentifiedObject(Identity):
     identification and naming attributes.
     '''
 
+    mRID: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Master resource identifier issued by a model authority. The mRID is
+    unique within an exchange context. Global uniqueness is easily achieved
+    by using a UUID, as specified in IETF RFC 4122, for the mRID. The use
+    of UUID is strongly recommended.
+    For CIMXML data files in RDF syntax conforming to IEC 61970-552, the
+    mRID is mapped to rdf:ID or rdf:about attributes that identify CIM
+    object elements.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The description is a free human readable text describing or naming
+    the object. It may be non unique and may not correlate to a naming
+    hierarchy.
+    '''
+    
+    name: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The name is any free human readable and possibly non unique text naming
+    the object.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -219,6 +270,82 @@ class BaseVoltage(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BusNameMarker(IdentifiedObject):
+    '''
+    Used to apply user standard names to TopologicalNodes. Associated with
+    one or more terminals that are normally connected with the bus name. The
+    associated terminals are normally connected by non-retained switches. For
+    a ring bus station configuration, all BusbarSection terminals in the ring
+    are typically associated. For a breaker and a half scheme, both BusbarSections
+    would normally be associated. For a ring bus, all BusbarSections would
+    normally be associated. For a "straight" busbar configuration, normally
+    only the main terminal at the BusbarSection would be associated.
+    '''
+
+    priority: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Priority of bus name marker for use as topology bus name. Use 0 for
+    do not care. Use 1 for highest priority. Use 2 as priority is less
+    than 1 and so on.
+    '''
+    
+    ReportingGroup: Optional[ReportingGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ReportingGroup.BusNameMarker',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The reporting group to which this bus name marker belongs.
+    '''
+    
+    TopologicalNode: Optional[TopologicalNode] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TopologicalNode.BusNameMarker',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    A user defined topological node that was originally defined in a planning
+    model not yet having topology described by ConnectivityNodes. Once
+    ConnectivityNodes have been created they may be linked to user defined
+    ToplogicalNodes using BusNameMarkers.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Topology'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -229,6 +356,22 @@ class ConnectivityNode(IdentifiedObject):
     are connected together with zero impedance.
     '''
 
+    TopologicalNode: Optional[TopologicalNode] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension', 'OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TopologicalNode.ConnectivityNodes',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The topological node to which this connectivity node is assigned. May
+    depend on the current state of switches in the network.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -300,6 +443,41 @@ class ConnectedArea(ConnectivityNodeContainer):
     @property
     def __package__(self):
         return 'TopologyEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ReportingGroup(IdentifiedObject):
+    '''
+    A reporting group is used for various ad-hoc groupings used for reporting.
+    '''
+
+    BusNameMarker: list[BusNameMarker] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BusNameMarker.ReportingGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The bus name markers that belong to this reporting group.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
     @property
     def __minOccurs__(self):
         return '0'
@@ -486,6 +664,7 @@ class TopologicalIsland(IdentifiedObject):
     
 @stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TopologicalNode(IdentifiedObject):
     '''
@@ -525,7 +704,7 @@ class TopologicalNode(IdentifiedObject):
     '''
     '''
     
-    pInjection: Optional[ float | ActivePower ] = field(
+    pInjection: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -542,7 +721,7 @@ class TopologicalNode(IdentifiedObject):
     Starting value for a steady state solution.
     '''
     
-    qInjection: Optional[ float | ReactivePower ] = field(
+    qInjection: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -557,6 +736,37 @@ class TopologicalNode(IdentifiedObject):
     to injections from equipment. Positive sign means injection into the
     TopologicalNode (bus).
     Starting value for a steady state solution.
+    '''
+    
+    BusNameMarker: list[BusNameMarker] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BusNameMarker.TopologicalNode',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    BusnameMarkers that may refer to a pre defined TopologicalNode.
+    '''
+    
+    ConnectivityNodes: list[ConnectivityNode] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConnectivityNode.TopologicalNode',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The connectivity nodes combine together to form this topological node.
+    May depend on the current state of switches in the network.
     '''
     
     Terminal: list[Terminal] = field(

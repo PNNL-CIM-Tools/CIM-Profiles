@@ -348,7 +348,7 @@ class BaseFrequency(IdentifiedObject):
     instance.
     '''
 
-    frequency: Optional[ float | Frequency ] = field(
+    frequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -382,7 +382,7 @@ class BasePower(IdentifiedObject):
     The BasePower class defines the base power used in the per unit calculations.
     '''
 
-    basePower: Optional[ float | ApparentPower ] = field(
+    basePower: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -418,7 +418,7 @@ class BaseVoltage(IdentifiedObject):
     than the rated voltage.
     '''
 
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1074,6 +1074,42 @@ class Feeder(EquipmentContainer):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Line(EquipmentContainer):
+    '''
+    Contains equipment beyond a substation belonging to a power transmission
+    line.
+    '''
+
+    Region: Optional[SubGeographicalRegion] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'SubGeographicalRegion.Lines',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The sub-geographical region of the line.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -1464,7 +1500,7 @@ class Clamp(ConductingEquipment):
     Clamp ConnectivityNode.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1516,7 +1552,7 @@ class Conductor(ConductingEquipment):
     in the power system.
     '''
 
-    length: Optional[ float | Length ] = field(
+    length: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1830,7 +1866,7 @@ class EnergySource(EnergyConnection):
     '''
     '''
     
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2411,7 +2447,7 @@ class Cut(Switch):
     equipment can be connected at them.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3392,7 +3428,7 @@ class TransformerPhaseEnd(TransformerEnd):
     to form the terminal-facing connection on this side of the transformer.
     '''
     
-    phaseNeutralU: Optional[ float | Voltage ] = field(
+    phaseNeutralU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3497,6 +3533,21 @@ class SubGeographicalRegion(IdentifiedObject):
     A subset of a geographical region of a power system network model.
     '''
 
+    Lines: list[Line] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Line.Region',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The lines within the sub-geographical region.
+    '''
+    
     Substations: list[Substation] = field(
         default_factory=list,
         metadata={

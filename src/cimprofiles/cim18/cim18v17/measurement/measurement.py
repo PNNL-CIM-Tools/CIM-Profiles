@@ -818,7 +818,7 @@ class MeasurementValue(IOPoint):
     The time when the value was last updated.
     '''
     
-    sensorAccuracy: Optional[ float | PerCent ] = field(
+    sensorAccuracy: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2637,7 +2637,7 @@ class CurrentTransformer(Sensor):
     Intended usage of the CT; i.e. metering, protection.
     '''
     
-    accuracyLimit: Optional[ float | PerCent ] = field(
+    accuracyLimit: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2652,7 +2652,7 @@ class CurrentTransformer(Sensor):
     limits.
     '''
     
-    coreBurden: Optional[ float | ActivePower ] = field(
+    coreBurden: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2738,7 +2738,7 @@ class MeasurementSystem(PowerSystemResource):
     '''
     '''
 
-    reportingRate: Optional[ float | Frequency ] = field(
+    reportingRate: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3266,7 +3266,7 @@ class RemoteSource(RemotePoint):
     The minimum value the telemetry item can return.
     '''
     
-    scanInterval: Optional[ float | Seconds ] = field(
+    scanInterval: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3408,7 +3408,7 @@ class SynchrophaserFrame(IdentifiedObject):
     Frame synchronization word from IEEE c37.118
     '''
     
-    leapByte: Optional[ float | Seconds ] = field(
+    leapByte: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

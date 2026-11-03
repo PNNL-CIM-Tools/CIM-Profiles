@@ -59,7 +59,7 @@ class Anchor(Identity):
     Kind of anchor.
     '''
     
-    anchorRodLength: Optional[ float | Length ] = field(
+    anchorRodLength: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',

@@ -4,12 +4,14 @@
 '''
 from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis import (
     Identity,
+    ACLineSegment,
     AirBreakSwitch,
     AsynchronousMachine,
     BatteryStateKind,
     BatteryUnit,
     Breaker,
     ConductingEquipment,
+    Conductor,
     Disconnector,
     Elbow,
     EnergyConnection,
@@ -53,12 +55,14 @@ from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis 
 )
 __all__ = [
     'Identity',
+    'ACLineSegment' ,
     'AirBreakSwitch' ,
     'AsynchronousMachine' ,
     'BatteryStateKind' ,
     'BatteryUnit' ,
     'Breaker' ,
     'ConductingEquipment' ,
+    'Conductor' ,
     'Disconnector' ,
     'Elbow' ,
     'EnergyConnection' ,

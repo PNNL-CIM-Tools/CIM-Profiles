@@ -553,7 +553,7 @@ class SvDCPowerFlow(StateVariable):
     This means flow out from the DCTopologicalNode into the equipment is positive.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -604,7 +604,7 @@ class SvDCVoltage(StateVariable):
     State variable for direct current voltage.
     '''
 
-    v: Optional[ float | Voltage ] = field(
+    v: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -672,7 +672,7 @@ class SvInjection(StateVariable):
     the injection is assumed to be balanced among non-neutral phases.
     '''
     
-    pInjection: Optional[ float | ActivePower ] = field(
+    pInjection: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -687,7 +687,7 @@ class SvInjection(StateVariable):
     injection. Positive sign means injection into the TopologicalNode (bus).
     '''
     
-    qInjection: Optional[ float | ReactivePower ] = field(
+    qInjection: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -738,7 +738,7 @@ class SvPowerFlow(StateVariable):
     This means flow out from the TopologicalNode into the equipment is positive.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -769,7 +769,7 @@ class SvPowerFlow(StateVariable):
     balanced among phases.
     '''
     
-    q: Optional[ float | ReactivePower ] = field(
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1071,7 +1071,7 @@ class SvVoltage(StateVariable):
     State variable for voltage.
     '''
 
-    angle: Optional[ float | AngleDegrees ] = field(
+    angle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1101,7 +1101,7 @@ class SvVoltage(StateVariable):
     phase. If unspecified, then the voltage is assumed balanced.
     '''
     
-    v: Optional[ float | Voltage ] = field(
+    v: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
