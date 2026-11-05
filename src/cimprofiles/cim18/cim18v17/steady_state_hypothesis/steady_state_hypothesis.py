@@ -596,22 +596,6 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Starting value for a steady state solution.
     '''
     
-    PowerElectronicsUnit: list[PowerElectronicsUnit] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'PowerElectronicsUnit.PowerElectronicsConnection',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    An AC network connection may have several power electronics units connecting
-    through it.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -710,6 +694,34 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
+    condenserP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power consumed when in condenser mode operation.
+    '''
+    
+    operatingMode: Optional[ SynchronousMachineOperatingMode ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Current mode of operation.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1111,19 +1123,34 @@ class PowerElectronicsUnit(Equipment):
     using power electronics rather than rotating machines.
     '''
 
-    PowerElectronicsConnection: Optional[PowerElectronicsConnection] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'PowerElectronicsConnection.PowerElectronicsUnit',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    A power electronics unit has a connection to the AC network.
+    Active power injection. Load sign convention is used, i.e. positive
+    sign means flow into the equipment from the network.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Reactive power injection. Load sign convention is used, i.e. positive
+    sign means flow into the equipment from the network.
     '''
     
     @property
@@ -1545,6 +1572,40 @@ class BatteryStateKind(Enum):
     @property
     def __package__(self):
         return 'Production'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class SynchronousMachineOperatingMode(Enum):
+    '''
+    Synchronous machine operating mode.
+    '''
+
+    condenser = 'condenser'
+    '''
+    Operating as condenser.
+    '''
+    
+    generator = 'generator'
+    '''
+    Operating as generator.
+    '''
+    
+    motor = 'motor'
+    '''
+    Operating as motor.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'

@@ -381,6 +381,21 @@ class WireInfo(ConductingAssetInfo):
     '''
     '''
     
+    WireSequenceConfiguration: Optional[WireSequenceConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireSequenceConfiguration.WireInfo',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    Template position this wire info is used
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -495,6 +510,22 @@ class WireSequenceConfiguration(EquipmentConfiguration):
     '''
     '''
 
+    WireInfo: Optional[WireInfo] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireInfo.WireSequenceConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The wire info used within this sequence number location of the overall
+    template
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'

@@ -1539,6 +1539,94 @@ class AsynchronousMachine(RotatingMachine):
     the rotor windings, e.g. squirrel-cage induction machine.
     '''
 
+    polePairNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Number of pole pairs of stator. Used for short circuit data exchange
+    according to IEC 60909.
+    '''
+    
+    reversible: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates for converter drive motors if the power can be reversible.
+    Used for short circuit data exchange according to IEC 60909.
+    '''
+    
+    asynchronousMachineType: Optional[ AsynchronousMachineKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates the type of Asynchronous Machine (motor or generator).
+    '''
+    
+    efficiency: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Efficiency of the asynchronous machine at nominal operation as a percentage.
+    Indicator for converter drive motors. Used for short circuit data exchange
+    according to IEC 60909.
+    '''
+    
+    nominalFrequency: Optional[ Frequency ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Nameplate data indicates if the machine is 50 Hz or 60 Hz.
+    '''
+    
+    nominalSpeed: Optional[ RotationSpeed ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Nameplate data. Depends on the slip and number of pole pairs.
+    '''
+    
     ratedMechanicalPower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -1591,6 +1679,20 @@ class SynchronousMachine(RotatingMachine):
     for the unit.
     '''
     
+    maxU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum voltage limit for the unit.
+    '''
+    
     minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
@@ -1603,6 +1705,34 @@ class SynchronousMachine(RotatingMachine):
         })
     '''
     Minimum reactive power limit for the unit.
+    '''
+    
+    minU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum voltage limit for the unit.
+    '''
+    
+    type: Optional[ SynchronousMachineKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Modes that this synchronous machine can operate in.
     '''
     
     @property
@@ -2504,23 +2634,6 @@ class BatteryUnit(PowerElectronicsUnit):
         })
     '''
     Real power consumed while idling
-    '''
-    
-    idlingQ: Optional[ ReactivePower ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Reactive power consumed while idling
-    &lt;&lt;conversion note&gt;&gt;
-    DSS equivalent is %Idlingkvar, Percent of rated kW consumed as reactive
-    power (kvar) while idling. Default =
     '''
     
     minimumE: Optional[ RealEnergy ] = field(
@@ -3547,6 +3660,35 @@ class WireConfiguration(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.enumeration)
+class AsynchronousMachineKind(Enum):
+    '''
+    Kind of Asynchronous Machine.
+    '''
+
+    generator = 'generator'
+    '''
+    The Asynchronous Machine is a generator.
+    '''
+    
+    motor = 'motor'
+    '''
+    The Asynchronous Machine is a motor.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
 class ChargingModeKind(Enum):
@@ -3687,6 +3829,63 @@ class SinglePhaseKind(Enum):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class SynchronousMachineKind(Enum):
+    '''
+    Synchronous machine type.
+    '''
+
+    condenser = 'condenser'
+    '''
+    Indicates the synchronous machine can operate as a condenser.
+    '''
+    
+    generator = 'generator'
+    '''
+    Indicates the synchronous machine can operate as a generator.
+    '''
+    
+    generatorOrCondenser = 'generatorOrCondenser'
+    '''
+    Indicates the synchronous machine can operate as a generator or as
+    a condenser.
+    '''
+    
+    generatorOrCondenserOrMotor = 'generatorOrCondenserOrMotor'
+    '''
+    Indicates the synchronous machine can operate as a generator or as
+    a condenser or as a motor.
+    '''
+    
+    generatorOrMotor = 'generatorOrMotor'
+    '''
+    Indicates the synchronous machine can operate as a generator or as
+    a motor.
+    '''
+    
+    motor = 'motor'
+    '''
+    Indicates the synchronous machine can operate as a motor.
+    '''
+    
+    motorOrCondenser = 'motorOrCondenser'
+    '''
+    Indicates the synchronous machine can operate as a motor or as a condenser.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -4159,6 +4358,34 @@ class ResistancePerLength(CIMUnit):
     def unit(self):
         return UnitSymbol.ohmPerm
     def __init__(self, value, input_unit: str='ohmPerm', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class RotationSpeed(CIMUnit):
+    '''
+    Number of revolutions per second.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.Hz
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

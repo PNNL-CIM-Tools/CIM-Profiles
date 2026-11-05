@@ -17692,6 +17692,7 @@ class Equipment(PowerSystemResource):
     The operational limit sets associated with this equipment.
     '''
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CompositeSwitch(Equipment):
     '''
@@ -18633,6 +18634,7 @@ class Connector(ConductingEquipment):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class BusbarSection(Connector):
     '''
@@ -22216,6 +22218,36 @@ class PowerElectronicsUnit(Equipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    p: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power injection. Load sign convention is used, i.e. positive
+    sign means flow into the equipment from the network.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Reactive power injection. Load sign convention is used, i.e. positive
+    sign means flow into the equipment from the network.
+    '''
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
@@ -22265,23 +22297,6 @@ class BatteryUnit(PowerElectronicsUnit):
     Real power consumed while idling
     '''
     
-    idlingQ: Optional[ ReactivePower ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Reactive power consumed while idling
-    &lt;&lt;conversion note&gt;&gt;
-    DSS equivalent is %Idlingkvar, Percent of rated kW consumed as reactive
-    power (kvar) while idling. Default =
-    '''
-    
     minimumE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
@@ -22326,6 +22341,23 @@ class BatteryUnit(PowerElectronicsUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    idlingQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Reactive power consumed while idling
+    &lt;&lt;conversion note&gt;&gt;
+    DSS equivalent is %Idlingkvar, Percent of rated kW consumed as reactive
+    power (kvar) while idling. Default =
+    '''
     
     batteryState: Optional[ BatteryStateKind ] = field(
         default=None,
@@ -25880,20 +25912,6 @@ class AsynchronousMachine(RotatingMachine):
     the rotor windings, e.g. squirrel-cage induction machine.
     '''
 
-    asynchronousMachineType: Optional[ AsynchronousMachineKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Indicates the type of Asynchronous Machine (motor or generator).
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -25907,7 +25925,7 @@ class AsynchronousMachine(RotatingMachine):
     def __maxOccurs__(self):
         return 'unbounded'
     
-    ratedMechanicalPower: Optional[ ActivePower ] = field(
+    polePairNumber: Optional[int] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -25918,8 +25936,8 @@ class AsynchronousMachine(RotatingMachine):
         'serialize': True,
         })
     '''
-    Rated mechanical power (Pr in IEC 60909-0). Used for short circuit
-    data exchange according to IEC 60909.
+    Number of pole pairs of stator. Used for short circuit data exchange
+    according to IEC 60909.
     '''
     
     reversible: Optional[bool] = field(
@@ -25935,6 +25953,20 @@ class AsynchronousMachine(RotatingMachine):
     '''
     Indicates for converter drive motors if the power can be reversible.
     Used for short circuit data exchange according to IEC 60909.
+    '''
+    
+    asynchronousMachineType: Optional[ AsynchronousMachineKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates the type of Asynchronous Machine (motor or generator).
     '''
     
     efficiency: Optional[ PerCent ] = field(
@@ -25979,6 +26011,21 @@ class AsynchronousMachine(RotatingMachine):
         })
     '''
     Nameplate data. Depends on the slip and number of pole pairs.
+    '''
+    
+    ratedMechanicalPower: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rated mechanical power (Pr in IEC 60909-0). Used for short circuit
+    data exchange according to IEC 60909.
     '''
     
 @stereotype(CIMStereotype.enumeration)
@@ -27758,8 +27805,8 @@ class LinearShuntCompensator(ShuntCompensator):
     at base frequency
     '''
     
-@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class NonlinearShuntCompensator(ShuntCompensator):
     '''
@@ -28050,6 +28097,30 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     connected. Conductance per section phase to phase if shunt compensator
     is delta connected.
     '''
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensatorPhase(ShuntCompensatorPhase):
+    '''
+    A per phase non linear shunt compensator has bank or section admittance
+    values that differ. The attributes gTotal and bTotal of the associated
+    NonlinearShuntCompensatorPhasePoint describe the total conductance and
+    admittance of a NonlinearShuntCompensatorPhasePoint at a section number
+    specified by NonlinearShuntCompensatorPhasePoint.sectionNumber.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -31705,20 +31776,6 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    type: Optional[ SynchronousMachineKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Modes that this synchronous machine can operate in.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -31747,6 +31804,20 @@ class SynchronousMachine(RotatingMachine):
     for the unit.
     '''
     
+    maxU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum voltage limit for the unit.
+    '''
+    
     minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
@@ -31759,6 +31830,62 @@ class SynchronousMachine(RotatingMachine):
         })
     '''
     Minimum reactive power limit for the unit.
+    '''
+    
+    minU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum voltage limit for the unit.
+    '''
+    
+    type: Optional[ SynchronousMachineKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Modes that this synchronous machine can operate in.
+    '''
+    
+    condenserP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power consumed when in condenser mode operation.
+    '''
+    
+    operatingMode: Optional[ SynchronousMachineOperatingMode ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Current mode of operation.
     '''
     
     ReactiveCapabilityCurve: list[ReactiveCapabilityCurve] = field(
@@ -31774,6 +31901,139 @@ class SynchronousMachine(RotatingMachine):
         })
     '''
     The reactive capability curve for this synchronous machine.
+    '''
+    
+    earthing: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates whether or not the generator is earthed. Used for short circuit
+    data exchange according to IEC 60909.
+    '''
+    
+    mu: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Factor to calculate the breaking current (4.5.2.1 in IEC 60909-0).
+    Used only for single fed short circuit on a generator (4.3.4.2. in
+    IEC 60909-0).
+    '''
+    
+    earthingStarPointR: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Generator star point earthing resistance (Re). Used for short circuit
+    data exchange according to IEC 60909.
+    '''
+    
+    earthingStarPointX: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Generator star point earthing reactance (Xe). Used for short circuit
+    data exchange according to IEC 60909.
+    '''
+    
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Equivalent resistance (RG) of generator. RG is considered for the calculation
+    of all currents, except for the calculation of the peak current ip.
+    Used for short circuit data exchange according to IEC 60909.
+    '''
+    
+    r0: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence resistance of the synchronous machine.
+    '''
+    
+    r2: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence resistance.
+    '''
+    
+    x0: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence reactance of the synchronous machine.
+    '''
+    
+    x2: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence reactance.
     '''
     
 @stereotype(CIMStereotype.enumeration)
@@ -31818,6 +32078,40 @@ class SynchronousMachineKind(Enum):
     motorOrCondenser = 'motorOrCondenser'
     '''
     Indicates the synchronous machine can operate as a motor or as a condenser.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class SynchronousMachineOperatingMode(Enum):
+    '''
+    Synchronous machine operating mode.
+    '''
+
+    condenser = 'condenser'
+    '''
+    Operating as condenser.
+    '''
+    
+    generator = 'generator'
+    '''
+    Operating as generator.
+    '''
+    
+    motor = 'motor'
+    '''
+    Operating as motor.
     '''
     
     @property
@@ -40006,6 +40300,21 @@ class WireInfo(ConductorInfo):
     '''
     '''
     
+    WireSequenceConfiguration: Optional[WireSequenceConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireSequenceConfiguration.WireInfo',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    Template position this wire info is used
+    '''
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class BareWireInfo(WireInfo):
@@ -40721,6 +41030,22 @@ class WireSequenceConfiguration(EquipmentConfiguration):
     '''
     '''
 
+    WireInfo: Optional[WireInfo] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireInfo.WireSequenceConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The wire info used within this sequence number location of the overall
+    template
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'

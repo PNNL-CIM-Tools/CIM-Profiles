@@ -494,6 +494,21 @@ class BaseVoltage(IdentifiedObject):
     Transformer ends at the base voltage. This is essential for PU calculation.
     '''
     
+    VoltageLevel: list[VoltageLevel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'VoltageLevel.BaseVoltage',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The voltage levels having this base voltage.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -898,6 +913,87 @@ class EquipmentContainer(ConnectivityNodeContainer):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Bay(EquipmentContainer):
+    '''
+    A collection of power system resources (within a given substation) including
+    conducting equipment, protection relays, measurements, and telemetry. A
+    bay typically represents a physical grouping related to modularization
+    of equipment.
+    '''
+
+    breakerConfiguration: Optional[ BreakerConfiguration ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Breaker configuration.
+    '''
+    
+    busBarConfiguration: Optional[ BusbarConfiguration ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Busbar configuration.
+    '''
+    
+    Substation: Optional[Substation] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Substation.Bays',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Substation containing the bay.
+    '''
+    
+    VoltageLevel: Optional[VoltageLevel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'VoltageLevel.Bays',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The voltage level containing this bay.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.new)
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
@@ -1120,6 +1216,21 @@ class Substation(EquipmentContainer):
     or modifying its characteristics.
     '''
 
+    Bays: list[Bay] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Bay.Substation',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Bays contained in the substation.
+    '''
+    
     NormalEnergizedFeeder: list[Feeder] = field(
         default_factory=list,
         metadata={
@@ -1134,6 +1245,21 @@ class Substation(EquipmentContainer):
     '''
     The normal energized feeders of the substation. Also used for naming
     purposes.
+    '''
+    
+    VoltageLevels: list[VoltageLevel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'VoltageLevel.Substation',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The voltage levels within this substation.
     '''
     
     NormalEnergizingFeeder: list[Feeder] = field(
@@ -1165,6 +1291,74 @@ class Substation(EquipmentContainer):
         })
     '''
     The SubGeographicalRegion containing the substation.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class VoltageLevel(EquipmentContainer):
+    '''
+    A collection of equipment at one common system voltage forming a switchgear.
+    The equipment typically consists of breakers, busbars, instrumentation,
+    control, regulation and protection devices as well as assemblies of all
+    these.
+    '''
+
+    Bays: list[Bay] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Bay.VoltageLevel',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The bays within this voltage level.
+    '''
+    
+    BaseVoltage: Optional[BaseVoltage] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'BaseVoltage.VoltageLevel',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The base voltage used for all equipment within the voltage level.
+    '''
+    
+    Substation: Optional[Substation] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Substation.VoltageLevels',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The substation of the voltage level.
     '''
     
     @property
@@ -1377,6 +1571,7 @@ class Equipment(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CompositeSwitch(Equipment):
     '''
@@ -1707,6 +1902,44 @@ class ACLineSegment(Conductor):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class BusSegment(Conductor):
+    '''
+    A two terminal and power conducting device of negligible impedance and
+    length represented as zero impedance device that can be used to represent
+    the conductor between connection points to substation conducting equipment
+    on a substation bus.
+    '''
+
+    retained: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Bus segment is retained in the topological solution. The flow through
+    retained bus sections will normally be calculated in power flow.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
 class WireSegment(Conductor):
     '''
     A two terminal and power conducting device of negligible impedance and
@@ -1729,6 +1962,82 @@ class WireSegment(Conductor):
     The wire segment phases which belong to the wire segment.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class Connector(ConductingEquipment):
+    '''
+    A conductor, or group of conductors, with negligible impedance, that serve
+    to connect other conducting equipment within a single substation and are
+    modelled with a single logical terminal.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BusbarSection(Connector):
+    '''
+    A conductor, or group of conductors, with negligible impedance, that serve
+    to connect other conducting equipment within a single substation. The BusbarSection
+    class is intended to represent physical parts of bus bars no matter how
+    that bus bar is constructed.
+    Voltage measurements are typically obtained from voltage transformers that
+    are connected to busbar sections. A bus bar section may have many physical
+    terminals but for analysis is modelled with exactly one logical terminal.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Junction(Connector):
+    '''
+    A point where one or more conducting equipments are connected with zero
+    resistance.
+    The Junction class is intended to provide a place to associate additional
+    information to a connectivity node which connects two or more equipment
+    terminals. Examples include a tee-point or the connection point between
+    two switches.
+    The Junction class is intended to provide a method to associate additional
+    information, for instance Location, to a ConnectivityNode. Examples include
+    a T-point or the connection point between two switches. Typically, BusbarSection
+    objects and Junction objects are represented by different symbols on diagrams.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -2010,20 +2319,6 @@ class AsynchronousMachine(RotatingMachine):
     the rotor windings, e.g. squirrel-cage induction machine.
     '''
 
-    asynchronousMachineType: Optional[ AsynchronousMachineKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Indicates the type of Asynchronous Machine (motor or generator).
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -2046,20 +2341,6 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    type: Optional[ SynchronousMachineKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Modes that this synchronous machine can operate in.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -2163,6 +2444,50 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     A linear shunt compensator has banks or sections with equal admittance
     values.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensator(ShuntCompensator):
+    '''
+    A non linear shunt compensator has bank or section admittance values that
+    differ. The attributes gTotal, bTotal, g0Total and b0Total of the associated
+    NonlinearShuntCompensatorPoint describe the total conductance and admittance
+    of a NonlinearShuntCompensatorPoint at a section number specified by NonlinearShuntCompensatorPoint.sectionNumber.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Ground(ConductingEquipment):
+    '''
+    A point where the system is grounded used for connecting conducting equipment
+    to ground. The power system model can have any number of grounds.
     '''
 
     @property
@@ -2476,7 +2801,6 @@ class Cut(Switch):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Disconnector(Switch):
     '''
@@ -2690,7 +3014,6 @@ class ProtectedSwitch(Switch):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Breaker(ProtectedSwitch):
     '''
@@ -2698,6 +3021,27 @@ class Breaker(ProtectedSwitch):
     currents under normal circuit conditions and also making, carrying for
     a specified time, and breaking currents under specified abnormal circuit
     conditions e.g. those of short circuit.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class DisconnectingCircuitBreaker(Breaker):
+    '''
+    A circuit breaking device including disconnecting function, eliminating
+    the need for separate disconnectors.
     '''
 
     @property
@@ -3044,6 +3388,30 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensatorPhase(ShuntCompensatorPhase):
+    '''
+    A per phase non linear shunt compensator has bank or section admittance
+    values that differ. The attributes gTotal and bTotal of the associated
+    NonlinearShuntCompensatorPhasePoint describe the total conductance and
+    admittance of a NonlinearShuntCompensatorPhasePoint at a section number
+    specified by NonlinearShuntCompensatorPhasePoint.sectionNumber.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.gmdm)
 @dataclass(repr=False, eq=False)
@@ -3065,6 +3433,7 @@ class TapChanger(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PhaseTapChanger(TapChanger):
     '''
@@ -3881,6 +4250,84 @@ class AsynchronousMachineKind(Enum):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class BreakerConfiguration(Enum):
+    '''
+    Switching arrangement for bay.
+    '''
+
+    breakerAndAHalf = 'breakerAndAHalf'
+    '''
+    Breaker and a half.
+    '''
+    
+    doubleBreaker = 'doubleBreaker'
+    '''
+    Double breaker.
+    '''
+    
+    noBreaker = 'noBreaker'
+    '''
+    No breaker.
+    '''
+    
+    singleBreaker = 'singleBreaker'
+    '''
+    Single breaker.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class BusbarConfiguration(Enum):
+    '''
+    Busbar layout for bay.
+    '''
+
+    doubleBus = 'doubleBus'
+    '''
+    Double bus.
+    '''
+    
+    mainWithTransfer = 'mainWithTransfer'
+    '''
+    Main bus with transfer bus.
+    '''
+    
+    ringBus = 'ringBus'
+    '''
+    Ring bus.
+    '''
+    
+    singleBus = 'singleBus'
+    '''
+    Single bus.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
     @property
     def __minOccurs__(self):
         return '0'
