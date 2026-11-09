@@ -140,6 +140,57 @@ class EarthResistivity(IdentifiedObject):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTable(IdentifiedObject):
+    '''
+    Describes a curve for how the power transformer end impedance varies with
+    the tap step.
+    '''
+
+    ImpedanceTapChangerTablePoint: list[ImpedanceTapChangerTablePoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The points of this table.
+    '''
+    
+    ImpedanceTapChangerTabular: list[ImpedanceTapChangerTabular] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ImpedanceTapChangerTabular.ImpedanceTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The impedance tap changer to which this impedance tap table applies.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
 class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Models the characteristic response of the load demand due to changes in
@@ -2981,6 +3032,36 @@ class ImpedanceTapChangerTabular(TapChanger):
     transformer.
     '''
 
+    ImpedanceTapChangerTable: Optional[ImpedanceTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTable.ImpedanceTapChangerTabular',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The impedance tap changer table for this impedance tap changer.
+    '''
+    
+    TransformerEnd: Optional[TransformerEnd] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerEnd.ImpedanceTabChanger',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer end associated with this impedance tap changer
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -3289,6 +3370,22 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
+    ImpedanceTabChanger: Optional[ImpedanceTapChangerTabular] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTabular.TransformerEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The tabular impedance tap changer associated with this transformer
+    end
+    '''
+    
     PhaseTapChanger: Optional[PhaseTapChanger] = field(
         default=None,
         metadata={
@@ -3417,6 +3514,22 @@ class PowerTransformerEnd(TransformerEnd):
         })
     '''
     Magnetizing branch conductance.
+    '''
+    
+    phaseShift: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Denotes the individual winding phase shift in degrees.
+    This attribute replaces the phaseAngleClock, which used relative clock
+    hands (e.g. 6 meant 180 deg)
     '''
     
     r: Optional[ Resistance ] = field(
@@ -3895,6 +4008,203 @@ class WireConfiguration(IdentifiedObject):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTablePoint(Identity):
+    '''
+    Describes each tap step in the impedance tap changer tabular curve.
+    '''
+
+    ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The voltage at the tap step divided by rated voltage of the transformer
+    end having the tap changer. Hence this is a value close to one. For
+    example, if the ratio at step 1 is 1.01, and the rated voltage of the
+    transformer end is 110kV, then the voltage obtained by setting the
+    tap changer to step 1 to is 111.1kV.
+    '''
+    
+    step: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The tap step.
+    '''
+    
+    angle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The angle difference in degrees. A positive value indicates a positive
+    angle variation from the Terminal at the PowerTransformerEnd, where
+    the TapChanger is located, into the transformer.
+    '''
+    
+    rEnd1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 1. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    rEnd2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 2. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    rEnd3: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 3. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 1. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x (from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 2. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd3: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 3. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    ImpedanceTapChangerTable: Optional[ImpedanceTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The table of this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
 class NonlinearShuntCompensatorPoint(Identity):
     '''
     A non linear shunt compensator bank or section admittance value. The number
@@ -4305,6 +4615,34 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class AngleDegrees(CIMUnit):
+    '''
+    Measurement of angle in degrees.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.deg
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

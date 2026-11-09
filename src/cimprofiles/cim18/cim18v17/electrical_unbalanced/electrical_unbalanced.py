@@ -416,7 +416,7 @@ class WireConfiguration(EquipmentConfiguration):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['ShadowExtension'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PerLengthImpedance.WireConfiguration',
@@ -3404,9 +3404,9 @@ class AutoTransformerEnd(TransformerEnd):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class PowerTransformerEnd(TransformerEnd):
     '''
@@ -3431,6 +3431,22 @@ class PowerTransformerEnd(TransformerEnd):
     transformer end.
     '''
 
+    phaseShift: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Denotes the individual winding phase shift in degrees.
+    This attribute replaces the phaseAngleClock, which used relative clock
+    hands (e.g. 6 meant 180 deg)
+    '''
+    
     ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
@@ -4599,6 +4615,34 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class AngleDegrees(CIMUnit):
+    '''
+    Measurement of angle in degrees.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.deg
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

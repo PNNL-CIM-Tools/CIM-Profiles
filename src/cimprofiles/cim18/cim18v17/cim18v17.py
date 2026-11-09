@@ -17363,7 +17363,7 @@ class PowerSchedule(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['NC', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'NC', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -17377,7 +17377,7 @@ class PowerSchedule(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['NC', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'NC', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -19337,6 +19337,23 @@ class ACDCConverter(ConductingEquipment):
     '''
     A DC converter have DC converter terminals. A converter has two DC
     converter terminals.
+    '''
+    
+    PccTerminal: Optional[Terminal] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Terminal.ConverterDCSides',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Point of common coupling terminal for this converter DC side. It is
+    typically the terminal on the power transformer (or switch) closest
+    to the AC network.
     '''
     
 @stereotype(CIMStereotype.GridAPPSD)
@@ -34820,19 +34837,6 @@ class ImpedanceTapChangerTabular(TapChanger):
     transformer.
     '''
 
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
     ImpedanceTapChangerTable: Optional[ImpedanceTapChangerTable] = field(
         default=None,
         metadata={
@@ -34847,6 +34851,34 @@ class ImpedanceTapChangerTabular(TapChanger):
     '''
     The impedance tap changer table for this impedance tap changer.
     '''
+    
+    TransformerEnd: Optional[TransformerEnd] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerEnd.ImpedanceTabChanger',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The transformer end associated with this impedance tap changer
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
@@ -36266,6 +36298,21 @@ class Terminal(ACDCTerminal):
         'serialize': False,
         })
     '''
+    '''
+    
+    ConverterDCSides: list[ACDCConverter] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACDCConverter.PccTerminal',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All converters' DC sides linked to this point of common coupling terminal.
     '''
     
     HasFirstMutualCoupling: list[MutualCoupling] = field(
@@ -38344,6 +38391,22 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
+    ImpedanceTabChanger: Optional[ImpedanceTapChangerTabular] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTabular.TransformerEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The tabular impedance tap changer associated with this transformer
+    end
+    '''
+    
     FromMeshImpedance: list[TransformerMeshImpedance] = field(
         default_factory=list,
         metadata={
@@ -38591,6 +38654,22 @@ class PowerTransformerEnd(TransformerEnd):
         })
     '''
     Magnetizing branch conductance.
+    '''
+    
+    phaseShift: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Denotes the individual winding phase shift in degrees.
+    This attribute replaces the phaseAngleClock, which used relative clock
+    hands (e.g. 6 meant 180 deg)
     '''
     
     r: Optional[ Resistance ] = field(
@@ -41456,7 +41535,7 @@ class Volume(CIMUnit):
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class VsCapabilityCurve(IdentifiedObject):
+class VsCapabilityCurve(Curve):
     '''
     The P-Q capability curve for a voltage source converter, with P on X-axis
     and Qmin and Qmax on Y1-axis and Y2-axis.

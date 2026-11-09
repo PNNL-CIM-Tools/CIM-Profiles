@@ -27,6 +27,102 @@ BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class CurveData(Identity):
+    '''
+    Multi-purpose data points for defining a curve. The use of this generic
+    class is discouraged if a more specific class can be used to specify the
+    X and Y axis values along with their specific data types.
+    '''
+
+    xvalue: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The data value of the X-axis variable, depending on the X-axis units.
+    '''
+    
+    y1value: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The data value of the first Y-axis variable, depending on the Y-axis
+    units.
+    '''
+    
+    y2value: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The data value of the second Y-axis variable (if present), depending
+    on the Y-axis units.
+    '''
+    
+    y3value: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The data value of the third Y-axis variable (if present), depending
+    on the Y-axis units.
+    '''
+    
+    Curve: Optional[Curve] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Curve.CurveDatas',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The curve of this curve data point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
@@ -373,6 +469,21 @@ class Terminal(ACDCTerminal):
     are connected at physical connection points called connectivity nodes.
     '''
 
+    ConverterDCSides: list[ACDCConverter] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACDCConverter.PccTerminal',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All converters' DC sides linked to this point of common coupling terminal.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -516,6 +627,218 @@ class BusNameMarker(IdentifiedObject):
     @property
     def __package__(self):
         return 'Topology'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.OfAggregate)
+@dataclass(repr=False, eq=False)
+class Curve(IdentifiedObject):
+    '''
+    A multi-purpose curve or functional relationship between an independent
+    variable (X-axis) and dependent (Y-axis) variables.
+    '''
+
+    curveStyle: Optional[ CurveStyle ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The style or shape of the curve.
+    '''
+    
+    xMultiplier: Optional[ UnitMultiplier ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Multiplier for X-axis.
+    '''
+    
+    xUnit: Optional[ UnitSymbol ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The X-axis units of measure.
+    '''
+    
+    y1Multiplier: Optional[ UnitMultiplier ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Multiplier for Y1-axis.
+    '''
+    
+    y1Unit: Optional[ UnitSymbol ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The Y1-axis units of measure.
+    '''
+    
+    y2Multiplier: Optional[ UnitMultiplier ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Multiplier for Y2-axis.
+    '''
+    
+    y2Unit: Optional[ UnitSymbol ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The Y2-axis units of measure.
+    '''
+    
+    y3Multiplier: Optional[ UnitMultiplier ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Multiplier for Y3-axis.
+    '''
+    
+    y3Unit: Optional[ UnitSymbol ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The Y3-axis units of measure.
+    '''
+    
+    CurveDatas: list[CurveData] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'CurveData.Curve',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The point data values that define this curve.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class VsCapabilityCurve(Curve):
+    '''
+    The P-Q capability curve for a voltage source converter, with P on X-axis
+    and Qmin and Qmax on Y1-axis and Y2-axis.
+    '''
+
+    referenceVoltage: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The reference voltage for which the capability curve is valid.
+    '''
+    
+    VsConverter: Optional[VsConverter] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'VsConverter.CapabilityCurve',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The voltage source vonverters with this capability curve.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'DC'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1063,7 +1386,7 @@ class PowerSchedule(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['NC', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'NC', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1077,7 +1400,7 @@ class PowerSchedule(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['NC', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'NC', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -2804,6 +3127,23 @@ class ACDCConverter(Equipment):
     '''
     A DC converter have DC converter terminals. A converter has two DC
     converter terminals.
+    '''
+    
+    PccTerminal: Optional[Terminal] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Terminal.ConverterDCSides',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Point of common coupling terminal for this converter DC side. It is
+    typically the terminal on the power transformer (or switch) closest
+    to the AC network.
     '''
     
     @property
@@ -4640,56 +4980,6 @@ class VSCDynamics(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class VsCapabilityCurve(IdentifiedObject):
-    '''
-    The P-Q capability curve for a voltage source converter, with P on X-axis
-    and Qmin and Qmax on Y1-axis and Y2-axis.
-    '''
-
-    referenceVoltage: Optional[ Voltage ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The reference voltage for which the capability curve is valid.
-    '''
-    
-    VsConverter: Optional[VsConverter] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'VsConverter.CapabilityCurve',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The voltage source vonverters with this capability curve.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'DC'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -5071,6 +5361,38 @@ class CsPpccControlKind(Enum):
     @property
     def __package__(self):
         return 'DC'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
+class CurveStyle(Enum):
+    '''
+    Style or shape of curve.
+    '''
+
+    constantYValue = 'constantYValue'
+    '''
+    The Y-axis values are assumed constant until the next curve point and
+    prior to the first curve point.
+    '''
+    
+    straightLineYValues = 'straightLineYValues'
+    '''
+    The Y-axis values are assumed to be a straight line between values.
+    Also known as linear interpolation.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
     @property
     def __minOccurs__(self):
         return '0'
