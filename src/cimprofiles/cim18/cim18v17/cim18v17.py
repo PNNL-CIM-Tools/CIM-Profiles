@@ -17005,6 +17005,7 @@ class Polygon(GeometricElement):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PositionPoint(GeometricElement):
     '''
@@ -25051,6 +25052,21 @@ class ReactiveCapabilityCurve(Curve):
         })
     '''
     The reference voltage for which the capability curve is valid.
+    '''
+    
+    InitiallyUsedBySynchronousMachine: list[SynchronousMachine] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SynchronousMachine.InitialReactiveCapabilityCurve',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Synchronous machines using this curve as default.
     '''
     
     SynchronousMachine: Optional[SynchronousMachine] = field(
@@ -33462,6 +33478,22 @@ class SynchronousMachine(RotatingMachine):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    referencePriority: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Priority of unit for use as powerflow voltage phase angle reference
+    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
+    less than 1 and so on.
+    '''
+    
     maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
@@ -33519,6 +33551,22 @@ class SynchronousMachine(RotatingMachine):
     Minimum voltage limit for the unit.
     '''
     
+    qPercent: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Part of the coordinated reactive control that comes from this machine.
+    The attribute is used as a participation factor not necessarily summing
+    up to 100 % for the participating devices in the control.
+    '''
+    
     type: Optional[ SynchronousMachineKind ] = field(
         default=None,
         metadata={
@@ -33561,6 +33609,69 @@ class SynchronousMachine(RotatingMachine):
     Current mode of operation.
     '''
     
+    aVRToManualLag: Optional[ Seconds ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Time delay required when switching from Automatic Voltage Regulation
+    (AVR) to Manual for a lagging MVAr violation.
+    '''
+    
+    aVRToManualLead: Optional[ Seconds ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Time delay required when switching from Automatic Voltage Regulation
+    (AVR) to Manual for a leading MVAr violation.
+    '''
+    
+    manualToAVR: Optional[ Seconds ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Time delay required when switching from Manual to Automatic Voltage
+    Regulation. This value is used in the accelerating power reference
+    frame for powerflow solutions.
+    '''
+    
+    voltageRegulationRange: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Range of generator voltage regulation (PG in IEC 60909-0) used for
+    calculation of the impedance correction factor KG defined in IEC 60909-0.
+    This attribute is used to describe the operating voltage of the generating
+    unit.
+    '''
+    
     ReactiveCapabilityCurve: list[ReactiveCapabilityCurve] = field(
         default_factory=list,
         metadata={
@@ -33574,6 +33685,26 @@ class SynchronousMachine(RotatingMachine):
         })
     '''
     The reactive capability curve for this synchronous machine.
+    '''
+    
+    InitialReactiveCapabilityCurve: Optional[ReactiveCapabilityCurve] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachine',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The default reactive capability curve for use by a synchronous machine.
+    The reference voltage (exchanged by ReactiveCapabilityCurve.referenceVoltage)
+    for this ReactiveCapabilityCurve shall be equal to the BaseVoltage.nominalVoltage
+    of the ConnectivityNode to which the Equipment is connected to. The
+    information is obtained via the containment of the Equipment or the
+    ConnectivityNode.
     '''
     
     earthing: Optional[bool] = field(
@@ -33635,6 +33766,28 @@ class SynchronousMachine(RotatingMachine):
     '''
     Generator star point earthing reactance (Xe). Used for short circuit
     data exchange according to IEC 60909.
+    '''
+    
+    ikk: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Steady-state short-circuit current (in A for the profile) of generator
+    with compound excitation during 3-phase short circuit.
+    - Ikk=0: Generator with no compound excitation.
+    - Ikk&lt;&gt;0: Generator with compound excitation.
+    Ikk is used to calculate the minimum steady-state short-circuit current
+    for generators with compound excitation.
+    (4.6.1.2 in IEC 60909-0:2001).
+    Used only for single fed short circuit on a generator. (4.3.4.2. in
+    IEC 60909-0:2001).
     '''
     
     r: Optional[ Resistance ] = field(

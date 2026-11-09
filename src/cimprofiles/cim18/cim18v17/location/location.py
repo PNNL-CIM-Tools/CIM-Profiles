@@ -227,6 +227,7 @@ class Polygon(GeometricElement):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PositionPoint(GeometricElement):
     '''

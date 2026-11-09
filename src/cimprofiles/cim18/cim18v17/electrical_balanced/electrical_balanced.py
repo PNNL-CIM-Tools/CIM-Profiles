@@ -1666,6 +1666,22 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
+    referencePriority: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Priority of unit for use as powerflow voltage phase angle reference
+    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
+    less than 1 and so on.
+    '''
+    
     maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
@@ -1721,6 +1737,22 @@ class SynchronousMachine(RotatingMachine):
         })
     '''
     Minimum voltage limit for the unit.
+    '''
+    
+    qPercent: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Part of the coordinated reactive control that comes from this machine.
+    The attribute is used as a participation factor not necessarily summing
+    up to 100 % for the participating devices in the control.
     '''
     
     type: Optional[ SynchronousMachineKind ] = field(

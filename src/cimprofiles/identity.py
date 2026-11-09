@@ -82,6 +82,25 @@ def read_identifier(class_name: str, uri: str) -> UUID:
     return identifier
 
 
+def _json_value(value, use_names: bool):
+    """A JSON value for Identity.__str__: a referenced object as its minimal JSON-LD (or
+    its name, with use_names), a unit as its value in base SI units, a list item by item,
+    and anything else as its text."""
+    if value is None:
+        return None
+    if isinstance(value, list):
+        return [_json_value(item, use_names) for item in value]
+    if isinstance(value, Identity):
+        if use_names and getattr(value, 'name', None) is not None:
+            return value.name
+        return json.loads(value.__repr__())
+    if isinstance(value, CIMUnit):
+        return str(value.value)
+    if isinstance(value, str):
+        return value
+    return str(value)
+
+
 class CIMStereotype(Enum):
     Abstract = 'Abstract'
     Concrete = 'Concrete'
@@ -184,63 +203,24 @@ class Identity:
         Returns:
             str: JSON string representation of the object
         """
-        # Create JSON-LD dump with repr and all attributes
-        dump = dict(json.loads(self.__repr__()) | self.__dict__)
-
-        # Remove internal attributes
-        dump.pop('__json_ld__', None)
-
-        # Process each attribute present in the dump (dataclass fields plus any
-        # extra instance attributes) so stray values still serialize cleanly.
-        # Iterate over a snapshot of the keys because empty attributes get deleted.
-        for attribute in list(dump):
+        # Build the whole dump as JSON values and serialize it once, so text such as a
+        # name containing '"[' cannot break the JSON
+        dump = json.loads(self.__repr__())
+        for attribute, value in self.__dict__.items():
             # Skip internal/dunder attributes leaked in via __dict__
             if attribute.startswith('_'):
-                del dump[attribute]
                 continue
-
-            # Delete attributes that are empty when show_empty is False
-            if dump[attribute] is None or dump[attribute] == []:
-                if not show_empty:
-                    del dump[attribute]
+            # Skip attributes that are empty when show_empty is False
+            if (value is None or value == []) and not show_empty:
                 continue
-
-            # Handle CIM Unit attributes
-            elif isinstance(dump[attribute], CIMUnit):
-                dump[attribute] = dump[attribute].value
-
-            # Handle dataclass attributes
-            if is_dataclass(dump[attribute]):
-                if use_names and hasattr(dump[attribute], 'name'):
-                    dump[attribute] = dump[attribute].name
-                else:
-                    dump[attribute] = dump[attribute].__repr__()
-
-            # Convert non-string attributes to strings for JSON compatibility
-            elif not isinstance(dump[attribute], str):
-                dump[attribute] = str(dump[attribute])
+            dump[attribute] = _json_value(value, use_names)
 
         # Remove identifier and mRID if not showing them
         if not show_mRID:
             dump.pop('identifier', None)
             dump.pop('mRID', None)
 
-        # Convert to JSON with proper formatting
-        json_str = json.dumps(dump)
-
-        # Fix common JSON formatting issues
-        replacements = [
-            ('\\\"', '\"'),
-            ('\"[', '['),
-            (']\"', ']'),
-            ('\"{', '{'),
-            ('}\"', '}')
-        ]
-
-        for old, new in replacements:
-            json_str = json_str.replace(old, new)
-
-        return json_str
+        return json.dumps(dump)
 
     def __repr__(self) -> str:
         """

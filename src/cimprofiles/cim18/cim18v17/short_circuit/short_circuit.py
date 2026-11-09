@@ -1113,6 +1113,28 @@ class SynchronousMachine(RotatingMachine):
     data exchange according to IEC 60909.
     '''
     
+    ikk: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Steady-state short-circuit current (in A for the profile) of generator
+    with compound excitation during 3-phase short circuit.
+    - Ikk=0: Generator with no compound excitation.
+    - Ikk&lt;&gt;0: Generator with compound excitation.
+    Ikk is used to calculate the minimum steady-state short-circuit current
+    for generators with compound excitation.
+    (4.6.1.2 in IEC 60909-0:2001).
+    Used only for single fed short circuit on a generator. (4.3.4.2. in
+    IEC 60909-0:2001).
+    '''
+    
     r: Optional[ Resistance ] = field(
         default=None,
         metadata={
