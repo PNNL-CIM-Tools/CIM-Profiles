@@ -3594,21 +3594,6 @@ class PhaseTapChanger(TapChanger):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TransformerEnd.PhaseTapChanger',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Transformer end to which this phase tap changer belongs.
-    '''
-    
-    TransformerEnd: Optional[TransformerEnd] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
         'stereotypes': ['ShadowExtension', 'GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
@@ -3644,21 +3629,6 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    TransformerEnd: Optional[TransformerEnd] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TransformerEnd.RatioTapChanger',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The transformer end for this additional ratio tap changer.
-    '''
-    
     TransformerEnd: Optional[TransformerEnd] = field(
         default=None,
         metadata={
@@ -3731,36 +3701,6 @@ class TransformerEnd(PowerSystemResource):
     If true, the neutral is grounded and attributes TransformerEnd.rground
     and TransformerEnd.xground are required. If false, the attributes TransformerEnd.rground
     and TransformerEnd.xground are not considered.
-    '''
-    
-    PhaseTapChanger: Optional[PhaseTapChanger] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PhaseTapChanger.TransformerEnd',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Phase tap changer associated with this transformer end.
-    '''
-    
-    RatioTapChanger: Optional[RatioTapChanger] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'RatioTapChanger.TransformerEnd',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Ratio tap changer associated with this transformer end.
     '''
     
     FromTransformerWinding: list[TransformerWinding] = field(

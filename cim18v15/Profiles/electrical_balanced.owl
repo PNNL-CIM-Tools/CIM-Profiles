@@ -104,6 +104,55 @@
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireInstallationKind"/>
     <owl:unionOf rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff4"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a54">
+    <rdf:first rdf:resource="#NonlinearShuntCompensator"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a55">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a56"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensatorPoint.NonlinearShuntCompensator"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a56">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>NonlinearShuntCompensator</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensator"/>
+    <owl:unionOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a54"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a57">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a58"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensatorPoint.sectionNumber"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a58">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>sectionNumber</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a59">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5a"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensatorPoint.gTotal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5a">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>gTotal</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5b">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5c"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensatorPoint.bTotal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5c">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>bTotal</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Susceptance"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f48">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f49"/>
@@ -1952,6 +2001,15 @@
     <rdfs:label>NonlinearShuntCompensator</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensator"/>
     <rdfs:subClassOf rdf:resource="#ShuntCompensator"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#NonlinearShuntCompensatorPoint">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a55"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a57"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a59"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5b"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#NonlinearShuntCompensatorPoint"/>
   </rdf:Description>
   <rdf:Description rdf:about="#PU">
     <rdfs:label>PU</rdfs:label>

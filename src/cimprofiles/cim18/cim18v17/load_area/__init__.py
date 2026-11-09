@@ -21,6 +21,7 @@ from cimprofiles.cim18.cim18v17.load_area.load_area import (
     DayType,
     EnergyArea,
     EnergyConnection,
+    EnergyConsumer,
     Equipment,
     GeneratingUnit,
     IdentifiedObject,
@@ -43,7 +44,8 @@ from cimprofiles.cim18.cim18v17.load_area.load_area import (
     TieFlow,
     UnitMultiplier,
     UnitSymbol,
-    ActivePower
+    ActivePower,
+    PerCent
 )
 __all__ = [
     'Identity',
@@ -64,6 +66,7 @@ __all__ = [
     'DayType' ,
     'EnergyArea' ,
     'EnergyConnection' ,
+    'EnergyConsumer' ,
     'Equipment' ,
     'GeneratingUnit' ,
     'IdentifiedObject' ,
@@ -86,5 +89,6 @@ __all__ = [
     'TieFlow' ,
     'UnitMultiplier' ,
     'UnitSymbol' ,
-    'ActivePower'
+    'ActivePower' ,
+    'PerCent'
 ]

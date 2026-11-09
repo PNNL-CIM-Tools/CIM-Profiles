@@ -27,6 +27,23 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a38">
+    <rdf:first rdf:resource="#LoadArea"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a39">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a3a"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#SubLoadArea.LoadArea"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a3a">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>LoadArea</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#LoadArea"/>
+    <owl:unionOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a38"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a5d">
     <rdf:first rdf:resource="#PowerCutZone"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -840,6 +857,7 @@
     <rdfs:subClassOf rdf:resource="#EnergyArea"/>
   </rdf:Description>
   <rdf:Description rdf:about="#LoadGroup">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>LoadGroup</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a92"/>
@@ -967,6 +985,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SubLoadArea</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7a39"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SubLoadArea"/>
     <rdfs:subClassOf rdf:resource="#EnergyArea"/>
   </rdf:Description>

@@ -560,64 +560,6 @@ class AssetInfo(IdentifiedObject):
     planning).
     '''
 
-    ParentAssetInfoComponent: Optional[AssetInfoComponent] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfoComponent.ChildAssetInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    ChildAssetInfoComponent: Optional[AssetInfoComponent] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfoComponent.ParentAssetInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    CatalogAssetType: Optional[CatalogAssetType] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'CatalogAssetType.AssetInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Asset information (nameplate) for this catalog asset type.
-    '''
-    
-    ProductAssetModel: Optional[ProductAssetModel] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ProductAssetModel.AssetInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Product asset model which conforms to this catalog asset type.
-    '''
-    
     CatalogAssetType: Optional[CatalogAssetType] = field(
         default=None,
         metadata={
@@ -3152,20 +3094,6 @@ class CableInfo(WireInfo):
         'maxOccurs': '1',
         'inverse': 'InsulationInfo.CableInfo',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    InsulationInfo: Optional[InsulationInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'InsulationInfo.CableInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -4495,20 +4423,6 @@ class InsulationInfo(AssetInfo):
         'maxOccurs': '1',
         'inverse': 'CableInfo.InsulationInfo',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    CableInfo: Optional[CableInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'CableInfo.InsulationInfo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -5553,34 +5467,6 @@ class AssetInfoComponent(IdentifiedObject):
     Type of component
     '''
     
-    ParentAssetInfo: Optional[AssetInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfo.ChildAssetInfoComponent',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    ChildAssetInfo: Optional[AssetInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfo.ParentAssetInfoComponent',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
     ChildAssetInfo: Optional[AssetInfo] = field(
         default=None,
         metadata={
@@ -5727,21 +5613,6 @@ class CatalogAssetType(IdentifiedObject):
         })
     '''
     Kind of asset (from enumerated list).
-    '''
-    
-    AssetInfo: Optional[AssetInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfo.CatalogAssetType',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Generic nameplate information associated with this catalog asset type.
     '''
     
     ProductAssetModel: list[ProductAssetModel] = field(
@@ -6630,21 +6501,6 @@ class ProductAssetModel(IdentifiedObject):
         })
     '''
     Intended usage for this asset model.
-    '''
-    
-    AssetInfo: Optional[AssetInfo] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetInfo.ProductAssetModel',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Asset information (nameplate) for this product asset model.
     '''
     
     AssetInfo: Optional[AssetInfo] = field(

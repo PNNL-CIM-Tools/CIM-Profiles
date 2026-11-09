@@ -917,21 +917,6 @@ class MultiCircuitGroup(IdentifiedObject):
         'maxOccurs': '1',
         'inverse': 'XYSpacing.MultiCircuitGroup',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The XY spacing that applies to this coupled line segment group.
-    '''
-    
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -2762,22 +2747,6 @@ class XYSpacing(WireSpacing):
     which gives the phase.
     '''
 
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MultiCircuitGroup.XYSpacing',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The multi circuit group of adjacent line segments defined by the XY
-    spacing.
-    '''
-    
     XYConductorPosition: list[XYConductorPosition] = field(
         default_factory=list,
         metadata={

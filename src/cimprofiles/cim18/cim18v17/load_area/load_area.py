@@ -785,6 +785,7 @@ class DayType(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EnergyArea(IdentifiedObject):
     '''
@@ -845,6 +846,21 @@ class LoadArea(EnergyArea):
     '''
     '''
     
+    SubLoadAreas: list[SubLoadArea] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SubLoadArea.LoadArea',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The SubLoadAreas in the LoadArea.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -881,6 +897,21 @@ class SubLoadArea(EnergyArea):
     The Loadgroups in the SubLoadArea.
     '''
     
+    LoadArea: Optional[LoadArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension', 'OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'LoadArea.SubLoadAreas',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The LoadArea where the SubLoadArea belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -894,6 +925,7 @@ class SubLoadArea(EnergyArea):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadGroup(IdentifiedObject):
     '''
@@ -1306,7 +1338,46 @@ class EnergyConnection(ConductingEquipment):
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class ConformLoad(EnergyConnection):
+class EnergyConsumer(EnergyConnection):
+    '''
+    Generic user of energy - a point of consumption on the power system model.
+    EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning
+    only if there is no LoadResponseCharacteristic associated with EnergyConsumer
+    or if LoadResponseCharacteristic.exponentModel is set to False.
+    '''
+
+    PowerCutZone: Optional[PowerCutZone] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PowerCutZone.EnergyConsumers',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The energy consumer is assigned to this power cut zone.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ConformLoad(EnergyConsumer):
     '''
     ConformLoad represents loads that follow a daily load change pattern where
     the pattern can be used to scale the load with a system load.
@@ -1342,7 +1413,7 @@ class ConformLoad(EnergyConnection):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class NonConformLoad(EnergyConnection):
+class NonConformLoad(EnergyConsumer):
     '''
     NonConformLoad represents loads that do not follow a daily load change
     pattern and whose changes are not correlated with the daily load change
@@ -1379,6 +1450,26 @@ class NonConformLoad(EnergyConnection):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class StationSupply(EnergyConsumer):
+    '''
+    Station supply with load derived from the station output.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'LoadModel'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
 class RegulatingCondEq(EnergyConnection):
     '''
     A type of conducting equipment that can regulate a quantity (i.e. voltage
@@ -1391,26 +1482,6 @@ class RegulatingCondEq(EnergyConnection):
     @property
     def __package__(self):
         return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class StationSupply(EnergyConnection):
-    '''
-    Station supply with load derived from the station output.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'LoadModel'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1501,6 +1572,50 @@ class PowerCutZone(PowerSystemResource):
     An area or zone of the power system which is used for load shedding purposes.
     '''
 
+    cutLevel1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    First level (amount) of load to cut as a percentage of total zone load.
+    '''
+    
+    cutLevel2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Second level (amount) of load to cut as a percentage of total zone
+    load.
+    '''
+    
+    EnergyConsumers: list[EnergyConsumer] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EnergyConsumer.PowerCutZone',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Energy consumer is assigned to the power cut zone.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1760,6 +1875,35 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class PerCent(CIMUnit):
+    '''
+    Percentage on a defined base. For example, specify as 100 to indicate at
+    the defined base.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.none
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

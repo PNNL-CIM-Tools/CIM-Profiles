@@ -117,21 +117,6 @@ class Asset(IdentifiedObject):
         'maxOccurs': '1',
         'inverse': 'AssetDeployment.Asset',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    This asset's deployment.
-    '''
-    
-    AssetDeployment: Optional[AssetDeployment] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AssetDeployment.Asset',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -183,21 +168,6 @@ class AssetDeployment(IdentifiedObject):
         })
     '''
     Current deployment state of asset.
-    '''
-    
-    Asset: Optional[Asset] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Asset.AssetDeployment',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Asset in this deployment.
     '''
     
     Asset: Optional[Asset] = field(

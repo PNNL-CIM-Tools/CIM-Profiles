@@ -137,21 +137,6 @@ class LineElement(GeometricElement):
     coordinates.
     '''
 
-    LinearCoordinate: list[LinearCoordinate] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'LinearCoordinate.Line',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The linear coordinates which define a line with one or more segments.
-    '''
-    
     LinearCoordinate: Optional[LinearCoordinate] = field(
         default=None,
         metadata={
@@ -408,21 +393,6 @@ class LinearCoordinate(PositionPoint):
     '''
     The order in which linear coordinates are to be connected to form the
     line described. Sequence is required for all linear coordinates.
-    '''
-    
-    Line: list[LineElement] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'LineElement.LinearCoordinate',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    A line defined by linear coordinates.
     '''
     
     Line: list[LineElement] = field(

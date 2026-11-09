@@ -1668,6 +1668,61 @@ class TransformerMeshImpedance(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensatorPoint(Identity):
+    '''
+    A non linear shunt compensator bank or section admittance value. The number
+    of NonlinearShuntCompensatorPoint instances associated with a NonlinearShuntCompensator
+    shall be equal to ShuntCompensator.maximumSections. ShuntCompensator.sections
+    shall only be set to one of the NonlinearShuntCompensatorPoint.sectionNumber.
+    There is no interpolation between NonlinearShuntCompensatorPoint-s.
+    '''
+
+    b0Total: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total zero sequence shunt (charging) susceptance at section noted by
+    sectionNumber.
+    '''
+    
+    g0Total: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total zero sequence shunt (charging) conductance at section noted by
+    sectionNumber.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)

@@ -8608,6 +8608,7 @@ class EarthResistivity(IdentifiedObject):
     The set of AC and DC per length impedances referencing this earth resistivity
     '''
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EnergyArea(IdentifiedObject):
     '''
@@ -11502,6 +11503,21 @@ class LoadArea(EnergyArea):
     '''
     '''
     
+    SubLoadAreas: list[SubLoadArea] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'SubLoadArea.LoadArea',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The SubLoadAreas in the LoadArea.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -11515,6 +11531,7 @@ class LoadArea(EnergyArea):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadGroup(IdentifiedObject):
     '''
@@ -14176,6 +14193,203 @@ class NonConformLoadGroup(LoadGroup):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensatorPhasePoint(Identity):
+    '''
+    A per phase non linear shunt compensator bank or section admittance value.
+    The number of NonlinearShuntCompensatorPhasePoint instances associated
+    with a NonlinearShuntCompensatorPhase shall be equal to ShuntCompensatorPhase.maximumSections.
+    ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompensatorPhasePoint.sectionNumber.
+    There is no interpolation between NonlinearShuntCompensatorPhasePoint-s.
+    '''
+
+    sectionNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The number of the section.
+    '''
+    
+    bTotal: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total positive sequence shunt (charging) susceptance at section noted
+    by sectionNumber.
+    '''
+    
+    gTotal: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total positive sequence shunt (charging) conductance at section noted
+    by sectionNumber.
+    '''
+    
+    NonlinearShuntCompensatorPhase: Optional[NonlinearShuntCompensatorPhase] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Non-linear shunt compensator phase owning this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
+@dataclass(repr=False, eq=False)
+class NonlinearShuntCompensatorPoint(Identity):
+    '''
+    A non linear shunt compensator bank or section admittance value. The number
+    of NonlinearShuntCompensatorPoint instances associated with a NonlinearShuntCompensator
+    shall be equal to ShuntCompensator.maximumSections. ShuntCompensator.sections
+    shall only be set to one of the NonlinearShuntCompensatorPoint.sectionNumber.
+    There is no interpolation between NonlinearShuntCompensatorPoint-s.
+    '''
+
+    sectionNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The number of the section.
+    '''
+    
+    bTotal: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total positive sequence shunt (charging) susceptance at section noted
+    by sectionNumber.
+    '''
+    
+    gTotal: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total positive sequence shunt (charging) conductance at section noted
+    by sectionNumber.
+    '''
+    
+    NonlinearShuntCompensator: Optional[NonlinearShuntCompensator] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonlinearShuntCompensator.NonlinearShuntCompensatorPoints',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Non-linear shunt compensator owning this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+    b0Total: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total zero sequence shunt (charging) susceptance at section noted by
+    sectionNumber.
+    '''
+    
+    g0Total: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total zero sequence shunt (charging) conductance at section noted by
+    sectionNumber.
+    '''
     
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -20938,6 +21152,21 @@ class EnergyConsumer(EnergyConnection):
     Starting value for a steady state solution.
     '''
     
+    PowerCutZone: Optional[PowerCutZone] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PowerCutZone.EnergyConsumers',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The energy consumer is assigned to this power cut zone.
+    '''
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -23105,6 +23334,50 @@ class PowerCutZone(PowerSystemResource):
     An area or zone of the power system which is used for load shedding purposes.
     '''
 
+    cutLevel1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    First level (amount) of load to cut as a percentage of total zone load.
+    '''
+    
+    cutLevel2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Second level (amount) of load to cut as a percentage of total zone
+    load.
+    '''
+    
+    EnergyConsumers: list[EnergyConsumer] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EnergyConsumer.PowerCutZone',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Energy consumer is assigned to the power cut zone.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -29168,6 +29441,21 @@ class NonlinearShuntCompensator(ShuntCompensator):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    NonlinearShuntCompensatorPoints: list[NonlinearShuntCompensatorPoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonlinearShuntCompensatorPoint.NonlinearShuntCompensator',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All points of the non-linear shunt compensator.
+    '''
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ShuntCompensatorInfo(AssetInfo):
@@ -29438,6 +29726,7 @@ class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
     '''
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class NonlinearShuntCompensatorPhase(ShuntCompensatorPhase):
     '''
@@ -29460,6 +29749,21 @@ class NonlinearShuntCompensatorPhase(ShuntCompensatorPhase):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    NonlinearShuntCompensatorPhasePoints: list[NonlinearShuntCompensatorPhasePoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All points of the non-linear shunt compensator phase.
+    '''
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -31239,6 +31543,21 @@ class SubLoadArea(EnergyArea):
         })
     '''
     The Loadgroups in the SubLoadArea.
+    '''
+    
+    LoadArea: Optional[LoadArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension', 'OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'LoadArea.SubLoadAreas',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The LoadArea where the SubLoadArea belongs.
     '''
     
     @property

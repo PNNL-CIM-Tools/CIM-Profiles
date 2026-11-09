@@ -343,20 +343,6 @@ class ControlAction(IdentifiedObject):
         'maxOccurs': '1',
         'inverse': 'Control.ControlAction',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    Control: Optional[Control] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Control.ControlAction',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -500,35 +486,6 @@ class Control(IOPoint):
         'maxOccurs': '1',
         'inverse': 'ControlAction.Control',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    RemoteControl: Optional[RemoteControl] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'RemoteControl.Control',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The remote point controlling the physical actuator.
-    '''
-    
-    ControlAction: Optional[ControlAction] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ControlAction.Control',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -593,21 +550,6 @@ class AccumulatorReset(Control):
         'maxOccurs': '1',
         'inverse': 'AccumulatorValue.AccumulatorReset',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The accumulator value that is reset by the command.
-    '''
-    
-    AccumulatorValue: Optional[AccumulatorValue] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AccumulatorValue.AccumulatorReset',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -661,21 +603,6 @@ class AnalogControl(Control):
     '''
     Normal value range minimum for any of the Control.value. Used for scaling,
     e.g. in bar graphs.
-    '''
-    
-    AnalogValue: Optional[AnalogValue] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AnalogValue.AnalogControl',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The MeasurementValue that is controlled.
     '''
     
     AnalogValue: Optional[AnalogValue] = field(
@@ -834,21 +761,6 @@ class Command(Control):
         'maxOccurs': '1',
         'inverse': 'DiscreteValue.Command',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The MeasurementValue that is controlled.
-    '''
-    
-    DiscreteValue: Optional[DiscreteValue] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'DiscreteValue.Command',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -919,36 +831,6 @@ class MeasurementValue(IOPoint):
     '''
     The limit, expressed as a percentage of the sensor maximum, that errors
     will not exceed when the sensor is used under reference conditions.
-    '''
-    
-    MeasurementValueQuality: Optional[MeasurementValueQuality] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['AggregateOf'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MeasurementValueQuality.MeasurementValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    A MeasurementValue has a MeasurementValueQuality associated with it.
-    '''
-    
-    RemoteSource: Optional[RemoteSource] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'RemoteSource.MeasurementValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Link to the physical telemetered point associated with this measurement.
     '''
     
     CalculationMethodHierarchy: Optional[CalculationMethodHierarchy] = field(
@@ -1060,21 +942,6 @@ class AccumulatorValue(MeasurementValue):
     The value to supervise. The value is positive.
     '''
     
-    AccumulatorReset: Optional[AccumulatorReset] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AccumulatorReset.AccumulatorValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The command that resets the accumulator value.
-    '''
-    
     Accumulator: Optional[Accumulator] = field(
         default=None,
         metadata={
@@ -1139,21 +1006,6 @@ class AnalogValue(MeasurementValue):
     The value to supervise.
     '''
     
-    AnalogControl: Optional[AnalogControl] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'AnalogControl.AnalogValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The Control variable associated with the MeasurementValue.
-    '''
-    
     Analog: Optional[Analog] = field(
         default=None,
         metadata={
@@ -1216,21 +1068,6 @@ class DiscreteValue(MeasurementValue):
         })
     '''
     The value to supervise.
-    '''
-    
-    Command: Optional[Command] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Command.DiscreteValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The Control variable associated with the MeasurementValue.
     '''
     
     Command: Optional[Command] = field(
@@ -1700,20 +1537,6 @@ class Measurement(IdentifiedObject):
     The unit of measure of the measured quantity.
     '''
     
-    MeasurementAction: Optional[MeasurementAction] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MeasurementAction.Measurement',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
     Asset: Optional[Asset] = field(
         default=None,
         metadata={
@@ -2139,20 +1962,6 @@ class MeasurementAction(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Measurement.MeasurementAction',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    Measurement: Optional[Measurement] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
         'stereotypes': ['ShadowExtension'],
         'minOccurs': '0',
         'maxOccurs': '1',
@@ -2527,20 +2336,6 @@ class PMUConfiguration(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PhasorMeasurementUnit.PMUConfiguration',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    PhasorMeasurementUnit: Optional[PhasorMeasurementUnit] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
         'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
@@ -2718,21 +2513,6 @@ class CommunicationLink(PowerSystemResource):
         'serialize': False,
         })
     '''
-    '''
-    
-    RemoteUnits: list[RemoteUnit] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'RemoteUnit.CommunicationLinks',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    RTUs may be attached to communication links.
     '''
     
     BilateralExchangeActor: Optional[BilateralExchangeActor] = field(
@@ -3092,34 +2872,6 @@ class PhasorMeasurementUnit(MeasurementSystem):
     GPS spoofing). The PMU can only use one time source at a time.
     '''
     
-    PMUConfiguration: Optional[PMUConfiguration] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PMUConfiguration.PhasorMeasurementUnit',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    PMUStream: Optional[PMUStream] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PMUStream.PMU',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
     PhasorDataConcentrator: Optional[PhasorDataConcentrator] = field(
         default=None,
         metadata={
@@ -3308,21 +3060,6 @@ class RemoteUnit(PowerSystemResource):
     Type of remote unit.
     '''
     
-    CommunicationLinks: list[CommunicationLink] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'CommunicationLink.RemoteUnits',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    RTUs may be attached to communication links.
-    '''
-    
     RemotePoints: list[RemotePoint] = field(
         default_factory=list,
         metadata={
@@ -3460,21 +3197,6 @@ class RemoteControl(RemotePoint):
         'maxOccurs': '1',
         'inverse': 'Control.RemoteControl',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The Control for the RemoteControl point.
-    '''
-    
-    Control: Optional[Control] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Control.RemoteControl',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -3556,21 +3278,6 @@ class RemoteSource(RemotePoint):
         })
     '''
     The time interval between scans.
-    '''
-    
-    MeasurementValue: Optional[MeasurementValue] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MeasurementValue.RemoteSource',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Link to the physical telemetered point associated with this measurement.
     '''
     
     MeasurementValue: Optional[MeasurementValue] = field(
@@ -3973,21 +3680,6 @@ class MeasurementValueQuality(Identity):
         'maxOccurs': '1',
         'inverse': 'MeasurementValue.MeasurementValueQuality',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    A MeasurementValue has a MeasurementValueQuality associated with it.
-    '''
-    
-    MeasurementValue: Optional[MeasurementValue] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MeasurementValue.MeasurementValueQuality',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -4326,20 +4018,6 @@ class PMUStream(Identity):
     '''
     '''
 
-    PMU: Optional[PhasorMeasurementUnit] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PhasorMeasurementUnit.PMUStream',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
     PMU: Optional[PhasorMeasurementUnit] = field(
         default=None,
         metadata={
