@@ -1,5 +1,5 @@
 ---
-# Publishes cimprofiles to PyPI.
+# Publishes cim-profiles to PyPI.
 #   develop -> alpha pre-release (0.1.0a1, 0.1.0a2, ...)
 #   main    -> full release      (0.1.0)
 #
@@ -54,7 +54,7 @@ jobs:
             echo "::error::pyproject.toml version must be the next release target X.Y.Z, got $TARGET"
             exit 1
           fi
-          PUBLISHED=$(curl -sf https://pypi.org/pypi/cimprofiles/json | jq -r '.releases | keys[]')
+          PUBLISHED=$(curl -sf https://pypi.org/pypi/cim-profiles/json | jq -r '.releases | keys[]')
           while grep -qxF "$TARGET" <<< "$PUBLISHED"; do
             TARGET=$(uv version --bump patch --no-sync --short)
           done
@@ -83,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/project/cimprofiles/${{ needs.build.outputs.version }}/
+      url: https://pypi.org/project/cim-profiles/${{ needs.build.outputs.version }}/
     permissions:
       id-token: write
     steps:
