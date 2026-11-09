@@ -28,6 +28,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/2012/CIM-schema-cim16#'
+NAMESPACES = {'cim': 'http://iec.ch/TC57/2012/CIM-schema-cim16#'}
 
 @dataclass(repr=False, eq=False)
 class AltGeneratingUnitMeas(Identity):

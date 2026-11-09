@@ -298,6 +298,7 @@ class PowerTransformerAssetDeployment(AssetDeployment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class AssetInfo(IdentifiedObject):
     '''
@@ -330,7 +331,7 @@ class AssetInfo(IdentifiedObject):
         return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
-        return 'AssetInfo'
+        return 'AssetInfoEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -379,6 +380,21 @@ class WireInfo(ConductingAssetInfo):
         'serialize': False,
         })
     '''
+    '''
+    
+    WireSequenceConfiguration: list[WireSequenceConfiguration] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSequenceConfiguration.WireInfo',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    Template position this wire info is used
     '''
     
     @property
@@ -488,6 +504,41 @@ class TransformerBankConfiguration(EquipmentConfiguration):
         return 'unbounded'
     
 @stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class WireConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    WireSequence: list[WireSequenceConfiguration] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSequenceConfiguration.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of sequencing configuration templates for specifying usage
+    of an associated wire info in a given sequence number position
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -495,6 +546,38 @@ class WireSequenceConfiguration(EquipmentConfiguration):
     '''
     '''
 
+    WireConfiguration: Optional[WireConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireConfiguration.WireSequence',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The overall wire configuration template in which this wire sequencing
+    template is used
+    '''
+    
+    WireInfo: Optional[WireInfo] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireInfo.WireSequenceConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The wire info used within this sequence number location of the overall
+    template
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -522,7 +605,7 @@ class PowerSystemResource(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['ShadowExtension'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'AssetInfo.PowerSystemResources',

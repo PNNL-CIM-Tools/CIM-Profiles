@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+
+	Copyright 2026 UCAIug
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+-->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:j.0="http://langdale.com.au/2007/log#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns:j.1="http://langdale.com.au/2009/Repair#"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffa">
+    <rdf:first rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7b12"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffb">
+    <j.0:repairArgs rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffa"/>
+    <rdf:type rdf:resource="http://langdale.com.au/2007/log#Repair"/>
+    <rdf:type rdf:resource="http://langdale.com.au/2009/Repair#remove"/>
+    <rdfs:comment xml:space="preserve">remove this item</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffc">
+    <j.0:hasRepairs rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffb"/>
+    <j.0:problemDetail>nc:SwitchTimePoint.locked is not defined in the schema</j.0:problemDetail>
+    <rdf:type rdf:resource="http://langdale.com.au/2007/log#Problem"/>
+    <rdfs:comment xml:space="preserve">is not defined in the schema</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffd">
+    <rdf:first rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7b23"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffe">
+    <j.0:repairArgs rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffd"/>
+    <rdf:type rdf:resource="http://langdale.com.au/2007/log#Repair"/>
+    <rdf:type rdf:resource="http://langdale.com.au/2009/Repair#remove"/>
+    <rdfs:comment xml:space="preserve">remove this item</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7fff">
+    <j.0:hasRepairs rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffe"/>
+    <j.0:problemDetail>nc:SwitchTimePoint.open is not defined in the schema</j.0:problemDetail>
+    <rdf:type rdf:resource="http://langdale.com.au/2007/log#Problem"/>
+    <rdfs:comment xml:space="preserve">is not defined in the schema</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://entsoe.eu/ns/nc#SwitchTimePoint.locked">
+    <j.0:hasProblem rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7ffc"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://entsoe.eu/ns/nc#SwitchTimePoint.open">
+    <j.0:hasProblem rdf:nodeID="X63X8fe9721Xa3X1a1c1a954dbXa3X-7fff"/>
+  </rdf:Description>
+</rdf:RDF>

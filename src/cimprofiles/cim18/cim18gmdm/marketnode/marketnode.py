@@ -21,6 +21,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.ucaiug.org/gmdm/marketnode#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/CIM101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/CIM101/draft#'}
 
 
 @dataclass(repr=False, eq=False)

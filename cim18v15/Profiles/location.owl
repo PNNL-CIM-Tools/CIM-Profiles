@@ -554,6 +554,7 @@
     <rdfs:subClassOf rdf:resource="#GeometricElement"/>
   </rdf:Description>
   <rdf:Description rdf:about="#PositionPoint">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PositionPoint</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-5d0e"/>

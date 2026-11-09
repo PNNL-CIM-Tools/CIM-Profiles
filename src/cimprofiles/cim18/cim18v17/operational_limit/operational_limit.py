@@ -18,17 +18,19 @@ class CIMStereotype(Enum):
     Concrete = "Concrete"
     Description = "Description"
     European = "European"
+    GridAPPSD = "GridAPPSD"
     NC = "NC"
     OfAggregate = "OfAggregate"
     Primitive = "Primitive"
     ShadowExtension = "ShadowExtension"
+    avista = "avista"
     enumeration = "enumeration"
     gmdm = "gmdm"
     profcim = "profcim"
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
-NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'eu': 'http://iec.ch/TC57/CIM100-European#', 'nc': 'http://entsoe.eu/ns/nc#'}
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'eu': 'http://iec.ch/TC57/CIM100-European#', 'gad': 'http://gridappsd.org/CIM/extension#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -598,6 +600,54 @@ class CurrentLimit(OperationalLimit):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.avista)
+@dataclass(repr=False, eq=False)
+class ReactivePowerLimit(OperationalLimit):
+    '''
+    Limit on reactive power flow.
+    '''
+
+    normalValue: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    value: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Value of reactive power limit.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'AvistaExtensions'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class VoltageAngleLimit(OperationalLimit):
     '''
@@ -882,11 +932,24 @@ class OperationalLimitType(IdentifiedObject):
     The direction of the limit.
     '''
     
+    durationKind: Optional[ LimitDurationKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     kind: Optional[ LimitKind ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'European', 'Attribute'],
+        'stereotypes': ['European', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://iec.ch/TC57/CIM100-European#',
@@ -895,6 +958,19 @@ class OperationalLimitType(IdentifiedObject):
     '''
     Types of limits defined in the ENTSO-E Operational Handbook Policy
     3.
+    '''
+    
+    season: Optional[ CalendarSeasonKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
     '''
     
     OperationalLimit: list[OperationalLimit] = field(
@@ -1088,6 +1164,72 @@ class StepOperationalLimitTable(IdentifiedObject):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+class CalendarSeasonKind(Enum):
+    '''
+    '''
+
+    fall = 'fall'
+    '''
+    '''
+    
+    spring = 'spring'
+    '''
+    '''
+    
+    summer = 'summer'
+    '''
+    '''
+    
+    winter = 'winter'
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'OpLimitEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+class LimitDurationKind(Enum):
+    '''
+    '''
+
+    emergency = 'emergency'
+    '''
+    '''
+    
+    normal = 'normal'
+    '''
+    '''
+    
+    shortTerm = 'shortTerm'
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'OpLimitEXT'
     @property
     def __minOccurs__(self):
         return '0'

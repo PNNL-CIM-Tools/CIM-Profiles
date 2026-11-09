@@ -30,8 +30,9 @@ def model_authority_namespace(authority: str) -> UUID:
 
 def normalize_identifier(value: str) -> str:
     """
-    Returns the local part of an rdf:about, rdf:ID or mRID value, so one object gets one
-    UUID whichever CIM serialization it was read from. Removes surrounding whitespace,
+    Returns the local part of an rdf:about or rdf:ID value, so one object gets one
+    UUID whichever CIM serialization it was read from. Not for an mRID, which is a
+    free-form string (CIM18 #7540): 'lc_#2acsr' must not shrink to '2acsr'. Removes surrounding whitespace,
     a 'urn:uuid:' prefix, everything up to the last '#' (rdf:about="#_x" or a full URI)
     and one leading '_' (552-LEGACY and CGMES rdf:IDs start with '_').
     Case is kept: only UUIDs are case-insensitive.
@@ -57,12 +58,13 @@ def seeded_uuid(class_name: str, mRID: str = '', name: str = '', seed: str = '')
               model + '+' + class_name + '+' + mRID + '+' + name + '+' + seed)
 
     Identity.uuid passes the mRID or the name, never both (the mRID route and the name
-    route). mRID is normalized (normalize_identifier) and name and seed are whitespace-trimmed.
+    route). mRID is used verbatim (a caller holding an rdf:about/rdf:ID normalizes it
+    first, with normalize_identifier), and name and seed are whitespace-trimmed.
     Every component keeps its position even when empty, and '%' and '+' inside a
     component are escaped as '%25' and '%2B', so different inputs always give different
     names. Other languages can reproduce these UUIDs from this description alone.
     """
-    components = [get_model_name(), class_name, normalize_identifier(mRID), name.strip(),
+    components = [get_model_name(), class_name, mRID, name.strip(),
                   seed.strip()]
     escaped = [component.replace('%', '%25').replace('+', '%2B') for component in components]
     return uuid5(model_authority_namespace(get_model_authority()), SEED_SEPARATOR.join(escaped))
@@ -76,8 +78,27 @@ def read_identifier(class_name: str, uri: str) -> UUID:
     """
     identifier = as_uuid(uri)
     if identifier is None:
-        identifier = seeded_uuid(class_name, uri)
+        identifier = seeded_uuid(class_name, normalize_identifier(uri))
     return identifier
+
+
+def _json_value(value, use_names: bool):
+    """A JSON value for Identity.__str__: a referenced object as its minimal JSON-LD (or
+    its name, with use_names), a unit as its value in base SI units, a list item by item,
+    and anything else as its text."""
+    if value is None:
+        return None
+    if isinstance(value, list):
+        return [_json_value(item, use_names) for item in value]
+    if isinstance(value, Identity):
+        if use_names and getattr(value, 'name', None) is not None:
+            return value.name
+        return json.loads(value.__repr__())
+    if isinstance(value, CIMUnit):
+        return str(value.value)
+    if isinstance(value, str):
+        return value
+    return str(value)
 
 
 class CIMStereotype(Enum):
@@ -182,63 +203,24 @@ class Identity:
         Returns:
             str: JSON string representation of the object
         """
-        # Create JSON-LD dump with repr and all attributes
-        dump = dict(json.loads(self.__repr__()) | self.__dict__)
-
-        # Remove internal attributes
-        dump.pop('__json_ld__', None)
-
-        # Process each attribute present in the dump (dataclass fields plus any
-        # extra instance attributes) so stray values still serialize cleanly.
-        # Iterate over a snapshot of the keys because empty attributes get deleted.
-        for attribute in list(dump):
+        # Build the whole dump as JSON values and serialize it once, so text such as a
+        # name containing '"[' cannot break the JSON
+        dump = json.loads(self.__repr__())
+        for attribute, value in self.__dict__.items():
             # Skip internal/dunder attributes leaked in via __dict__
             if attribute.startswith('_'):
-                del dump[attribute]
                 continue
-
-            # Delete attributes that are empty when show_empty is False
-            if dump[attribute] is None or dump[attribute] == []:
-                if not show_empty:
-                    del dump[attribute]
+            # Skip attributes that are empty when show_empty is False
+            if (value is None or value == []) and not show_empty:
                 continue
-
-            # Handle CIM Unit attributes
-            elif isinstance(dump[attribute], CIMUnit):
-                dump[attribute] = dump[attribute].value
-
-            # Handle dataclass attributes
-            if is_dataclass(dump[attribute]):
-                if use_names and hasattr(dump[attribute], 'name'):
-                    dump[attribute] = dump[attribute].name
-                else:
-                    dump[attribute] = dump[attribute].__repr__()
-
-            # Convert non-string attributes to strings for JSON compatibility
-            elif not isinstance(dump[attribute], str):
-                dump[attribute] = str(dump[attribute])
+            dump[attribute] = _json_value(value, use_names)
 
         # Remove identifier and mRID if not showing them
         if not show_mRID:
             dump.pop('identifier', None)
             dump.pop('mRID', None)
 
-        # Convert to JSON with proper formatting
-        json_str = json.dumps(dump)
-
-        # Fix common JSON formatting issues
-        replacements = [
-            ('\\\"', '\"'),
-            ('\"[', '['),
-            (']\"', ']'),
-            ('\"{', '{'),
-            ('}\"', '}')
-        ]
-
-        for old, new in replacements:
-            json_str = json_str.replace(old, new)
-
-        return json_str
+        return json.dumps(dump)
 
     def __repr__(self) -> str:
         """
@@ -303,8 +285,9 @@ class Identity:
             # The class is part of every seeded UUID, so the same mRID or name in two
             # classes gives two different UUIDs. Two routes: an mRID is the object's key, so
             # the name is left out and a rename keeps the UUID; without one, the name is.
-            key = mRID if mRID is not None else (uri or '')
-            if normalize_identifier(key):
+            # Only the uri is normalized: an mRID is free-form, '#' and '_' included
+            key = mRID if mRID is not None else normalize_identifier(uri or '')
+            if key.strip():
                 identifier = seeded_uuid(self.__class__.__name__, mRID=key, seed=seed or '')
             elif (name or '').strip() or (seed or '').strip():
                 identifier = seeded_uuid(self.__class__.__name__, name=name or '', seed=seed or '')

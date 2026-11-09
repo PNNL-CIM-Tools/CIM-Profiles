@@ -243,6 +243,16 @@ class TestModelAuthorityUUID(unittest.TestCase):
             self.assertEqual(cim.ACLineSegment(identifier=identifier).identifier, expected,
                              identifier)
 
+    def test_mrid_is_seeded_verbatim(self):
+        # CIMHub R10: '#' in an mRID is not an rdf:about fragment (IEEE8500 line codes)
+        self.assertNotEqual(cim.PerLengthSequenceImpedance(mRID='lc_1p_#2acsr_#2n').identifier,
+                            cim.PerLengthSequenceImpedance(mRID='lc_1p_#2arv_#2n').identifier)
+        self.assertNotEqual(cim.ACLineSegment(mRID='_LINE_1').identifier,
+                            cim.ACLineSegment(mRID='LINE_1').identifier)
+        # the uri route still strips the serialization: rdf:ID="_LINE_1" is mRID LINE_1
+        self.assertEqual(cim.ACLineSegment(identifier='_LINE_1').identifier,
+                         cim.ACLineSegment(mRID='LINE_1').identifier)
+
     def test_non_uuid_identifier_is_the_mrid(self):
         # Identity.identifier is a UUID; a non-UUID rdf:ID stands in for the mRID. It used to
         # be appended twice ('...:_X_X'), so identifier='X' and mRID='X' differed.

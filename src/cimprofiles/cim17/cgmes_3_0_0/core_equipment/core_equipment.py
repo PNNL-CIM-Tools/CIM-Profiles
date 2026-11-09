@@ -30,6 +30,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://ucaiug.org/ns/CGMES/CoreEquipment-EU/3.0#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/CIM100#'
+NAMESPACES = {'cim': 'http://iec.ch/TC57/CIM100#', 'eu': 'http://iec.ch/TC57/CIM100-European#'}
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)

@@ -35,7 +35,7 @@ SPerm = siemens / meter = S/m
 V2 = volt * volt = V²
 V2h = volt * volt * hour = V²h
 VAh = volt * amp * hour = VA·h
-VAr = watt * imaginary = VAr
+VAr = watt * imaginary = VAr = var
 VArh = watt * hour * imaginary = VAr·h
 VPerHz = volt / hertz = V/Hz
 VPerV = volt / volt = V/V

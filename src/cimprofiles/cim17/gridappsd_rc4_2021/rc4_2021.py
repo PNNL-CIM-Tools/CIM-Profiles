@@ -28,6 +28,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/rc4_2021#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/CIM100#'
+NAMESPACES = {'cim': 'http://iec.ch/TC57/CIM100#'}
 
 @dataclass(repr=False, eq=False)
 class AccountNotification(Identity):

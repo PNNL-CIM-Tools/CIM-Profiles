@@ -39,6 +39,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.ucaiug.org/gmdm/global#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/CIM101/draft#'
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/CIM101/draft#', 'eu': 'http://iec.ch/TC57/CIM100-European#', 'gmdm': 'http://epri.com/gmdm/2025#', 'nc': 'http://entsoe.eu/ns/nc#'}
 
 @dataclass(repr=False, eq=False)
 class AdditionalAddressInformation(Identity):

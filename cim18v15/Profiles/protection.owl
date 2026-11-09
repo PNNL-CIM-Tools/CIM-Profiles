@@ -27,6 +27,94 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fea">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.SQL"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7feb"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7feb">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.R"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fec"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fec">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Rust"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fed"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fed">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Delphi"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fee"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fee">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.JavaScript"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fef"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fef">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Matlab"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff0"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff0">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Pascal"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff1"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff1">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Java"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff2">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Perl"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff3">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Lua"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff4"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff4">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PLCopen"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff5">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PHP"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff6">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.StructuredText"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff7">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Julia"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff8"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff8">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff9"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ff9">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Fortran"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffa"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffa">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Python"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffb"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffb">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Swift"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffc"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffc">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.VBA"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffd"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffd">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.other"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffe"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7ffe">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Go"/>
+    <rdf:rest rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fff"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fff">
+    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Modelica"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33Xc9da1d0Xa3X1a1694502a0Xa3X-71b3">
     <rdf:first rdf:resource="#FuseCharacteristicCurve"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -474,98 +562,6 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7954">
     <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProtectionOperationCharacteristicKind.ieeeModerateInverse"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7955">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.SQL"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7956"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7956">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.R"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7957"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7957">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Rust"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7958"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7958">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Delphi"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7959"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7959">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.JavaScript"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795a"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795a">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Matlab"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795b"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795b">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Pascal"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795c"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795c">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Java"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795d"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795d">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Perl"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795e"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795e">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Lua"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795f"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-795f">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PLCopen"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7960"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7960">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.PHP"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7961"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7961">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.StructuredText"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7962"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7962">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Julia"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7963"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7963">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7964"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7964">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Fortran"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7965"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7965">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Python"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7966"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7966">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Swift"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7967"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7967">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.VBA"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7968"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7968">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.other"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7969"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7969">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Go"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796a"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796a">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.Modelica"/>
-    <rdf:rest rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796b"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-796b">
-    <rdf:first rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind.C++"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#DirectionKind.forward">
@@ -1146,7 +1142,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ProgrammingLanguageKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProgrammingLanguageKind"/>
-    <owl:oneOf rdf:nodeID="Xd2X5a533699Xa3X1a12daa7f96Xa3X-7955"/>
+    <owl:oneOf rdf:nodeID="Xd2X751f39acXa3X1a1b8f8a36cXa3X-7fea"/>
   </rdf:Description>
   <rdf:Description rdf:about="#ProprietarySettingValue">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
