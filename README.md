@@ -6,9 +6,9 @@
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/PNNL-CIM-Tools/CIM-Profiles)
 
 
-![PyPI - Version](https://img.shields.io/pypi/v/cimprofiles)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/cimprofiles?label=pypi%20downloads)
-![PyPI - Format](https://img.shields.io/pypi/format/cimprofiles)
+![PyPI - Version](https://img.shields.io/pypi/v/cim-profiles)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/cim-profiles?label=pypi%20downloads)
+![PyPI - Format](https://img.shields.io/pypi/format/cim-profiles)
 
 
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/PNNL-CIM-Tools/CIM-Profiles)

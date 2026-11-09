@@ -1,5 +1,5 @@
 [project]
-name = "cimprofiles"
+name = "cim-profiles"
 version = "0.1.0"
 description = "CIM data profiles (Python dataclasses) and the Identity/units object model used by CIMantic Graphs"
 authors = [
