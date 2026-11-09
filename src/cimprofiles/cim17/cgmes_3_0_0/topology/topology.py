@@ -26,6 +26,7 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://ucaiug.org/ns/CGMES/Topology-EU/3.0#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/CIM100#'
+NAMESPACES = {'cim': 'http://iec.ch/TC57/CIM100#', 'eu': 'http://iec.ch/TC57/CIM100-European#'}
 
 @dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
