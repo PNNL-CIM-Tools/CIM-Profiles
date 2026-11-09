@@ -1,5 +1,23 @@
 # CIM-Profiles
 
+![GitHub Tag](https://img.shields.io/github/v/tag/PNNL-CIM-Tools/CIM-Profiles)
+![GitHub Release Date](https://img.shields.io/github/release-date-pre/PNNL-CIM-Tools/CIM-Profiles)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/PNNL-CIM-Tools/CIM-Profiles/release.yml)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/PNNL-CIM-Tools/CIM-Profiles)
+
+
+![PyPI - Version](https://img.shields.io/pypi/v/cim-profiles)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/cim-profiles?label=pypi%20downloads)
+![PyPI - Format](https://img.shields.io/pypi/format/cim-profiles)
+
+
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/PNNL-CIM-Tools/CIM-Profiles)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/PNNL-CIM-Tools/CIM-Profiles)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/PNNL-CIM-Tools/CIM-Profiles)
+
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/PNNL-CIM-Tools/CIM-Profiles/total?label=git%20downloads)
+![GitHub License](https://img.shields.io/github/license/PNNL-CIM-Tools/CIM-Profiles)
+
 CIMTool workspaces for the CIM 16–18 profiles, and the `cimprofiles` Python package built from
 them. These files originally shipped as part of cim-graph 0.1.x through 0.5.x.
 
