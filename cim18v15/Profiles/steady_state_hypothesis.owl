@@ -27,34 +27,6 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
-  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd5">
-    <rdf:first rdf:resource="#SynchronousMachineOperatingMode"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd6">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd7"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachine.operatingMode"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd7">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>operatingMode</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachineOperatingMode"/>
-    <owl:unionOf rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd5"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd9"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachine.condenserP"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd9">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>condenserP</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f7f">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f80"/>
@@ -99,16 +71,33 @@
     <rdfs:label>activePower</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f74">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f75"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PowerElectronicsUnit.q"/>
+  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd5">
+    <rdf:first rdf:resource="#SynchronousMachineOperatingMode"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f75">
+  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd7"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachine.operatingMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd7">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>operatingMode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachineOperatingMode"/>
+    <owl:unionOf rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd9"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachine.condenserP"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63Xe2d6a6Xa3X1a1a34a5982Xa3X-7fd9">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>q</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePower"/>
+    <rdfs:label>condenserP</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f76">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -642,6 +631,13 @@
   <rdf:Description rdf:about="#Package_WiresEXT">
     <rdfs:label>WiresEXT</rdfs:label>
   </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChanger">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChanger"/>
+    <rdfs:subClassOf rdf:resource="#TapChanger"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#PhotoVoltaicUnit">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
@@ -693,7 +689,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PowerElectronicsUnit</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f74"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7f76"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerElectronicsUnit"/>
     <rdfs:subClassOf rdf:resource="#Equipment"/>

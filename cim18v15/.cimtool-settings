@@ -76,6 +76,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/load_area.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.gridappsd.org/vfm#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Profiles/location.owl>
       tool:profile_envelope
               "Profile" ;
@@ -93,6 +99,12 @@ project:
               "Profile" ;
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/nc_schedule.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/operational_limit.owl>
       tool:profile_envelope

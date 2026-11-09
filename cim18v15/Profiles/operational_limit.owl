@@ -27,6 +27,64 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff0">
+    <rdf:first rdf:resource="#CalendarSeasonKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff2"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#OperationalLimitType.season"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff2">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>season</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#CalendarSeasonKind"/>
+    <owl:unionOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff0"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff3">
+    <rdf:first rdf:resource="#LimitDurationKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff5"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#OperationalLimitType.durationKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff5">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>durationKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#LimitDurationKind"/>
+    <owl:unionOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff7"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePowerLimit.value"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff7">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>value</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff9"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePowerLimit.normalValue"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff9">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>normalValue</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePower"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7e86">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7e87"/>
@@ -170,6 +228,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ea4">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#european"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
@@ -188,6 +247,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ea8">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>direction</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OperationalLimitDirectionKind"/>
@@ -662,6 +722,12 @@
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7eba"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BranchGroupTerminal"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#CalendarSeasonKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#CalendarSeasonKind"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#CurrentFlow">
     <rdfs:label>CurrentFlow</rdfs:label>
   </rdf:Description>
@@ -688,6 +754,12 @@
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7eb8"/>
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ebe"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LimitDurationKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#LimitDurationKind"/>
   </rdf:Description>
   <rdf:Description rdf:about="#LimitKind">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
@@ -735,6 +807,8 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OperationalLimitType</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff1"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff4"/>
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7e97"/>
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ea1"/>
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ea3"/>
@@ -788,6 +862,15 @@
   </rdf:Description>
   <rdf:Description rdf:about="#ReactivePower">
     <rdfs:label>ReactivePower</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ReactivePowerLimit">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#avista"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff6"/>
+    <rdfs:subClassOf rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff8"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePowerLimit"/>
+    <rdfs:subClassOf rdf:resource="#OperationalLimit"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Seconds">
     <rdfs:label>Seconds</rdfs:label>

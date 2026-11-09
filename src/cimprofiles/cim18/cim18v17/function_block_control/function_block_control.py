@@ -240,6 +240,21 @@ class CurrentDroopOverride(Identity):
         'maxOccurs': '1',
         'inverse': 'SSSCController.CurrentDroopOverride',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The SSSC controller to which this CurrentDroopOverride applies to.
+    '''
+    
+    SSSCController: Optional[SSSCController] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'SSSCController.CurrentDroopOverride',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -2261,6 +2276,21 @@ class ACDCConverterController(DirectCurrentEquipmentController):
         'maxOccurs': '1',
         'inverse': 'ACDCConverter.ACDCConverterController',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    ACDC converter controlled by the direct current controller.
+    '''
+    
+    ACDCConverter: Optional[ACDCConverter] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ACDCConverter.ACDCConverterController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -2350,6 +2380,21 @@ class DirectCurrentMasterController(DirectCurrentEquipmentController):
     system is under the responsibility of the system operator.
     '''
 
+    DCTieCorridor: Optional[DCTieCorridor] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'DCTieCorridor.DirectCurrentMasterController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    DCTieCorridor controlled by this direct current master controller.
+    '''
+    
     DirectCurrentBipoleController: list[DirectCurrentBipoleController] = field(
         default_factory=list,
         metadata={
@@ -3302,6 +3347,22 @@ class SSSCController(EquipmentController):
         'maxOccurs': '1',
         'inverse': 'CurrentDroopOverride.SSSCController',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The current droop override for this SSSC controller. It is not used
+    when the SSSC controller is in mode currentDroop.
+    '''
+    
+    CurrentDroopOverride: Optional[CurrentDroopOverride] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'CurrentDroopOverride.SSSCController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -3517,6 +3578,21 @@ class AreaInterchangeController(SystemControl):
         default=None,
         metadata={
         'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ControlArea.AreaInterchangeController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Control area that has a area interchange controller.
+    '''
+    
+    ControlArea: Optional[ControlArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
         'stereotypes': ['ShadowExtension'],
         'minOccurs': '0',
         'maxOccurs': '1',
@@ -3567,6 +3643,21 @@ class PowerFrequencyController(SystemControl):
         })
     '''
     Mode of the power frequency controller.
+    '''
+    
+    ControlArea: Optional[ControlArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ControlArea.PowerFrequencyController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Control area which has a power frequency controller.
     '''
     
     FrequencyMonitoringTerminal: list[FrequencyMonitoringTerminal] = field(
@@ -3689,6 +3780,36 @@ class ControlArea(PowerSystemResource):
     control, or other purposes. A control area specified with primary type
     of automatic generation control could still be forecast and used as
     an interchange area in power flow analysis.
+    '''
+    
+    AreaInterchangeController: Optional[AreaInterchangeController] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AreaInterchangeController.ControlArea',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Area interchange controller for this control area.
+    '''
+    
+    PowerFrequencyController: Optional[PowerFrequencyController] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PowerFrequencyController.ControlArea',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Power frequency controller for this control area.
     '''
     
     AreaInterchangeController: Optional[AreaInterchangeController] = field(
@@ -3898,6 +4019,21 @@ class DCTieCorridor(PowerSystemResource):
         'maxOccurs': '1',
         'inverse': 'DirectCurrentMasterController.DCTieCorridor',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Direct current master controller for this DCTieCorridor.
+    '''
+    
+    DirectCurrentMasterController: Optional[DirectCurrentMasterController] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'DirectCurrentMasterController.DCTieCorridor',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
@@ -3967,6 +4103,21 @@ class ACDCConverter(ConductingEquipment):
     reactors and auxiliaries, if any, used for conversion.
     '''
 
+    ACDCConverterController: Optional[ACDCConverterController] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ACDCConverterController.ACDCConverter',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Direct current controller which controls the ACDC converter.
+    '''
+    
     ACDCConverterController: Optional[ACDCConverterController] = field(
         default=None,
         metadata={

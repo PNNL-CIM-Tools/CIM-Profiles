@@ -1138,21 +1138,6 @@ class PowerElectronicsUnit(Equipment):
     sign means flow into the equipment from the network.
     '''
     
-    q: Optional[ ReactivePower ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Reactive power injection. Load sign convention is used, i.e. positive
-    sign means flow into the equipment from the network.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1496,6 +1481,30 @@ class TapChanger(PowerSystemResource):
     or less than highStep.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChanger(TapChanger):
+    '''
+    A transformer phase shifting tap model that controls the phase angle difference
+    across the power transformer and potentially the active power flow through
+    the power transformer. This phase tap model may also impact the voltage
+    magnitude.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'

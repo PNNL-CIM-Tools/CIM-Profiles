@@ -385,6 +385,40 @@ class EquipmentConfiguration(IdentifiedObject):
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class TransformerBankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    TankConfiguration: list[TransformerTankConfiguration] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerTankConfiguration.BankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
 class TransformerTankConfiguration(EquipmentConfiguration):
     '''
     '''
@@ -447,6 +481,20 @@ class TransformerTankConfiguration(EquipmentConfiguration):
     Magnetizing current expressed as percentage of base current
     '''
     
+    TransformerCore: Optional[TransformerCore] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerCore.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
     TransformerLugs: list[TransformerLug] = field(
         default_factory=list,
         metadata={
@@ -494,6 +542,21 @@ class TransformerTankConfiguration(EquipmentConfiguration):
     The set of TransformerTanks using this configuration
     '''
     
+    TransformerTankEnd: list[TransformerTankEnd] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerTankEnd.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    Set of mathematical aggregate ends of alls sides of tank being templated
+    '''
+    
     TransformerWinding: list[TransformerWinding] = field(
         default_factory=list,
         metadata={
@@ -507,6 +570,20 @@ class TransformerTankConfiguration(EquipmentConfiguration):
         })
     '''
     The set of transformerwindings contained within this tank configuration
+    '''
+    
+    BankConfiguration: Optional[TransformerBankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerBankConfiguration.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
     '''
     
     @property
@@ -621,7 +698,7 @@ class WireConfiguration(EquipmentConfiguration):
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'PerLengthImpedance.WireAssembly',
+        'inverse': 'PerLengthImpedance.WireConfiguration',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -734,9 +811,9 @@ class MagneticCore(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.new)
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.new)
 @dataclass(repr=False, eq=False)
 class TransformerCore(MagneticCore):
     '''
@@ -774,6 +851,20 @@ class TransformerCore(MagneticCore):
         'inverse': 'TransformerWinding.TransformerCore',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
+        })
+    '''
+    '''
+    
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerCore',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
     '''
@@ -817,6 +908,21 @@ class MultiCircuitGroup(IdentifiedObject):
     the lines need to be included in network analysis.
     '''
 
+    XYSpacing: Optional[XYSpacing] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The XY spacing that applies to this coupled line segment group.
+    '''
+    
     XYSpacing: Optional[XYSpacing] = field(
         default=None,
         metadata={
@@ -873,7 +979,7 @@ class PerLengthImpedance(PerLengthLineParameter):
     Common type for per-length electrical impedances.
     '''
 
-    WireAssembly: Optional[WireConfiguration] = field(
+    WireConfiguration: Optional[WireConfiguration] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -1437,6 +1543,30 @@ class TransformerEnd(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformerEnd(TransformerEnd):
+    '''
+    A power systems analysis model construct of one side of an autotransformer
+    combining the winding and phase + common lugs. The transformer end is used
+    to link one side of the autotransformer with its associated terminal and
+    connectivity node.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -1516,6 +1646,56 @@ class TransformerPhaseEnd(TransformerEnd):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerTankEnd(TransformerEnd):
+    '''
+    Transformer tank end represents an individual winding for unbalanced models
+    or for transformer tanks connected into a bank (and bank is modelled with
+    the PowerTransformer).
+    '''
+
+    connectionKind: Optional[ WindingConnection ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['ShadowExtension', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerTankEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The tank template
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2050,16 +2230,31 @@ class TransformerLug(IdentifiedObject):
     Y and Z or as described in IEEE c57.18.10-1998.
     '''
     
+    sequenceNumber: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Matches the sequence number of the transformer phase end for describing
+    how the lug is wired together as part of a larger bank.
+    '''
+    
     AutoTransformerWinding: Optional[TransformerWinding] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['new'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.AutoTransformerLug',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'serialize': False,
         })
     '''
     The autotransformer winding for which this lug is the second line-side
@@ -2071,15 +2266,30 @@ class TransformerLug(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['new'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TransformerWinding.FromTransformerLug',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'serialize': False,
         })
     '''
     The winding for which this end is seen as the "from" lug
+    '''
+    
+    ToTransformerWinding: Optional[TransformerWinding] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerWinding.ToTransformerLug',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The winding for which this end is seen as the "to" lug
     '''
     
     TankConfiguration: Optional[TransformerTankConfiguration] = field(
@@ -2095,21 +2305,6 @@ class TransformerLug(IdentifiedObject):
         })
     '''
     The transformer tank configuration template in which this lug is used.
-    '''
-    
-    ToTransformerWinding: Optional[TransformerWinding] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['new'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TransformerWinding.ToTransformerLug',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The winding for which this end is seen as the "to" lug
     '''
     
     TransformerEnd: Optional[TransformerEnd] = field(
@@ -2186,28 +2381,6 @@ class TransformerWinding(IdentifiedObject):
     or phase-to-neutral.
     '''
     
-    FromTransformerLug: Optional[TransformerLug] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TransformerLug.FromTransformerWinding',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The lug at the polarity-marked end of the winding. When this lug is
-    instantaneously positive, the opposite end of the winding (the "to"
-    lug) is instantaneously negative. This is not necessarily the lug with
-    the lowest designation number. For example, H1 is the from lug of a
-    primary winding, and X1 is the from lug of a secondary winding with
-    subtractive polarity. For a center-tapped split-phase tank with additive
-    polarity, the from lug of the secondary is X3 for the winding X3�X2,
-    and X2 for the winding X2�X1.
-    '''
-    
     AutoTransformerLug: Optional[TransformerLug] = field(
         default=None,
         metadata={
@@ -2245,6 +2418,28 @@ class TransformerWinding(IdentifiedObject):
     to a terminal-facing end, such as an internal junction. For balanced
     three-phase transformers, this is the only end that needs to be specified.
     For unbalanced per-tank modeling, the "from" and "to" need to be specified.
+    '''
+    
+    FromTransformerLug: Optional[TransformerLug] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerLug.FromTransformerWinding',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The lug at the polarity-marked end of the winding. When this lug is
+    instantaneously positive, the opposite end of the winding (the "to"
+    lug) is instantaneously negative. This is not necessarily the lug with
+    the lowest designation number. For example, H1 is the from lug of a
+    primary winding, and X1 is the from lug of a secondary winding with
+    subtractive polarity. For a center-tapped split-phase tank with additive
+    polarity, the from lug of the secondary is X3 for the winding X3�X2,
+    and X2 for the winding X2�X1.
     '''
     
     TankConfiguration: Optional[TransformerTankConfiguration] = field(
@@ -2567,6 +2762,22 @@ class XYSpacing(WireSpacing):
     which gives the phase.
     '''
 
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'MultiCircuitGroup.XYSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The multi circuit group of adjacent line segments defined by the XY
+    spacing.
+    '''
+    
     XYConductorPosition: list[XYConductorPosition] = field(
         default_factory=list,
         metadata={
@@ -2755,6 +2966,170 @@ class EarthModelKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.enumeration)
+class PhaseCode(Enum):
+    '''
+    Enumeration of phase identifiers used to designate the combination of phase
+    and/or neutral conductors at a terminal, measurement or equipment modelled
+    as a single-line balanced equivalent.
+    This is an unordered enumeration of phase identifiers. Allows designation
+    of phases for both transmission and distribution equipment, circuits and
+    loads. The enumeration, by itself, does not describe how the phases are
+    connected together or connected to ground. Ground is not explicitly denoted
+    as a phase.
+    Residential and small commercial loads are often served from single-phase,
+    or split-phase, secondary circuits. For the example of s12N, phases 1 and
+    2 refer to hot wires that are 180 degrees out of phase, while N refers
+    to the neutral wire. Through single-phase transformer connections, these
+    secondary circuits may be served from one or two of the primary phases
+    A, B, and C. For three-phase loads, use the A, B, C phase codes instead
+    of s12N.
+    The integer values are from IEC 61968-9 to support revenue metering applications.
+    '''
+
+    A = 'A'
+    '''
+    Phase A.
+    '''
+    
+    AB = 'AB'
+    '''
+    Phases A and B.
+    '''
+    
+    ABC = 'ABC'
+    '''
+    Phases A, B, and C.
+    '''
+    
+    ABCN = 'ABCN'
+    '''
+    Phases A, B, C, and N.
+    '''
+    
+    ABN = 'ABN'
+    '''
+    Phases A, B, and neutral.
+    '''
+    
+    AC = 'AC'
+    '''
+    Phases A and C.
+    '''
+    
+    ACN = 'ACN'
+    '''
+    Phases A, C and neutral.
+    '''
+    
+    AN = 'AN'
+    '''
+    Phases A and neutral.
+    '''
+    
+    B = 'B'
+    '''
+    Phase B.
+    '''
+    
+    BC = 'BC'
+    '''
+    Phases B and C.
+    '''
+    
+    BCN = 'BCN'
+    '''
+    Phases B, C, and neutral.
+    '''
+    
+    BN = 'BN'
+    '''
+    Phases B and neutral.
+    '''
+    
+    C = 'C'
+    '''
+    Phase C.
+    '''
+    
+    CN = 'CN'
+    '''
+    Phases C and neutral.
+    '''
+    
+    N = 'N'
+    '''
+    Neutral phase.
+    '''
+    
+    X = 'X'
+    '''
+    Unknown non-neutral phase.
+    '''
+    
+    XN = 'XN'
+    '''
+    Unknown non-neutral phase plus neutral.
+    '''
+    
+    XY = 'XY'
+    '''
+    Two unknown non-neutral phases.
+    '''
+    
+    XYN = 'XYN'
+    '''
+    Two unknown non-neutral phases plus neutral.
+    '''
+    
+    none = 'none'
+    '''
+    No phases specified.
+    '''
+    
+    s1 = 's1'
+    '''
+    Secondary phase 1.
+    '''
+    
+    s12 = 's12'
+    '''
+    Secondary phase 1 and 2.
+    '''
+    
+    s12N = 's12N'
+    '''
+    Secondary phases 1, 2, and neutral.
+    '''
+    
+    s1N = 's1N'
+    '''
+    Secondary phase 1 and neutral.
+    '''
+    
+    s2 = 's2'
+    '''
+    Secondary phase 2.
+    '''
+    
+    s2N = 's2N'
+    '''
+    Secondary phase 2 and neutral.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
@@ -2868,6 +3243,81 @@ class SinglePhaseKind(Enum):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.enumeration)
+class WindingConnection(Enum):
+    '''
+    Winding connection type.
+    '''
+
+    A = 'A'
+    '''
+    Autotransformer common winding.
+    '''
+    
+    D = 'D'
+    '''
+    Delta.
+    '''
+    
+    Dn = 'Dn'
+    '''
+    Delta, with neutral brought out for grounding
+    '''
+    
+    I = 'I'
+    '''
+    Independent winding, for single-phase connections.
+    '''
+    
+    T = 'T'
+    '''
+    Tee
+    '''
+    
+    Y = 'Y'
+    '''
+    Wye.
+    '''
+    
+    Yn = 'Yn'
+    '''
+    Wye, with neutral brought out for grounding.
+    '''
+    
+    Z = 'Z'
+    '''
+    ZigZag.
+    '''
+    
+    Zn = 'Zn'
+    '''
+    ZigZag, with neutral brought out for grounding.
+    '''
+    
+    oD = 'oD'
+    '''
+    Open Delta
+    '''
+    
+    oY = 'oY'
+    '''
+    Open Wye
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'

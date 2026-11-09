@@ -52,6 +52,22 @@ class AreaConfiguration(Identity):
     normal-closed configuration.
     '''
     
+    ConnectedArea: list[ConnectedArea] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConnectedArea.AreaConfiguration',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Set of persistent connectivity-based areas grouped into larger topological
+    area based on current switching configuration.
+    '''
+    
     TopologicalArea: list[TopologicalArea] = field(
         default_factory=list,
         metadata={
@@ -437,6 +453,22 @@ class ConnectedArea(ConnectivityNodeContainer):
     connectivity.
     '''
 
+    AreaConfiguration: Optional[AreaConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AreaConfiguration.ConnectedArea',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Configuration by which switch open/close positions group quasi-static
+    connected areas into a topological area.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'

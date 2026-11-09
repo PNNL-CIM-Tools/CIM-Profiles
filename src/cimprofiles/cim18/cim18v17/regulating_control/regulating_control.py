@@ -157,6 +157,167 @@ class Terminal(ACDCTerminal):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTable(IdentifiedObject):
+    '''
+    Describes a curve for how the power transformer end impedance varies with
+    the tap step.
+    '''
+
+    ImpedanceTapChangerTablePoint: list[ImpedanceTapChangerTablePoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The points of this table.
+    '''
+    
+    ImpedanceTapChangerTabular: list[ImpedanceTapChangerTabular] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ImpedanceTapChangerTabular.ImpedanceTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The impedance tap changer to which this impedance tap table applies.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerTable(IdentifiedObject):
+    '''
+    Describes a tabular curve for how the phase angle difference and impedance
+    varies with the tap step.
+    '''
+
+    PhaseTapChangerTablePoint: list[PhaseTapChangerTablePoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PhaseTapChangerTablePoint.PhaseTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The points of this table.
+    '''
+    
+    PhaseTapChangerTabular: list[PhaseTapChangerTabular] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PhaseTapChangerTabular.PhaseTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The phase tap changers to which this phase tap table applies.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ConnectionAngleTapChangerTable(PhaseTapChangerTable):
+    '''
+    Describes a tabular curve for how the connection angle varies with the
+    tap step. This table is used when its winding connection angle matches
+    the operating angle of the tap changer. There must be an instance of this
+    table for each winding connection angle that can be used.
+    '''
+
+    windingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The phase angle between the in-phase winding and the out-of -phase
+    winding used for creating phase shift. The out-of-phase winding produces
+    what is known as the difference voltage. Setting this angle to 90 degrees
+    is not the same as a symmetrical transformer. In this scenario you
+    will still treat the 90-degree angle as a phase shifting transformer.
+    The attribute can only be multiples of 30 degrees. When 0 degree is
+    used the asymmetrical phase tap changer acts as ratio tap changer controlling
+    voltage.
+    '''
+    
+    ConnectionAngleTapChanger: Optional[ConnectionAngleTapChanger] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConnectionAngleTapChanger.ConnectionAngleTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The connection angle tap changer that has this connection angle tap
+    changer table.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @dataclass(repr=False, eq=False)
 class PowerSystemResource(IdentifiedObject):
@@ -833,6 +994,53 @@ class ConductingEquipment(Equipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@dataclass(repr=False, eq=False)
+class AutoTransformer(ConductingEquipment):
+    '''
+    A transformer containing only a single winding connected between the phase
+    and common lugs, with an additional lug tapped from the middle of the winding.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class VoltageRegulator(AutoTransformer):
+    '''
+    A distribution transformer providing buck/boost functionality through a
+    tap changer connected to one winding of an autotransformer. This class
+    differs from the LTC of a power transformer in that the device only contains
+    a single winding.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class EnergyConnection(ConductingEquipment):
     '''
@@ -1258,7 +1466,44 @@ class TapChanger(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTabular(TapChanger):
+    '''
+    Describes a tap changer with a table defining the relation between the
+    tap step and the impedance difference across the windings of a three winding
+    transformer.
+    '''
+
+    ImpedanceTapChangerTable: Optional[ImpedanceTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTable.ImpedanceTapChangerTabular',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The impedance tap changer table for this impedance tap changer.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class PhaseTapChanger(TapChanger):
     '''
@@ -1281,6 +1526,402 @@ class PhaseTapChanger(TapChanger):
         })
     '''
     Transformer end to which this phase tap changer belongs.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerLinear(PhaseTapChanger):
+    '''
+    Describes a tap changer with a linear relation between the tap step and
+    the phase angle difference across the transformer. This is a mathematical
+    model that is an approximation of a real phase tap changer.
+    The phase angle is computed as stepPhaseShiftIncrement times the tap position.
+    The voltage magnitude of both sides is the same.
+    '''
+
+    stepPhaseShiftIncrement: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phase shift per step position. A positive value indicates a positive
+    angle variation from the Terminal at the PowerTransformerEnd, where
+    the TapChanger is located, into the transformer.
+    The actual phase shift increment might be more accurately computed
+    from the symmetrical or asymmetrical models or a tap step table lookup
+    if those are available.
+    '''
+    
+    xMax: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The reactance depends on the tap position according to a "u" shaped
+    curve. The maximum reactance (xMax) appears at the low and high tap
+    positions. Depending on the "u" curve the attribute can be either higher
+    or lower than PowerTransformerEnd.x.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerNonLinear(PhaseTapChanger):
+    '''
+    The non-linear phase tap changer describes the non-linear behaviour of
+    a phase tap changer. This is a base class for the symmetrical and asymmetrical
+    phase tap changer models. The details of these models can be found in IEC
+    61970-301.
+    '''
+
+    voltageStepIncrement: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The voltage step increment on the out of phase winding (the PowerTransformerEnd
+    where the TapChanger is located) specified in percent of rated voltage
+    of the PowerTransformerEnd. A positive value means a positive voltage
+    variation from the Terminal at the PowerTransformerEnd, where the TapChanger
+    is located, into the transformer.
+    When the increment is negative, the voltage decreases when the tap
+    step increases.
+    '''
+    
+    xMax: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The reactance depends on the tap position according to a "u" shaped
+    curve. The maximum reactance (xMax) appears at the low and high tap
+    positions. Depending on the "u" curve the attribute can be either higher
+    or lower than PowerTransformerEnd.x.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
+@dataclass(repr=False, eq=False)
+class ConnectionAngleTapChanger(PhaseTapChangerNonLinear):
+    '''
+    Describes the tap model for an asymmetrical phase shifting transformer
+    in which the difference voltage vector adds to the in-phase winding. The
+    out-of-phase winding is the transformer end where the tap changer is located.
+    The angle between the in-phase and out-of-phase windings is named the winding
+    connection angle. The phase shift depends on both the difference voltage
+    magnitude and the winding connection angle. The winding connection angle
+    can be changed for different operating conditions while energized.
+    The following options are supported:
+    <ol>
+    <li>Modelling of tap changer using ConnectionAngleTapChanger without ConnectionAngleTapChangerTable.
+    Equations for asymmetrical transformer defined in IEC 61970-301 are used.
+    The supported winding connection angle range is defined by the maximum
+    winding connection angle and the minimum winding connection angle. The
+    connection angle step size is used to define the allowed winding connection
+    angles for the tap changer.</li>
+    <li>Modelling of tap changer using ConnectionAngleTapChanger with ConnectionAngleTapChangerTable.
+    There shall be different tables that relate to different winding connection
+    angles that are supported by the tap changer. There is no need to provide
+    information on winding connection angle range and connection angle step
+    size as the allowed winding connection angles are defined by the table.
+    The usage of the table is recommended in cases where the equations for
+    asymmetrical transformer defined in IEC 61970-301 cannot fully describe
+    the tap changer or in cases where it is exchange the data for different
+    tap steps in an explicit way as a table.</li>
+    </ol>
+    '''
+
+    connectionAngleStepSize: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The supported winding connection angle range is defined by the maximum
+    winding connection angle and the minimum winding connection angle.
+    The connection angle step size is used to define the allowed winding
+    connection angles for the tap changer. The attribute shall be a positive
+    value and can only be multiples of 30 degrees. For example, if the
+    tap changer has maximum winding connection angle equal to 60 degrees,
+    minimum winding connection angle equal to -60 degrees and the connection
+    angle step size is equal to 60, the allowed winding connection angle
+    that can be used for this tap changer are -60 degrees, 0 degrees and
+    -60 degrees. When using connection angle tap changer table there is
+    no need to provide information on winding connection angle range and
+    connection angle step size as the allowed winding connection angles
+    are defined by the table.
+    '''
+    
+    maxWindingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The maximum phase angle between the in-phase winding and the out-of
+    -phase winding used for creating phase shift. The attribute can be
+    positive, negative or zero and can only be multiples of 30 degrees.
+    When 0 degree is used the asymmetrical phase tap changer acts as ratio
+    tap changer controlling voltage. The maximum winding connection angle
+    shall be greater than the minimum winding connection angle. When using
+    connection angle tap changer table there is no need to provide information
+    on winding connection angle range and connection angle step size as
+    the allowed winding connection angles are defined by the table.
+    '''
+    
+    minWindingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The minimum phase angle between the in-phase winding and the out-of
+    -phase winding used for creating phase shift. The attribute can be
+    positive, negative or zero and can only be multiples of 30 degrees.
+    When 0 degree is used the asymmetrical phase tap changer acts as ratio
+    tap changer controlling voltage. When using connection angle tap changer
+    table there is no need to provide information on winding connection
+    angle range and connection angle step size as the allowed winding connection
+    angles are defined by the table.
+    '''
+    
+    normalWindingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The normal phase angle between the in-phase winding and the out-of
+    -phase winding used for creating phase shift. The out-of-phase winding
+    produces what is known as the difference voltage. Setting this angle
+    to 90 degrees is not the same as a symmetrical transformer. In this
+    scenario you will still treat the 90-degree angle as a phase shifting
+    transformer. The attribute can only be multiples of 30 degrees. When
+    0 degree is used the asymmetrical phase tap changer acts as ratio tap
+    changer controlling voltage.
+    '''
+    
+    windingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The operating phase angle between the in-phase winding and the out-of
+    -phase winding used for creating phase shift. The out-of-phase winding
+    produces what is known as the difference voltage. Setting this angle
+    to 90 degrees is not the same as a symmetrical transformer. In this
+    scenario you will still treat the 90-degree angle as a phase shifting
+    transformer. The attribute can only be multiples of 30 degrees. When
+    0 degree is used the asymmetrical phase tap changer acts as ratio tap
+    changer controlling voltage.
+    '''
+    
+    ConnectionAngleTapChangerTable: list[ConnectionAngleTapChangerTable] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConnectionAngleTapChangerTable.ConnectionAngleTapChanger',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The connection angle tap changer table that is applied to this connection
+    angle tap changer.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
+    '''
+    Describes the tap model for an asymmetrical phase shifting transformer
+    in which the difference voltage vector adds to the in-phase winding. The
+    out-of-phase winding is the transformer end where the tap changer is located.
+    The angle between the in-phase and out-of-phase windings is named the winding
+    connection angle. The phase shift depends on both the difference voltage
+    magnitude and the winding connection angle.
+    '''
+
+    windingConnectionAngle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The phase angle between the in-phase winding and the out-of -phase
+    winding used for creating phase shift. The out-of-phase winding produces
+    what is known as the difference voltage. Setting this angle to 90 degrees
+    is not the same as a symmetrical transformer. The attribute can only
+    be multiples of 30 degrees. The allowed range is -150 degrees to 150
+    degrees excluding 0.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerSymmetrical(PhaseTapChangerNonLinear):
+    '''
+    Describes a symmetrical phase shifting transformer tap model in which the
+    voltage magnitude of both sides is the same. The difference voltage magnitude
+    is the base in an equal-sided triangle where the sides corresponds to the
+    primary and secondary voltages. The phase angle difference corresponds
+    to the top angle and can be expressed as twice the arctangent of half the
+    total difference voltage.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerTabular(PhaseTapChanger):
+    '''
+    Describes a tap changer with a table defining the relation between the
+    tap step and the phase angle difference across the transformer.
+    '''
+
+    PhaseTapChangerTable: Optional[PhaseTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PhaseTapChangerTable.PhaseTapChangerTabular',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The phase tap changer table for this phase tap changer.
     '''
     
     @property
@@ -1404,6 +2045,31 @@ class TransformerEnd(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformerEnd(TransformerEnd):
+    '''
+    A power systems analysis model construct of one side of an autotransformer
+    combining the winding and phase + common lugs. The transformer end is used
+    to link one side of the autotransformer with its associated terminal and
+    connectivity node.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -1468,6 +2134,325 @@ class TransformerPhaseEnd(TransformerEnd):
     @property
     def __package__(self):
         return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class RatioTapChangerTable(IdentifiedObject):
+    '''
+    Describes a curve for how the voltage magnitude and impedance varies with
+    the tap step.
+    '''
+
+    RatioTapChangerTablePoint: list[RatioTapChangerTablePoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'RatioTapChangerTablePoint.RatioTapChangerTable',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Points of this table.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTablePoint(Identity):
+    '''
+    Describes each tap step in the impedance tap changer tabular curve.
+    '''
+
+    ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The voltage at the tap step divided by rated voltage of the transformer
+    end having the tap changer. Hence this is a value close to one. For
+    example, if the ratio at step 1 is 1.01, and the rated voltage of the
+    transformer end is 110kV, then the voltage obtained by setting the
+    tap changer to step 1 to is 111.1kV.
+    '''
+    
+    step: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The tap step.
+    '''
+    
+    angle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The angle difference in degrees. A positive value indicates a positive
+    angle variation from the Terminal at the PowerTransformerEnd, where
+    the TapChanger is located, into the transformer.
+    '''
+    
+    rEnd1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 1. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    rEnd2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 2. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    rEnd3: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The resistance deviation as a percentage of nominal value, r(nominal),
+    for the winding with TransformerEnd.endNumber equal to 3. The actual
+    reactance is calculated as follows: calculated resistance = r(nominal)
+    * (1 + r(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd1: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 1. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x (from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd2: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 2. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    xEnd3: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The series reactance deviation as a percentage of nominal value, x(nominal),
+    for the winding with TransformerEnd.endNumber equal to 3. The actual
+    reactance is calculated as follows: calculated reactance = x(nominal)
+    * (1 + x(from this class)/100). This model assumes the star impedance
+    (pi model) form. Note that the upper boundary is not constrained to
+    100 percent.
+    '''
+    
+    ImpedanceTapChangerTable: Optional[ImpedanceTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The table of this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerTablePoint(Identity):
+    '''
+    Describes each tap step in the phase tap changer tabular curve.
+    '''
+
+    angle: Optional[ AngleDegrees ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The angle difference in degrees. A positive value indicates a positive
+    angle variation from the Terminal at the PowerTransformerEnd, where
+    the TapChanger is located, into the transformer.
+    '''
+    
+    PhaseTapChangerTable: Optional[PhaseTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PhaseTapChangerTable.PhaseTapChangerTablePoint',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The table of this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class RatioTapChangerTablePoint(Identity):
+    '''
+    Describes each tap step in the ratio tap changer tabular curve.
+    '''
+
+    RatioTapChangerTable: Optional[RatioTapChangerTable] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'RatioTapChangerTable.RatioTapChangerTablePoint',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Table of this point.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1716,6 +2701,34 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class AngleDegrees(CIMUnit):
+    '''
+    Measurement of angle in degrees.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.deg
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

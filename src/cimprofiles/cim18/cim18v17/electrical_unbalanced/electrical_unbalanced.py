@@ -192,6 +192,269 @@ class EarthResistivity(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EquipmentConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@dataclass(repr=False, eq=False)
+class TransformerTankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    loadLoss: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at rated power
+    '''
+    
+    noLoadLoss: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Active power thermal loss at no load
+    '''
+    
+    percentImpedance: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Transformer impedance expressed in percent, calculated as short circuit
+    voltage divided by rated voltage when measured at rated current flow,
+    also known as %Z or %IZ
+    '''
+    
+    percentMagnetizingCurrent: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Magnetizing current expressed as percentage of base current
+    '''
+    
+    TransformerCore: Optional[TransformerCore] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerCore.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    TransformerTank: list[TransformerTank] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerTank.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of TransformerTanks using this configuration
+    '''
+    
+    TransformerWinding: list[TransformerWinding] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerWinding.TankConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformerwindings contained within this tank configuration
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class WireConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    numberOfPhases: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    installationType: Optional[ WireInstallationKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    usage: Optional[ WireUsageKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    ACLineSegements: list[ACLineSegment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACLineSegment.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of lines sharing this assembly specification
+    '''
+    
+    PerLengthImpedance: Optional[PerLengthImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthImpedance.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The per-length impedance template used by all lines following this
+    assembly specification
+    '''
+    
+    EarthResistivity: Optional[EarthResistivity] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EarthResistivity.WireAssemblies',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The earth resistivity of lines using this wire assembly template
+    '''
+    
+    PerLengthImpedance: Optional[PerLengthImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthImpedance.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The per-length impedance template used by all lines following this
+    assembly specification
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadResponseCharacteristic(IdentifiedObject):
@@ -536,6 +799,20 @@ class TransformerCore(MagneticCore):
     Magnetizing branch conductance (G mag).
     '''
     
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerCore',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     TransformerTank: Optional[TransformerTank] = field(
         default=None,
         metadata={
@@ -833,7 +1110,22 @@ class PerLengthImpedance(PerLengthLineParameter):
     All line segments described by this per-length impedance.
     '''
     
-    WireAssembly: Optional[WireConfiguration] = field(
+    WireConfiguration: Optional[WireConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireConfiguration.PerLengthImpedance',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The assembly specification referencing this impedance
+    '''
+    
+    WireConfiguration: Optional[WireConfiguration] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -1105,6 +1397,83 @@ class ConductingEquipment(Equipment):
     @property
     def __package__(self):
         return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformer(ConductingEquipment):
+    '''
+    A transformer containing only a single winding connected between the phase
+    and common lugs, with an additional lug tapped from the middle of the winding.
+    '''
+
+    AutoTransformerWinding: Optional[TransformerWinding] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerWinding.AutoTransformer',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The winding associated with this autotransformer
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class VoltageRegulator(AutoTransformer):
+    '''
+    A distribution transformer providing buck/boost functionality through a
+    tap changer connected to one winding of an autotransformer. This class
+    differs from the LTC of a power transformer in that the device only contains
+    a single winding.
+    '''
+
+    construction: Optional[ RegulatorConstructionKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Designates whether the tap changer is connected to the "L" or "S" lug.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2290,23 +2659,6 @@ class BatteryUnit(PowerElectronicsUnit):
     Real power consumed while idling
     '''
     
-    idlingQ: Optional[ ReactivePower ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Reactive power consumed while idling
-    &lt;&lt;conversion note&gt;&gt;
-    DSS equivalent is %Idlingkvar, Percent of rated kW consumed as reactive
-    power (kvar) while idling. Default =
-    '''
-    
     minimumE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
@@ -2476,6 +2828,21 @@ class TransformerTank(Equipment):
         })
     '''
     The transformer core contained within the transformer tank.
+    '''
+    
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerTankConfiguration.TransformerTank',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The configuration template used by this transformer tank
     '''
     
     @property
@@ -2930,6 +3297,63 @@ class TransformerEnd(PowerSystemResource):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformerEnd(TransformerEnd):
+    '''
+    A power systems analysis model construct of one side of an autotransformer
+    combining the winding and phase + common lugs. The transformer end is used
+    to link one side of the autotransformer with its associated terminal and
+    connectivity node.
+    '''
+
+    baseU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Base phase-to-neutral (wye-connected) or phase-to-phase (delta-connected)
+    voltage matching the nameplate designation string.
+    Note that this can be different from the base voltage, where a 7620
+    V regulator can be installed on 7960/13800Y, 7620/13200Y, or 7200/12470Y
+    volt circuits.
+    '''
+    
+    ratedS: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Single-phase apparent power rating of the auto-transformer winding
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -3244,7 +3668,8 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    Normal apparent power rating.
+    Normal apparent power rating. This is obtained from the nameplate designation
+    of IEEE c57.12.00-2021.
     The attribute shall be a positive value. For a two-winding transformer
     the values for the high and low voltage sides shall be identical.
     '''
@@ -3263,7 +3688,8 @@ class TransformerWinding(IdentifiedObject):
     The phase-to-phase voltage assigned to be applied, or developed at
     no-load, between the line terminals of a winding of a polyphase transformer
     or reactor, or between the terminals of a winding of a single-phase
-    transformer or reactor [source: IEV 421-04-01]
+    transformer or reactor [source: IEV 421-04-01]. This is obtained from
+    the nameplate designation per Table 7 of IEEE c57.12.00-2021.
     '''
     
     rDC: Optional[ Resistance ] = field(
@@ -3279,6 +3705,21 @@ class TransformerWinding(IdentifiedObject):
     '''
     DC resistance of the individual winding. This parameter is typically
     used for geomagnetic induced current studies.
+    '''
+    
+    AutoTransformer: Optional[AutoTransformer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AutoTransformer.AutoTransformerWinding',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The autotransformer to which this winding belongs
     '''
     
     FromMeshImpedance: list[TransformerMeshImpedance] = field(
@@ -3313,114 +3754,24 @@ class TransformerWinding(IdentifiedObject):
     windings.
     '''
     
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'WiresEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False, eq=False)
-class WireConfiguration(IdentifiedObject):
-    '''
-    '''
-
-    numberOfPhases: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    installationType: Optional[ WireInstallationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    usage: Optional[ WireUsageKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    ACLineSegements: list[ACLineSegment] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ACLineSegment.WireConfiguration',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    The set of lines sharing this assembly specification
-    '''
-    
-    EarthResistivity: Optional[EarthResistivity] = field(
+    TankConfiguration: Optional[TransformerTankConfiguration] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'EarthResistivity.WireAssemblies',
+        'inverse': 'TransformerTankConfiguration.TransformerWinding',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    The earth resistivity of lines using this wire assembly template
-    '''
-    
-    PerLengthImpedance: Optional[PerLengthImpedance] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'PerLengthImpedance.WireAssembly',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The per-length impedance template used by all lines following this
-    assembly specification
+    The transformer tank configuration template in which this winding appears
     '''
     
     @property
     def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
+        return 'http://cim.ucaiug.io/cim101/draft#'
     @property
     def __package__(self):
         return 'WiresEXT'
@@ -3817,6 +4168,40 @@ class EarthModelKind(Enum):
     
     deri = 'deri'
     '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+class RegulatorConstructionKind(Enum):
+    '''
+    Designates whether the tap changer is connected to the "L" or "S" lug.
+    '''
+
+    typeA = 'typeA'
+    '''
+    ANSI designation for voltage regulators on which the tap changer is
+    connected to the "L" designated lug (normally downstream transformer
+    end).
+    '''
+    
+    typeB = 'typeB'
+    '''
+    ANSI designation for voltage regulators on which the tap changer is
+    connected to the "S" designated lug (normally upstream transformer
+    end).
     '''
     
     @property

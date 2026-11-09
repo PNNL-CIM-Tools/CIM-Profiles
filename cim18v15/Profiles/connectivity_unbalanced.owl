@@ -1526,8 +1526,11 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectivityNode.BaseVoltage"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-7fd6">
+    <uml:asciidoc>&#xD;
+</uml:asciidoc>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:space="preserve"></rdfs:comment>
     <rdfs:label>BaseVoltage</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BaseVoltage"/>
     <owl:unionOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-7fd4"/>
@@ -1548,6 +1551,105 @@
     <rdfs:label>ACLineSegment</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ACLineSegment"/>
     <owl:unionOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-7fd7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe3">
+    <rdf:first rdf:resource="#PhaseShuntConnectionKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe5"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PowerElectronicsConnection.phaseConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe5">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>phaseConnection</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseShuntConnectionKind"/>
+    <owl:unionOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe5">
+    <rdf:first rdf:resource="#EquipmentContainer"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe7"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment.AdditionalEquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AdditionalEquipmentContainer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EquipmentContainer"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fea">
+    <rdf:first rdf:resource="#RegulatorConstructionKind"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7feb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fec"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#VoltageRegulator.construction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fec">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>construction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#RegulatorConstructionKind"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fea"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff7">
+    <rdf:first rdf:resource="#AutoTransformer"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff9"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformerEnd.AutoTransformer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff9">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutoTransformer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformer"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffa">
+    <rdf:first rdf:resource="#PhaseCode"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffc"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformerEnd.phase"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffc">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>phase</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCode"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffa"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffd">
+    <rdf:first rdf:resource="#TransformerWinding"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformer.AutoTransformerWinding"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AutoTransformerWinding</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffd"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7f93">
     <rdf:first rdf:resource="#Substation"/>
@@ -1778,6 +1880,23 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AsynchronousMachineKind"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#AutoTransformer">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffe"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformer"/>
+    <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AutoTransformerEnd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ff8"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7ffb"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#AutoTransformerEnd"/>
+    <rdfs:subClassOf rdf:resource="#TransformerEnd"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#BaseFrequency">
     <uml:hasMaxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</uml:hasMaxCardinality>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
@@ -1999,6 +2118,7 @@
     <rdfs:subClassOf rdf:nodeID="X13Xb152bdaXa3X1a0c5adf714Xa3X-7fe6"/>
     <rdfs:subClassOf rdf:nodeID="X43X5289f0dXa3X1a087ffe87bXa3X-7b1e"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-7fc7"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe6"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment"/>
     <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
   </rdf:Description>
@@ -2180,6 +2300,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PowerElectronicsConnection</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe4"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerElectronicsConnection"/>
     <rdfs:subClassOf rdf:resource="#RegulatingCondEq"/>
   </rdf:Description>
@@ -2247,6 +2368,12 @@
     <rdfs:label>RegulatingCondEq</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#RegulatingCondEq"/>
     <rdfs:subClassOf rdf:resource="#EnergyConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#RegulatorConstructionKind">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#RegulatorConstructionKind"/>
   </rdf:Description>
   <rdf:Description rdf:about="#RotatingMachine">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
@@ -2475,6 +2602,14 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7f97"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltageLevel"/>
     <rdfs:subClassOf rdf:resource="#EquipmentContainer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#VoltageRegulator">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7feb"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#VoltageRegulator"/>
+    <rdfs:subClassOf rdf:resource="#AutoTransformer"/>
   </rdf:Description>
   <rdf:Description rdf:about="#WindingConfigurationKind">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>

@@ -27,6 +27,21 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe2">
+    <rdf:first rdf:resource="#AreaConfiguration"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe4"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectedArea.AreaConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AreaConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AreaConfiguration"/>
+    <owl:unionOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe2"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fb3">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fb4"/>
@@ -120,6 +135,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalNode.BaseVoltage"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fc4">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>BaseVoltage</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BaseVoltage"/>
@@ -137,6 +153,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fc7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TopologicalIsland</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalIsland"/>
@@ -148,6 +165,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalArea.DownstreamTopologicalArea"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fc9">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>DownstreamTopologicalArea</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalArea"/>
@@ -165,6 +183,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fcc">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TopologicalNode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalNode"/>
@@ -181,6 +200,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalNode.AngleRefTopologicalIsland"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fcf">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AngleRefTopologicalIsland</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalIsland"/>
@@ -208,6 +228,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#BusNameMarker.TopologicalNode"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fd4">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TopologicalNode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalNode"/>
@@ -225,6 +246,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fd7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TopologicalNode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalNode"/>
@@ -242,6 +264,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fda">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TopologicalIsland</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalIsland"/>
@@ -275,6 +298,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalArea.UpstreamTopolgicalArea"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fe0">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>UpstreamTopolgicalArea</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalArea"/>
@@ -308,6 +332,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7fe6">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TopologicalAreaKind"/>
@@ -416,6 +441,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ConnectedArea</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X69114520Xa3X1a1b7a5ad3bXa3X-7fe3"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectedArea"/>
     <rdfs:subClassOf rdf:resource="#ConnectivityNodeContainer"/>
   </rdf:Description>

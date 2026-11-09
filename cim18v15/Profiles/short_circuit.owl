@@ -27,16 +27,27 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
-  <rdf:Description rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7ead">
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe6">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7eae"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#BusbarSection.ipMax"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe7"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RotatingMachine.ratedU"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7eae">
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>ipMax</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentFlow"/>
+    <rdfs:label>ratedU</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Voltage"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe9"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#RotatingMachine.ratedPowerFactor"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe9">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>ratedPowerFactor</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7fe2">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -115,17 +126,6 @@
     <rdfs:label>minP</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f8e">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f8f"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator.normalSections"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f8f">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>normalSections</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f90">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f91"/>
@@ -148,17 +148,6 @@
     <rdfs:label>mRID</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f94">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f95"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator.nomU"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f95">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>nomU</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Voltage"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f96">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f97"/>
@@ -169,17 +158,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>r0</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Resistance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f98">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f99"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator.voltageSensitivity"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f99">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>voltageSensitivity</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltagePerReactivePower"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f9a">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -201,28 +179,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>g0ch</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa0">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa1"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase.maximumSections"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa1">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>maximumSections</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa2">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa3"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensatorPhase.gPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa3">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>gPerSection</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa4">
@@ -330,28 +286,6 @@
     <rdfs:label>r0</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Resistance"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fb8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase.ShuntCompensator"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fba">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase.ShuntCompensator"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fbb">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fbc"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase.ShuntCompensator"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fbc">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>ShuntCompensator</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator"/>
-    <rdfs:subClassOf rdf:resource="#ShuntCompensator"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fbd">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
@@ -407,17 +341,6 @@
     <rdfs:label>distance12</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Length"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fc8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fc9"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensator.gPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fc9">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>gPerSection</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fca">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fcb"/>
@@ -439,17 +362,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>g0</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fce">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fcf"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase.normalSections"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fcf">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>normalSections</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -473,17 +385,6 @@
     <rdfs:label>beforeShortCircuitAnglePf</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#AngleDegrees"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd6">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd7"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator.maximumSections"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd7">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>maximumSections</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd8">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd9"/>
@@ -494,17 +395,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>name</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fda">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fdb"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensatorPhase.bPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fdb">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>bPerSection</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Susceptance"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fdc">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -538,39 +428,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>distance11</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Length"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe2">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe3"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensator.bPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe3">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>bPerSection</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Susceptance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe5"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#LinearShuntCompensator.xPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe5">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>xPerSection</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Reactance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe6">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe7"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#LinearShuntCompensator.rPerSection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe7">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>rPerSection</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Resistance"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe8">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -828,6 +685,39 @@
     <rdfs:label>r0</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Resistance"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7feb"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensator.g0PerSection"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7feb">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>g0PerSection</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Conductance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fec">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fed"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensator.b0PerSection"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fed">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>b0PerSection</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Susceptance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7ead">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7eae"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#BusbarSection.ipMax"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7ca38f41Xa3X1a1a3906161Xa3X-7eae">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>ipMax</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentFlow"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://cim.ucaiug.io/cim101/draft#SinglePhaseKind.A">
     <rdfs:label>A</rdfs:label>
   </rdf:Description>
@@ -988,23 +878,10 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>LinearShuntCompensator</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fc8"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe2"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe4"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fe6"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fea"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fec"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensator"/>
     <rdfs:subClassOf rdf:resource="#ShuntCompensator"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#LinearShuntCompensatorPhase">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>LinearShuntCompensatorPhase</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa2"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fda"/>
-    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#LinearShuntCompensatorPhase"/>
-    <rdfs:subClassOf rdf:resource="#ShuntCompensatorPhase"/>
   </rdf:Description>
   <rdf:Description rdf:about="#MutualCoupling">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
@@ -1154,6 +1031,8 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>RotatingMachine</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe6"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fe8"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#RotatingMachine"/>
     <rdfs:subClassOf rdf:resource="#RegulatingCondEq"/>
   </rdf:Description>
@@ -1172,25 +1051,8 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ShuntCompensator</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f8e"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f94"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7f98"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fd6"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator"/>
     <rdfs:subClassOf rdf:resource="#RegulatingCondEq"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="#ShuntCompensatorPhase">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>ShuntCompensatorPhase</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fa0"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fb8"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fba"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fbb"/>
-    <rdfs:subClassOf rdf:nodeID="X23X5cf7427Xa3X1a17959643eXa3X-7fce"/>
-    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensatorPhase"/>
-    <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
   </rdf:Description>
   <rdf:Description rdf:about="#SinglePhaseKind">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>

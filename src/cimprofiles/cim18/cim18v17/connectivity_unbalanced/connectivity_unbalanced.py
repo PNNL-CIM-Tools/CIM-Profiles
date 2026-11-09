@@ -450,7 +450,7 @@ class BaseVoltage(IdentifiedObject):
     For example, not used for transformers.
     '''
     
-    ConnectivityNodes: list[ConnectivityNode] = field(
+    ConnectivityNode: list[ConnectivityNode] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
@@ -462,6 +462,7 @@ class BaseVoltage(IdentifiedObject):
         'serialize': False,
         })
     '''
+    The connectivity node that has this base voltage.
     '''
     
     TopologicalNode: list[TopologicalNode] = field(
@@ -554,11 +555,16 @@ class ConnectivityNode(IdentifiedObject):
         'stereotypes': ['ShadowExtension'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'BaseVoltage.ConnectivityNodes',
+        'inverse': 'BaseVoltage.ConnectivityNode',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
+    The base voltage for the connectivity node. The association end ConnectivityNode.BaseVoltage
+    is used only if the ConnectivityNode is not contained in a VoltageLevel.
+    Otherwise use the association end VoltageLevel.BaseVoltage and disregard
+    the relation ConnectivityNode.BaseVoltage. It is not required that
+    the BaseVoltage of connected equipment is the same.
     '''
     
     ConnectivityNodeContainer: Optional[ConnectivityNodeContainer] = field(
@@ -885,6 +891,26 @@ class EquipmentContainer(ConnectivityNodeContainer):
     A modelling construct to provide a root class for containing equipment.
     '''
 
+    AdditionalGroupedEquipment: list[Equipment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Equipment.AdditionalEquipmentContainer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The additonal contained equipment. The equipment belong to the equipment
+    container. The equipment is contained in another equipment container,
+    but also grouped with this equipment container. Examples include when
+    a switch contained in a substation is also desired to be grouped with
+    a line contianer or when a switch is included in a secondary substation
+    and also grouped in a feeder.
+    '''
+    
     Equipments: list[Equipment] = field(
         default_factory=list,
         metadata={
@@ -1543,6 +1569,23 @@ class Equipment(PowerSystemResource):
     in the model.
     '''
     
+    AdditionalEquipmentContainer: list[EquipmentContainer] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EquipmentContainer.AdditionalGroupedEquipment',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Additional equipment container beyond the primary equipment container.
+    The equipment is contained in another equipment container, but also
+    grouped with this equipment container.
+    '''
+    
     EquipmentContainer: Optional[EquipmentContainer] = field(
         default=None,
         metadata={
@@ -1677,6 +1720,96 @@ class ConductingEquipment(Equipment):
     @property
     def __package__(self):
         return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformer(ConductingEquipment):
+    '''
+    A transformer containing only a single winding connected between the phase
+    and common lugs, with an additional lug tapped from the middle of the winding.
+    '''
+
+    AutoTransformerEnd: list[AutoTransformerEnd] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'AutoTransformerEnd.AutoTransformer',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of transformer ends associated with this autotransformer
+    '''
+    
+    AutoTransformerWinding: Optional[TransformerWinding] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerWinding.AutoTransformer',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The winding associated with this autotransformer
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class VoltageRegulator(AutoTransformer):
+    '''
+    A distribution transformer providing buck/boost functionality through a
+    tap changer connected to one winding of an autotransformer. This class
+    differs from the LTC of a power transformer in that the device only contains
+    a single winding.
+    '''
+
+    construction: Optional[ RegulatorConstructionKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Designates whether the tap changer is connected to the "L" or "S" lug.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2246,6 +2379,20 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
+    phaseConnection: Optional[ PhaseShuntConnectionKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The type of phase connection, such as wye or delta.
+    '''
+    
     PowerElectronicsConnectionPhase: list[PowerElectronicsConnectionPhase] = field(
         default_factory=list,
         metadata={
@@ -3447,6 +3594,21 @@ class PhaseTapChanger(TapChanger):
         default=None,
         metadata={
         'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerEnd.PhaseTapChanger',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Transformer end to which this phase tap changer belongs.
+    '''
+    
+    TransformerEnd: Optional[TransformerEnd] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
         'stereotypes': ['ShadowExtension', 'GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
@@ -3482,6 +3644,21 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
+    TransformerEnd: Optional[TransformerEnd] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TransformerEnd.RatioTapChanger',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The transformer end for this additional ratio tap changer.
+    '''
+    
     TransformerEnd: Optional[TransformerEnd] = field(
         default=None,
         metadata={
@@ -3554,6 +3731,36 @@ class TransformerEnd(PowerSystemResource):
     If true, the neutral is grounded and attributes TransformerEnd.rground
     and TransformerEnd.xground are required. If false, the attributes TransformerEnd.rground
     and TransformerEnd.xground are not considered.
+    '''
+    
+    PhaseTapChanger: Optional[PhaseTapChanger] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PhaseTapChanger.TransformerEnd',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Phase tap changer associated with this transformer end.
+    '''
+    
+    RatioTapChanger: Optional[RatioTapChanger] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'RatioTapChanger.TransformerEnd',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Ratio tap changer associated with this transformer end.
     '''
     
     FromTransformerWinding: list[TransformerWinding] = field(
@@ -3652,6 +3859,59 @@ class TransformerEnd(PowerSystemResource):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AutoTransformerEnd(TransformerEnd):
+    '''
+    A power systems analysis model construct of one side of an autotransformer
+    combining the winding and phase + common lugs. The transformer end is used
+    to link one side of the autotransformer with its associated terminal and
+    connectivity node.
+    '''
+
+    phase: Optional[ PhaseCode ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Combined phase code of the phase and neutral / common connection points.
+    '''
+    
+    AutoTransformer: Optional[AutoTransformer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AutoTransformer.AutoTransformerEnd',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The autotransformer to which this end belongs
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -3773,13 +4033,13 @@ class TransformerPhaseEnd(TransformerEnd):
         'serialize': True,
         })
     '''
-    The position of this phase end among the phase ends of its transformer
-    end, starting at 1. The order should match the order of the phases
-    in the associated Terminal�s phases, with the neutral last.
-    For example, a terminal with phases BN is sequenced B=1, N=2, and a
-    terminal with phases s1s2N is sequenced s1=1, s2=2, N=3. A phase end
-    is identified within the transformer by the combination of its end
-    number and sequence number.
+    The position of this phase end among the phase ends of its power transformer,
+    starting at 1. The order should match the order of the phases in the
+    associated Terminal�s phases, with the neutral last.
+    For example, two-winding transformer with a high-side terminal with
+    phases BN is sequenced B=1, N=2, and low-side terminal with phases
+    s1s2N is sequenced s1=3, s2=4, N=5. A phase end is identified within
+    the transformer by the combination of its end number and sequence number.
     '''
     
     phase: Optional[ SinglePhaseKind ] = field(
@@ -4074,6 +4334,21 @@ class TransformerWinding(IdentifiedObject):
     '''
     Denotes whether winding is intended to be connected phase-to-phase
     or phase-to-neutral.
+    '''
+    
+    AutoTransformer: Optional[AutoTransformer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AutoTransformer.AutoTransformerWinding',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The autotransformer to which this winding belongs
     '''
     
     FromTransformerEnd: Optional[TransformerEnd] = field(
@@ -4661,6 +4936,40 @@ class PhaseShuntConnectionKind(Enum):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+class RegulatorConstructionKind(Enum):
+    '''
+    Designates whether the tap changer is connected to the "L" or "S" lug.
+    '''
+
+    typeA = 'typeA'
+    '''
+    ANSI designation for voltage regulators on which the tap changer is
+    connected to the "L" designated lug (normally downstream transformer
+    end).
+    '''
+    
+    typeB = 'typeB'
+    '''
+    ANSI designation for voltage regulators on which the tap changer is
+    connected to the "S" designated lug (normally upstream transformer
+    end).
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
     @property
     def __minOccurs__(self):
         return '0'

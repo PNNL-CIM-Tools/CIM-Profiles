@@ -25,6 +25,7 @@ from cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment import (
     RegulatingCondEq,
     TransformerApplicationKind,
     TransformerBankConfiguration,
+    WireConfiguration,
     WireInfo,
     WireSequenceConfiguration
 )
@@ -51,6 +52,7 @@ __all__ = [
     'RegulatingCondEq' ,
     'TransformerApplicationKind' ,
     'TransformerBankConfiguration' ,
+    'WireConfiguration' ,
     'WireInfo' ,
     'WireSequenceConfiguration'
 ]

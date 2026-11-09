@@ -975,6 +975,38 @@ class RotatingMachine(RegulatingCondEq):
     A rotating machine which may be used as a generator or motor.
     '''
 
+    ratedPowerFactor: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Power factor (nameplate data). It is primarily used for short circuit
+    data exchange according to IEC 60909. The attribute cannot be a negative
+    value.
+    '''
+    
+    ratedU: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rated voltage (nameplate data, Ur in IEC 60909-0). It is primarily
+    used for short circuit data exchange according to IEC 60909.
+    The attribute shall be a positive value.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1177,81 +1209,6 @@ class ShuntCompensator(RegulatingCondEq):
     is a reactor. ShuntCompensator is a single terminal device. Ground is implied.
     '''
 
-    maximumSections: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The maximum number of sections that may be switched in.
-    '''
-    
-    normalSections: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The normal number of sections switched in. The value shall be between
-    zero and ShuntCompensator.maximumSections.
-    '''
-    
-    nomU: Optional[ Voltage ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The voltage at which the nominal reactive power may be calculated.
-    This should normally be within 10% of the voltage at which the capacitor
-    is connected to the network.
-    '''
-    
-    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Voltage sensitivity required for the device to regulate the bus voltage,
-    in voltage/reactive power.
-    '''
-    
-    ShuntCompensatorPhase: list[ShuntCompensatorPhase] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ShuntCompensatorPhase.ShuntCompensator',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The individual phases models for the shunt compensator.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1265,9 +1222,9 @@ class ShuntCompensator(RegulatingCondEq):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LinearShuntCompensator(ShuntCompensator):
     '''
@@ -1275,7 +1232,7 @@ class LinearShuntCompensator(ShuntCompensator):
     values.
     '''
 
-    bPerSection: Optional[ Susceptance ] = field(
+    b0PerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1286,10 +1243,10 @@ class LinearShuntCompensator(ShuntCompensator):
         'serialize': True,
         })
     '''
-    Positive sequence shunt (charging) susceptance per section.
+    Zero sequence shunt (charging) susceptance per section.
     '''
     
-    gPerSection: Optional[ Conductance ] = field(
+    g0PerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1300,37 +1257,7 @@ class LinearShuntCompensator(ShuntCompensator):
         'serialize': True,
         })
     '''
-    Positive sequence shunt (charging) conductance per section.
-    '''
-    
-    rPerSection: Optional[ Resistance ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    series resistance in each phase [need to verify this is same as discharge
-    resistance]
-    '''
-    
-    xPerSection: Optional[ Reactance ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    series inductive reactance(s) in each phase (line) for filter, ohms
-    at base frequency
+    Zero sequence shunt (charging) conductance per section.
     '''
     
     @property
@@ -1489,127 +1416,6 @@ class SeriesCompensator(ConductingEquipment):
     @property
     def __package__(self):
         return 'WiresEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.ShadowExtension)
-@dataclass(repr=False, eq=False)
-class ShuntCompensatorPhase(PowerSystemResource):
-    '''
-    Single phase of a multi-phase shunt compensator when its attributes might
-    be different per phase.
-    '''
-
-    maximumSections: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The maximum number of sections that may be switched in for this phase.
-    '''
-    
-    normalSections: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    For the capacitor phase, the normal number of sections switched in.
-    The value shall be between zero and ShuntCompensatorPhase.maximumSections.
-    '''
-    
-    ShuntCompensator: Optional[ShuntCompensator] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'ShuntCompensator.ShuntCompensatorPhase',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Shunt compensator of this shunt compensator phase.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.ShadowExtension)
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class LinearShuntCompensatorPhase(ShuntCompensatorPhase):
-    '''
-    A per phase linear shunt compensator has banks or sections with equal admittance
-    values.
-    '''
-
-    bPerSection: Optional[ Susceptance ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Susceptance per section of the phase if shunt compensator is wye connected.
-    Susceptance per section phase to phase if shunt compensator is delta
-    connected.
-    '''
-    
-    gPerSection: Optional[ Conductance ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductance per section for this phase if shunt compensator is wye
-    connected. Conductance per section phase to phase if shunt compensator
-    is delta connected.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Wires'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2313,34 +2119,6 @@ class Voltage(CIMUnit):
     def unit(self):
         return UnitSymbol.V
     def __init__(self, value, input_unit: str='V', input_multiplier: Optional[str]=None):
-        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
-    @property
-    def __namespace__(self):
-        return '#'
-    @property
-    def __package__(self):
-        return 'Domain'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return '1'
-    
-
-@stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False, eq=False)
-class VoltagePerReactivePower(CIMUnit):
-    '''
-    Voltage variation with reactive power.
-    '''
-
-    value: float = field()
-    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
-    @property # read-only
-    def unit(self):
-        return UnitSymbol.VPerVAr
-    def __init__(self, value, input_unit: str='VPerVAr', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

@@ -17,7 +17,6 @@ from cimprofiles.cim18.cim18v17.short_circuit.short_circuit import (
     Equipment,
     IdentifiedObject,
     LinearShuntCompensator,
-    LinearShuntCompensatorPhase,
     MutualCoupling,
     PerLengthImpedance,
     PerLengthLineParameter,
@@ -30,7 +29,6 @@ from cimprofiles.cim18.cim18v17.short_circuit.short_circuit import (
     RotatingMachine,
     SeriesCompensator,
     ShuntCompensator,
-    ShuntCompensatorPhase,
     SinglePhaseKind,
     SynchronousMachine,
     Terminal,
@@ -50,8 +48,7 @@ from cimprofiles.cim18.cim18v17.short_circuit.short_circuit import (
     ResistancePerLength,
     Susceptance,
     SusceptancePerLength,
-    Voltage,
-    VoltagePerReactivePower
+    Voltage
 )
 __all__ = [
     'Identity',
@@ -68,7 +65,6 @@ __all__ = [
     'Equipment' ,
     'IdentifiedObject' ,
     'LinearShuntCompensator' ,
-    'LinearShuntCompensatorPhase' ,
     'MutualCoupling' ,
     'PerLengthImpedance' ,
     'PerLengthLineParameter' ,
@@ -81,7 +77,6 @@ __all__ = [
     'RotatingMachine' ,
     'SeriesCompensator' ,
     'ShuntCompensator' ,
-    'ShuntCompensatorPhase' ,
     'SinglePhaseKind' ,
     'SynchronousMachine' ,
     'Terminal' ,
@@ -101,6 +96,5 @@ __all__ = [
     'ResistancePerLength' ,
     'Susceptance' ,
     'SusceptancePerLength' ,
-    'Voltage' ,
-    'VoltagePerReactivePower'
+    'Voltage'
 ]

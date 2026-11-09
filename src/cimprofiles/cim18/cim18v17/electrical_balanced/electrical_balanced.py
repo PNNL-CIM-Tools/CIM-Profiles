@@ -101,6 +101,7 @@ class IdentifiedObject(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EarthResistivity(IdentifiedObject):
     '''
@@ -621,7 +622,22 @@ class PerLengthImpedance(PerLengthLineParameter):
     All line segments described by this per-length impedance.
     '''
     
-    WireAssembly: Optional[WireConfiguration] = field(
+    WireConfiguration: Optional[WireConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'WireConfiguration.PerLengthImpedance',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The assembly specification referencing this impedance
+    '''
+    
+    WireConfiguration: Optional[WireConfiguration] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -994,7 +1010,6 @@ class EnergyConnection(ConductingEquipment):
     
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EnergyConsumer(EnergyConnection):
@@ -2925,6 +2940,27 @@ class TapChanger(PowerSystemResource):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
+class ImpedanceTapChangerTabular(TapChanger):
+    '''
+    Describes a tap changer with a table defining the relation between the
+    tap step and the impedance difference across the windings of a three winding
+    transformer.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class PhaseTapChanger(TapChanger):
     '''
     A transformer phase shifting tap model that controls the phase angle difference
@@ -2948,6 +2984,167 @@ class PhaseTapChanger(TapChanger):
     Transformer end to which this phase tap changer belongs.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerLinear(PhaseTapChanger):
+    '''
+    Describes a tap changer with a linear relation between the tap step and
+    the phase angle difference across the transformer. This is a mathematical
+    model that is an approximation of a real phase tap changer.
+    The phase angle is computed as stepPhaseShiftIncrement times the tap position.
+    The voltage magnitude of both sides is the same.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerNonLinear(PhaseTapChanger):
+    '''
+    The non-linear phase tap changer describes the non-linear behaviour of
+    a phase tap changer. This is a base class for the symmetrical and asymmetrical
+    phase tap changer models. The details of these models can be found in IEC
+    61970-301.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ConnectionAngleTapChanger(PhaseTapChangerNonLinear):
+    '''
+    Describes the tap model for an asymmetrical phase shifting transformer
+    in which the difference voltage vector adds to the in-phase winding. The
+    out-of-phase winding is the transformer end where the tap changer is located.
+    The angle between the in-phase and out-of-phase windings is named the winding
+    connection angle. The phase shift depends on both the difference voltage
+    magnitude and the winding connection angle. The winding connection angle
+    can be changed for different operating conditions while energized.
+    The following options are supported:
+    <ol>
+    <li>Modelling of tap changer using ConnectionAngleTapChanger without ConnectionAngleTapChangerTable.
+    Equations for asymmetrical transformer defined in IEC 61970-301 are used.
+    The supported winding connection angle range is defined by the maximum
+    winding connection angle and the minimum winding connection angle. The
+    connection angle step size is used to define the allowed winding connection
+    angles for the tap changer.</li>
+    <li>Modelling of tap changer using ConnectionAngleTapChanger with ConnectionAngleTapChangerTable.
+    There shall be different tables that relate to different winding connection
+    angles that are supported by the tap changer. There is no need to provide
+    information on winding connection angle range and connection angle step
+    size as the allowed winding connection angles are defined by the table.
+    The usage of the table is recommended in cases where the equations for
+    asymmetrical transformer defined in IEC 61970-301 cannot fully describe
+    the tap changer or in cases where it is exchange the data for different
+    tap steps in an explicit way as a table.</li>
+    </ol>
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
+    '''
+    Describes the tap model for an asymmetrical phase shifting transformer
+    in which the difference voltage vector adds to the in-phase winding. The
+    out-of-phase winding is the transformer end where the tap changer is located.
+    The angle between the in-phase and out-of-phase windings is named the winding
+    connection angle. The phase shift depends on both the difference voltage
+    magnitude and the winding connection angle.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerSymmetrical(PhaseTapChangerNonLinear):
+    '''
+    Describes a symmetrical phase shifting transformer tap model in which the
+    voltage magnitude of both sides is the same. The difference voltage magnitude
+    is the base in an equal-sided triangle where the sides corresponds to the
+    primary and secondary voltages. The phase angle difference corresponds
+    to the top angle and can be expressed as twice the arctangent of half the
+    total difference voltage.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PhaseTapChangerTabular(PhaseTapChanger):
+    '''
+    Describes a tap changer with a table defining the relation between the
+    tap step and the phase angle difference across the transformer.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -3474,7 +3671,8 @@ class TransformerWinding(IdentifiedObject):
         'serialize': True,
         })
     '''
-    Normal apparent power rating.
+    Normal apparent power rating. This is obtained from the nameplate designation
+    of IEEE c57.12.00-2021.
     The attribute shall be a positive value. For a two-winding transformer
     the values for the high and low voltage sides shall be identical.
     '''
@@ -3493,7 +3691,8 @@ class TransformerWinding(IdentifiedObject):
     The phase-to-phase voltage assigned to be applied, or developed at
     no-load, between the line terminals of a winding of a polyphase transformer
     or reactor, or between the terminals of a winding of a single-phase
-    transformer or reactor [source: IEV 421-04-01]
+    transformer or reactor [source: IEV 421-04-01]. This is obtained from
+    the nameplate designation per Table 7 of IEEE c57.12.00-2021.
     '''
     
     rDC: Optional[ Resistance ] = field(
@@ -3616,6 +3815,22 @@ class WireConfiguration(IdentifiedObject):
     '''
     '''
     
+    PerLengthImpedance: Optional[PerLengthImpedance] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'PerLengthImpedance.WireConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The per-length impedance template used by all lines following this
+    assembly specification
+    '''
+    
     EarthResistivity: Optional[EarthResistivity] = field(
         default=None,
         metadata={
@@ -3638,7 +3853,7 @@ class WireConfiguration(IdentifiedObject):
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'PerLengthImpedance.WireAssembly',
+        'inverse': 'PerLengthImpedance.WireConfiguration',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })

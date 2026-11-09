@@ -104,22 +104,6 @@
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireInstallationKind"/>
     <owl:unionOf rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff4"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff7">
-    <rdf:first rdf:resource="#WireConfiguration"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff9"/>
-    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PerLengthImpedance.WireAssembly"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff9">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>WireAssembly</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireConfiguration"/>
-    <owl:unionOf rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff7"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f48">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f49"/>
@@ -465,6 +449,22 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>isTemplate</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fb8">
+    <rdf:first rdf:resource="#WireConfiguration"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fb9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fba"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PerLengthImpedance.WireConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fba">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>WireConfiguration</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireConfiguration"/>
+    <owl:unionOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fb8"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-776b">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1756,6 +1756,12 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConformLoad"/>
     <rdfs:subClassOf rdf:resource="#EnergyConsumer"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#ConnectionAngleTapChanger">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectionAngleTapChanger"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChangerNonLinear"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#CoreConstructionKind">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
@@ -1782,6 +1788,7 @@
     <rdfs:subClassOf rdf:resource="#PowerElectronicsConnection"/>
   </rdf:Description>
   <rdf:Description rdf:about="#EarthResistivity">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity"/>
@@ -1809,7 +1816,6 @@
     <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
   </rdf:Description>
   <rdf:Description rdf:about="#EnergyConsumer">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
@@ -1877,6 +1883,12 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-79a9"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-79c5"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ImpedanceTapChangerTabular">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ImpedanceTapChangerTabular"/>
+    <rdfs:subClassOf rdf:resource="#TapChanger"/>
   </rdf:Description>
   <rdf:Description rdf:about="#LinearShuntCompensator">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
@@ -1988,8 +2000,8 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PerLengthImpedance</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X13X6563478Xa3X1a1991037dcXa3X-7ff8"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X28a0bbbXa3X1a1a274666dXa3X-7faf"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fb9"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-797b"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-798b"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-799b"/>
@@ -2016,11 +2028,39 @@
     <rdfs:subClassOf rdf:resource="#PerLengthImpedance"/>
   </rdf:Description>
   <rdf:Description rdf:about="#PhaseTapChanger">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X627869dfXa3X1a16b14a6cbXa3X-7776"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChanger"/>
     <rdfs:subClassOf rdf:resource="#TapChanger"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChangerAsymmetrical">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChangerAsymmetrical"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChangerNonLinear"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChangerLinear">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChangerLinear"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChanger"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChangerNonLinear">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChangerNonLinear"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChanger"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChangerSymmetrical">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChangerSymmetrical"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChangerNonLinear"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseTapChangerTabular">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseTapChangerTabular"/>
+    <rdfs:subClassOf rdf:resource="#PhaseTapChanger"/>
   </rdf:Description>
   <rdf:Description rdf:about="#PhotoVoltaicUnit">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
