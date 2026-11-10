@@ -28,7 +28,7 @@ ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#'}
 
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AutomationBlockGroup(Identity):
     '''
     Grouping of function block that are operated with the same priority as
@@ -79,7 +79,7 @@ class AutomationBlockGroup(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FunctionFunctionLink(Identity):
     '''
     Class to represent links between the inputs and outputs of generic FunctionBlock
@@ -103,7 +103,7 @@ class FunctionFunctionLink(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FunctionLogicDescription(Identity):
     '''
     Class providing a logic description for a FunctionBlockType instance.
@@ -123,7 +123,7 @@ class FunctionLogicDescription(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FunctionTypeInput(Identity):
     '''
     Class to define the inputs to a FunctionBlockType instance. Its parameterType
@@ -146,7 +146,7 @@ class FunctionTypeInput(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FunctionTypeOutput(Identity):
     '''
     Class to define the outputs from a FunctionBlockType instance. Its parameterType
@@ -169,7 +169,7 @@ class FunctionTypeOutput(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class FuseInfo(Identity):
     '''
     Fuse datasheet information.
@@ -188,7 +188,7 @@ class FuseInfo(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -591,7 +591,7 @@ class Breaker(ProtectedSwitch):
     conditions e.g. those of short circuit.
     '''
 
-    inTransitTime: Optional[ float | Seconds ] = field(
+    inTransitTime: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1336,7 +1336,7 @@ class UnderFrequencyProtectionFunctionBlock(FrequencyProtectionFunctionBlock):
     This class represents a function for under frequency protection.
     '''
 
-    operateValue: Optional[ float | Frequency ] = field(
+    operateValue: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -1687,7 +1687,7 @@ class RecloseSequence(IdentifiedObject):
     steps in the sequence.
     '''
     
-    recloseDelay: Optional[ float | Seconds ] = field(
+    recloseDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2037,10 +2037,6 @@ class ProgrammingLanguageKind(Enum):
     Enumeration of programming languages.
     '''
 
-    C = 'C'
-    '''
-    '''
-    
     C = 'C'
     '''
     '''
