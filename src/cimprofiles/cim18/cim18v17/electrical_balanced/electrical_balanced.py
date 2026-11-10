@@ -110,6 +110,47 @@ class EarthResistivity(IdentifiedObject):
     Resistance of earth (soil)
     '''
 
+    earthModelType: Optional[ EarthModelKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    earthReturnGMR: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Geometry mean radius of a set of hypothetical conductors with same
+    impedance as the earth return, per Carson's Equations
+    '''
+    
+    rho: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     WireAssemblies: list[WireConfiguration] = field(
         default_factory=list,
         metadata={
@@ -3054,7 +3095,7 @@ class ImpedanceTapChangerTabular(TapChanger):
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'TransformerEnd.ImpedanceTabChanger',
+        'inverse': 'TransformerEnd.ImpedanceTapChanger',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -3370,7 +3411,7 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
-    ImpedanceTabChanger: Optional[ImpedanceTapChangerTabular] = field(
+    ImpedanceTapChanger: Optional[ImpedanceTapChangerTabular] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -4396,6 +4437,33 @@ class CoreConstructionKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+class EarthModelKind(Enum):
+    '''
+    '''
+
+    carson = 'carson'
+    '''
+    '''
+    
+    deri = 'deri'
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -4785,6 +4853,34 @@ class Frequency(CIMUnit):
     def unit(self):
         return UnitSymbol.Hz
     def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Length(CIMUnit):
+    '''
+    Unit of length. It shall be a positive value or zero.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.m
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
