@@ -27,6 +27,61 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-700f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7010"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ExternalNetworkInjection.q"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7010">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>q</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7011">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7012"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ExternalNetworkInjection.p"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7012">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>p</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7013">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7014"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#EquivalentInjection.q"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7014">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>q</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7015">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7016"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#EquivalentInjection.p"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7016">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>p</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X62eac1eXa3X1a1c89435e9Xa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X62eac1eXa3X1a1c89435e9Xa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PhotoVoltaicUnit.irradiance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X62eac1eXa3X1a1c89435e9Xa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>irradiance</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://gridappsd.org/CIM/extension#ActivePowerPerArea"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f7f">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7f80"/>
@@ -545,6 +600,29 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment"/>
     <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#EquivalentEquipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EquivalentEquipment"/>
+    <rdfs:subClassOf rdf:resource="#ConductingEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EquivalentInjection">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7013"/>
+    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7015"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EquivalentInjection"/>
+    <rdfs:subClassOf rdf:resource="#EquivalentEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ExternalNetworkInjection">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-700f"/>
+    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7011"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ExternalNetworkInjection"/>
+    <rdfs:subClassOf rdf:resource="#RegulatingCondEq"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#Fuse">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
@@ -643,6 +721,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PhotoVoltaicUnit</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X62eac1eXa3X1a1c89435e9Xa3X-7ffe"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhotoVoltaicUnit"/>
     <rdfs:subClassOf rdf:resource="#PowerElectronicsUnit"/>
   </rdf:Description>

@@ -20,6 +20,9 @@ from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis 
     EnergySource,
     EnergySourcePhase,
     Equipment,
+    EquivalentEquipment,
+    EquivalentInjection,
+    ExternalNetworkInjection,
     Fuse,
     HookstickSwitch,
     IdentifiedObject,
@@ -53,7 +56,8 @@ from cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis 
     AngleRadians,
     ReactivePower,
     RealEnergy,
-    Voltage
+    Voltage,
+    ActivePowerPerArea
 )
 __all__ = [
     'Identity',
@@ -73,6 +77,9 @@ __all__ = [
     'EnergySource' ,
     'EnergySourcePhase' ,
     'Equipment' ,
+    'EquivalentEquipment' ,
+    'EquivalentInjection' ,
+    'ExternalNetworkInjection' ,
     'Fuse' ,
     'HookstickSwitch' ,
     'IdentifiedObject' ,
@@ -106,5 +113,6 @@ __all__ = [
     'AngleRadians' ,
     'ReactivePower' ,
     'RealEnergy' ,
-    'Voltage'
+    'Voltage' ,
+    'ActivePowerPerArea'
 ]
