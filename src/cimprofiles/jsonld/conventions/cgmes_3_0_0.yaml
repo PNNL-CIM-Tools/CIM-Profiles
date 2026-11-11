@@ -1,0 +1,18 @@
+# JSON-LD for cgmes_3_0_0 uses the published CGMES 3.0 documents (Inst4CIM-KG copies in
+# jsonld/cache/inst4cim): the CIM100# instance context and the official vocabularies,
+# whose qudt:hasUnit gives the CGMES units (MW, kV, km, ...). Nothing is generated.
+profile: cgmes_3_0_0
+context: https://raw.githack.com/Sveino/Inst4CIM-KG/develop/rdf-improved/cim-context-old.jsonld
+default: cgmes
+conventions:
+  cgmes:
+    vocabularies:
+      - http://iec.ch/TC57/ns/CIM/CoreEquipment-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/EquipmentBoundary-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/Operation-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/ShortCircuit-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/SteadyStateHypothesis-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/StateVariables-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/Topology-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/GeographicalLocation-EU/3.0
+      - http://iec.ch/TC57/ns/CIM/DiagramLayout-EU/3.0

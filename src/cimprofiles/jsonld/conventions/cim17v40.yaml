@@ -1,0 +1,5 @@
+# JSON-LD units for cim17v40; built by `python -m cimprofiles.jsonld.build`
+profile: cim17v40
+default: si
+conventions:
+  si: {}          # every unit in its CIMUnit class's base unit

@@ -1,0 +1,28 @@
+# JSON-LD units for cim18v17_transmission; built by `python -m cimprofiles.jsonld.build`
+# Per property: `properties` override -> `quantity_kinds` default -> CIMUnit base unit.
+profile: cim18v17_transmission
+default: si
+conventions:
+  si: {}          # every unit in its CIMUnit class's base unit
+  transmission:   # MW-scale power and kV as in CGMES 3.0; line lengths and constants per km
+    quantity_kinds:
+      ActivePower: MW
+      ReactivePower: MVAr
+      ApparentPower: MVA
+      RealEnergy: MWh
+      Voltage: kV
+      ResistancePerLength: ohm/km
+      ReactancePerLength: ohm/km
+      ConductancePerLength: uS/km
+      SusceptancePerLength: uS/km
+      InductancePerLength: mH/km
+      CapacitancePerLength: uF/km
+    properties:     # lengths along a line; radii, heights and GMRs stay in m
+      Conductor.length: km
+      DCLineSegment.length: km
+      Clamp.lengthFromTerminal1: km
+      Cut.lengthFromTerminal1: km
+      MutualCoupling.distance11: km
+      MutualCoupling.distance12: km
+      MutualCoupling.distance21: km
+      MutualCoupling.distance22: km

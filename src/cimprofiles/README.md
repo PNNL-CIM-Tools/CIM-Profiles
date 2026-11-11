@@ -136,10 +136,10 @@ cimprofiles.cim17.cgmes_3_0_0.state_variables"
 
 ### cim18v17 — GridAPPS-D CIM18 split profile
 
-The 15 CIMTool profiles of the `cim18v15/` workspace, named for the 18v17 UML they will be
-regenerated from. The merged package `cimprofiles.cim18.cim18v17` (607 classes) is the usual
-import; each part is also importable on its own (`cim18v17.substation`, `cim18v17.hvdc`, ...)
-and through the comma-spec.
+The 21 CIMTool profiles of the `cim18v15/` workspace, named for the 18v17 UML they will be
+regenerated from. The merged package `cimprofiles.cim18.cim18v17` (754 classes) has every part;
+each part is also importable on its own (`cim18v17.substation`, `cim18v17.hvdc`, ...) and
+through the comma-spec.
 
 | Sub-profiles | |
 |---|---|
@@ -147,6 +147,23 @@ and through the comma-spec.
 | Control and measurement | `regulating_control`, `function_block_control`, `measurement` |
 | Assets and location | `location`, `asset`, `asset_info`, `asset_deployment`, `construction` |
 | HVDC and FACTS | `facts`, `hvdc` |
+| Operations | `short_circuit`, `state_variable`, `operational_limit`, `topology`, `load_area`, `protection` |
+
+Two smaller merges of the same parts serve one kind of grid each (CIMHub's OpenDSS and
+PSS/E RAW converters):
+
+| Profile | Classes | Leaves out |
+|---|---|---|
+| `cim18v17_distribution` | 594 | `function_block_control`, `facts`, `hvdc`, `load_area` |
+| `cim18v17_transmission` | 522 | `electrical_unbalanced`, `asset`, `asset_info`, `asset_deployment`, `construction` |
+
+Both keep `connectivity_unbalanced`, the only part with `ConnectivityNode`, `Line` and
+`BusbarSection`. Their classes are distinct from `cim18v17`'s, so code that checks
+`isinstance(obj, cimprofiles.cim18.cim18v17.X)` must import the profile it loaded. Their JSON-LD
+conventions are `si` (default) plus `distribution` (kW, line constants in ohm/km and uS/km,
+wire sizes in mm) or `transmission` (MW and kV as in the CGMES vocabularies, line lengths and
+constants per km). `MicroS-PER-KiloM` and `MilliH-PER-KiloM` follow the QUDT naming pattern but
+are not defined by QUDT.
 
 ---
 
@@ -259,7 +276,9 @@ parts, so re-run the build after regenerating any part.
 |---|---|
 | `cim18gmdm` | 116 classes from 5 sub-profiles |
 | `cgmes_3_0_0` | 275 classes from 9 sub-profiles (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL) |
-| `cim18v17` | 607 classes from 15 sub-profiles |
+| `cim18v17` | 754 classes from 21 sub-profiles |
+| `cim18v17_distribution` | 594 classes from 17 sub-profiles |
+| `cim18v17_transmission` | 522 classes from 16 sub-profiles |
 
 ---
 

@@ -1,0 +1,3745 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "gb": "http://GB/placeholder/ext#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "cim:ACDCTerminal.connected": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ACDCTerminal.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ACDCTerminal.BusNameMarker": {
+      "@type": "@id"
+    },
+    "cim:ACDCTerminal.Measurements": {
+      "@type": "@id"
+    },
+    "cim:ACDCTerminal.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.circuitNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ACLineSegment.ACLineSegmentPhases": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.Clamp": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.MultiCircuitGroup": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.bch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.gch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.r": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.x": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:ACLineSegment.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.spacingYOffset": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.WireSpacing": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegmentPhase.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ACLineSegmentPhase.phase": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegmentPhase.ACLineSegment": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegmentPhase.MultiCircuitGroup": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegmentPhase.WireInfo": {
+      "@type": "@id"
+    },
+    "cim:Accumulator.maxValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Accumulator.AccumulatorValues": {
+      "@type": "@id"
+    },
+    "cim:Accumulator.LimitSets": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorLimit.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:AccumulatorLimit.LimitSet": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorLimitSet.Measurements": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorLimitSet.Limits": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorReset.AccumulatorValue": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorValue.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:AccumulatorValue.Accumulator": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorValue.AccumulatorReset": {
+      "@type": "@id"
+    },
+    "cim:ActivePowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ActivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:Agent.AgentRole": {
+      "@type": "@id"
+    },
+    "cim:AgentRole.kind": {
+      "@type": "@id"
+    },
+    "cim:AgentRole.Agent": {
+      "@type": "@id"
+    },
+    "cim:Analog.maxValue": {
+      "@type": "xsd:float"
+    },
+    "cim:Analog.minValue": {
+      "@type": "xsd:float"
+    },
+    "cim:Analog.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:Analog.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Analog.AnalogValues": {
+      "@type": "@id"
+    },
+    "gad:Analog.PointOnWaveValues": {
+      "@type": "@id"
+    },
+    "cim:AnalogControl.maxValue": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogControl.minValue": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogControl.AnalogValue": {
+      "@type": "@id"
+    },
+    "cim:AnalogLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogLimit.LimitSet": {
+      "@type": "@id"
+    },
+    "cim:AnalogLimitSet.Limits": {
+      "@type": "@id"
+    },
+    "cim:AnalogValue.value": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogValue.Analog": {
+      "@type": "@id"
+    },
+    "cim:AnalogValue.AnalogControl": {
+      "@type": "@id"
+    },
+    "cim:Anchor.anchorRodCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:Anchor.anchorKind": {
+      "@type": "@id"
+    },
+    "cim:Anchor.anchorRodLength": {
+      "@type": "xsd:float"
+    },
+    "cim:Anchor.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:AngleBusbarInfo.crossSectionWidth": {
+      "@type": "xsd:float"
+    },
+    "cim:AngleBusbarInfo.thickness": {
+      "@type": "xsd:float"
+    },
+    "cim:ApparentPowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ApparentPowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:AreaConfiguration.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:AreaConfiguration.ConnectedArea": {
+      "@type": "@id"
+    },
+    "cim:AreaConfiguration.TopologicalArea": {
+      "@type": "@id"
+    },
+    "cim:Asset.Measurements": {
+      "@type": "@id"
+    },
+    "cim:Asset.retiredReason": {
+      "@type": "@id"
+    },
+    "cim:Asset.AssetContainer": {
+      "@type": "@id"
+    },
+    "cim:Asset.AssetDeployment": {
+      "@type": "@id"
+    },
+    "cim:AssetContainer.Assets": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.likelihoodOfFailure": {
+      "@type": "xsd:integer"
+    },
+    "cim:AssetDeployment.deploymentState": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.Asset": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.CatalogAssetType": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.ChildAssetInfoComponent": {
+      "@type": "@id"
+    },
+    "gad:AssetInfo.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.ParentAssetInfoComponent": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.ProductAssetModel": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.PowerSystemResources": {
+      "@type": "@id"
+    },
+    "cim:AssetInfoComponent.ChildAssetInfo": {
+      "@type": "@id"
+    },
+    "cim:AssetInfoComponent.ParentAssetInfo": {
+      "@type": "@id"
+    },
+    "cim:AssetOwner.Ownerships": {
+      "@type": "@id"
+    },
+    "cim:AsynchronousMachine.polePairNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:AsynchronousMachine.reversible": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AsynchronousMachine.asynchronousMachineType": {
+      "@type": "@id"
+    },
+    "cim:AsynchronousMachine.efficiency": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.nominalFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.nominalSpeed": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.ratedMechanicalPower": {
+      "@type": "xsd:float"
+    },
+    "gad:AutoTransformer.AutoTransformerEnd": {
+      "@type": "@id"
+    },
+    "gad:AutoTransformer.AutoTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:AutoTransformerEnd.phase": {
+      "@type": "@id"
+    },
+    "gad:AutoTransformerEnd.AutoTransformer": {
+      "@type": "@id"
+    },
+    "gad:AutoTransformerEnd.baseU": {
+      "@type": "xsd:float"
+    },
+    "gad:AutoTransformerEnd.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:AutomationBlockGroup.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:AutomationBlockGroup.AutomationFunction": {
+      "@type": "@id"
+    },
+    "cim:AutomationFunction.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AutomationFunction.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AutomationFunction.AutomationBlockGroup": {
+      "@type": "@id"
+    },
+    "cim:AutomationFunction.HasPart": {
+      "@type": "@id"
+    },
+    "cim:AutomationFunction.PartOf": {
+      "@type": "@id"
+    },
+    "cim:AutoreclosingFunctionBlock.RecloseSequences": {
+      "@type": "@id"
+    },
+    "cim:BarBusbarInfo.crossSectionWidth": {
+      "@type": "xsd:float"
+    },
+    "cim:BarBusbarInfo.thickness": {
+      "@type": "xsd:float"
+    },
+    "cim:BareWireInfo.wireConstructionKind": {
+      "@type": "@id"
+    },
+    "cim:BaseFrequency.frequency": {
+      "@type": "xsd:float"
+    },
+    "cim:BasePower.basePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BaseVoltage.VoltageLevel": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.nominalVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:BaseVoltage.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.TransformerEnds": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.NetworkAssetDeployment": {
+      "@type": "@id"
+    },
+    "gad:BatteryInfo.numberOfCells": {
+      "@type": "xsd:integer"
+    },
+    "gad:BatteryInfo.batteryType": {
+      "@type": "@id"
+    },
+    "gad:BatteryInfo.ratedCapacity": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryInfo.usableCapacity": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryInfo.ElectricVehicleInfo": {
+      "@type": "@id"
+    },
+    "gad:BatteryUnit.chargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.dischargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.idlingP": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.minimumE": {
+      "@type": "xsd:float"
+    },
+    "cim:BatteryUnit.ratedE": {
+      "@type": "xsd:float"
+    },
+    "cim:BatteryUnit.batteryState": {
+      "@type": "@id"
+    },
+    "cim:BatteryUnit.storedE": {
+      "@type": "xsd:float"
+    },
+    "cim:Bay.breakerConfiguration": {
+      "@type": "@id"
+    },
+    "cim:Bay.busBarConfiguration": {
+      "@type": "@id"
+    },
+    "cim:Bay.Substation": {
+      "@type": "@id"
+    },
+    "cim:Bay.VoltageLevel": {
+      "@type": "@id"
+    },
+    "cim:BilateralExchangeActor.CommunicationLink": {
+      "@type": "@id"
+    },
+    "cim:Brace.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:BranchGroup.monitorActivePower": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroup.monitorReactivePower": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroup.maximumActivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.maximumReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.minimumActivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.minimumReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.BranchGroupTerminal": {
+      "@type": "@id"
+    },
+    "cim:BranchGroupTerminal.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroupTerminal.BranchGroup": {
+      "@type": "@id"
+    },
+    "cim:BranchGroupTerminal.Terminal": {
+      "@type": "@id"
+    },
+    "cim:Breaker.inTransitTime": {
+      "@type": "xsd:float"
+    },
+    "cim:BreakerAssetDeployment.breakerApplication": {
+      "@type": "@id"
+    },
+    "gad:BundleConfiguration.conductorCount": {
+      "@type": "xsd:integer"
+    },
+    "gad:BundleConfiguration.conductorSpacing": {
+      "@type": "xsd:float"
+    },
+    "gad:BundleConfiguration.gmr": {
+      "@type": "xsd:float"
+    },
+    "gad:BundleConfiguration.radius": {
+      "@type": "xsd:float"
+    },
+    "gad:BundleConfiguration.WireInfo": {
+      "@type": "@id"
+    },
+    "cim:BundledCableInfo.additionalConductorCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:BundledCableInfo.hasNeutral": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BundledCableInfo.insulatedNeutral": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BundledCableInfo.neutralStrandCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:BundledCableInfo.neutralStrandRDC20": {
+      "@type": "xsd:float"
+    },
+    "cim:BusNameMarker.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:BusNameMarker.Terminal": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.ReportingGroup": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:BusSegment.retained": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BusbarSection.ipMax": {
+      "@type": "xsd:float"
+    },
+    "cim:Bushing.FixedContact": {
+      "@type": "@id"
+    },
+    "cim:Bushing.MovingContact": {
+      "@type": "@id"
+    },
+    "cim:Bushing.Terminal": {
+      "@type": "@id"
+    },
+    "cim:BushingInfo.c1Capacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:BushingInfo.c1PowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:BushingInfo.c2Capacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:BushingInfo.c2PowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:BushingInfo.insulationKind": {
+      "@type": "@id"
+    },
+    "cim:BushingInfo.ratedImpulseWithstandVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:BushingInfo.ratedLineToGroundVoltage": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.diameterOverArmor": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.layLength": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.strandRadius": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.tapeLap": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.tapeThickness": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.TapeWidth": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.Thickness": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.isStrandFill": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CableInfo.sheathAsNeutral": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CableInfo.constructionKind": {
+      "@type": "@id"
+    },
+    "cim:CableInfo.diameterOverCore": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.diameterOverInsulation": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.diameterOverJacket": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.diameterOverScreen": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.nominalTemperature": {
+      "@type": "xsd:float"
+    },
+    "cim:CableInfo.outerJacketKind": {
+      "@type": "@id"
+    },
+    "cim:CableInfo.shieldMaterial": {
+      "@type": "@id"
+    },
+    "cim:CableInfo.InsulationInfo": {
+      "@type": "@id"
+    },
+    "cim:CalculationMethodHierarchy.Measurement": {
+      "@type": "@id"
+    },
+    "cim:CalculationMethodHierarchy.MeasurementValue": {
+      "@type": "@id"
+    },
+    "cim:CapacitorCanInfo.dielectricFluidVolume": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorCanInfo.ratedCapacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorCanInfo.ratedReactiveRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorCanInfo.weight": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorCanInfo.dischargeResistorType": {
+      "@type": "@id"
+    },
+    "cim:CapacitorCanInfo.fusingType": {
+      "@type": "@id"
+    },
+    "cim:CapacitorCanInfo.terminalConnectionType": {
+      "@type": "@id"
+    },
+    "cim:CapacitorInfo.maxAmbientTempRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorInfo.minAmbientTempRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorInfo.numberOfCansPerPhase": {
+      "@type": "xsd:integer"
+    },
+    "cim:CapacitorInfo.parallelUnitsPerPhase": {
+      "@type": "xsd:integer"
+    },
+    "cim:CapacitorInfo.seriesGroupsPerPhase": {
+      "@type": "xsd:integer"
+    },
+    "cim:CapacitorInfo.capacitorRackType": {
+      "@type": "@id"
+    },
+    "cim:CapacitorInfo.ratedImpulseWithstandVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:CatalogAssetType.stockItem": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CatalogAssetType.estimatedUnitCost": {
+      "@type": "xsd:float"
+    },
+    "cim:CatalogAssetType.kind": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.ProductAssetModel": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.AssetInfo": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.TypeAssetCatalogue": {
+      "@type": "@id"
+    },
+    "cim:CathodicSystem.OverheadStructure": {
+      "@type": "@id"
+    },
+    "gad:ChargingConnectorInfo.hasLockingMechanism": {
+      "@type": "xsd:boolean"
+    },
+    "gad:ChargingConnectorInfo.connectorType": {
+      "@type": "@id"
+    },
+    "cim:Circle.innerRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:Circle.outerRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:Circle.CircleCenterPositionPoint": {
+      "@type": "@id"
+    },
+    "cim:Clamp.lengthFromTerminal1": {
+      "@type": "xsd:float"
+    },
+    "cim:Clamp.ACLineSegment": {
+      "@type": "@id"
+    },
+    "cim:ComModuleInfo.direction": {
+      "@type": "@id"
+    },
+    "cim:ComModuleInfo.technology": {
+      "@type": "@id"
+    },
+    "cim:Command.normalValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Command.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:Command.DiscreteValue": {
+      "@type": "@id"
+    },
+    "cim:Command.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:CommunicationLink.communicationMediumKind": {
+      "@type": "@id"
+    },
+    "cim:CommunicationLink.communicationProtocolType": {
+      "@type": "@id"
+    },
+    "gad:CommunicationLink.Sensors": {
+      "@type": "@id"
+    },
+    "cim:CommunicationLink.BilateralExchangeActor": {
+      "@type": "@id"
+    },
+    "cim:CommunicationLink.RemoteUnits": {
+      "@type": "@id"
+    },
+    "cim:CompensatorInfo.maxPowerLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:CompensatorInfo.ratedReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:CompositeSwitch.Switches": {
+      "@type": "@id"
+    },
+    "cim:CompositeSwitchInfo.ganged": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CompositeSwitchInfo.phaseCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:CompositeSwitchInfo.remote": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CompositeSwitchInfo.switchStateCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:CompositeSwitchInfo.interruptingRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CompositeSwitchInfo.kind": {
+      "@type": "@id"
+    },
+    "cim:CompositeSwitchInfo.phaseCode": {
+      "@type": "@id"
+    },
+    "cim:CompositeSwitchInfo.ratedVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:ConcentricNeutralCableInfo.neutralStrandCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConcentricNeutralCableInfo.diameterOverNeutral": {
+      "@type": "xsd:float"
+    },
+    "cim:ConcentricNeutralCableInfo.neutralStrandGmr": {
+      "@type": "xsd:float"
+    },
+    "cim:ConcentricNeutralCableInfo.neutralStrandRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:ConcentricNeutralCableInfo.neutralStrandRDC20": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductingAssetInfo.phaseCount": {
+      "@type": "@id"
+    },
+    "cim:ConductingAssetInfo.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductingAssetInfo.ratedFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductingAssetInfo.ratedVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductingAssetInfo.ShortCircuitRespone": {
+      "@type": "@id"
+    },
+    "cim:ConductingEquipment.Terminals": {
+      "@type": "@id"
+    },
+    "cim:ConductingEquipment.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:ConductingEquipment.SvStatus": {
+      "@type": "@id"
+    },
+    "cim:Conductor.length": {
+      "@type": "xsd:float"
+    },
+    "gad:ConductorDistance.fromSequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.sequenceNumber1": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.sequenceNumber2": {
+      "@type": "xsd:integer"
+    },
+    "gad:ConductorDistance.toSequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.conductorKind1": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.conductorKind2": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.distance": {
+      "@type": "xsd:float"
+    },
+    "gad:ConductorDistance.fromPhase": {
+      "@type": "@id"
+    },
+    "gad:ConductorDistance.toPhase": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.ConductorDistanceSpacing": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistanceSpacing.ConductorDistance": {
+      "@type": "@id"
+    },
+    "cim:ConductorGroupPosition.orientation": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorGroupPosition.SubConductorPosition": {
+      "@type": "@id"
+    },
+    "cim:ConductorInfo.crossSection": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorInfo.material": {
+      "@type": "@id"
+    },
+    "cim:ConductorInfo.rAC25": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorInfo.rAC50": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorInfo.rAC75": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorInfo.rDC20": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorPosition.circuitNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorPosition.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorPosition.kind": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.kind": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.ContainedArea": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.BoundaryTerminal": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.ContainedWithin": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.AreaConfiguration": {
+      "@type": "@id"
+    },
+    "cim:ConnectionAngleTapChanger.connectionAngleStepSize": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChanger.maxWindingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChanger.minWindingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChanger.normalWindingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChanger.windingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChanger.ConnectionAngleTapChangerTable": {
+      "@type": "@id"
+    },
+    "cim:ConnectionAngleTapChangerTable.windingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ConnectionAngleTapChangerTable.ConnectionAngleTapChanger": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.Terminals": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.ConnectivityNodeContainer": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNodeContainer.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:Control.operationInProgress": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Control.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Control.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:Control.ControlAction": {
+      "@type": "@id"
+    },
+    "cim:Control.PowerSystemResource": {
+      "@type": "@id"
+    },
+    "cim:Control.RemoteControl": {
+      "@type": "@id"
+    },
+    "cim:ControlAction.analogValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ControlAction.discreteValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:ControlAction.Control": {
+      "@type": "@id"
+    },
+    "cim:CoolingInfo.Specification": {
+      "@type": "@id"
+    },
+    "cim:CoordinateSystem.Geometry": {
+      "@type": "@id"
+    },
+    "cim:CoordinateSystem.Location": {
+      "@type": "@id"
+    },
+    "cim:Crossarm.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:CurrentLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentTransformer.accuracyLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentTransformer.coreBurden": {
+      "@type": "xsd:float"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.CurveDatas": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y3value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:Cut.lengthFromTerminal1": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTerminal.SvDCPowerFlow": {
+      "@type": "@id"
+    },
+    "cim:DCTopologicalNode.SvDCVoltage": {
+      "@type": "@id"
+    },
+    "cim:Dimension.TransportStructureInfo": {
+      "@type": "@id"
+    },
+    "cim:DimensionsInfo.ConstructedStructureInfo": {
+      "@type": "@id"
+    },
+    "cim:Discrete.maxValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Discrete.minValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Discrete.normalValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Discrete.DiscreteValues": {
+      "@type": "@id"
+    },
+    "cim:Discrete.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:DiscreteValue.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:DiscreteValue.Command": {
+      "@type": "@id"
+    },
+    "cim:DiscreteValue.Discrete": {
+      "@type": "@id"
+    },
+    "gad:EVSE.chargingModeType": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.earthModelType": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.earthReturnGMR": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.rho": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.WireAssemblies": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.PerLengthLineParameter": {
+      "@type": "@id"
+    },
+    "gad:ElectricVehicleInfo.v2gCapable": {
+      "@type": "xsd:boolean"
+    },
+    "gad:ElectricVehicleInfo.batteryCapacity": {
+      "@type": "xsd:float"
+    },
+    "gad:ElectricVehicleInfo.evType": {
+      "@type": "@id"
+    },
+    "gad:ElectricVehicleInfo.maxChargingRate": {
+      "@type": "xsd:float"
+    },
+    "gad:ElectricVehicleInfo.BatteryInfo": {
+      "@type": "@id"
+    },
+    "gad:ElectricalVehicleUnit.v2gCapable": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EnergyConsumer.customerCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:EnergyConsumer.grounded": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EnergyConsumer.phaseConnection": {
+      "@type": "@id"
+    },
+    "cim:EnergyConsumer.EnergyConsumerPhase": {
+      "@type": "@id"
+    },
+    "gad:EnergyConsumer.maxP": {
+      "@type": "xsd:float"
+    },
+    "gad:EnergyConsumer.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.pfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.pfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.qfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.qfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.LoadResponse": {
+      "@type": "@id"
+    },
+    "cim:EnergyConsumer.p": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.q": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.phase": {
+      "@type": "@id"
+    },
+    "cim:EnergyConsumerPhase.phases": {
+      "@type": "@id"
+    },
+    "cim:EnergyConsumerPhase.EnergyConsumer": {
+      "@type": "@id"
+    },
+    "cim:EnergyConsumerPhase.pfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.pfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.qfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.qfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.p": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.q": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.grounded": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EnergySource.nominalVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.EnergySourcePhase": {
+      "@type": "@id"
+    },
+    "cim:EnergySource.pMax": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.pMin": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.activePower": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.reactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.voltageAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.voltageMagnitude": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x2": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySourcePhase.phase": {
+      "@type": "@id"
+    },
+    "cim:EnergySourcePhase.EnergySource": {
+      "@type": "@id"
+    },
+    "cim:Equipment.aggregate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.EquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:Equipment.normallyInService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.AdditionalEquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:Equipment.networkAnalysisEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:EquipmentContainer.Equipments": {
+      "@type": "@id"
+    },
+    "cim:EquipmentContainer.AdditionalGroupedEquipment": {
+      "@type": "@id"
+    },
+    "cim:EquipmentController.RegulatingCondEq": {
+      "@type": "@id"
+    },
+    "cim:EquivalentDistanceSpacing.averageNeutralDistanceToGround": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.averagePhaseDistanceToGround": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.phaseToNeutralGMD": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.phaseToPhaseGMD": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.capacitorHarmonicFilterRating": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.maxCapacitiveReactance": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.maxInductiveReactance": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.maxMechanicalSwitchedCapacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.maxMechanicalSwitchedReactance": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.nomU": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSInfo.reactorHarmonicFilterRating": {
+      "@type": "xsd:float"
+    },
+    "cim:Feeder.NamingSecondarySubstation": {
+      "@type": "@id"
+    },
+    "cim:Feeder.NormalEnergizedSubstation": {
+      "@type": "@id"
+    },
+    "cim:Feeder.NormalHeadTerminal": {
+      "@type": "@id"
+    },
+    "cim:Feeder.NormalEnergizingSubstation": {
+      "@type": "@id"
+    },
+    "cim:Fuse.MiinimumMeltCurve": {
+      "@type": "@id"
+    },
+    "cim:Fuse.TotalClearingTimeCurve": {
+      "@type": "@id"
+    },
+    "cim:FuseCharacteristicCurve.FuseMinimumMelt": {
+      "@type": "@id"
+    },
+    "cim:FuseCharacteristicCurve.FuseTotalClearing": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.maxOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.minOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.nominalP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.RotatingMachine": {
+      "@type": "@id"
+    },
+    "cim:GeographicalRegion.Regions": {
+      "@type": "@id"
+    },
+    "cim:GeometricElement.Geometry": {
+      "@type": "@id"
+    },
+    "cim:Geometry.GeometricElement": {
+      "@type": "@id"
+    },
+    "cim:Geometry.CoordinateSystem": {
+      "@type": "@id"
+    },
+    "cim:Geometry.Location": {
+      "@type": "@id"
+    },
+    "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
+      "@type": "xsd:float"
+    },
+    "cim:GridEdgeDeviceInfo.ratedVoltageMax": {
+      "@type": "xsd:float"
+    },
+    "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
+      "@type": "xsd:float"
+    },
+    "cim:IOPoint.IOPointSource": {
+      "@type": "@id"
+    },
+    "cim:IOPointSource.IOPoint": {
+      "@type": "@id"
+    },
+    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint": {
+      "@type": "@id"
+    },
+    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTabular": {
+      "@type": "@id"
+    },
+    "cim:ImpedanceTapChangerTablePoint.ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.step": {
+      "@type": "xsd:integer"
+    },
+    "cim:ImpedanceTapChangerTablePoint.angle": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.rEnd1": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.rEnd2": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.rEnd3": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.xEnd1": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.xEnd2": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.xEnd3": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable": {
+      "@type": "@id"
+    },
+    "cim:ImpedanceTapChangerTabular.ImpedanceTapChangerTable": {
+      "@type": "@id"
+    },
+    "gad:ImpedanceTapChangerTabular.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:InsulationInfo.insulated": {
+      "@type": "xsd:boolean"
+    },
+    "cim:InsulationInfo.insulationMaterial": {
+      "@type": "@id"
+    },
+    "cim:InsulationInfo.insulationThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:InsulationInfo.CableInfo": {
+      "@type": "@id"
+    },
+    "cim:IntegralWebBusbarInfo.crossSectionHeight": {
+      "@type": "xsd:float"
+    },
+    "cim:IntegralWebBusbarInfo.crossSectionWidth": {
+      "@type": "xsd:float"
+    },
+    "cim:IntegralWebBusbarInfo.thickness": {
+      "@type": "xsd:float"
+    },
+    "cim:InterrupterUnit.FixedContactBushing": {
+      "@type": "@id"
+    },
+    "cim:InterrupterUnit.MovingContactBushing": {
+      "@type": "@id"
+    },
+    "cim:InterrupterUnitInfo.interruptingMedium": {
+      "@type": "@id"
+    },
+    "cim:LimitSet.isPercentageLimits": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Line.Region": {
+      "@type": "@id"
+    },
+    "cim:LineElement.LinearCoordinate": {
+      "@type": "@id"
+    },
+    "cim:LineElement.Polygon": {
+      "@type": "@id"
+    },
+    "cim:LinearCoordinate.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:LinearCoordinate.Line": {
+      "@type": "@id"
+    },
+    "cim:LinearShuntCompensator.bPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.gPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.b0PerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.g0PerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensatorPhase.bPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensatorPhase.gPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.exponentModel": {
+      "@type": "xsd:boolean"
+    },
+    "cim:LoadResponseCharacteristic.pConstantCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pConstantImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pConstantPower": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pFrequencyExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pVoltageExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantPower": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qFrequencyExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qVoltageExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.EnergyConsumer": {
+      "@type": "@id"
+    },
+    "cim:Location.Geometry": {
+      "@type": "@id"
+    },
+    "gad:Location.PositionPoints": {
+      "@type": "@id"
+    },
+    "cim:Location.PowerSystemResources": {
+      "@type": "@id"
+    },
+    "cim:Location.CoordinateSystem": {
+      "@type": "@id"
+    },
+    "cim:Manufacturer.ProductAssetModels": {
+      "@type": "@id"
+    },
+    "cim:MarineStructureInfo.kind": {
+      "@type": "@id"
+    },
+    "gad:MatrixImpedanceData.fromEndNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:MatrixImpedanceData.toEndNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:MatrixImpedanceData.b": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.fromPhase": {
+      "@type": "@id"
+    },
+    "gad:MatrixImpedanceData.g": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.r": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.toPhase": {
+      "@type": "@id"
+    },
+    "gad:MatrixImpedanceData.x": {
+      "@type": "xsd:float"
+    },
+    "cim:Measurement.phases": {
+      "@type": "@id"
+    },
+    "cim:Measurement.sourceType": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:Measurement.Asset": {
+      "@type": "@id"
+    },
+    "cim:Measurement.CalculationMethodHierarchy": {
+      "@type": "@id"
+    },
+    "cim:Measurement.MeasurementAction": {
+      "@type": "@id"
+    },
+    "gad:Measurement.MeasurementSystem": {
+      "@type": "@id"
+    },
+    "cim:Measurement.PowerSystemResource": {
+      "@type": "@id"
+    },
+    "cim:Measurement.Terminal": {
+      "@type": "@id"
+    },
+    "cim:MeasurementAction.Measurement": {
+      "@type": "@id"
+    },
+    "gad:MeasurementSystem.reportingRate": {
+      "@type": "xsd:float"
+    },
+    "gad:MeasurementSystem.Measurements": {
+      "@type": "@id"
+    },
+    "gad:MeasurementSystem.Sensors": {
+      "@type": "@id"
+    },
+    "gad:MeasurementSystem.CommunicationLink": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.sensorAccuracy": {
+      "@type": "xsd:float"
+    },
+    "cim:MeasurementValue.CalculationMethodHierarchy": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.ErpPerson": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.MeasurementValueQuality": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.MeasurementValueSource": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.RemoteSource": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValueQuality.MeasurementValue": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValueSource.MeasurementValues": {
+      "@type": "@id"
+    },
+    "cim:Medium.kind": {
+      "@type": "@id"
+    },
+    "cim:Medium.volumeSpec": {
+      "@type": "xsd:float"
+    },
+    "cim:Medium.Specification": {
+      "@type": "@id"
+    },
+    "cim:MeterInfo.electricMetering": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.gasMetering": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.lastGasp": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.measurementPoll": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.measurementUnsolicited": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.outageHistory": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.overVoltage": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.overVoltageRTN": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.pingStatus": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.powerOnNotification": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.pricingInfo": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.registerCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:MeterInfo.reverseFlow": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.underVoltage": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.underVoltageRTN": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MeterInfo.waterMetering": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MultiCircuitGroup.ACLineSegment": {
+      "@type": "@id"
+    },
+    "cim:MultiCircuitGroup.SharedPhases": {
+      "@type": "@id"
+    },
+    "cim:MultiCircuitGroup.AdditionalTerminal": {
+      "@type": "@id"
+    },
+    "cim:MultiCircuitGroup.ReferenceTerminal": {
+      "@type": "@id"
+    },
+    "cim:MultiCircuitGroup.XYSpacing": {
+      "@type": "@id"
+    },
+    "cim:MutualCoupling.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance11": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance12": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance21": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance22": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.First_Terminal": {
+      "@type": "@id"
+    },
+    "cim:MutualCoupling.Second_Terminal": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.sectionNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.bTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.gTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:NonlinearShuntCompensatorPoint.bTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.gTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPoint.b0Total": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.g0Total": {
+      "@type": "xsd:float"
+    },
+    "cim:OldPerson.MeasurementValues": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitType": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.StepOperationalLimitTable": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitSet.AssetInfo": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.OperationalLimitValue": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Equipment": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Terminal": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitType.isInfiniteDuration": {
+      "@type": "xsd:boolean"
+    },
+    "nc:OperationalLimitType.isMinimum": {
+      "@type": "xsd:boolean"
+    },
+    "cim:OperationalLimitType.acceptableDuration": {
+      "@type": "xsd:float"
+    },
+    "cim:OperationalLimitType.direction": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitType.durationKind": {
+      "@type": "@id"
+    },
+    "eu:OperationalLimitType.kind": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitType.season": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitType.OperationalLimit": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.Anchor": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.Brace": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.CathodicSystem": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.Crossarm": {
+      "@type": "@id"
+    },
+    "cim:Ownership.AssetOwner": {
+      "@type": "@id"
+    },
+    "gad:PMUConfiguration.anNmr": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.cfgCnt": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.dfdtNmr": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.frNmr": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.phNmr": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.pmuDataRate": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.streamDataRate": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfiguration.PhasorMeasurementUnit": {
+      "@type": "@id"
+    },
+    "gad:PMUConfiguration.PMUConfigurationFrame": {
+      "@type": "@id"
+    },
+    "gad:PMUConfigurationFrame.dataRate": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfigurationFrame.numPMU": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfigurationFrame.pmuConfig": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfigurationFrame.timeBase": {
+      "@type": "xsd:integer"
+    },
+    "gad:PMUConfigurationFrame.PMUConfigurations": {
+      "@type": "@id"
+    },
+    "gad:PMUStream.PMU": {
+      "@type": "@id"
+    },
+    "gad:PMUValueQuality.dataBad": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PMUValueQuality.dataError": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PMUValueQuality.insertedData": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PMUValueQuality.localTimeStamp": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PMUValueQuality.pmuSync": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.isTemplate": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.calculatedFrequency": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.rg": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.xg": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthImpedance.ACLineSegments": {
+      "@type": "@id"
+    },
+    "gad:PerLengthImpedance.WireConfiguration": {
+      "@type": "@id"
+    },
+    "gad:PerLengthImpedance.userDefined": {
+      "@type": "xsd:boolean"
+    },
+    "cim:PerLengthLineParameter.calculatedTemperature": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthLineParameter.EarthResistivity": {
+      "@type": "@id"
+    },
+    "cim:PerLengthPhaseImpedance.conductorCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:PerLengthPhaseImpedance.PhaseImpedanceData": {
+      "@type": "@id"
+    },
+    "cim:PerLengthSequenceImpedance.bch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.gch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.r": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.x": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.column": {
+      "@type": "xsd:integer"
+    },
+    "cim:PhaseImpedanceData.row": {
+      "@type": "xsd:integer"
+    },
+    "cim:PhaseImpedanceData.b": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.fromPhase": {
+      "@type": "@id"
+    },
+    "cim:PhaseImpedanceData.g": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.r": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.toPhase": {
+      "@type": "@id"
+    },
+    "cim:PhaseImpedanceData.x": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.PhaseImpedance": {
+      "@type": "@id"
+    },
+    "cim:PhaseTapChanger.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:PhaseTapChangerAsymmetrical.windingConnectionAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerLinear.stepPhaseShiftIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerLinear.xMax": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerNonLinear.voltageStepIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerNonLinear.xMax": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
+      "@type": "@id"
+    },
+    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
+      "@type": "@id"
+    },
+    "cim:PhaseTapChangerTablePoint.angle": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
+      "@type": "@id"
+    },
+    "cim:PhaseTapChangerTabular.PhaseTapChangerTable": {
+      "@type": "@id"
+    },
+    "gad:PhasorDataConcentrator.LocalPDC": {
+      "@type": "@id"
+    },
+    "gad:PhasorDataConcentrator.PhasorMeasurementUnits": {
+      "@type": "@id"
+    },
+    "gad:PhasorDataConcentrator.CentralPDC": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.timeSourceType": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.PhasorDataConcentrator": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.PMUConfiguration": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.PMUStream": {
+      "@type": "@id"
+    },
+    "gad:PointOnWaveValue.Analog": {
+      "@type": "@id"
+    },
+    "cim:Polygon.InnerBoundaryLineElement": {
+      "@type": "@id"
+    },
+    "gad:PositionPoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:PositionPoint.Circle": {
+      "@type": "@id"
+    },
+    "gad:PositionPoint.Location": {
+      "@type": "@id"
+    },
+    "cim:PositionPoint.RelativeHeight": {
+      "@type": "@id"
+    },
+    "cim:PotentialTransformer.nominalRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:PotentialTransformer.type": {
+      "@type": "@id"
+    },
+    "gad:PowerElectronicsConnection.phaseConnection": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnection.maxIFault": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnection.p": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.q": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnectionPhase.phase": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnectionPhase.phases": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnectionPhase.PowerElectronicsConnection": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsConnectionPhase.p": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnectionPhase.q": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.PowerElectronicsConnection": {
+      "@type": "@id"
+    },
+    "gad:PowerElectronicsUnit.p": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerSystemResource.Controls": {
+      "@type": "@id"
+    },
+    "cim:PowerSystemResource.Measurements": {
+      "@type": "@id"
+    },
+    "cim:PowerSystemResource.Location": {
+      "@type": "@id"
+    },
+    "cim:PowerSystemResource.AssetDatasheet": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformer.PowerTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformer.TransformerTanks": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformer.highSideMinOperatingU": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShortCircuitAnglePf": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerAssetDeployment.transformerApplication": {
+      "@type": "@id"
+    },
+    "gad:PowerTransformerAssetDeployment.TransformerBankAssembly": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerEnd.connectionKind": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerEnd.windingConfiguration": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerEnd.PowerTransformer": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerEnd.b": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.g": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.phaseShift": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.r": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.x": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.b0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.g0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerInfo.TransformerTankInfos": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.corporateStandardKind": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.overallLength": {
+      "@type": "xsd:float"
+    },
+    "cim:ProductAssetModel.usageKind": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.AssetInfo": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.CatalogAssetType": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.Manufacturer": {
+      "@type": "@id"
+    },
+    "cim:ProtectedSwitch.breakingCapacity": {
+      "@type": "xsd:float"
+    },
+    "gb:ProtectedSwitch.makingCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:ProtectedSwitch.RecloseSequences": {
+      "@type": "@id"
+    },
+    "cim:ProtectionEquipment.ProtectionRelatedFunctionBlock": {
+      "@type": "@id"
+    },
+    "cim:ProtectionFunctionBlock.operatingQuantityType": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.operatingQuantityType": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.ProtectionEquipment": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.ProtectionSettingsGroup": {
+      "@type": "@id"
+    },
+    "cim:ProtectionSettingsGroup.ProtectionRelatedFunctionBlock": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.badReference": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.estimatorReplaced": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.failure": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oldData": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.operatorBlocked": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oscillatory": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.outOfRange": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.overFlow": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.suspect": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.test": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.source": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.validity": {
+      "@type": "@id"
+    },
+    "cim:RaiseLowerCommand.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:RatioTapChanger.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:RatioTapChanger.stepVoltageIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
+      "@type": "@id"
+    },
+    "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
+      "@type": "@id"
+    },
+    "cim:ReactiveCapabilityCurve.coolantTemperature": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactiveCapabilityCurve.hydrogenPressure": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactiveCapabilityCurve.referenceVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachine": {
+      "@type": "@id"
+    },
+    "cim:ReactiveCapabilityCurve.SynchronousMachine": {
+      "@type": "@id"
+    },
+    "cim:ReactivePowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.coreCoilsWeight": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.oilWeight": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.ratedInductance": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.ratedMechanicalCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.ratedThermalCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.tankAndFittingsWeight": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.temperatureRise": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.volumeOfOil": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.circulationAndCoolingType": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.coreType": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.insulationMedium": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.oilPreservationType": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.ratedImpulseWithstandVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:RecloseSequence.recloseStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:RecloseSequence.recloseDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:RecloseSequence.AutoreclosingFunctionBlock": {
+      "@type": "@id"
+    },
+    "cim:RecloseSequence.ProtectedSwitch": {
+      "@type": "@id"
+    },
+    "cim:RegularBundlePosition.subConductorCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:RegularBundlePosition.subConductorSpacing": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingCondEq.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingCondEq.EquipmentController": {
+      "@type": "@id"
+    },
+    "cim:RegulatingCondEq.RegulatingControl": {
+      "@type": "@id"
+    },
+    "gad:RegulatingControl.ctRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.discrete": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.maxAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.minAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "gad:RegulatingControl.ptRatio": {
+      "@type": "xsd:float"
+    },
+    "gad:RegulatingControl.reverseTargetDeadband": {
+      "@type": "xsd:float"
+    },
+    "gad:RegulatingControl.reverseTargetValue": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.targetDeadband": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.targetValue": {
+      "@type": "xsd:float"
+    },
+    "gad:RegulatingControl.ctPhase": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.mode": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.monitoredPhase": {
+      "@type": "@id"
+    },
+    "gad:RegulatingControl.ptPhase": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.targetValueUnitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.RegulatingCondEq": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.Terminal": {
+      "@type": "@id"
+    },
+    "cim:RelativeHeight.verticalOffset": {
+      "@type": "xsd:float"
+    },
+    "cim:RelativeHeight.PositionPoint": {
+      "@type": "@id"
+    },
+    "cim:RemoteControl.actuatorMaximum": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteControl.actuatorMinimum": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteControl.remoteControlled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RemoteControl.Control": {
+      "@type": "@id"
+    },
+    "cim:RemotePoint.RemoteUnit": {
+      "@type": "@id"
+    },
+    "cim:RemoteSource.deadband": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteSource.sensorMaximum": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteSource.sensorMinimum": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteSource.scanInterval": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteSource.MeasurementValue": {
+      "@type": "@id"
+    },
+    "cim:RemoteUnit.remoteUnitType": {
+      "@type": "@id"
+    },
+    "cim:RemoteUnit.RemotePoints": {
+      "@type": "@id"
+    },
+    "cim:RemoteUnit.CommunicationLinks": {
+      "@type": "@id"
+    },
+    "cim:ReportingGroup.BusNameMarker": {
+      "@type": "@id"
+    },
+    "gad:RotatingMachine.RotatingMachinePhase": {
+      "@type": "@id"
+    },
+    "cim:RotatingMachine.ratedPowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:RotatingMachine.p": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.q": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachinePhase.phase": {
+      "@type": "@id"
+    },
+    "gad:RotatingMachinePhase.RotatingMachine": {
+      "@type": "@id"
+    },
+    "cim:SVCInfo.svcReactiveControlType": {
+      "@type": "@id"
+    },
+    "cim:SVCInfo.tcrRating": {
+      "@type": "xsd:float"
+    },
+    "cim:SVCInfo.tscRating": {
+      "@type": "xsd:float"
+    },
+    "cim:SelfSaturatedReactorInfo.fixedSeriesCapacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:SelfSaturatedReactorInfo.fixedShuntCapacitance": {
+      "@type": "xsd:float"
+    },
+    "gad:Sensor.MeasurementSystem": {
+      "@type": "@id"
+    },
+    "cim:SeriesCompensator.compensatorType": {
+      "@type": "@id"
+    },
+    "cim:SeriesCompensator.r": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.x": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.varistorPresent": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SeriesCompensator.varistorRatedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.varistorVoltageThreshold": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.x0": {
+      "@type": "xsd:float"
+    },
+    "gad:ServiceMeterInfo.hasRemoteDisconnect": {
+      "@type": "xsd:boolean"
+    },
+    "gad:ServiceMeterInfo.socketJawCount": {
+      "@type": "xsd:integer"
+    },
+    "gad:ServiceMeterInfo.wireCount": {
+      "@type": "xsd:integer"
+    },
+    "gad:ServiceMeterInfo.formType": {
+      "@type": "@id"
+    },
+    "gad:ServiceMeterInfo.startingCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:SetPoint.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:SetPoint.value": {
+      "@type": "xsd:float"
+    },
+    "cim:ShortCircuitResponse.faultSequenceType": {
+      "@type": "@id"
+    },
+    "cim:ShortCircuitResponse.outputCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ShortCircuitResponse.outputCurrentAngle": {
+      "@type": "xsd:float"
+    },
+    "cim:ShortCircuitResponse.terminalVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:ShortCircuitResponse.ConductingAssetInfo": {
+      "@type": "@id"
+    },
+    "cim:ShuntCapacitorInfo.connectionKind": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensator.grounded": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ShuntCompensator.compensatorType": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensator.phaseConnection": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensator.ShuntCompensatorPhase": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensator.maximumSections": {
+      "@type": "xsd:integer"
+    },
+    "cim:ShuntCompensator.normalSections": {
+      "@type": "xsd:integer"
+    },
+    "gad:ShuntCompensator.nomQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.nomU": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.voltageSensitivity": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.aVRDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.SvShuntCompensatorSections": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensatorInfo.maxPowerLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorInfo.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorInfo.ratedReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorInfo.ratedVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorPhase.phase": {
+      "@type": "@id"
+    },
+    "gad:ShuntCompensatorPhase.phases": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensatorPhase.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:ShuntCompensatorPhase.maximumSections": {
+      "@type": "xsd:integer"
+    },
+    "cim:ShuntCompensatorPhase.normalSections": {
+      "@type": "xsd:integer"
+    },
+    "gad:ShuntCompensatorPhase.nomQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorPhase.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntReactorInfo.TapChangerInfo": {
+      "@type": "@id"
+    },
+    "gad:SolarArrayInfo.orientationAzimuth": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarArrayInfo.shadingFactor": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarArrayInfo.tiltAngle": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarArrayInfo.SolarPanels": {
+      "@type": "@id"
+    },
+    "gad:SolarPanelInfo.efficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarPanelInfo.openCircuitVoltage": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarPanelInfo.referenceIrradiation": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarPanelInfo.referenceTemperature": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarPanelInfo.shortCircuitCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:SolarPanelInfo.SolarArray": {
+      "@type": "@id"
+    },
+    "cim:SoundInfo.minSoundPressureLevel": {
+      "@type": "xsd:float"
+    },
+    "cim:SoundInfo.Specification": {
+      "@type": "@id"
+    },
+    "cim:SpacingPosition.xCoord": {
+      "@type": "xsd:float"
+    },
+    "cim:SpacingPosition.yCoord": {
+      "@type": "xsd:float"
+    },
+    "cim:Specification.CoolingInfo": {
+      "@type": "@id"
+    },
+    "cim:Specification.Mediums": {
+      "@type": "@id"
+    },
+    "cim:Specification.SoundInfo": {
+      "@type": "@id"
+    },
+    "cim:Specification.SurfaceTreatmentInfo": {
+      "@type": "@id"
+    },
+    "cim:StatComInfo.activePowerSourceType": {
+      "@type": "@id"
+    },
+    "cim:StatComInfo.dcConverterType": {
+      "@type": "@id"
+    },
+    "cim:StatComInfo.maxNegativeMW": {
+      "@type": "xsd:float"
+    },
+    "cim:StatComInfo.maxPositiveMW": {
+      "@type": "xsd:float"
+    },
+    "cim:StatComInfo.powerElectronicsGateType": {
+      "@type": "@id"
+    },
+    "cim:StepOperationalLimitTable.OperationalLimit": {
+      "@type": "@id"
+    },
+    "cim:StepOperationalLimitTable.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:StorageInverterInfo.chargeRateActiveMax": {
+      "@type": "xsd:float"
+    },
+    "cim:StorageInverterInfo.chargeRateReactiveMax": {
+      "@type": "xsd:float"
+    },
+    "cim:StorageInverterInfo.storageCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:StringMeasurement.StringMeasurementValues": {
+      "@type": "@id"
+    },
+    "cim:StringMeasurementValue.StringMeasurement": {
+      "@type": "@id"
+    },
+    "cim:StructureInfo.hasTemperatureMeasurement": {
+      "@type": "xsd:boolean"
+    },
+    "cim:StructureInfo.hasVentilation": {
+      "@type": "xsd:boolean"
+    },
+    "cim:StructureInfo.materialKind": {
+      "@type": "@id"
+    },
+    "cim:StructureInfo.ratedVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:StructureInfo.ConstructedDimensions": {
+      "@type": "@id"
+    },
+    "cim:StructureInfo.TransportDimensionsInfo": {
+      "@type": "@id"
+    },
+    "cim:SubConductorPosition.subConductorNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:SubConductorPosition.ConductorGroupPosition": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Lines": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Substations": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Region": {
+      "@type": "@id"
+    },
+    "cim:Substation.Bays": {
+      "@type": "@id"
+    },
+    "cim:Substation.VoltageLevels": {
+      "@type": "@id"
+    },
+    "cim:Substation.NamingFeeder": {
+      "@type": "@id"
+    },
+    "cim:Substation.NormalEnergizingFeeder": {
+      "@type": "@id"
+    },
+    "cim:Substation.Region": {
+      "@type": "@id"
+    },
+    "cim:Substation.NormalEnergizedFeeder": {
+      "@type": "@id"
+    },
+    "cim:SurfaceTreatmentInfo.galvanizationThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:SurfaceTreatmentInfo.paintThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:SurfaceTreatmentInfo.Specification": {
+      "@type": "@id"
+    },
+    "cim:SvDCPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvDCPowerFlow.DCTerminal": {
+      "@type": "@id"
+    },
+    "cim:SvDCVoltage.v": {
+      "@type": "xsd:float"
+    },
+    "cim:SvDCVoltage.DCTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.phase": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvInjection.qInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvInjection.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.phase": {
+      "@type": "@id"
+    },
+    "cim:SvPowerFlow.q": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.Terminal": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:SvShuntCompensatorSections.phase": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:SvStatus.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvStatus.phase": {
+      "@type": "@id"
+    },
+    "cim:SvStatus.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:SvSwitch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvSwitch.phase": {
+      "@type": "@id"
+    },
+    "cim:SvSwitch.Switch": {
+      "@type": "@id"
+    },
+    "cim:SvTapStep.position": {
+      "@type": "xsd:float"
+    },
+    "cim:SvTapStep.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:SvVoltage.angle": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.phase": {
+      "@type": "@id"
+    },
+    "cim:SvVoltage.v": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:Switch.areaBoundary": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Switch.normalOpen": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Switch.retained": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Switch.topologicalUsage": {
+      "@type": "@id"
+    },
+    "cim:Switch.SwitchPhase": {
+      "@type": "@id"
+    },
+    "cim:Switch.CompositeSwitch": {
+      "@type": "@id"
+    },
+    "gad:Switch.gangOperated": {
+      "@type": "xsd:boolean"
+    },
+    "gad:Switch.loadBreak": {
+      "@type": "xsd:boolean"
+    },
+    "gad:Switch.motorOperated": {
+      "@type": "xsd:boolean"
+    },
+    "gad:Switch.remotelyOperated": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Switch.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:Switch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Switch.SvSwitch": {
+      "@type": "@id"
+    },
+    "cim:SwitchInfo.isSinglePhase": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SwitchInfo.isUnganged": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SwitchInfo.breakingCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.lowPressureAlarm": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.lowPressureLockOut": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.oilVolumePerTank": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.ratedFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.ratedImpulseWithstandVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.ratedInterruptingTime": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchPhase.normalOpen": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SwitchPhase.phaseSide1": {
+      "@type": "@id"
+    },
+    "cim:SwitchPhase.phaseSide2": {
+      "@type": "@id"
+    },
+    "cim:SwitchPhase.Switch": {
+      "@type": "@id"
+    },
+    "cim:SwitchPhase.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:SwitchPhase.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SynchronousMachine.referencePriority": {
+      "@type": "xsd:integer"
+    },
+    "cim:SynchronousMachine.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.maxU": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.minU": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.qPercent": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.type": {
+      "@type": "@id"
+    },
+    "cim:SynchronousMachine.condenserP": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.operatingMode": {
+      "@type": "@id"
+    },
+    "cim:SynchronousMachine.aVRToManualLag": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.aVRToManualLead": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.manualToAVR": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.voltageRegulationRange": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.ReactiveCapabilityCurve": {
+      "@type": "@id"
+    },
+    "cim:SynchronousMachine.InitialReactiveCapabilityCurve": {
+      "@type": "@id"
+    },
+    "cim:SynchronousMachine.earthing": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SynchronousMachine.mu": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.earthingStarPointR": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.earthingStarPointX": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.ikk": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.x2": {
+      "@type": "xsd:float"
+    },
+    "gad:SynchrophaserFrame.chk": {
+      "@type": "xsd:integer"
+    },
+    "gad:SynchrophaserFrame.fracsec": {
+      "@type": "xsd:integer"
+    },
+    "gad:SynchrophaserFrame.framesize": {
+      "@type": "xsd:integer"
+    },
+    "gad:SynchrophaserFrame.streamId": {
+      "@type": "xsd:integer"
+    },
+    "gad:SynchrophaserFrame.leapByte": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.highStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.lowStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.normalStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.step": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:TapChanger.ctRating": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.ctRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.ltcFlag": {
+      "@type": "xsd:boolean"
+    },
+    "cim:TapChanger.neutralStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.ptRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.initialDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.neutralU": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.ptPhase": {
+      "@type": "@id"
+    },
+    "cim:TapChanger.subsequentDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.TapChangerControl": {
+      "@type": "@id"
+    },
+    "cim:TapChanger.SvTapStep": {
+      "@type": "@id"
+    },
+    "cim:TapChanger.StepOperationalLimitTable": {
+      "@type": "@id"
+    },
+    "cim:TapChangerControl.lineDropCompensation": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TapChangerControl.reverseToNeutral": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TapChangerControl.reversible": {
+      "@type": "xsd:boolean"
+    },
+    "cim:TapChangerControl.lineDropR": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.lineDropX": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.maxLimitVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.minLimitVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.reverseLineDropR": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.reverseLineDropX": {
+      "@type": "xsd:float"
+    },
+    "gad:TapChangerControl.reversingDelay": {
+      "@type": "xsd:float"
+    },
+    "gad:TapChangerControl.reversingPowerThreshold": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerControl.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:TapChangerInfo.ctRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.highStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChangerInfo.isTcul": {
+      "@type": "xsd:boolean"
+    },
+    "cim:TapChangerInfo.lowStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChangerInfo.neutralStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChangerInfo.ptRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.bil": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.ctRating": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.frequency": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.neutralU": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.ratedApparentPower": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.stepPhaseIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.stepReactiveIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.stepVoltageIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.ShuntReactorInfo": {
+      "@type": "@id"
+    },
+    "cim:TapeShieldCableInfo.tapeLap": {
+      "@type": "xsd:float"
+    },
+    "cim:TapeShieldCableInfo.tapeThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:Terminal.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "cim:Terminal.phases": {
+      "@type": "@id"
+    },
+    "cim:Terminal.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:Terminal.AdditionalCircuitGroup": {
+      "@type": "@id"
+    },
+    "cim:Terminal.BoundedConnectedArea": {
+      "@type": "@id"
+    },
+    "cim:Terminal.NormalHeadFeeder": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ReferencedCircuitGroup": {
+      "@type": "@id"
+    },
+    "cim:Terminal.RegulatingControl": {
+      "@type": "@id"
+    },
+    "cim:Terminal.Bushing": {
+      "@type": "@id"
+    },
+    "cim:Terminal.HasFirstMutualCoupling": {
+      "@type": "@id"
+    },
+    "cim:Terminal.HasSecondMutualCoupling": {
+      "@type": "@id"
+    },
+    "cim:Terminal.SvPowerFlow": {
+      "@type": "@id"
+    },
+    "cim:Terminal.BranchGroupTerminal": {
+      "@type": "@id"
+    },
+    "cim:Terminal.VoltageAngleLimit": {
+      "@type": "@id"
+    },
+    "cim:Terminal.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.kind": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.AreaConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.DownstreamTopologicalArea": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.TopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.UpstreamTopolgicalArea": {
+      "@type": "@id"
+    },
+    "cim:TopologicalIsland.TopologicalArea": {
+      "@type": "@id"
+    },
+    "cim:TopologicalIsland.AngleRefTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:TopologicalIsland.TopologicalNodes": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.busNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:TopologicalNode.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.ConnectivityNodeContainer": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.SvInjection": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.SvVoltage": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.qInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.BusNameMarker": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.ConnectivityNodes": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.Terminal": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.AngleRefTopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.TopologicalIsland": {
+      "@type": "@id"
+    },
+    "gad:TransformerBankConfiguration.AssetDeployments": {
+      "@type": "@id"
+    },
+    "gad:TransformerBankConfiguration.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.b": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.form": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.g": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.TransformerWindings": {
+      "@type": "@id"
+    },
+    "gad:TransformerCore.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.TransformerTank": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.b0": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.g0": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.coreMaterial": {
+      "@type": "@id"
+    },
+    "gad:TransformerCoreInfo.coreType": {
+      "@type": "@id"
+    },
+    "gad:TransformerCoreInfo.laminationAssembly": {
+      "@type": "@id"
+    },
+    "gad:TransformerCoreInfo.laminationShape": {
+      "@type": "@id"
+    },
+    "gad:TransformerCoreInfo.legType": {
+      "@type": "@id"
+    },
+    "gad:TransformerCoreInfo.outerLimbArea": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.outerLimbLength": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.windingLimbArea": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.windingLimbLength": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.yokeArea": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCoreInfo.yokeLength": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerEnd.endNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:TransformerEnd.grounded": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TransformerEnd.FromTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerEnd.ToTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.PhaseTapChanger": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.RatioTapChanger": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.Terminal": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.rground": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerEnd.xground": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerEnd.ImpedanceTapChanger": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.FromMeshImpedance": {
+      "@type": "@id"
+    },
+    "cim:TransformerEnd.ToMeshImpedance": {
+      "@type": "@id"
+    },
+    "gad:TransformerEnd.TransformerLugs": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.sequenceNumber": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerLug.AutoTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.FromTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.ToTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerLug.TankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerLug.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.TransformerTank": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.r": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.x": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.FromTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.FromWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.ToTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.ToWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerMeshImpedance.cs": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.x0": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerPhaseEnd.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:TransformerPhaseEnd.phase": {
+      "@type": "@id"
+    },
+    "gad:TransformerPhaseEnd.phaseNeutralU": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerPhaseEnd.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.TransformerWindings": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.PowerTransformer": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.loadLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.noLoadLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.percentMagnetizingCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.TransformerCore": {
+      "@type": "@id"
+    },
+    "gad:TransformerTank.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.TransformerLug": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.loadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.noLoadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentMagnetizingCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.TransformerCore": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerTank": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerLugs": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerPhaseEnd": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerTankEnd": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.BankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankEnd.connectionKind": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankEnd.TankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankInfo.completelySelfProtected": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TransformerTankInfo.submersible": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TransformerTankInfo.oilCapacity": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankInfo.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTankInfo.PowerTransformerInfo": {
+      "@type": "@id"
+    },
+    "cim:TransformerTest.basePower": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTest.temperature": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.connection": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.AutoTransformer": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.FromTransformerEnd": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.ToTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.TransformerTank": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.baseS": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.baseU": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.r": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.rDC": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.FromMeshImpedance": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.ToMeshImpedance": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.TransformerCore": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.AutoTransformerLug": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.FromTransformerLug": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.ToTransformerLug": {
+      "@type": "@id"
+    },
+    "gad:TransformerWindingInfo.windingArrangement": {
+      "@type": "@id"
+    },
+    "cim:TubeBusbarInfo.outerDiameter": {
+      "@type": "xsd:float"
+    },
+    "cim:TubeBusbarInfo.wallThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:TypeAssetCatalogue.TypeAssets": {
+      "@type": "@id"
+    },
+    "cim:UnderFrequencyProtectionFunctionBlock.operateValue": {
+      "@type": "xsd:float"
+    },
+    "cim:UndergroundStructureInfo.kind": {
+      "@type": "@id"
+    },
+    "cim:ValueAliasSet.Commands": {
+      "@type": "@id"
+    },
+    "cim:ValueAliasSet.Discretes": {
+      "@type": "@id"
+    },
+    "cim:ValueAliasSet.RaiseLowerCommands": {
+      "@type": "@id"
+    },
+    "cim:ValueAliasSet.Values": {
+      "@type": "@id"
+    },
+    "cim:ValueToAlias.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:ValueToAlias.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:VoltageAngleLimit.isFlowToRefTerminal": {
+      "@type": "xsd:boolean"
+    },
+    "cim:VoltageAngleLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageAngleLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageAngleLimit.AngleReferenceTerminal": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.highVoltageLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLevel.lowVoltageLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLevel.Bays": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.Substation": {
+      "@type": "@id"
+    },
+    "cim:VoltageLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLimit.value": {
+      "@type": "xsd:float"
+    },
+    "gad:VoltageRegulator.construction": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.numberOfPhases": {
+      "@type": "xsd:integer"
+    },
+    "gad:WireConfiguration.installationType": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.usage": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.EarthResistivity": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.ACLineSegements": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.WireSequence": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.WireSpacing": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.coreStrandCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:WireInfo.insulated": {
+      "@type": "xsd:boolean"
+    },
+    "cim:WireInfo.strandCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:WireInfo.constructionKind": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.coreRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.coreStrandRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.gmr": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.insulationMaterial": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.insulationThickness": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.radius": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.ratedStrength": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.strandRadius": {
+      "@type": "xsd:float"
+    },
+    "gad:WireInfo.WireBundleInfo": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.ACLineSegmentPhase": {
+      "@type": "@id"
+    },
+    "gad:WireInfo.WireSequenceConfiguration": {
+      "@type": "@id"
+    },
+    "cim:WireSegment.WireSegmentPhases": {
+      "@type": "@id"
+    },
+    "cim:WireSegmentPhase.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:WireSegmentPhase.phase": {
+      "@type": "@id"
+    },
+    "cim:WireSegmentPhase.WireSegment": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.WireConfiguration": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.WireInfo": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:WireSpacing.isTemplate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:WireSpacing.ACLineSegment": {
+      "@type": "@id"
+    },
+    "gad:WireSpacing.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:XYConductorPosition.XYSpacing": {
+      "@type": "@id"
+    },
+    "cim:XYSpacing.XYConductorPosition": {
+      "@type": "@id"
+    },
+    "cim:XYSpacing.MultiCircuitGroup": {
+      "@type": "@id"
+    }
+  }
+}
