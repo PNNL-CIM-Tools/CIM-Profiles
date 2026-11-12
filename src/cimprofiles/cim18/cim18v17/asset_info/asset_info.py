@@ -3753,7 +3753,7 @@ class OverheadWireInfo(WireInfo):
         metadata={
         'type': 'Attribute',
         'stereotypes': ['enumeration', 'Attribute', 'add'],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
@@ -4831,7 +4831,7 @@ class BatteryInfo(DCConductingAssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5841,7 +5841,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5867,7 +5867,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5880,7 +5880,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5893,7 +5893,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -6143,7 +6143,7 @@ class TransformerWindingInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -8467,9 +8467,9 @@ class ShortCircuitResponse(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Attribute)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
-@stereotype(CIMStereotype.Attribute)
 @dataclass(repr=False, eq=False)
 class StringQuantity(Identity):
     '''
@@ -9858,6 +9858,7 @@ class OilPreservationKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class OperatingMechanismKind(Enum):
     '''
     Kinds of operating mechanisms.
@@ -10287,6 +10288,7 @@ class PhaseCountKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class PipeBusbarKind(Enum):
     '''
     Kind of pipe busbar
@@ -10929,6 +10931,7 @@ class WindingArrangementKind(Enum):
     
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
+@stereotype(CIMStereotype.add)
 class WireConstructionKind(Enum):
     '''
     Kind of cable construction.

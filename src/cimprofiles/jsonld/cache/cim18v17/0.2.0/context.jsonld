@@ -5827,9 +5827,6 @@
     "nc:TapScheduleTimePoint.step": {
       "@type": "xsd:float"
     },
-    "nc:TapScheduleTimePoint.TapSchedule": {
-      "@type": "@id"
-    },
     "cim:TapeShieldCableInfo.tapeLap": {
       "@type": "xsd:float"
     },

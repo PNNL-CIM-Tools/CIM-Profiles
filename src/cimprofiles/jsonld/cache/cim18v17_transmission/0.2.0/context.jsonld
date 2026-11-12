@@ -1378,6 +1378,156 @@
     "cim:EquipmentController.RegulatingCondEq": {
       "@type": "@id"
     },
+    "cim:EquivalentBranch.r": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.x": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeX21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveX21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.r21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.x21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroX21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentEquipment.EquivalentNetwork": {
+      "@type": "@id"
+    },
+    "cim:EquivalentInjection.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.p": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.q": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentNetwork.EquivalentEquipments": {
+      "@type": "@id"
+    },
+    "cim:EquivalentShunt.b": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentShunt.g": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.r": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.x": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.x2": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.referencePriority": {
+      "@type": "xsd:integer"
+    },
+    "cim:ExternalNetworkInjection.governorSCD": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.p": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.q": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.ikSecond": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ExternalNetworkInjection.maxR0ToX0Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxR1ToX1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxZ0ToZ1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minR0ToX0Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minR1ToX1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minZ0ToZ1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxInitialSymShCCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minInitialSymShCCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.voltageFactor": {
+      "@type": "xsd:float"
+    },
     "cim:FACTSEquipment.LossCurve": {
       "@type": "@id"
     },
@@ -2037,6 +2187,9 @@
     },
     "gad:PhasorMeasurementUnit.PMUStream": {
       "@type": "@id"
+    },
+    "gad:PhotoVoltaicUnit.irradiance": {
+      "@type": "xsd:float"
     },
     "cim:PinDCTerminal.kind": {
       "@type": "@id"

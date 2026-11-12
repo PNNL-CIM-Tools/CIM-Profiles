@@ -141,7 +141,7 @@ class CsConverterTimePoint(ACDCTimePoint):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -156,7 +156,7 @@ class CsConverterTimePoint(ACDCTimePoint):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -315,7 +315,7 @@ class VsConverterTimePoint(ACDCTimePoint):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -329,7 +329,7 @@ class VsConverterTimePoint(ACDCTimePoint):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -830,7 +830,7 @@ class AssessedElementTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1023,7 +1023,7 @@ class AssessedElementWithContingency(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1142,7 +1142,7 @@ class AssessedElementWithRemedialAction(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1227,7 +1227,7 @@ class AsynchronousMachineTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1356,7 +1356,7 @@ class BatteryUnitTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1721,7 +1721,7 @@ class ContingencyWithRemedialAction(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -1900,7 +1900,7 @@ class CostVolumePotentialTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -2575,7 +2575,7 @@ class GeneratingUnitTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['NC', 'OfAggregate'],
+        'stereotypes': ['OfAggregate', 'NC'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'GeneratingUnitSchedule.GeneratingUnitTimePoint',
@@ -3247,7 +3247,7 @@ class AssessedElement(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -3261,7 +3261,7 @@ class AssessedElement(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -3780,7 +3780,7 @@ class BaseTimeSeries(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -3794,7 +3794,7 @@ class BaseTimeSeries(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -5326,7 +5326,7 @@ class PowerBidSchedule(BaseIrregularTimeSeries):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -5340,7 +5340,7 @@ class PowerBidSchedule(BaseIrregularTimeSeries):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -5546,7 +5546,7 @@ class PowerSchedule(BaseIrregularTimeSeries):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -5560,7 +5560,7 @@ class PowerSchedule(BaseIrregularTimeSeries):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -6607,7 +6607,7 @@ class BaseRegularIntervalSchedule(BaseTimeSeries):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -6757,7 +6757,7 @@ class CsConverterRegularSchedule(ACDCConverterRegularSchedule):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -6772,7 +6772,7 @@ class CsConverterRegularSchedule(ACDCConverterRegularSchedule):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -6945,7 +6945,7 @@ class AsynchronousMachineRegularSchedule(BaseRegularIntervalSchedule):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -7456,7 +7456,7 @@ class RegulatingControlRegularSchedule(BaseRegularIntervalSchedule):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -7615,7 +7615,7 @@ class SynchronousMachineRegularSchedule(BaseRegularIntervalSchedule):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -7701,7 +7701,7 @@ class TapRegularSchedule(BaseRegularIntervalSchedule):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension', 'gmdm', 'NC'],
+        'stereotypes': ['ShadowExtension', 'NC', 'gmdm'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TapChanger.TapRegularSchedule',
@@ -8541,7 +8541,7 @@ class HourPattern(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -8555,7 +8555,7 @@ class HourPattern(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -11295,7 +11295,7 @@ class PowerBidDependency(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -11877,7 +11877,7 @@ class RegulatingControlTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -12490,7 +12490,7 @@ class SwitchTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['NC', 'OfAggregate'],
+        'stereotypes': ['OfAggregate', 'NC'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'SwitchSchedule.SwitchTimePoint',
@@ -12556,7 +12556,7 @@ class SynchronousMachineTimePoint(Identity):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'NC', 'Attribute'],
+        'stereotypes': ['NC', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://entsoe.eu/ns/nc#',
@@ -12650,21 +12650,6 @@ class TapScheduleTimePoint(Identity):
     to oscillate or to accommodate for a continuous solution as input.
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
-    '''
-    
-    TapSchedule: Optional[BaseIrregularTimeSeries] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'NC'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'TapSchedule.TapScheduleTimePoint',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The tap schedule that has this time point.
     '''
     
     @property

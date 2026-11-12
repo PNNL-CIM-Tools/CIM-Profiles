@@ -196,11 +196,32 @@ class CIMStereotype(Enum):
     NeedsWork = "NeedsWork"
     ToBeDeleted = "ToBeDeleted"
     ToBeDiscussed = "ToBeDiscussed"
+    add = "add"
     moved = "moved"
     remove = "remove"
 
     European = "European"
     NC = "NC"
+@stereotype(CIMStereotype.Compound)
+@dataclass(repr=False, eq=False)
+class AcceptanceTest(Identity):
+    '''
+    Acceptance test for assets.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.CIMDatatype)
 @dataclass(repr=False, eq=False)
 class ActivePower(CIMUnit):
@@ -260,6 +281,34 @@ class ActivePowerPerArea(CIMUnit):
         return '1'
     
 
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ActivePowerPerFrequency(CIMUnit):
+    '''
+    Active power variation with frequency.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.WPers
+    def __init__(self, value, input_unit: str='WPers', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
 
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -662,6 +711,53 @@ class AssetKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+class AssetLifecycleStateKind(Enum):
+    '''
+    Lifecycle states an asset can be in.
+    While the possible lifecycle states are standardized, the allowed transitions
+    are not - they are intended to be defined by the business process requirements
+    of local implementations.
+    '''
+
+    disposedOf = 'disposedOf'
+    '''
+    Asset disposed of.
+    '''
+    
+    manufactured = 'manufactured'
+    '''
+    Asset manufactured.
+    '''
+    
+    purchased = 'purchased'
+    '''
+    Asset purchased.
+    '''
+    
+    received = 'received'
+    '''
+    Asset received.
+    '''
+    
+    retired = 'retired'
+    '''
+    Asset retired.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class AssetModelUsageKind(Enum):
     '''
@@ -722,6 +818,7 @@ class AssetModelUsageKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class AsynchronousMachineKind(Enum):
     '''
     Kind of Asynchronous Machine.
@@ -1221,6 +1318,58 @@ class CableArmorInfo(Identity):
     '''
     '''
 
+    materialName: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    numberOfTapes: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    strandCount: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    Type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     diameterOverArmor: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -1635,6 +1784,7 @@ class CapacitorRackKind(Enum):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class ChargingModeKind(Enum):
     '''
     '''
@@ -2634,7 +2784,6 @@ class DeploymentDate(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-
 @stereotype(CIMStereotype.enumeration)
 class DeploymentStateKind(Enum):
     '''
@@ -3186,6 +3335,34 @@ class Guy(Anchor):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Hours(CIMUnit):
+    '''
+    Time specified in hours.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.h
+    def __init__(self, value, input_unit: str='h', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
 @dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
@@ -3651,6 +3828,172 @@ class Asset(IdentifiedObject):
     Container of this asset.
     '''
     
+    ProcedureDataSet: list[ProcedureDataSet] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ProcedureDataSet.Asset',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Procedure data set that applies to this asset.
+    '''
+    
+    AssetInfo: Optional[AssetInfo] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ShadowExtension'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AssetInfo.Asset',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Data applicable to this asset.
+    '''
+    
+    baselineCondition: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Condition of asset at last baseline. Examples include new, rebuilt,
+    overhaul required, other. Refer to inspection data for information
+    on the most current condition of the asset.
+    '''
+    
+    critical: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    True if asset is considered critical for some reason (for example,
+    a pole with critical attachments).
+    '''
+    
+    kindOther: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Other kind of asset that is not list in the AssetKind enumeration list.
+    '''
+    
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Utility-specific classification of Asset and its subtypes, according
+    to their corporate standards, practices, and existing IT systems (e.g.,
+    for management of assets, maintenance, work, outage, customers, etc.).
+    '''
+    
+    baselineLossOfLife: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Percentage of initial life expectancy that has been lost as of the
+    last life expectancy baseline. Represents
+    (initial life expectancy - current life expectancy) / initial life
+    expectancy.
+    '''
+    
+    inUseState: Optional[ InUseStateKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indication of whether asset is currently deployed (in use), ready to
+    be put into use or not available for use.
+    '''
+    
+    kind: Optional[ AssetKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of asset. Used in description of asset components in asset instance
+    templates.
+    '''
+    
+    lifecycleState: Optional[ AssetLifecycleStateKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Current lifecycle state of asset.
+    '''
+    
+    purchasePrice: Optional[ Money ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Purchase price of asset.
+    '''
+    
     AssetDeployment: Optional[AssetDeployment] = field(
         default=None,
         metadata={
@@ -3791,6 +4134,21 @@ class AssetInfo(IdentifiedObject):
     planning).
     '''
 
+    Asset: list[Asset] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Asset.AssetInfo',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All assets described by this data.
+    '''
+    
     CatalogAssetType: Optional[CatalogAssetType] = field(
         default=None,
         metadata={
@@ -3985,6 +4343,34 @@ class AssetRequirement(IdentifiedObject):
     It is related to AssetInfo.
     '''
 
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of an asset requirement.
+    '''
+    
+    Specification: Optional[Specification] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Specification.AssetRequirement',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -4984,12 +5370,127 @@ class ChargingConnectorInfo(AssetInfo):
     Type of connector (e.g., CCS, CHAdeMO, Type 2).
     '''
     
+    ChargingStation: list[ChargingStation] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ChargingStation.ChargingConnector',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
         return 'AssetInfoEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ChargingStation(Asset):
+    '''
+    Physical equipment consisting of one or more EV supply equipment managing
+    the energy transfer to and from EVs. [IEC 63382-1]
+    '''
+
+    networkProvider: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    operatorName: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    paymentMethods: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    phoneSupport: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    weatherProtection: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    ChargingConnector: Optional[ChargingConnectorInfo] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ChargingConnectorInfo.ChargingStation',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'CustomerEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -5994,6 +6495,20 @@ class ConductorInfo(ConductingAssetInfo):
     Area of conducting material cross section
     '''
     
+    massPerLength: Optional[ MassPerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['NeedsWork', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Area of conducting material cross section
+    '''
+    
     material: Optional[ WireMaterialKind ] = field(
         default=None,
         metadata={
@@ -6382,6 +6897,20 @@ class Crossarm(Asset):
     Cross arm
     '''
 
+    material: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Material
+    '''
+    
     OverheadStructure: Optional[OverheadStructure] = field(
         default=None,
         metadata={
@@ -6847,6 +7376,92 @@ class Dimension(IdentifiedObject):
     and multipliers are specified per dimension.
     '''
 
+    orientation: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    A description of the orientation of the object relative to the dimensions.
+    As an example, a vault may have north-south orientation for the sizeLength
+    measurement and sizeDepth may be the height of the vault.
+    '''
+    
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of dimension.
+    '''
+    
+    sizeDepth: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Depth measurement.
+    '''
+    
+    sizeDiameter: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Diameter measurement.
+    '''
+    
+    sizeLength: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Length measurement.
+    '''
+    
+    sizeWidth: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Width measurement.
+    '''
+    
     TransportStructureInfo: list[StructureInfo] = field(
         default_factory=list,
         metadata={
@@ -6857,6 +7472,20 @@ class Dimension(IdentifiedObject):
         'inverse': 'StructureInfo.TransportDimensionsInfo',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
+        })
+    '''
+    '''
+    
+    ProductAssetModel: Optional[ProductAssetModel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ProductAssetModel.Dimension',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
         })
     '''
     '''
@@ -6883,6 +7512,78 @@ class DimensionsInfo(IdentifiedObject):
     and multipliers are specified per dimension.
     '''
 
+    orientation: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    A description of the orientation of the object relative to the dimensions.
+    As an example, a vault may have north-south orientation for the sizeLength
+    measurement and sizeDepth may be the height of the vault.
+    '''
+    
+    sizeDepth: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Depth measurement.
+    '''
+    
+    sizeDiameter: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Diameter measurement.
+    '''
+    
+    sizeLength: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Length measurement.
+    '''
+    
+    sizeWidth: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Width measurement.
+    '''
+    
     ConstructedStructureInfo: list[StructureInfo] = field(
         default_factory=list,
         metadata={
@@ -7069,8 +7770,8 @@ class DuctBank(AssetContainer):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class EarthResistivity(IdentifiedObject):
@@ -7082,7 +7783,7 @@ class EarthResistivity(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -8227,6 +8928,61 @@ class ImpedanceTapChangerTablePoint(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Compound)
+@dataclass(repr=False, eq=False)
+class InUseDate(Identity):
+    '''
+    Dates associated with asset 'in use' status. May have multiple in use dates
+    for this device and a compound type allows a query to return multiple dates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+class InUseStateKind(Enum):
+    '''
+    Possible 'in use' states that an asset can be in.
+    '''
+
+    inUse = 'inUse'
+    '''
+    Asset is deployed (in use) or is being put into use.
+    '''
+    
+    notReadyForUse = 'notReadyForUse'
+    '''
+    Asset is not ready to be put into use.
+    '''
+    
+    readyForUse = 'readyForUse'
+    '''
+    Asset is ready to be put into use.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class InsulationInfo(AssetInfo):
@@ -8502,6 +9258,184 @@ class InverterCapabilities(Identity):
     Indication of support for each control mode function
     '''
 
+    isModeCapableActivePowerReactivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating in Active Power
+    - Reactive Power (PQ) mode.
+    '''
+    
+    isModeCapableConstantPowerFactor: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating in Constant
+    Power Factor (PF) mode.
+    '''
+    
+    isModeCapableConstantReactivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating in Constant
+    Reactive Power (Q) mode.
+    '''
+    
+    isModeCapableFrequencyActivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of Frequency Droop protection,
+    also known as Frequency - Active Power (FP) mode.
+    '''
+    
+    isModeCapableVoltageActivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating in Voltage -
+    Active Power (VP) mode.
+    '''
+    
+    isModeCapableVoltageReactivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating in Voltage -
+    Reactive Power (VQ) mode.
+    '''
+    
+    isProtectionCapableEnterServiceAfterTrip: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of Enter Service After Trip
+    protection.
+    '''
+    
+    isProtectionCapableFrequencyTrip: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of Frequency Trip protection.
+    '''
+    
+    isProtectionCapableLimitActivePower: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of Limit Maximum Active Power
+    protection.
+    '''
+    
+    isProtectionCapableMomentaryCessation: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of Momentary Cessation (also
+    known as Voltage Ride-Through) protection.
+    '''
+    
+    isProtectionCapableVoltageTrip: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Flag to identify if the Device is capable of operating with Voltage
+    Trip protection.
+    '''
+    
+    InverterInfo: list[InverterInfo] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'InverterInfo.InverterCapabilities',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -8523,6 +9457,183 @@ class InverterInfo(GridEdgeDeviceInfo):
     power to be synchronized to the grid.
     '''
 
+    operatingCategoryAbnormal: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Abnormal operating performance category</i>
+    Indication of voltage and frequency ride-through capability
+    Values = Category I, Category II, Category III
+    '''
+    
+    operatingCategoryNormal: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Normal operating performance category</i>
+    Indication of reactive power and voltage/power control capability.
+    Values = Category A, Category B
+    '''
+    
+    powerFactorOverExcited: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Specified over-excited power factor</i>
+    Over-excited power factor
+    '''
+    
+    powerFactorUnderExcited: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Specified under-excited power factor</i>
+    Under-excited power factor
+    '''
+    
+    activePowerRatingOverExcited: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Active power rating at specified over-excited power factor</i>
+    Active power rating in watts at specified over-excited power factor
+    '''
+    
+    activePowerRatingUnderExcited: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Active power rating at specified under-excited power factor</i>
+    Active power rating in watts at specified under-excited power factor
+    '''
+    
+    activePowerRatingUnityPowerFactor: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Active power rating at unity power factor (nameplate active power
+    rating)</i>
+    Active power rating in watts at unity power factor
+    '''
+    
+    reactivePowerAbsorbedMax: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Reactive power absorbed maximum rating</i>
+    Maximum absorbed reactive power rating in vars
+    '''
+    
+    reactivePowerInjectedMax: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Reactive power injected maximum rating</i>
+    Maximum injected reactive power rating in vars
+    '''
+    
+    susceptanceOffline: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Reactive susceptance that remains connected to the Area EPS in the
+    cease to energize and trip state</i>
+    '''
+    
+    InverterCapabilities: Optional[InverterCapabilities] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'InverterCapabilities.InverterInfo',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -8545,6 +9656,27 @@ class GenerationInverterInfo(InverterInfo):
     wind, or other fuels.
     '''
 
+    generationCategory: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of Distribution Generation.
+    Examples include:
+    <ul>
+    <li>Photovoltaic (PV)</li>
+    <li>Combined Heat Power (CHP)</li>
+    <li>Fuel Cells</li>
+    <li>Small Wind Power</li>
+    </ul>
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -8604,6 +9736,28 @@ class Length(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
+    
+
+@stereotype(CIMStereotype.Compound)
+@dataclass(repr=False, eq=False)
+class LifecycleDate(Identity):
+    '''
+    Dates for asset lifecycle state changes. May have multiple lifecycle dates
+    for this device and a compound type allows a query to return multiple dates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
     
 
 @dataclass(repr=False, eq=False)
@@ -9552,6 +10706,62 @@ class MarineStructureKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Mass(CIMUnit):
+    '''
+    Mass.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.kg
+    def __init__(self, value, input_unit: str='kg', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class MassPerLength(CIMUnit):
+    '''
+    Mass per length. It shall be a positive value or zero.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.kgPerm
+    def __init__(self, value, input_unit: str='kgPerm', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
@@ -11737,6 +12947,118 @@ class OperatingMechanismInfo(AssetInfo):
     Breaker operating mechanism datasheet information.
     '''
 
+    closeAmps: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Close current (nominal).
+    '''
+    
+    closeVoltage: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Close voltage in volts DC.
+    '''
+    
+    mechanismKind: Optional[ OperatingMechanismKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of breaker operating mechanism.
+    '''
+    
+    motorRunCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rated motor run current in amps.
+    '''
+    
+    motorStartCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rated motor start current in amps.
+    '''
+    
+    motorVoltage: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Nominal motor voltage in volts DC.
+    '''
+    
+    tripAmps: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Trip current (nominal).
+    '''
+    
+    tripVoltage: Optional[ Voltage ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Trip voltage in volts DC.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -11751,6 +13073,7 @@ class OperatingMechanismInfo(AssetInfo):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class OperatingMechanismKind(Enum):
     '''
     Kinds of operating mechanisms.
@@ -14097,6 +15420,41 @@ class PhasorMeasurementValue(MeasurementValue):
     @property
     def __package__(self):
         return 'MeasEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
+class PipeBusbarKind(Enum):
+    '''
+    Kind of pipe busbar
+    '''
+
+    Schedule40 = 'Schedule40'
+    '''
+    Size Schedule 40
+    '''
+    
+    Schedule80 = 'Schedule80'
+    '''
+    Size Schedule 80
+    '''
+    
+    other = 'other'
+    '''
+    Other
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
     @property
     def __minOccurs__(self):
         return '0'
@@ -16781,6 +18139,645 @@ class EquipmentController(AutomationFunction):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@dataclass(repr=False, eq=False)
+class EquivalentEquipment(ConductingEquipment):
+    '''
+    The class represents equivalent objects that are the result of a network
+    reduction. The class is the base for equivalent objects of different types.
+    '''
+
+    EquivalentNetwork: Optional[EquivalentNetwork] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquivalentNetwork.EquivalentEquipments',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The equivalent where the reduced model belongs.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentBranch(EquivalentEquipment):
+    '''
+    The class represents equivalent branches. In cases where a transformer
+    phase shift is modelled and the EquivalentBranch is spanning the same nodes,
+    the impedance quantities for the EquivalentBranch shall consider the needed
+    phase shift.
+    '''
+
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance of the reduced branch.
+    '''
+    
+    x: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance of the reduced branch.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+    negativeR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series resistance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    negativeR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    negativeX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    negativeX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage: EquivalentBranch is a result of network reduction prior to the
+    data exchange.
+    '''
+    
+    positiveR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance from terminal sequence 1 to terminal
+    sequence 2 . Used for short circuit data exchange according to IEC
+    60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    positiveR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    positiveX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    positiveX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    r21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Resistance from terminal sequence 2 to terminal sequence 1 .Used for
+    steady state power flow. This attribute is optional and represent unbalanced
+    network such as off-nominal phase shifter. If only EquivalentBranch.r
+    is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
+    Usage rule : EquivalentBranch is a result of network reduction prior
+    to the data exchange.
+    '''
+    
+    x21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactance from terminal sequence 2 to terminal sequence 1. Used for
+    steady state power flow. This attribute is optional and represents
+    an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x
+    is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
+    Usage rule: EquivalentBranch is a result of network reduction prior
+    to the data exchange.
+    '''
+    
+    zeroR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series resistance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    zeroR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    zeroX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    zeroX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentInjection(EquivalentEquipment):
+    '''
+    This class represents networks that have been equivalized using either
+    the Ward or extended Ward method. A Ward equivalent is a combination of
+    an impedance load and a PQ load. An extended Ward equivalent is a combination
+    of an impedance load, a PQ load and as voltage source with an internal
+    impedance.
+    '''
+
+    maxP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum active power of the injection.
+    '''
+    
+    maxQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling. If maxQ
+    and minQ are not used ReactiveCapabilityCurve can be used.
+    '''
+    
+    minP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum active power of the injection.
+    '''
+    
+    minQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling. If maxQ
+    and minQ are not used ReactiveCapabilityCurve can be used.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+    p: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Equivalent active power injection. Load sign convention is used, i.e.
+    positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Equivalent reactive power injection. Load sign convention is used,
+    i.e. positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+@stereotype(CIMStereotype.OfAggregate)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentNetwork(ConnectivityNodeContainer):
+    '''
+    A class that groups electrical equivalents, including internal nodes, of
+    a network that has been reduced. The ConnectivityNodes contained in the
+    equivalent are intended to reflect internal nodes of the equivalent. The
+    boundary Connectivity nodes where the equivalent connects outside itself
+    are not contained by the equivalent.
+    '''
+
+    EquivalentEquipments: list[EquivalentEquipment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EquivalentEquipment.EquivalentNetwork',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The associated reduced equivalents.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentShunt(EquivalentEquipment):
+    '''
+    The class represents equivalent shunts.
+    '''
+
+    b: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence shunt susceptance.
+    '''
+    
+    g: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence shunt conductance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExtendedWardEquivalent(EquivalentInjection):
+    '''
+    An extended ward equivalent is a combination of an impedance load, a PQ
+    load and as voltage source with an internal impedance.
+    '''
+
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+    r0: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    r2: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x0: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x2: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
 @stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
@@ -17505,7 +19502,7 @@ class PowerElectronicsUnit(Equipment):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PowerElectronicsConnection.PowerElectronicsUnit',
@@ -17739,6 +19736,20 @@ class PhotoVoltaicUnit(PowerElectronicsUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    irradiance: Optional[ ActivePowerPerArea ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Instantaneous irradiance, used to compute dc power output of the array
+    '''
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
@@ -18108,6 +20119,40 @@ class Pressure(CIMUnit):
     
 
 @dataclass(repr=False, eq=False)
+class Procedure(Document):
+    '''
+    Documented procedure for various types of work or work tasks on assets.
+    '''
+
+    ProcedureDataSets: list[ProcedureDataSet] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ProcedureDataSet.Procedure',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All data sets captured by this procedure.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class ProcedureDataSet(Document):
     '''
     A data set recorded each time a procedure is executed. Observed results
@@ -18115,6 +20160,50 @@ class ProcedureDataSet(Document):
     relevant to the type of procedure performed.
     '''
 
+    completedDateTime: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Date and time procedure was completed.
+    '''
+    
+    Asset: Optional[Asset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Asset.ProcedureDataSet',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Asset to which this procedure data set applies.
+    '''
+    
+    Procedure: Optional[Procedure] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Procedure.ProcedureDataSets',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Procedure capturing this data set.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -18259,6 +20348,34 @@ class ProductAssetModel(IdentifiedObject):
         })
     '''
     Intended usage for this asset model.
+    '''
+    
+    weightTotal: Optional[ Mass ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Total manufactured weight of asset.
+    '''
+    
+    Dimension: list[Dimension] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Dimension.ProductAssetModel',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
     '''
     
     AssetInfo: Optional[AssetInfo] = field(
@@ -20265,6 +22382,324 @@ class RegulatingCondEq(EnergyConnection):
     The regulating control scheme in which this equipment participates.
     '''
     
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
+@dataclass(repr=False, eq=False)
+class ExternalNetworkInjection(RegulatingCondEq):
+    '''
+    This class represents the external network for use in power flow and short-circuit
+    calculations.
+    In the power flow domain the external network is modelled as a power injection
+    with power limits and a power-frequency bias. For short-circuit calculations
+    the external network is modelled as the �network feeders� element defined
+    in section 6.2 of IEC60909-0:2016. Boolean flag ikSecond allows short-circuit
+    calculations using the superposition method to detect that the maximum
+    and minimum initial symmetrical short-circuit currents have to be corrected
+    for the fact that they were calculated according the IEC60909-0 method.
+    '''
+
+    referencePriority: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Priority of unit for use as powerflow voltage phase angle reference
+    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
+    less than 1 and so on.
+    '''
+    
+    governorSCD: Optional[ ActivePowerPerFrequency ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Power Frequency Bias. This is the change in power injection divided
+    by the change in frequency and negated. A positive value of the power
+    frequency bias provides additional power injection upon a drop in frequency.
+    '''
+    
+    maxP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum active power of the injection.
+    '''
+    
+    maxQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling.
+    '''
+    
+    minP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum active power of the injection.
+    '''
+    
+    minQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+    p: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power injection. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power injection. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    ikSecond: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates whether the maximum and minimum initial symmetrical short-circuit
+    currents (Ik� max and Ik� min) have been calculated according to the
+    IEC 60909-0 method. Is only used in short-circuit calculations done
+    according to the superposition method.
+    '''
+    
+    maxR0ToX0Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of zero sequence resistance to zero sequence reactance
+    (R(0)/X(0) max). R0 and X0 are the real and imaginary parts of the
+    zero sequence short-circuit impedance Z0 defined in clause 3.19.3 of
+    IEC 60909-0:2016.
+    '''
+    
+    maxR1ToX1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of positive sequence resistance to positive sequence
+    reactance (R(1)/X(1) max). R1 and X1 are the real and imaginary parts
+    of the positive sequence short-circuit impedance Z1 defined in clause
+    3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    maxZ0ToZ1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of zero sequence impedance to its positive sequence impedance
+    (Z(0)/Z(1) max). Z0 is the zero sequence short-circuit impedance defined
+    in clause 3.19.3 of IEC 60909-0:2016. Z1 is the positive sequence short-circuit
+    impedance defined in clause 3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    minR0ToX0Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of zero sequence resistance to zero sequence reactance
+    (R(0)/X(0) min). R0 and X0 are the real and imaginary parts of the
+    zero sequence short-circuit impedance Z0 defined in clause 3.19.3 of
+    IEC 60909-0:2016.
+    '''
+    
+    minR1ToX1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of positive sequence resistance to positive sequence
+    reactance (R(1)/X(1) min). R1 and X1 are the real and imaginary parts
+    of the positive sequence short-circuit impedance Z1 defined in clause
+    3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    minZ0ToZ1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of zero sequence impedance to its positive sequence impedance
+    (Z(0)/Z(1) min). Z0 is the zero sequence short-circuit impedance defined
+    in clause 3.19.3 of IEC 60909-0:2016. Z1 is the positive sequence short-circuit
+    impedance defined in clause 3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    maxInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum initial symmetrical short-circuit current (Ik" max) in A. Ik�
+    is defined in clause 3.5 of IEC 60909-0:2016.
+    '''
+    
+    minInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum initial symmetrical short-circuit current (Ik" min) in A. Ik�
+    is defined in clause 3.5 of IEC 60909-0:2016.
+    '''
+    
+    voltageFactor: Optional[ PU ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Voltage factor (c) in pu which has been used to calculate the maximum
+    and minimum initial symmetrical short-circuit currents (Ik� max and
+    Ik� min). Is only used in short-circuit calculations done according
+    to the superposition method. The voltage factor is defined in clause
+    3.15 of IEC 60909-0:2016.
+    '''
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
@@ -20462,7 +22897,7 @@ class EVSE(PowerElectronicsConnection):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -20973,6 +23408,48 @@ class ReliabilityInfo(IdentifiedObject):
     asset, type of asset, or asset model.
     '''
 
+    momFailureRate: Optional[ PerCent ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Momentary failure rate (temporary failures/kft-year).
+    '''
+    
+    mTTR: Optional[ Hours ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Mean time to repair (MTTR - hours).
+    '''
+    
+    Specification: Optional[Specification] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['informative'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Specification.ReliabilityInfos',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -23128,6 +25605,7 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class NonlinearShuntCompensator(ShuntCompensator):
@@ -24077,6 +26555,20 @@ class Specification(Document):
     maintenance instructions, etc.
     '''
 
+    AssetRequirement: list[AssetRequirement] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'AssetRequirement.Specification',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
     CoolingInfo: list[CoolingInfo] = field(
         default_factory=list,
         metadata={
@@ -24099,6 +26591,20 @@ class Specification(Document):
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'Medium.Specification',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    ReliabilityInfos: list[ReliabilityInfo] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['informative'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ReliabilityInfo.Specification',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
@@ -24377,6 +26883,32 @@ class StorageInverterInfo(InverterInfo):
     storing and later discharging electric energy.
     '''
 
+    storageCategory: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of Distribution Storage.
+    Examples include:
+    <ul>
+    <li>Lead�Acid Battery</li>
+    <li>Nickel�Cadmium (NiCd) Battery</li>
+    <li>Nickel�Metal Hydride (NiMH) Battery</li>
+    <li>Lithium-Ion Battery</li>
+    <li>Lithium-Ion Polymer (LiPo) Battery</li>
+    <li>Aluminum-Sulfur Battery</li>
+    <li>Flow Battery</li>
+    <li>Mechanical Flywheel</li>
+    <li>Mechanical Gravitational</li>
+    </ul>
+    '''
+    
     chargeRateActiveMax: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -24539,9 +27071,9 @@ class StringMeasurementValue(MeasurementValue):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Attribute)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Compound)
-@stereotype(CIMStereotype.Attribute)
 @dataclass(repr=False, eq=False)
 class StringQuantity(Identity):
     '''
@@ -24549,6 +27081,48 @@ class StringQuantity(Identity):
     or a floating point number) and associated unit information.
     '''
 
+    value: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Value of this quantity.
+    '''
+    
+    multiplier: Optional[ UnitMultiplier ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Unit multiplier of this quantity.
+    '''
+    
+    unit: Optional[ UnitSymbol ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Unit of this quantity.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -24650,7 +27224,7 @@ class OverheadStructure(Structure):
         'maxOccurs': '1',
         'inverse': 'CathodicSystem.OverheadStructure',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     '''
@@ -24667,6 +27241,48 @@ class OverheadStructure(Structure):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    frameType: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Frame type such as H-Frame, Lattice Tower, Guyed Lattice, A-Frame.
+    '''
+    
+    structureAngle: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Structure angle
+    '''
+    
+    structureStandard: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Structure standard such as standard drawing number
+    '''
     
     Crossarm: list[Crossarm] = field(
         default_factory=list,
@@ -26639,6 +29255,20 @@ class SwitchInfo(ConductingAssetInfo):
     prescribed conditions of use.
     '''
     
+    gasWeightPerTank: Optional[ Mass ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Weight of gas in each tank of SF6 dead tank breaker.
+    '''
+    
     lowPressureAlarm: Optional[ Pressure ] = field(
         default=None,
         metadata={
@@ -27304,6 +29934,7 @@ class SynchronousMachine(RotatingMachine):
     '''
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class SynchronousMachineKind(Enum):
     '''
     Synchronous machine type.
@@ -29266,6 +31897,48 @@ class TestDataSet(ProcedureDataSet):
     Test results, usually obtained by a lab or other independent organisation.
     '''
 
+    conclusion: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conclusion drawn from test results.
+    '''
+    
+    specimenID: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Identifier of specimen used in inspection or test.
+    '''
+    
+    specimenToLabDateTime: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Date and time the specimen was received by the lab.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -29400,6 +32073,34 @@ class TimeInterval(Identity):
     Interval between two times.
     '''
 
+    end: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    End time of this interval.
+    '''
+    
+    start: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Start time of this interval.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -31880,6 +34581,21 @@ class TransformerTank(Equipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    baseS: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Base apparent power rating used for calculation of percent impedance
+    and related electrical parameters.
+    '''
+    
     loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -31991,6 +34707,21 @@ class TransformerTankConfiguration(EquipmentConfiguration):
     '''
     '''
 
+    baseS: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Base apparent power rating used for calculation of percent impedance
+    and related electrical parameters.
+    '''
+    
     loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -32863,13 +35594,65 @@ class TransformerWinding(IdentifiedObject):
     lug shared by both sides (e.g. H0X0 or SL).
     '''
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class TransformerWindingInfo(AssetInfo):
     '''
     '''
 
+    conductorDiameter: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    conductorShape: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    ratedS: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    windingInsulationType: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     windingArrangement: Optional[ WindingArrangementKind ] = field(
         default=None,
         metadata={
@@ -32950,6 +35733,24 @@ class PipeBusbarInfo(TubeBusbarInfo):
     Pipe busbar information
     '''
 
+    pipeType: Optional[ PipeBusbarKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    For cylindrical hollow rigid conductor only. Rigid cylindrical conductor
+    comes in two types. Pipe Type cylindrical bus is based around schedule
+    types such as Schedule 40 and schedule 80. The wall thickness is determined
+    by the schedule number. Currently schedule 40 and schedule 80 are commonly
+    used.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -33989,6 +36790,26 @@ class Volume(CIMUnit):
         return '1'
     
 
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WardEquivalent(EquivalentInjection):
+    '''
+    A ward equivalent is a combination of an impedance load and a PQ load.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class Warranty(Identity):
     '''
@@ -34508,7 +37329,7 @@ class WireConfiguration(EquipmentConfiguration):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -34622,6 +37443,7 @@ class WireConfiguration(EquipmentConfiguration):
     
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
+@stereotype(CIMStereotype.add)
 class WireConstructionKind(Enum):
     '''
     Kind of cable construction.
@@ -35207,6 +38029,77 @@ class MultiCoreCableInfo(CableInfo):
     Multi core cable information
     '''
 
+    hasNeutral: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    True if neutral is included
+    '''
+    
+    neutralSizeDescription: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Neutral wire size description
+    '''
+    
+    neutralStrandCount: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Neutral wire strand count
+    '''
+    
+    phaseCount: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phase count
+    '''
+    
+    neutralStrandRDC20: Optional[ ResistancePerLength ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Neutral strand DC resistance per unit length of the conductor at 20
+    &#176;C
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -35227,6 +38120,19 @@ class OverheadWireInfo(WireInfo):
     Overhead wire data.
     '''
 
+    wireConstructionKind: Optional[ WireConstructionKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['enumeration', 'Attribute', 'add'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -35291,6 +38197,7 @@ class TapeShieldCableInfo(CableInfo):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class WireInstallationKind(Enum):
     '''
     '''
@@ -35919,6 +38826,7 @@ class WireSpacingKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class WireUsageKind(Enum):
     '''
     Kind of wire usage.

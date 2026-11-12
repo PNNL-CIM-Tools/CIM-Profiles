@@ -122,6 +122,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6972">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>energyDemandKind</rdfs:label>
@@ -257,6 +258,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6990">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ShuntCompensator</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ShuntCompensator"/>
@@ -291,6 +293,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6997">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>batteryState</rdfs:label>
@@ -326,6 +329,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-699e">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>operatingMode</rdfs:label>
@@ -438,6 +442,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69b3">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Switch</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Switch"/>
@@ -601,6 +606,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69d4">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Switch</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Switch"/>
@@ -856,7 +862,9 @@
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#TapRegularSchedule.TapChanger"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a07">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gmdm"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TapChanger</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TapChanger"/>
@@ -886,6 +894,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a0d">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>timeSeriesKind</rdfs:label>
@@ -962,6 +971,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a1d">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>exclusionReason</rdfs:label>
@@ -1033,6 +1043,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a2a">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>targetValueUnitMultiplier</rdfs:label>
@@ -1062,6 +1073,7 @@
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#PowerSchedule.SchedulingArea"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a30">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SchedulingArea</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#SchedulingArea"/>
@@ -1260,6 +1272,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a58">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y1Unit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
@@ -1565,6 +1578,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a94">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y3Unit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
@@ -1628,6 +1642,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6aa1">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y1Multiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
@@ -1855,6 +1870,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ace">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>combinationConstraintKind</rdfs:label>
@@ -1873,6 +1889,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ad2">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>exclusionReason</rdfs:label>
@@ -1912,6 +1929,7 @@
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SwitchTimePoint.SwitchSchedule"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6adb">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SwitchSchedule</rdfs:label>
@@ -1994,6 +2012,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6aeb">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>dayOfWeek</rdfs:label>
@@ -2222,6 +2241,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b15">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>qPccControl</rdfs:label>
@@ -2240,6 +2260,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b19">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>curveStyle</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CurveStyle"/>
@@ -2315,6 +2336,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b28">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>operatingMode</rdfs:label>
@@ -2379,6 +2401,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b35">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#RemedialActionSchemeKind"/>
@@ -2429,6 +2452,7 @@
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#EventSchedule.RemedialActionSchedule"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b40">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>RemedialActionSchedule</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#RemedialActionSchedule"/>
@@ -2475,6 +2499,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b49">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>asynchronousMachineType</rdfs:label>
@@ -2557,6 +2582,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b59">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>xMultiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
@@ -2973,6 +2999,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba8">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>currency</rdfs:label>
@@ -3172,6 +3199,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bd0">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>peakKind</rdfs:label>
@@ -3218,6 +3246,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bda">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y2Unit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
@@ -3235,6 +3264,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bde">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>direction</rdfs:label>
@@ -3298,6 +3328,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6beb">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>operatingMode</rdfs:label>
@@ -3369,6 +3400,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf9">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>powerScheduleKind</rdfs:label>
@@ -3457,6 +3489,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c0a">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
@@ -3573,6 +3606,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c21">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>operatingMode</rdfs:label>
@@ -3806,6 +3840,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c50">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y3Multiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
@@ -4298,6 +4333,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cad">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>pPccControl</rdfs:label>
@@ -4480,6 +4516,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ccf">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>targetValueUnitMultiplier</rdfs:label>
@@ -4589,6 +4626,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ce6">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>pPccControl</rdfs:label>
@@ -5175,6 +5213,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d59">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>combinationConstraintKind</rdfs:label>
@@ -5328,6 +5367,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d76">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>xUnit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
@@ -5373,6 +5413,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d80">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>direction</rdfs:label>
@@ -5391,6 +5432,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d84">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>y2Multiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
@@ -5408,6 +5450,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d88">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ControlArea</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ControlArea"/>
@@ -5446,6 +5489,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d91">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>asynchronousMachineType</rdfs:label>
@@ -5568,6 +5612,7 @@
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#GeneratingUnitTimePoint.GeneratingUnitSchedule"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6da8">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>GeneratingUnitSchedule</rdfs:label>
@@ -5699,6 +5744,7 @@
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6dc0">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#deprecated"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>EnergySource</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EnergySource"/>
@@ -5809,6 +5855,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6dd7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>currency</rdfs:label>
@@ -5888,19 +5935,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
     <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#TapScheduleTimePoint.TapSchedule"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de9"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#TapScheduleTimePoint.TapSchedule"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de9">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#ofAggregate"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>TapSchedule</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#TapSchedule"/>
-    <rdfs:subClassOf rdf:resource="#BaseIrregularTimeSeries"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6dea">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -6112,6 +6146,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e13">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>criticalElementContingency</rdfs:label>
@@ -6335,6 +6370,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e3d">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>pPccControl</rdfs:label>
@@ -6434,6 +6470,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e52">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>interpolationKind</rdfs:label>
@@ -6599,6 +6636,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e75">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>combinationConstraintKind</rdfs:label>
@@ -11689,7 +11727,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b75"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de5"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de7"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de8"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#TapScheduleTimePoint"/>
   </rdf:Description>
   <rdf:Description rdf:about="#Terminal">
