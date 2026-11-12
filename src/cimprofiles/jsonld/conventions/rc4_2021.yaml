@@ -1,0 +1,5 @@
+# JSON-LD units for rc4_2021; built by `python -m cimprofiles.jsonld.build`
+profile: rc4_2021
+default: si
+conventions:
+  si: {}          # every unit in its CIMUnit class's base unit

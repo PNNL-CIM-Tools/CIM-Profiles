@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Rebuild one merged profile release from its CIMTool output: re-import every part
 # listed in src/cimprofiles/merge_releases.yaml from the release's `source` folder,
-# remove duplicate fields, build the merged package, and run the tests.
+# remove duplicate fields, rebuild the merged packages and JSON-LD documents, and run the tests.
 #
 # usage: scripts/build_release.sh <release name>      e.g. scripts/build_release.sh cim18v17
 #
@@ -54,5 +54,8 @@ while read -r cim_version package module; do
 done < <(tail -n +2 <<< "$plan")
 
 uv run python -m cimprofiles.dedupe_profile_fields --log dedupe_profile_fields.log
-uv run python -m cimprofiles.build_merged_profiles --release "$release"
+# Every release and JSON-LD set: other releases share these parts (cim18v17 and its
+# distribution and transmission flavors), and unchanged ones rebuild to the same files
+uv run python -m cimprofiles.build_merged_profiles
+uv run python -m cimprofiles.jsonld.build
 uv run pytest -q tests

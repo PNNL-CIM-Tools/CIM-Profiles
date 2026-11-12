@@ -27,16 +27,27 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
-  <rdf:Description rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffc">
+  <rdf:Description rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffc">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffd"/>
-    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerTransformerEnd.phaseShift"/>
+    <owl:allValuesFrom rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffd"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration.baseS"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffd">
+  <rdf:Description rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffd">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>phaseShift</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#AngleDegrees"/>
+    <rdfs:label>baseS</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ApparentPower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7fff"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerTank.baseS"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7fff">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>baseS</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ApparentPower"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X966f010Xa3X1a1831bed53Xa3X-7f0c">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -377,6 +388,17 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>pMax</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePower"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffd"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerTransformerEnd.phaseShift"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X267c8b2Xa3X1a1c1b87969Xa3X-7ffd">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>phaseShift</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#AngleDegrees"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-72c7">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2915,6 +2937,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerTank</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffe"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-7443"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-745f"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X20688d3aXa3X1a12c05388aXa3X-749f"/>
@@ -2928,6 +2951,7 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X63X23bd6bdXa3X1a1c3e9bc4eXa3X-7ffc"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fca"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fcc"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X4677b992Xa3X1a1ada3388dXa3X-7fce"/>

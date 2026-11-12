@@ -221,6 +221,21 @@ class TransformerTankConfiguration(EquipmentConfiguration):
     '''
     '''
 
+    baseS: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Base apparent power rating used for calculation of percent impedance
+    and related electrical parameters.
+    '''
+    
     loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -416,7 +431,7 @@ class WireConfiguration(EquipmentConfiguration):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PerLengthImpedance.WireConfiguration',
@@ -2767,6 +2782,21 @@ class TransformerTank(Equipment):
     and 3-phase transformers.
     '''
 
+    baseS: Optional[ ApparentPower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Base apparent power rating used for calculation of percent impedance
+    and related electrical parameters.
+    '''
+    
     loadLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={

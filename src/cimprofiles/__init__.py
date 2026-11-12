@@ -9,6 +9,8 @@ class CIM_PROFILE(Enum):
     CIM17V40 = 'cim17v40'
     CIM18GMDM = 'cim18gmdm'
     CIM18V17 = 'cim18v17'
+    CIM18V17_DISTRIBUTION = 'cim18v17_distribution'
+    CIM18V17_TRANSMISSION = 'cim18v17_transmission'
 
 
 # Short profile names, as used by CIMG_CIM_PROFILE and cimgraph.data_profile -> package
@@ -21,6 +23,8 @@ PROFILE_PACKAGES = {
     'cim18gad': 'cimprofiles.cim18.cim18gad',
     'cim18gmdm': 'cimprofiles.cim18.cim18gmdm',
     'cim18v17': 'cimprofiles.cim18.cim18v17',
+    'cim18v17_distribution': 'cimprofiles.cim18.cim18v17_distribution',
+    'cim18v17_transmission': 'cimprofiles.cim18.cim18v17_transmission',
     'cimhub_2026': 'cimprofiles.cim18.cimhub_2026',
 }
 

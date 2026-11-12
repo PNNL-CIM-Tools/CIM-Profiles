@@ -554,6 +554,67 @@ class RegulatingCondEq(EnergyConnection):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExternalNetworkInjection(RegulatingCondEq):
+    '''
+    This class represents the external network for use in power flow and short-circuit
+    calculations.
+    In the power flow domain the external network is modelled as a power injection
+    with power limits and a power-frequency bias. For short-circuit calculations
+    the external network is modelled as the �network feeders� element defined
+    in section 6.2 of IEC60909-0:2016. Boolean flag ikSecond allows short-circuit
+    calculations using the superposition method to detect that the maximum
+    and minimum initial symmetrical short-circuit currents have to be corrected
+    for the fact that they were calculated according the IEC60909-0 method.
+    '''
+
+    p: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Active power injection. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactive power injection. Load sign convention is used, i.e. positive
+    sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -802,6 +863,83 @@ class LinearShuntCompensator(ShuntCompensator):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentEquipment(ConductingEquipment):
+    '''
+    The class represents equivalent objects that are the result of a network
+    reduction. The class is the base for equivalent objects of different types.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentInjection(EquivalentEquipment):
+    '''
+    This class represents networks that have been equivalized using either
+    the Ward or extended Ward method. A Ward equivalent is a combination of
+    an impedance load and a PQ load. An extended Ward equivalent is a combination
+    of an impedance load, a PQ load and as voltage source with an internal
+    impedance.
+    '''
+
+    p: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Equivalent active power injection. Load sign convention is used, i.e.
+    positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    q: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Equivalent reactive power injection. Load sign convention is used,
+    i.e. positive sign means flow out from a node.
+    Starting value for steady state solutions.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
     @property
     def __minOccurs__(self):
         return '0'
@@ -1210,6 +1348,20 @@ class PhotoVoltaicUnit(PowerElectronicsUnit):
     A photovoltaic device or an aggregation of such devices.
     '''
 
+    irradiance: Optional[ ActivePowerPerArea ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Instantaneous irradiance, used to compute dc power output of the array
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1756,6 +1908,36 @@ class Voltage(CIMUnit):
     @property
     def __package__(self):
         return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ActivePowerPerArea(CIMUnit):
+    '''
+    Active power per square meter of surface area, commonly used for solar
+    irradiation
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.WPerm2
+    def __init__(self, value, input_unit: str='WPerm2', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'DomainEXT'
     @property
     def __minOccurs__(self):
         return '0'

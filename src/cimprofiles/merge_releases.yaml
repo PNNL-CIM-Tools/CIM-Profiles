@@ -61,4 +61,53 @@ releases:
       - cimprofiles.cim18.cim18v17.topology.topology
       - cimprofiles.cim18.cim18v17.load_area.load_area
       - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.nc_schedule.nc_schedule
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"
+
+  # cim18v17 split by grid: the same parts, in the same order, without the other grid's.
+  # Distribution (CIMHub OpenDSS): unbalanced phases, wire/cable catalogs and construction.
+  - name: cim18v17_distribution
+    package: cimprofiles.cim18.cim18v17_distribution
+    source: cim18v15/Profiles
+    parts:
+      - cimprofiles.cim18.cim18v17.substation.substation
+      - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
+      - cimprofiles.cim18.cim18v17.electrical_balanced.electrical_balanced
+      - cimprofiles.cim18.cim18v17.electrical_unbalanced.electrical_unbalanced
+      - cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim18.cim18v17.regulating_control.regulating_control
+      - cimprofiles.cim18.cim18v17.measurement.measurement
+      - cimprofiles.cim18.cim18v17.location.location
+      - cimprofiles.cim18.cim18v17.asset.asset
+      - cimprofiles.cim18.cim18v17.asset_info.asset_info
+      - cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment
+      - cimprofiles.cim18.cim18v17.construction.construction
+      - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+      - cimprofiles.cim18.cim18v17.state_variable.state_variable
+      - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
+      - cimprofiles.cim18.cim18v17.topology.topology
+      - cimprofiles.cim18.cim18v17.protection.protection
+    description: "GridAPPS-D CIM18 distribution profile: cim18v17 without HVDC, FACTS, function block control and load areas"
+
+  # Transmission (CIMHub PSS/E RAW): balanced, with HVDC, FACTS, control functions and areas.
+  - name: cim18v17_transmission
+    package: cimprofiles.cim18.cim18v17_transmission
+    source: cim18v15/Profiles
+    parts:
+      - cimprofiles.cim18.cim18v17.substation.substation
+      - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
+      - cimprofiles.cim18.cim18v17.electrical_balanced.electrical_balanced
+      - cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim18.cim18v17.regulating_control.regulating_control
+      - cimprofiles.cim18.cim18v17.function_block_control.function_block_control
+      - cimprofiles.cim18.cim18v17.measurement.measurement
+      - cimprofiles.cim18.cim18v17.location.location
+      - cimprofiles.cim18.cim18v17.facts.facts
+      - cimprofiles.cim18.cim18v17.hvdc.hvdc
+      - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+      - cimprofiles.cim18.cim18v17.state_variable.state_variable
+      - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
+      - cimprofiles.cim18.cim18v17.topology.topology
+      - cimprofiles.cim18.cim18v17.load_area.load_area
+      - cimprofiles.cim18.cim18v17.protection.protection
+    description: "GridAPPS-D CIM18 transmission profile: cim18v17 without unbalanced phases, assets, catalogs and construction"

@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 from enum import Enum
+from functools import cache
 from importlib import resources as impresources
 from typing import Optional
 
@@ -65,3 +66,23 @@ class CIMUnit():
 
     def to(self, unit:str):
         return self.quantity.to(unit).magnitude
+
+
+@cache
+def class_unit(unit_class: type) -> str:
+    """The pint unit a CIMUnit class stores values in: its multiplier and symbol
+    ('V' for Voltage, 'kW' for KiloActivePower)."""
+    sample = unit_class(0)
+    if sample.multiplier.value == 'none':
+        return sample.unit.value
+    return sample.multiplier.value + sample.unit.value
+
+
+def from_unit(unit_class: type, value: float, unit: str) -> CIMUnit:
+    """
+    A unit_class value from a number in any pint unit of the same dimension
+    ('MW', 'kV', 'mm'). Unlike the constructor's input_unit, which is a unit symbol that
+    the class multiplier applies to (KiloActivePower(5, 'W') is 5 kW), `unit` here is
+    the complete unit. A unit of another dimension raises pint's DimensionalityError.
+    """
+    return unit_class(ureg.Quantity(float(value), unit).to(class_unit(unit_class)).magnitude)
