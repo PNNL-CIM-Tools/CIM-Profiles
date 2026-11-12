@@ -184,10 +184,11 @@ Points to weigh:
 1. **Units on properties.** `cim:unitSymbol`, `cim:unitMultiplier` and `qudt:hasUnit` are
    stated on a property. Keep this, or model units through QUDT quantity values? Keep both
    the CIM and the QUDT terms, or only one?
-2. **`qudt:hasQuantityKind`.** Svein points it at a CIM datatype class (`cim:ActivePower`),
-   not at a QUDT quantity kind (`quantitykind:ActivePower`). Use QUDT terms,
-   `cims:dataType` (the prototype's choice), or `skos:exactMatch` mappings (Svein maps
-   `cim:PU` to `quantitykind:DimensionlessRatio`)?
+2. **`qudt:hasQuantityKind`.** Svein points it at CIM datatypes (`cim:ActivePower`), which
+   his vocabularies type as `qudt:QuantityKind` and map to QUDT with `skos:exactMatch`.
+   The prototype writes `cims:dataType` instead. Follow Svein here. (An earlier version of
+   this briefing said his target was not a quantity kind. That was wrong; see
+   `jsonld-architecture-comparison.md`, section 3.)
 3. **A multiplier the profile does not fix.** The prototype writes `none`: instance values
    are in the base unit. Confirm this reading of CIM, or leave the multiplier out.
 4. **Enumerations.** `rdfs:Class` (prototype) or `owl:Class` (Svein). The values are
