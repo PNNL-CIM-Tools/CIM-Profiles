@@ -7,7 +7,8 @@ import yaml
 import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
 from cimprofiles.jsonld import load_document, load_vocabulary_units, profile_jsonld
-from cimprofiles.jsonld.build import build_context, build_profile, build_vocabulary, convention_units
+from cimprofiles.jsonld.build import (build_context, build_profile, build_vocabulary, convention_units,
+                                      stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
                                         vocabulary_units)
 from cimprofiles.jsonld.documents import CACHE
@@ -25,6 +26,14 @@ def test_context_datatypes_follow_field_metadata():
     assert 'IdentifiedObject.name' not in datatypes                    # string is the default
     assert 'ACLineSegment.length' not in datatypes                     # declared on Conductor
     assert context_prefixes(build_context(cimhub))['cim'] == 'http://iec.ch/TC57/CIM100#'
+
+
+def test_context_types_the_dataset_header():
+    """Header references are IRIs and dates are dates, as in the Inst4CIM CGMES context."""
+    context = build_context(cimhub)['@context']
+    assert context['dct:conformsTo'] == {'@type': '@id'}
+    assert context['dcat:isVersionOf'] == {'@type': '@id'}
+    assert context['dct:issued'] == {'@type': 'xsd:dateTime'}
 
 
 def test_cgmes_context_matches_the_published_cgmes_context():
@@ -96,8 +105,27 @@ def test_cgmes_default_units_are_transmission_units():
 @pytest.mark.parametrize('spec_file', sorted(p.name for p in CONVENTIONS.iterdir() if p.name.endswith('.yaml')))
 def test_cache_is_up_to_date(spec_file):
     spec = yaml.safe_load(CONVENTIONS.joinpath(spec_file).read_text())
-    documents, entry = build_profile(spec)
+    # The cached version, not the installed one: a patch release (e.g. a security fix)
+    # that leaves the documents unchanged keeps naming the version that published them
+    version = profile_jsonld(spec['profile']).get('version', stable_version())
+    documents, entry = build_profile(spec, version)
     for path, document in documents.items():
         assert json.loads(CACHE.joinpath(path).read_text()) == document, \
             f'{path} is stale: run python -m cimprofiles.jsonld.build {spec["profile"]}'
     assert profile_jsonld(spec['profile']) == entry
+
+
+def test_documents_are_versioned_in_their_url():
+    """A generated context names its release in its URL and in owl:versionInfo, as CGMES does."""
+    entry = profile_jsonld('cimhub_2023')
+    assert entry['context'] == f'https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/{entry["version"]}/context.jsonld'
+    context = load_document(entry['context'])
+    assert context['@id'] == entry['context']
+    assert context['owl:versionInfo'] == entry['version']
+    assert all(f'/cimhub_2023/{entry["version"]}/' in iri for iris in entry['conventions'].values() for iri in iris)
+
+
+@pytest.mark.parametrize('installed, stable', [('0.2.0', '0.2.0'), ('0.2.0a3', '0.2.0'), ('1.10.2rc1', '1.10.2')])
+def test_stable_version_drops_the_prerelease(monkeypatch, installed, stable):
+    monkeypatch.setattr('importlib.metadata.version', lambda name: installed)
+    assert stable_version() == stable

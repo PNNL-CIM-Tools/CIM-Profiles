@@ -8,12 +8,12 @@
   },
   "@graph": [
     {
-      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/units-distribution.jsonld",
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/0.2.0/units-distribution.jsonld",
       "@type": "owl:Ontology",
       "owl:versionIRI": {
-        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/units-distribution.jsonld"
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/0.2.0/units-distribution.jsonld"
       },
-      "dct:title": "cimhub_2023 JSON-LD units: distribution"
+      "dct:title": "cimhub_2023 0.2.0 JSON-LD units: distribution"
     },
     {
       "@id": "cim:ACLineSegment.b0ch",

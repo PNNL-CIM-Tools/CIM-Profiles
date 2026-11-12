@@ -1,8 +1,12 @@
 """Build a profile's JSON-LD context and unit vocabularies from its generated classes.
 
-- Context: one term definition per property, from the field metadata. Associations and
-  enumerations are ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and
-  bool are ``xsd:integer`` / ``xsd:boolean``; strings are left to the JSON-LD default.
+- Context: the dcat:Dataset header terms (HEADER_TERMS), then one term definition per
+  property, from the field metadata. Associations and enumerations are
+  ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
+  ``xsd:integer`` / ``xsd:boolean``; strings are left to the JSON-LD default.
+  The published file also names itself (``@id``, its URL) and the stable cim-profiles
+  release it was built for (``owl:versionInfo``, as the CGMES vocabularies do); JSON-LD
+  processors use only the ``@context`` entry of a remote context, so these are ignored there.
 - Unit vocabulary: one ``qudt:hasUnit`` node per unit-bearing property. Units come from a
   convention, resolved per property in order:
   ``properties`` override ('WireInfo.radius': 'mm') -> ``quantity_kinds`` default
@@ -10,18 +14,23 @@
   Dimensionless units other than PerCent are omitted (nothing to convert).
 
 Conventions are YAML files in ``jsonld/conventions/<profile>.yaml`` (see those files).
-Build them into ``jsonld/cache`` (also the GitHub Pages content) with::
+Build them into ``jsonld/cache/<profile>/<version>/`` (also the GitHub Pages content), where
+version is the stable cim-profiles release (``stable_version``), with::
 
     uv run python -m cimprofiles.jsonld.build                 # every profile
     uv run python -m cimprofiles.jsonld.build cimhub_2023     # one profile
     uv run python -m cimprofiles.jsonld.build my.yaml --base-url https://example.org/cim/ --output site
 
 The functions above main() are pure; main() does the file I/O.
+Earlier versions' documents stay in the cache: files written with them still name them.
+Once a version is released its documents must not change; bump the release target in
+pyproject.toml before rebuilding changed documents.
 """
 from __future__ import annotations
 
 import argparse
 import importlib
+import importlib.metadata
 import json
 import re
 import sys
@@ -41,7 +50,20 @@ DOCUMENT_NAMESPACES = {
     'dcat': 'http://www.w3.org/ns/dcat#',
     'dct': 'http://purl.org/dc/terms/',
     'md': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+    'owl': 'http://www.w3.org/2002/07/owl#',
     'xsd': 'http://www.w3.org/2001/XMLSchema#',
+}
+# The dcat:Dataset header terms of IEC 61970-552 ed3 and the ENTSO-E metadata specification,
+# typed as in the Inst4CIM CGMES context (their md:FullModel counterparts in comments)
+HEADER_TERMS = {
+    'dct:conformsTo': {'@type': '@id'},                 # md:Model.profile
+    'dct:issued': {'@type': 'xsd:dateTime'},            # md:Model.created
+    'dct:references': {'@type': '@id'},                 # md:Model.DependentOn
+    'dct:requires': {'@type': '@id'},                   # md:Model.DependentOn
+    'dct:replaces': {'@type': '@id'},                   # md:Model.Supersedes
+    'dcat:isVersionOf': {'@type': '@id'},               # md:Model.modelingAuthoritySet
+    'dcat:startDate': {'@type': 'xsd:dateTimeStamp'},   # md:Model.scenarioTime
+    'dcat:endDate': {'@type': 'xsd:dateTimeStamp'},
 }
 VOCABULARY_NAMESPACES = {
     'dct': 'http://purl.org/dc/terms/',
@@ -51,6 +73,11 @@ VOCABULARY_NAMESPACES = {
 }
 _TYPE_NAME = re.compile(r'[A-Za-z_]\w*')
 PAGES_URL = 'https://pnnl-cim-tools.github.io/CIM-Profiles/'
+
+
+def stable_version() -> str:
+    """The stable release of the installed cim-profiles: '0.2.0' for 0.2.0 and its alphas 0.2.0aN."""
+    return re.match(r'\d+\.\d+\.\d+', importlib.metadata.version('cim-profiles')).group()
 
 
 def profile_classes(profile) -> list[type]:
@@ -109,7 +136,7 @@ def _datatype(profile, field) -> str | None:
 def build_context(profile) -> dict:
     """The JSON-LD context document of a profile module."""
     namespaces = profile_namespace_map(profile)
-    context = {**namespaces, **DOCUMENT_NAMESPACES}
+    context = {**namespaces, **DOCUMENT_NAMESPACES, **HEADER_TERMS}
     for cls, attribute, field in _declared_fields(profile):
         datatype = _datatype(profile, field)
         if datatype is not None:
@@ -169,34 +196,43 @@ def build_vocabulary(profile, convention: dict, vocabulary_iri: str, title: str)
     return {'@context': {**namespaces, **VOCABULARY_NAMESPACES}, '@graph': graph}
 
 
-def build_profile(spec: dict, base_url: str = PAGES_URL) -> tuple[dict[str, dict], dict]:
+def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[dict[str, dict], dict]:
     """
-    Build the documents of one convention spec (a parsed conventions YAML).
+    Build the documents of one convention spec (a parsed conventions YAML) for the
+    cim-profiles release `version`. Generated documents are published under
+    ``<profile>/<version>/`` (the CGMES style of a version in the IRI), so a file keeps
+    naming the documents it was written with; the context also records the version
+    (``owl:versionInfo``).
 
     Returns ({relative path: document}, manifest entry). The manifest entry is
-    {'context': url, 'default': name, 'conventions': {name: [vocabulary IRIs]}}. A spec
-    may name a published `context` and per-convention `vocabularies` instead of
-    generating them.
+    {'context': url, 'default': name, 'conventions': {name: [vocabulary IRIs]}}, plus the
+    'version' when documents are generated. A spec may name a published `context` and
+    per-convention `vocabularies` instead of generating them.
     """
     name = spec['profile']
     profile = importlib.import_module(profile_module(name))
+    directory = f'{name}/{version}/'
     documents = {}
     context_url = spec.get('context')
     if context_url is None:
-        documents[f'{name}/context.jsonld'] = build_context(profile)
-        context_url = f'{base_url}{name}/context.jsonld'
+        context_url = f'{base_url}{directory}context.jsonld'
+        documents[f'{directory}context.jsonld'] = {**build_context(profile), '@id': context_url,
+                                                   'owl:versionInfo': version}
     conventions = {}
     for convention_name, convention in spec['conventions'].items():
         if 'vocabularies' in convention:
             conventions[convention_name] = list(convention['vocabularies'])
             continue
-        path = f'{name}/units-{convention_name}.jsonld'
+        path = f'{directory}units-{convention_name}.jsonld'
         documents[path] = build_vocabulary(profile, convention, base_url + path,
-                                           f'{name} JSON-LD units: {convention_name}')
+                                           f'{name} {version} JSON-LD units: {convention_name}')
         conventions[convention_name] = [base_url + path]
     if spec['default'] not in conventions:
         raise ValueError(f'{name}: default convention {spec["default"]!r} is not one of {sorted(conventions)}')
-    return documents, {'context': context_url, 'default': spec['default'], 'conventions': conventions}
+    entry = {'context': context_url, 'default': spec['default'], 'conventions': conventions}
+    if documents:
+        entry['version'] = version
+    return documents, entry
 
 
 def _read_json(path: Path) -> dict:
@@ -224,7 +260,7 @@ def main(argv: list[str] | None = None) -> None:
     manifest = _read_json(args.output / 'profiles.json')
     for path in paths or sorted(conventions_dir.glob('*.yaml')):
         spec = yaml.safe_load(path.read_text(encoding='utf-8'))
-        documents, entry = build_profile(spec, base_url)
+        documents, entry = build_profile(spec, stable_version(), base_url)
         for relative_path, document in documents.items():
             _write_json(args.output / relative_path, document)
             index[base_url + relative_path] = relative_path

@@ -12,12 +12,12 @@
   },
   "@graph": [
     {
-      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2026/units-si.jsonld",
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2026/0.2.0/units-si.jsonld",
       "@type": "owl:Ontology",
       "owl:versionIRI": {
-        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2026/units-si.jsonld"
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2026/0.2.0/units-si.jsonld"
       },
-      "dct:title": "cimhub_2026 JSON-LD units: si"
+      "dct:title": "cimhub_2026 0.2.0 JSON-LD units: si"
     },
     {
       "@id": "cim:ACLineSegment.b0ch",

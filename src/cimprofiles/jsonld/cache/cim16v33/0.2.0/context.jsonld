@@ -4,7 +4,32 @@
     "dcat": "http://www.w3.org/ns/dcat#",
     "dct": "http://purl.org/dc/terms/",
     "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
     "cim:ACDCConverter.numberOfValves": {
       "@type": "xsd:integer"
     },
@@ -4784,5 +4809,7 @@
     "cim:Work.Appointments": {
       "@type": "@id"
     }
-  }
+  },
+  "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim16v33/0.2.0/context.jsonld",
+  "owl:versionInfo": "0.2.0"
 }

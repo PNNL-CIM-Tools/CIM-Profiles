@@ -12,12 +12,12 @@
   },
   "@graph": [
     {
-      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17_transmission/units-si.jsonld",
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17_transmission/0.2.0/units-si.jsonld",
       "@type": "owl:Ontology",
       "owl:versionIRI": {
-        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17_transmission/units-si.jsonld"
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17_transmission/0.2.0/units-si.jsonld"
       },
-      "dct:title": "cim18v17_transmission JSON-LD units: si"
+      "dct:title": "cim18v17_transmission 0.2.0 JSON-LD units: si"
     },
     {
       "@id": "cim:ACDCConverter.baseS",

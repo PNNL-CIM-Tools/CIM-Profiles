@@ -1,7 +1,8 @@
 # Publishes the JSON-LD contexts and unit vocabularies built by
 # `python -m cimprofiles.jsonld.build` to GitHub Pages:
-#   https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/context.jsonld
-#   https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/units-<convention>.jsonld
+#   https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/<version>/context.jsonld
+#   https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/<version>/units-<convention>.jsonld
+# Each deploy replaces the site, so every version kept in the cache stays published.
 # The same files ship in the wheel (src/cimprofiles/jsonld/cache) for offline use.
 # Third-party copies (cache/inst4cim) are not republished.
 #

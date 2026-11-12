@@ -11,7 +11,8 @@ Offline copies of JSON-LD contexts and unit vocabularies, loaded by
   - `rdfs-improved/CIM-ontology-context.jsonld`: context of the vocabularies
   - `rdfs-improved/CGMES/jsonld/61970-600-2_*_v3-0-0.jsonld`: CGMES 3.0 vocabularies with
     `qudt:hasUnit` per property (Dynamics and Header are not included)
-- `<profile>/` — contexts and unit vocabularies built by `scripts/build_jsonld.py`, also
-  published on GitHub Pages.
+- `<profile>/<version>/` — contexts and unit vocabularies built by
+  `python -m cimprofiles.jsonld.build` for each stable cim-profiles release, also published
+  on GitHub Pages. Earlier versions stay: files written with them still name them.
 
 To refresh `inst4cim/`, download the same files again and keep `index.json` entries in sync.
