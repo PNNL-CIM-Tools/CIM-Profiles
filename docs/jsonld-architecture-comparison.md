@@ -28,9 +28,11 @@ are two places where the evidence disagrees with his current files or plans:
 1. **Units belong to the profile, not to the property.** His vocabularies state the unit
    on the CIM property. That is consistent inside CGMES, and it breaks as soon as a second
    profile family uses the same property in another unit (section 3, experiment 1).
-2. **LinkML should not be the hub.** His plan for IEC 61970-501 ed. 2 puts LinkML between
-   UML and the RDF artifacts. LinkML's standard generators produce a wrong context and
-   shapes that do not meet his own SHACL draft (experiment 6).
+2. **LinkML's own generators should not produce the normative artifacts.** His plan for
+   IEC 61970-501 ed. 2 generates the RDFS and SHACL "from LinkML". LinkML's standard
+   generators produce a wrong context and shapes that do not meet his own SHACL draft
+   (experiment 6). This is not an argument against LinkML as a source: see "LinkML as a
+   future source" in section 6.
 
 Both points need his agreement before anything is built on them. They are the first two
 decisions in section 7.
@@ -105,12 +107,15 @@ vocabularies, every non-string property is in the context with the same type. Th
 has 49 extra terms that no vocabulary defines. The types depend only on each property's
 range, so one context for the whole vocabulary is sound, and it can be generated.
 
-**Experiment 6: the LinkML route does not work with standard tools.** CIMTool ships a
-`linkml` builder. On `electrical_balanced`:
+**Experiment 6: LinkML's standard generators do not produce the artifacts needed, and
+CIMTool's LinkML output loses information.** CIMTool ships a `linkml` builder. On
+`electrical_balanced`:
 
 - The output is not valid LinkML. One class has the key `value` twice, because the
   `.value` attributes of CIM datatypes leak into it. This is a builder defect.
-- The output has no units or multipliers at all.
+- The output loses information the profile holds. It has none of the profile's 46 fixed
+  units and multipliers and none of its 38 inverse associations. LinkML can carry both:
+  it has a `unit` field on slots and types, and an `inverse` field.
 - With that defect patched by hand, LinkML's context generator writes 192 terms keyed by
   the short attribute name. Many CIM attributes share a short name, so `r` maps to
   `cim:TransformerWinding.r`. Data for `ACLineSegment.r` would be read as the wrong
@@ -145,9 +150,11 @@ The document is both the context and the vocabulary. Units are stated on propert
 **C. Four layers, generated from CIMTool.** As in section 1. Builders write RDF. Standard
 RDF tools serialise it and derive the context.
 
-**D. LinkML as the hub.** CIMTool writes LinkML. LinkML generators write the vocabulary,
-shapes, context and Python classes. This is the plan in the Spec4CIM-KG README for 501
-ed. 2.
+**D. LinkML generators as the producer.** CIMTool writes LinkML. LinkML's own generators
+write the vocabulary, shapes, context and Python classes. This is one reading of the plan
+in the Spec4CIM-KG README for 501 ed. 2. It is not the plan for CIMTool, which is to add
+a LinkML-to-OWL engine so that LinkML becomes a second source and every builder keeps
+working. That plan is compatible with option C (section 6).
 
 ## 5. Comparison
 
@@ -203,12 +210,12 @@ What is shown today: CIMTool has the data and runs headless on Linux; typed JSON
 validates against real shapes; the canonical document form is testable; one context for
 the whole vocabulary is sound. What is not shown yet is listed in section 8.
 
-**D. LinkML hub.** Experiment 6. LinkML is a readable schema language, and it has a unit
-field that the builder does not use. Its standard generators do not produce what this
-project needs, so custom generators would be required for the context and the shapes.
-LinkML would then be an extra layer with nothing removed. It also sits outside the W3C
-stack that the normative artifacts should be written in. It is reasonable as an
-additional, informative output for people who want Python or JSON Schema tooling.
+**D. LinkML generators as the producer.** Experiment 6. LinkML is a readable schema
+language, and a reasonable successor to the EA model as the place where profiles are
+written. Its standard generators do not produce what this project needs, so custom
+generators would be required for the context and the shapes. Those custom generators
+already exist in another form: they are the CIMTool builders. The normative artifacts
+should stay in the W3C stack and come from the builders, whatever the source is.
 
 ## 6. The recommended design in detail
 
@@ -275,6 +282,31 @@ EA model ─ CIMTool ─┬─ builder rdfs-2020 (exists) ───── RDF/XM
                     └─ builder cimantic-graphs (exists) ─ Python classes         └─ context (derived by query)
 ```
 
+**LinkML as a future source.** LinkML is expected to replace the EA model as the source
+of truth in about five years. CIMTool will get a LinkML-to-OWL engine, so that a profile
+written in LinkML feeds the same builders. This fits the design, because the builders'
+input is the one stable interface: the four layers do not change when the source does.
+It adds one requirement. Everything the layers need has to survive the path through
+LinkML:
+
+- the fixed unit and multiplier of each CIM datatype (LinkML `unit`);
+- the XML Schema type of each attribute, including date-time, duration and decimal;
+- inverse associations (LinkML `inverse`);
+- the IRI and namespace of every class, property and enumeration value;
+- cardinality, abstract classes and the true parent class.
+
+The test is a round trip: EA model → `linkml` builder → LinkML-to-OWL engine → every
+other builder, compared with the same builders run directly on the EA model. The result
+must be identical. Today's `linkml` builder would fail it (experiment 6): it loses units
+and inverses, and writes one invalid key. It also writes attributes inside each class,
+where Svein's UML-to-LinkML draft uses qualified top-level slots
+(`ConductingEquipment.Terminals`). The engine needs one mapping, and 501 ed. 2 is the
+place to fix it.
+
+A unit stated per profile has a natural form in LinkML. The CIM datatype is a LinkML
+type, and a profile sets the unit on the slot, or in a class's `slot_usage`. That matches
+decision 1 in section 7.
+
 Builders live in CIMTool-Builders-Library, as now. cim-profiles keeps the post-processing
 (serialise, derive the context, check the shapes against the SHACL-for-SHACL shapes,
 publish versioned files) and the run-time loaders. CIM-Graph's readers, for both CIM XML
@@ -288,8 +320,10 @@ In order of how much depends on them:
 1. **Where the unit is stated: on the property (Svein today) or on the profile's property
    shape (this proposal).** Experiment 1 is the argument. A reader can support both during
    a transition: use the shape if the profile has one, otherwise the property.
-2. **The role of LinkML in 501 ed. 2.** Hub, or one informative output among several.
-   Experiment 6 is the argument.
+2. **What "generated from LinkML" means in 501 ed. 2.** The standard should define the
+   mapping, that is, which RDF a given model produces, and leave the tool open. CIMTool
+   builders and LinkML generators can then both be tested against it. Experiment 6 shows
+   that LinkML's generators do not meet it today.
 3. **Where the true class hierarchy comes from.** A CIMTool profile lists the nearest
    selected parent, not the CIM parent. The vocabulary needs the CIM parent. It has to come
    from the whole model, not from a profile (first experiment in section 8).
@@ -310,6 +344,7 @@ Each item is an experiment with a result that would change the recommendation.
 | Write a shapes builder; run it on CGMES equipment once that project is on CIMTool 2.3.1; compare with the official CGMES shapes and Svein's units | There are differences that are neither a defect in one side nor a recorded choice. |
 | Read Nordic44 with units taken from profile shapes | Any value differs from today's reading. |
 | Load the shapes of all 18 parts of `cim18v17` together and validate the IEEE 13 export | The combined shapes reject valid data, or need merge code. |
+| Round trip a profile through LinkML: EA model → `linkml` builder → LinkML-to-OWL engine → builders | Any builder output differs from the direct run. Until the engine exists, the first half can be tested: the LinkML output must hold every unit, inverse and datatype of the profile. |
 | Derive the context from Svein's vocabularies by query | It differs from his published context, apart from the 49 extra terms. |
 
 ## 9. What carries over from the work so far
