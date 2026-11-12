@@ -74,7 +74,9 @@ equipment file, and the cim18v15 CIMTool project.
 Svein's 30 improved vocabularies (CGMES and NC) give 1,331 properties a unit, and no
 property has two different units. CGMES and the GridAPPS-D cim18v15 profiles share 256
 unit-bearing properties, matched by name. **117 of them have a different unit**: 39 are
-MW against W, 36 are kV against V, 20 are MVAr against VAr. The two families use
+MW against W, 36 are kV against V, 20 are MVAr against VAr. In 116 of the 117 the unit
+symbol is the same and only the multiplier differs. (The last is one unit, rotation speed,
+under two QUDT names.) The two families use
 different CIM namespaces today. The CIM community has decided that from CIM18 the IRI of
 a canonical term stays stable. Once both families use the same IRIs, a store that loads
 both vocabularies holds `cim:BaseVoltage.nominalVoltage qudt:hasUnit unit:KiloV` and
@@ -222,15 +224,18 @@ should stay in the W3C stack and come from the builders, whatever the source is.
 **Vocabulary.** One Turtle document per CIM package or extension namespace, with stable
 term IRIs and a versioned `owl:versionIRI`. It states only what is true in every profile:
 class hierarchy, domain, range, inverse, and the quantity kind of a numeric property
-(`qudt:hasQuantityKind cim:ActivePower`, as Svein has it). It does not state units,
-cardinality, or which profile uses a term.
+(`qudt:hasQuantityKind cim:ActivePower`, as Svein has it), and its unit symbol
+(`cim:unitSymbol cim:UnitSymbol.W`), on which the profile families agree. It does not
+state the multiplier, cardinality, or which profile uses a term.
 
 **Profile.** One SHACL shapes graph per profile, in the profile's own namespace. Each
 property shape has `sh:path`, `sh:datatype` or `sh:class`, `sh:minCount` and `sh:maxCount`,
 with the name, message and severity the 501 SHACL draft requires. For a numeric property,
-the same shape states the unit: `cim:unitSymbol`, `cim:unitMultiplier` and `qudt:hasUnit`.
-The statement is about the shape, which belongs to the profile, so two profiles can state
-different units for one property and both remain true. A PROF descriptor names the
+the same shape states the multiplier (`cim:unitMultiplier`), and for convenience the
+resulting QUDT unit (`qudt:hasUnit`). The statement is about the shape, which belongs to
+the profile, so two profiles can state different multipliers for one property and both
+remain true. The multiplier is stated per attribute, not per datatype, so one profile can
+give `Conductor.length` in km and `WireInfo.radius` in mm. A PROF descriptor names the
 profile, what it is a profile of, and its artifacts with their roles.
 
 This is a proposal, not an existing convention. Nothing in SHACL or QUDT defines where a
@@ -239,6 +244,30 @@ smallest step that passes S2. The alternative that is purest semantically is a u
 every value, as a QUDT quantity value or a typed literal. That would make every number an
 object or a compound string. It breaks with CGMES practice and with Nordic44, so it is
 rejected here.
+
+**Why the multiplier has to be a profile statement.** The canonical CIM now uses
+unprefixed units, introduced by the distribution side. Every existing CGMES exchange
+writes MW and kV as plain numbers. A standard that fixes one multiplier per property
+forces one side to break its data. A standard that states the multiplier per profile
+breaks nothing: the CGMES profiles keep `M` and `k`, which their RDFS already fixes with
+`cims:isFixed`, and distribution profiles state `none`. What must not happen is a
+multiplier stated on the shared property, which is what `qudt:hasUnit unit:KiloV` on
+`cim:BaseVoltage.nominalVoltage` does today.
+
+One reading rule covers every profile: the value in the unprefixed unit is the number as
+written, times ten to the power of the profile's multiplier for that attribute, which is
+`none` if the profile states nothing. A tool that holds data from several profiles
+converts to the unprefixed unit when it loads, as CIM-Graph's `CIMUnit` does. Files are
+scaled by profile; a shared store is not.
+
+**Exponent notation.** `xsd:float` allows `"100e3"`, and Svein's header example already
+writes `"220e3"`. A profile with no multiplier can use it to avoid padded zeros and to
+give each attribute a natural scale: `"5.2e3"` for a conductor length, `"9.14e-3"` for a
+wire radius. It needs no rule of its own, because it is ordinary number syntax and the
+reading rule above already covers it. JSON-LD expansion and compaction keep the text as
+written, and SHACL and SPARQL treat it as a number. A triple store may rewrite it
+(rdflib writes `"5200.0"`), which changes the text and not the value. A profile can state
+a preferred exponent per attribute so that files in canonical form look alike.
 
 **Units conventions become profiles.** A dataset in kW and a dataset in W conform to
 different profiles, and should say so with different IRIs in `dct:conformsTo`. The
@@ -317,9 +346,11 @@ separate unit definitions and the 1000× difference between the two readers.
 
 In order of how much depends on them:
 
-1. **Where the unit is stated: on the property (Svein today) or on the profile's property
-   shape (this proposal).** Experiment 1 is the argument. A reader can support both during
-   a transition: use the shape if the profile has one, otherwise the property.
+1. **Where the multiplier is stated: on the property (Svein today) or on the profile's
+   property shape (this proposal).** The unit symbol can stay on the property, since both
+   families agree on it. Experiment 1 is the argument, and so is the need to keep every
+   CGMES exchange valid while distribution uses unprefixed units. A reader can support
+   both during a transition: use the shape if the profile has one, otherwise the property.
 2. **What "generated from LinkML" means in 501 ed. 2.** The standard should define the
    mapping, that is, which RDF a given model produces, and leave the tool open. CIMTool
    builders and LinkML generators can then both be tested against it. Experiment 6 shows
