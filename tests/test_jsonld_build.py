@@ -105,8 +105,8 @@ def test_cgmes_default_units_are_transmission_units():
 @pytest.mark.parametrize('spec_file', sorted(p.name for p in CONVENTIONS.iterdir() if p.name.endswith('.yaml')))
 def test_cache_is_up_to_date(spec_file):
     spec = yaml.safe_load(CONVENTIONS.joinpath(spec_file).read_text())
-    # The cached version, not the installed one: a patch release (e.g. a security fix)
-    # that leaves the documents unchanged keeps naming the version that published them
+    # The cached version, not the installed one: a profile keeps the release that last
+    # changed its documents
     version = profile_jsonld(spec['profile']).get('version', stable_version())
     documents, entry = build_profile(spec, version)
     for path, document in documents.items():
@@ -116,16 +116,45 @@ def test_cache_is_up_to_date(spec_file):
 
 
 def test_documents_are_versioned_in_their_url():
-    """A generated context names its release in its URL and in owl:versionInfo, as CGMES does."""
+    """A generated context names its stable release in its URL and in owl:versionInfo."""
     entry = profile_jsonld('cimhub_2023')
-    assert entry['context'] == f'https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/{entry["version"]}/context.jsonld'
+    directory = f'https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/{entry["version"]}/'
+    assert entry['context'] == directory + 'context.jsonld'
     context = load_document(entry['context'])
     assert context['@id'] == entry['context']
     assert context['owl:versionInfo'] == entry['version']
-    assert all(f'/cimhub_2023/{entry["version"]}/' in iri for iris in entry['conventions'].values() for iri in iris)
+    assert all(iri.startswith(directory) for iris in entry['conventions'].values() for iri in iris)
 
 
 @pytest.mark.parametrize('installed, stable', [('0.2.0', '0.2.0'), ('0.2.0a3', '0.2.0'), ('1.10.2rc1', '1.10.2')])
 def test_stable_version_drops_the_prerelease(monkeypatch, installed, stable):
     monkeypatch.setattr('importlib.metadata.version', lambda name: installed)
     assert stable_version() == stable
+
+
+def test_documents_freeze_at_their_stable_release(tmp_path, monkeypatch):
+    """Alphas rebuild a release's documents in place; a released version's are frozen, and a
+    profile gets a new version directory only when its documents change."""
+    from cimprofiles.jsonld import build
+
+    def run(version):
+        monkeypatch.setattr(build, 'stable_version', lambda: version)
+        build.main(['cim18gmdm', '--output', str(tmp_path)])
+        return json.loads((tmp_path / 'profiles.json').read_text())['cim18gmdm']['version']
+
+    assert run('9.0.0') == '9.0.0'
+    monkeypatch.setitem(build.HEADER_TERMS, 'dct:alpha', {'@type': '@id'})
+    assert run('9.0.0') == '9.0.0'                              # an alpha rebuild, in place
+    assert 'dct:alpha' in json.loads((tmp_path / 'cim18gmdm/9.0.0/context.jsonld').read_text())['@context']
+    assert run('9.0.1') == '9.0.0'                              # unchanged: still 9.0.0
+    assert not (tmp_path / 'cim18gmdm/9.0.1').exists()
+    monkeypatch.setitem(build.HEADER_TERMS, 'dct:fix', {'@type': '@id'})
+    assert run('9.0.1') == '9.0.1'                              # changed: a new directory
+    assert (tmp_path / 'cim18gmdm/9.0.0/context.jsonld').exists()
+
+    monkeypatch.setattr(build, 'CACHE_DIR', tmp_path)          # the shipped cache
+    monkeypatch.setattr(build, '_released', lambda version: True)
+    assert run('9.0.1') == '9.0.1'                              # unchanged: nothing to freeze
+    monkeypatch.setitem(build.HEADER_TERMS, 'dct:late', {'@type': '@id'})
+    with pytest.raises(SystemExit, match='9.0.1 is released'):
+        run('9.0.1')

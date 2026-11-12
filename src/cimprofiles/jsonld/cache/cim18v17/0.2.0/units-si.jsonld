@@ -110,6 +110,46 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "nc:ACDCConverterRegularSchedule.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ACDCConverterRegularSchedule.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:ACDCConverterRegularSchedule.targetPpcc",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ACDCConverterRegularSchedule.targetUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "nc:ACDCTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ACDCTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:ACDCTimePoint.targetPpcc",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ACDCTimePoint.targetUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
       "@id": "cim:ACEmulationControlFunction.referenceP",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
@@ -180,6 +220,11 @@
       "qudt:hasQuantityKind": "cim:ActivePower"
     },
     {
+      "@id": "nc:ActivePowerLimitTimePoint.value",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
       "@id": "cim:Anchor.anchorRodLength",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
@@ -205,9 +250,174 @@
       "qudt:hasQuantityKind": "cim:ApparentPower"
     },
     {
+      "@id": "nc:ApparentPowerLimitTimePoint.value",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
       "@id": "cim:AreaInterchangeController.pTolerance",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.appointedMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.coordinatedValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.flowReliabilityMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.individualValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.individualValidationAdjustmentShare",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.insideCapacityMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.maxFlow",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.maxMarginAdjustment",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.normalAppointedMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.normalCoordinatedValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.normalIndividualValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.normalIndividualValidationAdjustmentShare",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.normalMaxFlow",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElement.normalPositiveVirtualMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.normalScannedThresholdMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.outsideCapacityMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.positiveVirtualMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.scannedThresholdMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.targetCrossZonalCapacityMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElement.targetRemainingAvailableMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementRegularTimePoint.appointedMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementRegularTimePoint.maxFlow",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElementRegularTimePoint.scannedThresholdMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementRegularTimePoint.virtualPositiveMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.appointedMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.coordinatedValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.individualValidationAdjustment",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.individualValidationAdjustmentShare",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.maxFlow",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.scannedThresholdMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:AssessedElementTimePoint.virtualPositiveMargin",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:Asset.baselineLossOfLife",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
     },
     {
       "@id": "cim:AsynchronousMachine.efficiency",
@@ -301,6 +511,11 @@
     },
     {
       "@id": "cim:BatteryUnit.storedE",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "nc:BatteryUnitTimePoint.storedE",
       "qudt:hasUnit": "unit:W-HR",
       "qudt:hasQuantityKind": "cim:RealEnergy"
     },
@@ -450,6 +665,46 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "nc:CapacityTimePoint.maxAllocatedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.maxAllocatedQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.maxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.maxQ",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.minAllocatedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.minAllocatedQ",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.minP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:CapacityTimePoint.minQ",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
       "@id": "cim:Circle.innerRadius",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
@@ -540,6 +795,11 @@
       "qudt:hasQuantityKind": "cim:Area"
     },
     {
+      "@id": "cim:ConductorInfo.massPerLength",
+      "qudt:hasUnit": "unit:KiloGM-PER-M",
+      "qudt:hasQuantityKind": "cim:MassPerLength"
+    },
+    {
       "@id": "cim:ConductorInfo.rAC25",
       "qudt:hasUnit": "unit:OHM-PER-M",
       "qudt:hasQuantityKind": "cim:ResistancePerLength"
@@ -590,12 +850,37 @@
       "qudt:hasQuantityKind": "cim:AngleDegrees"
     },
     {
+      "@id": "nc:ContingencyTimePoint.probability",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
       "@id": "cim:ControlArea.netInterchange",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
     },
     {
       "@id": "cim:ControlArea.pTolerance",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ControlAreaRegularSchedule.netInterchange",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ControlAreaRegularSchedule.pTolerance",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ControlAreaTimePoint.netInterchange",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ControlAreaTimePoint.pTolerance",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
     },
@@ -618,6 +903,11 @@
       "@id": "cim:ControlFunctionBlock.normalMinAllowedTargetValue",
       "qudt:hasUnit": "unit:PERCENT",
       "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:CostVolumePotentialTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
     },
     {
       "@id": "cim:CsConverter.alpha",
@@ -676,6 +966,36 @@
     },
     {
       "@id": "cim:CsConverter.targetIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "nc:CsConverterRegularSchedule.targetAlpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "nc:CsConverterRegularSchedule.targetGamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "nc:CsConverterRegularSchedule.targetIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "nc:CsConverterTimePoint.targetAlpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "nc:CsConverterTimePoint.targetGamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "nc:CsConverterTimePoint.targetIdc",
       "qudt:hasUnit": "unit:A",
       "qudt:hasQuantityKind": "cim:CurrentFlow"
     },
@@ -860,6 +1180,46 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "cim:Dimension.sizeDepth",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Dimension.sizeDiameter",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Dimension.sizeLength",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Dimension.sizeWidth",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:DimensionsInfo.sizeDepth",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:DimensionsInfo.sizeDiameter",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:DimensionsInfo.sizeLength",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:DimensionsInfo.sizeWidth",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
       "@id": "gad:EarthResistivity.earthReturnGMR",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
@@ -878,6 +1238,31 @@
       "@id": "gad:ElectricVehicleInfo.maxChargingRate",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EnergyBlockOrder.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EnergyConnectionRegularSchedule.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EnergyConnectionRegularSchedule.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:EnergyConnectionTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EnergyConnectionTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
     },
     {
       "@id": "gad:EnergyConsumer.maxP",
@@ -1015,6 +1400,86 @@
       "qudt:hasQuantityKind": "cim:Reactance"
     },
     {
+      "@id": "cim:EquivalentBranch.negativeR12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.negativeR21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.negativeX12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.negativeX21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.positiveR12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.positiveR21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.positiveX12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.positiveX21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.r",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.r21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.x",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.x21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.zeroR12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.zeroR21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.zeroX12",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:EquivalentBranch.zeroX21",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
       "@id": "cim:EquivalentDistanceSpacing.averageNeutralDistanceToGround",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Displacement"
@@ -1033,6 +1498,171 @@
       "@id": "cim:EquivalentDistanceSpacing.phaseToPhaseGMD",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:EquivalentInjection.maxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:EquivalentInjection.maxQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:EquivalentInjection.minP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:EquivalentInjection.minQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:EquivalentInjection.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:EquivalentInjection.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:EquivalentInjectionRegularSchedule.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EquivalentInjectionRegularSchedule.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:EquivalentInjectionRegularSchedule.regulationTarget",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "nc:EquivalentInjectionTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:EquivalentInjectionTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:EquivalentInjectionTimePoint.regulationTarget",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:EquivalentShunt.b",
+      "qudt:hasUnit": "unit:S",
+      "qudt:hasQuantityKind": "cim:Susceptance"
+    },
+    {
+      "@id": "cim:EquivalentShunt.g",
+      "qudt:hasUnit": "unit:S",
+      "qudt:hasQuantityKind": "cim:Conductance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.r",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.r0",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.r2",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.x",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.x0",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:ExtendedWardEquivalent.x2",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.governorSCD",
+      "qudt:hasUnit": "unit:W-PER-SEC",
+      "qudt:hasQuantityKind": "cim:ActivePowerPerFrequency"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.maxInitialSymShCCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.maxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.maxQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.minInitialSymShCCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.minP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.minQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ExternalNetworkInjection.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:ExternalNetworkInjectionRegularSchedule.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ExternalNetworkInjectionRegularSchedule.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:ExternalNetworkInjectionTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:ExternalNetworkInjectionTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
     },
     {
       "@id": "cim:FACTSEquipment.maxC",
@@ -1155,6 +1785,16 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "nc:GridStateAlteration.participationFactor",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:GridStateAlterationTimePoint.participationFactor",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
       "@id": "cim:ImpedanceControlFunction.targetValue",
       "qudt:hasUnit": "unit:OHM",
       "qudt:hasQuantityKind": "cim:Impedance"
@@ -1195,6 +1835,36 @@
       "qudt:hasQuantityKind": "cim:PerCent"
     },
     {
+      "@id": "cim:InfeedLimit.normalValueA",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:InfeedLimit.normalValueW",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:InfeedLimit.valueA",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:InfeedLimit.valueW",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:InfeedLimitTimePoint.valueA",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "nc:InfeedLimitTimePoint.valueW",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
       "@id": "cim:InsulationInfo.insulationThickness",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
@@ -1213,6 +1883,41 @@
       "@id": "cim:IntegralWebBusbarInfo.thickness",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:InverterInfo.activePowerRatingOverExcited",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:InverterInfo.activePowerRatingUnderExcited",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:InverterInfo.activePowerRatingUnityPowerFactor",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:InverterInfo.reactivePowerAbsorbedMax",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:InverterInfo.reactivePowerInjectedMax",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:InverterInfo.susceptanceOffline",
+      "qudt:hasUnit": "unit:S",
+      "qudt:hasQuantityKind": "cim:Susceptance"
+    },
+    {
+      "@id": "cim:IrregularTimePoint.time",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
     },
     {
       "@id": "cim:LinearShuntCompensator.b0PerSection",
@@ -1283,6 +1988,11 @@
       "@id": "cim:Medium.volumeSpec",
       "qudt:hasUnit": "unit:M3",
       "qudt:hasQuantityKind": "cim:Volume"
+    },
+    {
+      "@id": "cim:MultiCoreCableInfo.neutralStrandRDC20",
+      "qudt:hasUnit": "unit:OHM-PER-M",
+      "qudt:hasQuantityKind": "cim:ResistancePerLength"
     },
     {
       "@id": "nc:MustRunTimePoint.mustRunP",
@@ -1363,6 +2073,41 @@
       "@id": "cim:NonlinearShuntCompensatorPoint.gTotal",
       "qudt:hasUnit": "unit:S",
       "qudt:hasQuantityKind": "cim:Conductance"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.closeAmps",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.closeVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.motorRunCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.motorStartCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.motorVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.tripAmps",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:OperatingMechanismInfo.tripVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
       "@id": "cim:OperationalLimitType.acceptableDuration",
@@ -1500,6 +2245,51 @@
       "qudt:hasQuantityKind": "cim:AngleDegrees"
     },
     {
+      "@id": "gad:PhotoVoltaicUnit.irradiance",
+      "qudt:hasUnit": "unit:W-PER-M2",
+      "qudt:hasQuantityKind": "cim:ActivePowerPerArea"
+    },
+    {
+      "@id": "nc:PowerBidSchedule.energyBlock",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "nc:PowerBidSchedule.maxRampDownP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerBidSchedule.maxRampUpP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerBidSchedule.totalMaximumEnergy",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "nc:PowerBidSchedule.totalMinimumEnergy",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "nc:PowerBidScheduleTimePoint.minimumActivationP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerBidScheduleTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerBidScheduleTimePoint.stepIncrementP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
       "@id": "cim:PowerCutZone.cutLevel1",
       "qudt:hasUnit": "unit:PERCENT",
       "qudt:hasQuantityKind": "cim:PerCent"
@@ -1563,6 +2353,46 @@
       "@id": "gad:PowerElectronicsUnit.p",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerRemedialAction.maxRegulatingDown",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerRemedialAction.maxRegulatingUp",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerRemedialActionTimePoint.maxRegulatingDown",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerRemedialActionTimePoint.maxRegulatingUp",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerTimePoint.activatedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerTimePoint.activatedQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:PowerTimePoint.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:PowerTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
     },
     {
       "@id": "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent",
@@ -1645,6 +2475,11 @@
       "qudt:hasQuantityKind": "cim:Length"
     },
     {
+      "@id": "cim:ProductAssetModel.weightTotal",
+      "qudt:hasUnit": "unit:KiloGM",
+      "qudt:hasQuantityKind": "cim:Mass"
+    },
+    {
       "@id": "cim:ProtectedSwitch.breakingCapacity",
       "qudt:hasUnit": "unit:A",
       "qudt:hasQuantityKind": "cim:CurrentFlow"
@@ -1705,9 +2540,44 @@
       "qudt:hasQuantityKind": "cim:Length"
     },
     {
+      "@id": "cim:RegularIntervalSchedule.timeStep",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
       "@id": "cim:RelativeHeight.verticalOffset",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:ReliabilityInfo.mTTR",
+      "qudt:hasUnit": "unit:HR",
+      "qudt:hasQuantityKind": "cim:Hours"
+    },
+    {
+      "@id": "cim:ReliabilityInfo.momFailureRate",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:RemedialActionGroup.maxRegulatingDown",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:RemedialActionGroup.maxRegulatingUp",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:RemedialActionGroupTimePoint.maxRegulatingDown",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:RemedialActionGroupTimePoint.maxRegulatingUp",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
     },
     {
       "@id": "cim:RemoteSource.scanInterval",
@@ -1970,6 +2840,11 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "nc:StaticVarCompensatorTimePoint.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
       "@id": "cim:StorageInverterInfo.chargeRateActiveMax",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
@@ -2048,6 +2923,11 @@
       "@id": "cim:SwitchInfo.breakingCapacity",
       "qudt:hasUnit": "unit:A",
       "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:SwitchInfo.gasWeightPerTank",
+      "qudt:hasUnit": "unit:KiloGM",
+      "qudt:hasQuantityKind": "cim:Mass"
     },
     {
       "@id": "cim:SwitchInfo.lowPressureAlarm",
@@ -2445,6 +3325,11 @@
       "qudt:hasQuantityKind": "cim:Voltage"
     },
     {
+      "@id": "cim:TransformerTank.baseS",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
       "@id": "cim:TransformerTank.loadLoss",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
@@ -2463,6 +3348,11 @@
       "@id": "cim:TransformerTank.percentMagnetizingCurrent",
       "qudt:hasUnit": "unit:PERCENT",
       "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "gad:TransformerTankConfiguration.baseS",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
     },
     {
       "@id": "gad:TransformerTankConfiguration.loadLoss",
@@ -2560,6 +3450,11 @@
       "qudt:hasQuantityKind": "cim:AngleDegrees"
     },
     {
+      "@id": "nc:VoltageAngleTimePoint.value",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
       "@id": "cim:VoltageControlFunction.targetValue",
       "qudt:hasUnit": "unit:V",
       "qudt:hasQuantityKind": "cim:Voltage"
@@ -2586,6 +3481,11 @@
     },
     {
       "@id": "cim:VoltageLimit.value",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "nc:VoltageLimitTimePoint.value",
       "qudt:hasUnit": "unit:V",
       "qudt:hasQuantityKind": "cim:Voltage"
     },
@@ -2631,6 +3531,31 @@
     },
     {
       "@id": "cim:VsConverter.uv",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "nc:VsConverterTimePoint.droopCompensation",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "nc:VsConverterTimePoint.qShare",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "nc:VsConverterTimePoint.targetPhasePcc",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "nc:VsConverterTimePoint.targetQpcc",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:VsConverterTimePoint.targetUpcc",
       "qudt:hasUnit": "unit:V",
       "qudt:hasQuantityKind": "cim:Voltage"
     },

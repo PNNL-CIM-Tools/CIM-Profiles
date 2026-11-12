@@ -4,9 +4,9 @@
   property, from the field metadata. Associations and enumerations are
   ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
   ``xsd:integer`` / ``xsd:boolean``; strings are left to the JSON-LD default.
-  The published file also names itself (``@id``, its URL) and the stable cim-profiles
-  release it was built for (``owl:versionInfo``, as the CGMES vocabularies do); JSON-LD
-  processors use only the ``@context`` entry of a remote context, so these are ignored there.
+  The published file also names itself (``@id``, its URL) and the cim-profiles release it
+  was built for (``owl:versionInfo``, as the CGMES vocabularies do); JSON-LD processors use
+  only the ``@context`` entry of a remote context, so these are ignored there.
 - Unit vocabulary: one ``qudt:hasUnit`` node per unit-bearing property. Units come from a
   convention, resolved per property in order:
   ``properties`` override ('WireInfo.radius': 'mm') -> ``quantity_kinds`` default
@@ -14,26 +14,31 @@
   Dimensionless units other than PerCent are omitted (nothing to convert).
 
 Conventions are YAML files in ``jsonld/conventions/<profile>.yaml`` (see those files).
-Build them into ``jsonld/cache/<profile>/<version>/`` (also the GitHub Pages content), where
-version is the stable cim-profiles release (``stable_version``), with::
+Build them into ``jsonld/cache/<profile>/<version>/`` (also the GitHub Pages content) with::
 
     uv run python -m cimprofiles.jsonld.build                 # every profile
     uv run python -m cimprofiles.jsonld.build cimhub_2023     # one profile
     uv run python -m cimprofiles.jsonld.build my.yaml --base-url https://example.org/cim/ --output site
 
-The functions above main() are pure; main() does the file I/O.
-Earlier versions' documents stay in the cache: files written with them still name them.
-Once a version is released its documents must not change; bump the release target in
-pyproject.toml before rebuilding changed documents.
+Versions: the URL names a stable cim-profiles release X.Y.Z, as CGMES versions its IRIs.
+While X.Y.Z is in alpha (X.Y.ZaN), its documents are rebuilt in place as often as needed.
+Once X.Y.Z is released, they are frozen: files written with it name them. A profile gets a
+new version directory only when its documents change; otherwise its manifest entry keeps
+naming the release that last changed them. Building changed documents for a released
+version fails, and asks for the next release target in pyproject.toml.
+
+The functions above _released() are pure; _released() and main() do the I/O.
 """
 from __future__ import annotations
 
 import argparse
+import functools
 import importlib
 import importlib.metadata
 import json
 import re
 import sys
+import urllib.request
 from enum import Enum
 from pathlib import Path
 
@@ -71,8 +76,10 @@ VOCABULARY_NAMESPACES = {
     'qudt': 'http://qudt.org/schema/qudt/',
     'unit': QUDT_UNIT_NAMESPACE,
 }
+CACHE_DIR = Path(__file__).parent / 'cache'
 _TYPE_NAME = re.compile(r'[A-Za-z_]\w*')
 PAGES_URL = 'https://pnnl-cim-tools.github.io/CIM-Profiles/'
+PYPI_URL = 'https://pypi.org/pypi/cim-profiles/json'
 
 
 def stable_version() -> str:
@@ -199,10 +206,9 @@ def build_vocabulary(profile, convention: dict, vocabulary_iri: str, title: str)
 def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[dict[str, dict], dict]:
     """
     Build the documents of one convention spec (a parsed conventions YAML) for the
-    cim-profiles release `version`. Generated documents are published under
-    ``<profile>/<version>/`` (the CGMES style of a version in the IRI), so a file keeps
-    naming the documents it was written with; the context also records the version
-    (``owl:versionInfo``).
+    stable cim-profiles release `version` (X.Y.Z). Generated documents are published under
+    ``<profile>/<X.Y.Z>/`` (the CGMES style of a version in the IRI), and the context
+    records it in ``owl:versionInfo``.
 
     Returns ({relative path: document}, manifest entry). The manifest entry is
     {'context': url, 'default': name, 'conventions': {name: [vocabulary IRIs]}}, plus the
@@ -235,6 +241,21 @@ def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[
     return documents, entry
 
 
+def _unchanged(spec: dict, version: str, base_url: str, output: Path, manifest: dict) -> bool:
+    """True if the spec builds the same documents and manifest entry as the ones `output`
+    holds for `version`."""
+    documents, entry = build_profile(spec, version, base_url)
+    return (manifest.get(spec['profile']) == entry
+            and all(_read_json(output / path) == document for path, document in documents.items()))
+
+
+@functools.cache
+def _released(version: str) -> bool:
+    """True if cim-profiles `version` is on PyPI, which is how the release workflow decides it."""
+    with urllib.request.urlopen(PYPI_URL, timeout=30) as response:
+        return version in json.load(response)['releases']
+
+
 def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
 
@@ -251,21 +272,33 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description='Build JSON-LD contexts and unit vocabularies')
     parser.add_argument('specs', nargs='*', help='profile names or conventions YAML paths (default: all)')
     parser.add_argument('--base-url', default=PAGES_URL, help='URL the output directory is published at')
-    parser.add_argument('--output', type=Path, default=Path(__file__).parent / 'cache')
+    parser.add_argument('--output', type=Path, default=CACHE_DIR)
     args = parser.parse_args(argv)
     base_url = args.base_url if args.base_url.endswith('/') else args.base_url + '/'
 
     paths = [Path(spec) if spec.endswith('.yaml') else conventions_dir / f'{spec}.yaml' for spec in args.specs]
+    # Released documents of the shipped cache are frozen; another output is the caller's own
+    frozen = args.output.resolve() == CACHE_DIR.resolve()
+    version = stable_version()
     index = _read_json(args.output / 'index.json')
     manifest = _read_json(args.output / 'profiles.json')
     for path in paths or sorted(conventions_dir.glob('*.yaml')):
         spec = yaml.safe_load(path.read_text(encoding='utf-8'))
-        documents, entry = build_profile(spec, stable_version(), base_url)
+        name = spec['profile']
+        previous = manifest.get(name, {}).get('version')
+        if previous is not None and _unchanged(spec, previous, base_url, args.output, manifest):
+            print(f'{name}: unchanged since {previous}')
+            continue
+        documents, entry = build_profile(spec, version, base_url)
+        if documents and frozen and _released(version):
+            raise SystemExit(f'error: {name} documents changed, but cim-profiles {version} is released '
+                             f'and its documents are frozen. Set the next release target in '
+                             f'pyproject.toml (uv version --bump patch --no-sync) and build again.')
         for relative_path, document in documents.items():
             _write_json(args.output / relative_path, document)
             index[base_url + relative_path] = relative_path
-        manifest[spec['profile']] = entry
-        print(f'{spec["profile"]}: {len(documents)} documents')
+        manifest[name] = entry
+        print(f'{name}: {len(documents)} documents for {version}')
 
     # Every document the manifest names must resolve offline
     for profile, entry in manifest.items():

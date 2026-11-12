@@ -123,18 +123,24 @@ language with a UUID library can reproduce it from this description.
 ## JSON-LD contexts and units
 
 Each profile has a JSON-LD context and one or more unit vocabularies, published at
-`https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/<version>/` and shipped in the package
-(`src/cimprofiles/jsonld/cache`) so they resolve offline. The version is the stable cim-profiles
-release they were built for (`0.2.0` for 0.2.0 and its alphas), in the URL as CGMES puts it in
-its IRIs. Earlier versions stay published, since files written with them name them; a released
-version's documents never change, so bump the release target in `pyproject.toml` before
-rebuilding changed documents.
+`https://pnnl-cim-tools.github.io/CIM-Profiles/<profile>/<version>/` and shipped in the
+package (`src/cimprofiles/jsonld/cache`) so they resolve offline. The version is a stable
+cim-profiles release, in the URL as CGMES puts versions in its IRIs:
+
+- While a release is in alpha (`0.2.1a1`, `a2`, ...), its directory (`0.2.1/`) is rebuilt in
+  place as often as needed. Alpha documents resolve offline from the alpha wheel; Pages
+  publishes stable releases only.
+- Once the release is on PyPI its documents are frozen, since files written with it name them.
+  Rebuilding changed documents for a released version fails and asks for the next release
+  target in `pyproject.toml`.
+- A profile gets a new directory only when its documents change; otherwise it keeps naming the
+  release that last changed them. Earlier directories stay published.
 
 - **Context** (`context.jsonld`): prefixes, and each property's datatype (`{"@type": "@id"}` for
   references and enumerations, `xsd:float`, `xsd:integer`, `xsd:boolean`), plus the
   `dcat:Dataset` header terms typed as in the Inst4CIM CGMES context (`dct:conformsTo`,
   `dcat:isVersionOf` as IRIs, `dct:issued` as `xsd:dateTime`). Next to `@context`, the file
-  records its `@id` (its URL) and `owl:versionInfo` (the version); JSON-LD processors read only
+  records its `@id` (its URL) and `owl:versionInfo` (the full release, e.g. `0.2.0`); JSON-LD processors read only
   `@context` from a remote context. A JSON-LD context cannot carry units.
 - **Unit vocabulary** (`units-<convention>.jsonld`): `qudt:hasUnit` per property, the CGMES way.
   A data file names the vocabulary its numbers use in `dct:conformsTo`; the vocabulary's
