@@ -61,6 +61,7 @@ releases:
       - cimprofiles.cim18.cim18v17.topology.topology
       - cimprofiles.cim18.cim18v17.load_area.load_area
       - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.nc_schedule.nc_schedule
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"
 
   # cim18v17 split by grid: the same parts, in the same order, without the other grid's.
