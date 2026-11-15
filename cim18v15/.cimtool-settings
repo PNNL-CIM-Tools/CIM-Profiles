@@ -102,6 +102,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/metadata.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.gridappsd.org/vfm#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Profiles/metering.owl>
       tool:profile_envelope
               "Profile" ;

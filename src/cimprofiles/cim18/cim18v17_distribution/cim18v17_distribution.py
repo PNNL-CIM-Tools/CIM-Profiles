@@ -1319,58 +1319,6 @@ class CableArmorInfo(Identity):
     '''
     '''
 
-    materialName: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    numberOfTapes: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    strandCount: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    Type: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     diameterOverArmor: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -1456,6 +1404,62 @@ class CableArmorInfo(Identity):
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    materialName: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    numberOfTapes: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    strandCount: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    Type: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -7020,13 +7024,14 @@ class Crossarm(Asset):
     Cross arm
     '''
 
-    material: Optional[str] = field(
-        default=None,
+    material: list[object] = field(
+        default_factory=list,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
-        'maxOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -9668,40 +9673,6 @@ class InverterInfo(GridEdgeDeviceInfo):
     power to be synchronized to the grid.
     '''
 
-    operatingCategoryAbnormal: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Abnormal operating performance category</i>
-    Indication of voltage and frequency ride-through capability
-    Values = Category I, Category II, Category III
-    '''
-    
-    operatingCategoryNormal: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Normal operating performance category</i>
-    Indication of reactive power and voltage/power control capability.
-    Values = Category A, Category B
-    '''
-    
     powerFactorOverExcited: Optional[float] = field(
         default=None,
         metadata={
@@ -9845,6 +9816,42 @@ class InverterInfo(GridEdgeDeviceInfo):
     '''
     '''
     
+    operatingCategoryAbnormal: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Abnormal operating performance category</i>
+    Indication of voltage and frequency ride-through capability
+    Values = Category I, Category II, Category III
+    '''
+    
+    operatingCategoryNormal: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Based on IEEE 1547-2018 Table 28:
+    <i>Normal operating performance category</i>
+    Indication of reactive power and voltage/power control capability.
+    Values = Category A, Category B
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -9867,13 +9874,14 @@ class GenerationInverterInfo(InverterInfo):
     wind, or other fuels.
     '''
 
-    generationCategory: Optional[str] = field(
-        default=None,
+    generationCategory: list[object] = field(
+        default_factory=list,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
-        'maxOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -28405,32 +28413,6 @@ class StorageInverterInfo(InverterInfo):
     storing and later discharging electric energy.
     '''
 
-    storageCategory: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of Distribution Storage.
-    Examples include:
-    <ul>
-    <li>Lead�Acid Battery</li>
-    <li>Nickel�Cadmium (NiCd) Battery</li>
-    <li>Nickel�Metal Hydride (NiMH) Battery</li>
-    <li>Lithium-Ion Battery</li>
-    <li>Lithium-Ion Polymer (LiPo) Battery</li>
-    <li>Aluminum-Sulfur Battery</li>
-    <li>Flow Battery</li>
-    <li>Mechanical Flywheel</li>
-    <li>Mechanical Gravitational</li>
-    </ul>
-    '''
-    
     chargeRateActiveMax: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -28475,6 +28457,33 @@ class StorageInverterInfo(InverterInfo):
         'serialize': True,
         })
     '''
+    '''
+    
+    storageCategory: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of Distribution Storage.
+    Examples include:
+    <ul>
+    <li>Lead�Acid Battery</li>
+    <li>Nickel�Cadmium (NiCd) Battery</li>
+    <li>Nickel�Metal Hydride (NiMH) Battery</li>
+    <li>Lithium-Ion Battery</li>
+    <li>Lithium-Ion Polymer (LiPo) Battery</li>
+    <li>Aluminum-Sulfur Battery</li>
+    <li>Flow Battery</li>
+    <li>Mechanical Flywheel</li>
+    <li>Mechanical Gravitational</li>
+    </ul>
     '''
     
     @property
@@ -28764,48 +28773,6 @@ class OverheadStructure(Structure):
     def __maxOccurs__(self):
         return 'unbounded'
     
-    frameType: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Frame type such as H-Frame, Lattice Tower, Guyed Lattice, A-Frame.
-    '''
-    
-    structureAngle: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure angle
-    '''
-    
-    structureStandard: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure standard such as standard drawing number
-    '''
-    
     Crossarm: list[Crossarm] = field(
         default_factory=list,
         metadata={
@@ -28818,6 +28785,51 @@ class OverheadStructure(Structure):
         'serialize': False,
         })
     '''
+    '''
+    
+    frameType: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Frame type such as H-Frame, Lattice Tower, Guyed Lattice, A-Frame.
+    '''
+    
+    structureAngle: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Structure angle
+    '''
+    
+    structureStandard: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Structure standard such as standard drawing number
     '''
     
 @stereotype(CIMStereotype.ShadowExtension)
@@ -37123,58 +37135,6 @@ class TransformerWindingInfo(AssetInfo):
     '''
     '''
 
-    conductorDiameter: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    conductorShape: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    ratedS: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    windingInsulationType: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     windingArrangement: Optional[ WindingArrangementKind ] = field(
         default=None,
         metadata={
@@ -37182,6 +37142,62 @@ class TransformerWindingInfo(AssetInfo):
         'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    conductorDiameter: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    conductorShape: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    ratedS: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    windingInsulationType: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -39565,20 +39581,6 @@ class MultiCoreCableInfo(CableInfo):
     True if neutral is included
     '''
     
-    neutralSizeDescription: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Neutral wire size description
-    '''
-    
     neutralStrandCount: Optional[int] = field(
         default=None,
         metadata={
@@ -39620,6 +39622,21 @@ class MultiCoreCableInfo(CableInfo):
     '''
     Neutral strand DC resistance per unit length of the conductor at 20
     &#176;C
+    '''
+    
+    neutralSizeDescription: list[object] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Neutral wire size description
     '''
     
     @property

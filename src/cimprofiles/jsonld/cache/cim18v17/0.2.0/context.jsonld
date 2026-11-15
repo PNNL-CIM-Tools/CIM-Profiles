@@ -1,11 +1,12 @@
 {
   "@context": {
     "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/#",
     "eu": "http://iec.ch/TC57/CIM100-European#",
     "gad": "http://gridappsd.org/CIM/extension#",
     "gb": "http://GB/placeholder/ext#",
     "nc": "http://entsoe.eu/ns/nc#",
-    "dcat": "http://www.w3.org/ns/dcat#",
     "dct": "http://purl.org/dc/terms/",
     "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -949,6 +950,18 @@
     "cim:BipolarDCSystem.DCBiPole": {
       "@type": "@id"
     },
+    "cim:Boundary.separates": {
+      "@type": "@id"
+    },
+    "cim:BoundaryModel.canBeTerminatedBy": {
+      "@type": "@id"
+    },
+    "cim:BoundaryModel.partOfPerimeter": {
+      "@type": "@id"
+    },
+    "cim:BoundaryModel.defines": {
+      "@type": "@id"
+    },
     "cim:Brace.OverheadStructure": {
       "@type": "@id"
     },
@@ -1066,12 +1079,6 @@
     "cim:BushingInfo.ratedLineToGroundVoltage": {
       "@type": "xsd:float"
     },
-    "gad:CableArmorInfo.numberOfTapes": {
-      "@type": "xsd:integer"
-    },
-    "gad:CableArmorInfo.strandCount": {
-      "@type": "xsd:integer"
-    },
     "gad:CableArmorInfo.diameterOverArmor": {
       "@type": "xsd:float"
     },
@@ -1092,6 +1099,18 @@
     },
     "gad:CableArmorInfo.Thickness": {
       "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.materialName": {
+      "@type": "@id"
+    },
+    "gad:CableArmorInfo.numberOfTapes": {
+      "@type": "@id"
+    },
+    "gad:CableArmorInfo.strandCount": {
+      "@type": "@id"
+    },
+    "gad:CableArmorInfo.Type": {
+      "@type": "@id"
     },
     "cim:CableInfo.isStrandFill": {
       "@type": "xsd:boolean"
@@ -1684,6 +1703,9 @@
     "nc:CrossBorderRelevance.GenericEnablingSchedule": {
       "@type": "@id"
     },
+    "cim:Crossarm.material": {
+      "@type": "@id"
+    },
     "cim:Crossarm.OverheadStructure": {
       "@type": "@id"
     },
@@ -2140,6 +2162,9 @@
     "cim:DCVoltageControlFunction.targetValue": {
       "@type": "xsd:float"
     },
+    "dcat:Dataset.isRealizedAs": {
+      "@type": "@id"
+    },
     "cim:DayType.SeasonDayTypeSchedules": {
       "@type": "@id"
     },
@@ -2242,6 +2267,9 @@
     "cim:DiscreteValue.Discrete": {
       "@type": "@id"
     },
+    "dcat:Distribution.realizes": {
+      "@type": "@id"
+    },
     "cim:DynamicsFunctionBlock.enabled": {
       "@type": "xsd:boolean"
     },
@@ -2264,6 +2292,12 @@
       "@type": "@id"
     },
     "gad:EarthResistivity.PerLengthLineParameter": {
+      "@type": "@id"
+    },
+    "cim:EdgeModel.replaces": {
+      "@type": "@id"
+    },
+    "cim:EdgeModel.terrminates": {
       "@type": "@id"
     },
     "gad:ElectricVehicleInfo.v2gCapable": {
@@ -2602,9 +2636,6 @@
     "nc:EquivalentInjection.PowerSchedule": {
       "@type": "@id"
     },
-    "nc:EquivalentInjectionRegularSchedule.regulationStatus": {
-      "@type": "xsd:boolean"
-    },
     "nc:EquivalentInjectionRegularSchedule.p": {
       "@type": "xsd:float"
     },
@@ -2617,14 +2648,14 @@
     "nc:EquivalentInjectionRegularSchedule.EquivalentInjection": {
       "@type": "@id"
     },
+    "nc:EquivalentInjectionRegularSchedule.regulationStatus": {
+      "@type": "@id"
+    },
     "nc:EquivalentInjectionSchedule.EquivalentInjectionTimePoint": {
       "@type": "@id"
     },
     "nc:EquivalentInjectionSchedule.EquivalentInjection": {
       "@type": "@id"
-    },
-    "nc:EquivalentInjectionTimePoint.regulationStatus": {
-      "@type": "xsd:boolean"
     },
     "nc:EquivalentInjectionTimePoint.p": {
       "@type": "xsd:float"
@@ -2636,6 +2667,12 @@
       "@type": "xsd:float"
     },
     "nc:EquivalentInjectionTimePoint.EquivalentInjectionSchedule": {
+      "@type": "@id"
+    },
+    "nc:EquivalentInjectionTimePoint.regulationStatus": {
+      "@type": "@id"
+    },
+    "cim:EquivalentModel.joinsWith": {
       "@type": "@id"
     },
     "cim:EquivalentNetwork.EquivalentEquipments": {
@@ -2743,9 +2780,6 @@
     "nc:ExternalNetworkInjection.ExternalNetowrkInjectionSchedule": {
       "@type": "@id"
     },
-    "nc:ExternalNetworkInjectionRegularSchedule.referencePriority": {
-      "@type": "xsd:integer"
-    },
     "nc:ExternalNetworkInjectionRegularSchedule.p": {
       "@type": "xsd:float"
     },
@@ -2755,14 +2789,14 @@
     "nc:ExternalNetworkInjectionRegularSchedule.ExternalNetworkinjection": {
       "@type": "@id"
     },
+    "nc:ExternalNetworkInjectionRegularSchedule.referencePriority": {
+      "@type": "@id"
+    },
     "nc:ExternalNetworkInjectionSchedule.ExternalNetworkinjectionTimePoint": {
       "@type": "@id"
     },
     "nc:ExternalNetworkInjectionSchedule.ExternalNetworkInjection": {
       "@type": "@id"
-    },
-    "nc:ExternalNetworkInjectionTimePoint.referencePriority": {
-      "@type": "xsd:integer"
     },
     "nc:ExternalNetworkInjectionTimePoint.p": {
       "@type": "xsd:float"
@@ -2771,6 +2805,9 @@
       "@type": "xsd:float"
     },
     "nc:ExternalNetworkInjectionTimePoint.ExternalNetworkInjectionSchedule": {
+      "@type": "@id"
+    },
+    "nc:ExternalNetworkInjectionTimePoint.referencePriority": {
       "@type": "@id"
     },
     "cim:FACTSEquipment.LossCurve": {
@@ -2840,6 +2877,27 @@
       "@type": "@id"
     },
     "cim:Feeder.NormalEnergizingSubstation": {
+      "@type": "@id"
+    },
+    "cim:Frame.terminatedBy": {
+      "@type": "@id"
+    },
+    "cim:Frame.isReferencedBy": {
+      "@type": "@id"
+    },
+    "cim:Frame.connectsTo": {
+      "@type": "@id"
+    },
+    "cim:Frame.includedIn": {
+      "@type": "@id"
+    },
+    "cim:FrameModel.perimeter": {
+      "@type": "@id"
+    },
+    "cim:FrameModel.represents": {
+      "@type": "@id"
+    },
+    "cim:FrameworkEdition.includes": {
       "@type": "@id"
     },
     "cim:FrequencyControlFunction.frequencyBias": {
@@ -2947,6 +3005,9 @@
     "nc:GeneratingUnitTimePoint.GeneratingUnitSchedule": {
       "@type": "@id"
     },
+    "cim:GenerationInverterInfo.generationCategory": {
+      "@type": "@id"
+    },
     "nc:GenericAvailableSchedule.AvailabilityTimePoint": {
       "@type": "@id"
     },
@@ -3016,6 +3077,9 @@
     "cim:Geometry.Location": {
       "@type": "@id"
     },
+    "cim:GridAssembly.contains": {
+      "@type": "@id"
+    },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
       "@type": "xsd:float"
     },
@@ -3024,6 +3088,9 @@
     },
     "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
       "@type": "xsd:float"
+    },
+    "cim:GridModel.usedIn": {
+      "@type": "@id"
     },
     "nc:GridStateAlteration.enabled": {
       "@type": "xsd:boolean"
@@ -3142,10 +3209,10 @@
     "gad:ImpedanceTapChangerTabular.TransformerEnd": {
       "@type": "@id"
     },
-    "nc:InServiceRegularSchedule.inService": {
-      "@type": "xsd:boolean"
-    },
     "nc:InServiceRegularSchedule.Equipment": {
+      "@type": "@id"
+    },
+    "nc:InServiceRegularSchedule.inService": {
       "@type": "@id"
     },
     "nc:InServiceSchedule.InServiceTimePoint": {
@@ -3155,7 +3222,7 @@
       "@type": "@id"
     },
     "nc:InServiceTimePoint.inService": {
-      "@type": "xsd:boolean"
+      "@type": "@id"
     },
     "nc:InServiceTimePoint.InServiceSchedule": {
       "@type": "@id"
@@ -3281,6 +3348,12 @@
       "@type": "xsd:float"
     },
     "cim:InverterInfo.InverterCapabilities": {
+      "@type": "@id"
+    },
+    "cim:InverterInfo.operatingCategoryAbnormal": {
+      "@type": "@id"
+    },
+    "cim:InverterInfo.operatingCategoryNormal": {
       "@type": "@id"
     },
     "cim:IrregularIntervalSchedule.TimePoints": {
@@ -3586,6 +3659,9 @@
     "cim:MultiCoreCableInfo.neutralStrandRDC20": {
       "@type": "xsd:float"
     },
+    "cim:MultiCoreCableInfo.neutralSizeDescription": {
+      "@type": "@id"
+    },
     "nc:MustRunSchedule.MustRunTimePoint": {
       "@type": "@id"
     },
@@ -3761,6 +3837,15 @@
       "@type": "@id"
     },
     "cim:OverheadStructure.Crossarm": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.frameType": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.structureAngle": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.structureStandard": {
       "@type": "@id"
     },
     "cim:OverheadWireInfo.wireConstructionKind": {
@@ -4759,12 +4844,6 @@
     "nc:RegulatingControl.RegulatingControlSchedule": {
       "@type": "@id"
     },
-    "nc:RegulatingControlRegularSchedule.discrete": {
-      "@type": "xsd:boolean"
-    },
-    "nc:RegulatingControlRegularSchedule.enabled": {
-      "@type": "xsd:boolean"
-    },
     "nc:RegulatingControlRegularSchedule.maxAllowedTargetValue": {
       "@type": "xsd:float"
     },
@@ -4778,6 +4857,12 @@
       "@type": "xsd:float"
     },
     "nc:RegulatingControlRegularSchedule.targetValueUnitMultiplier": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlRegularSchedule.discrete": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlRegularSchedule.enabled": {
       "@type": "@id"
     },
     "nc:RegulatingControlRegularSchedule.RegulatingControl": {
@@ -5422,6 +5507,9 @@
     "cim:StorageInverterInfo.storageCapacity": {
       "@type": "xsd:float"
     },
+    "cim:StorageInverterInfo.storageCategory": {
+      "@type": "@id"
+    },
     "cim:StringMeasurement.StringMeasurementValues": {
       "@type": "@id"
     },
@@ -5687,10 +5775,10 @@
       "@type": "xsd:boolean"
     },
     "nc:SwitchRegularSchedule.locked": {
-      "@type": "xsd:boolean"
+      "@type": "@id"
     },
     "nc:SwitchRegularSchedule.open": {
-      "@type": "xsd:boolean"
+      "@type": "@id"
     },
     "nc:SwitchRegularSchedule.Switch": {
       "@type": "@id"
@@ -5702,10 +5790,10 @@
       "@type": "@id"
     },
     "nc:SwitchTimePoint.locked": {
-      "@type": "xsd:boolean"
+      "@type": "@id"
     },
     "nc:SwitchTimePoint.open": {
-      "@type": "xsd:boolean"
+      "@type": "@id"
     },
     "nc:SwitchTimePoint.SwitchSchedule": {
       "@type": "@id"
@@ -5791,10 +5879,10 @@
     "nc:SynchronousMachine.SynchronousMachineSchedule": {
       "@type": "@id"
     },
-    "nc:SynchronousMachineRegularSchedule.referencePriority": {
-      "@type": "xsd:integer"
-    },
     "nc:SynchronousMachineRegularSchedule.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineRegularSchedule.referencePriority": {
       "@type": "@id"
     },
     "nc:SynchronousMachineRegularSchedule.SynchronousMachine": {
@@ -5806,10 +5894,10 @@
     "nc:SynchronousMachineSchedule.SynchronousMachine": {
       "@type": "@id"
     },
-    "nc:SynchronousMachineTimePoint.referencePriority": {
-      "@type": "xsd:integer"
-    },
     "nc:SynchronousMachineTimePoint.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineTimePoint.referencePriority": {
       "@type": "@id"
     },
     "nc:SynchronousMachineTimePoint.SynchronousMachineSchedule": {
@@ -6007,11 +6095,11 @@
     "cim:TapChangerTablePoint.x": {
       "@type": "xsd:float"
     },
-    "nc:TapRegularSchedule.controlEnabled": {
-      "@type": "xsd:boolean"
-    },
     "nc:TapRegularSchedule.step": {
       "@type": "xsd:float"
+    },
+    "nc:TapRegularSchedule.controlEnabled": {
+      "@type": "@id"
     },
     "nc:TapRegularSchedule.TapChanger": {
       "@type": "@id"
@@ -6019,11 +6107,11 @@
     "cim:TapSchedule.TapChanger": {
       "@type": "@id"
     },
-    "nc:TapScheduleTimePoint.controlEnabled": {
-      "@type": "xsd:boolean"
-    },
     "nc:TapScheduleTimePoint.step": {
       "@type": "xsd:float"
+    },
+    "nc:TapScheduleTimePoint.controlEnabled": {
+      "@type": "@id"
     },
     "cim:TapeShieldCableInfo.tapeLap": {
       "@type": "xsd:float"
@@ -6505,19 +6593,19 @@
     "cim:TransformerWinding.ToTransformerLug": {
       "@type": "@id"
     },
+    "gad:TransformerWindingInfo.windingArrangement": {
+      "@type": "@id"
+    },
     "gad:TransformerWindingInfo.conductorDiameter": {
-      "@type": "xsd:integer"
+      "@type": "@id"
     },
     "gad:TransformerWindingInfo.conductorShape": {
-      "@type": "xsd:integer"
+      "@type": "@id"
     },
     "gad:TransformerWindingInfo.ratedS": {
-      "@type": "xsd:integer"
+      "@type": "@id"
     },
     "gad:TransformerWindingInfo.windingInsulationType": {
-      "@type": "xsd:integer"
-    },
-    "gad:TransformerWindingInfo.windingArrangement": {
       "@type": "@id"
     },
     "cim:TubeBusbarInfo.outerDiameter": {
