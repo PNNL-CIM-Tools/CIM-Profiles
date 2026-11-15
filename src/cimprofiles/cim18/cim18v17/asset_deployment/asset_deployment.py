@@ -317,6 +317,21 @@ class Asset(IdentifiedObject):
     Reason asset retired.
     '''
     
+    AssetContainer: Optional[AssetContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'AssetContainer.Assets',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Container of this asset.
+    '''
+    
     AssetDeployment: Optional[AssetDeployment] = field(
         default=None,
         metadata={
@@ -332,6 +347,62 @@ class Asset(IdentifiedObject):
     This asset's deployment.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class AssetContainer(Asset):
+    '''
+    Asset that is aggregation of other assets such as conductors, transformers,
+    switchgear, land, fences, buildings, equipment, vehicles, etc.
+    '''
+
+    Assets: list[Asset] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Asset.AssetContainer',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    All assets within this container asset.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Cabinet(AssetContainer):
+    '''
+    Enclosure that offers protection to the equipment it contains and/or safety
+    to people/animals outside it.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
