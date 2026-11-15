@@ -360,6 +360,11 @@
       "qudt:hasQuantityKind": "cim:Length"
     },
     {
+      "@id": "cim:ClearSimulationEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
       "@id": "cim:CompensatorInfo.maxPowerLoss",
       "qudt:hasUnit": "unit:KiloV-A",
       "qudt:hasQuantityKind": "cim:ApparentPower"
@@ -1255,6 +1260,16 @@
       "qudt:hasQuantityKind": "cim:Seconds"
     },
     {
+      "@id": "cim:ParameterEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:ParameterEvent.rampDuration",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
       "@id": "gad:PerLengthImpedance.calculatedFrequency",
       "qudt:hasUnit": "unit:HZ",
       "qudt:hasQuantityKind": "cim:Frequency"
@@ -1423,6 +1438,21 @@
       "@id": "gad:PowerElectronicsUnit.p",
       "qudt:hasUnit": "unit:KiloW",
       "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.activePowerTolerance",
+      "qudt:hasUnit": "unit:KiloW",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.reactivePowerTolerance",
+      "qudt:hasUnit": "unit:KiloV-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.voltageAngleLimit",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
     },
     {
       "@id": "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent",
@@ -1713,6 +1743,26 @@
       "@id": "gad:ShuntCompensatorPhase.nomQ",
       "qudt:hasUnit": "unit:KiloV-A_Reactive",
       "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:SimulationSettings.integrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.maximumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.minimumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.simulationResultsRecordedEvery",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
     },
     {
       "@id": "gad:SolarArrayInfo.orientationAzimuth",

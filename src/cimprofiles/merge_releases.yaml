@@ -62,6 +62,7 @@ releases:
       - cimprofiles.cim18.cim18v17.load_area.load_area
       - cimprofiles.cim18.cim18v17.protection.protection
       - cimprofiles.cim18.cim18v17.nc_schedule.nc_schedule
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"
 
   # cim18v17 split by grid: the same parts, in the same order, without the other grid's.
@@ -87,6 +88,7 @@ releases:
       - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
       - cimprofiles.cim18.cim18v17.topology.topology
       - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
     description: "GridAPPS-D CIM18 distribution profile: cim18v17 without HVDC, FACTS, function block control and load areas"
 
   # Transmission (CIMHub PSS/E RAW): balanced, with HVDC, FACTS, control functions and areas.
@@ -110,4 +112,5 @@ releases:
       - cimprofiles.cim18.cim18v17.topology.topology
       - cimprofiles.cim18.cim18v17.load_area.load_area
       - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
     description: "GridAPPS-D CIM18 transmission profile: cim18v17 without unbalanced phases, assets, catalogs and construction"

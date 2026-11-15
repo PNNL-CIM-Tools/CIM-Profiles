@@ -300,6 +300,11 @@
       "qudt:hasQuantityKind": "cim:Length"
     },
     {
+      "@id": "cim:ClearSimulationEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
       "@id": "cim:Conductor.length",
       "qudt:hasUnit": "unit:M",
       "qudt:hasQuantityKind": "cim:Length"
@@ -1145,6 +1150,16 @@
       "qudt:hasQuantityKind": "cim:Seconds"
     },
     {
+      "@id": "cim:ParameterEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:ParameterEvent.rampDuration",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
       "@id": "cim:PerLengthDCLineParameter.capacitance",
       "qudt:hasUnit": "unit:FARAD-PER-M",
       "qudt:hasQuantityKind": "cim:CapacitancePerLength"
@@ -1323,6 +1338,21 @@
       "@id": "gad:PowerElectronicsUnit.p",
       "qudt:hasUnit": "unit:W",
       "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.activePowerTolerance",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.reactivePowerTolerance",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.voltageAngleLimit",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
     },
     {
       "@id": "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent",
@@ -1553,6 +1583,26 @@
       "@id": "cim:ShuntCompensator.voltageSensitivity",
       "qudt:hasUnit": "unit:V-PER-V-A_Reactive",
       "qudt:hasQuantityKind": "cim:VoltagePerReactivePower"
+    },
+    {
+      "@id": "cim:SimulationSettings.integrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.maximumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.minimumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.simulationResultsRecordedEvery",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
     },
     {
       "@id": "cim:StaticVarCompensator.capacitiveRating",
