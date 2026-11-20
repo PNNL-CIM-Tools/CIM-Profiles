@@ -1,0 +1,71 @@
+@prefix msg:     <http://langdale.com.au/2005/Message#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix uml:     <http://langdale.com.au/2005/UML#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix project:  <http://cimtoole.langdale.com.au/2009/project/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tool:    <http://cimtoole.langdale.com.au/2009/setting#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+
+project:
+      tool:merge_shadow_extensions
+              "true" ;
+      tool:merged_schema_path
+              "" ;
+      tool:plantuml_current_profile_preview_style
+              "puml-rdfs-t2b" ;
+      tool:self_heal_on_import
+              "true" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipment.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-CoreEquipmentShortCircuit.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-Operation.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-ShortCircuit.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-StateVariables.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-SteadyStateHypothesis.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/CGMES-Topology.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/TEST.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Schema/iec61970cim16v33c_iec61968cim12v08_iec62325cim03v01a_DY_pack_fix_WITH_ENTSO-E_EXTENSIONS.qea>
+      tool:schema_namespace
+              "http://iec.ch/TC57/2013/CIM-schema-cim16#" .

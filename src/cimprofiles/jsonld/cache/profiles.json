@@ -1,4 +1,14 @@
 {
+  "cgmes_2_4_0": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cgmes_2_4_0/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cgmes_2_4_0/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
   "cgmes_3_0_0": {
     "context": "https://raw.githack.com/Sveino/Inst4CIM-KG/develop/rdf-improved/cim-context-old.jsonld",
     "default": "cgmes",

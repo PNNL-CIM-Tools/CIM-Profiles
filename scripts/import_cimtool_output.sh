@@ -3,15 +3,16 @@
 # src/cimprofiles/<cim version>/ and point its imports at cimprofiles. Needed until the
 # CIMTool 2.3.1 builders emit cimprofiles imports themselves.
 #
-# usage: scripts/import_cimtool_output.sh <cim16|cim17|cim18> <Profiles/name.py> <Profiles/name.__init__.py> [package]
+# usage: scripts/import_cimtool_output.sh <cim16|cim17|cim18> <Profiles/name.py> <Profiles/name.__init__.py> [package [module]]
 #   package: the directory under the CIM version, if not the envelope name
 #            (e.g. gridappsd_rc4_2021 for the rc4_2021 envelope). May be nested for a
-#            part of a merged profile (e.g. cim18v17/substation). The module is named
-#            after its last segment.
+#            part of a merged profile (e.g. cim18v17/substation).
+#   module:  the module name, if not the package's last segment
+#            (e.g. diagram_layout in cgmes_3_0_0/diagram).
 set -euo pipefail
 
-if [ $# -lt 3 ] || [ $# -gt 4 ]; then
-    echo "usage: $0 <cim16|cim17|cim18> <generated .py> <generated .__init__.py> [package]" >&2
+if [ $# -lt 3 ] || [ $# -gt 5 ]; then
+    echo "usage: $0 <cim16|cim17|cim18> <generated .py> <generated .__init__.py> [package [module]]" >&2
     exit 1
 fi
 cim_version=$1
@@ -30,7 +31,7 @@ if [ -z "$envelope" ]; then
     exit 1
 fi
 package=${4:-$envelope}
-module=$(basename "$package")
+module=${5:-$(basename "$package")}
 dotted_package=${package//\//.}
 
 dest="$(cd "$(dirname "$0")/.." && pwd)/src/cimprofiles/$cim_version/$package"

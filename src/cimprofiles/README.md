@@ -134,6 +134,21 @@ cimprofiles.cim17.cgmes_3_0_0.steady_state_hypothesis,\
 cimprofiles.cim17.cgmes_3_0_0.state_variables"
 ```
 
+### cgmes_2_4_0 — IEC CGMES 2.4 split profile
+
+The CGMES 2.4 profiles (CIM16 with the ENTSO-E extensions), generated from the vendored
+`CGMES-CIM16/` workspace. `CoreEquipmentShortCircuit` is not a part: it is EQ with the
+short-circuit classes added, which EQ + SC already cover.
+
+| Sub-profile | Classes | Description |
+|---|---|---|
+| `cgmes_2_4_0.core_equipment` | 169 | EQ — equipment definitions |
+| `cgmes_2_4_0.operation` | 68 | OP — operational limits |
+| `cgmes_2_4_0.short_circuit` | 48 | SC — short-circuit parameters |
+| `cgmes_2_4_0.steady_state_hypothesis` | 65 | SSH — schedule/setpoints |
+| `cgmes_2_4_0.state_variables` | 18 | SV — solved state |
+| `cgmes_2_4_0.topology` | 9 | TP — bus-branch topology |
+
 ### cim18v17 — GridAPPS-D CIM18 split profile
 
 The 21 CIMTool profiles of the `cim18v15/` workspace, named for the 18v17 UML they will be
@@ -276,6 +291,7 @@ parts, so re-run the build after regenerating any part.
 |---|---|
 | `cim18gmdm` | 116 classes from 5 sub-profiles |
 | `cgmes_3_0_0` | 275 classes from 9 sub-profiles (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL) |
+| `cgmes_2_4_0` | 228 classes from 6 sub-profiles (EQ+OP+SC+SSH+SV+TP) |
 | `cim18v17` | 754 classes from 21 sub-profiles |
 | `cim18v17_distribution` | 594 classes from 17 sub-profiles |
 | `cim18v17_transmission` | 522 classes from 16 sub-profiles |

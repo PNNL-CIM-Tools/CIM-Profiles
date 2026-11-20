@@ -42,6 +42,7 @@ ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {
     'cim': 'http://cim.ucaiug.io/cim101/draft#',
     'dcat': 'http://www.w3.org/ns/dcat#',
+    'dcterms': 'http://purl.org/dc/terms/',
     'eu': 'http://iec.ch/TC57/CIM100-European#',
     'gad': 'http://gridappsd.org/CIM/extension#',
     'gb': 'http://GB/placeholder/ext#',
@@ -22519,7 +22520,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22588,7 +22589,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22620,7 +22621,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22636,7 +22637,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22655,7 +22656,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22669,7 +22670,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22704,7 +22705,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22740,7 +22741,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
@@ -22783,7 +22784,7 @@ class Distribution(MetaThing):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': '#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''

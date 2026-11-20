@@ -41,16 +41,20 @@
             map {$cim_namespace: 'cim'},
             map {
                 'http://iec.ch/TC57/CIM100-European#': 'eu',
+                'http://entsoe.eu/CIM/SchemaExtension/3/1#': 'entsoe',
                 'http://entsoe.eu/ns/nc#': 'nc',
                 'http://GB/placeholder/ext#': 'gb',
                 'http://gridappsd.org/CIM/extension#': 'gad',
-                'http://epri.com/gmdm/2025#': 'gmdm'
+                'http://epri.com/gmdm/2025#': 'gmdm',
+                'http://purl.org/dc/elements/1.1/': 'dc',
+                'http://www.w3.org/ns/dcat#': 'dcat',
+                'http://purl.org/dc/terms/': 'dcterms'
             }), map {'duplicates': 'use-first'})"/>
 
     <!-- Namespaces of every class and property in this profile, the ontology first -->
     <xsl:variable name="used_namespaces" as="xs:string*" select="distinct-values((
             $cim_namespace,
-            //(@baseClass | @baseProperty)[contains(., '#')] ! concat(substring-before(., '#'), '#')))"/>
+            //(@baseClass | @baseProperty)[matches(., '[#/]')] ! local:namespace(.)))"/>
 
     <!-- Template for top-level item in schema file -->
     <xsl:template match="a:Catalog">
@@ -404,7 +408,7 @@
         <item>'type': '<xsl:value-of select="if (a:Stereotype/@label) then a:Stereotype/@label else 'Attribute'"/>',</item>
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
-        <item>'namespace': '<xsl:value-of select="substring-before((@baseProperty, '#')[1],'#')"/>#',</item>
+        <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -421,7 +425,7 @@
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after((@inverseBaseProperty, '#')[1],'#')"/>',</item>
-        <item>'namespace': '<xsl:value-of select="substring-before((@baseProperty, '#')[1],'#')"/>#',</item>
+        <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -433,7 +437,7 @@
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after(@inverseBaseProperty, '#')"/>',</item>
-        <item>'namespace': '<xsl:value-of select="substring-before(@baseProperty,'#')"/>#',</item>
+        <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -441,19 +445,26 @@
 
     <!-- Generate class metadata attributes -->
     <xsl:template name="generate-class-metadata">
-        <xsl:variable name="namespace" select="substring-before(@baseClass, '#')"/>
+        <xsl:variable name="namespace" select="local:namespace((@baseClass, '#')[1])"/>
         <xsl:variable name="package" select="@package"/>
         <xsl:variable name="minOccurs" select="(@minOccurs, '0')[1]"/>
         <xsl:variable name="maxOccurs" select="(@maxOccurs, '1')[1]"/>
 
         <list begin="" indent="    " end="">
-            <item>__namespace__ = '<xsl:value-of select="$namespace"/>#'</item>
+            <item>__namespace__ = '<xsl:value-of select="$namespace"/>'</item>
             <item>__package__ = '<xsl:value-of select="$package"/>'</item>
             <item>__minOccurs__ = '<xsl:value-of select="$minOccurs"/>'</item>
             <item>__maxOccurs__ = '<xsl:value-of select="$maxOccurs"/>'</item>
             <item/>
         </list>
     </xsl:template>
+
+    <!-- Namespace of a class or property IRI: everything up to its last '#' or '/'.
+         CIM namespaces end in '#', Dublin Core ones (http://purl.org/dc/terms/) in '/'. -->
+    <xsl:function name="local:namespace" as="xs:string">
+        <xsl:param name="iri" as="xs:string"/>
+        <xsl:sequence select="replace($iri, '^(.*[#/]).*$', '$1')"/>
+    </xsl:function>
 
     <!-- Function to get Python type mapping using explicit choose/when -->
     <xsl:function name="local:get_python_type" as="xs:string">
