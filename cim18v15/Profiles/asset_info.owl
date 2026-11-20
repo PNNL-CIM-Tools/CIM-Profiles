@@ -42,6 +42,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactorCoreKind"/>
+    <rdfs:subClassOf rdf:resource="#ReactorCoreKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a29">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -68,6 +69,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SolarArray</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#SolarArrayInfo"/>
+    <rdfs:subClassOf rdf:resource="#SolarArrayInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a2f">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -205,6 +207,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>legType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLegKind"/>
+    <rdfs:subClassOf rdf:resource="#TransformerLegKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a4d">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -255,6 +258,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>capacitorRackType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CapacitorRackKind"/>
+    <rdfs:subClassOf rdf:resource="#CapacitorRackKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a57">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -293,6 +297,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>formType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MeterFormKind"/>
+    <rdfs:subClassOf rdf:resource="#MeterFormKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a5f">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -309,6 +314,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>quantity</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#StringQuantity"/>
+    <rdfs:subClassOf rdf:resource="#StringQuantity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a63">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -346,6 +352,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>CatalogAssetType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CatalogAssetType"/>
+    <rdfs:subClassOf rdf:resource="#CatalogAssetType"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a6b">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -362,6 +369,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BushingInsulationKind"/>
+    <rdfs:subClassOf rdf:resource="#BushingInsulationKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a6f">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -377,6 +385,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>BatteryInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BatteryInfo"/>
+    <rdfs:subClassOf rdf:resource="#BatteryInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a73">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -458,6 +467,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a83">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -551,6 +561,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>outerJacketKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableOuterJacketKind"/>
+    <rdfs:subClassOf rdf:resource="#CableOuterJacketKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a95">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -644,6 +655,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>phaseCount</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCountKind"/>
+    <rdfs:subClassOf rdf:resource="#PhaseCountKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7aa9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -670,6 +682,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Manufacturer</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Manufacturer"/>
+    <rdfs:subClassOf rdf:resource="#Manufacturer"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7aaf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -801,6 +814,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>powerElectronicsGateType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerElectronicsGateKind"/>
+    <rdfs:subClassOf rdf:resource="#PowerElectronicsGateKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ac8">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -833,6 +847,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>activePowerSourceType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePowerSourceKind"/>
+    <rdfs:subClassOf rdf:resource="#ActivePowerSourceKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7acf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -904,6 +919,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInsulationKind"/>
+    <rdfs:subClassOf rdf:resource="#WireInsulationKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7add">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -941,6 +957,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ae5">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -967,6 +984,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Asset</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Asset"/>
+    <rdfs:subClassOf rdf:resource="#Asset"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7aeb">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -987,6 +1005,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Agent</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Agent"/>
+    <rdfs:subClassOf rdf:resource="#Agent"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7af0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1058,6 +1077,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7afe">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1085,6 +1105,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TypeAssetCatalogue</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TypeAssetCatalogue"/>
+    <rdfs:subClassOf rdf:resource="#TypeAssetCatalogue"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b04">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1133,6 +1154,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>InverterCapabilities</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#InverterCapabilities"/>
+    <rdfs:subClassOf rdf:resource="#InverterCapabilities"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b0e">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1215,6 +1237,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>interruptingMedium</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#InterruptingMediumKind"/>
+    <rdfs:subClassOf rdf:resource="#InterruptingMediumKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b20">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1252,6 +1275,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b28">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1268,6 +1292,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>pipeType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PipeBusbarKind"/>
+    <rdfs:subClassOf rdf:resource="#PipeBusbarKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b2c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1295,6 +1320,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMedium</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactorInsulationMediumKind"/>
+    <rdfs:subClassOf rdf:resource="#ReactorInsulationMediumKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b32">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1321,6 +1347,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b38">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1336,6 +1363,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransportDimensionsInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DimensionsInfo"/>
+    <rdfs:subClassOf rdf:resource="#DimensionsInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b3c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1352,6 +1380,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>shieldMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableShieldMaterialKind"/>
+    <rdfs:subClassOf rdf:resource="#CableShieldMaterialKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b40">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1521,6 +1550,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>CableInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableInfo"/>
+    <rdfs:subClassOf rdf:resource="#CableInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b60">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1559,6 +1589,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>rated10PctVoltTime</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TimeInterval"/>
+    <rdfs:subClassOf rdf:resource="#TimeInterval"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b68">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1575,6 +1606,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>material</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireMaterialKind"/>
+    <rdfs:subClassOf rdf:resource="#WireMaterialKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b6c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1602,6 +1634,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b72">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1628,6 +1661,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TapChangerInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TapChangerInfo"/>
+    <rdfs:subClassOf rdf:resource="#TapChangerInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b78">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1710,6 +1744,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>materialKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#StructureMaterialKind"/>
+    <rdfs:subClassOf rdf:resource="#StructureMaterialKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b88">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1781,6 +1816,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>laminationAssembly</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLaminationAssemblyKind"/>
+    <rdfs:subClassOf rdf:resource="#TransformerLaminationAssemblyKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b98">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1852,6 +1888,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>CathodicSystem</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CathodicSystem"/>
+    <rdfs:subClassOf rdf:resource="#CathodicSystem"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ba6">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -1995,6 +2032,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>wireConstructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireConstructionKind"/>
+    <rdfs:subClassOf rdf:resource="#WireConstructionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bc1">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2011,6 +2049,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MediumKind"/>
+    <rdfs:subClassOf rdf:resource="#MediumKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bc5">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2081,6 +2120,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ProductAssetModel</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProductAssetModel"/>
+    <rdfs:subClassOf rdf:resource="#ProductAssetModel"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bd3">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2207,6 +2247,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>windingArrangement</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WindingArrangementKind"/>
+    <rdfs:subClassOf rdf:resource="#WindingArrangementKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bef">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2223,6 +2264,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UndergroundStructureKind"/>
+    <rdfs:subClassOf rdf:resource="#UndergroundStructureKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bf3">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2283,6 +2325,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CompositeSwitchKind"/>
+    <rdfs:subClassOf rdf:resource="#CompositeSwitchKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c01">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2344,6 +2387,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetKind"/>
+    <rdfs:subClassOf rdf:resource="#AssetKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c0d">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2393,6 +2437,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInsulationKind"/>
+    <rdfs:subClassOf rdf:resource="#WireInsulationKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c17">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2409,6 +2454,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>connectorType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectorTypeKind"/>
+    <rdfs:subClassOf rdf:resource="#ConnectorTypeKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c1d">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2435,6 +2481,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>CatalogAssetType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CatalogAssetType"/>
+    <rdfs:subClassOf rdf:resource="#CatalogAssetType"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c23">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2472,6 +2519,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ChildAssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c2b">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2499,6 +2547,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>technology</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ComTechnologyKind"/>
+    <rdfs:subClassOf rdf:resource="#ComTechnologyKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c31">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2515,6 +2564,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>circulationAndCoolingType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CirculationAndCoolingKind"/>
+    <rdfs:subClassOf rdf:resource="#CirculationAndCoolingKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c35">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2537,6 +2587,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>wireConstructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireConstructionKind"/>
+    <rdfs:subClassOf rdf:resource="#WireConstructionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c3a">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2608,6 +2659,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>usageKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetModelUsageKind"/>
+    <rdfs:subClassOf rdf:resource="#AssetModelUsageKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c48">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2684,6 +2736,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>dcConverterType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#STATCOMKind"/>
+    <rdfs:subClassOf rdf:resource="#STATCOMKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c59">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2743,6 +2796,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c65">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2763,6 +2817,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ConductingAssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConductingAssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#ConductingAssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c6a">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2779,6 +2834,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>direction</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ComDirectionKind"/>
+    <rdfs:subClassOf rdf:resource="#ComDirectionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c6e">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2806,6 +2862,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OperationalLimitSet</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OperationalLimitSet"/>
+    <rdfs:subClassOf rdf:resource="#OperationalLimitSet"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c74">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2843,6 +2900,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ChargingConnector</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ChargingConnectorInfo"/>
+    <rdfs:subClassOf rdf:resource="#ChargingConnectorInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c7c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2925,6 +2983,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>constructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableConstructionKind"/>
+    <rdfs:subClassOf rdf:resource="#CableConstructionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c8c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2952,6 +3011,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>constructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireMaterialKind"/>
+    <rdfs:subClassOf rdf:resource="#WireMaterialKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c92">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2968,6 +3028,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerCoreMaterialKind"/>
+    <rdfs:subClassOf rdf:resource="#TransformerCoreMaterialKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c96">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3038,6 +3099,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>WireInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInfo"/>
+    <rdfs:subClassOf rdf:resource="#WireInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ca6">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3087,6 +3149,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ConstructedDimensions</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Dimension"/>
+    <rdfs:subClassOf rdf:resource="#Dimension"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cb0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3180,6 +3243,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CoreConstructionKind"/>
+    <rdfs:subClassOf rdf:resource="#CoreConstructionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cc4">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3240,6 +3304,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>oilPreservationType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OilPreservationKind"/>
+    <rdfs:subClassOf rdf:resource="#OilPreservationKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cd0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3267,6 +3332,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>laminationShape</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLaminationShapeKind"/>
+    <rdfs:subClassOf rdf:resource="#TransformerLaminationShapeKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cd6">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3326,6 +3392,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ParentAssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ce2">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3375,6 +3442,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>dischargeResistorType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DischargeResistorKind"/>
+    <rdfs:subClassOf rdf:resource="#DischargeResistorKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cec">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3390,6 +3458,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Procedure</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Procedure"/>
+    <rdfs:subClassOf rdf:resource="#Procedure"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cf0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3440,6 +3509,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cfa">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3467,6 +3537,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>unit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
+    <rdfs:subClassOf rdf:resource="#UnitSymbol"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d00">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3527,6 +3598,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>batteryType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BatteryTypeKind"/>
+    <rdfs:subClassOf rdf:resource="#BatteryTypeKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d0c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3565,6 +3637,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>mechanismKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OperatingMechanismKind"/>
+    <rdfs:subClassOf rdf:resource="#OperatingMechanismKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d14">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3602,6 +3675,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ChildAssetInfoComponent</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfoComponent"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfoComponent"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d1c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3640,6 +3714,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>fusingType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CapacitorCanFusingKind"/>
+    <rdfs:subClassOf rdf:resource="#CapacitorCanFusingKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d24">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3677,6 +3752,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>InsulationInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#InsulationInfo"/>
+    <rdfs:subClassOf rdf:resource="#InsulationInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d2c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3759,6 +3835,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>connectionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CompensatorConnectionKind"/>
+    <rdfs:subClassOf rdf:resource="#CompensatorConnectionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d3c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3863,6 +3940,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>faultSequenceType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeExtension"/>
+    <rdfs:subClassOf rdf:resource="#PhaseCodeExtension"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d52">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3922,6 +4000,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OverheadStructure</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OverheadStructure"/>
+    <rdfs:subClassOf rdf:resource="#OverheadStructure"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d5e">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4147,6 +4226,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>evType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EVTypeKind"/>
+    <rdfs:subClassOf rdf:resource="#EVTypeKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d88">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4185,6 +4265,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>multiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
+    <rdfs:subClassOf rdf:resource="#UnitMultiplier"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d90">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4244,6 +4325,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Specification</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Specification"/>
+    <rdfs:subClassOf rdf:resource="#Specification"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d9e">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4292,6 +4374,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ParentAssetInfoComponent</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfoComponent"/>
+    <rdfs:subClassOf rdf:resource="#AssetInfoComponent"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7da8">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4418,6 +4501,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>terminalConnectionType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TerminalConnectionKind"/>
+    <rdfs:subClassOf rdf:resource="#TerminalConnectionKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dc0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4461,6 +4545,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>svcReactiveControlType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SVCReactiveControlKind"/>
+    <rdfs:subClassOf rdf:resource="#SVCReactiveControlKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dc9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4510,6 +4595,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>phaseCode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCode"/>
+    <rdfs:subClassOf rdf:resource="#PhaseCode"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dd3">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4569,6 +4655,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ProductAssetModel</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ProductAssetModel"/>
+    <rdfs:subClassOf rdf:resource="#ProductAssetModel"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ddf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4596,6 +4683,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>corporateStandardKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CorporateStandardKind"/>
+    <rdfs:subClassOf rdf:resource="#CorporateStandardKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7de7">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4639,6 +4727,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PowerTransformerInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerTransformerInfo"/>
+    <rdfs:subClassOf rdf:resource="#PowerTransformerInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7df0">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4677,6 +4766,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MarineStructureKind"/>
+    <rdfs:subClassOf rdf:resource="#MarineStructureKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7df8">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4748,6 +4838,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AgentRoleKind"/>
+    <rdfs:subClassOf rdf:resource="#AgentRoleKind"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7e08">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>

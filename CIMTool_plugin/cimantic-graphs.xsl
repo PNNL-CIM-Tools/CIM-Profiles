@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+This builder is released under a BSD-3 license as part of the CIMantic Graphs library developed by PNNL.
+
+This software was created under a project sponsored by the U.S. Department of Energy's Office of Electricity,
+an agency of the United States Government. Neither the United States Government nor the United States Department
+of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated
+in the development of these materials, makes any warranty, express or implied, or assumes any legal liability
+or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software,
+or process disclosed, or represents that its use would not infringe privately owned rights.
+
+Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer,
+or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United
+States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed
+herein do not necessarily state or reflect those of the United States Government or any agency thereof.
+
+PACIFIC NORTHWEST NATIONAL LABORATORY operated by BATTELLE for the UNITED STATES DEPARTMENT OF ENERGY
+under Contract DE-AC05-76RL01830
+-->
 <xsl:stylesheet version="3.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -22,8 +40,7 @@
     <!-- Key for tracing parent-child inheritance -->
     <xsl:key name="classes_by_super" match="a:Root | a:ComplexType" use="a:SuperType/@name"/>
 
-    <!-- Key for finding inverse references by target class -->
-    <xsl:key name="inverse_references" match="a:InverseReference | a:InverseInstance" use="substring-after(@inverseBasePropertyClass, '#')"/>
+    <xsl:key name="inverse_references" match="a:InverseReference | a:InverseInstance" use="substring-after(@basePropertyClass, '#')"/>
 
     <xsl:variable name="python_keywords" as="xs:string*" select="(
             'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del',
@@ -77,8 +94,10 @@
             <!-- Process classes hierarchically, excluding Identity -->
             <xsl:apply-templates select="(a:Root | a:ComplexType)[not(a:SuperType)]" mode="super"/>
 
-            <!-- Process enumerations -->
-            <xsl:apply-templates select="a:EnumeratedType" mode="enumeration"/>
+            <!-- Process enumerations, excluding UnitSymbol and UnitMultiplier: they are
+                 imported from cimprofiles.units, and redefining them would shadow the
+                 enums the CIMUnit classes use -->
+            <xsl:apply-templates select="a:EnumeratedType[not(@name = 'UnitSymbol' or @name = 'UnitMultiplier')]" mode="enumeration"/>
 
             <!-- Process primitives -->
             <xsl:apply-templates select="a:SimpleType" mode="units"/>
@@ -93,14 +112,13 @@
         <item>from __future__ import annotations</item>
         <item>import logging</item>
         <item>from dataclasses import dataclass, field</item>
-        <item>from typing import Optional</item>
         <item>from enum import Enum</item>
-        <item>from cimgraph.data_profile.identity import Identity, stereotype</item>
-        <item>from cimgraph.data_profile.units import CIMUnit, UnitSymbol, UnitMultiplier</item>
+        <item>from typing import Optional</item>
+        <item>from cimprofiles.identity import Identity, stereotype</item>
+        <item>from cimprofiles.units import CIMUnit, UnitSymbol, UnitMultiplier</item>
         <item>_log = logging.getLogger(__name__)</item>
     </xsl:template>
 
-    <!-- Generate documentation section -->
     <!-- NAMESPACES = {prefix: uri} for every namespace the profile uses, 'cim' first.
          Serializers read the XML prefixes from here. -->
     <xsl:template name="generate_namespaces">
@@ -116,6 +134,7 @@
         <item>NAMESPACES = {<xsl:value-of select="string-join($entries, ', ')"/>}</item>
     </xsl:template>
 
+    <!-- Generate documentation section -->
     <xsl:template name="generate_documentation">
         <list begin="'''" indent="" end="'''">
             <item>Annotated CIMantic Graphs data profile for <xsl:value-of select="$envelope"/></item>
@@ -124,30 +143,44 @@
         <item/>
     </xsl:template>
 
-    <!-- Template for top-level classes with no inheritance -->
+    <!-- Template for top-level classes with no inheritance.
+         If the class is named 'Identity', skip emitting it (but still process its children)
+         because cimgraph imports its own Identity base class from cimprofiles.identity
+         and a profile-defined Identity class would overwrite it. -->
     <xsl:template match="a:Root | a:ComplexType | a:CompoundType" mode="super">
-        <xsl:call-template name="generate_stereotype"/>
+        <xsl:choose>
+            <xsl:when test="@name = 'Identity'">
+                <xsl:message>Skipping profile class 'Identity' — reserved for cimgraph base class.</xsl:message>
+                <!-- Still emit children that inherit from Identity -->
+                <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="generate_stereotype"/>
 
-        <xsl:variable name="class_name" select="local:sanitize_name(@name, @name)"/>
+                <xsl:variable name="class_name" select="local:sanitize_name(@name, @name)"/>
 
-        <item>@dataclass(repr=False, eq=False)</item>
-        <item>class <xsl:value-of select="$class_name"/>(Identity):</item>
+                <item>@dataclass(repr=False, eq=False)</item>
+                <item>class <xsl:value-of select="$class_name"/>(Identity):</item>
 
-        <xsl:call-template name="generate_class_docstring"/>
+                <xsl:call-template name="generate_class_docstring"/>
 
-        <!-- Add class metadata -->
-        <xsl:call-template name="generate-class-metadata"/>
+                <!-- Process attributes -->
+                <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
+                <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
+                <!-- Process inverse references first (they come from other classes).
+                     When a profile selects both ends of an association, the same field is
+                     also emitted below as this class's own reference (serialize=True).
+                     Python keeps the last definition, so the own reference must come last. -->
+                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
+                <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
 
-        <!-- Process inverse references first (they come from other classes) -->
-        <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
+                <!-- Add class metadata -->
+                <xsl:call-template name="generate-class-metadata"/>
 
-        <!-- Process attributes -->
-        <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
-        <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
-        <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
-
-        <!-- Process child classes -->
-        <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+                <!-- Process child classes -->
+                <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <!-- Template for lower level classes -->
@@ -163,16 +196,18 @@
 
                 <xsl:call-template name="generate_class_docstring"/>
 
-                <!-- Add class metadata -->
-                <xsl:call-template name="generate-class-metadata"/>
-
-                <!-- Process inverse references first (they come from other classes) -->
-                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
-
                 <!-- Process attributes -->
                 <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
                 <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
+                <!-- Process inverse references first (they come from other classes).
+                     When a profile selects both ends of an association, the same field is
+                     also emitted below as this class's own reference (serialize=True).
+                     Python keeps the last definition, so the own reference must come last. -->
+                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
                 <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
+
+                <!-- Add class metadata -->
+                <xsl:call-template name="generate-class-metadata"/>
 
                 <!-- Process child classes -->
                 <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
@@ -262,7 +297,8 @@
                             <xsl:value-of select="(@type, 'str')[1]"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="$python_type"/> | <xsl:value-of select="(@type, 'str')[1]"/>
+                            <xsl:value-of select="(@type, 'str')[1]"/>
+                            <!-- <xsl:value-of select="$python_type"/> | <xsl:value-of select="(@type, 'str')[1]"/> -->
                         </xsl:otherwise>
                     </xsl:choose>
                     ] = field(
@@ -353,12 +389,16 @@
                 <xsl:call-template name="generate_attr_docstring"/>
             </list>
         </xsl:for-each>
+
+        <!-- Add class metadata -->
+        <xsl:call-template name="generate-class-metadata"/>
+
     </xsl:template>
 
     <!-- Template for CIM Units as SimpleType -->
     <xsl:template match="a:SimpleType" mode="units">
         <xsl:call-template name="generate_stereotype"/>
-        <item>@dataclass(repr=False)</item>
+        <item>@dataclass(repr=False, eq=False)</item>
         <item>class <xsl:value-of select="@name"/>(CIMUnit):</item>
 
         <xsl:call-template name="generate_class_docstring"/>
@@ -367,7 +407,7 @@
         <xsl:for-each select="a:Simple">
             <xsl:variable name="python_type" select="local:get_python_type(@xstype)"/>
             <list begin="" indent="    " end="">
-                <item><xsl:value-of select="@name"/>: <xsl:value-of select="$python_type"/> = field(default=None)</item>
+                <item><xsl:value-of select="@name"/>: <xsl:value-of select="$python_type"/> = field()</item>
             </list>
         </xsl:for-each>
 
@@ -394,53 +434,66 @@
         <!-- Add __init__ method -->
         <xsl:variable name="unit-const" select="if (a:Enumerated[@name='unit']/@constant = '' or a:Enumerated[@name='unit']/@constant = 'none') then 'none' else a:Enumerated[@name='unit']/@constant"/>
         <list begin="" indent="    " end="">
-            <item>def __init__(self, value, input_unit: str='<xsl:value-of select="$unit-const"/>', input_multiplier: str=None):</item>
+            <item>def __init__(self, value, input_unit: str='<xsl:value-of select="$unit-const"/>', input_multiplier: Optional[str]=None):</item>
             <list begin="" indent="    " end="">
                 <item>self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)</item>
             </list>
         </list>
 
+        <!-- Add class metadata -->
+        <xsl:call-template name="generate-class-metadata"/>
         <item/>
+    </xsl:template>
+
+    <!-- Build a Python list literal of stereotype labels for the current element -->
+    <xsl:template name="generate_stereotype_list">
+        <xsl:text>[</xsl:text>
+        <xsl:for-each select="a:Stereotype">
+            <xsl:if test="position() &gt; 1">, </xsl:if>
+            <xsl:text>'</xsl:text><xsl:value-of select="@label"/><xsl:text>'</xsl:text>
+        </xsl:for-each>
+        <xsl:text>]</xsl:text>
     </xsl:template>
 
     <!-- Generate attribute metadata -->
     <xsl:template name="generate_attribute_metadata">
-        <item>'type': '<xsl:value-of select="if (a:Stereotype/@label) then a:Stereotype/@label else 'Attribute'"/>',</item>
+        <item>'type': 'Attribute',</item>
+        <item>'stereotypes': <xsl:call-template name="generate_stereotype_list"/>,</item>
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
+        <item>'serialize': True,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
-        <item> 'docstring': </item>
-        <xsl:call-template name="generate_class_docstring"/>
+        <!-- <item> 'docstring': </item> -->
+        <!-- <xsl:call-template name="generate_class_docstring"/> -->
     </xsl:template>
 
     <!-- Generate association metadata -->
     <xsl:template name="generate-association-metadata">
-        <xsl:if test="a:Stereotype/@label">
-            <item> 'type': '<xsl:value-of select="a:Stereotype/@label"/>', </item>
-        </xsl:if>
-        <xsl:if test="not(a:Stereotype/@label)">
-            <item> 'type': 'Attribute', </item>
-        </xsl:if>
+        <item>'type': 'Association',</item>
+        <item>'stereotypes': <xsl:call-template name="generate_stereotype_list"/>,</item>
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after((@inverseBaseProperty, '#')[1],'#')"/>',</item>
         <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
+        <item>'serialize': True,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
-        <item> 'docstring': </item>
-        <xsl:call-template name="generate_class_docstring"/>
+        <!-- <item> 'docstring': </item> -->
+        <!-- <xsl:call-template name="generate_class_docstring"/> -->
     </xsl:template>
 
     <!-- Generate inverse association metadata -->
     <xsl:template name="generate_inverse_association_metadata">
-        <item>'type': '<xsl:value-of select="if (a:Stereotype/@label) then a:Stereotype/@label else 'Association'"/>',</item>
+        <item>'type': 'Association',</item>
+        <item>'stereotypes': <xsl:call-template name="generate_stereotype_list"/>,</item>
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after(@inverseBaseProperty, '#')"/>',</item>
         <item>'namespace': '<xsl:value-of select="local:namespace((@baseProperty, '#')[1])"/>',</item>
+        <item>'serialize': False,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
-        <item> 'docstring': </item>
-        <xsl:call-template name="generate_class_docstring"/>
+        <!-- <item> 'docstring': </item> -->
+        <!-- <xsl:call-template name="generate_class_docstring"/> -->
     </xsl:template>
 
     <!-- Generate class metadata attributes -->
@@ -451,10 +504,26 @@
         <xsl:variable name="maxOccurs" select="(@maxOccurs, '1')[1]"/>
 
         <list begin="" indent="    " end="">
-            <item>__namespace__ = '<xsl:value-of select="$namespace"/>'</item>
-            <item>__package__ = '<xsl:value-of select="$package"/>'</item>
-            <item>__minOccurs__ = '<xsl:value-of select="$minOccurs"/>'</item>
-            <item>__maxOccurs__ = '<xsl:value-of select="$maxOccurs"/>'</item>
+            <item>@property</item>
+            <item>def __namespace__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$namespace"/>'</item>
+            </list>
+            <item>@property</item>
+            <item>def __package__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$package"/>'</item>
+            </list>
+            <item>@property</item>
+            <item>def __minOccurs__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$minOccurs"/>'</item>
+            </list>
+            <item>@property</item>
+            <item>def __maxOccurs__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$maxOccurs"/>'</item>
+            </list>
             <item/>
         </list>
     </xsl:template>
