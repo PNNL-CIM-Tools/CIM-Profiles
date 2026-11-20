@@ -18,71 +18,65 @@
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/PNNL-CIM-Tools/CIM-Profiles/total?label=git%20downloads)
 ![GitHub License](https://img.shields.io/github/license/PNNL-CIM-Tools/CIM-Profiles)
 
-CIMTool workspaces for the CIM 16–18 profiles, and the `cimprofiles` Python package built from
-them. These files originally shipped as part of cim-graph 0.1.x through 0.5.x.
+**cim-profiles** gives you the [Common Information Model (CIM)](https://cimug.ucaiug.org/) for
+power systems as plain Python dataclasses. Each CIM *profile* is a Python package with one class
+per CIM class (`ACLineSegment`, `Breaker`, `PowerTransformer`, ...), with typed attributes and
+associations and with the UML documentation as docstrings. The package also includes the small
+object model the classes are built on: identity and deterministic UUIDs (`Identity`), physical
+quantities with units (`CIMUnit`, backed by [pint](https://pint.readthedocs.io/)), and merging
+several profiles into one.
 
-`cimprofiles` ships the CIM profiles as Python dataclasses, together with the object model they
-are built on (`Identity`, `CIMUnit`, profile merging). It depends only on `pint`, and it is
-released separately from [cim-graph](https://github.com/PNNL-CIM-Tools/CIM-Graph). Profile updates
-(new classes from EA tickets, new profiles) therefore don't wait for a cim-graph release.
+It is the data model behind [CIMantic Graphs (cim-graph)](https://github.com/PNNL-CIM-Tools/CIM-Graph),
+but it has no database or graph dependencies (only `pint`). Any tool that needs the CIM classes
+can use it. Because it is released separately from cim-graph, profile updates (new classes,
+new profiles) don't have to wait for a cim-graph release.
+
+## Installation
 
 ```bash
-pip install cimprofiles
+pip install cim-profiles
 ```
+
+## Usage
 
 ```python
-import cimprofiles.cim18.cimhub_2026 as cim
+import cimprofiles.cim18.cim18v17 as cim
 
 line = cim.ACLineSegment(name='line_1')
+line.length = cim.Length(2.5, 'km')
 ```
 
-cim-graph 0.6 and later depend on `cimprofiles`. The old `cimgraph.data_profile.*` import paths
+Profiles are grouped by CIM version (`cimprofiles.cim16`, `cim17`, `cim18`). They include
+CGMES 2.4 and 3.0, the IEC CIM 16/17 base models, CIMHub, GridAPPS-D and the EPRI GMDM split
+profiles. The full list, and how to combine sub-profiles at runtime, is in
+[`src/cimprofiles/README.md`](src/cimprofiles/README.md).
+
+cim-graph 0.6 and later depend on this package. The old `cimgraph.data_profile.*` import paths
 still work there, with a `DeprecationWarning`.
 
-## Where the profiles come from
+## How the profiles are made
 
-![The CIM toolchain and its licenses: the UCAIug Apache 2.0 open-source artifacts, draft standards
-available to UCA members, the IEC copyrighted standards, and the PNNL-CIM-Tools BSD-3 Python
-libraries](UCA-Licensing.png)
+The profiles are not written by hand. They are generated from the CIM UML with
+[CIMTool](https://cimtool.ucaiug.io/), the open-source UCAIug tool for defining CIM profiles.
+A profile is a selected subset of the CIM classes and attributes for one use case.
 
-The CIM starts as a UML information model. The UCAIug publishes the model and two tools that work
-with it, jCleanCIM and CIMTool, as open source under the Apache 2.0 license. CIMTool selects the
-classes and properties a profile needs from the model and saves them as an OWL profile, from
-which it generates RDFS and XSD schemas.
+This repository ships the source profiles as **CIMTool projects** (`cim17v40/`, `cim18v15/`).
+Each project contains the CIM UML model (`Schema/`) and the profile definitions (`Profiles/*.owl`).
+The Python code is produced by the **cimantic-graphs builders**, two XSLT transforms from the
+[UCAIug CIMTool Builders Library](https://cimtool-builders.ucaiug.io/):
 
-The jCleanCIM output and the schemas go into the draft standards documents, which UCA members can
-read through the UCAIug liaison agreement. Once published, they become the IEC 61970, 61968, 62325
-and 62746 standards, which are copyrighted by the IEC.
+- [`cimantic-graphs.xsl`](https://cimtool-builders.ucaiug.io/shipped-builders/cimantic-graphs/builder.html)
+  generates the dataclasses for a profile.
+- [`cimantic-graphs-init.xsl`](https://cimtool-builders.ucaiug.io/shipped-builders/cimantic-graphs/builder.html)
+  generates the package `__init__.py`.
 
-The PNNL-CIM-Tools Python libraries start from the OWL profiles alone, so they use only the
-Apache 2.0 artifacts and are released under the BSD 3-Clause license. This repository is the
-first step: its CIMTool workspaces hold the OWL profiles, and the cimantic-graphs builders in
-`CIMTool_plugin/` turn them into the `cimprofiles` package.
-[CIMantic Graphs](https://github.com/PNNL-CIM-Tools/CIM-Graph) (cim-graph) builds on the
-package, and two chains of libraries build on cim-graph:
+These builders ship with CIMTool 2.3.0 and later. Copies are kept in `CIMTool_plugin/`, along
+with their documentation.
 
-- CIM-Tables → CIM-Builder → CIMHub, which converts models for OpenDSS, GridLAB-D, ArcGIS and
-  other tools
-- CIM-Loader → CIM-Validator → CIM-Repair
-
-### CIM releases
-
-The CIM is a living standard, and the UML model is updated continuously between editions of
-the IEC standards.
-
-- **Major releases** are the CIM versions, for example CIM 16, 17 and 18. Each new version
-  becomes the basis for the next editions of the IEC standards.
-- **Minor releases** are numbered within a version. For example, CIM17v40 is the model behind
-  IEC 61970-301 Ed 7.1, and Grid18v16 is an interim release of the CIM 18 work in progress.
-
-The workspace folders here are named after the release they are built from (`cim17v40/`,
-`cim18v15/`). Each UCAIug task force publishes its releases on its own site. Every release
-there has its release notes and a change log of the UML changes since the previous release:
-
-| Grid | Enterprise | Market |
-|---|---|---|
-| IEC 61970 | IEC 61968 | IEC 62325 |
-| <https://utf13-releases.ucaiug.io/> | <https://utf14-releases.ucaiug.io/> | <https://utf16-releases.ucaiug.io/> |
+To open a project, clone with [Git LFS](https://git-lfs.com/) (the Sparx EA `.eap` models are
+stored in LFS). Then import the project folder into a CIMTool workspace with *File > Import >
+Existing Projects into Workspace* (see
+[Exchange a project](https://cimtool.ucaiug.io/how-to/exchange-a-project/)).
 
 ## Repository layout
 
@@ -99,8 +93,8 @@ there has its release notes and a change log of the UML changes since the previo
 
 ## Seeded UUIDs
 
-Deterministic identifiers are what downstream converters (ArcGIS, OpenDSS, ...) rely on to give
-the same equipment the same RDF ID on every run. `Identity.identifier` is a UUID (CIM 18):
+Downstream converters (ArcGIS, OpenDSS, ...) need the same equipment to get the same RDF ID on
+every run, so identifiers are deterministic. This section is the specification. `Identity.identifier` is a UUID (CIM 18):
 either the one given, or a deterministic construct. There are two cases.
 
 **Read from a file:** the `rdf:ID`/`rdf:about` *is* the UUID, in any serialization
@@ -150,7 +144,9 @@ language with a UUID library can reproduce it from this description.
 
 ## Updating a profile
 
-1. Regenerate it in CIMTool with the cimantic-graphs builders (`CIMTool_plugin/builder.md`).
+1. In CIMTool, edit the profile in its project and regenerate it with the cimantic-graphs
+   builders (see [How the profiles are made](#how-the-profiles-are-made)). CIMTool writes the
+   output next to the profile, in `Profiles/`.
 2. Import it. This rewrites the `cimgraph.data_profile` imports emitted by CIMTool before 2.3.1:
    ```bash
    scripts/import_cimtool_output.sh cim17 <Profiles/name.py> <Profiles/name.__init__.py>
