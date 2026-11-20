@@ -10,6 +10,11 @@
 # description: human-readable note shown in the generated file header.
 # source: optional, the CIMTool Profiles folder (repo-relative) the parts are generated
 #   in. scripts/build_release.sh <name> re-imports every part from it before building.
+#   The part <module> is read from <source>/<module>.cimantic-graphs.py and
+#   <source>/<module>.__init__.py.
+# source_prefix: optional, for source folders whose .owl files are named <prefix><Module>
+#   rather than <module> (CGMES-CoreEquipment.owl for core_equipment): the part is then read
+#   from <source>/<prefix><Module>.cimantic-graphs.py, with <Module> the CamelCase module name.
 
 releases:
   - name: cim18gmdm
@@ -24,6 +29,8 @@ releases:
 
   - name: cgmes_3_0_0
     package: cimprofiles.cim17.cgmes_3_0_0
+    source: CGMES-CIM17/Profiles
+    source_prefix: CGMES-
     parts:
       - cimprofiles.cim17.cgmes_3_0_0.core_equipment.core_equipment
       - cimprofiles.cim17.cgmes_3_0_0.equipment_boundary.equipment_boundary
@@ -35,6 +42,21 @@ releases:
       - cimprofiles.cim17.cgmes_3_0_0.geographical_location.geographical_location
       - cimprofiles.cim17.cgmes_3_0_0.diagram.diagram_layout
     description: "IEC CGMES 3.0 merged profile (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL)"
+
+  # CGMES-CoreEquipmentShortCircuit.owl is left out: it is EQ with the short-circuit
+  # classes added, which core_equipment + short_circuit already cover.
+  - name: cgmes_2_4_0
+    package: cimprofiles.cim16.cgmes_2_4_0
+    source: CGMES-CIM16/Profiles
+    source_prefix: CGMES-
+    parts:
+      - cimprofiles.cim16.cgmes_2_4_0.core_equipment.core_equipment
+      - cimprofiles.cim16.cgmes_2_4_0.operation.operation
+      - cimprofiles.cim16.cgmes_2_4_0.short_circuit.short_circuit
+      - cimprofiles.cim16.cgmes_2_4_0.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim16.cgmes_2_4_0.state_variables.state_variables
+      - cimprofiles.cim16.cgmes_2_4_0.topology.topology
+    description: "IEC CGMES 2.4 merged profile (EQ+OP+SC+SSH+SV+TP)"
 
   - name: cim18v17
     package: cimprofiles.cim18.cim18v17

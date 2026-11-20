@@ -1,0 +1,61 @@
+#
+# This is a stereotype extensions file. By convention a stereotype 
+# extensions file must be named the same as the schema file used for 
+# the project under the ..\Schema directory but named with the 
+# *.stereotype-extensions file extension. For example:
+#
+# C:\
+# ├── CGMES-CIM16
+# │   ├── .settings 
+# │   ├── Documentation
+# │   │   ├── Images      
+# │   │   ├── Includes     
+# │   │   ├── Styles     
+# │   │   └── Themes     
+# │   ├── Incremental
+# │   ├── Instances
+# │   ├── Profiles
+# │   └── Schema
+# │       ├── iec61970cim16v33c_DY_pack_fix_WITH_ENTSO-E_EXTENSIONS.qea   
+# │       └── iec61970cim16v33c_DY_pack_fix_WITH_ENTSO-E_EXTENSIONS.stereotype-extensions 
+# ├── .asciidoctorconfig.adoc 
+# ├── .cimtool-settings        
+# ├── .copyright-multi-line  
+# ├── .copyright-single-line  
+# ├── .project  
+# └── ...
+#
+# If this file exists in the same folder as the schema file when 
+# performing a schema import or creating a new CIMTool project,  
+# CIMTool will automatically import it at the same time. 
+# 
+# These stereotype extensions files are intended to be used with EA 
+# project files such as .eap, .eapx, .qea, and .qeax files. They are 
+# designed to be used to add stereotypes that do not need to be in the UML
+# but rather are to be used to annotate classes, attributes, etc. at the
+# time of profiling. This can be particularly useful then for the purposes
+# of documentation or within PlantUML diagrams. An example usage is in
+# the profiling done as part of IEC 619706-452 Ed 3.0 where ShortCircuit
+# and Operation profiles that can be co-specified within a Core Equipment 
+# profile. In this scenario the ShortCircuit attributes can be annotated 
+# with a ShortCircuit stereotype during the creation of the profiles to 
+# denote which attributes are a part of ShortCircuit data. This then can 
+# be used in generated AsciiDoc and displayed to an end user for a more
+# meaningful representation. Such stereotypes also propagate into the 
+# PlantUML diagrams that get generated.
+#
+# Important notes on the <stereotype>=<description> mappings below:
+#
+# STEREOTYPES:
+# Based on UML 2.5 specifications, UML stereotypes are considered
+# case-insensitive and should NOT contain spaces. Therefore, the 
+# stereotypes in the below mapping may be expressed either in
+# the form they appear in the UML (e.g. NC for network codes)
+# or in lowercase. Either is treated the same in CIMTool.
+#
+# DESCRIPTIONS:
+# Free form description of what the Stereotype is used for.
+#
+Operation=Stereotype used to annotate attributes defined as part of the Core Equipment Operations profile.
+ShortCircuit=Stereotype used to annotate attributes defined as part of the Core Equipment ShortCircuit profile.
+
