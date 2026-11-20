@@ -3002,7 +3002,7 @@ class AirBreakSwitch(Disconnector):
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.

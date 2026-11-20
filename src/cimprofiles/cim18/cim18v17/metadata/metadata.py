@@ -22,11 +22,31 @@ class CIMStereotype(Enum):
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
-NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'dcat': 'http://www.w3.org/ns/dcat#', 'dcterms': 'http://purl.org/dc/terms/#'}
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'dcat': 'http://www.w3.org/ns/dcat#'}
 
+@dataclass(repr=False, eq=False)
+class MetaThing(Identity):
+    '''
+    Provides consistent identification for whatever information is represented
+    by a metadata object.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Boundary(Identity):
+class Boundary(MetaThing):
     '''
     Framework agreements divide the grid into electrical territories called
     Frames. A Boundary exists wherever Frames are adjacent and identifies a
@@ -34,19 +54,33 @@ class Boundary(Identity):
     frame models join.
     '''
 
-    separates: list[Frame] = field(
+    IncludedIn: list[FrameworkEdition] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'Frame.connectsTo',
+        'inverse': 'FrameworkEdition.Includes',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
-    Defines the frames separated by the Boundary.
+    Tthe framework editions that the boundary is included in.
+    '''
+    
+    Separates: list[Frame] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.ConnectsTo',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
     '''
     
     @property
@@ -63,7 +97,7 @@ class Boundary(Identity):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
-class Dataset(Identity):
+class Dataset(MetaThing):
     '''
     A superclass describing a set of information.
     For grid data management, the UML subclasses Dataset to describe different
@@ -114,19 +148,34 @@ class FrameworkEdition(Dataset):
     evolutionary state applies. Usually, this is a time range.
     '''
 
-    includes: list[Frame] = field(
-        default_factory=list,
+    Includes: Optional[Frame] = field(
+        default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Frame.includedIn',
+        'maxOccurs': '1',
+        'inverse': 'Frame.InlcudedIn',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
-    The boundaries that are included in a framework edition.
+    Identifies the frames that are included in a framework ediition.
+    '''
+    
+    Inlcudes: Optional[Reference] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Reference.IncludedIn',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The reference models included in a framework edition.
     '''
     
     @property
@@ -207,6 +256,21 @@ class GridDataset(Dataset):
     realized in a standard form or is maintained internal to a product.
     '''
 
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This property is available to processes to distinguish a category of
+    information, such as physical vs situational vs solution.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -519,9 +583,47 @@ class NonAlignedModel(GridModel):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ReferenceModel(GridModel):
+    '''
+    A grid model defined by a framework that contains objects that other grid
+    models may or must reference. e.g. A set of BaseVoltages.
+    Usually used to establish consistency in modeling.
+    If multiple ReferenceModels are defined for a Reference, their properties
+    should define their applicability to a situation criteria.
+    '''
+
+    Represents: list[Reference] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Reference.ConsistsOf',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.dcat)
 @dataclass(repr=False, eq=False)
-class Distribution(Identity):
+class Distribution(MetaThing):
     '''
     A specific representation of a dataset. A dataset might be available in
     multiple serializations that may differ in various ways, including natural
@@ -537,7 +639,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -606,7 +708,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -638,11 +740,13 @@ class Distribution(Identity):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
     The file format of the distribution.
+    dcat:mediaType SHOULD be used if the type of the distribution is defined
+    by IANA
     '''
     
     identifier: Optional[str] = field(
@@ -652,7 +756,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -671,7 +775,7 @@ class Distribution(Identity):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -685,12 +789,15 @@ class Distribution(Identity):
         'stereotypes': ['dcterms', 'dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
-    A legal document under which the resource is made available.
-    Information about licenses and rights MAY be provided for the Resource.
+    A legal document giving official permission to do something with the
+    resource.
+    Recommended practice is to identify the license document with a URI.
+    If this is not possible or feasible, a literal value that identifies
+    the license may be provided.
     '''
     
     mediaType: Optional[str] = field(
@@ -717,7 +824,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -753,7 +860,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -796,7 +903,7 @@ class Distribution(Identity):
         'stereotypes': ['dct', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
+        'namespace': '#',
         'serialize': True,
         })
     '''
@@ -833,7 +940,7 @@ class Distribution(Identity):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Frame(Identity):
+class Frame(MetaThing):
     '''
     Defines a region of a framework for which grid models may be defined unilaterally
     provided only that they join properly with a set of reference models and
@@ -881,36 +988,84 @@ class Frame(Identity):
     Frame models that reference a frame.
     '''
     
-    connectsTo: list[Boundary] = field(
+    ConnectsTo: list[Boundary] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'Boundary.separates',
+        'inverse': 'Boundary.Separates',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
-    Identifies that Boundaries of the Frame.
-    A Frame may connect to a Boundary that is defined in a separate Framework.
-    This allows an interrelationship to be established between Frameworks.
     '''
     
-    includedIn: list[FrameworkEdition] = field(
-        default_factory=list,
+    InlcudedIn: Optional[FrameworkEdition] = field(
+        default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameworkEdition.includes',
+        'maxOccurs': '1',
+        'inverse': 'FrameworkEdition.Includes',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
     Identfies the framework editions that a frame is included in.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Reference(MetaThing):
+    '''
+    Identifies that a framework has decided to make a kind of reference model
+    available. Framework policy will specify how the reference models are to
+    be used.
+    '''
+
+    ConsistsOf: list[ReferenceModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ReferenceModel.Represents',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    IncludedIn: Optional[FrameworkEdition] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'FrameworkEdition.Inlcudes',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The framework editions that the reference model is included in.
     '''
     
     @property

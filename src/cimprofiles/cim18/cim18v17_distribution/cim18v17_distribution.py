@@ -1410,62 +1410,6 @@ class CableArmorInfo(Identity):
     '''
     '''
     
-    materialName: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    numberOfTapes: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    strandCount: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    Type: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://gridappsd.org/CIM/extension#'
@@ -1912,13 +1856,14 @@ class ComModuleInfo(Identity):
     Communication module asset informtion
     '''
 
-    direction: Optional[ ComDirectionKind ] = field(
+    direction: Optional[ComDirectionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -1926,13 +1871,14 @@ class ComModuleInfo(Identity):
     Communication direction.
     '''
     
-    technology: Optional[ ComTechnologyKind ] = field(
+    technology: Optional[ComTechnologyKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -3702,13 +3648,14 @@ class AgentRole(IdentifiedObject):
     person, or place.
     '''
     
-    kind: Optional[ AgentRoleKind ] = field(
+    kind: Optional[AgentRoleKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -5275,20 +5222,6 @@ class CatalogAssetType(IdentifiedObject):
     It does not include labor to install, construct or configure it.
     '''
     
-    kind: Optional[ AssetKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of asset (from enumerated list).
-    '''
-    
     ProductAssetModel: list[ProductAssetModel] = field(
         default_factory=list,
         metadata={
@@ -5302,6 +5235,36 @@ class CatalogAssetType(IdentifiedObject):
         })
     '''
     Product asset model conforming to this catalog asset type.
+    '''
+    
+    kind: Optional[AssetKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of asset (from enumerated list).
+    '''
+    
+    quantity: Optional[StringQuantity] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The value, unit of measure, and multiplier for the quantity.
     '''
     
     AssetInfo: Optional[AssetInfo] = field(
@@ -5403,20 +5366,6 @@ class ChargingConnectorInfo(AssetInfo):
     removal
     '''
     
-    connectorType: Optional[ ConnectorTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Type of connector (e.g., CCS, CHAdeMO, Type 2).
-    '''
-    
     ChargingStation: list[ChargingStation] = field(
         default_factory=list,
         metadata={
@@ -5429,6 +5378,21 @@ class ChargingConnectorInfo(AssetInfo):
         'serialize': False,
         })
     '''
+    '''
+    
+    connectorType: Optional[ConnectorTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Type of connector (e.g., CCS, CHAdeMO, Type 2).
     '''
     
     @property
@@ -5631,20 +5595,6 @@ class ConductingAssetInfo(AssetInfo):
     Generic information for conducting asset
     '''
 
-    phaseCount: Optional[ PhaseCountKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Number of phases
-    '''
-    
     ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -5699,6 +5649,21 @@ class ConductingAssetInfo(AssetInfo):
         'serialize': False,
         })
     '''
+    '''
+    
+    phaseCount: Optional[PhaseCountKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Number of phases
     '''
     
     @property
@@ -5906,20 +5871,6 @@ class BushingInfo(ConductingAssetInfo):
     factor tap and ground.
     '''
     
-    insulationKind: Optional[ BushingInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of insulation.
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -5946,6 +5897,21 @@ class BushingInfo(ConductingAssetInfo):
         })
     '''
     Rated line-to-ground voltage. Also referred to as Uy on bushing nameplate.
+    '''
+    
+    insulationKind: Optional[BushingInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of insulation.
     '''
     
     @property
@@ -6046,13 +6012,14 @@ class CapacitorCanInfo(ConductingAssetInfo):
     Total weight of one capacitor can (i.e., 20kG).
     '''
     
-    dischargeResistorType: Optional[ DischargeResistorKind ] = field(
+    dischargeResistorType: Optional[DischargeResistorKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -6061,13 +6028,14 @@ class CapacitorCanInfo(ConductingAssetInfo):
     or not installed)
     '''
     
-    fusingType: Optional[ CapacitorCanFusingKind ] = field(
+    fusingType: Optional[CapacitorCanFusingKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -6076,13 +6044,30 @@ class CapacitorCanInfo(ConductingAssetInfo):
     inside the can or attached to the external terminal of the can.
     '''
     
-    terminalConnectionType: Optional[ TerminalConnectionKind ] = field(
+    rated10PctVoltTime: Optional[TimeInterval] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The time it takes to discharge to one tenth of the capacitor cans voltage
+    rating.
+    '''
+    
+    terminalConnectionType: Optional[TerminalConnectionKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -6233,20 +6218,6 @@ class CapacitorInfo(CompensatorInfo):
     are connected.
     '''
     
-    capacitorRackType: Optional[ CapacitorRackKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Rack type used (ie. Enclosed Rack or Open Rack).
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -6260,6 +6231,21 @@ class CapacitorInfo(CompensatorInfo):
     '''
     Basic Insulation Level voltage in kilovolts (lightening impulse withstand
     voltage).
+    '''
+    
+    capacitorRackType: Optional[CapacitorRackKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rack type used (ie. Enclosed Rack or Open Rack).
     '''
     
     @property
@@ -6367,34 +6353,6 @@ class CompositeSwitchInfo(ConductingAssetInfo):
     which the device can safely interrupt at the rated voltage.
     '''
     
-    kind: Optional[ CompositeSwitchKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of composite switch.
-    '''
-    
-    phaseCode: Optional[ PhaseCode ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Phases carried, if applicable.
-    '''
-    
     ratedVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -6407,6 +6365,36 @@ class CompositeSwitchInfo(ConductingAssetInfo):
         })
     '''
     Rated voltage.
+    '''
+    
+    kind: Optional[CompositeSwitchKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of composite switch.
+    '''
+    
+    phaseCode: Optional[PhaseCode] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phases carried, if applicable.
     '''
     
     @property
@@ -6636,20 +6624,6 @@ class ConductorInfo(ConductingAssetInfo):
     Area of conducting material cross section
     '''
     
-    material: Optional[ WireMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductor material.
-    '''
-    
     rAC25: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
@@ -6704,6 +6678,21 @@ class ConductorInfo(ConductingAssetInfo):
         })
     '''
     DC resistance per unit length of the conductor at 20 �C.
+    '''
+    
+    material: Optional[WireMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductor material.
     '''
     
     @property
@@ -7024,21 +7013,6 @@ class Crossarm(Asset):
     Cross arm
     '''
 
-    material: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Material
-    '''
-    
     OverheadStructure: Optional[OverheadStructure] = field(
         default=None,
         metadata={
@@ -7299,19 +7273,6 @@ class BatteryInfo(DCConductingAssetInfo):
     '''
     '''
     
-    batteryType: Optional[ BatteryTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     ratedCapacity: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
@@ -7348,6 +7309,20 @@ class BatteryInfo(DCConductingAssetInfo):
         'inverse': 'ElectricVehicleInfo.BatteryInfo',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
+        })
+    '''
+    '''
+    
+    batteryType: Optional[BatteryTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
     '''
@@ -7962,7 +7937,7 @@ class EarthResistivity(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -9221,20 +9196,6 @@ class InsulationInfo(AssetInfo):
     True if conductor is insulated.
     '''
     
-    insulationMaterial: Optional[ WireInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    (if insulated conductor) Material used for insulation.
-    '''
-    
     insulationThickness: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -9247,6 +9208,21 @@ class InsulationInfo(AssetInfo):
         })
     '''
     (if insulated conductor) Thickness of the insulation.
+    '''
+    
+    insulationMaterial: Optional[WireInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    (if insulated conductor) Material used for insulation.
     '''
     
     CableInfo: Optional[CableInfo] = field(
@@ -9383,13 +9359,14 @@ class InterrupterUnitInfo(AssetInfo):
     Interrupter datasheet information.
     '''
 
-    interruptingMedium: Optional[ InterruptingMediumKind ] = field(
+    interruptingMedium: Optional[InterruptingMediumKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -9816,42 +9793,6 @@ class InverterInfo(GridEdgeDeviceInfo):
     '''
     '''
     
-    operatingCategoryAbnormal: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Abnormal operating performance category</i>
-    Indication of voltage and frequency ride-through capability
-    Values = Category I, Category II, Category III
-    '''
-    
-    operatingCategoryNormal: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Normal operating performance category</i>
-    Indication of reactive power and voltage/power control capability.
-    Values = Category A, Category B
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -9874,28 +9815,6 @@ class GenerationInverterInfo(InverterInfo):
     wind, or other fuels.
     '''
 
-    generationCategory: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of Distribution Generation.
-    Examples include:
-    <ul>
-    <li>Photovoltaic (PV)</li>
-    <li>Combined Heat Power (CHP)</li>
-    <li>Fuel Cells</li>
-    <li>Small Wind Power</li>
-    </ul>
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -12134,20 +12053,6 @@ class Medium(IdentifiedObject):
     enveloping substance, such as oil in a transformer or circuit breaker.
     '''
 
-    kind: Optional[ MediumKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of this medium.
-    '''
-    
     volumeSpec: Optional[ Volume ] = field(
         default=None,
         metadata={
@@ -12161,6 +12066,21 @@ class Medium(IdentifiedObject):
     '''
     The volume of the medium specified for this application. Note that
     the actual volume is a type of measurement associated witht the asset.
+    '''
+    
+    kind: Optional[MediumKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of this medium.
     '''
     
     Specification: Optional[Specification] = field(
@@ -12683,19 +12603,19 @@ class MultiCircuitGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
+    WireSpacing: list[WireSpacing] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSpacing.MultiCircuitGroup',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'serialize': False,
         })
     '''
-    The XY spacing that applies to this coupled line segment group.
+    The wire spacing that applies to this coupled line segment group.
     '''
     
 @stereotype(CIMStereotype.Concrete)
@@ -13194,20 +13114,6 @@ class OperatingMechanismInfo(AssetInfo):
     Close voltage in volts DC.
     '''
     
-    mechanismKind: Optional[ OperatingMechanismKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of breaker operating mechanism.
-    '''
-    
     motorRunCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -13276,6 +13182,21 @@ class OperatingMechanismInfo(AssetInfo):
         })
     '''
     Trip voltage in volts DC.
+    '''
+    
+    mechanismKind: Optional[OperatingMechanismKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of breaker operating mechanism.
     '''
     
     @property
@@ -18030,7 +17951,7 @@ class ACLineSegment(Conductor):
     The assembly specification used by this line
     '''
     
-    spacingYOffset: Optional[ Displacement ] = field(
+    ySpacingOffset: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -21202,20 +21123,6 @@ class ProductAssetModel(IdentifiedObject):
     Style number of asset model.
     '''
     
-    corporateStandardKind: Optional[ CorporateStandardKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of corporate standard for this asset model.
-    '''
-    
     overallLength: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -21228,20 +21135,6 @@ class ProductAssetModel(IdentifiedObject):
         })
     '''
     Overall length of this asset model.
-    '''
-    
-    usageKind: Optional[ AssetModelUsageKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Intended usage for this asset model.
     '''
     
     weightTotal: Optional[ Mass ] = field(
@@ -21270,6 +21163,36 @@ class ProductAssetModel(IdentifiedObject):
         'serialize': False,
         })
     '''
+    '''
+    
+    corporateStandardKind: Optional[CorporateStandardKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of corporate standard for this asset model.
+    '''
+    
+    usageKind: Optional[AssetModelUsageKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Intended usage for this asset model.
     '''
     
     AssetInfo: Optional[AssetInfo] = field(
@@ -22987,63 +22910,6 @@ class ReactorInfo(CompensatorInfo):
     Volume of oil in litres.
     '''
     
-    circulationAndCoolingType: Optional[ CirculationAndCoolingKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The method used to cool the shunt reactor, O: oil; A: air; N: natural;
-    F: forced (ie: ON, ONAN, ONAF or OFAF).
-    '''
-    
-    coreType: Optional[ ReactorCoreKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The type of core of the reactor. Example Air, steel, concrete
-    '''
-    
-    insulationMedium: Optional[ ReactorInsulationMediumKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    This property denotes whether the reactor is air or oil.
-    '''
-    
-    oilPreservationType: Optional[ OilPreservationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of oil preservation.
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -23057,6 +22923,67 @@ class ReactorInfo(CompensatorInfo):
     '''
     Basic Insulation Level voltage in kilovolts (lightening impulse withstand
     voltage).
+    '''
+    
+    circulationAndCoolingType: Optional[CirculationAndCoolingKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The method used to cool the shunt reactor, O: oil; A: air; N: natural;
+    F: forced (ie: ON, ONAN, ONAF or OFAF).
+    '''
+    
+    coreType: Optional[ReactorCoreKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The type of core of the reactor. Example Air, steel, concrete
+    '''
+    
+    insulationMedium: Optional[ReactorInsulationMediumKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This property denotes whether the reactor is air or oil.
+    '''
+    
+    oilPreservationType: Optional[OilPreservationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of oil preservation.
     '''
     
     @property
@@ -23791,7 +23718,7 @@ class EVSE(PowerElectronicsConnection):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -25382,21 +25309,6 @@ class SVCInfo(FACTSInfo):
     Static Var Compensator - High speed switched reactor and capacitor.
     '''
 
-    svcReactiveControlType: Optional[ SVCReactiveControlKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    An SVC can either be set to control the voltage of a bus or provide
-    contant Mvar to the bus.
-    '''
-    
     tcrRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
@@ -25425,6 +25337,22 @@ class SVCInfo(FACTSInfo):
     '''
     Rating in reactance if the Static Var Compensator has a Thyristor Switched
     Capacitor
+    '''
+    
+    svcReactiveControlType: Optional[SVCReactiveControlKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    An SVC can either be set to control the voltage of a bus or provide
+    contant Mvar to the bus.
     '''
     
     @property
@@ -25989,11 +25917,11 @@ class ServiceMeterInfo(ConductingAssetInfo):
     '''
     '''
     
-    formType: Optional[ MeterFormKind ] = field(
+    startingCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
+        'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -26002,13 +25930,14 @@ class ServiceMeterInfo(ConductingAssetInfo):
     '''
     '''
     
-    startingCurrent: Optional[ CurrentFlow ] = field(
+    formType: Optional[MeterFormKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -26086,20 +26015,6 @@ class ShortCircuitResponse(Identity):
     relative to voltage) at different voltages.
     '''
 
-    faultSequenceType: Optional[ PhaseCodeExtension ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of fault: PositiveSequence, ZeroSequence, or NegativeSequence
-    '''
-    
     outputCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -26144,6 +26059,21 @@ class ShortCircuitResponse(Identity):
     Voltage measured at the device terminal
     '''
     
+    faultSequenceType: Optional[PhaseCodeExtension] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of fault: PositiveSequence, ZeroSequence, or NegativeSequence
+    '''
+    
     ConductingAssetInfo: Optional[ConductingAssetInfo] = field(
         default=None,
         metadata={
@@ -26179,13 +26109,14 @@ class ShuntCapacitorInfo(CapacitorInfo):
     and adding attributes for this specialization.
     '''
 
-    connectionKind: Optional[ CompensatorConnectionKind ] = field(
+    connectionKind: Optional[CompensatorConnectionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -28229,35 +28160,6 @@ class StatComInfo(FACTSInfo):
     and capacitor.
     '''
 
-    activePowerSourceType: Optional[ ActivePowerSourceKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Enumeration used to designate the type of Active power source used
-    by the STATCOM.
-    '''
-    
-    dcConverterType: Optional[ STATCOMKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The type DC to AC converter unit providing the AC compensation
-    '''
-    
     maxNegativeMW: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -28288,13 +28190,45 @@ class StatComInfo(FACTSInfo):
     MW that the STATCOM can provide to the grid
     '''
     
-    powerElectronicsGateType: Optional[ PowerElectronicsGateKind ] = field(
+    activePowerSourceType: Optional[ActivePowerSourceKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Enumeration used to designate the type of Active power source used
+    by the STATCOM.
+    '''
+    
+    dcConverterType: Optional[STATCOMKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The type DC to AC converter unit providing the AC compensation
+    '''
+    
+    powerElectronicsGateType: Optional[PowerElectronicsGateKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -28459,33 +28393,6 @@ class StorageInverterInfo(InverterInfo):
     '''
     '''
     
-    storageCategory: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of Distribution Storage.
-    Examples include:
-    <ul>
-    <li>Lead�Acid Battery</li>
-    <li>Nickel�Cadmium (NiCd) Battery</li>
-    <li>Nickel�Metal Hydride (NiMH) Battery</li>
-    <li>Lithium-Ion Battery</li>
-    <li>Lithium-Ion Polymer (LiPo) Battery</li>
-    <li>Aluminum-Sulfur Battery</li>
-    <li>Flow Battery</li>
-    <li>Mechanical Flywheel</li>
-    <li>Mechanical Gravitational</li>
-    </ul>
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -28626,13 +28533,14 @@ class StringQuantity(Identity):
     Value of this quantity.
     '''
     
-    multiplier: Optional[ UnitMultiplier ] = field(
+    multiplier: Optional[UnitMultiplier] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -28640,13 +28548,14 @@ class StringQuantity(Identity):
     Unit multiplier of this quantity.
     '''
     
-    unit: Optional[ UnitSymbol ] = field(
+    unit: Optional[UnitSymbol] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -28787,51 +28696,6 @@ class OverheadStructure(Structure):
     '''
     '''
     
-    frameType: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Frame type such as H-Frame, Lattice Tower, Guyed Lattice, A-Frame.
-    '''
-    
-    structureAngle: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure angle
-    '''
-    
-    structureStandard: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure standard such as standard drawing number
-    '''
-    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.avista)
 @dataclass(repr=False, eq=False)
@@ -28901,20 +28765,6 @@ class StructureInfo(AssetInfo):
     Material this structure is made of.
     '''
     
-    materialKind: Optional[ StructureMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Material this structure is made of.
-    '''
-    
     ratedVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -28928,6 +28778,21 @@ class StructureInfo(AssetInfo):
     '''
     Maximum rated voltage of the equipment that can be mounted on/contained
     within the structure.
+    '''
+    
+    materialKind: Optional[StructureMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Material this structure is made of.
     '''
     
     ConstructedDimensions: Optional[Dimension] = field(
@@ -28978,13 +28843,14 @@ class MarineStructureInfo(StructureInfo):
     Marine structure information.
     '''
 
-    kind: Optional[ MarineStructureKind ] = field(
+    kind: Optional[MarineStructureKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -30372,7 +30238,7 @@ class EarthingSwitch(Switch):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.
@@ -34638,71 +34504,6 @@ class TransformerCoreInfo(AssetInfo):
     '''
     '''
 
-    coreMaterial: Optional[ TransformerCoreMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    coreType: Optional[ CoreConstructionKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    laminationAssembly: Optional[ TransformerLaminationAssemblyKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    laminationShape: Optional[ TransformerLaminationShapeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    legType: Optional[ TransformerLegKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     outerLimbArea: Optional[ Area ] = field(
         default=None,
         metadata={
@@ -34775,6 +34576,76 @@ class TransformerCoreInfo(AssetInfo):
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    coreMaterial: Optional[TransformerCoreMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    coreType: Optional[CoreConstructionKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    laminationAssembly: Optional[TransformerLaminationAssemblyKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    laminationShape: Optional[TransformerLaminationShapeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    legType: Optional[TransformerLegKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -37128,75 +36999,20 @@ class TransformerWinding(IdentifiedObject):
     lug shared by both sides (e.g. H0X0 or SL).
     '''
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TransformerWindingInfo(AssetInfo):
     '''
     '''
 
-    windingArrangement: Optional[ WindingArrangementKind ] = field(
+    windingArrangement: Optional[WindingArrangementKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    conductorDiameter: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    conductorShape: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    ratedS: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    windingInsulationType: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
         'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
@@ -37271,13 +37087,14 @@ class PipeBusbarInfo(TubeBusbarInfo):
     Pipe busbar information
     '''
 
-    pipeType: Optional[ PipeBusbarKind ] = field(
+    pipeType: Optional[PipeBusbarKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -37404,13 +37221,14 @@ class UndergroundStructureInfo(StructureInfo):
     Underground structure information
     '''
 
-    kind: Optional[ UndergroundStructureKind ] = field(
+    kind: Optional[UndergroundStructureKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -37844,20 +37662,6 @@ class ElectricVehicleInfo(VehicleInfo):
     '''
     '''
     
-    evType: Optional[ EVTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Type of EV (e.g., BEV, PHEV, bus, truck, motorcycle).
-    '''
-    
     maxChargingRate: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -37869,6 +37673,21 @@ class ElectricVehicleInfo(VehicleInfo):
         'serialize': True,
         })
     '''
+    '''
+    
+    evType: Optional[EVTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Type of EV (e.g., BEV, PHEV, bus, truck, motorcycle).
     '''
     
     BatteryInfo: Optional[BatteryInfo] = field(
@@ -38867,7 +38686,7 @@ class WireConfiguration(EquipmentConfiguration):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -39081,19 +38900,6 @@ class WireInfo(ConductorInfo):
     Number of strands in the conductor.
     '''
     
-    constructionKind: Optional[ WireMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     coreRadius: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -39135,20 +38941,6 @@ class WireInfo(ConductorInfo):
     Geometric mean radius. If we replace the conductor by a thin walled
     tube of radius GMR, then its reactance is identical to the reactance
     of the actual conductor.
-    '''
-    
-    insulationMaterial: Optional[ WireInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    (if insulated conductor) Material used for insulation.
     '''
     
     insulationThickness: Optional[ Length ] = field(
@@ -39219,6 +39011,35 @@ class WireInfo(ConductorInfo):
     '''
     '''
     
+    constructionKind: Optional[WireMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    insulationMaterial: Optional[WireInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    (if insulated conductor) Material used for insulation.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -39268,13 +39089,14 @@ class BareWireInfo(WireInfo):
     Bare wire data.
     '''
 
-    wireConstructionKind: Optional[ WireConstructionKind ] = field(
+    wireConstructionKind: Optional[WireConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -39328,20 +39150,6 @@ class CableInfo(WireInfo):
         })
     '''
     True if sheath / shield is used as a neutral (i.e., bonded).
-    '''
-    
-    constructionKind: Optional[ CableConstructionKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of construction of this cable.
     '''
     
     diameterOverCore: Optional[ Length ] = field(
@@ -39415,13 +39223,29 @@ class CableInfo(WireInfo):
     Maximum nominal design operating temperature.
     '''
     
-    outerJacketKind: Optional[ CableOuterJacketKind ] = field(
+    constructionKind: Optional[CableConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of construction of this cable.
+    '''
+    
+    outerJacketKind: Optional[CableOuterJacketKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -39429,13 +39253,14 @@ class CableInfo(WireInfo):
     Kind of outer jacket of this cable.
     '''
     
-    shieldMaterial: Optional[ CableShieldMaterialKind ] = field(
+    shieldMaterial: Optional[CableShieldMaterialKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -39624,21 +39449,6 @@ class MultiCoreCableInfo(CableInfo):
     &#176;C
     '''
     
-    neutralSizeDescription: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Neutral wire size description
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -39659,13 +39469,14 @@ class OverheadWireInfo(WireInfo):
     Overhead wire data.
     '''
 
-    wireConstructionKind: Optional[ WireConstructionKind ] = field(
+    wireConstructionKind: Optional[WireConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute', 'add'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -40176,6 +39987,22 @@ class WireSpacing(IdentifiedObject):
     The wire configuration templates that use this wire spacing
     '''
     
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'MultiCircuitGroup.WireSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The multi circuit group of adjacent line segments defined by the wire
+    spacing.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -40653,22 +40480,6 @@ class XYSpacing(WireSpacing):
         })
     '''
     Conductor positions placed directly in this spacing.
-    '''
-    
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['new'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MultiCircuitGroup.XYSpacing',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The multi circuit group of adjacent line segments defined by the XY
-    spacing.
     '''
     
     @property

@@ -2,7 +2,6 @@
   "@context": {
     "cim": "http://cim.ucaiug.io/cim101/draft#",
     "dcat": "http://www.w3.org/ns/dcat#",
-    "dcterms": "http://purl.org/dc/terms/#",
     "eu": "http://iec.ch/TC57/CIM100-European#",
     "gad": "http://gridappsd.org/CIM/extension#",
     "gb": "http://GB/placeholder/ext#",
@@ -192,11 +191,6 @@
       "qudt:hasQuantityKind": "cim:Resistance"
     },
     {
-      "@id": "cim:ACLineSegment.spacingYOffset",
-      "qudt:hasUnit": "unit:M",
-      "qudt:hasQuantityKind": "cim:Displacement"
-    },
-    {
       "@id": "cim:ACLineSegment.x",
       "qudt:hasUnit": "unit:OHM",
       "qudt:hasQuantityKind": "cim:Reactance"
@@ -205,6 +199,11 @@
       "@id": "cim:ACLineSegment.x0",
       "qudt:hasUnit": "unit:OHM",
       "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:ACLineSegment.ySpacingOffset",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
     },
     {
       "@id": "cim:ActivePowerControlFunction.targetValue",
