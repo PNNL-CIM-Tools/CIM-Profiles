@@ -42,7 +42,6 @@ ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {
     'cim': 'http://cim.ucaiug.io/cim101/draft#',
     'dcat': 'http://www.w3.org/ns/dcat#',
-    'dcterms': 'http://purl.org/dc/terms/#',
     'eu': 'http://iec.ch/TC57/CIM100-European#',
     'gad': 'http://gridappsd.org/CIM/extension#',
     'gb': 'http://GB/placeholder/ext#',
@@ -2222,44 +2221,6 @@ class BidDirectionKind(Enum):
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Boundary(Identity):
-    '''
-    Framework agreements divide the grid into electrical territories called
-    Frames. A Boundary exists wherever Frames are adjacent and identifies a
-    location that requires a BoundaryModel to define precisely how the adjacent
-    frame models join.
-    '''
-
-    separates: list[Frame] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Frame.connectsTo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Defines the frames separated by the Boundary.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
 class BranchGroupTerminal(Identity):
     '''
     A specific directed terminal flow for a branch group.
@@ -2670,62 +2631,6 @@ class CableArmorInfo(Identity):
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    materialName: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    numberOfTapes: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    strandCount: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    Type: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -3376,13 +3281,14 @@ class ComModuleInfo(Identity):
     Communication module asset informtion
     '''
 
-    direction: Optional[ ComDirectionKind ] = field(
+    direction: Optional[ComDirectionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -3390,13 +3296,14 @@ class ComModuleInfo(Identity):
     Communication direction.
     '''
     
-    technology: Optional[ ComTechnologyKind ] = field(
+    technology: Optional[ComTechnologyKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -6271,49 +6178,6 @@ class DCTerminalPolarityKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False, eq=False)
-class Dataset(Identity):
-    '''
-    A superclass describing a set of information.
-    For grid data management, the UML subclasses Dataset to describe different
-    kinds of information.
-    <ul>
-    <li>Many subclasses of Dataset are completely described in metadata and
-    do not have corresponding Distributions.</li>
-    <li>GridDataset and Attachment subclasses are summary desriptions of information
-    that are detailed in associated Distributions.</li>
-    </ul>
-    '''
-
-    isRealizedAs: list[Distribution] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['dcat'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Distribution.realizes',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    A realization of dataset information, usually a file conforming to
-    some specifications.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -6552,319 +6416,6 @@ class Displacement(CIMUnit):
         return '1'
     
 
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.dcat)
-@dataclass(repr=False, eq=False)
-class Distribution(Identity):
-    '''
-    A specific representation of a dataset. A dataset might be available in
-    multiple serializations that may differ in various ways, including natural
-    language, media-type or format, schematic organization, temporal and spatial
-    resolution, level of detail or profiles (which might specify any or all
-    of the above).
-    '''
-
-    accessRights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    Information about who access the resource or an indication of its security
-    status.
-    Access Rights may include information regarding access or restrictions
-    based on privacy, security, or other policies.
-    '''
-    
-    accessURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    A URL of the resource that gives access to a distribution of the dataset.
-    E.g., landing page, feed, SPARQL endpoint.
-    dcat:accessURL SHOULD be used for the URL of a service or location
-    that can provide access to this distribution, typically through a Web
-    form, query or API call.
-    dcat:downloadURL is preferred for direct links to downloadable resources.
-    If the distribution(s) are accessible only through a landing page (i.e.,
-    direct download URLs are not known), then the landing page URL associated
-    with the dcat:Dataset SHOULD be duplicated as access URL on a distribution
-    '''
-    
-    byteSize: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The size of a distribution in bytes. The size in bytes can be approximated
-    when the precise size is not known.
-    '''
-    
-    compressFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The compression format of the distribution in which the data is contained
-    in a compressed form, e.g. to reduce the size of the downloadable file.
-    '''
-    
-    description: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    A free-text account of the distribution.
-    '''
-    
-    downloadURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The URL of the downloadable file in a given format. E.g., CSV file
-    or RDF file. The format is indicated by the distribution's dcterms:format
-    and/or dcat:mediaType
-    dcat:downloadURL SHOULD be used for the URL at which this distribution
-    is available directly, typically through a HTTP Get request.
-    '''
-    
-    format: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    The file format of the distribution.
-    '''
-    
-    identifier: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    An unambiguous reference to the resource within a given context.
-    Recommended practice is to identify the resource by means of a string
-    conforming to an identification system. Examples include International
-    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
-    Resource Name (URN). Persistent identifiers should be provided as HTTP
-    URIs.
-    '''
-    
-    issued: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    Date of formal issuance (e.g., publication) of the distribution.
-    '''
-    
-    license: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    A legal document under which the resource is made available.
-    Information about licenses and rights MAY be provided for the Resource.
-    '''
-    
-    mediaType: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The media type of the distribution as defined by IANA
-    This property SHOULD be used when the media type of the distribution
-    is defined in IANA, otherwise dcterms:format MAY be used with different
-    values.
-    '''
-    
-    modified: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    Date on which the resource was changed.
-    Recommended practice is to describe the date, date/time, or period
-    of time as recommended for the property Date, of which this is a subproperty.
-    '''
-    
-    packageFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The package format of the distribution in which one or more data files
-    are grouped together, e.g. to enable a set of related files to be downloaded
-    together.
-    This property is to be used when the files in the distribution are
-    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
-    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
-    if available.
-    '''
-    
-    rights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    A statement that concerns all rights not addressed with dct:license
-    or dct:accessRights, such as copyright statements.
-    '''
-    
-    spatialResolutionInMeters: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum spatial separation resolvable in a dataset, measured in metres.
-    '''
-    
-    temporalResolution: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum time period resolvable in a dataset.
-    '''
-    
-    title: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/#',
-        'serialize': True,
-        })
-    '''
-    A name given to the distribution.
-    '''
-    
-    realizes: Optional[Dataset] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Dataset.isRealizedAs',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The information in a file.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://www.w3.org/ns/dcat#'
-    @property
-    def __package__(self):
-        return 'DCAT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class EVTypeKind(Enum):
@@ -7251,22 +6802,6 @@ class EquivalentInjectionTimePoint(Identity):
     The EquivalentInjection schedule that has this time point.
     '''
     
-    regulationStatus: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the EquivalentInjection. True is
-    regulating. False is not regulating.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -7414,23 +6949,6 @@ class ExternalNetworkInjectionTimePoint(Identity):
     The external network injection schedule that has this time point.
     '''
     
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -7485,139 +7003,6 @@ class Foundation(Anchor):
     @property
     def __package__(self):
         return 'Assets'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class Frame(Identity):
-    '''
-    Defines a region of a framework for which grid models may be defined unilaterally
-    provided only that they join properly with a set of reference models and
-    perimeter boundary models defined by the framework.
-    When a framework agreement is undertaken by a group of authorities, the
-    first task is to agree on the set of frames that will best support the
-    use cases that the participants have in view. The general objective is
-    to partition the grid of interest into frame parts such that:
-    * The modeling for a frame will be supplied from one authority.
-    * The modeling for the use cases of interest can be directed simply by
-    identifying frames to be included or excluded.
-    Note that a new Frame object is required if any of its perimeter boundaries
-    are different. A new Frame may, however, retain the same name as a previous
-    Frame and therefore be located by a same query.
-    '''
-
-    terminatedBy: list[EdgeModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.replaces',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Identifies an edge model that may be used to represent flow into an
-    adjacent frame.
-    '''
-    
-    isReferencedBy: list[FrameModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.represents',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Frame models that reference a frame.
-    '''
-    
-    connectsTo: list[Boundary] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Boundary.separates',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Identifies that Boundaries of the Frame.
-    A Frame may connect to a Boundary that is defined in a separate Framework.
-    This allows an interrelationship to be established between Frameworks.
-    '''
-    
-    includedIn: list[FrameworkEdition] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameworkEdition.includes',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Identfies the framework editions that a frame is included in.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-
-@dataclass(repr=False, eq=False)
-class FrameworkEdition(Dataset):
-    '''
-    A framework edition defines the set of frames, boundaries and reference
-    models for an evolutionary state of a framework.
-    Framework edition properties must identify the situation for which the
-    evolutionary state applies. Usually, this is a time range.
-    '''
-
-    includes: list[Frame] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Frame.includedIn',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The boundaries that are included in a framework edition.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
     @property
     def __minOccurs__(self):
         return '0'
@@ -8108,355 +7493,6 @@ class Circle(GeometricElement):
     @property
     def __package__(self):
         return 'Common'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class GridAssembly(Dataset):
-    '''
-    A set of grid models that join together through grid data associations
-    to create a set of modeling for some business purpose, most often a set
-    of modeling that either defines the input to or the result of grid analysis.
-    An Assembly should be viewed as a statement by the producer that it put
-    this information together in the internal form used by the producer and
-    generated any results based on the algorithm of the producer. When an Assembly
-    is passed to some other party, the information is exported in standard
-    form and imported to the other party's system. Receivers will typically
-    re-execute the analysis to assure successful transfer of information (assuming
-    they have that capability).
-    Note that assemblies may share common model components. For example, it
-    is common that many studies are conducted on the same physical description
-    of the grid.
-    '''
-
-    contains: list[GridModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.usedIn',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Identifies the grid models that make up the assembly.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class GridDataset(Dataset):
-    '''
-    GridDataset describes a set of grid modeling information:
-    <ul>
-    <li>business purpose is inherited from Dataset. e.g. Day-ahead congestion
-    or state estimation or ....</li>
-    <li>datetime describes the moment is time represented.</li>
-    <li>type describes a category of information, such as physical, sitatuional,
-    solution.</li>
-    <li>GridDelta subclass represent components of change description.</li>
-    <li>GridModel subclass represents complete sets of modeling and is further
-    subclassed to indicate coverage.</li>
-    </ul>
-    GridDataset description is valid regardless of the syntax or semantics
-    used to realize the information, so it valid whether the information is
-    realized in a standard form or is maintained internal to a product.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class GridModel(GridDataset):
-    '''
-    Classes that inherit from GridModel all represent a set of information
-    about a part of the grod in one state.
-    The kind of information is indicated by the profileType inherited from
-    GridDataset, which may be either an individual curated profile or a stack
-    of profiles. A stack GridModel is necessary when grid artifact Distributions
-    are a union of curated profiles, which is very common. Typically, products
-    work with stacks and exchange stacks. Occasionally, however, an individual
-    profile is extracted from a stack and used as part of another stack.
-    '''
-
-    usedIn: list[GridAssembly] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridAssembly.contains',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Identifies the assemblies that include the grid model.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class BoundaryModel(GridModel):
-    '''
-    Represents a grid model that defines a boundary agreement for a framework.
-    A boundary model defines the set of physical grid objects that separate
-    adjacent frames such that frame models must have associations only with
-    the boundary objects and not with any adjacent frame model objects.
-    Bilateral boundary models separating two adjacent frames are recommended
-    practice but multilateral boundary models are allowed.
-    If multiple BoundaryModels are defined for a Boundary, their properties
-    should define their applicability to a situation criteria.
-    '''
-
-    canBeTerminatedBy: list[EdgeModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.terrminates',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Identifies a boundary edge that terminates a boundary model.
-    '''
-    
-    partOfPerimeter: list[FrameModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.perimeter',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Is part of a FramePerimeter. Note that it is allowed that a FramePerimeter
-    may be made up of BoundaryModels for Boundaries from different Frameworks.
-    '''
-    
-    defines: Optional[EquivalentModel] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'EquivalentModel.joinsWith',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Any model that approximates a part of the grid. Most often the result
-    of a mathematical reduction of a set of frame models, but may also
-    be used to describe more complex manually generated edges of areas
-    modeled in detail.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class EdgeModel(GridModel):
-    '''
-    When there is a boundary between frame X that is included in a study and
-    another frame that is not included, a physical edge model is the recommended
-    means of representing the flow from X into the un-included frame. The edge
-    model has an association to the boundary model that it joins and to frame
-    X (the frame that the edge pairs with).
-    Normally, a utility examines each framework edition it receives and adds
-    new physical edge models for each new boundary models. Physical edge models
-    are only changed when a new boundary model is defined. A boundary may have
-    edges for each of its adjacent frames if the studies conducted by a utility
-    require them.
-    See reference notes on Frameworks and Grid Models for more information.
-    '''
-
-    replaces: Optional[Frame] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Frame.terminatedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Identifies the frame that the edge model replaces.
-    '''
-    
-    terrminates: Optional[BoundaryModel] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'BoundaryModel.canBeTerminatedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    A boundary model that an edge model terminates -- i.e. joins with.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class EquivalentModel(GridModel):
-    '''
-    Represents grid modeling produced by executing a mathematical reduction
-    of one or more frames of an assembly. In a framework, the resulting equivalent
-    model will plug into the set of boundary models that connect unreduced
-    frames to reduced frames. If no framework element is referenced as reduced,
-    the meaning of the equivalent is not described and must be controlled by
-    the processes that defined the model.
-    '''
-
-    joinsWith: list[BoundaryModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.defines',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    A perimeter definition for the set of boundary models that the equivalent
-    joins with.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class FrameModel(GridModel):
-    '''
-    A model for a frame.
-    A created frame model references the set of boundary models that it was
-    created against. That frame model will remain valid without modification
-    for any situation where its frame is defined by the same set of boundary
-    models.
-    '''
-
-    perimeter: list[BoundaryModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.partOfPerimeter',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The boundary models that the frame model was joined with when the frame
-    model was created.
-    '''
-    
-    represents: Optional[Frame] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Frame.isReferencedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The frame that the frame model represents.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
     @property
     def __minOccurs__(self):
         return '0'
@@ -9049,13 +8085,14 @@ class AgentRole(IdentifiedObject):
     person, or place.
     '''
     
-    kind: Optional[ AgentRoleKind ] = field(
+    kind: Optional[AgentRoleKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -12352,20 +11389,6 @@ class CatalogAssetType(IdentifiedObject):
     It does not include labor to install, construct or configure it.
     '''
     
-    kind: Optional[ AssetKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of asset (from enumerated list).
-    '''
-    
     ProductAssetModel: list[ProductAssetModel] = field(
         default_factory=list,
         metadata={
@@ -12379,6 +11402,36 @@ class CatalogAssetType(IdentifiedObject):
         })
     '''
     Product asset model conforming to this catalog asset type.
+    '''
+    
+    kind: Optional[AssetKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of asset (from enumerated list).
+    '''
+    
+    quantity: Optional[StringQuantity] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The value, unit of measure, and multiplier for the quantity.
     '''
     
     AssetInfo: Optional[AssetInfo] = field(
@@ -12480,20 +11533,6 @@ class ChargingConnectorInfo(AssetInfo):
     removal
     '''
     
-    connectorType: Optional[ ConnectorTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Type of connector (e.g., CCS, CHAdeMO, Type 2).
-    '''
-    
     ChargingStation: list[ChargingStation] = field(
         default_factory=list,
         metadata={
@@ -12506,6 +11545,21 @@ class ChargingConnectorInfo(AssetInfo):
         'serialize': False,
         })
     '''
+    '''
+    
+    connectorType: Optional[ConnectorTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Type of connector (e.g., CCS, CHAdeMO, Type 2).
     '''
     
     @property
@@ -12708,20 +11762,6 @@ class ConductingAssetInfo(AssetInfo):
     Generic information for conducting asset
     '''
 
-    phaseCount: Optional[ PhaseCountKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Number of phases
-    '''
-    
     ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -12776,6 +11816,21 @@ class ConductingAssetInfo(AssetInfo):
         'serialize': False,
         })
     '''
+    '''
+    
+    phaseCount: Optional[PhaseCountKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Number of phases
     '''
     
     @property
@@ -12983,20 +12038,6 @@ class BushingInfo(ConductingAssetInfo):
     factor tap and ground.
     '''
     
-    insulationKind: Optional[ BushingInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of insulation.
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -13023,6 +12064,21 @@ class BushingInfo(ConductingAssetInfo):
         })
     '''
     Rated line-to-ground voltage. Also referred to as Uy on bushing nameplate.
+    '''
+    
+    insulationKind: Optional[BushingInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of insulation.
     '''
     
     @property
@@ -13123,13 +12179,14 @@ class CapacitorCanInfo(ConductingAssetInfo):
     Total weight of one capacitor can (i.e., 20kG).
     '''
     
-    dischargeResistorType: Optional[ DischargeResistorKind ] = field(
+    dischargeResistorType: Optional[DischargeResistorKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -13138,13 +12195,14 @@ class CapacitorCanInfo(ConductingAssetInfo):
     or not installed)
     '''
     
-    fusingType: Optional[ CapacitorCanFusingKind ] = field(
+    fusingType: Optional[CapacitorCanFusingKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -13153,13 +12211,30 @@ class CapacitorCanInfo(ConductingAssetInfo):
     inside the can or attached to the external terminal of the can.
     '''
     
-    terminalConnectionType: Optional[ TerminalConnectionKind ] = field(
+    rated10PctVoltTime: Optional[TimeInterval] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The time it takes to discharge to one tenth of the capacitor cans voltage
+    rating.
+    '''
+    
+    terminalConnectionType: Optional[TerminalConnectionKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -13310,20 +12385,6 @@ class CapacitorInfo(CompensatorInfo):
     are connected.
     '''
     
-    capacitorRackType: Optional[ CapacitorRackKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Rack type used (ie. Enclosed Rack or Open Rack).
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -13337,6 +12398,21 @@ class CapacitorInfo(CompensatorInfo):
     '''
     Basic Insulation Level voltage in kilovolts (lightening impulse withstand
     voltage).
+    '''
+    
+    capacitorRackType: Optional[CapacitorRackKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Rack type used (ie. Enclosed Rack or Open Rack).
     '''
     
     @property
@@ -13444,34 +12520,6 @@ class CompositeSwitchInfo(ConductingAssetInfo):
     which the device can safely interrupt at the rated voltage.
     '''
     
-    kind: Optional[ CompositeSwitchKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of composite switch.
-    '''
-    
-    phaseCode: Optional[ PhaseCode ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Phases carried, if applicable.
-    '''
-    
     ratedVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -13484,6 +12532,36 @@ class CompositeSwitchInfo(ConductingAssetInfo):
         })
     '''
     Rated voltage.
+    '''
+    
+    kind: Optional[CompositeSwitchKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of composite switch.
+    '''
+    
+    phaseCode: Optional[PhaseCode] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Phases carried, if applicable.
     '''
     
     @property
@@ -13713,20 +12791,6 @@ class ConductorInfo(ConductingAssetInfo):
     Area of conducting material cross section
     '''
     
-    material: Optional[ WireMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Conductor material.
-    '''
-    
     rAC25: Optional[ ResistancePerLength ] = field(
         default=None,
         metadata={
@@ -13781,6 +12845,21 @@ class ConductorInfo(ConductingAssetInfo):
         })
     '''
     DC resistance per unit length of the conductor at 20 �C.
+    '''
+    
+    material: Optional[WireMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Conductor material.
     '''
     
     @property
@@ -14482,21 +13561,6 @@ class Crossarm(Asset):
     Cross arm
     '''
 
-    material: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Material
-    '''
-    
     OverheadStructure: Optional[OverheadStructure] = field(
         default=None,
         metadata={
@@ -15058,19 +14122,6 @@ class BatteryInfo(DCConductingAssetInfo):
     '''
     '''
     
-    batteryType: Optional[ BatteryTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     ratedCapacity: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
@@ -15107,6 +14158,20 @@ class BatteryInfo(DCConductingAssetInfo):
         'inverse': 'ElectricVehicleInfo.BatteryInfo',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
+        })
+    '''
+    '''
+    
+    batteryType: Optional[BatteryTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
     '''
@@ -16039,7 +15104,7 @@ class EarthResistivity(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -16567,22 +15632,6 @@ class EquivalentInjectionRegularSchedule(BaseRegularIntervalSchedule):
     EquivalentInjection which has EquivalentInjectionRegularSchedule.
     '''
     
-    regulationStatus: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the EquivalentInjection. True is
-    regulating. False is not regulating.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -16784,23 +15833,6 @@ class ExternalNetworkInjectionRegularSchedule(BaseRegularIntervalSchedule):
         })
     '''
     External network injection which has ExternalNetworkinjectionRegularSchedule
-    '''
-    
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
     '''
     
     @property
@@ -19548,24 +18580,6 @@ class InServiceRegularSchedule(BaseRegularIntervalSchedule):
     Equipment which has InServiceRegularSchedule.
     '''
     
-    inService: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the availability of the equipment. True means the equipment
-    is available for topology processing, which determines if the equipment
-    is energized or not. False means that the equipment is treated by network
-    applications as if it is not in the model.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -19651,24 +18665,6 @@ class InServiceTimePoint(Identity):
         })
     '''
     The time the data is valid for.
-    '''
-    
-    inService: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the availability of the equipment. True means the equipment
-    is available for topology processing, which determines if the equipment
-    is energized or not. False means that the equipment is treated by network
-    applications as if it is not in the model.
     '''
     
     InServiceSchedule: Optional[InServiceSchedule] = field(
@@ -20098,20 +19094,6 @@ class InsulationInfo(AssetInfo):
     True if conductor is insulated.
     '''
     
-    insulationMaterial: Optional[ WireInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    (if insulated conductor) Material used for insulation.
-    '''
-    
     insulationThickness: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -20124,6 +19106,21 @@ class InsulationInfo(AssetInfo):
         })
     '''
     (if insulated conductor) Thickness of the insulation.
+    '''
+    
+    insulationMaterial: Optional[WireInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    (if insulated conductor) Material used for insulation.
     '''
     
     CableInfo: Optional[CableInfo] = field(
@@ -20260,13 +19257,14 @@ class InterrupterUnitInfo(AssetInfo):
     Interrupter datasheet information.
     '''
 
-    interruptingMedium: Optional[ InterruptingMediumKind ] = field(
+    interruptingMedium: Optional[InterruptingMediumKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -20693,42 +19691,6 @@ class InverterInfo(GridEdgeDeviceInfo):
     '''
     '''
     
-    operatingCategoryAbnormal: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Abnormal operating performance category</i>
-    Indication of voltage and frequency ride-through capability
-    Values = Category I, Category II, Category III
-    '''
-    
-    operatingCategoryNormal: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Based on IEEE 1547-2018 Table 28:
-    <i>Normal operating performance category</i>
-    Indication of reactive power and voltage/power control capability.
-    Values = Category A, Category B
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -20751,28 +19713,6 @@ class GenerationInverterInfo(InverterInfo):
     wind, or other fuels.
     '''
 
-    generationCategory: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of Distribution Generation.
-    Examples include:
-    <ul>
-    <li>Photovoltaic (PV)</li>
-    <li>Combined Heat Power (CHP)</li>
-    <li>Fuel Cells</li>
-    <li>Small Wind Power</li>
-    </ul>
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -23328,20 +22268,6 @@ class Medium(IdentifiedObject):
     enveloping substance, such as oil in a transformer or circuit breaker.
     '''
 
-    kind: Optional[ MediumKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of this medium.
-    '''
-    
     volumeSpec: Optional[ Volume ] = field(
         default=None,
         metadata={
@@ -23355,6 +22281,21 @@ class Medium(IdentifiedObject):
     '''
     The volume of the medium specified for this application. Note that
     the actual volume is a type of measurement associated witht the asset.
+    '''
+    
+    kind: Optional[MediumKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of this medium.
     '''
     
     Specification: Optional[Specification] = field(
@@ -23437,6 +22378,947 @@ class MediumKind(Enum):
     @property
     def __package__(self):
         return 'Assets'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class MetaThing(Identity):
+    '''
+    Provides consistent identification for whatever information is represented
+    by a metadata object.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Boundary(MetaThing):
+    '''
+    Framework agreements divide the grid into electrical territories called
+    Frames. A Boundary exists wherever Frames are adjacent and identifies a
+    location that requires a BoundaryModel to define precisely how the adjacent
+    frame models join.
+    '''
+
+    IncludedIn: list[FrameworkEdition] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameworkEdition.Includes',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Tthe framework editions that the boundary is included in.
+    '''
+    
+    Separates: list[Frame] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.ConnectsTo',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class Dataset(MetaThing):
+    '''
+    A superclass describing a set of information.
+    For grid data management, the UML subclasses Dataset to describe different
+    kinds of information.
+    <ul>
+    <li>Many subclasses of Dataset are completely described in metadata and
+    do not have corresponding Distributions.</li>
+    <li>GridDataset and Attachment subclasses are summary desriptions of information
+    that are detailed in associated Distributions.</li>
+    </ul>
+    '''
+
+    isRealizedAs: list[Distribution] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Distribution.realizes',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A realization of dataset information, usually a file conforming to
+    some specifications.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class Distribution(MetaThing):
+    '''
+    A specific representation of a dataset. A dataset might be available in
+    multiple serializations that may differ in various ways, including natural
+    language, media-type or format, schematic organization, temporal and spatial
+    resolution, level of detail or profiles (which might specify any or all
+    of the above).
+    '''
+
+    accessRights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    Information about who access the resource or an indication of its security
+    status.
+    Access Rights may include information regarding access or restrictions
+    based on privacy, security, or other policies.
+    '''
+    
+    accessURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A URL of the resource that gives access to a distribution of the dataset.
+    E.g., landing page, feed, SPARQL endpoint.
+    dcat:accessURL SHOULD be used for the URL of a service or location
+    that can provide access to this distribution, typically through a Web
+    form, query or API call.
+    dcat:downloadURL is preferred for direct links to downloadable resources.
+    If the distribution(s) are accessible only through a landing page (i.e.,
+    direct download URLs are not known), then the landing page URL associated
+    with the dcat:Dataset SHOULD be duplicated as access URL on a distribution
+    '''
+    
+    byteSize: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The size of a distribution in bytes. The size in bytes can be approximated
+    when the precise size is not known.
+    '''
+    
+    compressFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The compression format of the distribution in which the data is contained
+    in a compressed form, e.g. to reduce the size of the downloadable file.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    A free-text account of the distribution.
+    '''
+    
+    downloadURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The URL of the downloadable file in a given format. E.g., CSV file
+    or RDF file. The format is indicated by the distribution's dcterms:format
+    and/or dcat:mediaType
+    dcat:downloadURL SHOULD be used for the URL at which this distribution
+    is available directly, typically through a HTTP Get request.
+    '''
+    
+    format: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    The file format of the distribution.
+    dcat:mediaType SHOULD be used if the type of the distribution is defined
+    by IANA
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    An unambiguous reference to the resource within a given context.
+    Recommended practice is to identify the resource by means of a string
+    conforming to an identification system. Examples include International
+    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
+    Resource Name (URN). Persistent identifiers should be provided as HTTP
+    URIs.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    Date of formal issuance (e.g., publication) of the distribution.
+    '''
+    
+    license: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    A legal document giving official permission to do something with the
+    resource.
+    Recommended practice is to identify the license document with a URI.
+    If this is not possible or feasible, a literal value that identifies
+    the license may be provided.
+    '''
+    
+    mediaType: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The media type of the distribution as defined by IANA
+    This property SHOULD be used when the media type of the distribution
+    is defined in IANA, otherwise dcterms:format MAY be used with different
+    values.
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    Date on which the resource was changed.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    packageFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The package format of the distribution in which one or more data files
+    are grouped together, e.g. to enable a set of related files to be downloaded
+    together.
+    This property is to be used when the files in the distribution are
+    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
+    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
+    if available.
+    '''
+    
+    rights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    A statement that concerns all rights not addressed with dct:license
+    or dct:accessRights, such as copyright statements.
+    '''
+    
+    spatialResolutionInMeters: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum spatial separation resolvable in a dataset, measured in metres.
+    '''
+    
+    temporalResolution: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum time period resolvable in a dataset.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': '#',
+        'serialize': True,
+        })
+    '''
+    A name given to the distribution.
+    '''
+    
+    realizes: Optional[Dataset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Dataset.isRealizedAs',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The information in a file.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Frame(MetaThing):
+    '''
+    Defines a region of a framework for which grid models may be defined unilaterally
+    provided only that they join properly with a set of reference models and
+    perimeter boundary models defined by the framework.
+    When a framework agreement is undertaken by a group of authorities, the
+    first task is to agree on the set of frames that will best support the
+    use cases that the participants have in view. The general objective is
+    to partition the grid of interest into frame parts such that:
+    * The modeling for a frame will be supplied from one authority.
+    * The modeling for the use cases of interest can be directed simply by
+    identifying frames to be included or excluded.
+    Note that a new Frame object is required if any of its perimeter boundaries
+    are different. A new Frame may, however, retain the same name as a previous
+    Frame and therefore be located by a same query.
+    '''
+
+    terminatedBy: list[EdgeModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EdgeModel.replaces',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Identifies an edge model that may be used to represent flow into an
+    adjacent frame.
+    '''
+    
+    isReferencedBy: list[FrameModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameModel.represents',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Frame models that reference a frame.
+    '''
+    
+    ConnectsTo: list[Boundary] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Boundary.Separates',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    InlcudedIn: Optional[FrameworkEdition] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'FrameworkEdition.Includes',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Identfies the framework editions that a frame is included in.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class FrameworkEdition(Dataset):
+    '''
+    A framework edition defines the set of frames, boundaries and reference
+    models for an evolutionary state of a framework.
+    Framework edition properties must identify the situation for which the
+    evolutionary state applies. Usually, this is a time range.
+    '''
+
+    Includes: Optional[Frame] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Frame.InlcudedIn',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Identifies the frames that are included in a framework ediition.
+    '''
+    
+    Inlcudes: Optional[Reference] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Reference.IncludedIn',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The reference models included in a framework edition.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class GridAssembly(Dataset):
+    '''
+    A set of grid models that join together through grid data associations
+    to create a set of modeling for some business purpose, most often a set
+    of modeling that either defines the input to or the result of grid analysis.
+    An Assembly should be viewed as a statement by the producer that it put
+    this information together in the internal form used by the producer and
+    generated any results based on the algorithm of the producer. When an Assembly
+    is passed to some other party, the information is exported in standard
+    form and imported to the other party's system. Receivers will typically
+    re-execute the analysis to assure successful transfer of information (assuming
+    they have that capability).
+    Note that assemblies may share common model components. For example, it
+    is common that many studies are conducted on the same physical description
+    of the grid.
+    '''
+
+    contains: list[GridModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'GridModel.usedIn',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Identifies the grid models that make up the assembly.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class GridDataset(Dataset):
+    '''
+    GridDataset describes a set of grid modeling information:
+    <ul>
+    <li>business purpose is inherited from Dataset. e.g. Day-ahead congestion
+    or state estimation or ....</li>
+    <li>datetime describes the moment is time represented.</li>
+    <li>type describes a category of information, such as physical, sitatuional,
+    solution.</li>
+    <li>GridDelta subclass represent components of change description.</li>
+    <li>GridModel subclass represents complete sets of modeling and is further
+    subclassed to indicate coverage.</li>
+    </ul>
+    GridDataset description is valid regardless of the syntax or semantics
+    used to realize the information, so it valid whether the information is
+    realized in a standard form or is maintained internal to a product.
+    '''
+
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This property is available to processes to distinguish a category of
+    information, such as physical vs situational vs solution.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class GridModel(GridDataset):
+    '''
+    Classes that inherit from GridModel all represent a set of information
+    about a part of the grod in one state.
+    The kind of information is indicated by the profileType inherited from
+    GridDataset, which may be either an individual curated profile or a stack
+    of profiles. A stack GridModel is necessary when grid artifact Distributions
+    are a union of curated profiles, which is very common. Typically, products
+    work with stacks and exchange stacks. Occasionally, however, an individual
+    profile is extracted from a stack and used as part of another stack.
+    '''
+
+    usedIn: list[GridAssembly] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'GridAssembly.contains',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Identifies the assemblies that include the grid model.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class BoundaryModel(GridModel):
+    '''
+    Represents a grid model that defines a boundary agreement for a framework.
+    A boundary model defines the set of physical grid objects that separate
+    adjacent frames such that frame models must have associations only with
+    the boundary objects and not with any adjacent frame model objects.
+    Bilateral boundary models separating two adjacent frames are recommended
+    practice but multilateral boundary models are allowed.
+    If multiple BoundaryModels are defined for a Boundary, their properties
+    should define their applicability to a situation criteria.
+    '''
+
+    canBeTerminatedBy: list[EdgeModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EdgeModel.terrminates',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Identifies a boundary edge that terminates a boundary model.
+    '''
+    
+    partOfPerimeter: list[FrameModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameModel.perimeter',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Is part of a FramePerimeter. Note that it is allowed that a FramePerimeter
+    may be made up of BoundaryModels for Boundaries from different Frameworks.
+    '''
+    
+    defines: Optional[EquivalentModel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquivalentModel.joinsWith',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Any model that approximates a part of the grid. Most often the result
+    of a mathematical reduction of a set of frame models, but may also
+    be used to describe more complex manually generated edges of areas
+    modeled in detail.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EdgeModel(GridModel):
+    '''
+    When there is a boundary between frame X that is included in a study and
+    another frame that is not included, a physical edge model is the recommended
+    means of representing the flow from X into the un-included frame. The edge
+    model has an association to the boundary model that it joins and to frame
+    X (the frame that the edge pairs with).
+    Normally, a utility examines each framework edition it receives and adds
+    new physical edge models for each new boundary models. Physical edge models
+    are only changed when a new boundary model is defined. A boundary may have
+    edges for each of its adjacent frames if the studies conducted by a utility
+    require them.
+    See reference notes on Frameworks and Grid Models for more information.
+    '''
+
+    replaces: Optional[Frame] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Frame.terminatedBy',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Identifies the frame that the edge model replaces.
+    '''
+    
+    terrminates: Optional[BoundaryModel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'BoundaryModel.canBeTerminatedBy',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    A boundary model that an edge model terminates -- i.e. joins with.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentModel(GridModel):
+    '''
+    Represents grid modeling produced by executing a mathematical reduction
+    of one or more frames of an assembly. In a framework, the resulting equivalent
+    model will plug into the set of boundary models that connect unreduced
+    frames to reduced frames. If no framework element is referenced as reduced,
+    the meaning of the equivalent is not described and must be controlled by
+    the processes that defined the model.
+    '''
+
+    joinsWith: list[BoundaryModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BoundaryModel.defines',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    A perimeter definition for the set of boundary models that the equivalent
+    joins with.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class FrameModel(GridModel):
+    '''
+    A model for a frame.
+    A created frame model references the set of boundary models that it was
+    created against. That frame model will remain valid without modification
+    for any situation where its frame is defined by the same set of boundary
+    models.
+    '''
+
+    perimeter: list[BoundaryModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BoundaryModel.partOfPerimeter',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The boundary models that the frame model was joined with when the frame
+    model was created.
+    '''
+    
+    represents: Optional[Frame] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Frame.isReferencedBy',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The frame that the frame model represents.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23877,19 +23759,19 @@ class MultiCircuitGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
+    WireSpacing: list[WireSpacing] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSpacing.MultiCircuitGroup',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'serialize': False,
         })
     '''
-    The XY spacing that applies to this coupled line segment group.
+    The wire spacing that applies to this coupled line segment group.
     '''
     
 @stereotype(CIMStereotype.OfAggregate)
@@ -24617,20 +24499,6 @@ class OperatingMechanismInfo(AssetInfo):
     Close voltage in volts DC.
     '''
     
-    mechanismKind: Optional[ OperatingMechanismKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of breaker operating mechanism.
-    '''
-    
     motorRunCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -24699,6 +24567,21 @@ class OperatingMechanismInfo(AssetInfo):
         })
     '''
     Trip voltage in volts DC.
+    '''
+    
+    mechanismKind: Optional[OperatingMechanismKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of breaker operating mechanism.
     '''
     
     @property
@@ -32128,7 +32011,7 @@ class ACLineSegment(Conductor):
     The assembly specification used by this line
     '''
     
-    spacingYOffset: Optional[ Displacement ] = field(
+    ySpacingOffset: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -38017,20 +37900,6 @@ class ProductAssetModel(IdentifiedObject):
     Style number of asset model.
     '''
     
-    corporateStandardKind: Optional[ CorporateStandardKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of corporate standard for this asset model.
-    '''
-    
     overallLength: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -38043,20 +37912,6 @@ class ProductAssetModel(IdentifiedObject):
         })
     '''
     Overall length of this asset model.
-    '''
-    
-    usageKind: Optional[ AssetModelUsageKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Intended usage for this asset model.
     '''
     
     weightTotal: Optional[ Mass ] = field(
@@ -38085,6 +37940,36 @@ class ProductAssetModel(IdentifiedObject):
         'serialize': False,
         })
     '''
+    '''
+    
+    corporateStandardKind: Optional[CorporateStandardKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of corporate standard for this asset model.
+    '''
+    
+    usageKind: Optional[AssetModelUsageKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Intended usage for this asset model.
     '''
     
     AssetInfo: Optional[AssetInfo] = field(
@@ -39986,63 +39871,6 @@ class ReactorInfo(CompensatorInfo):
     Volume of oil in litres.
     '''
     
-    circulationAndCoolingType: Optional[ CirculationAndCoolingKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The method used to cool the shunt reactor, O: oil; A: air; N: natural;
-    F: forced (ie: ON, ONAN, ONAF or OFAF).
-    '''
-    
-    coreType: Optional[ ReactorCoreKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The type of core of the reactor. Example Air, steel, concrete
-    '''
-    
-    insulationMedium: Optional[ ReactorInsulationMediumKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    This property denotes whether the reactor is air or oil.
-    '''
-    
-    oilPreservationType: Optional[ OilPreservationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of oil preservation.
-    '''
-    
     ratedImpulseWithstandVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -40056,6 +39884,67 @@ class ReactorInfo(CompensatorInfo):
     '''
     Basic Insulation Level voltage in kilovolts (lightening impulse withstand
     voltage).
+    '''
+    
+    circulationAndCoolingType: Optional[CirculationAndCoolingKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The method used to cool the shunt reactor, O: oil; A: air; N: natural;
+    F: forced (ie: ON, ONAN, ONAF or OFAF).
+    '''
+    
+    coreType: Optional[ReactorCoreKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The type of core of the reactor. Example Air, steel, concrete
+    '''
+    
+    insulationMedium: Optional[ReactorInsulationMediumKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    This property denotes whether the reactor is air or oil.
+    '''
+    
+    oilPreservationType: Optional[OilPreservationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of oil preservation.
     '''
     
     @property
@@ -40203,6 +40092,96 @@ class RecloseSequence(IdentifiedObject):
     @property
     def __package__(self):
         return 'Protection'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Reference(MetaThing):
+    '''
+    Identifies that a framework has decided to make a kind of reference model
+    available. Framework policy will specify how the reference models are to
+    be used.
+    '''
+
+    ConsistsOf: list[ReferenceModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ReferenceModel.Represents',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    IncludedIn: Optional[FrameworkEdition] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'FrameworkEdition.Inlcudes',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The framework editions that the reference model is included in.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ReferenceModel(GridModel):
+    '''
+    A grid model defined by a framework that contains objects that other grid
+    models may or must reference. e.g. A set of BaseVoltages.
+    Usually used to establish consistency in modeling.
+    If multiple ReferenceModels are defined for a Reference, their properties
+    should define their applicability to a situation criteria.
+    '''
+
+    Represents: list[Reference] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Reference.ConsistsOf',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
     @property
     def __minOccurs__(self):
         return '0'
@@ -41200,7 +41179,7 @@ class EVSE(PowerElectronicsConnection):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -41709,37 +41688,6 @@ class RegulatingControlRegularSchedule(BaseRegularIntervalSchedule):
         })
     '''
     Specify the multiplier for used for the targetValue.
-    '''
-    
-    discrete: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The regulation is performed in a discrete mode. This applies to equipment
-    with discrete controls, e.g. tap changers and shunt compensators.
-    '''
-    
-    enabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The flag tells if regulation is enabled.
     '''
     
     RegulatingControl: Optional[RegulatingControl] = field(
@@ -44362,21 +44310,6 @@ class SVCInfo(FACTSInfo):
     Static Var Compensator - High speed switched reactor and capacitor.
     '''
 
-    svcReactiveControlType: Optional[ SVCReactiveControlKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    An SVC can either be set to control the voltage of a bus or provide
-    contant Mvar to the bus.
-    '''
-    
     tcrRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
@@ -44405,6 +44338,22 @@ class SVCInfo(FACTSInfo):
     '''
     Rating in reactance if the Static Var Compensator has a Thyristor Switched
     Capacitor
+    '''
+    
+    svcReactiveControlType: Optional[SVCReactiveControlKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    An SVC can either be set to control the voltage of a bus or provide
+    contant Mvar to the bus.
     '''
     
     @property
@@ -45439,11 +45388,11 @@ class ServiceMeterInfo(ConductingAssetInfo):
     '''
     '''
     
-    formType: Optional[ MeterFormKind ] = field(
+    startingCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
+        'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -45452,13 +45401,14 @@ class ServiceMeterInfo(ConductingAssetInfo):
     '''
     '''
     
-    startingCurrent: Optional[ CurrentFlow ] = field(
+    formType: Optional[MeterFormKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -45536,20 +45486,6 @@ class ShortCircuitResponse(Identity):
     relative to voltage) at different voltages.
     '''
 
-    faultSequenceType: Optional[ PhaseCodeExtension ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of fault: PositiveSequence, ZeroSequence, or NegativeSequence
-    '''
-    
     outputCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
@@ -45594,6 +45530,21 @@ class ShortCircuitResponse(Identity):
     Voltage measured at the device terminal
     '''
     
+    faultSequenceType: Optional[PhaseCodeExtension] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Type of fault: PositiveSequence, ZeroSequence, or NegativeSequence
+    '''
+    
     ConductingAssetInfo: Optional[ConductingAssetInfo] = field(
         default=None,
         metadata={
@@ -45629,13 +45580,14 @@ class ShuntCapacitorInfo(CapacitorInfo):
     and adding attributes for this specialization.
     '''
 
-    connectionKind: Optional[ CompensatorConnectionKind ] = field(
+    connectionKind: Optional[CompensatorConnectionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -47942,35 +47894,6 @@ class StatComInfo(FACTSInfo):
     and capacitor.
     '''
 
-    activePowerSourceType: Optional[ ActivePowerSourceKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Enumeration used to designate the type of Active power source used
-    by the STATCOM.
-    '''
-    
-    dcConverterType: Optional[ STATCOMKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The type DC to AC converter unit providing the AC compensation
-    '''
-    
     maxNegativeMW: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -48001,13 +47924,45 @@ class StatComInfo(FACTSInfo):
     MW that the STATCOM can provide to the grid
     '''
     
-    powerElectronicsGateType: Optional[ PowerElectronicsGateKind ] = field(
+    activePowerSourceType: Optional[ActivePowerSourceKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Enumeration used to designate the type of Active power source used
+    by the STATCOM.
+    '''
+    
+    dcConverterType: Optional[STATCOMKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The type DC to AC converter unit providing the AC compensation
+    '''
+    
+    powerElectronicsGateType: Optional[PowerElectronicsGateKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -48485,33 +48440,6 @@ class StorageInverterInfo(InverterInfo):
     '''
     '''
     
-    storageCategory: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Type of Distribution Storage.
-    Examples include:
-    <ul>
-    <li>Lead�Acid Battery</li>
-    <li>Nickel�Cadmium (NiCd) Battery</li>
-    <li>Nickel�Metal Hydride (NiMH) Battery</li>
-    <li>Lithium-Ion Battery</li>
-    <li>Lithium-Ion Polymer (LiPo) Battery</li>
-    <li>Aluminum-Sulfur Battery</li>
-    <li>Flow Battery</li>
-    <li>Mechanical Flywheel</li>
-    <li>Mechanical Gravitational</li>
-    </ul>
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -48652,13 +48580,14 @@ class StringQuantity(Identity):
     Value of this quantity.
     '''
     
-    multiplier: Optional[ UnitMultiplier ] = field(
+    multiplier: Optional[UnitMultiplier] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -48666,13 +48595,14 @@ class StringQuantity(Identity):
     Unit multiplier of this quantity.
     '''
     
-    unit: Optional[ UnitSymbol ] = field(
+    unit: Optional[UnitSymbol] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -48813,51 +48743,6 @@ class OverheadStructure(Structure):
     '''
     '''
     
-    frameType: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Frame type such as H-Frame, Lattice Tower, Guyed Lattice, A-Frame.
-    '''
-    
-    structureAngle: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure angle
-    '''
-    
-    structureStandard: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Structure standard such as standard drawing number
-    '''
-    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.avista)
 @dataclass(repr=False, eq=False)
@@ -48927,20 +48812,6 @@ class StructureInfo(AssetInfo):
     Material this structure is made of.
     '''
     
-    materialKind: Optional[ StructureMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Material this structure is made of.
-    '''
-    
     ratedVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
@@ -48954,6 +48825,21 @@ class StructureInfo(AssetInfo):
     '''
     Maximum rated voltage of the equipment that can be mounted on/contained
     within the structure.
+    '''
+    
+    materialKind: Optional[StructureMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Material this structure is made of.
     '''
     
     ConstructedDimensions: Optional[Dimension] = field(
@@ -49004,13 +48890,14 @@ class MarineStructureInfo(StructureInfo):
     Marine structure information.
     '''
 
-    kind: Optional[ MarineStructureKind ] = field(
+    kind: Optional[MarineStructureKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -50596,7 +50483,7 @@ class EarthingSwitch(Switch):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.
@@ -51249,44 +51136,6 @@ class SwitchRegularSchedule(BaseRegularIntervalSchedule):
     Regular schedule for switch.
     '''
 
-    locked: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    If true, the switch is locked. The resulting switch state is a combination
-    of locked and Switch.open attributes as follows:
-    <ul>
-    <li>locked=true and Switch.open=true. The resulting state is open and
-    locked;</li>
-    <li>locked=false and Switch.open=true. The resulting state is open;</li>
-    <li>locked=false and Switch.open=false. The resulting state is closed.</li>
-    </ul>
-    '''
-    
-    open: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The attribute tells if the switch is considered open when used as input
-    to topology processing.
-    '''
-    
     Switch: Optional[Switch] = field(
         default=None,
         metadata={
@@ -51367,8 +51216,8 @@ class SwitchSchedule(BaseIrregularTimeSeries):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.NC)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SwitchTimePoint(Identity):
     '''
@@ -51387,44 +51236,6 @@ class SwitchTimePoint(Identity):
         })
     '''
     The time the data is valid for.
-    '''
-    
-    locked: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    If true, the switch is locked. The resulting switch state is a combination
-    of locked and Switch.open attributes as follows:
-    <ul>
-    <li>locked=true and Switch.open=true. The resulting state is open and
-    locked;</li>
-    <li>locked=false and Switch.open=true. The resulting state is open;</li>
-    <li>locked=false and Switch.open=false. The resulting state is closed.</li>
-    </ul>
-    '''
-    
-    open: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The attribute tells if the switch is considered open when used as input
-    to topology processing.
     '''
     
     SwitchSchedule: Optional[SwitchSchedule] = field(
@@ -52052,23 +51863,6 @@ class SynchronousMachineRegularSchedule(BaseRegularIntervalSchedule):
     Current mode of operation.
     '''
     
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
-    '''
-    
     SynchronousMachine: Optional[SynchronousMachine] = field(
         default=None,
         metadata={
@@ -52183,23 +51977,6 @@ class SynchronousMachineTimePoint(Identity):
         })
     '''
     Current mode of operation.
-    '''
-    
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
     '''
     
     SynchronousMachineSchedule: Optional[SynchronousMachineSchedule] = field(
@@ -54430,22 +54207,6 @@ class TapRegularSchedule(BaseRegularIntervalSchedule):
     or less than highStep.
     '''
     
-    controlEnabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the equipment. True is regulating,
-    false is not regulating.
-    '''
-    
     TapChanger: Optional[TapChanger] = field(
         default=None,
         metadata={
@@ -54550,22 +54311,6 @@ class TapScheduleTimePoint(Identity):
     to oscillate or to accommodate for a continuous solution as input.
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
-    '''
-    
-    controlEnabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the equipment. True is regulating,
-    false is not regulating.
     '''
     
     @property
@@ -56723,71 +56468,6 @@ class TransformerCoreInfo(AssetInfo):
     '''
     '''
 
-    coreMaterial: Optional[ TransformerCoreMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    coreType: Optional[ CoreConstructionKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    laminationAssembly: Optional[ TransformerLaminationAssemblyKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    laminationShape: Optional[ TransformerLaminationShapeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    legType: Optional[ TransformerLegKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     outerLimbArea: Optional[ Area ] = field(
         default=None,
         metadata={
@@ -56860,6 +56540,76 @@ class TransformerCoreInfo(AssetInfo):
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    coreMaterial: Optional[TransformerCoreMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    coreType: Optional[CoreConstructionKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    laminationAssembly: Optional[TransformerLaminationAssemblyKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    laminationShape: Optional[TransformerLaminationShapeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    legType: Optional[TransformerLegKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -59214,75 +58964,20 @@ class TransformerWinding(IdentifiedObject):
     lug shared by both sides (e.g. H0X0 or SL).
     '''
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TransformerWindingInfo(AssetInfo):
     '''
     '''
 
-    windingArrangement: Optional[ WindingArrangementKind ] = field(
+    windingArrangement: Optional[WindingArrangementKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    conductorDiameter: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    conductorShape: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    ratedS: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    windingInsulationType: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
         'inverse': '',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
@@ -59357,13 +59052,14 @@ class PipeBusbarInfo(TubeBusbarInfo):
     Pipe busbar information
     '''
 
-    pipeType: Optional[ PipeBusbarKind ] = field(
+    pipeType: Optional[PipeBusbarKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -59490,13 +59186,14 @@ class UndergroundStructureInfo(StructureInfo):
     Underground structure information
     '''
 
-    kind: Optional[ UndergroundStructureKind ] = field(
+    kind: Optional[UndergroundStructureKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -60118,20 +59815,6 @@ class ElectricVehicleInfo(VehicleInfo):
     '''
     '''
     
-    evType: Optional[ EVTypeKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Type of EV (e.g., BEV, PHEV, bus, truck, motorcycle).
-    '''
-    
     maxChargingRate: Optional[ ActivePower ] = field(
         default=None,
         metadata={
@@ -60143,6 +59826,21 @@ class ElectricVehicleInfo(VehicleInfo):
         'serialize': True,
         })
     '''
+    '''
+    
+    evType: Optional[EVTypeKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Type of EV (e.g., BEV, PHEV, bus, truck, motorcycle).
     '''
     
     BatteryInfo: Optional[BatteryInfo] = field(
@@ -62182,7 +61880,7 @@ class WireConfiguration(EquipmentConfiguration):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -62396,19 +62094,6 @@ class WireInfo(ConductorInfo):
     Number of strands in the conductor.
     '''
     
-    constructionKind: Optional[ WireMaterialKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
     coreRadius: Optional[ Length ] = field(
         default=None,
         metadata={
@@ -62450,20 +62135,6 @@ class WireInfo(ConductorInfo):
     Geometric mean radius. If we replace the conductor by a thin walled
     tube of radius GMR, then its reactance is identical to the reactance
     of the actual conductor.
-    '''
-    
-    insulationMaterial: Optional[ WireInsulationKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    (if insulated conductor) Material used for insulation.
     '''
     
     insulationThickness: Optional[ Length ] = field(
@@ -62534,6 +62205,35 @@ class WireInfo(ConductorInfo):
     '''
     '''
     
+    constructionKind: Optional[WireMaterialKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    insulationMaterial: Optional[WireInsulationKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    (if insulated conductor) Material used for insulation.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -62583,13 +62283,14 @@ class BareWireInfo(WireInfo):
     Bare wire data.
     '''
 
-    wireConstructionKind: Optional[ WireConstructionKind ] = field(
+    wireConstructionKind: Optional[WireConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -62643,20 +62344,6 @@ class CableInfo(WireInfo):
         })
     '''
     True if sheath / shield is used as a neutral (i.e., bonded).
-    '''
-    
-    constructionKind: Optional[ CableConstructionKind ] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['enumeration', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Kind of construction of this cable.
     '''
     
     diameterOverCore: Optional[ Length ] = field(
@@ -62730,13 +62417,29 @@ class CableInfo(WireInfo):
     Maximum nominal design operating temperature.
     '''
     
-    outerJacketKind: Optional[ CableOuterJacketKind ] = field(
+    constructionKind: Optional[CableConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Kind of construction of this cable.
+    '''
+    
+    outerJacketKind: Optional[CableOuterJacketKind] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -62744,13 +62447,14 @@ class CableInfo(WireInfo):
     Kind of outer jacket of this cable.
     '''
     
-    shieldMaterial: Optional[ CableShieldMaterialKind ] = field(
+    shieldMaterial: Optional[CableShieldMaterialKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -62939,21 +62643,6 @@ class MultiCoreCableInfo(CableInfo):
     &#176;C
     '''
     
-    neutralSizeDescription: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Neutral wire size description
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -62974,13 +62663,14 @@ class OverheadWireInfo(WireInfo):
     Overhead wire data.
     '''
 
-    wireConstructionKind: Optional[ WireConstructionKind ] = field(
+    wireConstructionKind: Optional[WireConstructionKind] = field(
         default=None,
         metadata={
-        'type': 'Attribute',
+        'type': 'Association',
         'stereotypes': ['enumeration', 'Attribute', 'add'],
         'minOccurs': '1',
         'maxOccurs': '1',
+        'inverse': '',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -63491,6 +63181,22 @@ class WireSpacing(IdentifiedObject):
     The wire configuration templates that use this wire spacing
     '''
     
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'MultiCircuitGroup.WireSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The multi circuit group of adjacent line segments defined by the wire
+    spacing.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -63968,22 +63674,6 @@ class XYSpacing(WireSpacing):
         })
     '''
     Conductor positions placed directly in this spacing.
-    '''
-    
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['new'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MultiCircuitGroup.XYSpacing',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The multi circuit group of adjacent line segments defined by the XY
-    spacing.
     '''
     
     @property

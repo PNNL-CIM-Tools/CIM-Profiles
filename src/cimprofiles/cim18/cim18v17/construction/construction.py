@@ -908,19 +908,19 @@ class MultiCircuitGroup(IdentifiedObject):
     the lines need to be included in network analysis.
     '''
 
-    XYSpacing: Optional[XYSpacing] = field(
-        default=None,
+    WireSpacing: list[WireSpacing] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'XYSpacing.MultiCircuitGroup',
+        'maxOccurs': 'unbounded',
+        'inverse': 'WireSpacing.MultiCircuitGroup',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'serialize': False,
         })
     '''
-    The XY spacing that applies to this coupled line segment group.
+    The wire spacing that applies to this coupled line segment group.
     '''
     
     @property
@@ -1215,7 +1215,7 @@ class ACLineSegment(Conductor):
     of the ConductorPosition in an XYSpacing.
     '''
     
-    spacingYOffset: Optional[ Displacement ] = field(
+    ySpacingOffset: Optional[ Displacement ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2578,6 +2578,22 @@ class WireSpacing(IdentifiedObject):
     The wire configuration templates that use this wire spacing
     '''
     
+    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['new'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'MultiCircuitGroup.WireSpacing',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The multi circuit group of adjacent line segments defined by the wire
+    spacing.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -2760,22 +2776,6 @@ class XYSpacing(WireSpacing):
         })
     '''
     Conductor positions placed directly in this spacing.
-    '''
-    
-    MultiCircuitGroup: Optional[MultiCircuitGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['new'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MultiCircuitGroup.XYSpacing',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    The multi circuit group of adjacent line segments defined by the XY
-    spacing.
     '''
     
     @property

@@ -39,6 +39,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-762a">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>asynchronousMachineType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AsynchronousMachineKind"/>
@@ -356,6 +357,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#WireConfiguration.EarthResistivity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7664">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>EarthResistivity</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity"/>
@@ -509,6 +511,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerMeshImpedance.ToWinding"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7680">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ToWinding</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding"/>
@@ -696,6 +699,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-76a2">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>form</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CoreConstructionKind"/>
@@ -768,6 +772,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-76af">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>usage</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireUsageKind"/>
@@ -993,6 +998,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-76d8">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>type</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SynchronousMachineKind"/>
@@ -1069,6 +1075,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerMeshImpedance.FromWinding"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-76e6">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>FromWinding</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding"/>
@@ -1241,6 +1248,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7705">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>chargingModeType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ChargingModeKind"/>
@@ -1356,6 +1365,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerTransformerEnd.PowerTransformer"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-771a">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>PowerTransformer</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerTransformer"/>
@@ -1516,6 +1526,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7737">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>earthModelType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthModelKind"/>
@@ -1653,6 +1665,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerWinding.TransformerCore"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7750">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#new"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformerCore</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TransformerCore"/>
@@ -1763,6 +1776,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-7764">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>installationType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireInstallationKind"/>
@@ -1971,6 +1986,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#PerLengthImpedance.WireConfiguration"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-778a">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>WireConfiguration</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireConfiguration"/>
@@ -2478,12 +2494,12 @@
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EarthResistivity"/>
     <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
   </rdf:Description>
-  <rdf:Description rdf:about="#Elbow">
+  <rdf:Description rdf:about="#ElbowSwitch">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Elbow</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Elbow"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ElbowSwitch"/>
     <rdfs:subClassOf rdf:resource="#Disconnector"/>
   </rdf:Description>
   <rdf:Description rdf:about="#ElectricalVehicleUnit">

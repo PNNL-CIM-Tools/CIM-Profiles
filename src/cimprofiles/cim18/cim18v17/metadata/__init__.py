@@ -16,7 +16,10 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     GridAssembly,
     GridDataset,
     GridModel,
-    NonAlignedModel
+    MetaThing,
+    NonAlignedModel,
+    Reference,
+    ReferenceModel
 )
 __all__ = [
     'Identity',
@@ -32,5 +35,8 @@ __all__ = [
     'GridAssembly' ,
     'GridDataset' ,
     'GridModel' ,
-    'NonAlignedModel'
+    'MetaThing' ,
+    'NonAlignedModel' ,
+    'Reference' ,
+    'ReferenceModel'
 ]

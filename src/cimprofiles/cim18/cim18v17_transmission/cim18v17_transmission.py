@@ -4629,7 +4629,7 @@ class EarthResistivity(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -22072,7 +22072,7 @@ class EVSE(PowerElectronicsConnection):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -27297,7 +27297,7 @@ class EarthingSwitch(Switch):
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.
@@ -34695,7 +34695,7 @@ class WireConfiguration(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',

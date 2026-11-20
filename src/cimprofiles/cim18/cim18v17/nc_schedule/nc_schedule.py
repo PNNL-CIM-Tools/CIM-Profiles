@@ -2341,22 +2341,6 @@ class EquivalentInjectionTimePoint(Identity):
     The EquivalentInjection schedule that has this time point.
     '''
     
-    regulationStatus: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the EquivalentInjection. True is
-    regulating. False is not regulating.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -2502,23 +2486,6 @@ class ExternalNetworkInjectionTimePoint(Identity):
         })
     '''
     The external network injection schedule that has this time point.
-    '''
-    
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
     '''
     
     @property
@@ -7189,22 +7156,6 @@ class EquivalentInjectionRegularSchedule(BaseRegularIntervalSchedule):
     EquivalentInjection which has EquivalentInjectionRegularSchedule.
     '''
     
-    regulationStatus: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the EquivalentInjection. True is
-    regulating. False is not regulating.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -7273,23 +7224,6 @@ class ExternalNetworkInjectionRegularSchedule(BaseRegularIntervalSchedule):
     External network injection which has ExternalNetworkinjectionRegularSchedule
     '''
     
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
-    '''
-    
     @property
     def __namespace__(self):
         return 'http://entsoe.eu/ns/nc#'
@@ -7324,24 +7258,6 @@ class InServiceRegularSchedule(BaseRegularIntervalSchedule):
         })
     '''
     Equipment which has InServiceRegularSchedule.
-    '''
-    
-    inService: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the availability of the equipment. True means the equipment
-    is available for topology processing, which determines if the equipment
-    is energized or not. False means that the equipment is treated by network
-    applications as if it is not in the model.
     '''
     
     @property
@@ -7442,37 +7358,6 @@ class RegulatingControlRegularSchedule(BaseRegularIntervalSchedule):
     Specify the multiplier for used for the targetValue.
     '''
     
-    discrete: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The regulation is performed in a discrete mode. This applies to equipment
-    with discrete controls, e.g. tap changers and shunt compensators.
-    '''
-    
-    enabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The flag tells if regulation is enabled.
-    '''
-    
     RegulatingControl: Optional[RegulatingControl] = field(
         default=None,
         metadata={
@@ -7530,44 +7415,6 @@ class SwitchRegularSchedule(BaseRegularIntervalSchedule):
     Regular schedule for switch.
     '''
 
-    locked: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    If true, the switch is locked. The resulting switch state is a combination
-    of locked and Switch.open attributes as follows:
-    <ul>
-    <li>locked=true and Switch.open=true. The resulting state is open and
-    locked;</li>
-    <li>locked=false and Switch.open=true. The resulting state is open;</li>
-    <li>locked=false and Switch.open=false. The resulting state is closed.</li>
-    </ul>
-    '''
-    
-    open: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The attribute tells if the switch is considered open when used as input
-    to topology processing.
-    '''
-    
     Switch: Optional[Switch] = field(
         default=None,
         metadata={
@@ -7616,23 +7463,6 @@ class SynchronousMachineRegularSchedule(BaseRegularIntervalSchedule):
         })
     '''
     Current mode of operation.
-    '''
-    
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
     '''
     
     SynchronousMachine: Optional[SynchronousMachine] = field(
@@ -7690,22 +7520,6 @@ class TapRegularSchedule(BaseRegularIntervalSchedule):
     to oscillate or to accommodate for a continuous solution as input.
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
-    '''
-    
-    controlEnabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the equipment. True is regulating,
-    false is not regulating.
     '''
     
     TapChanger: Optional[TapChanger] = field(
@@ -10870,24 +10684,6 @@ class InServiceTimePoint(Identity):
     The time the data is valid for.
     '''
     
-    inService: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the availability of the equipment. True means the equipment
-    is available for topology processing, which determines if the equipment
-    is energized or not. False means that the equipment is treated by network
-    applications as if it is not in the model.
-    '''
-    
     InServiceSchedule: Optional[InServiceSchedule] = field(
         default=None,
         metadata={
@@ -12440,8 +12236,8 @@ class StaticVarCompensatorTimePoint(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.NC)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SwitchTimePoint(Identity):
     '''
@@ -12460,44 +12256,6 @@ class SwitchTimePoint(Identity):
         })
     '''
     The time the data is valid for.
-    '''
-    
-    locked: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    If true, the switch is locked. The resulting switch state is a combination
-    of locked and Switch.open attributes as follows:
-    <ul>
-    <li>locked=true and Switch.open=true. The resulting state is open and
-    locked;</li>
-    <li>locked=false and Switch.open=true. The resulting state is open;</li>
-    <li>locked=false and Switch.open=false. The resulting state is closed.</li>
-    </ul>
-    '''
-    
-    open: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    The attribute tells if the switch is considered open when used as input
-    to topology processing.
     '''
     
     SwitchSchedule: Optional[SwitchSchedule] = field(
@@ -12562,23 +12320,6 @@ class SynchronousMachineTimePoint(Identity):
         })
     '''
     Current mode of operation.
-    '''
-    
-    referencePriority: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Priority of unit for use as powerflow voltage phase angle reference
-    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
-    less than 1 and so on.
     '''
     
     SynchronousMachineSchedule: Optional[SynchronousMachineSchedule] = field(
@@ -12650,22 +12391,6 @@ class TapScheduleTimePoint(Identity):
     to oscillate or to accommodate for a continuous solution as input.
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
-    '''
-    
-    controlEnabled: list[object] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['NC', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': '',
-        'namespace': 'http://entsoe.eu/ns/nc#',
-        'serialize': True,
-        })
-    '''
-    Specifies the regulation status of the equipment. True is regulating,
-    false is not regulating.
     '''
     
     @property

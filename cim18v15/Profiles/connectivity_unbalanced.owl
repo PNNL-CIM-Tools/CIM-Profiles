@@ -2059,11 +2059,11 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EarthingSwitch"/>
     <rdfs:subClassOf rdf:resource="#Switch"/>
   </rdf:Description>
-  <rdf:Description rdf:about="#Elbow">
+  <rdf:Description rdf:about="#ElbowSwitch">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Elbow"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ElbowSwitch"/>
     <rdfs:subClassOf rdf:resource="#Disconnector"/>
   </rdf:Description>
   <rdf:Description rdf:about="#EnergyConnection">

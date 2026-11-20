@@ -336,18 +336,6 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CsOperatingModeKind"/>
     <rdfs:subClassOf rdf:resource="#CsOperatingModeKind"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-699f">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a0"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#ExternalNetworkInjectionRegularSchedule.referencePriority"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a0">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>referencePriority</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a1">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a2"/>
@@ -371,30 +359,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>atTime</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a5">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a6"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#RegulatingControlRegularSchedule.discrete"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a6">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>discrete</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a7">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a8"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SynchronousMachineRegularSchedule.referencePriority"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a8">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>referencePriority</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a9">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -798,18 +762,6 @@
     <rdfs:label>minAllowedTargetValue</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fa">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fb"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#InServiceTimePoint.inService"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fb">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>inService</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fc">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fd"/>
@@ -1014,18 +966,6 @@
     <rdfs:label>valueA</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#CurrentFlow"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a24">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a25"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#InServiceRegularSchedule.inService"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a25">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>inService</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a26">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
@@ -1160,18 +1100,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>normalEnabled</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a41">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a42"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SynchronousMachineTimePoint.referencePriority"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a42">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>referencePriority</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a43">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -2734,18 +2662,6 @@
     <rdfs:label>regulationTarget</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#Voltage"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b75">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b76"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#TapScheduleTimePoint.controlEnabled"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b76">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>controlEnabled</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b77">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b78"/>
@@ -2975,18 +2891,6 @@
     <rdfs:label>atTime</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba3">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba4"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#ExternalNetworkInjectionTimePoint.referencePriority"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba4">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>referencePriority</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba5">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
@@ -3034,18 +2938,6 @@
     <rdfs:label>HydroPump</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#HydroPump"/>
     <rdfs:subClassOf rdf:resource="#HydroPump"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6baf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bb0"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SwitchRegularSchedule.locked"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bb0">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>locked</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bb1">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3174,18 +3066,6 @@
     <rdfs:label>EquivalentInjection</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EquivalentInjection"/>
     <rdfs:subClassOf rdf:resource="#EquivalentInjection"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bcb">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bcc"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#EquivalentInjectionTimePoint.regulationStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bcc">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>regulationStatus</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bcd">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3375,18 +3255,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>normalTargetRemainingAvailableMarginJustification</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf5"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SwitchRegularSchedule.open"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf5">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>open</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf6">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -3920,18 +3788,6 @@
     <rdfs:label>AssessedElement</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#AssessedElement"/>
     <rdfs:subClassOf rdf:resource="#AssessedElement"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c60">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c61"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SwitchTimePoint.locked"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c61">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>locked</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c62">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -4580,18 +4436,6 @@
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#RemedialActionDependency"/>
     <rdfs:subClassOf rdf:resource="#RemedialActionDependency"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cdc">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cdd"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#RegulatingControlRegularSchedule.enabled"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cdd">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>enabled</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cde">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
@@ -4982,18 +4826,6 @@
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#AssessedElement"/>
     <rdfs:subClassOf rdf:resource="#AssessedElement"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d2e">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d2f"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#SwitchTimePoint.open"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d2f">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>open</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d30">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d31"/>
@@ -5152,18 +4984,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>appointedMargin</rdfs:label>
     <owl:equivalentClass rdf:resource="http://cim.ucaiug.io/cim101/draft#PerCent"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d4e">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d4f"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#EquivalentInjectionRegularSchedule.regulationStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d4f">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>regulationStatus</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d50">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -5994,18 +5814,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
     <rdfs:label>enabled</rdfs:label>
-    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6df4">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6df5"/>
-    <owl:onProperty rdf:resource="http://entsoe.eu/ns/nc#TapRegularSchedule.controlEnabled"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6df5">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <rdfs:label>controlEnabled</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6df6">
@@ -10435,7 +10243,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b73"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b79"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b7b"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d4e"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#EquivalentInjectionRegularSchedule"/>
     <rdfs:subClassOf rdf:resource="#BaseRegularIntervalSchedule"/>
   </rdf:Description>
@@ -10458,7 +10265,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b71"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b8c"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b94"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bcb"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c85"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c87"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c89"/>
@@ -10507,7 +10313,6 @@
     <rdfs:label>ExternalNetworkInjectionRegularSchedule</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6987"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6989"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-699f"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d3e"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6db9"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#ExternalNetworkInjectionRegularSchedule"/>
@@ -10532,7 +10337,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b2d"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b2f"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b30"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ba3"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c22"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cc7"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6dec"/>
@@ -10746,7 +10550,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>InServiceRegularSchedule</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a24"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c35"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c37"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#InServiceRegularSchedule"/>
@@ -10771,7 +10574,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69b8"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69ba"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69bb"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69fa"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b7d"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#InServiceTimePoint"/>
   </rdf:Description>
@@ -11256,14 +11058,12 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>RegulatingControlRegularSchedule</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a5"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b69"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b6b"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c7a"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ccb"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ccd"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cce"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6cdc"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e23"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e3e"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6e40"/>
@@ -11579,8 +11379,6 @@
     <rdfs:label>SwitchRegularSchedule</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69d1"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69d3"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6baf"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bf4"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#SwitchRegularSchedule"/>
     <rdfs:subClassOf rdf:resource="#BaseRegularIntervalSchedule"/>
   </rdf:Description>
@@ -11604,8 +11402,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ad9"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ada"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b67"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6c60"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6d2e"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#SwitchTimePoint"/>
   </rdf:Description>
   <rdf:Description rdf:about="#SynchronousMachine">
@@ -11631,7 +11427,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SynchronousMachineRegularSchedule</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a7"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b24"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b26"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b27"/>
@@ -11656,7 +11451,6 @@
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#nc"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SynchronousMachineTimePoint</rdfs:label>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a41"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6be7"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6be9"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6bea"/>
@@ -11713,7 +11507,6 @@
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-69a1"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a04"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a06"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6df4"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#TapRegularSchedule"/>
     <rdfs:subClassOf rdf:resource="#BaseRegularIntervalSchedule"/>
   </rdf:Description>
@@ -11724,7 +11517,6 @@
     <rdfs:label>TapScheduleTimePoint</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6a08"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6ae2"/>
-    <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6b75"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de5"/>
     <rdfs:subClassOf rdf:nodeID="X13X80ac549Xa3X1a1c8f24eddXa3X-6de7"/>
     <rdfs:subClassOf rdf:resource="http://entsoe.eu/ns/nc#TapScheduleTimePoint"/>

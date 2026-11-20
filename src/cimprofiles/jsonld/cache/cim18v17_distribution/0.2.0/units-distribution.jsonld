@@ -50,11 +50,6 @@
       "qudt:hasQuantityKind": "cim:Resistance"
     },
     {
-      "@id": "cim:ACLineSegment.spacingYOffset",
-      "qudt:hasUnit": "unit:M",
-      "qudt:hasQuantityKind": "cim:Displacement"
-    },
-    {
       "@id": "cim:ACLineSegment.x",
       "qudt:hasUnit": "unit:OHM",
       "qudt:hasQuantityKind": "cim:Reactance"
@@ -63,6 +58,11 @@
       "@id": "cim:ACLineSegment.x0",
       "qudt:hasUnit": "unit:OHM",
       "qudt:hasQuantityKind": "cim:Reactance"
+    },
+    {
+      "@id": "cim:ACLineSegment.ySpacingOffset",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
     },
     {
       "@id": "cim:ActivePowerLimit.normalValue",
