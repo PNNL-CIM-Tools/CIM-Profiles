@@ -102,14 +102,55 @@ class IdentifiedObject(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EarthResistivity(IdentifiedObject):
     '''
     Resistance of earth (soil)
     '''
 
+    earthModelType: Optional[ EarthModelKind ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    earthReturnGMR: Optional[ Length ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Geometry mean radius of a set of hypothetical conductors with same
+    impedance as the earth return, per Carson's Equations
+    '''
+    
+    rho: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     WireAssemblies: list[WireConfiguration] = field(
         default_factory=list,
         metadata={
@@ -806,6 +847,66 @@ class PowerSystemResource(IdentifiedObject):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
+class ConnectivityNodeContainer(PowerSystemResource):
+    '''
+    A base class for all objects that may contain connectivity nodes or topological
+    nodes.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.OfAggregate)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentNetwork(ConnectivityNodeContainer):
+    '''
+    A class that groups electrical equivalents, including internal nodes, of
+    a network that has been reduced. The ConnectivityNodes contained in the
+    equivalent are intended to reflect internal nodes of the equivalent. The
+    boundary Connectivity nodes where the equivalent connects outside itself
+    are not contained by the equivalent.
+    '''
+
+    EquivalentEquipments: list[EquivalentEquipment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EquivalentEquipment.EquivalentNetwork',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The associated reduced equivalents.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class Equipment(PowerSystemResource):
     '''
     The parts of a power system that are physical devices, electronic or mechanical.
@@ -1330,6 +1431,124 @@ class RegulatingCondEq(EnergyConnection):
     or flow) at a specific point in the network.
     '''
 
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExternalNetworkInjection(RegulatingCondEq):
+    '''
+    This class represents the external network for use in power flow and short-circuit
+    calculations.
+    In the power flow domain the external network is modelled as a power injection
+    with power limits and a power-frequency bias. For short-circuit calculations
+    the external network is modelled as the �network feeders� element defined
+    in section 6.2 of IEC60909-0:2016. Boolean flag ikSecond allows short-circuit
+    calculations using the superposition method to detect that the maximum
+    and minimum initial symmetrical short-circuit currents have to be corrected
+    for the fact that they were calculated according the IEC60909-0 method.
+    '''
+
+    referencePriority: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Priority of unit for use as powerflow voltage phase angle reference
+    bus selection. 0 = don t care (default) 1 = highest priority. 2 is
+    less than 1 and so on.
+    '''
+    
+    governorSCD: Optional[ ActivePowerPerFrequency ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Power Frequency Bias. This is the change in power injection divided
+    by the change in frequency and negated. A positive value of the power
+    frequency bias provides additional power injection upon a drop in frequency.
+    '''
+    
+    maxP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum active power of the injection.
+    '''
+    
+    maxQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling.
+    '''
+    
+    minP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum active power of the injection.
+    '''
+    
+    minQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -1981,6 +2200,7 @@ class LinearShuntCompensator(ShuntCompensator):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -2013,6 +2233,292 @@ class NonlinearShuntCompensator(ShuntCompensator):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentEquipment(ConductingEquipment):
+    '''
+    The class represents equivalent objects that are the result of a network
+    reduction. The class is the base for equivalent objects of different types.
+    '''
+
+    EquivalentNetwork: Optional[EquivalentNetwork] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquivalentNetwork.EquivalentEquipments',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The equivalent where the reduced model belongs.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentBranch(EquivalentEquipment):
+    '''
+    The class represents equivalent branches. In cases where a transformer
+    phase shift is modelled and the EquivalentBranch is spanning the same nodes,
+    the impedance quantities for the EquivalentBranch shall consider the needed
+    phase shift.
+    '''
+
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance of the reduced branch.
+    '''
+    
+    x: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance of the reduced branch.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentInjection(EquivalentEquipment):
+    '''
+    This class represents networks that have been equivalized using either
+    the Ward or extended Ward method. A Ward equivalent is a combination of
+    an impedance load and a PQ load. An extended Ward equivalent is a combination
+    of an impedance load, a PQ load and as voltage source with an internal
+    impedance.
+    '''
+
+    maxP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum active power of the injection.
+    '''
+    
+    maxQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling. If maxQ
+    and minQ are not used ReactiveCapabilityCurve can be used.
+    '''
+    
+    minP: Optional[ ActivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum active power of the injection.
+    '''
+    
+    minQ: Optional[ ReactivePower ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum reactive power of the injection. Used for modelling of infeed
+    for load flow exchange. Not used for short-circuit modelling. If maxQ
+    and minQ are not used ReactiveCapabilityCurve can be used.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExtendedWardEquivalent(EquivalentInjection):
+    '''
+    An extended ward equivalent is a combination of an impedance load, a PQ
+    load and as voltage source with an internal impedance.
+    '''
+
+    r: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WardEquivalent(EquivalentInjection):
+    '''
+    A ward equivalent is a combination of an impedance load and a PQ load.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentShunt(EquivalentEquipment):
+    '''
+    The class represents equivalent shunts.
+    '''
+
+    b: Optional[ Susceptance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence shunt susceptance.
+    '''
+    
+    g: Optional[ Conductance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence shunt conductance.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
     @property
     def __minOccurs__(self):
         return '0'
@@ -2286,9 +2792,10 @@ class AirBreakSwitch(Disconnector):
         return 'unbounded'
     
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.
@@ -2664,7 +3171,7 @@ class PowerElectronicsUnit(Equipment):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'PowerElectronicsConnection.PowerElectronicsUnit',
@@ -3054,7 +3561,7 @@ class ImpedanceTapChangerTabular(TapChanger):
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'TransformerEnd.ImpedanceTabChanger',
+        'inverse': 'TransformerEnd.ImpedanceTapChanger',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -3370,7 +3877,7 @@ class TransformerEnd(PowerSystemResource):
     or grounded through a reactor.
     '''
     
-    ImpedanceTabChanger: Optional[ImpedanceTapChangerTabular] = field(
+    ImpedanceTapChanger: Optional[ImpedanceTapChangerTabular] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -4287,6 +4794,7 @@ class NonlinearShuntCompensatorPoint(Identity):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class AsynchronousMachineKind(Enum):
     '''
     Kind of Asynchronous Machine.
@@ -4317,6 +4825,7 @@ class AsynchronousMachineKind(Enum):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class ChargingModeKind(Enum):
     '''
     '''
@@ -4396,6 +4905,34 @@ class CoreConstructionKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
+class EarthModelKind(Enum):
+    '''
+    '''
+
+    carson = 'carson'
+    '''
+    '''
+    
+    deri = 'deri'
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -4463,6 +5000,7 @@ class SinglePhaseKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class SynchronousMachineKind(Enum):
     '''
     Synchronous machine type.
@@ -4521,6 +5059,7 @@ class SynchronousMachineKind(Enum):
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class WireInstallationKind(Enum):
     '''
     '''
@@ -4563,6 +5102,7 @@ class WireInstallationKind(Enum):
         return 'unbounded'
     
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class WireUsageKind(Enum):
     '''
     Kind of wire usage.
@@ -4615,6 +5155,34 @@ class ActivePower(CIMUnit):
     def unit(self):
         return UnitSymbol.W
     def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class ActivePowerPerFrequency(CIMUnit):
+    '''
+    Active power variation with frequency.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.WPers
+    def __init__(self, value, input_unit: str='WPers', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -4785,6 +5353,34 @@ class Frequency(CIMUnit):
     def unit(self):
         return UnitSymbol.Hz
     def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
+        self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
+    @property
+    def __namespace__(self):
+        return '#'
+    @property
+    def __package__(self):
+        return 'Domain'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return '1'
+    
+
+@stereotype(CIMStereotype.CIMDatatype)
+@dataclass(repr=False, eq=False)
+class Length(CIMUnit):
+    '''
+    Unit of length. It shall be a positive value or zero.
+    '''
+
+    value: float = field()
+    multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
+    @property # read-only
+    def unit(self):
+        return UnitSymbol.m
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):

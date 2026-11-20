@@ -489,6 +489,50 @@ class PowerSystemResource(IdentifiedObject):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
+class ConnectivityNodeContainer(PowerSystemResource):
+    '''
+    A base class for all objects that may contain connectivity nodes or topological
+    nodes.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentNetwork(ConnectivityNodeContainer):
+    '''
+    A class that groups electrical equivalents, including internal nodes, of
+    a network that has been reduced. The ConnectivityNodes contained in the
+    equivalent are intended to reflect internal nodes of the equivalent. The
+    boundary Connectivity nodes where the equivalent connects outside itself
+    are not contained by the equivalent.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
 class Equipment(PowerSystemResource):
     '''
     The parts of a power system that are physical devices, electronic or mechanical.
@@ -929,6 +973,201 @@ class RegulatingCondEq(EnergyConnection):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExternalNetworkInjection(RegulatingCondEq):
+    '''
+    This class represents the external network for use in power flow and short-circuit
+    calculations.
+    In the power flow domain the external network is modelled as a power injection
+    with power limits and a power-frequency bias. For short-circuit calculations
+    the external network is modelled as the �network feeders� element defined
+    in section 6.2 of IEC60909-0:2016. Boolean flag ikSecond allows short-circuit
+    calculations using the superposition method to detect that the maximum
+    and minimum initial symmetrical short-circuit currents have to be corrected
+    for the fact that they were calculated according the IEC60909-0 method.
+    '''
+
+    ikSecond: Optional[bool] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates whether the maximum and minimum initial symmetrical short-circuit
+    currents (Ik� max and Ik� min) have been calculated according to the
+    IEC 60909-0 method. Is only used in short-circuit calculations done
+    according to the superposition method.
+    '''
+    
+    maxR0ToX0Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of zero sequence resistance to zero sequence reactance
+    (R(0)/X(0) max). R0 and X0 are the real and imaginary parts of the
+    zero sequence short-circuit impedance Z0 defined in clause 3.19.3 of
+    IEC 60909-0:2016.
+    '''
+    
+    maxR1ToX1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of positive sequence resistance to positive sequence
+    reactance (R(1)/X(1) max). R1 and X1 are the real and imaginary parts
+    of the positive sequence short-circuit impedance Z1 defined in clause
+    3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    maxZ0ToZ1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum ratio of zero sequence impedance to its positive sequence impedance
+    (Z(0)/Z(1) max). Z0 is the zero sequence short-circuit impedance defined
+    in clause 3.19.3 of IEC 60909-0:2016. Z1 is the positive sequence short-circuit
+    impedance defined in clause 3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    minR0ToX0Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of zero sequence resistance to zero sequence reactance
+    (R(0)/X(0) min). R0 and X0 are the real and imaginary parts of the
+    zero sequence short-circuit impedance Z0 defined in clause 3.19.3 of
+    IEC 60909-0:2016.
+    '''
+    
+    minR1ToX1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of positive sequence resistance to positive sequence
+    reactance (R(1)/X(1) min). R1 and X1 are the real and imaginary parts
+    of the positive sequence short-circuit impedance Z1 defined in clause
+    3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    minZ0ToZ1Ratio: Optional[float] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum ratio of zero sequence impedance to its positive sequence impedance
+    (Z(0)/Z(1) min). Z0 is the zero sequence short-circuit impedance defined
+    in clause 3.19.3 of IEC 60909-0:2016. Z1 is the positive sequence short-circuit
+    impedance defined in clause 3.19.1 of IEC 60909-0:2016.
+    '''
+    
+    maxInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Maximum initial symmetrical short-circuit current (Ik" max) in A. Ik�
+    is defined in clause 3.5 of IEC 60909-0:2016.
+    '''
+    
+    minInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Minimum initial symmetrical short-circuit current (Ik" min) in A. Ik�
+    is defined in clause 3.5 of IEC 60909-0:2016.
+    '''
+    
+    voltageFactor: Optional[ PU ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Voltage factor (c) in pu which has been used to calculate the maximum
+    and minimum initial symmetrical short-circuit currents (Ik� max and
+    Ik� min). Is only used in short-circuit calculations done according
+    to the superposition method. The voltage factor is defined in clause
+    3.15 of IEC 60909-0:2016.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
@@ -1288,6 +1527,412 @@ class LinearShuntCompensator(ShuntCompensator):
     @property
     def __package__(self):
         return 'Wires'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentEquipment(ConductingEquipment):
+    '''
+    The class represents equivalent objects that are the result of a network
+    reduction. The class is the base for equivalent objects of different types.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentBranch(EquivalentEquipment):
+    '''
+    The class represents equivalent branches. In cases where a transformer
+    phase shift is modelled and the EquivalentBranch is spanning the same nodes,
+    the impedance quantities for the EquivalentBranch shall consider the needed
+    phase shift.
+    '''
+
+    negativeR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series resistance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    negativeR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    negativeX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    negativeX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage: EquivalentBranch is a result of network reduction prior to the
+    data exchange.
+    '''
+    
+    positiveR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance from terminal sequence 1 to terminal
+    sequence 2 . Used for short circuit data exchange according to IEC
+    60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    positiveR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    positiveX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    positiveX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Positive sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    r21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Resistance from terminal sequence 2 to terminal sequence 1 .Used for
+    steady state power flow. This attribute is optional and represent unbalanced
+    network such as off-nominal phase shifter. If only EquivalentBranch.r
+    is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
+    Usage rule : EquivalentBranch is a result of network reduction prior
+    to the data exchange.
+    '''
+    
+    x21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Reactance from terminal sequence 2 to terminal sequence 1. Used for
+    steady state power flow. This attribute is optional and represents
+    an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x
+    is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
+    Usage rule: EquivalentBranch is a result of network reduction prior
+    to the data exchange.
+    '''
+    
+    zeroR12: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series resistance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    EquivalentBranch is a result of network reduction prior to the data
+    exchange.
+    '''
+    
+    zeroR21: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series resistance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    zeroX12: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series reactance from terminal sequence 1 to terminal
+    sequence 2. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    zeroX21: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence series reactance from terminal sequence 2 to terminal
+    sequence 1. Used for short circuit data exchange according to IEC 60909.
+    Usage : EquivalentBranch is a result of network reduction prior to
+    the data exchange.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class EquivalentInjection(EquivalentEquipment):
+    '''
+    This class represents networks that have been equivalized using either
+    the Ward or extended Ward method. A Ward equivalent is a combination of
+    an impedance load and a PQ load. An extended Ward equivalent is a combination
+    of an impedance load, a PQ load and as voltage source with an internal
+    impedance.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ExtendedWardEquivalent(EquivalentInjection):
+    '''
+    An extended ward equivalent is a combination of an impedance load, a PQ
+    load and as voltage source with an internal impedance.
+    '''
+
+    r0: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    r2: Optional[ Resistance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence resistance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x0: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Zero sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    x2: Optional[ Reactance ] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Negative sequence reactance. Used to represent (extended) Ward equivalent.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WardEquivalent(EquivalentInjection):
+    '''
+    A ward equivalent is a combination of an impedance load and a PQ load.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Equivalents'
     @property
     def __minOccurs__(self):
         return '0'

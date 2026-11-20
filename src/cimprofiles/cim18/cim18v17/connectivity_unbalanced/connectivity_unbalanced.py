@@ -3002,7 +3002,7 @@ class AirBreakSwitch(Disconnector):
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class Elbow(Disconnector):
+class ElbowSwitch(Disconnector):
     '''
     An underground deadfront cable connector that provides a fully insulated,
     plug-in connection to transformers, switchgear, and sectionalizing cabinets.
@@ -4634,6 +4634,16 @@ class ConnectedAreaKind(Enum):
     Containment of low-voltage distribution equipment and customer-owned
     equipment with clearly defined electrical boundaries formed by the
     low-side terminal(s) of one or more power transformer objects.
+    '''
+    
+    substationServiceArea = 'substationServiceArea'
+    '''
+    A topologically continuous grouping of all feeder areas and medium-voltage
+    equipment normally energized by a single distribution substation. It
+    encompasses all feeder areas originating from the substation's feeder
+    head terminals, extending up to the normally-open tie switches that
+    form the topological boundary with adjacent substation service areas
+    or adjacent feeders within the same substation.
     '''
     
     subtransmissionArea = 'subtransmissionArea'

@@ -10,6 +10,11 @@
 # description: human-readable note shown in the generated file header.
 # source: optional, the CIMTool Profiles folder (repo-relative) the parts are generated
 #   in. scripts/build_release.sh <name> re-imports every part from it before building.
+#   The part <module> is read from <source>/<module>.cimantic-graphs.py and
+#   <source>/<module>.__init__.py.
+# source_prefix: optional, for source folders whose .owl files are named <prefix><Module>
+#   rather than <module> (CGMES-CoreEquipment.owl for core_equipment): the part is then read
+#   from <source>/<prefix><Module>.cimantic-graphs.py, with <Module> the CamelCase module name.
 
 releases:
   - name: cim18gmdm
@@ -24,6 +29,8 @@ releases:
 
   - name: cgmes_3_0_0
     package: cimprofiles.cim17.cgmes_3_0_0
+    source: CGMES-CIM17/Profiles
+    source_prefix: CGMES-
     parts:
       - cimprofiles.cim17.cgmes_3_0_0.core_equipment.core_equipment
       - cimprofiles.cim17.cgmes_3_0_0.equipment_boundary.equipment_boundary
@@ -35,6 +42,21 @@ releases:
       - cimprofiles.cim17.cgmes_3_0_0.geographical_location.geographical_location
       - cimprofiles.cim17.cgmes_3_0_0.diagram.diagram_layout
     description: "IEC CGMES 3.0 merged profile (EQ+EQBD+OP+SC+SSH+SV+TP+GL+DL)"
+
+  # CGMES-CoreEquipmentShortCircuit.owl is left out: it is EQ with the short-circuit
+  # classes added, which core_equipment + short_circuit already cover.
+  - name: cgmes_2_4_0
+    package: cimprofiles.cim16.cgmes_2_4_0
+    source: CGMES-CIM16/Profiles
+    source_prefix: CGMES-
+    parts:
+      - cimprofiles.cim16.cgmes_2_4_0.core_equipment.core_equipment
+      - cimprofiles.cim16.cgmes_2_4_0.operation.operation
+      - cimprofiles.cim16.cgmes_2_4_0.short_circuit.short_circuit
+      - cimprofiles.cim16.cgmes_2_4_0.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim16.cgmes_2_4_0.state_variables.state_variables
+      - cimprofiles.cim16.cgmes_2_4_0.topology.topology
+    description: "IEC CGMES 2.4 merged profile (EQ+OP+SC+SSH+SV+TP)"
 
   - name: cim18v17
     package: cimprofiles.cim18.cim18v17
@@ -60,5 +82,58 @@ releases:
       - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
       - cimprofiles.cim18.cim18v17.topology.topology
       - cimprofiles.cim18.cim18v17.load_area.load_area
-      # - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.nc_schedule.nc_schedule
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
+      - cimprofiles.cim18.cim18v17.metadata.metadata
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"
+
+  # cim18v17 split by grid: the same parts, in the same order, without the other grid's.
+  # Distribution (CIMHub OpenDSS): unbalanced phases, wire/cable catalogs and construction.
+  - name: cim18v17_distribution
+    package: cimprofiles.cim18.cim18v17_distribution
+    source: cim18v15/Profiles
+    parts:
+      - cimprofiles.cim18.cim18v17.substation.substation
+      - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
+      - cimprofiles.cim18.cim18v17.electrical_balanced.electrical_balanced
+      - cimprofiles.cim18.cim18v17.electrical_unbalanced.electrical_unbalanced
+      - cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim18.cim18v17.regulating_control.regulating_control
+      - cimprofiles.cim18.cim18v17.measurement.measurement
+      - cimprofiles.cim18.cim18v17.location.location
+      - cimprofiles.cim18.cim18v17.asset.asset
+      - cimprofiles.cim18.cim18v17.asset_info.asset_info
+      - cimprofiles.cim18.cim18v17.asset_deployment.asset_deployment
+      - cimprofiles.cim18.cim18v17.construction.construction
+      - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+      - cimprofiles.cim18.cim18v17.state_variable.state_variable
+      - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
+      - cimprofiles.cim18.cim18v17.topology.topology
+      - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
+    description: "GridAPPS-D CIM18 distribution profile: cim18v17 without HVDC, FACTS, function block control and load areas"
+
+  # Transmission (CIMHub PSS/E RAW): balanced, with HVDC, FACTS, control functions and areas.
+  - name: cim18v17_transmission
+    package: cimprofiles.cim18.cim18v17_transmission
+    source: cim18v15/Profiles
+    parts:
+      - cimprofiles.cim18.cim18v17.substation.substation
+      - cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced
+      - cimprofiles.cim18.cim18v17.electrical_balanced.electrical_balanced
+      - cimprofiles.cim18.cim18v17.steady_state_hypothesis.steady_state_hypothesis
+      - cimprofiles.cim18.cim18v17.regulating_control.regulating_control
+      - cimprofiles.cim18.cim18v17.function_block_control.function_block_control
+      - cimprofiles.cim18.cim18v17.measurement.measurement
+      - cimprofiles.cim18.cim18v17.location.location
+      - cimprofiles.cim18.cim18v17.facts.facts
+      - cimprofiles.cim18.cim18v17.hvdc.hvdc
+      - cimprofiles.cim18.cim18v17.short_circuit.short_circuit
+      - cimprofiles.cim18.cim18v17.state_variable.state_variable
+      - cimprofiles.cim18.cim18v17.operational_limit.operational_limit
+      - cimprofiles.cim18.cim18v17.topology.topology
+      - cimprofiles.cim18.cim18v17.load_area.load_area
+      - cimprofiles.cim18.cim18v17.protection.protection
+      - cimprofiles.cim18.cim18v17.simulation_result.simulation_result
+    description: "GridAPPS-D CIM18 transmission profile: cim18v17 without unbalanced phases, assets, catalogs and construction"

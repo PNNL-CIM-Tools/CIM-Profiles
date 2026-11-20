@@ -1,0 +1,29 @@
+# JSON-LD units for cim18v17_distribution; built by `python -m cimprofiles.jsonld.build`
+# Per property: `properties` override -> `quantity_kinds` default -> CIMUnit base unit.
+profile: cim18v17_distribution
+default: si
+conventions:
+  si: {}          # every unit in its CIMUnit class's base unit
+  distribution:   # kW-scale power, line constants per km, conductor dimensions in mm
+    quantity_kinds:
+      ActivePower: kW
+      ReactivePower: kVAr
+      ApparentPower: kVA
+      RealEnergy: kWh
+      ResistancePerLength: ohm/km
+      ReactancePerLength: ohm/km
+      ConductancePerLength: uS/km
+      SusceptancePerLength: uS/km
+    properties:
+      WireInfo.radius: mm
+      WireInfo.coreRadius: mm
+      WireInfo.gmr: mm
+      WireInfo.insulationThickness: mm
+      CableInfo.diameterOverCore: mm
+      CableInfo.diameterOverInsulation: mm
+      CableInfo.diameterOverJacket: mm
+      CableInfo.diameterOverScreen: mm
+      ConcentricNeutralCableInfo.diameterOverNeutral: mm
+      ConcentricNeutralCableInfo.neutralStrandGmr: mm
+      ConcentricNeutralCableInfo.neutralStrandRadius: mm
+      TapeShieldCableInfo.tapeThickness: mm

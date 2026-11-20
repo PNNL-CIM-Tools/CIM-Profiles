@@ -96,6 +96,24 @@ def test_cim18v17_unions_enum_members():
         assert set(module.SinglePhaseKind.__members__) <= members
 
 
+def test_cim18v17_flavors_keep_only_their_grid():
+    """The distribution and transmission flavors drop the other grid's parts."""
+    import cimprofiles.cim18.cim18v17_distribution as distribution
+    import cimprofiles.cim18.cim18v17_transmission as transmission
+
+    shared = ('ACLineSegment', 'PowerTransformer', 'ConnectivityNode', 'Breaker', 'OperationalLimitSet')
+    distribution_only = ('TransformerTankConfiguration', 'XYSpacing', 'OverheadWireInfo',
+                         'PerLengthPhaseImpedance')
+    transmission_only = ('VsConverter', 'DCLineSegment', 'StaticSynchronousCompensator', 'ControlArea')
+    for name in shared:
+        assert hasattr(distribution, name) and hasattr(transmission, name), name
+    for name in distribution_only:
+        assert hasattr(distribution, name) and not hasattr(transmission, name), name
+    for name in transmission_only:
+        assert hasattr(transmission, name) and not hasattr(distribution, name), name
+    assert 'WireConfiguration' not in {f.name for f in dataclasses.fields(transmission.ACLineSegment)}
+
+
 def test_cim18v17_source_keeps_field_docstrings_and_line_width():
     merged = (_package_dir(CIM18V17['package']) / 'cim18v17.py').read_text(encoding='utf-8')
     part_width = max(len(line) for part in CIM18V17['parts']

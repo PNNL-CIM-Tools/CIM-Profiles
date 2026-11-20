@@ -1,0 +1,5 @@
+# JSON-LD units for cgmes_2_4_0; built by `python -m cimprofiles.jsonld.build`
+profile: cgmes_2_4_0
+default: si
+conventions:
+  si: {}          # every unit in its CIMUnit class's base unit

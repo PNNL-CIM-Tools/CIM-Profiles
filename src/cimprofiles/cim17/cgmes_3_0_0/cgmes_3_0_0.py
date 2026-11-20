@@ -20,7 +20,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 from cimprofiles.identity import Identity, stereotype
-from cimprofiles.units import CIMUnit, UnitMultiplier, UnitSymbol
+from cimprofiles.units import CIMUnit, UnitSymbol, UnitMultiplier
 _log = logging.getLogger(__name__)
 BASE_URI = 'http://ucaiug.org/ns/CGMES/CoreEquipment-EU/3.0#'
 ONTOLOGY_URI = 'http://iec.ch/TC57/CIM100#'
@@ -30,35 +30,33 @@ NAMESPACES = {
 }
 
 class CIMStereotype(Enum):
-    AggregateOf = 'AggregateOf'
-    Attribute = 'Attribute'
-    ByReference = 'ByReference'
-    CIMDatatype = 'CIMDatatype'
-    Concrete = 'Concrete'
-    European = 'European'
-    NC = 'NC'
-    OfAggregate = 'OfAggregate'
-    Primitive = 'Primitive'
-    ShadowExtension = 'ShadowExtension'
-    deprecated = 'deprecated'
-    enumeration = 'enumeration'
+    AggregateOf = "AggregateOf"
+    Attribute = "Attribute"
+    ByReference = "ByReference"
+    CIMDatatype = "CIMDatatype"
+    Concrete = "Concrete"
+    European = "European"
+    OfAggregate = "OfAggregate"
+    Primitive = "Primitive"
+    deprecated = "deprecated"
+    enumeration = "enumeration"
 
-    Description = 'Description'
-    Compound = 'Compound'
+    Description = "Description"
+    Compound = "Compound"
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the in-phase component
     of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.W
-    def __init__(self, value, input_unit: str='W', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='W', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -72,21 +70,21 @@ class ActivePower(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePowerPerCurrentFlow(CIMUnit):
     '''
     Active power variation with current flow.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.WPerA
-    def __init__(self, value, input_unit: str='WPerA', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='WPerA', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -100,21 +98,21 @@ class ActivePowerPerCurrentFlow(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePowerPerFrequency(CIMUnit):
     '''
     Active power variation with frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.WPers
-    def __init__(self, value, input_unit: str='WPers', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='WPers', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -128,21 +126,21 @@ class ActivePowerPerFrequency(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AngleDegrees(CIMUnit):
     '''
     Measurement of angle in degrees.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.deg
-    def __init__(self, value, input_unit: str='deg', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='deg', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -156,21 +154,21 @@ class AngleDegrees(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AngleRadians(CIMUnit):
     '''
     Phase angle in radians.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.rad
-    def __init__(self, value, input_unit: str='rad', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='rad', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -184,21 +182,21 @@ class AngleRadians(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ApparentPower(CIMUnit):
     '''
     Product of the RMS value of the voltage and the RMS value of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VA
-    def __init__(self, value, input_unit: str='VA', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VA', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -212,7 +210,7 @@ class ApparentPower(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.enumeration)
 class AsynchronousMachineKind(Enum):
@@ -224,12 +222,12 @@ class AsynchronousMachineKind(Enum):
     '''
     The Asynchronous Machine is a generator.
     '''
-
+    
     motor = 'motor'
     '''
     The Asynchronous Machine is a motor.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -242,7 +240,7 @@ class AsynchronousMachineKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class BatteryStateKind(Enum):
     '''
@@ -253,27 +251,27 @@ class BatteryStateKind(Enum):
     '''
     Stored energy is increasing.
     '''
-
+    
     discharging = 'discharging'
     '''
     Stored energy is decreasing.
     '''
-
+    
     empty = 'empty'
     '''
     Unable to discharge, and not charging.
     '''
-
+    
     full = 'full'
     '''
     Unable to charge, and not discharging.
     '''
-
+    
     waiting = 'waiting'
     '''
     Neither charging nor discharging, but able to do so.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -286,20 +284,20 @@ class BatteryStateKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Capacitance(CIMUnit):
     '''
     Capacitive part of reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.F
-    def __init__(self, value, input_unit: str='F', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='F', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -313,22 +311,22 @@ class Capacitance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Conductance(CIMUnit):
     '''
     Factor by which voltage must be multiplied to give corresponding power
     lost from a circuit. Real part of admittance.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.S
-    def __init__(self, value, input_unit: str='S', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='S', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -342,7 +340,7 @@ class Conductance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.enumeration)
 class ControlAreaTypeKind(Enum):
@@ -354,17 +352,17 @@ class ControlAreaTypeKind(Enum):
     '''
     Used for automatic generation control.
     '''
-
+    
     Forecast = 'Forecast'
     '''
     Used for load forecast.
     '''
-
+    
     Interchange = 'Interchange'
     '''
     Used for interchange specification or control.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -377,7 +375,7 @@ class ControlAreaTypeKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class CsOperatingModeKind(Enum):
     '''
@@ -388,12 +386,12 @@ class CsOperatingModeKind(Enum):
     '''
     Operating as inverter, which is the power receiving end.
     '''
-
+    
     rectifier = 'rectifier'
     '''
     Operating as rectifier, which is the power sending end.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -406,7 +404,7 @@ class CsOperatingModeKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class CsPpccControlKind(Enum):
     '''
@@ -418,17 +416,17 @@ class CsPpccControlKind(Enum):
     Control is active power control at AC side, at point of common coupling.
     Target is provided by ACDCConverter.targetPpcc.
     '''
-
+    
     dcCurrent = 'dcCurrent'
     '''
     Control is DC current with target value provided by CsConverter.targetIdc.
     '''
-
+    
     dcVoltage = 'dcVoltage'
     '''
     Control is DC voltage with target value provided by ACDCConverter.targetUdc.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -441,7 +439,7 @@ class CsPpccControlKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class Currency(Enum):
     '''
@@ -452,807 +450,807 @@ class Currency(Enum):
     '''
     United Arab Emirates dirham.
     '''
-
+    
     AFN = 'AFN'
     '''
     Afghan afghani.
     '''
-
+    
     ALL = 'ALL'
     '''
     Albanian lek.
     '''
-
+    
     AMD = 'AMD'
     '''
     Armenian dram.
     '''
-
+    
     ANG = 'ANG'
     '''
     Netherlands Antillean guilder.
     '''
-
+    
     AOA = 'AOA'
     '''
     Angolan kwanza.
     '''
-
+    
     ARS = 'ARS'
     '''
     Argentine peso.
     '''
-
+    
     AUD = 'AUD'
     '''
     Australian dollar.
     '''
-
+    
     AWG = 'AWG'
     '''
     Aruban florin.
     '''
-
+    
     AZN = 'AZN'
     '''
     Azerbaijani manat.
     '''
-
+    
     BAM = 'BAM'
     '''
     Bosnia and Herzegovina convertible mark.
     '''
-
+    
     BBD = 'BBD'
     '''
     Barbados dollar.
     '''
-
+    
     BDT = 'BDT'
     '''
     Bangladeshi taka.
     '''
-
+    
     BGN = 'BGN'
     '''
     Bulgarian lev.
     '''
-
+    
     BHD = 'BHD'
     '''
     Bahraini dinar.
     '''
-
+    
     BIF = 'BIF'
     '''
     Burundian franc.
     '''
-
+    
     BMD = 'BMD'
     '''
     Bermudian dollar (customarily known as Bermuda dollar).
     '''
-
+    
     BND = 'BND'
     '''
     Brunei dollar.
     '''
-
+    
     BOB = 'BOB'
     '''
     Boliviano.
     '''
-
+    
     BOV = 'BOV'
     '''
     Bolivian Mvdol (funds code).
     '''
-
+    
     BRL = 'BRL'
     '''
     Brazilian real.
     '''
-
+    
     BSD = 'BSD'
     '''
     Bahamian dollar.
     '''
-
+    
     BTN = 'BTN'
     '''
     Bhutanese ngultrum.
     '''
-
+    
     BWP = 'BWP'
     '''
     Botswana pula.
     '''
-
+    
     BYR = 'BYR'
     '''
     Belarusian ruble.
     '''
-
+    
     BZD = 'BZD'
     '''
     Belize dollar.
     '''
-
+    
     CAD = 'CAD'
     '''
     Canadian dollar.
     '''
-
+    
     CDF = 'CDF'
     '''
     Congolese franc.
     '''
-
+    
     CHF = 'CHF'
     '''
     Swiss franc.
     '''
-
+    
     CLF = 'CLF'
     '''
     Unidad de Fomento (funds code), Chile.
     '''
-
+    
     CLP = 'CLP'
     '''
     Chilean peso.
     '''
-
+    
     CNY = 'CNY'
     '''
     Chinese yuan.
     '''
-
+    
     COP = 'COP'
     '''
     Colombian peso.
     '''
-
+    
     COU = 'COU'
     '''
     Unidad de Valor Real.
     '''
-
+    
     CRC = 'CRC'
     '''
     Costa Rican colon.
     '''
-
+    
     CUC = 'CUC'
     '''
     Cuban convertible peso.
     '''
-
+    
     CUP = 'CUP'
     '''
     Cuban peso.
     '''
-
+    
     CVE = 'CVE'
     '''
     Cape Verde escudo.
     '''
-
+    
     CZK = 'CZK'
     '''
     Czech koruna.
     '''
-
+    
     DJF = 'DJF'
     '''
     Djiboutian franc.
     '''
-
+    
     DKK = 'DKK'
     '''
     Danish krone.
     '''
-
+    
     DOP = 'DOP'
     '''
     Dominican peso.
     '''
-
+    
     DZD = 'DZD'
     '''
     Algerian dinar.
     '''
-
+    
     EEK = 'EEK'
     '''
     Estonian kroon.
     '''
-
+    
     EGP = 'EGP'
     '''
     Egyptian pound.
     '''
-
+    
     ERN = 'ERN'
     '''
     Eritrean nakfa.
     '''
-
+    
     ETB = 'ETB'
     '''
     Ethiopian birr.
     '''
-
+    
     EUR = 'EUR'
     '''
     Euro.
     '''
-
+    
     FJD = 'FJD'
     '''
     Fiji dollar.
     '''
-
+    
     FKP = 'FKP'
     '''
     Falkland Islands pound.
     '''
-
+    
     GBP = 'GBP'
     '''
     Pound sterling.
     '''
-
+    
     GEL = 'GEL'
     '''
     Georgian lari.
     '''
-
+    
     GHS = 'GHS'
     '''
     Ghanaian cedi.
     '''
-
+    
     GIP = 'GIP'
     '''
     Gibraltar pound.
     '''
-
+    
     GMD = 'GMD'
     '''
     Gambian dalasi.
     '''
-
+    
     GNF = 'GNF'
     '''
     Guinean franc.
     '''
-
+    
     GTQ = 'GTQ'
     '''
     Guatemalan quetzal.
     '''
-
+    
     GYD = 'GYD'
     '''
     Guyanese dollar.
     '''
-
+    
     HKD = 'HKD'
     '''
     Hong Kong dollar.
     '''
-
+    
     HNL = 'HNL'
     '''
     Honduran lempira.
     '''
-
+    
     HRK = 'HRK'
     '''
     Croatian kuna.
     '''
-
+    
     HTG = 'HTG'
     '''
     Haitian gourde.
     '''
-
+    
     HUF = 'HUF'
     '''
     Hungarian forint.
     '''
-
+    
     IDR = 'IDR'
     '''
     Indonesian rupiah.
     '''
-
+    
     ILS = 'ILS'
     '''
     Israeli new sheqel.
     '''
-
+    
     INR = 'INR'
     '''
     Indian rupee.
     '''
-
+    
     IQD = 'IQD'
     '''
     Iraqi dinar.
     '''
-
+    
     IRR = 'IRR'
     '''
     Iranian rial.
     '''
-
+    
     ISK = 'ISK'
     '''
     Icelandic króna.
     '''
-
+    
     JMD = 'JMD'
     '''
     Jamaican dollar.
     '''
-
+    
     JOD = 'JOD'
     '''
     Jordanian dinar.
     '''
-
+    
     JPY = 'JPY'
     '''
     Japanese yen.
     '''
-
+    
     KES = 'KES'
     '''
     Kenyan shilling.
     '''
-
+    
     KGS = 'KGS'
     '''
     Kyrgyzstani som.
     '''
-
+    
     KHR = 'KHR'
     '''
     Cambodian riel.
     '''
-
+    
     KMF = 'KMF'
     '''
     Comoro franc.
     '''
-
+    
     KPW = 'KPW'
     '''
     North Korean won.
     '''
-
+    
     KRW = 'KRW'
     '''
     South Korean won.
     '''
-
+    
     KWD = 'KWD'
     '''
     Kuwaiti dinar.
     '''
-
+    
     KYD = 'KYD'
     '''
     Cayman Islands dollar.
     '''
-
+    
     KZT = 'KZT'
     '''
     Kazakhstani tenge.
     '''
-
+    
     LAK = 'LAK'
     '''
     Lao kip.
     '''
-
+    
     LBP = 'LBP'
     '''
     Lebanese pound.
     '''
-
+    
     LKR = 'LKR'
     '''
     Sri Lanka rupee.
     '''
-
+    
     LRD = 'LRD'
     '''
     Liberian dollar.
     '''
-
+    
     LSL = 'LSL'
     '''
     Lesotho loti.
     '''
-
+    
     LTL = 'LTL'
     '''
     Lithuanian litas.
     '''
-
+    
     LVL = 'LVL'
     '''
     Latvian lats.
     '''
-
+    
     LYD = 'LYD'
     '''
     Libyan dinar.
     '''
-
+    
     MAD = 'MAD'
     '''
     Moroccan dirham.
     '''
-
+    
     MDL = 'MDL'
     '''
     Moldovan leu.
     '''
-
+    
     MGA = 'MGA'
     '''
     Malagasy ariary.
     '''
-
+    
     MKD = 'MKD'
     '''
     Macedonian denar.
     '''
-
+    
     MMK = 'MMK'
     '''
     Myanma kyat.
     '''
-
+    
     MNT = 'MNT'
     '''
     Mongolian tugrik.
     '''
-
+    
     MOP = 'MOP'
     '''
     Macanese pataca.
     '''
-
+    
     MRO = 'MRO'
     '''
     Mauritanian ouguiya.
     '''
-
+    
     MUR = 'MUR'
     '''
     Mauritian rupee.
     '''
-
+    
     MVR = 'MVR'
     '''
     Maldivian rufiyaa.
     '''
-
+    
     MWK = 'MWK'
     '''
     Malawian kwacha.
     '''
-
+    
     MXN = 'MXN'
     '''
     Mexican peso.
     '''
-
+    
     MYR = 'MYR'
     '''
     Malaysian ringgit.
     '''
-
+    
     MZN = 'MZN'
     '''
     Mozambican metical.
     '''
-
+    
     NAD = 'NAD'
     '''
     Namibian dollar.
     '''
-
+    
     NGN = 'NGN'
     '''
     Nigerian naira.
     '''
-
+    
     NIO = 'NIO'
     '''
     Cordoba oro.
     '''
-
+    
     NOK = 'NOK'
     '''
     Norwegian krone.
     '''
-
+    
     NPR = 'NPR'
     '''
     Nepalese rupee.
     '''
-
+    
     NZD = 'NZD'
     '''
     New Zealand dollar.
     '''
-
+    
     OMR = 'OMR'
     '''
     Omani rial.
     '''
-
+    
     PAB = 'PAB'
     '''
     Panamanian balboa.
     '''
-
+    
     PEN = 'PEN'
     '''
     Peruvian nuevo sol.
     '''
-
+    
     PGK = 'PGK'
     '''
     Papua New Guinean kina.
     '''
-
+    
     PHP = 'PHP'
     '''
     Philippine peso.
     '''
-
+    
     PKR = 'PKR'
     '''
     Pakistani rupee.
     '''
-
+    
     PLN = 'PLN'
     '''
     Polish zloty.
     '''
-
+    
     PYG = 'PYG'
     '''
     Paraguayan guaraní.
     '''
-
+    
     QAR = 'QAR'
     '''
     Qatari rial.
     '''
-
+    
     RON = 'RON'
     '''
     Romanian new leu.
     '''
-
+    
     RSD = 'RSD'
     '''
     Serbian dinar.
     '''
-
+    
     RUB = 'RUB'
     '''
     Russian rouble.
     '''
-
+    
     RWF = 'RWF'
     '''
     Rwandan franc.
     '''
-
+    
     SAR = 'SAR'
     '''
     Saudi riyal.
     '''
-
+    
     SBD = 'SBD'
     '''
     Solomon Islands dollar.
     '''
-
+    
     SCR = 'SCR'
     '''
     Seychelles rupee.
     '''
-
+    
     SDG = 'SDG'
     '''
     Sudanese pound.
     '''
-
+    
     SEK = 'SEK'
     '''
     Swedish krona/kronor.
     '''
-
+    
     SGD = 'SGD'
     '''
     Singapore dollar.
     '''
-
+    
     SHP = 'SHP'
     '''
     Saint Helena pound.
     '''
-
+    
     SLL = 'SLL'
     '''
     Sierra Leonean leone.
     '''
-
+    
     SOS = 'SOS'
     '''
     Somali shilling.
     '''
-
+    
     SRD = 'SRD'
     '''
     Surinamese dollar.
     '''
-
+    
     STD = 'STD'
     '''
     São Tomé and Príncipe dobra.
     '''
-
+    
     SYP = 'SYP'
     '''
     Syrian pound.
     '''
-
+    
     SZL = 'SZL'
     '''
     Lilangeni.
     '''
-
+    
     THB = 'THB'
     '''
     Thai baht.
     '''
-
+    
     TJS = 'TJS'
     '''
     Tajikistani somoni.
     '''
-
+    
     TMT = 'TMT'
     '''
     Turkmenistani manat.
     '''
-
+    
     TND = 'TND'
     '''
     Tunisian dinar.
     '''
-
+    
     TOP = 'TOP'
     '''
     Tongan pa'anga.
     '''
-
+    
     TRY = 'TRY'
     '''
     Turkish lira.
     '''
-
+    
     TTD = 'TTD'
     '''
     Trinidad and Tobago dollar.
     '''
-
+    
     TWD = 'TWD'
     '''
     New Taiwan dollar.
     '''
-
+    
     TZS = 'TZS'
     '''
     Tanzanian shilling.
     '''
-
+    
     UAH = 'UAH'
     '''
     Ukrainian hryvnia.
     '''
-
+    
     UGX = 'UGX'
     '''
     Ugandan shilling.
     '''
-
+    
     USD = 'USD'
     '''
     United States dollar.
     '''
-
+    
     UYU = 'UYU'
     '''
     Uruguayan peso.
     '''
-
+    
     UZS = 'UZS'
     '''
     Uzbekistan som.
     '''
-
+    
     VEF = 'VEF'
     '''
     Venezuelan bolívar fuerte.
     '''
-
+    
     VND = 'VND'
     '''
     Vietnamese Dong.
     '''
-
+    
     VUV = 'VUV'
     '''
     Vanuatu vatu.
     '''
-
+    
     WST = 'WST'
     '''
     Samoan tala.
     '''
-
+    
     XAF = 'XAF'
     '''
     CFA franc BEAC.
     '''
-
+    
     XCD = 'XCD'
     '''
     East Caribbean dollar.
     '''
-
+    
     XOF = 'XOF'
     '''
     CFA Franc BCEAO.
     '''
-
+    
     XPF = 'XPF'
     '''
     CFP franc.
     '''
-
+    
     YER = 'YER'
     '''
     Yemeni rial.
     '''
-
+    
     ZAR = 'ZAR'
     '''
     South African rand.
     '''
-
+    
     ZMK = 'ZMK'
     '''
     Zambian kwacha.
     '''
-
+    
     ZWL = 'ZWL'
     '''
     Zimbabwe dollar.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1265,21 +1263,21 @@ class Currency(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentFlow(CIMUnit):
     '''
     Electrical current with sign convention: positive flow is out of the conducting
     equipment into the connectivity node. Can be both AC and DC.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.A
-    def __init__(self, value, input_unit: str='A', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='A', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1293,7 +1291,7 @@ class CurrentFlow(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -1317,7 +1315,7 @@ class CurveData(Identity):
     '''
     The data value of the X-axis variable, depending on the X-axis units.
     '''
-
+    
     y1value: Optional[float] = field(
         default=None,
         metadata={
@@ -1332,7 +1330,7 @@ class CurveData(Identity):
     The data value of the first Y-axis variable, depending on the Y-axis
     units.
     '''
-
+    
     y2value: Optional[float] = field(
         default=None,
         metadata={
@@ -1347,7 +1345,7 @@ class CurveData(Identity):
     The data value of the second Y-axis variable (if present), depending
     on the Y-axis units.
     '''
-
+    
     Curve: Optional[Curve] = field(
         default=None,
         metadata={
@@ -1362,7 +1360,7 @@ class CurveData(Identity):
     '''
     The curve of this curve data point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1375,7 +1373,7 @@ class CurveData(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class CurveStyle(Enum):
     '''
@@ -1387,13 +1385,13 @@ class CurveStyle(Enum):
     The Y-axis values are assumed constant until the next curve point and
     prior to the first curve point.
     '''
-
+    
     straightLineYValues = 'straightLineYValues'
     '''
     The Y-axis values are assumed to be a straight line between values.
     Also known as linear interpolation.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1406,7 +1404,7 @@ class CurveStyle(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class DCConverterOperatingModeKind(Enum):
     '''
@@ -1417,17 +1415,17 @@ class DCConverterOperatingModeKind(Enum):
     '''
     Bipolar operation.
     '''
-
+    
     monopolarGroundReturn = 'monopolarGroundReturn'
     '''
     Monopolar operation with ground return.
     '''
-
+    
     monopolarMetallicReturn = 'monopolarMetallicReturn'
     '''
     Monopolar operation with metallic return.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1440,7 +1438,7 @@ class DCConverterOperatingModeKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class DCPolarityKind(Enum):
     '''
@@ -1453,19 +1451,19 @@ class DCPolarityKind(Enum):
     symmetric monopole configuration. The midpoint can be grounded and/or
     have a metallic return.
     '''
-
+    
     negative = 'negative'
     '''
     Negative pole. The converter terminal is intended to operate at a negative
     voltage relative the midpoint or positive terminal.
     '''
-
+    
     positive = 'positive'
     '''
     Positive pole. The converter terminal is intended to operate at a positive
     voltage relative the midpoint or negative terminal.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1478,7 +1476,7 @@ class DCPolarityKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiagramObjectGluePoint(Identity):
@@ -1487,19 +1485,6 @@ class DiagramObjectGluePoint(Identity):
     objects that are considered to be glued together in a diagram even if they
     are not at the exact same coordinates.
     '''
-
-    @property
-    def __namespace__(self):
-        return 'http://iec.ch/TC57/CIM100#'
-    @property
-    def __package__(self):
-        return 'DiagramLayout'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
 
     DiagramObjectPoints: list[DiagramObjectPoint] = field(
         default_factory=list,
@@ -1516,7 +1501,20 @@ class DiagramObjectGluePoint(Identity):
     A diagram object glue point is associated with 2 or more object points
     that are considered to be 'glued' together.
     '''
-
+    
+    @property
+    def __namespace__(self):
+        return 'http://iec.ch/TC57/CIM100#'
+    @property
+    def __package__(self):
+        return 'DiagramLayout'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiagramObjectPoint(Identity):
@@ -1541,7 +1539,7 @@ class DiagramObjectPoint(Identity):
     points for diagram objects acting as a polyline or polygon with more
     than one point. The attribute shall be a positive value.
     '''
-
+    
     xPosition: Optional[float] = field(
         default=None,
         metadata={
@@ -1555,7 +1553,7 @@ class DiagramObjectPoint(Identity):
     '''
     The X coordinate of this point.
     '''
-
+    
     yPosition: Optional[float] = field(
         default=None,
         metadata={
@@ -1569,7 +1567,7 @@ class DiagramObjectPoint(Identity):
     '''
     The Y coordinate of this point.
     '''
-
+    
     zPosition: Optional[float] = field(
         default=None,
         metadata={
@@ -1583,7 +1581,7 @@ class DiagramObjectPoint(Identity):
     '''
     The Z coordinate of this point.
     '''
-
+    
     DiagramObject: Optional[DiagramObject] = field(
         default=None,
         metadata={
@@ -1598,7 +1596,7 @@ class DiagramObjectPoint(Identity):
     '''
     The diagram object with which the points are associated.
     '''
-
+    
     DiagramObjectGluePoint: Optional[DiagramObjectGluePoint] = field(
         default=None,
         metadata={
@@ -1613,7 +1611,7 @@ class DiagramObjectPoint(Identity):
     '''
     The 'glue' point to which this point is associated.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1626,20 +1624,20 @@ class DiagramObjectPoint(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Frequency(CIMUnit):
     '''
     Cycles per second.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.Hz
-    def __init__(self, value, input_unit: str='Hz', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -1653,7 +1651,7 @@ class Frequency(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.enumeration)
 class FuelType(Enum):
@@ -1665,54 +1663,54 @@ class FuelType(Enum):
     '''
     Brown coal lignite.
     '''
-
+    
     coal = 'coal'
     '''
     Generic coal, not including lignite type.
     '''
-
+    
     coalDerivedGas = 'coalDerivedGas'
     '''
     Coal derived gas.
     '''
-
+    
     gas = 'gas'
     '''
     Natural gas.
     '''
-
+    
     hardCoal = 'hardCoal'
     '''
     Hard coal.
     '''
-
+    
     lignite = 'lignite'
     '''
     The fuel is lignite coal. Note that this is a special type of coal,
     so the other enum of coal is reserved for hard coal types or if the
     exact type of coal is not known.
     '''
-
+    
     oil = 'oil'
     '''
     Oil.
     '''
-
+    
     oilShale = 'oilShale'
     '''
     Oil Shale.
     '''
-
+    
     other = 'other'
     '''
     Any fuel type not included in the rest of the enumerated value.
     '''
-
+    
     peat = 'peat'
     '''
     Peat.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1725,7 +1723,7 @@ class FuelType(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class GeneratorControlSource(Enum):
     '''
@@ -1736,22 +1734,22 @@ class GeneratorControlSource(Enum):
     '''
     Off of automatic generation control (AGC).
     '''
-
+    
     onAGC = 'onAGC'
     '''
     On automatic generation control (AGC).
     '''
-
+    
     plantControl = 'plantControl'
     '''
     Plant is controlling.
     '''
-
+    
     unavailable = 'unavailable'
     '''
     Not available.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1764,7 +1762,7 @@ class GeneratorControlSource(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class HydroEnergyConversionKind(Enum):
     '''
@@ -1776,12 +1774,12 @@ class HydroEnergyConversionKind(Enum):
     '''
     Able to generate power, but not able to pump water for energy storage.
     '''
-
+    
     pumpAndGenerator = 'pumpAndGenerator'
     '''
     Able to both generate power and pump water for energy storage.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1794,7 +1792,7 @@ class HydroEnergyConversionKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class HydroPlantStorageKind(Enum):
     '''
@@ -1805,17 +1803,17 @@ class HydroPlantStorageKind(Enum):
     '''
     Pumped storage.
     '''
-
+    
     runOfRiver = 'runOfRiver'
     '''
     Run of river.
     '''
-
+    
     storage = 'storage'
     '''
     Storage.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1828,7 +1826,7 @@ class HydroPlantStorageKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class HydroTurbineKind(Enum):
     '''
@@ -1839,17 +1837,17 @@ class HydroTurbineKind(Enum):
     '''
     Francis.
     '''
-
+    
     kaplan = 'kaplan'
     '''
     Kaplan.
     '''
-
+    
     pelton = 'pelton'
     '''
     Pelton.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1862,7 +1860,7 @@ class HydroTurbineKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
@@ -1889,7 +1887,7 @@ class IdentifiedObject(Identity):
     mRID is mapped to rdf:ID or rdf:about attributes that identify CIM
     object elements.
     '''
-
+    
     description: Optional[str] = field(
         default=None,
         metadata={
@@ -1905,7 +1903,7 @@ class IdentifiedObject(Identity):
     the object. It may be non unique and may not correlate to a naming
     hierarchy.
     '''
-
+    
     energyIdentCodeEic: Optional[str] = field(
         default=None,
         metadata={
@@ -1921,13 +1919,13 @@ class IdentifiedObject(Identity):
     Code). The length of the string is 16 characters as defined by the
     EIC code. For details on EIC scheme please refer to ENTSO-E web site.
     '''
-
+    
     name: Optional[str] = field(
         default=None,
         metadata={
         'type': 'Attribute',
         'stereotypes': ['Attribute'],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://iec.ch/TC57/CIM100#',
         'serialize': True,
@@ -1936,7 +1934,7 @@ class IdentifiedObject(Identity):
     The name is any free human readable and possibly non unique text naming
     the object.
     '''
-
+    
     shortName: Optional[str] = field(
         default=None,
         metadata={
@@ -1951,7 +1949,7 @@ class IdentifiedObject(Identity):
     The attribute is used for an exchange of a human readable short name
     with length of the string 12 characters maximum.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -1964,7 +1962,7 @@ class IdentifiedObject(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     DiagramObjects: list[DiagramObject] = field(
         default_factory=list,
         metadata={
@@ -1979,7 +1977,7 @@ class IdentifiedObject(Identity):
     '''
     The diagram objects that are associated with the domain object.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class ACDCTerminal(IdentifiedObject):
     '''
@@ -2004,22 +2002,7 @@ class ACDCTerminal(IdentifiedObject):
     terminals should follow in increasing order. The first terminal is
     the "starting point" for a two terminal branch.
     '''
-
-    BusNameMarker: Optional[BusNameMarker] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'BusNameMarker.Terminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The bus name marker used to name the bus (topological node).
-    '''
-
+    
     OperationalLimitSet: list[OperationalLimitSet] = field(
         default_factory=list,
         metadata={
@@ -2034,7 +2017,22 @@ class ACDCTerminal(IdentifiedObject):
     '''
     The operational limit sets at the terminal.
     '''
-
+    
+    BusNameMarker: Optional[BusNameMarker] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'BusNameMarker.Terminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The bus name marker used to name the bus (topological node).
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2047,7 +2045,7 @@ class ACDCTerminal(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     Measurements: list[Measurement] = field(
         default_factory=list,
         metadata={
@@ -2066,7 +2064,7 @@ class ACDCTerminal(IdentifiedObject):
     a busbar or a current transformer (CT) at the bar between a breaker
     and an isolator.
     '''
-
+    
     connected: Optional[bool] = field(
         default=None,
         metadata={
@@ -2088,16 +2086,15 @@ class ACDCTerminal(IdentifiedObject):
     In particular for an AC line segment, where the reactive line charging
     can be significant, this is a relevant case.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.ByReference)
 @dataclass(repr=False, eq=False)
 class BaseVoltage(IdentifiedObject):
     '''
     Defines a system base voltage which is referenced.
     '''
 
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -2111,7 +2108,7 @@ class BaseVoltage(IdentifiedObject):
     The power system resource's base voltage. Shall be a positive value
     and not zero.
     '''
-
+    
     ConductingEquipment: list[ConductingEquipment] = field(
         default_factory=list,
         metadata={
@@ -2128,7 +2125,7 @@ class BaseVoltage(IdentifiedObject):
     is no voltage level container used and only one base voltage applies.
     For example, not used for transformers.
     '''
-
+    
     TransformerEnds: list[TransformerEnd] = field(
         default_factory=list,
         metadata={
@@ -2143,7 +2140,7 @@ class BaseVoltage(IdentifiedObject):
     '''
     Transformer ends at the base voltage. This is essential for PU calculation.
     '''
-
+    
     VoltageLevel: list[VoltageLevel] = field(
         default_factory=list,
         metadata={
@@ -2158,7 +2155,7 @@ class BaseVoltage(IdentifiedObject):
     '''
     The voltage levels having this base voltage.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2171,7 +2168,7 @@ class BaseVoltage(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     TopologicalNode: list[TopologicalNode] = field(
         default_factory=list,
         metadata={
@@ -2186,7 +2183,7 @@ class BaseVoltage(IdentifiedObject):
     '''
     The topological nodes at the base voltage.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class BasicIntervalSchedule(IdentifiedObject):
     '''
@@ -2207,7 +2204,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     The time for the first time point. The value can be a time of day,
     not a specific date.
     '''
-
+    
     value1Multiplier: Optional[ UnitMultiplier ] = field(
         default=None,
         metadata={
@@ -2221,7 +2218,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     '''
     Multiplier for value1.
     '''
-
+    
     value1Unit: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -2235,7 +2232,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     '''
     Value1 units of measure.
     '''
-
+    
     value2Multiplier: Optional[ UnitMultiplier ] = field(
         default=None,
         metadata={
@@ -2249,7 +2246,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     '''
     Multiplier for value2.
     '''
-
+    
     value2Unit: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -2263,7 +2260,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     '''
     Value2 units of measure.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2276,7 +2273,7 @@ class BasicIntervalSchedule(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class BusNameMarker(IdentifiedObject):
@@ -2306,22 +2303,7 @@ class BusNameMarker(IdentifiedObject):
     do not care. Use 1 for highest priority. Use 2 as priority is less
     than 1 and so on.
     '''
-
-    ReportingGroup: Optional[ReportingGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ReportingGroup.BusNameMarker',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The reporting group to which this bus name marker belongs.
-    '''
-
+    
     Terminal: list[ACDCTerminal] = field(
         default_factory=list,
         metadata={
@@ -2336,7 +2318,22 @@ class BusNameMarker(IdentifiedObject):
     '''
     The terminals associated with this bus name marker.
     '''
-
+    
+    ReportingGroup: Optional[ReportingGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ReportingGroup.BusNameMarker',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The reporting group to which this bus name marker belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2349,7 +2346,7 @@ class BusNameMarker(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -2357,21 +2354,6 @@ class ConnectivityNode(IdentifiedObject):
     '''
     Connectivity nodes are points where terminals of AC conducting equipment
     are connected together with zero impedance.
-    '''
-
-    ConnectivityNodeContainer: Optional[ConnectivityNodeContainer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'ConnectivityNodeContainer.ConnectivityNodes',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Container of this connectivity node.
     '''
 
     BoundaryPoint: Optional[BoundaryPoint] = field(
@@ -2388,7 +2370,7 @@ class ConnectivityNode(IdentifiedObject):
     '''
     The boundary point associated with the connectivity node.
     '''
-
+    
     Terminals: list[Terminal] = field(
         default_factory=list,
         metadata={
@@ -2404,7 +2386,22 @@ class ConnectivityNode(IdentifiedObject):
     Terminals interconnected with zero impedance at a this connectivity
     node.
     '''
-
+    
+    ConnectivityNodeContainer: Optional[ConnectivityNodeContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'ConnectivityNodeContainer.ConnectivityNodes',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Container of this connectivity node.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2417,12 +2414,12 @@ class ConnectivityNode(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     TopologicalNode: Optional[TopologicalNode] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
+        'stereotypes': ['ByReference'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'TopologicalNode.ConnectivityNodes',
@@ -2433,7 +2430,7 @@ class ConnectivityNode(IdentifiedObject):
     The topological node to which this connectivity node is assigned. May
     depend on the current state of switches in the network.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ControlAreaGeneratingUnit(IdentifiedObject):
@@ -2458,7 +2455,7 @@ class ControlAreaGeneratingUnit(IdentifiedObject):
     '''
     The parent control area for the generating unit specifications.
     '''
-
+    
     GeneratingUnit: Optional[GeneratingUnit] = field(
         default=None,
         metadata={
@@ -2474,7 +2471,7 @@ class ControlAreaGeneratingUnit(IdentifiedObject):
     The generating unit specified for this control area. Note that a control
     area should include a GeneratingUnit only once.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2487,7 +2484,7 @@ class ControlAreaGeneratingUnit(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CoordinateSystem(IdentifiedObject):
@@ -2518,7 +2515,7 @@ class CoordinateSystem(IdentifiedObject):
     A profile should limit this code to a set of allowed URNs agreed to
     by all sending and receiving parties.
     '''
-
+    
     Locations: list[Location] = field(
         default_factory=list,
         metadata={
@@ -2533,7 +2530,7 @@ class CoordinateSystem(IdentifiedObject):
     '''
     All locations described with position points in this coordinate system.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2546,7 +2543,7 @@ class CoordinateSystem(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class Curve(IdentifiedObject):
     '''
@@ -2567,7 +2564,7 @@ class Curve(IdentifiedObject):
     '''
     The style or shape of the curve.
     '''
-
+    
     xUnit: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -2581,7 +2578,7 @@ class Curve(IdentifiedObject):
     '''
     The X-axis units of measure.
     '''
-
+    
     y1Unit: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -2595,7 +2592,7 @@ class Curve(IdentifiedObject):
     '''
     The Y1-axis units of measure.
     '''
-
+    
     y2Unit: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -2609,7 +2606,7 @@ class Curve(IdentifiedObject):
     '''
     The Y2-axis units of measure.
     '''
-
+    
     CurveDatas: list[CurveData] = field(
         default_factory=list,
         metadata={
@@ -2624,7 +2621,7 @@ class Curve(IdentifiedObject):
     '''
     The point data values that define this curve.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2637,7 +2634,7 @@ class Curve(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class DCBaseTerminal(ACDCTerminal):
     '''
@@ -2662,7 +2659,7 @@ class DCBaseTerminal(ACDCTerminal):
     The DC connectivity node to which this DC base terminal connects with
     zero impedance.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2675,7 +2672,7 @@ class DCBaseTerminal(ACDCTerminal):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     DCTopologicalNode: Optional[DCTopologicalNode] = field(
         default=None,
         metadata={
@@ -2690,7 +2687,7 @@ class DCBaseTerminal(ACDCTerminal):
     '''
     See association end Terminal.TopologicalNode.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -2722,7 +2719,7 @@ class ACDCConverterDCTerminal(DCBaseTerminal):
     - For a bi-pole or symmetric monopole with three converter terminals
     use DCPolarityKind “positive”, “middle” and “negative”.
     '''
-
+    
     DCConductingEquipment: Optional[ACDCConverter] = field(
         default=None,
         metadata={
@@ -2737,7 +2734,7 @@ class ACDCConverterDCTerminal(DCBaseTerminal):
     '''
     A DC converter terminal belong to an DC converter.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2750,7 +2747,7 @@ class ACDCConverterDCTerminal(DCBaseTerminal):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -2758,21 +2755,6 @@ class DCNode(IdentifiedObject):
     '''
     DC nodes are points where terminals of DC conducting equipment are connected
     together with zero impedance.
-    '''
-
-    DCEquipmentContainer: Optional[DCEquipmentContainer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'DCEquipmentContainer.DCNodes',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The DC container for the DC nodes.
     '''
 
     DCTerminals: list[DCBaseTerminal] = field(
@@ -2790,7 +2772,22 @@ class DCNode(IdentifiedObject):
     DC base terminals interconnected with zero impedance at a this DC connectivity
     node.
     '''
-
+    
+    DCEquipmentContainer: Optional[DCEquipmentContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'DCEquipmentContainer.DCNodes',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The DC container for the DC nodes.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2803,7 +2800,7 @@ class DCNode(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     DCTopologicalNode: Optional[DCTopologicalNode] = field(
         default=None,
         metadata={
@@ -2819,7 +2816,7 @@ class DCNode(IdentifiedObject):
     The DC topological node to which this DC connectivity node is assigned.
     May depend on the current state of switches in the network.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -2842,7 +2839,7 @@ class DCTerminal(DCBaseTerminal):
     '''
     An DC terminal belong to a DC conducting equipment.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2855,7 +2852,7 @@ class DCTerminal(DCBaseTerminal):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCTopologicalIsland(IdentifiedObject):
@@ -2882,7 +2879,7 @@ class DCTopologicalIsland(IdentifiedObject):
     '''
     The DC topological nodes in a DC topological island.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2895,9 +2892,8 @@ class DCTopologicalIsland(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.ByReference)
 @dataclass(repr=False, eq=False)
 class DCTopologicalNode(IdentifiedObject):
     '''
@@ -2918,7 +2914,7 @@ class DCTopologicalNode(IdentifiedObject):
     '''
     A DC topological node belongs to a DC topological island.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -2931,22 +2927,7 @@ class DCTopologicalNode(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    DCEquipmentContainer: Optional[DCEquipmentContainer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'DCEquipmentContainer.DCTopologicalNode',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The connectivity node container to which the topological node belongs.
-    '''
-
+    
     DCTerminals: list[DCBaseTerminal] = field(
         default_factory=list,
         metadata={
@@ -2961,7 +2942,7 @@ class DCTopologicalNode(IdentifiedObject):
     '''
     See association end TopologicalNode.Terminal.
     '''
-
+    
     DCNodes: list[DCNode] = field(
         default_factory=list,
         metadata={
@@ -2977,7 +2958,22 @@ class DCTopologicalNode(IdentifiedObject):
     The DC connectivity nodes combined together to form this DC topological
     node. May depend on the current state of switches in the network.
     '''
-
+    
+    DCEquipmentContainer: Optional[DCEquipmentContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'DCEquipmentContainer.DCTopologicalNode',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The connectivity node container to which the topological node belongs.
+    '''
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DayType(IdentifiedObject):
@@ -3000,7 +2996,7 @@ class DayType(IdentifiedObject):
     '''
     Schedules that use this DayType.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3013,7 +3009,7 @@ class DayType(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Diagram(IdentifiedObject):
@@ -3037,7 +3033,7 @@ class Diagram(IdentifiedObject):
     '''
     X coordinate of the first corner of the initial view.
     '''
-
+    
     x2InitialView: Optional[float] = field(
         default=None,
         metadata={
@@ -3051,7 +3047,7 @@ class Diagram(IdentifiedObject):
     '''
     X coordinate of the second corner of the initial view.
     '''
-
+    
     y1InitialView: Optional[float] = field(
         default=None,
         metadata={
@@ -3065,7 +3061,7 @@ class Diagram(IdentifiedObject):
     '''
     Y coordinate of the first corner of the initial view.
     '''
-
+    
     y2InitialView: Optional[float] = field(
         default=None,
         metadata={
@@ -3079,7 +3075,7 @@ class Diagram(IdentifiedObject):
     '''
     Y coordinate of the second corner of the initial view.
     '''
-
+    
     orientation: Optional[ OrientationKind ] = field(
         default=None,
         metadata={
@@ -3099,22 +3095,7 @@ class Diagram(IdentifiedObject):
     orientation (favoured by computer graphics displays) with X values
     increasing from left to right and Y values increasing from top to bottom.
     '''
-
-    DiagramStyle: Optional[DiagramStyle] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'DiagramStyle.Diagram',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A Diagram may have a DiagramStyle.
-    '''
-
+    
     DiagramElements: list[DiagramObject] = field(
         default_factory=list,
         metadata={
@@ -3129,7 +3110,22 @@ class Diagram(IdentifiedObject):
     '''
     A diagram is made up of multiple diagram objects.
     '''
-
+    
+    DiagramStyle: Optional[DiagramStyle] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'DiagramStyle.Diagram',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A Diagram may have a DiagramStyle.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3142,7 +3138,7 @@ class Diagram(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiagramObject(IdentifiedObject):
@@ -3168,7 +3164,7 @@ class DiagramObject(IdentifiedObject):
     the element is drawn in sequence. This is used to ensure that elements
     that overlap are rendered in the correct order.
     '''
-
+    
     isPolygon: Optional[bool] = field(
         default=None,
         metadata={
@@ -3185,7 +3181,7 @@ class DiagramObject(IdentifiedObject):
     a receiving application should consider the first and last points to
     be connected.
     '''
-
+    
     offsetX: Optional[float] = field(
         default=None,
         metadata={
@@ -3204,7 +3200,7 @@ class DiagramObject(IdentifiedObject):
     the horizontal centre of the icon. -0.5 indicates it is offset by 50%
     to the left and 0.5 indicates an offset of 50% to the right.
     '''
-
+    
     offsetY: Optional[float] = field(
         default=None,
         metadata={
@@ -3224,8 +3220,8 @@ class DiagramObject(IdentifiedObject):
     on the orientation of the diagram, with -0.5 and 0.5 indicating an
     offset of +/- 50% on the vertical axis.
     '''
-
-    rotation: Optional[ float | AngleDegrees ] = field(
+    
+    rotation: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -3248,53 +3244,7 @@ class DiagramObject(IdentifiedObject):
     which has more than one terminal is pointing to the right hand side
     of the diagram.
     '''
-
-    Diagram: Optional[Diagram] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Diagram.DiagramElements',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A diagram object is part of a diagram.
-    '''
-
-    DiagramObjectStyle: Optional[DiagramObjectStyle] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'DiagramObjectStyle.StyledObjects',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A diagram object has a style associated that provides a reference for
-    the style used in the originating system.
-    '''
-
-    IdentifiedObject: Optional[IdentifiedObject] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'IdentifiedObject.DiagramObjects',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The domain object to which this diagram object is associated.
-    '''
-
+    
     DiagramObjectPoints: list[DiagramObjectPoint] = field(
         default_factory=list,
         metadata={
@@ -3310,7 +3260,7 @@ class DiagramObject(IdentifiedObject):
     A diagram object can have 0 or more points to reflect its layout position,
     routing (for polylines) or boundary (for polygons).
     '''
-
+    
     VisibilityLayers: list[VisibilityLayer] = field(
         default_factory=list,
         metadata={
@@ -3325,7 +3275,53 @@ class DiagramObject(IdentifiedObject):
     '''
     A diagram object can be part of multiple visibility layers.
     '''
-
+    
+    Diagram: Optional[Diagram] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Diagram.DiagramElements',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A diagram object is part of a diagram.
+    '''
+    
+    DiagramObjectStyle: Optional[DiagramObjectStyle] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'DiagramObjectStyle.StyledObjects',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A diagram object has a style associated that provides a reference for
+    the style used in the originating system.
+    '''
+    
+    IdentifiedObject: Optional[IdentifiedObject] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'IdentifiedObject.DiagramObjects',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The domain object to which this diagram object is associated.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3338,7 +3334,7 @@ class DiagramObject(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiagramObjectStyle(IdentifiedObject):
@@ -3362,7 +3358,7 @@ class DiagramObjectStyle(IdentifiedObject):
     '''
     A style can be assigned to multiple diagram objects.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3375,7 +3371,7 @@ class DiagramObjectStyle(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiagramStyle(IdentifiedObject):
@@ -3399,7 +3395,7 @@ class DiagramStyle(IdentifiedObject):
     '''
     A DiagramStyle can be used by many Diagrams.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3412,7 +3408,7 @@ class DiagramStyle(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class EnergyArea(IdentifiedObject):
     '''
@@ -3437,7 +3433,7 @@ class EnergyArea(IdentifiedObject):
     '''
     The control area specification that is used for the load forecast.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3450,7 +3446,7 @@ class EnergyArea(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EnergySchedulingType(IdentifiedObject):
@@ -3472,7 +3468,7 @@ class EnergySchedulingType(IdentifiedObject):
     '''
     Energy Source of a particular Energy Scheduling Type.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3485,7 +3481,7 @@ class EnergySchedulingType(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class FossilFuel(IdentifiedObject):
@@ -3508,7 +3504,7 @@ class FossilFuel(IdentifiedObject):
     '''
     The type of fossil fuel, such as coal, oil, or gas.
     '''
-
+    
     ThermalGeneratingUnit: Optional[ThermalGeneratingUnit] = field(
         default=None,
         metadata={
@@ -3523,7 +3519,7 @@ class FossilFuel(IdentifiedObject):
     '''
     A thermal generating unit may have one or more fossil fuels.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3536,7 +3532,7 @@ class FossilFuel(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class GeographicalRegion(IdentifiedObject):
@@ -3558,7 +3554,7 @@ class GeographicalRegion(IdentifiedObject):
     '''
     All sub-geographical regions within this geographical region.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3571,7 +3567,7 @@ class GeographicalRegion(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class GrossToNetActivePowerCurve(Curve):
@@ -3600,7 +3596,7 @@ class GrossToNetActivePowerCurve(Curve):
     curve, describing the losses and auxiliary power requirements of the
     unit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3613,7 +3609,7 @@ class GrossToNetActivePowerCurve(Curve):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class IOPoint(IdentifiedObject):
     '''
@@ -3633,7 +3629,7 @@ class IOPoint(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class Control(IOPoint):
     '''
@@ -3657,7 +3653,7 @@ class Control(IOPoint):
     represents BreakerOpen, BreakerClose, GeneratorVoltageSetPoint, GeneratorRaise,
     GeneratorLower, etc.
     '''
-
+    
     operationInProgress: Optional[bool] = field(
         default=None,
         metadata={
@@ -3672,7 +3668,7 @@ class Control(IOPoint):
     Indicates that a client is currently sending control commands that
     has not completed.
     '''
-
+    
     timeStamp: Optional[str] = field(
         default=None,
         metadata={
@@ -3686,7 +3682,7 @@ class Control(IOPoint):
     '''
     The last time a control output was sent.
     '''
-
+    
     unitMultiplier: Optional[ UnitMultiplier ] = field(
         default=None,
         metadata={
@@ -3700,7 +3696,7 @@ class Control(IOPoint):
     '''
     The unit multiplier of the controlled quantity.
     '''
-
+    
     unitSymbol: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -3714,7 +3710,7 @@ class Control(IOPoint):
     '''
     The unit of measure of the controlled quantity.
     '''
-
+    
     PowerSystemResource: Optional[PowerSystemResource] = field(
         default=None,
         metadata={
@@ -3729,7 +3725,7 @@ class Control(IOPoint):
     '''
     Regulating device governed by this control output.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3742,7 +3738,7 @@ class Control(IOPoint):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AccumulatorReset(Control):
@@ -3764,7 +3760,7 @@ class AccumulatorReset(Control):
     '''
     The accumulator value that is reset by the command.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3777,7 +3773,7 @@ class AccumulatorReset(Control):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class AnalogControl(Control):
     '''
@@ -3798,7 +3794,7 @@ class AnalogControl(Control):
     Normal value range maximum for any of the Control.value. Used for scaling,
     e.g. in bar graphs.
     '''
-
+    
     minValue: Optional[float] = field(
         default=None,
         metadata={
@@ -3813,7 +3809,7 @@ class AnalogControl(Control):
     Normal value range minimum for any of the Control.value. Used for scaling,
     e.g. in bar graphs.
     '''
-
+    
     AnalogValue: Optional[AnalogValue] = field(
         default=None,
         metadata={
@@ -3828,7 +3824,7 @@ class AnalogControl(Control):
     '''
     The MeasurementValue that is controlled.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3841,7 +3837,7 @@ class AnalogControl(Control):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Command(Control):
@@ -3862,7 +3858,7 @@ class Command(Control):
     '''
     Normal value for Control.value e.g. used for percentage scaling.
     '''
-
+    
     value: Optional[int] = field(
         default=None,
         metadata={
@@ -3876,7 +3872,7 @@ class Command(Control):
     '''
     The value representing the actuator output.
     '''
-
+    
     DiscreteValue: Optional[DiscreteValue] = field(
         default=None,
         metadata={
@@ -3891,7 +3887,7 @@ class Command(Control):
     '''
     The MeasurementValue that is controlled.
     '''
-
+    
     ValueAliasSet: Optional[ValueAliasSet] = field(
         default=None,
         metadata={
@@ -3906,7 +3902,7 @@ class Command(Control):
     '''
     The ValueAliasSet used for translation of a Control value to a name.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -3919,20 +3915,20 @@ class Command(Control):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Inductance(CIMUnit):
     '''
     Inductive part of reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.H
-    def __init__(self, value, input_unit: str='H', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='H', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -3946,21 +3942,21 @@ class Inductance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Length(CIMUnit):
     '''
     Unit of length. It shall be a positive value or zero.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.m
-    def __init__(self, value, input_unit: str='m', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='m', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -3974,7 +3970,7 @@ class Length(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @dataclass(repr=False, eq=False)
 class Limit(IdentifiedObject):
@@ -3998,7 +3994,7 @@ class Limit(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AccumulatorLimit(Limit):
@@ -4019,7 +4015,7 @@ class AccumulatorLimit(Limit):
     '''
     The value to supervise against. The value is positive.
     '''
-
+    
     LimitSet: Optional[AccumulatorLimitSet] = field(
         default=None,
         metadata={
@@ -4034,7 +4030,7 @@ class AccumulatorLimit(Limit):
     '''
     The set of limits.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4047,7 +4043,7 @@ class AccumulatorLimit(Limit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AnalogLimit(Limit):
@@ -4068,7 +4064,7 @@ class AnalogLimit(Limit):
     '''
     The value to supervise against.
     '''
-
+    
     LimitSet: Optional[AnalogLimitSet] = field(
         default=None,
         metadata={
@@ -4083,7 +4079,7 @@ class AnalogLimit(Limit):
     '''
     The set of limits.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4096,8 +4092,7 @@ class AnalogLimit(Limit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-@stereotype(CIMStereotype.ShadowExtension)
+    
 @stereotype(CIMStereotype.European)
 @stereotype(CIMStereotype.enumeration)
 class LimitKind(Enum):
@@ -4109,14 +4104,14 @@ class LimitKind(Enum):
     '''
     Voltage alarm.
     '''
-
+    
     highVoltage = 'highVoltage'
     '''
     Referring to the rating of the equipments, a voltage too high can lead
     to accelerated ageing or the destruction of the equipment.
     This limit type may or may not have duration.
     '''
-
+    
     lowVoltage = 'lowVoltage'
     '''
     A too low voltage can disturb the normal operation of some protections
@@ -4125,12 +4120,12 @@ class LimitKind(Enum):
     units.
     This limit type may or may not have duration.
     '''
-
+    
     operationalVoltageLimit = 'operationalVoltageLimit'
     '''
     Operational voltage limit.
     '''
-
+    
     patl = 'patl'
     '''
     The Permanent Admissible Transmission Loading (PATL) is the loading
@@ -4141,7 +4136,7 @@ class LimitKind(Enum):
     if the PATL is ApparentPowerLimit, ActivePowerLimit, or CurrentLimit
     for a given Terminal or Equipment.
     '''
-
+    
     patlt = 'patlt'
     '''
     Permanent Admissible Transmission Loading Threshold (PATLT) is a value
@@ -4151,12 +4146,12 @@ class LimitKind(Enum):
     OperationalLimitSet. The aceptableDuration is another way to express
     the severity of the limit.
     '''
-
+    
     stability = 'stability'
     '''
     Stability.
     '''
-
+    
     tatl = 'tatl'
     '''
     Temporarily Admissible Transmission Loading (TATL) which is the loading
@@ -4178,7 +4173,7 @@ class LimitKind(Enum):
     The duration attribute can be used to define several TATL limit types.
     Hence multiple TATL limit values may exist having different durations.
     '''
-
+    
     tc = 'tc'
     '''
     Tripping Current (TC) is the ultimate intensity without any delay.
@@ -4191,7 +4186,7 @@ class LimitKind(Enum):
     The duration is always zero if the OperationalLimitType.acceptableDuration
     is exchanged. Only one limit value exists for the TC type.
     '''
-
+    
     tct = 'tct'
     '''
     Tripping Current Threshold (TCT) is a value in engineering units defined
@@ -4200,12 +4195,12 @@ class LimitKind(Enum):
     should be given in the name of the OperationalLimitSet. The aceptableDuration
     is another way to express the severity of the limit.
     '''
-
+    
     warningVoltage = 'warningVoltage'
     '''
     Voltage warning.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100-European#'
@@ -4218,7 +4213,7 @@ class LimitKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class LimitSet(IdentifiedObject):
     '''
@@ -4243,7 +4238,7 @@ class LimitSet(IdentifiedObject):
     Tells if the limit values are in percentage of normalValue or the specified
     Unit for Measurements and Controls.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4256,28 +4251,13 @@ class LimitSet(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AccumulatorLimitSet(LimitSet):
     '''
     An AccumulatorLimitSet specifies a set of Limits that are associated with
     an Accumulator measurement.
-    '''
-
-    Measurements: list[Accumulator] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Accumulator.LimitSets',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The Measurements using the LimitSet.
     '''
 
     Limits: list[AccumulatorLimit] = field(
@@ -4294,7 +4274,22 @@ class AccumulatorLimitSet(LimitSet):
     '''
     The limit values used for supervision of Measurements.
     '''
-
+    
+    Measurements: list[Accumulator] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Accumulator.LimitSets',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The Measurements using the LimitSet.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4307,28 +4302,13 @@ class AccumulatorLimitSet(LimitSet):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AnalogLimitSet(LimitSet):
     '''
     An AnalogLimitSet specifies a set of Limits that are associated with an
     Analog measurement.
-    '''
-
-    Measurements: list[Analog] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Analog.LimitSets',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The Measurements using the LimitSet.
     '''
 
     Limits: list[AnalogLimit] = field(
@@ -4345,7 +4325,22 @@ class AnalogLimitSet(LimitSet):
     '''
     The limit values used for supervision of Measurements.
     '''
-
+    
+    Measurements: list[Analog] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Analog.LimitSets',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The Measurements using the LimitSet.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4358,7 +4353,7 @@ class AnalogLimitSet(LimitSet):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadArea(EnergyArea):
@@ -4381,7 +4376,7 @@ class LoadArea(EnergyArea):
     '''
     The SubLoadAreas in the LoadArea.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4394,7 +4389,7 @@ class LoadArea(EnergyArea):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class LoadGroup(IdentifiedObject):
     '''
@@ -4416,7 +4411,7 @@ class LoadGroup(IdentifiedObject):
     '''
     The SubLoadArea where the Loadgroup belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4429,7 +4424,7 @@ class LoadGroup(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadGroup(LoadGroup):
@@ -4451,7 +4446,7 @@ class ConformLoadGroup(LoadGroup):
     '''
     Conform loads assigned to this ConformLoadGroup.
     '''
-
+    
     ConformLoadSchedules: list[ConformLoadSchedule] = field(
         default_factory=list,
         metadata={
@@ -4466,7 +4461,7 @@ class ConformLoadGroup(LoadGroup):
     '''
     The ConformLoadSchedules in the ConformLoadGroup.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4479,7 +4474,7 @@ class ConformLoadGroup(LoadGroup):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadResponseCharacteristic(IdentifiedObject):
@@ -4540,7 +4535,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     The sum of qConstantImpedance, qConstantCurrent and qConstantPower
     shall equal 1.
     '''
-
+    
     pConstantCurrent: Optional[float] = field(
         default=None,
         metadata={
@@ -4554,7 +4549,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of active power load modelled as constant current.
     '''
-
+    
     pConstantImpedance: Optional[float] = field(
         default=None,
         metadata={
@@ -4568,7 +4563,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of active power load modelled as constant impedance.
     '''
-
+    
     pConstantPower: Optional[float] = field(
         default=None,
         metadata={
@@ -4582,7 +4577,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of active power load modelled as constant power.
     '''
-
+    
     pFrequencyExponent: Optional[float] = field(
         default=None,
         metadata={
@@ -4596,7 +4591,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Exponent of per unit frequency effecting active power.
     '''
-
+    
     pVoltageExponent: Optional[float] = field(
         default=None,
         metadata={
@@ -4610,7 +4605,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Exponent of per unit voltage effecting real power.
     '''
-
+    
     qConstantCurrent: Optional[float] = field(
         default=None,
         metadata={
@@ -4624,7 +4619,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of reactive power load modelled as constant current.
     '''
-
+    
     qConstantImpedance: Optional[float] = field(
         default=None,
         metadata={
@@ -4638,7 +4633,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of reactive power load modelled as constant impedance.
     '''
-
+    
     qConstantPower: Optional[float] = field(
         default=None,
         metadata={
@@ -4652,7 +4647,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Portion of reactive power load modelled as constant power.
     '''
-
+    
     qFrequencyExponent: Optional[float] = field(
         default=None,
         metadata={
@@ -4666,7 +4661,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Exponent of per unit frequency effecting reactive power.
     '''
-
+    
     qVoltageExponent: Optional[float] = field(
         default=None,
         metadata={
@@ -4680,7 +4675,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     Exponent of per unit voltage effecting reactive power.
     '''
-
+    
     EnergyConsumer: list[EnergyConsumer] = field(
         default_factory=list,
         metadata={
@@ -4695,7 +4690,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     '''
     The set of loads that have the response characteristics.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4708,7 +4703,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Location(IdentifiedObject):
@@ -4716,36 +4711,6 @@ class Location(IdentifiedObject):
     The place, scene, or point of something where someone or something has
     been, is, and/or will be at a given moment in time. It can be defined with
     one or more position points (coordinates) in a given coordinate system.
-    '''
-
-    CoordinateSystem: Optional[CoordinateSystem] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'CoordinateSystem.Locations',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Coordinate system used to describe position points of this location.
-    '''
-
-    PowerSystemResources: Optional[PowerSystemResource] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'PowerSystemResource.Location',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    All power system resources at this location.
     '''
 
     PositionPoints: list[PositionPoint] = field(
@@ -4763,7 +4728,37 @@ class Location(IdentifiedObject):
     Sequence of position points describing this location, expressed in
     coordinate system 'Location.CoordinateSystem'.
     '''
-
+    
+    CoordinateSystem: Optional[CoordinateSystem] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'CoordinateSystem.Locations',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Coordinate system used to describe position points of this location.
+    '''
+    
+    PowerSystemResources: Optional[PowerSystemResource] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'PowerSystemResource.Location',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    All power system resources at this location.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4776,7 +4771,7 @@ class Location(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class Measurement(IdentifiedObject):
     '''
@@ -4820,7 +4815,7 @@ class Measurement(IdentifiedObject):
     is defined in more detail by the specialized class which inherits from
     Measurement.
     '''
-
+    
     phases: Optional[ PhaseCode ] = field(
         default=None,
         metadata={
@@ -4841,7 +4836,7 @@ class Measurement(IdentifiedObject):
     reasons.
     If the attribute is missing three phases (ABC) shall be assumed.
     '''
-
+    
     unitMultiplier: Optional[ UnitMultiplier ] = field(
         default=None,
         metadata={
@@ -4855,7 +4850,7 @@ class Measurement(IdentifiedObject):
     '''
     The unit multiplier of the measured quantity.
     '''
-
+    
     unitSymbol: Optional[ UnitSymbol ] = field(
         default=None,
         metadata={
@@ -4869,7 +4864,7 @@ class Measurement(IdentifiedObject):
     '''
     The unit of measure of the measured quantity.
     '''
-
+    
     PowerSystemResource: Optional[PowerSystemResource] = field(
         default=None,
         metadata={
@@ -4884,7 +4879,7 @@ class Measurement(IdentifiedObject):
     '''
     The power system resource that contains the measurement.
     '''
-
+    
     Terminal: Optional[ACDCTerminal] = field(
         default=None,
         metadata={
@@ -4899,7 +4894,7 @@ class Measurement(IdentifiedObject):
     '''
     One or more measurements may be associated with a terminal in the network.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4912,7 +4907,7 @@ class Measurement(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Accumulator(Measurement):
@@ -4935,7 +4930,7 @@ class Accumulator(Measurement):
     '''
     A measurement may have zero or more limit ranges defined for it.
     '''
-
+    
     AccumulatorValues: list[AccumulatorValue] = field(
         default_factory=list,
         metadata={
@@ -4950,7 +4945,7 @@ class Accumulator(Measurement):
     '''
     The values connected to this measurement.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -4963,7 +4958,7 @@ class Accumulator(Measurement):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Analog(Measurement):
@@ -4986,7 +4981,7 @@ class Analog(Measurement):
     current with the convention that a positive value measured at the Terminal
     means power is flowing into the related PowerSystemResource.
     '''
-
+    
     LimitSets: list[AnalogLimitSet] = field(
         default_factory=list,
         metadata={
@@ -5001,7 +4996,7 @@ class Analog(Measurement):
     '''
     A measurement may have zero or more limit ranges defined for it.
     '''
-
+    
     AnalogValues: list[AnalogValue] = field(
         default_factory=list,
         metadata={
@@ -5016,7 +5011,7 @@ class Analog(Measurement):
     '''
     The values connected to this measurement.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5029,29 +5024,13 @@ class Analog(Measurement):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Discrete(Measurement):
     '''
     Discrete represents a discrete Measurement, i.e. a Measurement representing
     discrete values, e.g. a Breaker position.
-    '''
-
-    ValueAliasSet: Optional[ValueAliasSet] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ValueAliasSet.Discretes',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The ValueAliasSet used for translation of a MeasurementValue.value
-    to a name.
     '''
 
     DiscreteValues: list[DiscreteValue] = field(
@@ -5068,7 +5047,23 @@ class Discrete(Measurement):
     '''
     The values connected to this measurement.
     '''
-
+    
+    ValueAliasSet: Optional[ValueAliasSet] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ValueAliasSet.Discretes',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The ValueAliasSet used for translation of a MeasurementValue.value
+    to a name.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5081,7 +5076,7 @@ class Discrete(Measurement):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class MeasurementValue(IOPoint):
     '''
@@ -5103,8 +5098,8 @@ class MeasurementValue(IOPoint):
     '''
     The time when the value was last updated.
     '''
-
-    sensorAccuracy: Optional[ float | PerCent ] = field(
+    
+    sensorAccuracy: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5118,7 +5113,22 @@ class MeasurementValue(IOPoint):
     The limit, expressed as a percentage of the sensor maximum, that errors
     will not exceed when the sensor is used under reference conditions.
     '''
-
+    
+    MeasurementValueQuality: Optional[MeasurementValueQuality] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'MeasurementValueQuality.MeasurementValue',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    A MeasurementValue has a MeasurementValueQuality associated with it.
+    '''
+    
     MeasurementValueSource: Optional[MeasurementValueSource] = field(
         default=None,
         metadata={
@@ -5135,22 +5145,7 @@ class MeasurementValue(IOPoint):
     e.g. SCADA, CCLink, manual, etc. User conventions for the names of
     sources are contained in the introduction to IEC 61970-301.
     '''
-
-    MeasurementValueQuality: Optional[MeasurementValueQuality] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['AggregateOf'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'MeasurementValueQuality.MeasurementValue',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    A MeasurementValue has a MeasurementValueQuality associated with it.
-    '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5163,27 +5158,12 @@ class MeasurementValue(IOPoint):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AccumulatorValue(MeasurementValue):
     '''
     AccumulatorValue represents an accumulated (counted) MeasurementValue.
-    '''
-
-    Accumulator: Optional[Accumulator] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Accumulator.AccumulatorValues',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Measurement to which this value is connected.
     '''
 
     AccumulatorReset: Optional[AccumulatorReset] = field(
@@ -5200,7 +5180,22 @@ class AccumulatorValue(MeasurementValue):
     '''
     The command that resets the accumulator value.
     '''
-
+    
+    Accumulator: Optional[Accumulator] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Accumulator.AccumulatorValues',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Measurement to which this value is connected.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5213,27 +5208,12 @@ class AccumulatorValue(MeasurementValue):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class AnalogValue(MeasurementValue):
     '''
     AnalogValue represents an analog MeasurementValue.
-    '''
-
-    Analog: Optional[Analog] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Analog.AnalogValues',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Measurement to which this value is connected.
     '''
 
     AnalogControl: Optional[AnalogControl] = field(
@@ -5250,7 +5230,22 @@ class AnalogValue(MeasurementValue):
     '''
     The Control variable associated with the MeasurementValue.
     '''
-
+    
+    Analog: Optional[Analog] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Analog.AnalogValues',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Measurement to which this value is connected.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5263,27 +5258,12 @@ class AnalogValue(MeasurementValue):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DiscreteValue(MeasurementValue):
     '''
     DiscreteValue represents a discrete MeasurementValue.
-    '''
-
-    Discrete: Optional[Discrete] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Discrete.DiscreteValues',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Measurement to which this value is connected.
     '''
 
     Command: Optional[Command] = field(
@@ -5300,7 +5280,22 @@ class DiscreteValue(MeasurementValue):
     '''
     The Control variable associated with the MeasurementValue.
     '''
-
+    
+    Discrete: Optional[Discrete] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Discrete.DiscreteValues',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Measurement to which this value is connected.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5313,7 +5308,7 @@ class DiscreteValue(MeasurementValue):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class MeasurementValueSource(IdentifiedObject):
@@ -5337,7 +5332,7 @@ class MeasurementValueSource(IdentifiedObject):
     '''
     The MeasurementValues updated by the source.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5350,20 +5345,20 @@ class MeasurementValueSource(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Money(CIMUnit):
     '''
     Amount of money.
     '''
 
-    value: str = field(default=None)
+    value: str = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -5377,7 +5372,7 @@ class Money(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -5386,7 +5381,7 @@ class MutualCoupling(IdentifiedObject):
     This class represents the zero sequence line mutual coupling.
     '''
 
-    b0ch: Optional[ float | Susceptance ] = field(
+    b0ch: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5400,8 +5395,8 @@ class MutualCoupling(IdentifiedObject):
     Zero sequence mutual coupling shunt (charging) susceptance, uniformly
     distributed, of the entire line section.
     '''
-
-    distance11: Optional[ float | Length ] = field(
+    
+    distance11: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5415,8 +5410,8 @@ class MutualCoupling(IdentifiedObject):
     Distance to the start of the coupled region from the first line's terminal
     having sequence number equal to 1.
     '''
-
-    distance12: Optional[ float | Length ] = field(
+    
+    distance12: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5430,8 +5425,8 @@ class MutualCoupling(IdentifiedObject):
     Distance to the end of the coupled region from the first line's terminal
     with sequence number equal to 1.
     '''
-
-    distance21: Optional[ float | Length ] = field(
+    
+    distance21: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5445,8 +5440,8 @@ class MutualCoupling(IdentifiedObject):
     Distance to the start of coupled region from the second line's terminal
     with sequence number equal to 1.
     '''
-
-    distance22: Optional[ float | Length ] = field(
+    
+    distance22: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5460,8 +5455,8 @@ class MutualCoupling(IdentifiedObject):
     Distance to the end of coupled region from the second line's terminal
     with sequence number equal to 1.
     '''
-
-    g0ch: Optional[ float | Conductance ] = field(
+    
+    g0ch: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5475,8 +5470,8 @@ class MutualCoupling(IdentifiedObject):
     Zero sequence mutual coupling shunt (charging) conductance, uniformly
     distributed, of the entire line section.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5489,8 +5484,8 @@ class MutualCoupling(IdentifiedObject):
     '''
     Zero sequence branch-to-branch mutual impedance coupling, resistance.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5503,7 +5498,7 @@ class MutualCoupling(IdentifiedObject):
     '''
     Zero sequence branch-to-branch mutual impedance coupling, reactance.
     '''
-
+    
     First_Terminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -5521,7 +5516,7 @@ class MutualCoupling(IdentifiedObject):
     used for terminals of AC line segments. The first and second terminals
     of a mutual coupling should point to different AC line segments.
     '''
-
+    
     Second_Terminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -5537,7 +5532,7 @@ class MutualCoupling(IdentifiedObject):
     The starting terminal for the calculation of distances along the second
     branch of the mutual coupling.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5550,7 +5545,7 @@ class MutualCoupling(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadGroup(LoadGroup):
@@ -5572,7 +5567,7 @@ class NonConformLoadGroup(LoadGroup):
     '''
     Conform loads assigned to this ConformLoadGroup.
     '''
-
+    
     NonConformLoadSchedules: list[NonConformLoadSchedule] = field(
         default_factory=list,
         metadata={
@@ -5587,7 +5582,7 @@ class NonConformLoadGroup(LoadGroup):
     '''
     The NonConformLoadSchedules in the NonConformLoadGroup.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5600,7 +5595,7 @@ class NonConformLoadGroup(LoadGroup):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -5626,8 +5621,8 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     The number of the section.
     '''
-
-    b: Optional[ float | Susceptance ] = field(
+    
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5640,8 +5635,8 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     Positive sequence shunt (charging) susceptance per section.
     '''
-
-    g: Optional[ float | Conductance ] = field(
+    
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5654,7 +5649,7 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     Positive sequence shunt (charging) conductance per section.
     '''
-
+    
     NonlinearShuntCompensator: Optional[NonlinearShuntCompensator] = field(
         default=None,
         metadata={
@@ -5669,7 +5664,7 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     Non-linear shunt compensator owning this point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5682,8 +5677,8 @@ class NonlinearShuntCompensatorPoint(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    b0: Optional[ float | Susceptance ] = field(
+    
+    b0: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5696,8 +5691,8 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     Zero sequence shunt (charging) susceptance per section.
     '''
-
-    g0: Optional[ float | Conductance ] = field(
+    
+    g0: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5710,7 +5705,7 @@ class NonlinearShuntCompensatorPoint(Identity):
     '''
     Zero sequence shunt (charging) conductance per section.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class OperationalLimit(IdentifiedObject):
     '''
@@ -5740,7 +5735,7 @@ class OperationalLimit(IdentifiedObject):
     '''
     The limit set to which the limit values belong.
     '''
-
+    
     OperationalLimitType: Optional[OperationalLimitType] = field(
         default=None,
         metadata={
@@ -5755,7 +5750,7 @@ class OperationalLimit(IdentifiedObject):
     '''
     The limit type associated with this limit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5768,7 +5763,7 @@ class OperationalLimit(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -5777,7 +5772,7 @@ class ActivePowerLimit(OperationalLimit):
     Limit on active power flow.
     '''
 
-    normalValue: Optional[ float | ActivePower ] = field(
+    normalValue: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5791,7 +5786,7 @@ class ActivePowerLimit(OperationalLimit):
     The normal value of active power limit. The attribute shall be a positive
     value or zero.
     '''
-
+    
     OperationalLimitSet: Optional[OperationalLimitSet] = field(
         default=None,
         metadata={
@@ -5806,7 +5801,7 @@ class ActivePowerLimit(OperationalLimit):
     '''
     The limit set to which the limit values belong.
     '''
-
+    
     OperationalLimitType: Optional[OperationalLimitType] = field(
         default=None,
         metadata={
@@ -5821,7 +5816,7 @@ class ActivePowerLimit(OperationalLimit):
     '''
     The limit type associated with this limit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5834,8 +5829,8 @@ class ActivePowerLimit(OperationalLimit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    value: Optional[ float | ActivePower ] = field(
+    
+    value: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5849,7 +5844,7 @@ class ActivePowerLimit(OperationalLimit):
     Value of active power limit. The attribute shall be a positive value
     or zero.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -5858,7 +5853,7 @@ class ApparentPowerLimit(OperationalLimit):
     Apparent power limit.
     '''
 
-    normalValue: Optional[ float | ApparentPower ] = field(
+    normalValue: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5872,7 +5867,7 @@ class ApparentPowerLimit(OperationalLimit):
     The normal apparent power limit. The attribute shall be a positive
     value or zero.
     '''
-
+    
     OperationalLimitSet: Optional[OperationalLimitSet] = field(
         default=None,
         metadata={
@@ -5887,7 +5882,7 @@ class ApparentPowerLimit(OperationalLimit):
     '''
     The limit set to which the limit values belong.
     '''
-
+    
     OperationalLimitType: Optional[OperationalLimitType] = field(
         default=None,
         metadata={
@@ -5902,7 +5897,7 @@ class ApparentPowerLimit(OperationalLimit):
     '''
     The limit type associated with this limit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5915,8 +5910,8 @@ class ApparentPowerLimit(OperationalLimit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    value: Optional[ float | ApparentPower ] = field(
+    
+    value: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5930,7 +5925,7 @@ class ApparentPowerLimit(OperationalLimit):
     The apparent power limit. The attribute shall be a positive value or
     zero.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -5939,7 +5934,7 @@ class CurrentLimit(OperationalLimit):
     Operational limit on current.
     '''
 
-    normalValue: Optional[ float | CurrentFlow ] = field(
+    normalValue: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5953,7 +5948,7 @@ class CurrentLimit(OperationalLimit):
     The normal value for limit on current flow. The attribute shall be
     a positive value or zero.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -5966,8 +5961,8 @@ class CurrentLimit(OperationalLimit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    value: Optional[ float | CurrentFlow ] = field(
+    
+    value: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -5980,7 +5975,7 @@ class CurrentLimit(OperationalLimit):
     '''
     Limit on current flow. The attribute shall be a positive value or zero.
     '''
-
+    
 @stereotype(CIMStereotype.enumeration)
 class OperationalLimitDirectionKind(Enum):
     '''
@@ -5992,19 +5987,19 @@ class OperationalLimitDirectionKind(Enum):
     An absoluteValue limit means that a monitored absolute value above
     the limit value is a violation.
     '''
-
+    
     high = 'high'
     '''
     High means that a monitored value above the limit value is a violation.
     If applied to a terminal flow, the positive direction is into the terminal.
     '''
-
+    
     low = 'low'
     '''
     Low means a monitored value below the limit is a violation. If applied
     to a terminal flow, the positive direction is into the terminal.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6017,7 +6012,7 @@ class OperationalLimitDirectionKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class OperationalLimitSet(IdentifiedObject):
@@ -6028,36 +6023,6 @@ class OperationalLimitSet(IdentifiedObject):
     The set may contain limits of different types such as apparent power and
     current limits or high and low voltage limits that are logically applied
     together as a set.
-    '''
-
-    Equipment: Optional[Equipment] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Equipment.OperationalLimitSet',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The equipment to which the limit set applies.
-    '''
-
-    Terminal: Optional[ACDCTerminal] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'ACDCTerminal.OperationalLimitSet',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The terminal where the operational limit set apply.
     '''
 
     OperationalLimitValue: list[OperationalLimit] = field(
@@ -6074,7 +6039,37 @@ class OperationalLimitSet(IdentifiedObject):
     '''
     Values of equipment limits.
     '''
-
+    
+    Equipment: Optional[Equipment] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Equipment.OperationalLimitSet',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The equipment to which the limit set applies.
+    '''
+    
+    Terminal: Optional[ACDCTerminal] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'ACDCTerminal.OperationalLimitSet',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The terminal where the operational limit set apply.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6087,7 +6082,7 @@ class OperationalLimitSet(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class OperationalLimitType(IdentifiedObject):
@@ -6110,8 +6105,8 @@ class OperationalLimitType(IdentifiedObject):
     the limit has infinite duration. If false, the limit has definite duration
     which is defined by the attribute acceptableDuration.
     '''
-
-    acceptableDuration: Optional[ float | Seconds ] = field(
+    
+    acceptableDuration: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -6129,7 +6124,7 @@ class OperationalLimitType(IdentifiedObject):
     meaning only if the flag isInfiniteDuration is set to false, hence
     it shall not be exchanged when isInfiniteDuration is set to true.
     '''
-
+    
     direction: Optional[ OperationalLimitDirectionKind ] = field(
         default=None,
         metadata={
@@ -6143,12 +6138,12 @@ class OperationalLimitType(IdentifiedObject):
     '''
     The direction of the limit.
     '''
-
+    
     kind: Optional[ LimitKind ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['ShadowExtension', 'European', 'enumeration', 'Attribute'],
+        'stereotypes': ['European', 'enumeration', 'Attribute'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'namespace': 'http://iec.ch/TC57/CIM100-European#',
@@ -6158,7 +6153,7 @@ class OperationalLimitType(IdentifiedObject):
     Types of limits defined in the ENTSO-E Operational Handbook Policy
     3.
     '''
-
+    
     OperationalLimit: list[OperationalLimit] = field(
         default_factory=list,
         metadata={
@@ -6173,7 +6168,7 @@ class OperationalLimitType(IdentifiedObject):
     '''
     The operational limits associated with this type of limit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6186,7 +6181,7 @@ class OperationalLimitType(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class OrientationKind(Enum):
@@ -6202,14 +6197,14 @@ class OrientationKind(Enum):
     left to right and Y values increasing from top to bottom. This is also
     known as a left hand orientation.
     '''
-
+    
     positive = 'positive'
     '''
     For 2D diagrams, a positive orientation will result in X values increasing
     from left to right and Y values increasing from bottom to top. This
     is also known as a right hand orientation.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6222,21 +6217,21 @@ class OrientationKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PU(CIMUnit):
     '''
     Per Unit - a positive or negative value referred to a defined base. Values
     typically range from -10 to +10.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6250,22 +6245,22 @@ class PU(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PerCent(CIMUnit):
     '''
     Percentage on a defined base. For example, specify as 100 to indicate at
     the defined base.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.none
-    def __init__(self, value, input_unit: str='none', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='none', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -6279,7 +6274,7 @@ class PerCent(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.enumeration)
 class PetersenCoilModeKind(Enum):
@@ -6291,17 +6286,17 @@ class PetersenCoilModeKind(Enum):
     '''
     Automatic positioning.
     '''
-
+    
     fixed = 'fixed'
     '''
     Fixed position.
     '''
-
+    
     manual = 'manual'
     '''
     Manual positioning.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6314,7 +6309,7 @@ class PetersenCoilModeKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class PhaseCode(Enum):
     '''
@@ -6337,132 +6332,132 @@ class PhaseCode(Enum):
     '''
     Phase A.
     '''
-
+    
     AB = 'AB'
     '''
     Phases A and B.
     '''
-
+    
     ABC = 'ABC'
     '''
     Phases A, B, and C.
     '''
-
+    
     ABCN = 'ABCN'
     '''
     Phases A, B, C, and N.
     '''
-
+    
     ABN = 'ABN'
     '''
     Phases A, B, and neutral.
     '''
-
+    
     AC = 'AC'
     '''
     Phases A and C.
     '''
-
+    
     ACN = 'ACN'
     '''
     Phases A, C and neutral.
     '''
-
+    
     AN = 'AN'
     '''
     Phases A and neutral.
     '''
-
+    
     B = 'B'
     '''
     Phase B.
     '''
-
+    
     BC = 'BC'
     '''
     Phases B and C.
     '''
-
+    
     BCN = 'BCN'
     '''
     Phases B, C, and neutral.
     '''
-
+    
     BN = 'BN'
     '''
     Phases B and neutral.
     '''
-
+    
     C = 'C'
     '''
     Phase C.
     '''
-
+    
     CN = 'CN'
     '''
     Phases C and neutral.
     '''
-
+    
     N = 'N'
     '''
     Neutral phase.
     '''
-
+    
     X = 'X'
     '''
     Unknown non-neutral phase.
     '''
-
+    
     XN = 'XN'
     '''
     Unknown non-neutral phase plus neutral.
     '''
-
+    
     XY = 'XY'
     '''
     Two unknown non-neutral phases.
     '''
-
+    
     XYN = 'XYN'
     '''
     Two unknown non-neutral phases plus neutral.
     '''
-
+    
     none = 'none'
     '''
     No phases specified.
     '''
-
+    
     s1 = 's1'
     '''
     Secondary phase 1.
     '''
-
+    
     s12 = 's12'
     '''
     Secondary phase 1 and 2.
     '''
-
+    
     s12N = 's12N'
     '''
     Secondary phases 1, 2, and neutral.
     '''
-
+    
     s1N = 's1N'
     '''
     Secondary phase 1 and neutral.
     '''
-
+    
     s2 = 's2'
     '''
     Secondary phase 2.
     '''
-
+    
     s2N = 's2N'
     '''
     Secondary phase 2 and neutral.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6475,7 +6470,7 @@ class PhaseCode(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PhaseTapChangerTable(IdentifiedObject):
@@ -6498,7 +6493,7 @@ class PhaseTapChangerTable(IdentifiedObject):
     '''
     The points of this table.
     '''
-
+    
     PhaseTapChangerTabular: list[PhaseTapChangerTabular] = field(
         default_factory=list,
         metadata={
@@ -6513,7 +6508,7 @@ class PhaseTapChangerTable(IdentifiedObject):
     '''
     The phase tap changers to which this phase tap table applies.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6526,7 +6521,7 @@ class PhaseTapChangerTable(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PositionPoint(Identity):
@@ -6553,7 +6548,7 @@ class PositionPoint(Identity):
     '''
     Zero-relative sequence number of this point within a series of points.
     '''
-
+    
     xPosition: Optional[str] = field(
         default=None,
         metadata={
@@ -6567,7 +6562,7 @@ class PositionPoint(Identity):
     '''
     X axis position.
     '''
-
+    
     yPosition: Optional[str] = field(
         default=None,
         metadata={
@@ -6581,7 +6576,7 @@ class PositionPoint(Identity):
     '''
     Y axis position.
     '''
-
+    
     zPosition: Optional[str] = field(
         default=None,
         metadata={
@@ -6595,7 +6590,7 @@ class PositionPoint(Identity):
     '''
     (if applicable) Z axis position.
     '''
-
+    
     Location: Optional[Location] = field(
         default=None,
         metadata={
@@ -6610,7 +6605,7 @@ class PositionPoint(Identity):
     '''
     Location described by this position point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6623,7 +6618,7 @@ class PositionPoint(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class PowerSystemResource(IdentifiedObject):
     '''
@@ -6645,7 +6640,7 @@ class PowerSystemResource(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     Controls: list[Control] = field(
         default_factory=list,
         metadata={
@@ -6662,7 +6657,7 @@ class PowerSystemResource(IdentifiedObject):
     e.g. the magnetization of a synchronous machine or capacitor bank breaker
     actuator.
     '''
-
+    
     Measurements: list[Measurement] = field(
         default_factory=list,
         metadata={
@@ -6677,7 +6672,7 @@ class PowerSystemResource(IdentifiedObject):
     '''
     The measurements associated with this power system resource.
     '''
-
+    
     Location: Optional[Location] = field(
         default=None,
         metadata={
@@ -6692,7 +6687,7 @@ class PowerSystemResource(IdentifiedObject):
     '''
     Location of this power system resource.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.European)
 @dataclass(repr=False, eq=False)
@@ -6723,7 +6718,7 @@ class BoundaryPoint(PowerSystemResource):
     (http://www.iso.org/iso/country_codes). The length of the string is
     2 characters maximum.
     '''
-
+    
     fromEndName: Optional[str] = field(
         default=None,
         metadata={
@@ -6744,7 +6739,7 @@ class BoundaryPoint(PowerSystemResource):
     of the element (e.g. PowerTransformer, ACLineSegment, Switch, etc.)
     at which the "From" side of the Boundary point is connected to.
     '''
-
+    
     fromEndNameTso: Optional[str] = field(
         default=None,
         metadata={
@@ -6760,7 +6755,7 @@ class BoundaryPoint(PowerSystemResource):
     system operator or other entity at which the "From" side of the interconnection
     is connected to. The length of the string is 64 characters maximum.
     '''
-
+    
     isDirectCurrent: Optional[bool] = field(
         default=None,
         metadata={
@@ -6776,7 +6771,7 @@ class BoundaryPoint(PowerSystemResource):
     a direct current (DC) interconnection, otherwise the interconnection
     is AC (default).
     '''
-
+    
     isExcludedFromAreaInterchange: Optional[bool] = field(
         default=None,
         metadata={
@@ -6794,7 +6789,7 @@ class BoundaryPoint(PowerSystemResource):
     interchange and a TieFlow is required at all sides of the boundary
     point (default).
     '''
-
+    
     toEndIsoCode: Optional[str] = field(
         default=None,
         metadata={
@@ -6812,7 +6807,7 @@ class BoundaryPoint(PowerSystemResource):
     (http://www.iso.org/iso/country_codes). The length of the string is
     2 characters maximum.
     '''
-
+    
     toEndName: Optional[str] = field(
         default=None,
         metadata={
@@ -6833,7 +6828,7 @@ class BoundaryPoint(PowerSystemResource):
     of the element (e.g. PowerTransformer, ACLineSegment, Switch, etc.)
     at which the "To" side of the Boundary point is connected to.
     '''
-
+    
     toEndNameTso: Optional[str] = field(
         default=None,
         metadata={
@@ -6849,7 +6844,7 @@ class BoundaryPoint(PowerSystemResource):
     system operator or other entity at which the "To" side of the interconnection
     is connected to. The length of the string is 64 characters maximum.
     '''
-
+    
     ConnectivityNode: Optional[ConnectivityNode] = field(
         default=None,
         metadata={
@@ -6864,7 +6859,7 @@ class BoundaryPoint(PowerSystemResource):
     '''
     The connectivity node that is designated as a boundary point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100-European#'
@@ -6877,7 +6872,7 @@ class BoundaryPoint(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CAESPlant(PowerSystemResource):
@@ -6900,7 +6895,7 @@ class CAESPlant(PowerSystemResource):
     A thermal generating unit may be a member of a compressed air energy
     storage plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6913,7 +6908,7 @@ class CAESPlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CogenerationPlant(PowerSystemResource):
@@ -6938,7 +6933,7 @@ class CogenerationPlant(PowerSystemResource):
     '''
     A thermal generating unit may be a member of a cogeneration plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6951,7 +6946,7 @@ class CogenerationPlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CombinedCyclePlant(PowerSystemResource):
@@ -6975,7 +6970,7 @@ class CombinedCyclePlant(PowerSystemResource):
     '''
     A thermal generating unit may be a member of a combined cycle plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -6988,8 +6983,7 @@ class CombinedCyclePlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-@stereotype(CIMStereotype.ByReference)
+    
 @dataclass(repr=False, eq=False)
 class ConnectivityNodeContainer(PowerSystemResource):
     '''
@@ -7011,7 +7005,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     '''
     Connectivity nodes which belong to this connectivity node container.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7024,7 +7018,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     TopologicalNode: list[TopologicalNode] = field(
         default_factory=list,
         metadata={
@@ -7039,7 +7033,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     '''
     The topological nodes which belong to this connectivity node container.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -7088,22 +7082,7 @@ class ControlArea(PowerSystemResource):
     of automatic generation control could still be forecast and used as
     an interchange area in power flow analysis.
     '''
-
-    EnergyArea: Optional[EnergyArea] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'EnergyArea.ControlArea',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The energy area that is forecast from this control area specification.
-    '''
-
+    
     ControlAreaGeneratingUnit: list[ControlAreaGeneratingUnit] = field(
         default_factory=list,
         metadata={
@@ -7118,7 +7097,7 @@ class ControlArea(PowerSystemResource):
     '''
     The generating unit specifications for the control area.
     '''
-
+    
     TieFlow: list[TieFlow] = field(
         default_factory=list,
         metadata={
@@ -7133,7 +7112,22 @@ class ControlArea(PowerSystemResource):
     '''
     The tie flows associated with the control area.
     '''
-
+    
+    EnergyArea: Optional[EnergyArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'EnergyArea.ControlArea',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The energy area that is forecast from this control area specification.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7146,8 +7140,8 @@ class ControlArea(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    netInterchange: Optional[ float | ActivePower ] = field(
+    
+    netInterchange: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7161,8 +7155,8 @@ class ControlArea(PowerSystemResource):
     The specified positive net interchange into the control area, i.e.
     positive sign means flow into the area.
     '''
-
-    pTolerance: Optional[ float | ActivePower ] = field(
+    
+    pTolerance: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7176,7 +7170,7 @@ class ControlArea(PowerSystemResource):
     Active power net interchange tolerance. The attribute shall be a positive
     value or zero.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class Equipment(PowerSystemResource):
     '''
@@ -7207,7 +7201,7 @@ class Equipment(PowerSystemResource):
     The attribute is not used for EquivalentBranch, EquivalentShunt and
     EquivalentInjection.
     '''
-
+    
     normallyInService: Optional[bool] = field(
         default=None,
         metadata={
@@ -7225,22 +7219,7 @@ class Equipment(PowerSystemResource):
     that the equipment is treated by network applications as if it is not
     in the model.
     '''
-
-    EquipmentContainer: Optional[EquipmentContainer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'EquipmentContainer.Equipments',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Container of this equipment.
-    '''
-
+    
     OperationalLimitSet: list[OperationalLimitSet] = field(
         default_factory=list,
         metadata={
@@ -7255,7 +7234,22 @@ class Equipment(PowerSystemResource):
     '''
     The operational limit sets associated with this equipment.
     '''
-
+    
+    EquipmentContainer: Optional[EquipmentContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate', 'ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquipmentContainer.Equipments',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Container of this equipment.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7268,7 +7262,7 @@ class Equipment(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     inService: Optional[bool] = field(
         default=None,
         metadata={
@@ -7285,7 +7279,7 @@ class Equipment(PowerSystemResource):
     is energized or not. False means that the equipment is treated by network
     applications as if it is not in the model.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class AuxiliaryEquipment(Equipment):
     '''
@@ -7309,7 +7303,7 @@ class AuxiliaryEquipment(Equipment):
     '''
     The Terminal at the equipment where the AuxiliaryEquipment is attached.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7322,29 +7316,12 @@ class AuxiliaryEquipment(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class ConductingEquipment(Equipment):
     '''
     The parts of the AC power system that are designed to carry current or
     that are conductively connected through terminals.
-    '''
-
-    BaseVoltage: Optional[BaseVoltage] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'BaseVoltage.ConductingEquipment',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Base voltage of this conducting equipment. Use only when there is no
-    voltage level container used and only one base voltage applies. For
-    example, not used for transformers.
     '''
 
     Terminals: list[Terminal] = field(
@@ -7363,7 +7340,24 @@ class ConductingEquipment(Equipment):
     conducting equipment terminals via connectivity nodes or topological
     nodes.
     '''
-
+    
+    BaseVoltage: Optional[BaseVoltage] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'BaseVoltage.ConductingEquipment',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Base voltage of this conducting equipment. Use only when there is no
+    voltage level container used and only one base voltage applies. For
+    example, not used for transformers.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7376,7 +7370,7 @@ class ConductingEquipment(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     SvStatus: list[SvStatus] = field(
         default_factory=list,
         metadata={
@@ -7391,7 +7385,7 @@ class ConductingEquipment(Equipment):
     '''
     The status state variable associated with this conducting equipment.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class ACDCConverter(ConductingEquipment):
     '''
@@ -7413,8 +7407,8 @@ class ACDCConverter(ConductingEquipment):
     '''
     Number of valves in the converter. Used in loss calculations.
     '''
-
-    baseS: Optional[ float | ApparentPower ] = field(
+    
+    baseS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7428,8 +7422,8 @@ class ACDCConverter(ConductingEquipment):
     Base apparent power of the converter pole. The attribute shall be a
     positive value.
     '''
-
-    idleLoss: Optional[ float | ActivePower ] = field(
+    
+    idleLoss: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7443,8 +7437,8 @@ class ACDCConverter(ConductingEquipment):
     Active power loss in pole at no power transfer. It is converter’s configuration
     data used in power flow. The attribute shall be a positive value.
     '''
-
-    maxP: Optional[ float | ActivePower ] = field(
+    
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7458,8 +7452,8 @@ class ACDCConverter(ConductingEquipment):
     Maximum active power limit. The value is overwritten by values of VsCapabilityCurve,
     if present.
     '''
-
-    maxUdc: Optional[ float | Voltage ] = field(
+    
+    maxUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7474,8 +7468,8 @@ class ACDCConverter(ConductingEquipment):
     It is converter’s configuration data used in power flow. The attribute
     shall be a positive value.
     '''
-
-    minP: Optional[ float | ActivePower ] = field(
+    
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7489,8 +7483,8 @@ class ACDCConverter(ConductingEquipment):
     Minimum active power limit. The value is overwritten by values of VsCapabilityCurve,
     if present.
     '''
-
-    minUdc: Optional[ float | Voltage ] = field(
+    
+    minUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7505,8 +7499,8 @@ class ACDCConverter(ConductingEquipment):
     It is converter’s configuration data used in power flow. The attribute
     shall be a positive value.
     '''
-
-    ratedUdc: Optional[ float | Voltage ] = field(
+    
+    ratedUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7522,8 +7516,8 @@ class ACDCConverter(ConductingEquipment):
     flow. For instance a bipolar HVDC link with value 200 kV has a 400kV
     difference between the dc lines.
     '''
-
-    resistiveLoss: Optional[ float | Resistance ] = field(
+    
+    resistiveLoss: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7537,8 +7531,8 @@ class ACDCConverter(ConductingEquipment):
     It is converter’s configuration data used in power flow. Refer to poleLossP.
     The attribute shall be a positive value.
     '''
-
-    switchingLoss: Optional[ float | ActivePowerPerCurrentFlow ] = field(
+    
+    switchingLoss: Optional[ ActivePowerPerCurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7552,8 +7546,8 @@ class ACDCConverter(ConductingEquipment):
     Switching losses, relative to the base apparent power 'baseS'. Refer
     to poleLossP. The attribute shall be a positive value.
     '''
-
-    valveU0: Optional[ float | Voltage ] = field(
+    
+    valveU0: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7568,7 +7562,23 @@ class ACDCConverter(ConductingEquipment):
     the valve is conducting. Used in loss calculations, i.e. the switchLoss
     depend on numberOfValves * valveU0.
     '''
-
+    
+    DCTerminals: list[ACDCConverterDCTerminal] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACDCConverterDCTerminal.DCConductingEquipment',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    A DC converter have DC converter terminals. A converter has two DC
+    converter terminals.
+    '''
+    
     PccTerminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -7585,23 +7595,7 @@ class ACDCConverter(ConductingEquipment):
     typically the terminal on the power transformer (or switch) closest
     to the AC network.
     '''
-
-    DCTerminals: list[ACDCConverterDCTerminal] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ACDCConverterDCTerminal.DCConductingEquipment',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    A DC converter have DC converter terminals. A converter has two DC
-    converter terminals.
-    '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7614,8 +7608,8 @@ class ACDCConverter(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7631,8 +7625,8 @@ class ACDCConverter(ConductingEquipment):
     Starting value for a steady state solution in the case a simplified
     power flow model is used.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7648,8 +7642,8 @@ class ACDCConverter(ConductingEquipment):
     Starting value for a steady state solution in the case a simplified
     power flow model is used.
     '''
-
-    targetPpcc: Optional[ float | ActivePower ] = field(
+    
+    targetPpcc: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7664,8 +7658,8 @@ class ACDCConverter(ConductingEquipment):
     Load sign convention is used, i.e. positive sign means flow out from
     a node.
     '''
-
-    targetUdc: Optional[ float | Voltage ] = field(
+    
+    targetUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7679,8 +7673,8 @@ class ACDCConverter(ConductingEquipment):
     Target value for DC voltage magnitude. The attribute shall be a positive
     value.
     '''
-
-    idc: Optional[ float | CurrentFlow ] = field(
+    
+    idc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7694,8 +7688,8 @@ class ACDCConverter(ConductingEquipment):
     Converter DC current, also called Id. It is converter’s state variable,
     result from power flow.
     '''
-
-    poleLossP: Optional[ float | ActivePower ] = field(
+    
+    poleLossP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7714,8 +7708,8 @@ class ACDCConverter(ConductingEquipment):
     It is converter’s state variable used in power flow. The attribute
     shall be a positive value.
     '''
-
-    uc: Optional[ float | Voltage ] = field(
+    
+    uc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7730,8 +7724,8 @@ class ACDCConverter(ConductingEquipment):
     It is converter’s state variable, result from power flow. The attribute
     shall be a positive value.
     '''
-
-    udc: Optional[ float | Voltage ] = field(
+    
+    udc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7746,7 +7740,7 @@ class ACDCConverter(ConductingEquipment):
     state variable, result from power flow. The attribute shall be a positive
     value.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Clamp(ConductingEquipment):
@@ -7758,7 +7752,7 @@ class Clamp(ConductingEquipment):
     Clamp ConnectivityNode.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7773,7 +7767,7 @@ class Clamp(ConductingEquipment):
     one of the line segment, i.e. the line segment terminal with sequence
     number equal to 1.
     '''
-
+    
     ACLineSegment: Optional[ACLineSegment] = field(
         default=None,
         metadata={
@@ -7788,7 +7782,7 @@ class Clamp(ConductingEquipment):
     '''
     The line segment to which the clamp is connected.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7801,7 +7795,7 @@ class Clamp(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class Conductor(ConductingEquipment):
     '''
@@ -7810,7 +7804,7 @@ class Conductor(ConductingEquipment):
     in the power system.
     '''
 
-    length: Optional[ float | Length ] = field(
+    length: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7823,7 +7817,7 @@ class Conductor(ConductingEquipment):
     '''
     Segment length for calculating line section capabilities.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7836,7 +7830,7 @@ class Conductor(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -7855,7 +7849,7 @@ class ACLineSegment(Conductor):
     voltage difference in general requires use of an equivalent branch.
     '''
 
-    bch: Optional[ float | Susceptance ] = field(
+    bch: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7870,8 +7864,8 @@ class ACLineSegment(Conductor):
     of the entire line section. This value represents the full charging
     over the full length of the line.
     '''
-
-    gch: Optional[ float | Conductance ] = field(
+    
+    gch: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7885,8 +7879,8 @@ class ACLineSegment(Conductor):
     Positive sequence shunt (charging) conductance, uniformly distributed,
     of the entire line section.
     '''
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7899,8 +7893,8 @@ class ACLineSegment(Conductor):
     '''
     Positive sequence series resistance of the entire line section.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7913,7 +7907,7 @@ class ACLineSegment(Conductor):
     '''
     Positive sequence series reactance of the entire line section.
     '''
-
+    
     Clamp: list[Clamp] = field(
         default_factory=list,
         metadata={
@@ -7928,7 +7922,7 @@ class ACLineSegment(Conductor):
     '''
     The clamps connected to the line segment.
     '''
-
+    
     Cut: list[Cut] = field(
         default_factory=list,
         metadata={
@@ -7943,7 +7937,7 @@ class ACLineSegment(Conductor):
     '''
     Cuts applied to the line segment.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -7956,8 +7950,8 @@ class ACLineSegment(Conductor):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    b0ch: Optional[ float | Susceptance ] = field(
+    
+    b0ch: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7971,8 +7965,8 @@ class ACLineSegment(Conductor):
     Zero sequence shunt (charging) susceptance, uniformly distributed,
     of the entire line section.
     '''
-
-    g0ch: Optional[ float | Conductance ] = field(
+    
+    g0ch: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -7986,8 +7980,8 @@ class ACLineSegment(Conductor):
     Zero sequence shunt (charging) conductance, uniformly distributed,
     of the entire line section.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8000,8 +7994,8 @@ class ACLineSegment(Conductor):
     '''
     Zero sequence series resistance of the entire line section.
     '''
-
-    shortCircuitEndTemperature: Optional[ float | Temperature ] = field(
+    
+    shortCircuitEndTemperature: Optional[ Temperature ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8016,8 +8010,8 @@ class ACLineSegment(Conductor):
     of minimum short-circuit currents. Used for short circuit data exchange
     according to IEC 60909.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8030,7 +8024,7 @@ class ACLineSegment(Conductor):
     '''
     Zero sequence series reactance of the entire line section.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class Connector(ConductingEquipment):
     '''
@@ -8051,7 +8045,7 @@ class Connector(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -8076,8 +8070,8 @@ class BusbarSection(Connector):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    ipMax: Optional[ float | CurrentFlow ] = field(
+    
+    ipMax: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8093,7 +8087,7 @@ class BusbarSection(Connector):
     Mechanical limit of the busbar in the substation itself. Used for short
     circuit data exchange according to IEC 60909.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -8124,7 +8118,7 @@ class CsConverter(ACDCConverter):
     place. The range is typically 17-20 degrees.
     '''
 
-    maxAlpha: Optional[ float | AngleDegrees ] = field(
+    maxAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8138,8 +8132,8 @@ class CsConverter(ACDCConverter):
     Maximum firing angle. It is converter’s configuration data used in
     power flow. The attribute shall be a positive value.
     '''
-
-    maxGamma: Optional[ float | AngleDegrees ] = field(
+    
+    maxGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8153,8 +8147,8 @@ class CsConverter(ACDCConverter):
     Maximum extinction angle. It is converter’s configuration data used
     in power flow. The attribute shall be a positive value.
     '''
-
-    maxIdc: Optional[ float | CurrentFlow ] = field(
+    
+    maxIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8169,8 +8163,8 @@ class CsConverter(ACDCConverter):
     should operate. It is converter’s configuration data use in power flow.
     The attribute shall be a positive value.
     '''
-
-    minAlpha: Optional[ float | AngleDegrees ] = field(
+    
+    minAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8184,8 +8178,8 @@ class CsConverter(ACDCConverter):
     Minimum firing angle. It is converter’s configuration data used in
     power flow. The attribute shall be a positive value.
     '''
-
-    minGamma: Optional[ float | AngleDegrees ] = field(
+    
+    minGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8199,8 +8193,8 @@ class CsConverter(ACDCConverter):
     Minimum extinction angle. It is converter’s configuration data used
     in power flow. The attribute shall be a positive value.
     '''
-
-    minIdc: Optional[ float | CurrentFlow ] = field(
+    
+    minIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8215,8 +8209,8 @@ class CsConverter(ACDCConverter):
     should operate. It is converter’s configuration data used in power
     flow. The attribute shall be a positive value.
     '''
-
-    ratedIdc: Optional[ float | CurrentFlow ] = field(
+    
+    ratedIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8231,7 +8225,7 @@ class CsConverter(ACDCConverter):
     a positive value. It is converter’s configuration data used in power
     flow.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8244,7 +8238,7 @@ class CsConverter(ACDCConverter):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     operatingMode: Optional[ CsOperatingModeKind ] = field(
         default=None,
         metadata={
@@ -8259,7 +8253,7 @@ class CsConverter(ACDCConverter):
     Indicates whether the DC pole is operating as an inverter or as a rectifier.
     It is converter’s control variable used in power flow.
     '''
-
+    
     pPccControl: Optional[ CsPpccControlKind ] = field(
         default=None,
         metadata={
@@ -8273,8 +8267,8 @@ class CsConverter(ACDCConverter):
     '''
     Kind of active power control.
     '''
-
-    targetAlpha: Optional[ float | AngleDegrees ] = field(
+    
+    targetAlpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8290,8 +8284,8 @@ class CsConverter(ACDCConverter):
     control is used. Allowed values are within the range minAlpha&lt;=targetAlpha&lt;=maxAlpha.
     The attribute shall be a positive value.
     '''
-
-    targetGamma: Optional[ float | AngleDegrees ] = field(
+    
+    targetGamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8307,8 +8301,8 @@ class CsConverter(ACDCConverter):
     control is used. Allowed values are within the range minGamma&lt;=targetGamma&lt;=maxGamma.
     The attribute shall be a positive value.
     '''
-
-    targetIdc: Optional[ float | CurrentFlow ] = field(
+    
+    targetIdc: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8322,8 +8316,8 @@ class CsConverter(ACDCConverter):
     DC current target value. It is converter’s control variable used in
     power flow. The attribute shall be a positive value.
     '''
-
-    alpha: Optional[ float | AngleDegrees ] = field(
+    
+    alpha: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8339,8 +8333,8 @@ class CsConverter(ACDCConverter):
     is converter’s state variable, result from power flow. The attribute
     shall be a positive value.
     '''
-
-    gamma: Optional[ float | AngleDegrees ] = field(
+    
+    gamma: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8356,7 +8350,7 @@ class CsConverter(ACDCConverter):
     It is converter’s state variable, result from power flow. The attribute
     shall be a positive value.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class DCConductingEquipment(Equipment):
     '''
@@ -8364,7 +8358,7 @@ class DCConductingEquipment(Equipment):
     that are conductively connected through DC terminals.
     '''
 
-    ratedUdc: Optional[ float | Voltage ] = field(
+    ratedUdc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8378,7 +8372,7 @@ class DCConductingEquipment(Equipment):
     Rated DC device voltage. The attribute shall be a positive value. It
     is configuration data used in power flow.
     '''
-
+    
     DCTerminals: list[DCTerminal] = field(
         default_factory=list,
         metadata={
@@ -8393,7 +8387,7 @@ class DCConductingEquipment(Equipment):
     '''
     A DC conducting equipment has DC terminals.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8406,7 +8400,7 @@ class DCConductingEquipment(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCBusbar(DCConductingEquipment):
@@ -8426,7 +8420,7 @@ class DCBusbar(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCChopper(DCConductingEquipment):
@@ -8447,7 +8441,7 @@ class DCChopper(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCGround(DCConductingEquipment):
@@ -8455,7 +8449,7 @@ class DCGround(DCConductingEquipment):
     A ground within a DC system.
     '''
 
-    inductance: Optional[ float | Inductance ] = field(
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8468,8 +8462,8 @@ class DCGround(DCConductingEquipment):
     '''
     Inductance to ground.
     '''
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8482,7 +8476,7 @@ class DCGround(DCConductingEquipment):
     '''
     Resistance to ground.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8495,7 +8489,7 @@ class DCGround(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCLineSegment(DCConductingEquipment):
@@ -8505,7 +8499,7 @@ class DCLineSegment(DCConductingEquipment):
     in the DC region of the power system.
     '''
 
-    capacitance: Optional[ float | Capacitance ] = field(
+    capacitance: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8518,8 +8512,8 @@ class DCLineSegment(DCConductingEquipment):
     '''
     Capacitance of the DC line segment. Significant for cables only.
     '''
-
-    inductance: Optional[ float | Inductance ] = field(
+    
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8533,8 +8527,8 @@ class DCLineSegment(DCConductingEquipment):
     Inductance of the DC line segment. Negligible compared with DCSeriesDevice
     used for smoothing.
     '''
-
-    length: Optional[ float | Length ] = field(
+    
+    length: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8547,8 +8541,8 @@ class DCLineSegment(DCConductingEquipment):
     '''
     Segment length for calculating line section capabilities.
     '''
-
-    resistance: Optional[ float | Resistance ] = field(
+    
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8561,7 +8555,7 @@ class DCLineSegment(DCConductingEquipment):
     '''
     Resistance of the DC line segment.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8574,7 +8568,7 @@ class DCLineSegment(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCSeriesDevice(DCConductingEquipment):
@@ -8583,7 +8577,7 @@ class DCSeriesDevice(DCConductingEquipment):
     or smoothing. Needed for transient and short circuit studies.
     '''
 
-    inductance: Optional[ float | Inductance ] = field(
+    inductance: Optional[ Inductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8596,8 +8590,8 @@ class DCSeriesDevice(DCConductingEquipment):
     '''
     Inductance of the device.
     '''
-
-    resistance: Optional[ float | Resistance ] = field(
+    
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8610,7 +8604,7 @@ class DCSeriesDevice(DCConductingEquipment):
     '''
     Resistance of the DC device.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8623,7 +8617,7 @@ class DCSeriesDevice(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCShunt(DCConductingEquipment):
@@ -8632,7 +8626,7 @@ class DCShunt(DCConductingEquipment):
     for transient and short circuit studies.
     '''
 
-    capacitance: Optional[ float | Capacitance ] = field(
+    capacitance: Optional[ Capacitance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8645,8 +8639,8 @@ class DCShunt(DCConductingEquipment):
     '''
     Capacitance of the DC shunt.
     '''
-
-    resistance: Optional[ float | Resistance ] = field(
+    
+    resistance: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8659,7 +8653,7 @@ class DCShunt(DCConductingEquipment):
     '''
     Resistance of the DC device.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8672,7 +8666,7 @@ class DCShunt(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCSwitch(DCConductingEquipment):
@@ -8692,7 +8686,7 @@ class DCSwitch(DCConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCBreaker(DCSwitch):
@@ -8712,7 +8706,7 @@ class DCBreaker(DCSwitch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCDisconnector(DCSwitch):
@@ -8732,7 +8726,7 @@ class DCDisconnector(DCSwitch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class EarthFaultCompensator(ConductingEquipment):
     '''
@@ -8755,8 +8749,8 @@ class EarthFaultCompensator(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8769,7 +8763,7 @@ class EarthFaultCompensator(ConductingEquipment):
     '''
     Nominal resistance of device.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class EnergyConnection(ConductingEquipment):
     '''
@@ -8788,7 +8782,7 @@ class EnergyConnection(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -8800,7 +8794,7 @@ class EnergyConsumer(EnergyConnection):
     or if LoadResponseCharacteristic.exponentModel is set to False.
     '''
 
-    pfixed: Optional[ float | ActivePower ] = field(
+    pfixed: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8815,8 +8809,8 @@ class EnergyConsumer(EnergyConnection):
     as load group value varies. Load sign convention is used, i.e. positive
     sign means flow out from a node.
     '''
-
-    pfixedPct: Optional[ float | PerCent ] = field(
+    
+    pfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8831,8 +8825,8 @@ class EnergyConsumer(EnergyConnection):
     Used to represent the time-varying components. Load sign convention
     is used, i.e. positive sign means flow out from a node.
     '''
-
-    qfixed: Optional[ float | ReactivePower ] = field(
+    
+    qfixed: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8847,8 +8841,8 @@ class EnergyConsumer(EnergyConnection):
     as load group value varies. Load sign convention is used, i.e. positive
     sign means flow out from a node.
     '''
-
-    qfixedPct: Optional[ float | PerCent ] = field(
+    
+    qfixedPct: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8863,7 +8857,7 @@ class EnergyConsumer(EnergyConnection):
     Used to represent the time-varying components. Load sign convention
     is used, i.e. positive sign means flow out from a node.
     '''
-
+    
     LoadResponse: Optional[LoadResponseCharacteristic] = field(
         default=None,
         metadata={
@@ -8879,7 +8873,7 @@ class EnergyConsumer(EnergyConnection):
     The load response characteristic of this load. If missing, this load
     is assumed to be constant power.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8892,8 +8886,8 @@ class EnergyConsumer(EnergyConnection):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8909,8 +8903,8 @@ class EnergyConsumer(EnergyConnection):
     For voltage dependent loads the value is at rated voltage.
     Starting value for a steady state solution.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8926,7 +8920,7 @@ class EnergyConsumer(EnergyConnection):
     For voltage dependent loads the value is at rated voltage.
     Starting value for a steady state solution.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -8950,7 +8944,7 @@ class ConformLoad(EnergyConsumer):
     '''
     Group of this ConformLoad.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -8963,7 +8957,7 @@ class ConformLoad(EnergyConsumer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -8973,7 +8967,7 @@ class EnergySource(EnergyConnection):
     voltage level.
     '''
 
-    nominalVoltage: Optional[ float | Voltage ] = field(
+    nominalVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -8986,8 +8980,8 @@ class EnergySource(EnergyConnection):
     '''
     Phase-to-phase nominal voltage.
     '''
-
-    pMax: Optional[ float | ActivePower ] = field(
+    
+    pMax: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9002,8 +8996,8 @@ class EnergySource(EnergyConnection):
     Load sign convention is used, i.e. positive sign means flow out from
     a TopologicalNode (bus) into the conducting equipment.
     '''
-
-    pMin: Optional[ float | ActivePower ] = field(
+    
+    pMin: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9018,7 +9012,7 @@ class EnergySource(EnergyConnection):
     Load sign convention is used, i.e. positive sign means flow out from
     a TopologicalNode (bus) into the conducting equipment.
     '''
-
+    
     EnergySchedulingType: Optional[EnergySchedulingType] = field(
         default=None,
         metadata={
@@ -9033,7 +9027,7 @@ class EnergySource(EnergyConnection):
     '''
     Energy Scheduling Type of an Energy Source.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9046,8 +9040,8 @@ class EnergySource(EnergyConnection):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9060,8 +9054,8 @@ class EnergySource(EnergyConnection):
     '''
     Positive sequence Thevenin resistance.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9074,8 +9068,8 @@ class EnergySource(EnergyConnection):
     '''
     Zero sequence Thevenin resistance.
     '''
-
-    rn: Optional[ float | Resistance ] = field(
+    
+    rn: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9088,8 +9082,8 @@ class EnergySource(EnergyConnection):
     '''
     Negative sequence Thevenin resistance.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9102,8 +9096,8 @@ class EnergySource(EnergyConnection):
     '''
     Positive sequence Thevenin reactance.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9116,8 +9110,8 @@ class EnergySource(EnergyConnection):
     '''
     Zero sequence Thevenin reactance.
     '''
-
-    xn: Optional[ float | Reactance ] = field(
+    
+    xn: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9130,8 +9124,8 @@ class EnergySource(EnergyConnection):
     '''
     Negative sequence Thevenin reactance.
     '''
-
-    activePower: Optional[ float | ActivePower ] = field(
+    
+    activePower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9146,8 +9140,8 @@ class EnergySource(EnergyConnection):
     i.e. positive sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
-    reactivePower: Optional[ float | ReactivePower ] = field(
+    
+    reactivePower: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9162,8 +9156,8 @@ class EnergySource(EnergyConnection):
     i.e. positive sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
-    voltageAngle: Optional[ float | AngleRadians ] = field(
+    
+    voltageAngle: Optional[ AngleRadians ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9180,8 +9174,8 @@ class EnergySource(EnergyConnection):
     level are used as input to the distribution network. The attribute
     shall be a positive value or zero.
     '''
-
-    voltageMagnitude: Optional[ float | Voltage ] = field(
+    
+    voltageMagnitude: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9198,7 +9192,7 @@ class EnergySource(EnergyConnection):
     level are used as input to the distribution network. The attribute
     shall be a positive value or zero.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class EquipmentContainer(ConnectivityNodeContainer):
     '''
@@ -9219,7 +9213,7 @@ class EquipmentContainer(ConnectivityNodeContainer):
     '''
     Contained equipment.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9232,7 +9226,7 @@ class EquipmentContainer(ConnectivityNodeContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Bay(EquipmentContainer):
@@ -9257,7 +9251,7 @@ class Bay(EquipmentContainer):
     '''
     The voltage level containing this bay.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9270,8 +9264,7 @@ class Bay(EquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-@stereotype(CIMStereotype.ByReference)
+    
 @dataclass(repr=False, eq=False)
 class DCEquipmentContainer(EquipmentContainer):
     '''
@@ -9295,7 +9288,7 @@ class DCEquipmentContainer(EquipmentContainer):
     '''
     The DC nodes contained in the DC equipment container.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9308,7 +9301,7 @@ class DCEquipmentContainer(EquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     DCTopologicalNode: list[DCTopologicalNode] = field(
         default_factory=list,
         metadata={
@@ -9323,7 +9316,7 @@ class DCEquipmentContainer(EquipmentContainer):
     '''
     The topological nodes which belong to this connectivity node container.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCConverterUnit(DCEquipmentContainer):
@@ -9349,7 +9342,7 @@ class DCConverterUnit(DCEquipmentContainer):
     The operating mode of an HVDC bipole (bipolar, monopolar metallic return,
     etc).
     '''
-
+    
     Substation: Optional[Substation] = field(
         default=None,
         metadata={
@@ -9364,7 +9357,7 @@ class DCConverterUnit(DCEquipmentContainer):
     '''
     The containing substation of the DC converter unit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9377,7 +9370,7 @@ class DCConverterUnit(DCEquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class DCLine(DCEquipmentContainer):
@@ -9399,7 +9392,7 @@ class DCLine(DCEquipmentContainer):
     '''
     The SubGeographicalRegion containing the DC line.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9412,7 +9405,7 @@ class DCLine(DCEquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class EquivalentEquipment(ConductingEquipment):
     '''
@@ -9434,7 +9427,7 @@ class EquivalentEquipment(ConductingEquipment):
     '''
     The equivalent where the reduced model belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9447,7 +9440,7 @@ class EquivalentEquipment(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -9459,7 +9452,7 @@ class EquivalentBranch(EquivalentEquipment):
     phase shift.
     '''
 
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9472,8 +9465,8 @@ class EquivalentBranch(EquivalentEquipment):
     '''
     Positive sequence series resistance of the reduced branch.
     '''
-
-    r21: Optional[ float | Resistance ] = field(
+    
+    r21: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9491,8 +9484,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage rule : EquivalentBranch is a result of network reduction prior
     to the data exchange.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9505,8 +9498,8 @@ class EquivalentBranch(EquivalentEquipment):
     '''
     Positive sequence series reactance of the reduced branch.
     '''
-
-    x21: Optional[ float | Reactance ] = field(
+    
+    x21: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9524,7 +9517,7 @@ class EquivalentBranch(EquivalentEquipment):
     Usage rule: EquivalentBranch is a result of network reduction prior
     to the data exchange.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9537,8 +9530,8 @@ class EquivalentBranch(EquivalentEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    negativeR12: Optional[ float | Resistance ] = field(
+    
+    negativeR12: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9554,8 +9547,8 @@ class EquivalentBranch(EquivalentEquipment):
     EquivalentBranch is a result of network reduction prior to the data
     exchange.
     '''
-
-    negativeR21: Optional[ float | Resistance ] = field(
+    
+    negativeR21: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9571,8 +9564,8 @@ class EquivalentBranch(EquivalentEquipment):
     EquivalentBranch is a result of network reduction prior to the data
     exchange.
     '''
-
-    negativeX12: Optional[ float | Reactance ] = field(
+    
+    negativeX12: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9588,8 +9581,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
-    negativeX21: Optional[ float | Reactance ] = field(
+    
+    negativeX21: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9605,8 +9598,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage: EquivalentBranch is a result of network reduction prior to the
     data exchange.
     '''
-
-    positiveR12: Optional[ float | Resistance ] = field(
+    
+    positiveR12: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9623,8 +9616,8 @@ class EquivalentBranch(EquivalentEquipment):
     EquivalentBranch is a result of network reduction prior to the data
     exchange.
     '''
-
-    positiveR21: Optional[ float | Resistance ] = field(
+    
+    positiveR21: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9640,8 +9633,8 @@ class EquivalentBranch(EquivalentEquipment):
     EquivalentBranch is a result of network reduction prior to the data
     exchange.
     '''
-
-    positiveX12: Optional[ float | Reactance ] = field(
+    
+    positiveX12: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9657,8 +9650,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
-    positiveX21: Optional[ float | Reactance ] = field(
+    
+    positiveX21: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9674,8 +9667,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
-    zeroR12: Optional[ float | Resistance ] = field(
+    
+    zeroR12: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9691,8 +9684,8 @@ class EquivalentBranch(EquivalentEquipment):
     EquivalentBranch is a result of network reduction prior to the data
     exchange.
     '''
-
-    zeroR21: Optional[ float | Resistance ] = field(
+    
+    zeroR21: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9708,8 +9701,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
-    zeroX12: Optional[ float | Reactance ] = field(
+    
+    zeroX12: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9725,8 +9718,8 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
-    zeroX21: Optional[ float | Reactance ] = field(
+    
+    zeroX21: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9742,7 +9735,7 @@ class EquivalentBranch(EquivalentEquipment):
     Usage : EquivalentBranch is a result of network reduction prior to
     the data exchange.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -9768,8 +9761,8 @@ class EquivalentInjection(EquivalentEquipment):
     regulate. If false the EquivalentInjection cannot regulate. ReactiveCapabilityCurve
     can only be associated with EquivalentInjection if the flag is true.
     '''
-
-    maxP: Optional[ float | ActivePower ] = field(
+    
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9782,8 +9775,8 @@ class EquivalentInjection(EquivalentEquipment):
     '''
     Maximum active power of the injection.
     '''
-
-    maxQ: Optional[ float | ReactivePower ] = field(
+    
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9798,8 +9791,8 @@ class EquivalentInjection(EquivalentEquipment):
     for load flow exchange. Not used for short circuit modelling. If maxQ
     and minQ are not used ReactiveCapabilityCurve can be used.
     '''
-
-    minP: Optional[ float | ActivePower ] = field(
+    
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9812,8 +9805,8 @@ class EquivalentInjection(EquivalentEquipment):
     '''
     Minimum active power of the injection.
     '''
-
-    minQ: Optional[ float | ReactivePower ] = field(
+    
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9828,12 +9821,12 @@ class EquivalentInjection(EquivalentEquipment):
     for load flow exchange. Not used for short circuit modelling. If maxQ
     and minQ are not used ReactiveCapabilityCurve can be used.
     '''
-
+    
     ReactiveCapabilityCurve: Optional[ReactiveCapabilityCurve] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension', 'ByReference'],
+        'stereotypes': ['ByReference'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'ReactiveCapabilityCurve.EquivalentInjection',
@@ -9843,7 +9836,7 @@ class EquivalentInjection(EquivalentEquipment):
     '''
     The reactive capability curve used by this equivalent injection.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -9856,8 +9849,8 @@ class EquivalentInjection(EquivalentEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9873,8 +9866,8 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9889,8 +9882,8 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
-    r2: Optional[ float | Resistance ] = field(
+    
+    r2: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9906,8 +9899,8 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9922,8 +9915,8 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9938,8 +9931,8 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
-    x2: Optional[ float | Reactance ] = field(
+    
+    x2: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9954,7 +9947,7 @@ class EquivalentInjection(EquivalentEquipment):
     Usage : Extended-Ward is a result of network reduction prior to the
     data exchange.
     '''
-
+    
     regulationStatus: Optional[bool] = field(
         default=None,
         metadata={
@@ -9969,8 +9962,8 @@ class EquivalentInjection(EquivalentEquipment):
     Specifies the regulation status of the EquivalentInjection. True is
     regulating. False is not regulating.
     '''
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -9985,8 +9978,8 @@ class EquivalentInjection(EquivalentEquipment):
     positive sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10001,8 +9994,8 @@ class EquivalentInjection(EquivalentEquipment):
     i.e. positive sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
-    regulationTarget: Optional[ float | Voltage ] = field(
+    
+    regulationTarget: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10016,7 +10009,7 @@ class EquivalentInjection(EquivalentEquipment):
     The target voltage for voltage regulation. The attribute shall be a
     positive value.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EquivalentNetwork(ConnectivityNodeContainer):
@@ -10042,7 +10035,7 @@ class EquivalentNetwork(ConnectivityNodeContainer):
     '''
     The associated reduced equivalents.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10055,7 +10048,7 @@ class EquivalentNetwork(ConnectivityNodeContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EquivalentShunt(EquivalentEquipment):
@@ -10063,7 +10056,7 @@ class EquivalentShunt(EquivalentEquipment):
     The class represents equivalent shunts.
     '''
 
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10076,8 +10069,8 @@ class EquivalentShunt(EquivalentEquipment):
     '''
     Positive sequence shunt susceptance.
     '''
-
-    g: Optional[ float | Conductance ] = field(
+    
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10090,7 +10083,7 @@ class EquivalentShunt(EquivalentEquipment):
     '''
     Positive sequence shunt conductance.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10103,7 +10096,7 @@ class EquivalentShunt(EquivalentEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class FaultIndicator(AuxiliaryEquipment):
@@ -10128,7 +10121,7 @@ class FaultIndicator(AuxiliaryEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10155,7 +10148,7 @@ class GeneratingUnit(Equipment):
     '''
     Generating unit long term economic participation factor.
     '''
-
+    
     shortPF: Optional[float] = field(
         default=None,
         metadata={
@@ -10169,7 +10162,7 @@ class GeneratingUnit(Equipment):
     '''
     Generating unit short term economic participation factor.
     '''
-
+    
     genControlSource: Optional[ GeneratorControlSource ] = field(
         default=None,
         metadata={
@@ -10184,8 +10177,8 @@ class GeneratingUnit(Equipment):
     The source of controls for a generating unit. Defines the control status
     of the generating unit.
     '''
-
-    governorSCD: Optional[ float | PerCent ] = field(
+    
+    governorSCD: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10202,8 +10195,8 @@ class GeneratingUnit(Equipment):
     and negated. A positive value of speed change droop provides additional
     generator output upon a drop in frequency.
     '''
-
-    maximumAllowableSpinningReserve: Optional[ float | ActivePower ] = field(
+    
+    maximumAllowableSpinningReserve: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10218,8 +10211,8 @@ class GeneratingUnit(Equipment):
     considered greater than this value regardless of the current operating
     point.
     '''
-
-    maxOperatingP: Optional[ float | ActivePower ] = field(
+    
+    maxOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10233,8 +10226,8 @@ class GeneratingUnit(Equipment):
     This is the maximum operating active power limit the dispatcher can
     enter for this unit.
     '''
-
-    minOperatingP: Optional[ float | ActivePower ] = field(
+    
+    minOperatingP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10248,8 +10241,8 @@ class GeneratingUnit(Equipment):
     This is the minimum operating active power limit the dispatcher can
     enter for this unit.
     '''
-
-    nominalP: Optional[ float | ActivePower ] = field(
+    
+    nominalP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10265,8 +10258,8 @@ class GeneratingUnit(Equipment):
     (governorSCD attribute).
     The attribute shall be a positive value equal to or less than RotatingMachine.ratedS.
     '''
-
-    ratedGrossMaxP: Optional[ float | ActivePower ] = field(
+    
+    ratedGrossMaxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10280,8 +10273,8 @@ class GeneratingUnit(Equipment):
     The unit's gross rated maximum capacity (book value).
     The attribute shall be a positive value.
     '''
-
-    ratedGrossMinP: Optional[ float | ActivePower ] = field(
+    
+    ratedGrossMinP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10296,8 +10289,8 @@ class GeneratingUnit(Equipment):
     operate at while delivering power to the transmission grid.
     The attribute shall be a positive value.
     '''
-
-    ratedNetMaxP: Optional[ float | ActivePower ] = field(
+    
+    ratedNetMaxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10313,7 +10306,7 @@ class GeneratingUnit(Equipment):
     maximum capacity.
     The attribute shall be a positive value.
     '''
-
+    
     startupCost: Optional[ Money ] = field(
         default=None,
         metadata={
@@ -10327,8 +10320,8 @@ class GeneratingUnit(Equipment):
     '''
     The initial startup cost incurred for each start of the GeneratingUnit.
     '''
-
-    startupTime: Optional[ float | Seconds ] = field(
+    
+    startupTime: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10342,8 +10335,8 @@ class GeneratingUnit(Equipment):
     Time it takes to get the unit on-line, from the time that the prime
     mover mechanical power is applied.
     '''
-
-    totalEfficiency: Optional[ float | PerCent ] = field(
+    
+    totalEfficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10356,7 +10349,7 @@ class GeneratingUnit(Equipment):
     '''
     The efficiency of the unit in converting the fuel into electrical energy.
     '''
-
+    
     variableCost: Optional[ Money ] = field(
         default=None,
         metadata={
@@ -10370,7 +10363,7 @@ class GeneratingUnit(Equipment):
     '''
     The variable cost component of production per unit of ActivePower.
     '''
-
+    
     ControlAreaGeneratingUnit: list[ControlAreaGeneratingUnit] = field(
         default_factory=list,
         metadata={
@@ -10385,7 +10378,7 @@ class GeneratingUnit(Equipment):
     '''
     ControlArea specifications for this generating unit.
     '''
-
+    
     GrossToNetActivePowerCurves: list[GrossToNetActivePowerCurve] = field(
         default_factory=list,
         metadata={
@@ -10402,7 +10395,7 @@ class GeneratingUnit(Equipment):
     curve, describing the losses and auxiliary power requirements of the
     unit.
     '''
-
+    
     RotatingMachine: list[RotatingMachine] = field(
         default_factory=list,
         metadata={
@@ -10418,7 +10411,7 @@ class GeneratingUnit(Equipment):
     A synchronous machine may operate as a generator and as such becomes
     a member of a generating unit.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10431,7 +10424,7 @@ class GeneratingUnit(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     normalPF: Optional[float] = field(
         default=None,
         metadata={
@@ -10448,7 +10441,7 @@ class GeneratingUnit(Equipment):
     used for representing distributed slack participation factor. The attribute
     shall be a positive value or zero.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Ground(ConductingEquipment):
@@ -10469,7 +10462,7 @@ class Ground(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10490,8 +10483,8 @@ class GroundingImpedance(EarthFaultCompensator):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10504,7 +10497,7 @@ class GroundingImpedance(EarthFaultCompensator):
     '''
     Reactance of device.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10514,7 +10507,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     Pelton, Kaplan).
     '''
 
-    dropHeight: Optional[ float | Length ] = field(
+    dropHeight: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10527,7 +10520,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     '''
     The height water drops from the reservoir mid-point to the turbine.
     '''
-
+    
     energyConversionCapability: Optional[ HydroEnergyConversionKind ] = field(
         default=None,
         metadata={
@@ -10541,7 +10534,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     '''
     Energy conversion capability for generating.
     '''
-
+    
     turbineType: Optional[ HydroTurbineKind ] = field(
         default=None,
         metadata={
@@ -10555,7 +10548,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     '''
     Type of turbine.
     '''
-
+    
     HydroPowerPlant: Optional[HydroPowerPlant] = field(
         default=None,
         metadata={
@@ -10570,7 +10563,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     '''
     The hydro generating unit belongs to a hydro power plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10583,7 +10576,7 @@ class HydroGeneratingUnit(GeneratingUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class HydroPowerPlant(PowerSystemResource):
@@ -10606,7 +10599,7 @@ class HydroPowerPlant(PowerSystemResource):
     '''
     The type of hydro power plant water storage.
     '''
-
+    
     HydroGeneratingUnits: list[HydroGeneratingUnit] = field(
         default_factory=list,
         metadata={
@@ -10621,7 +10614,7 @@ class HydroPowerPlant(PowerSystemResource):
     '''
     The hydro generating unit belongs to a hydro power plant.
     '''
-
+    
     HydroPumps: list[HydroPump] = field(
         default_factory=list,
         metadata={
@@ -10637,7 +10630,7 @@ class HydroPowerPlant(PowerSystemResource):
     The hydro pump may be a member of a pumped storage plant or a pump
     for distributing water.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10650,7 +10643,7 @@ class HydroPowerPlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class HydroPump(Equipment):
@@ -10674,7 +10667,7 @@ class HydroPump(Equipment):
     The hydro pump may be a member of a pumped storage plant or a pump
     for distributing water.
     '''
-
+    
     RotatingMachine: Optional[RotatingMachine] = field(
         default=None,
         metadata={
@@ -10691,7 +10684,7 @@ class HydroPump(Equipment):
     a low elevation to a higher elevation. The direction of machine rotation
     for pumping may or may not be the same as for generating.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10704,7 +10697,7 @@ class HydroPump(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Junction(Connector):
@@ -10725,7 +10718,7 @@ class Junction(Connector):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Line(EquipmentContainer):
@@ -10748,7 +10741,7 @@ class Line(EquipmentContainer):
     '''
     The sub-geographical region of the line.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10761,7 +10754,7 @@ class Line(EquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10786,7 +10779,7 @@ class NonConformLoad(EnergyConsumer):
     '''
     Group of this ConformLoad.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -10799,8 +10792,7 @@ class NonConformLoad(EnergyConsumer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-@stereotype(CIMStereotype.NC)
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10821,7 +10813,7 @@ class NuclearGeneratingUnit(GeneratingUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -10843,7 +10835,7 @@ class PetersenCoil(EarthFaultCompensator):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     mode: Optional[ PetersenCoilModeKind ] = field(
         default=None,
         metadata={
@@ -10857,8 +10849,8 @@ class PetersenCoil(EarthFaultCompensator):
     '''
     The mode of operation of the Petersen coil.
     '''
-
-    nominalU: Optional[ float | Voltage ] = field(
+    
+    nominalU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10871,8 +10863,8 @@ class PetersenCoil(EarthFaultCompensator):
     '''
     The nominal voltage for which the coil is designed.
     '''
-
-    offsetCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    offsetCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10888,8 +10880,8 @@ class PetersenCoil(EarthFaultCompensator):
     is configured and could be positive or negative. Typically 0 to 60
     A depending on voltage and resonance conditions.
     '''
-
-    positionCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    positionCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10903,8 +10895,8 @@ class PetersenCoil(EarthFaultCompensator):
     The control current used to control the Petersen coil also known as
     the position current. Typically in the range of 20 mA to 200 mA.
     '''
-
-    xGroundMax: Optional[ float | Reactance ] = field(
+    
+    xGroundMax: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10917,8 +10909,8 @@ class PetersenCoil(EarthFaultCompensator):
     '''
     The maximum reactance.
     '''
-
-    xGroundMin: Optional[ float | Reactance ] = field(
+    
+    xGroundMin: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10931,8 +10923,8 @@ class PetersenCoil(EarthFaultCompensator):
     '''
     The minimum reactance.
     '''
-
-    xGroundNominal: Optional[ float | Reactance ] = field(
+    
+    xGroundNominal: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10948,7 +10940,7 @@ class PetersenCoil(EarthFaultCompensator):
     condition. The impedance is calculated based on nominal voltage divided
     by position current.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class PowerElectronicsUnit(Equipment):
     '''
@@ -10956,7 +10948,7 @@ class PowerElectronicsUnit(Equipment):
     using power electronics rather than rotating machines.
     '''
 
-    maxP: Optional[ float | ActivePower ] = field(
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10970,8 +10962,8 @@ class PowerElectronicsUnit(Equipment):
     Maximum active power limit. This is the maximum (nameplate) limit for
     the unit.
     '''
-
-    minP: Optional[ float | ActivePower ] = field(
+    
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -10985,7 +10977,7 @@ class PowerElectronicsUnit(Equipment):
     Minimum active power limit. This is the minimum (nameplate) limit for
     the unit.
     '''
-
+    
     PowerElectronicsConnection: Optional[PowerElectronicsConnection] = field(
         default=None,
         metadata={
@@ -11000,7 +10992,7 @@ class PowerElectronicsUnit(Equipment):
     '''
     A power electronics unit has a connection to the AC network.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11013,7 +11005,7 @@ class PowerElectronicsUnit(Equipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -11022,7 +11014,7 @@ class BatteryUnit(PowerElectronicsUnit):
     An electrochemical energy storage device.
     '''
 
-    ratedE: Optional[ float | RealEnergy ] = field(
+    ratedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11036,7 +11028,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Full energy storage capacity of the battery. The attribute shall be
     a positive value.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11049,7 +11041,7 @@ class BatteryUnit(PowerElectronicsUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     batteryState: Optional[ BatteryStateKind ] = field(
         default=None,
         metadata={
@@ -11063,8 +11055,8 @@ class BatteryUnit(PowerElectronicsUnit):
     '''
     The current state of the battery (charging, full, etc.).
     '''
-
-    storedE: Optional[ float | RealEnergy ] = field(
+    
+    storedE: Optional[ RealEnergy ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11078,7 +11070,7 @@ class BatteryUnit(PowerElectronicsUnit):
     Amount of energy currently stored. The attribute shall be a positive
     value or zero and lower than BatteryUnit.ratedE.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PhotoVoltaicUnit(PowerElectronicsUnit):
@@ -11098,7 +11090,7 @@ class PhotoVoltaicUnit(PowerElectronicsUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerElectronicsWindUnit(PowerElectronicsUnit):
@@ -11119,7 +11111,7 @@ class PowerElectronicsWindUnit(PowerElectronicsUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ByReference)
 @stereotype(CIMStereotype.Description)
@@ -11155,7 +11147,7 @@ class PowerTransformer(ConductingEquipment):
     '''
     The ends of this power transformer.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11168,7 +11160,7 @@ class PowerTransformer(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     isPartOfGeneratorUnit: Optional[bool] = field(
         default=None,
         metadata={
@@ -11187,7 +11179,7 @@ class PowerTransformer(ConductingEquipment):
     generating unit. It is not always possible to derive this information
     from the model. This is why the attribute is necessary.
     '''
-
+    
     operationalValuesConsidered: Optional[bool] = field(
         default=None,
         metadata={
@@ -11203,8 +11195,8 @@ class PowerTransformer(ConductingEquipment):
     circuit data exchange) defines long term operational conditions or
     not. Used for short circuit data exchange according to IEC 60909.
     '''
-
-    beforeShCircuitHighestOperatingCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    beforeShCircuitHighestOperatingCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11220,8 +11212,8 @@ class PowerTransformer(ConductingEquipment):
     It is used for calculation of the impedance correction factor KT defined
     in IEC 60909-0.
     '''
-
-    beforeShCircuitHighestOperatingVoltage: Optional[ float | Voltage ] = field(
+    
+    beforeShCircuitHighestOperatingVoltage: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11237,8 +11229,8 @@ class PowerTransformer(ConductingEquipment):
     in IEC 60909-0. This is worst case voltage on the low side winding
     (3.7.1 of IEC 60909:2001). Used to define operating conditions.
     '''
-
-    beforeShortCircuitAnglePf: Optional[ float | AngleDegrees ] = field(
+    
+    beforeShortCircuitAnglePf: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11254,8 +11246,8 @@ class PowerTransformer(ConductingEquipment):
     in IEC 60909-0. This is the worst case power factor. Used to define
     operating conditions.
     '''
-
-    highSideMinOperatingU: Optional[ float | Voltage ] = field(
+    
+    highSideMinOperatingU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11272,7 +11264,7 @@ class PowerTransformer(ConductingEquipment):
     It is used for calculation of the impedance correction factor KG defined
     in IEC 60909-0.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class Quality61850(Identity):
     '''
@@ -11294,7 +11286,7 @@ class Quality61850(Identity):
     Measurement value may be incorrect due to a reference being out of
     calibration.
     '''
-
+    
     estimatorReplaced: Optional[bool] = field(
         default=None,
         metadata={
@@ -11309,7 +11301,7 @@ class Quality61850(Identity):
     Value has been replaced by State Estimator. estimatorReplaced is not
     an IEC61850 quality bit but has been put in this class for convenience.
     '''
-
+    
     failure: Optional[bool] = field(
         default=None,
         metadata={
@@ -11324,7 +11316,7 @@ class Quality61850(Identity):
     This identifier indicates that a supervision function has detected
     an internal or external failure, e.g. communication failure.
     '''
-
+    
     oldData: Optional[bool] = field(
         default=None,
         metadata={
@@ -11339,7 +11331,7 @@ class Quality61850(Identity):
     Measurement value is old and possibly invalid, as it has not been successfully
     updated during a specified time interval.
     '''
-
+    
     operatorBlocked: Optional[bool] = field(
         default=None,
         metadata={
@@ -11353,7 +11345,7 @@ class Quality61850(Identity):
     '''
     Measurement value is blocked and hence unavailable for transmission.
     '''
-
+    
     oscillatory: Optional[bool] = field(
         default=None,
         metadata={
@@ -11381,7 +11373,7 @@ class Quality61850(Identity):
     detail quality identifier "oscillatory" (used for status information
     only).
     '''
-
+    
     outOfRange: Optional[bool] = field(
         default=None,
         metadata={
@@ -11395,7 +11387,7 @@ class Quality61850(Identity):
     '''
     Measurement value is beyond a predefined range of value.
     '''
-
+    
     overFlow: Optional[bool] = field(
         default=None,
         metadata={
@@ -11411,7 +11403,7 @@ class Quality61850(Identity):
     For example, a counter value overflows from maximum count back to a
     value of zero.
     '''
-
+    
     suspect: Optional[bool] = field(
         default=None,
         metadata={
@@ -11426,7 +11418,7 @@ class Quality61850(Identity):
     A correlation function has detected that the value is not consistent
     with other values. Typically set by a network State Estimator.
     '''
-
+    
     test: Optional[bool] = field(
         default=None,
         metadata={
@@ -11440,7 +11432,7 @@ class Quality61850(Identity):
     '''
     Measurement value is transmitted for test purposes.
     '''
-
+    
     source: Optional[ Source ] = field(
         default=None,
         metadata={
@@ -11455,7 +11447,7 @@ class Quality61850(Identity):
     Source gives information related to the origin of a value. The value
     may be acquired from the process, defaulted or substituted.
     '''
-
+    
     validity: Optional[ Validity ] = field(
         default=None,
         metadata={
@@ -11469,7 +11461,7 @@ class Quality61850(Identity):
     '''
     Validity of the measurement value.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11482,7 +11474,7 @@ class Quality61850(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class MeasurementValueQuality(Quality61850):
@@ -11506,7 +11498,7 @@ class MeasurementValueQuality(Quality61850):
     '''
     A MeasurementValue has a MeasurementValueQuality associated with it.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11519,7 +11511,7 @@ class MeasurementValueQuality(Quality61850):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class RaiseLowerCommand(AnalogControl):
@@ -11542,7 +11534,7 @@ class RaiseLowerCommand(AnalogControl):
     '''
     The ValueAliasSet used for translation of a Control value to a name.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11555,7 +11547,7 @@ class RaiseLowerCommand(AnalogControl):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class RatioTapChangerTable(IdentifiedObject):
@@ -11578,7 +11570,7 @@ class RatioTapChangerTable(IdentifiedObject):
     '''
     The ratio tap changer of this tap ratio table.
     '''
-
+    
     RatioTapChangerTablePoint: list[RatioTapChangerTablePoint] = field(
         default_factory=list,
         metadata={
@@ -11593,7 +11585,7 @@ class RatioTapChangerTable(IdentifiedObject):
     '''
     Points of this table.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11606,20 +11598,20 @@ class RatioTapChangerTable(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Reactance(CIMUnit):
     '''
     Reactance (imaginary part of impedance), at rated frequency.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -11633,9 +11625,8 @@ class Reactance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
+    
 
-
-@stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ReactiveCapabilityCurve(Curve):
@@ -11662,7 +11653,7 @@ class ReactiveCapabilityCurve(Curve):
     '''
     The equivalent injection using this reactive capability curve.
     '''
-
+    
     InitiallyUsedBySynchronousMachines: list[SynchronousMachine] = field(
         default_factory=list,
         metadata={
@@ -11677,7 +11668,7 @@ class ReactiveCapabilityCurve(Curve):
     '''
     Synchronous machines using this curve as default.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11690,21 +11681,21 @@ class ReactiveCapabilityCurve(Curve):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ReactivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the quadrature
     component of the current.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VAr
-    def __init__(self, value, input_unit: str='VAr', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VAr', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -11718,21 +11709,21 @@ class ReactivePower(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RealEnergy(CIMUnit):
     '''
     Real electrical energy.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.Wh
-    def __init__(self, value, input_unit: str='Wh', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='Wh', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -11746,7 +11737,7 @@ class RealEnergy(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @dataclass(repr=False, eq=False)
 class RegularIntervalSchedule(BasicIntervalSchedule):
@@ -11768,8 +11759,8 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     The time for the last time point. The value can be a time of day, not
     a specific date.
     '''
-
-    timeStep: Optional[ float | Seconds ] = field(
+    
+    timeStep: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11783,7 +11774,7 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     The time between each pair of subsequent regular time points in sequence
     order.
     '''
-
+    
     TimePoints: list[RegularTimePoint] = field(
         default_factory=list,
         metadata={
@@ -11798,7 +11789,7 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     '''
     The regular interval time point data values that define this schedule.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11811,7 +11802,7 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class RegularTimePoint(Identity):
@@ -11839,7 +11830,7 @@ class RegularTimePoint(Identity):
     To specify values for the start time, use sequence number 0. The sequence
     number cannot be negative.
     '''
-
+    
     value1: Optional[float] = field(
         default=None,
         metadata={
@@ -11854,7 +11845,7 @@ class RegularTimePoint(Identity):
     The first value at the time. The meaning of the value is defined by
     the derived type of the associated schedule.
     '''
-
+    
     value2: Optional[float] = field(
         default=None,
         metadata={
@@ -11869,7 +11860,7 @@ class RegularTimePoint(Identity):
     The second value at the time. The meaning of the value is defined by
     the derived type of the associated schedule.
     '''
-
+    
     IntervalSchedule: Optional[RegularIntervalSchedule] = field(
         default=None,
         metadata={
@@ -11884,7 +11875,7 @@ class RegularTimePoint(Identity):
     '''
     Regular interval schedule containing this time point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11897,7 +11888,7 @@ class RegularTimePoint(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -11921,7 +11912,7 @@ class RegulatingCondEq(EnergyConnection):
     '''
     The regulating control scheme in which this equipment participates.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -11934,7 +11925,7 @@ class RegulatingCondEq(EnergyConnection):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     controlEnabled: Optional[bool] = field(
         default=None,
         metadata={
@@ -11949,7 +11940,7 @@ class RegulatingCondEq(EnergyConnection):
     Specifies the regulation status of the equipment. True is regulating,
     false is not regulating.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -11959,7 +11950,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     calculations.
     '''
 
-    governorSCD: Optional[ float | ActivePowerPerFrequency ] = field(
+    governorSCD: Optional[ ActivePowerPerFrequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11974,8 +11965,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     by the change in frequency and negated. A positive value of the power
     frequency bias provides additional power injection upon a drop in frequency.
     '''
-
-    maxP: Optional[ float | ActivePower ] = field(
+    
+    maxP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -11988,8 +11979,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     '''
     Maximum active power of the injection.
     '''
-
-    maxQ: Optional[ float | ReactivePower ] = field(
+    
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12003,8 +11994,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     Maximum reactive power limit. It is used for modelling of infeed for
     load flow exchange and not for short circuit modelling.
     '''
-
-    minP: Optional[ float | ActivePower ] = field(
+    
+    minP: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12017,8 +12008,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     '''
     Minimum active power of the injection.
     '''
-
-    minQ: Optional[ float | ReactivePower ] = field(
+    
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12032,7 +12023,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     Minimum reactive power limit. It is used for modelling of infeed for
     load flow exchange and not for short circuit modelling.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12045,7 +12036,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     ikSecond: Optional[bool] = field(
         default=None,
         metadata={
@@ -12061,7 +12052,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     have been calculated according to IEC (Ik"). Used only if short circuit
     calculations are done according to superposition method.
     '''
-
+    
     maxR0ToX0Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12077,7 +12068,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     zero sequence reactance (R(0)/X(0) max). Used for short circuit data
     exchange according to IEC 60909.
     '''
-
+    
     maxR1ToX1Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12093,7 +12084,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     its positive sequence reactance (R(1)/X(1) max). Used for short circuit
     data exchange according to IEC 60909.
     '''
-
+    
     maxZ0ToZ1Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12109,7 +12100,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     (Z(0)/Z(1) max). Used for short circuit data exchange according to
     IEC 60909.
     '''
-
+    
     minR0ToX0Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12125,7 +12116,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     have been calculated according to IEC (Ik"). Used for short circuit
     data exchange according to IEC 6090.
     '''
-
+    
     minR1ToX1Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12141,7 +12132,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     its positive sequence reactance (R(1)/X(1) min). Used for short circuit
     data exchange according to IEC 60909.
     '''
-
+    
     minZ0ToZ1Ratio: Optional[float] = field(
         default=None,
         metadata={
@@ -12157,8 +12148,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     (Z(0)/Z(1) min). Used for short circuit data exchange according to
     IEC 60909.
     '''
-
-    maxInitialSymShCCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    maxInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12173,8 +12164,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     = Sk"/(SQRT(3) Un)). Used for short circuit data exchange according
     to IEC 60909.
     '''
-
-    minInitialSymShCCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    minInitialSymShCCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12189,8 +12180,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     = Sk"/(SQRT(3) Un)). Used for short circuit data exchange according
     to IEC 60909.
     '''
-
-    voltageFactor: Optional[ float | PU ] = field(
+    
+    voltageFactor: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12205,7 +12196,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     Ik" and power Sk". Used only if short circuit calculations are done
     according to superposition method.
     '''
-
+    
     referencePriority: Optional[int] = field(
         default=None,
         metadata={
@@ -12221,8 +12212,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     bus selection. 0 = don t care (default) 1 = highest priority. 2 is
     less than 1 and so on.
     '''
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12237,8 +12228,8 @@ class ExternalNetworkInjection(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12253,7 +12244,7 @@ class ExternalNetworkInjection(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for steady state solutions.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -12263,7 +12254,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     uses power electronics rather than rotating machines.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12277,8 +12268,8 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Maximum reactive power limit. This is the maximum (nameplate) limit
     for the unit.
     '''
-
-    minQ: Optional[ float | ReactivePower ] = field(
+    
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12292,8 +12283,8 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Minimum reactive power limit for the unit. This is the minimum (nameplate)
     limit for the unit.
     '''
-
-    ratedS: Optional[ float | ApparentPower ] = field(
+    
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12307,8 +12298,8 @@ class PowerElectronicsConnection(RegulatingCondEq):
     Nameplate apparent power rating for the unit.
     The attribute shall have a positive value.
     '''
-
-    ratedU: Optional[ float | Voltage ] = field(
+    
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12323,7 +12314,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     used for short circuit data exchange according to IEC 60909.
     The attribute shall be a positive value.
     '''
-
+    
     PowerElectronicsUnit: list[PowerElectronicsUnit] = field(
         default_factory=list,
         metadata={
@@ -12339,7 +12330,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     An AC network connection may have several power electronics units connecting
     through it.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12352,8 +12343,8 @@ class PowerElectronicsConnection(RegulatingCondEq):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12368,8 +12359,8 @@ class PowerElectronicsConnection(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for a steady state solution.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12384,7 +12375,7 @@ class PowerElectronicsConnection(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for a steady state solution.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -12437,7 +12428,37 @@ class RegulatingControl(PowerSystemResource):
     allows for determining the kind of regulation without need for obtaining
     the units from a schedule.
     '''
-
+    
+    RegulatingCondEq: list[RegulatingCondEq] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'RegulatingCondEq.RegulatingControl',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    The equipment that participates in this regulating control scheme.
+    '''
+    
+    RegulationSchedule: list[RegulationSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'RegulationSchedule.RegulatingControl',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    Schedule for this regulating control.
+    '''
+    
     Terminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -12455,37 +12476,7 @@ class RegulatingControl(PowerSystemResource):
     either a topological node or a connectivity node. Sometimes it is useful
     to model regulation at a terminal of a bus bar object.
     '''
-
-    RegulatingCondEq: list[RegulatingCondEq] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'RegulatingCondEq.RegulatingControl',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    The equipment that participates in this regulating control scheme.
-    '''
-
-    RegulationSchedule: list[RegulationSchedule] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'RegulationSchedule.RegulatingControl',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    Schedule for this regulating control.
-    '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12498,7 +12489,7 @@ class RegulatingControl(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     discrete: Optional[bool] = field(
         default=None,
         metadata={
@@ -12513,7 +12504,7 @@ class RegulatingControl(PowerSystemResource):
     The regulation is performed in a discrete mode. This applies to equipment
     with discrete controls, e.g. tap changers and shunt compensators.
     '''
-
+    
     enabled: Optional[bool] = field(
         default=None,
         metadata={
@@ -12527,7 +12518,7 @@ class RegulatingControl(PowerSystemResource):
     '''
     The flag tells if regulation is enabled.
     '''
-
+    
     maxAllowedTargetValue: Optional[float] = field(
         default=None,
         metadata={
@@ -12541,7 +12532,7 @@ class RegulatingControl(PowerSystemResource):
     '''
     Maximum allowed target value (RegulatingControl.targetValue).
     '''
-
+    
     minAllowedTargetValue: Optional[float] = field(
         default=None,
         metadata={
@@ -12555,7 +12546,7 @@ class RegulatingControl(PowerSystemResource):
     '''
     Minimum allowed target value (RegulatingControl.targetValue).
     '''
-
+    
     targetDeadband: Optional[float] = field(
         default=None,
         metadata={
@@ -12575,7 +12566,7 @@ class RegulatingControl(PowerSystemResource):
     Note that for instance, if the targetValue is 100 kV and the targetDeadband
     is 2 kV the range is from 99 to 101 kV.
     '''
-
+    
     targetValue: Optional[float] = field(
         default=None,
         metadata={
@@ -12591,7 +12582,7 @@ class RegulatingControl(PowerSystemResource):
     the target value without the use of schedules. The value has the units
     appropriate to the mode attribute.
     '''
-
+    
     targetValueUnitMultiplier: Optional[ UnitMultiplier ] = field(
         default=None,
         metadata={
@@ -12605,7 +12596,7 @@ class RegulatingControl(PowerSystemResource):
     '''
     Specify the multiplier for used for the targetValue.
     '''
-
+    
 @stereotype(CIMStereotype.enumeration)
 class RegulatingControlModeKind(Enum):
     '''
@@ -12617,43 +12608,43 @@ class RegulatingControlModeKind(Enum):
     '''
     Active power is specified.
     '''
-
+    
     admittance = 'admittance'
     '''
     Admittance is specified.
     '''
-
+    
     currentFlow = 'currentFlow'
     '''
     Current flow is specified.
     '''
-
+    
     powerFactor = 'powerFactor'
     '''
     Power factor is specified.
     '''
-
+    
     reactivePower = 'reactivePower'
     '''
     Reactive power is specified.
     '''
-
+    
     temperature = 'temperature'
     '''
     Control switches on/off based on the local temperature (i.e., a thermostat).
     '''
-
+    
     timeScheduled = 'timeScheduled'
     '''
     Control switches on/off by time of day. The times may change on the
     weekend, or in different seasons.
     '''
-
+    
     voltage = 'voltage'
     '''
     Voltage is specified.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12666,9 +12657,8 @@ class RegulatingControlModeKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.ByReference)
 @dataclass(repr=False, eq=False)
 class ReportingGroup(IdentifiedObject):
     '''
@@ -12689,7 +12679,7 @@ class ReportingGroup(IdentifiedObject):
     '''
     The bus name markers that belong to this reporting group.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12702,7 +12692,7 @@ class ReportingGroup(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     TopologicalNode: list[TopologicalNode] = field(
         default_factory=list,
         metadata={
@@ -12717,20 +12707,20 @@ class ReportingGroup(IdentifiedObject):
     '''
     The topological nodes that belong to the reporting group.
     '''
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Resistance(CIMUnit):
     '''
     Resistance (real part of impedance).
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.ohm
-    def __init__(self, value, input_unit: str='ohm', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='ohm', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -12744,7 +12734,7 @@ class Resistance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @dataclass(repr=False, eq=False)
 class RotatingMachine(RegulatingCondEq):
@@ -12767,8 +12757,8 @@ class RotatingMachine(RegulatingCondEq):
     data exchange according to IEC 60909. The attribute cannot be a negative
     value.
     '''
-
-    ratedS: Optional[ float | ApparentPower ] = field(
+    
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12782,8 +12772,8 @@ class RotatingMachine(RegulatingCondEq):
     Nameplate apparent power rating for the unit.
     The attribute shall have a positive value.
     '''
-
-    ratedU: Optional[ float | Voltage ] = field(
+    
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12798,23 +12788,7 @@ class RotatingMachine(RegulatingCondEq):
     used for short circuit data exchange according to IEC 60909.
     The attribute shall be a positive value.
     '''
-
-    GeneratingUnit: Optional[GeneratingUnit] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'GeneratingUnit.RotatingMachine',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A synchronous machine may operate as a generator and as such becomes
-    a member of a generating unit.
-    '''
-
+    
     HydroPump: Optional[HydroPump] = field(
         default=None,
         metadata={
@@ -12831,7 +12805,23 @@ class RotatingMachine(RegulatingCondEq):
     a low elevation to a higher elevation. The direction of machine rotation
     for pumping may or may not be the same as for generating.
     '''
-
+    
+    GeneratingUnit: Optional[GeneratingUnit] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'GeneratingUnit.RotatingMachine',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A synchronous machine may operate as a generator and as such becomes
+    a member of a generating unit.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12844,8 +12834,8 @@ class RotatingMachine(RegulatingCondEq):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    p: Optional[ float | ActivePower ] = field(
+    
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12860,8 +12850,8 @@ class RotatingMachine(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for a steady state solution.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12876,7 +12866,7 @@ class RotatingMachine(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for a steady state solution.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -12887,7 +12877,7 @@ class AsynchronousMachine(RotatingMachine):
     the rotor windings, e.g. squirrel-cage induction machine.
     '''
 
-    nominalFrequency: Optional[ float | Frequency ] = field(
+    nominalFrequency: Optional[ Frequency ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12900,8 +12890,8 @@ class AsynchronousMachine(RotatingMachine):
     '''
     Nameplate data indicates if the machine is 50 Hz or 60 Hz.
     '''
-
-    nominalSpeed: Optional[ float | RotationSpeed ] = field(
+    
+    nominalSpeed: Optional[ RotationSpeed ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -12914,7 +12904,7 @@ class AsynchronousMachine(RotatingMachine):
     '''
     Nameplate data. Depends on the slip and number of pole pairs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -12927,7 +12917,7 @@ class AsynchronousMachine(RotatingMachine):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     converterFedDrive: Optional[bool] = field(
         default=None,
         metadata={
@@ -12942,7 +12932,7 @@ class AsynchronousMachine(RotatingMachine):
     Indicates whether the machine is a converter fed drive. Used for short
     circuit data exchange according to IEC 60909.
     '''
-
+    
     iaIrRatio: Optional[float] = field(
         default=None,
         metadata={
@@ -12957,7 +12947,7 @@ class AsynchronousMachine(RotatingMachine):
     Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
     Used for short circuit data exchange according to IEC 60909.
     '''
-
+    
     polePairNumber: Optional[int] = field(
         default=None,
         metadata={
@@ -12972,7 +12962,7 @@ class AsynchronousMachine(RotatingMachine):
     Number of pole pairs of stator. Used for short circuit data exchange
     according to IEC 60909.
     '''
-
+    
     reversible: Optional[bool] = field(
         default=None,
         metadata={
@@ -12987,7 +12977,7 @@ class AsynchronousMachine(RotatingMachine):
     Indicates for converter drive motors if the power can be reversible.
     Used for short circuit data exchange according to IEC 60909.
     '''
-
+    
     rxLockedRotorRatio: Optional[float] = field(
         default=None,
         metadata={
@@ -13002,8 +12992,8 @@ class AsynchronousMachine(RotatingMachine):
     Locked rotor ratio (R/X). Used for short circuit data exchange according
     to IEC 60909.
     '''
-
-    efficiency: Optional[ float | PerCent ] = field(
+    
+    efficiency: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13018,8 +13008,8 @@ class AsynchronousMachine(RotatingMachine):
     Indicator for converter drive motors. Used for short circuit data exchange
     according to IEC 60909.
     '''
-
-    ratedMechanicalPower: Optional[ float | ActivePower ] = field(
+    
+    ratedMechanicalPower: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13033,7 +13023,7 @@ class AsynchronousMachine(RotatingMachine):
     Rated mechanical power (Pr in IEC 60909-0). Used for short circuit
     data exchange according to IEC 60909.
     '''
-
+    
     asynchronousMachineType: Optional[ AsynchronousMachineKind ] = field(
         default=None,
         metadata={
@@ -13047,20 +13037,20 @@ class AsynchronousMachine(RotatingMachine):
     '''
     Indicates the type of Asynchronous Machine (motor or generator).
     '''
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RotationSpeed(CIMUnit):
     '''
     Number of revolutions per second.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.Hz
-    def __init__(self, value, input_unit: str='Hz', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='Hz', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -13074,7 +13064,7 @@ class RotationSpeed(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.deprecated)
@@ -13087,12 +13077,12 @@ class SVCControlMode(Enum):
     '''
     Reactive power control.
     '''
-
+    
     voltage = 'voltage'
     '''
     Voltage control.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13105,7 +13095,7 @@ class SVCControlMode(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Season(IdentifiedObject):
@@ -13126,7 +13116,7 @@ class Season(IdentifiedObject):
     '''
     Date season ends.
     '''
-
+    
     startDate: Optional[str] = field(
         default=None,
         metadata={
@@ -13140,7 +13130,7 @@ class Season(IdentifiedObject):
     '''
     Date season starts.
     '''
-
+    
     SeasonDayTypeSchedules: list[SeasonDayTypeSchedule] = field(
         default_factory=list,
         metadata={
@@ -13155,7 +13145,7 @@ class Season(IdentifiedObject):
     '''
     Schedules that use this Season.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13168,7 +13158,7 @@ class Season(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
@@ -13190,7 +13180,7 @@ class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     DayType for the Schedule.
     '''
-
+    
     Season: Optional[Season] = field(
         default=None,
         metadata={
@@ -13205,7 +13195,7 @@ class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     Season for the Schedule.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13218,7 +13208,7 @@ class SeasonDayTypeSchedule(RegularIntervalSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadSchedule(SeasonDayTypeSchedule):
@@ -13243,7 +13233,7 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     '''
     The ConformLoadGroup where the ConformLoadSchedule belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13256,7 +13246,7 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadSchedule(SeasonDayTypeSchedule):
@@ -13280,7 +13270,7 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     '''
     The NonConformLoadGroup where the NonConformLoadSchedule belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13293,7 +13283,7 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class RegulationSchedule(SeasonDayTypeSchedule):
@@ -13316,7 +13306,7 @@ class RegulationSchedule(SeasonDayTypeSchedule):
     '''
     Regulating controls that have this schedule.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13329,20 +13319,20 @@ class RegulationSchedule(SeasonDayTypeSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Seconds(CIMUnit):
     '''
     Time, in seconds.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.s
-    def __init__(self, value, input_unit: str='s', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='s', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -13356,7 +13346,7 @@ class Seconds(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @dataclass(repr=False, eq=False)
 class Sensor(AuxiliaryEquipment):
@@ -13377,7 +13367,7 @@ class Sensor(AuxiliaryEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class CurrentTransformer(Sensor):
@@ -13400,7 +13390,7 @@ class CurrentTransformer(Sensor):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PostLineSensor(Sensor):
@@ -13421,7 +13411,7 @@ class PostLineSensor(Sensor):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PotentialTransformer(Sensor):
@@ -13445,7 +13435,7 @@ class PotentialTransformer(Sensor):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -13455,7 +13445,7 @@ class SeriesCompensator(ConductingEquipment):
     line without charging susceptance. It is a two terminal device.
     '''
 
-    r: Optional[ float | Resistance ] = field(
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13468,8 +13458,8 @@ class SeriesCompensator(ConductingEquipment):
     '''
     Positive sequence resistance.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13482,7 +13472,7 @@ class SeriesCompensator(ConductingEquipment):
     '''
     Positive sequence reactance.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13495,7 +13485,7 @@ class SeriesCompensator(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     varistorPresent: Optional[bool] = field(
         default=None,
         metadata={
@@ -13511,8 +13501,8 @@ class SeriesCompensator(ConductingEquipment):
     is configured in parallel with the series compensator. It is used for
     short circuit calculations.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13525,8 +13515,8 @@ class SeriesCompensator(ConductingEquipment):
     '''
     Zero sequence resistance.
     '''
-
-    varistorRatedCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    varistorRatedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13542,8 +13532,8 @@ class SeriesCompensator(ConductingEquipment):
     if SeriesCompensator.varistorPresent is true.
     The attribute shall be a positive value.
     '''
-
-    varistorVoltageThreshold: Optional[ float | Voltage ] = field(
+    
+    varistorVoltageThreshold: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13558,8 +13548,8 @@ class SeriesCompensator(ConductingEquipment):
     for short circuit calculations and exchanged only if SeriesCompensator.varistorPresent
     is true.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13572,7 +13562,7 @@ class SeriesCompensator(ConductingEquipment):
     '''
     Zero sequence reactance.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SetPoint(AnalogControl):
@@ -13593,7 +13583,7 @@ class SetPoint(AnalogControl):
     '''
     Normal value for Control.value e.g. used for percentage scaling.
     '''
-
+    
     value: Optional[float] = field(
         default=None,
         metadata={
@@ -13607,7 +13597,7 @@ class SetPoint(AnalogControl):
     '''
     The value representing the actuator output.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13620,7 +13610,7 @@ class SetPoint(AnalogControl):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class ShortCircuitRotorKind(Enum):
     '''
@@ -13631,22 +13621,22 @@ class ShortCircuitRotorKind(Enum):
     '''
     Salient pole 1 in IEC 60909.
     '''
-
+    
     salientPole2 = 'salientPole2'
     '''
     Salient pole 2 in IEC 60909.
     '''
-
+    
     turboSeries1 = 'turboSeries1'
     '''
     Turbo Series 1 in IEC 60909.
     '''
-
+    
     turboSeries2 = 'turboSeries2'
     '''
     Turbo series 2 in IEC 60909.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13659,7 +13649,7 @@ class ShortCircuitRotorKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class ShuntCompensator(RegulatingCondEq):
     '''
@@ -13682,7 +13672,7 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     Used for Yn and Zn connections. True if the neutral is solidly grounded.
     '''
-
+    
     maximumSections: Optional[int] = field(
         default=None,
         metadata={
@@ -13696,7 +13686,7 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     The maximum number of sections that may be switched in.
     '''
-
+    
     normalSections: Optional[int] = field(
         default=None,
         metadata={
@@ -13711,8 +13701,8 @@ class ShuntCompensator(RegulatingCondEq):
     The normal number of sections switched in. The value shall be between
     zero and ShuntCompensator.maximumSections.
     '''
-
-    aVRDelay: Optional[ float | Seconds ] = field(
+    
+    aVRDelay: Optional[ Seconds ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13727,8 +13717,8 @@ class ShuntCompensator(RegulatingCondEq):
     delay from a change in voltage to when the capacitor is allowed to
     change state. This filters out temporary changes in voltage.
     '''
-
-    nomU: Optional[ float | Voltage ] = field(
+    
+    nomU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13743,8 +13733,8 @@ class ShuntCompensator(RegulatingCondEq):
     This should normally be within 10% of the voltage at which the capacitor
     is connected to the network.
     '''
-
-    voltageSensitivity: Optional[ float | VoltagePerReactivePower ] = field(
+    
+    voltageSensitivity: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13758,7 +13748,7 @@ class ShuntCompensator(RegulatingCondEq):
     Voltage sensitivity required for the device to regulate the bus voltage,
     in voltage/reactive power.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13771,7 +13761,7 @@ class ShuntCompensator(RegulatingCondEq):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     sections: Optional[float] = field(
         default=None,
         metadata={
@@ -13797,7 +13787,7 @@ class ShuntCompensator(RegulatingCondEq):
     For NonlinearShuntCompensator-s shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber.
     There is no interpolation between NonlinearShuntCompenstorPoint-s.
     '''
-
+    
     SvShuntCompensatorSections: list[SvShuntCompensatorSections] = field(
         default_factory=list,
         metadata={
@@ -13812,7 +13802,7 @@ class ShuntCompensator(RegulatingCondEq):
     '''
     The state for the number of shunt compensator sections in service.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -13822,7 +13812,7 @@ class LinearShuntCompensator(ShuntCompensator):
     values.
     '''
 
-    bPerSection: Optional[ float | Susceptance ] = field(
+    bPerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13835,8 +13825,8 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     Positive sequence shunt (charging) susceptance per section.
     '''
-
-    gPerSection: Optional[ float | Conductance ] = field(
+    
+    gPerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13849,7 +13839,7 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     Positive sequence shunt (charging) conductance per section.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13862,8 +13852,8 @@ class LinearShuntCompensator(ShuntCompensator):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    b0PerSection: Optional[ float | Susceptance ] = field(
+    
+    b0PerSection: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13876,8 +13866,8 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     Zero sequence shunt (charging) susceptance per section.
     '''
-
-    g0PerSection: Optional[ float | Conductance ] = field(
+    
+    g0PerSection: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -13890,7 +13880,7 @@ class LinearShuntCompensator(ShuntCompensator):
     '''
     Zero sequence shunt (charging) conductance per section.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -13916,7 +13906,7 @@ class NonlinearShuntCompensator(ShuntCompensator):
     '''
     All points of the non-linear shunt compensator.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13929,7 +13919,7 @@ class NonlinearShuntCompensator(ShuntCompensator):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -13953,7 +13943,7 @@ class SolarGeneratingUnit(GeneratingUnit):
     '''
     A solar power plant may have solar generating units.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -13966,7 +13956,7 @@ class SolarGeneratingUnit(GeneratingUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.European)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -13989,7 +13979,7 @@ class SolarPowerPlant(PowerSystemResource):
     '''
     A solar generating unit or units may be a member of a solar power plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100-European#'
@@ -14002,7 +13992,7 @@ class SolarPowerPlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class Source(Enum):
     '''
@@ -14013,18 +14003,18 @@ class Source(Enum):
     '''
     The value contains a default value.
     '''
-
+    
     PROCESS = 'PROCESS'
     '''
     The value is provided by input from the process I/O or being calculated
     from some function.
     '''
-
+    
     SUBSTITUTED = 'SUBSTITUTED'
     '''
     The value is provided by input of an operator or by an automatic source.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14037,7 +14027,7 @@ class Source(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -14054,7 +14044,7 @@ class StaticVarCompensator(RegulatingCondEq):
     is zero.
     '''
 
-    capacitiveRating: Optional[ float | Reactance ] = field(
+    capacitiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14068,8 +14058,8 @@ class StaticVarCompensator(RegulatingCondEq):
     Capacitive reactance at maximum capacitive reactive power. Shall always
     be positive.
     '''
-
-    inductiveRating: Optional[ float | Reactance ] = field(
+    
+    inductiveRating: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14083,8 +14073,8 @@ class StaticVarCompensator(RegulatingCondEq):
     Inductive reactance at maximum inductive reactive power. Shall always
     be negative.
     '''
-
-    slope: Optional[ float | VoltagePerReactivePower ] = field(
+    
+    slope: Optional[ VoltagePerReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14100,7 +14090,7 @@ class StaticVarCompensator(RegulatingCondEq):
     bus voltage and the voltage setpoint.
     The attribute shall be a positive value or zero.
     '''
-
+    
     sVCControlMode: Optional[ SVCControlMode ] = field(
         default=None,
         metadata={
@@ -14114,8 +14104,8 @@ class StaticVarCompensator(RegulatingCondEq):
     '''
     SVC control mode.
     '''
-
-    voltageSetPoint: Optional[ float | Voltage ] = field(
+    
+    voltageSetPoint: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14131,7 +14121,7 @@ class StaticVarCompensator(RegulatingCondEq):
     When the regulated bus voltage is equal to the voltage setpoint, the
     reactive power output is zero.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14144,8 +14134,8 @@ class StaticVarCompensator(RegulatingCondEq):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14160,7 +14150,7 @@ class StaticVarCompensator(RegulatingCondEq):
     sign means flow out from a node.
     Starting value for a steady state solution.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -14181,7 +14171,7 @@ class StationSupply(EnergyConsumer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Compound)
 @dataclass(repr=False, eq=False)
 class Status(Identity):
@@ -14202,7 +14192,7 @@ class Status(Identity):
     '''
     Date and time for which status 'value' applies.
     '''
-
+    
     reason: Optional[str] = field(
         default=None,
         metadata={
@@ -14217,7 +14207,7 @@ class Status(Identity):
     Reason code or explanation for why an object went to the current status
     'value'.
     '''
-
+    
     remark: Optional[str] = field(
         default=None,
         metadata={
@@ -14231,7 +14221,7 @@ class Status(Identity):
     '''
     Pertinent information regarding the current 'value', as free form text.
     '''
-
+    
     value: Optional[str] = field(
         default=None,
         metadata={
@@ -14247,7 +14237,7 @@ class Status(Identity):
     in instances of activity records associated with the object to which
     this status applies.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14260,7 +14250,7 @@ class Status(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Compound)
 @dataclass(repr=False, eq=False)
 class StreetAddress(Identity):
@@ -14282,7 +14272,7 @@ class StreetAddress(Identity):
     The language in which the address is specified, using ISO 639-1 two
     digit language code.
     '''
-
+    
     poBox: Optional[str] = field(
         default=None,
         metadata={
@@ -14296,7 +14286,7 @@ class StreetAddress(Identity):
     '''
     Post office box.
     '''
-
+    
     postalCode: Optional[str] = field(
         default=None,
         metadata={
@@ -14310,7 +14300,7 @@ class StreetAddress(Identity):
     '''
     Postal code for the address.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14323,7 +14313,7 @@ class StreetAddress(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Compound)
 @dataclass(repr=False, eq=False)
 class StreetDetail(Identity):
@@ -14345,7 +14335,7 @@ class StreetDetail(Identity):
     First line of a free form address or some additional address information
     (for example a mail stop).
     '''
-
+    
     addressGeneral2: Optional[str] = field(
         default=None,
         metadata={
@@ -14359,7 +14349,7 @@ class StreetDetail(Identity):
     '''
     (if applicable) Second line of a free form address.
     '''
-
+    
     addressGeneral3: Optional[str] = field(
         default=None,
         metadata={
@@ -14373,7 +14363,7 @@ class StreetDetail(Identity):
     '''
     (if applicable) Third line of a free form address.
     '''
-
+    
     buildingName: Optional[str] = field(
         default=None,
         metadata={
@@ -14390,7 +14380,7 @@ class StreetDetail(Identity):
     but may be located inside a larger structure such as a building, complex,
     office block, apartment, etc.
     '''
-
+    
     code: Optional[str] = field(
         default=None,
         metadata={
@@ -14406,7 +14396,7 @@ class StreetDetail(Identity):
     such as those of the town-planner's department or surveyor general's
     mapping system, that allocate global reference codes to streets.
     '''
-
+    
     floorIdentification: Optional[str] = field(
         default=None,
         metadata={
@@ -14421,7 +14411,7 @@ class StreetDetail(Identity):
     The identification by name or number, expressed as text, of the floor
     in the building as part of this address.
     '''
-
+    
     name: Optional[str] = field(
         default=None,
         metadata={
@@ -14435,7 +14425,7 @@ class StreetDetail(Identity):
     '''
     Name of the street.
     '''
-
+    
     number: Optional[str] = field(
         default=None,
         metadata={
@@ -14449,7 +14439,7 @@ class StreetDetail(Identity):
     '''
     Designator of the specific location on the street.
     '''
-
+    
     prefix: Optional[str] = field(
         default=None,
         metadata={
@@ -14463,7 +14453,7 @@ class StreetDetail(Identity):
     '''
     Prefix to the street name. For example: North, South, East, West.
     '''
-
+    
     suffix: Optional[str] = field(
         default=None,
         metadata={
@@ -14477,7 +14467,7 @@ class StreetDetail(Identity):
     '''
     Suffix to the street name. For example: North, South, East, West.
     '''
-
+    
     suiteNumber: Optional[str] = field(
         default=None,
         metadata={
@@ -14491,7 +14481,7 @@ class StreetDetail(Identity):
     '''
     Number of the apartment or suite.
     '''
-
+    
     type: Optional[str] = field(
         default=None,
         metadata={
@@ -14506,7 +14496,7 @@ class StreetDetail(Identity):
     Type of street. Examples include: street, circle, boulevard, avenue,
     road, drive, etc.
     '''
-
+    
     withinTownLimits: Optional[bool] = field(
         default=None,
         metadata={
@@ -14521,7 +14511,7 @@ class StreetDetail(Identity):
     True if this street is within the legal geographical boundaries of
     the specified town (default).
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14534,7 +14524,7 @@ class StreetDetail(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class StringMeasurement(Measurement):
@@ -14556,7 +14546,7 @@ class StringMeasurement(Measurement):
     '''
     The values connected to this measurement.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14569,7 +14559,7 @@ class StringMeasurement(Measurement):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class StringMeasurementValue(MeasurementValue):
@@ -14591,7 +14581,7 @@ class StringMeasurementValue(MeasurementValue):
     '''
     Measurement to which this value is connected.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14604,27 +14594,12 @@ class StringMeasurementValue(MeasurementValue):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubGeographicalRegion(IdentifiedObject):
     '''
     A subset of a geographical region of a power system network model.
-    '''
-
-    Region: Optional[GeographicalRegion] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'GeographicalRegion.Regions',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The geographical region which this sub-geographical region is within.
     '''
 
     DCLines: list[DCLine] = field(
@@ -14641,7 +14616,7 @@ class SubGeographicalRegion(IdentifiedObject):
     '''
     The DC lines in this sub-geographical region.
     '''
-
+    
     Lines: list[Line] = field(
         default_factory=list,
         metadata={
@@ -14656,7 +14631,7 @@ class SubGeographicalRegion(IdentifiedObject):
     '''
     The lines within the sub-geographical region.
     '''
-
+    
     Substations: list[Substation] = field(
         default_factory=list,
         metadata={
@@ -14671,7 +14646,22 @@ class SubGeographicalRegion(IdentifiedObject):
     '''
     The substations in this sub-geographical region.
     '''
-
+    
+    Region: Optional[GeographicalRegion] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate', 'ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'GeographicalRegion.Regions',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The geographical region which this sub-geographical region is within.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14684,28 +14674,13 @@ class SubGeographicalRegion(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubLoadArea(EnergyArea):
     '''
     The class is the second level in a hierarchical structure for grouping
     of loads for the purpose of load flow load scaling.
-    '''
-
-    LoadArea: Optional[LoadArea] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'LoadArea.SubLoadAreas',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The LoadArea where the SubLoadArea belongs.
     '''
 
     LoadGroups: list[LoadGroup] = field(
@@ -14722,7 +14697,22 @@ class SubLoadArea(EnergyArea):
     '''
     The Loadgroups in the SubLoadArea.
     '''
-
+    
+    LoadArea: Optional[LoadArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate', 'ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'LoadArea.SubLoadAreas',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The LoadArea where the SubLoadArea belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14735,7 +14725,7 @@ class SubLoadArea(EnergyArea):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Substation(EquipmentContainer):
@@ -14743,21 +14733,6 @@ class Substation(EquipmentContainer):
     A collection of equipment for purposes other than generation or utilization,
     through which electric energy in bulk is passed for the purposes of switching
     or modifying its characteristics.
-    '''
-
-    Region: Optional[SubGeographicalRegion] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'SubGeographicalRegion.Substations',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The SubGeographicalRegion containing the substation.
     '''
 
     DCConverterUnit: list[DCConverterUnit] = field(
@@ -14774,7 +14749,7 @@ class Substation(EquipmentContainer):
     '''
     The DC converter unit belonging of the substation.
     '''
-
+    
     VoltageLevels: list[VoltageLevel] = field(
         default_factory=list,
         metadata={
@@ -14789,7 +14764,22 @@ class Substation(EquipmentContainer):
     '''
     The voltage levels within this substation.
     '''
-
+    
+    Region: Optional[SubGeographicalRegion] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate', 'ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'SubGeographicalRegion.Substations',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The SubGeographicalRegion containing the substation.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14802,7 +14792,7 @@ class Substation(EquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SurgeArrester(AuxiliaryEquipment):
@@ -14824,20 +14814,20 @@ class SurgeArrester(AuxiliaryEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Susceptance(CIMUnit):
     '''
     Imaginary part of admittance.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.S
-    def __init__(self, value, input_unit: str='S', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='S', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -14851,7 +14841,7 @@ class Susceptance(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -14864,7 +14854,7 @@ class SvInjection(Identity):
     calculation.
     '''
 
-    pInjection: Optional[ float | ActivePower ] = field(
+    pInjection: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14878,8 +14868,8 @@ class SvInjection(Identity):
     The active power mismatch between calculated injection and initial
     injection. Positive sign means injection into the TopologicalNode (bus).
     '''
-
-    qInjection: Optional[ float | ReactivePower ] = field(
+    
+    qInjection: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14893,7 +14883,7 @@ class SvInjection(Identity):
     The reactive power mismatch between calculated injection and initial
     injection. Positive sign means injection into the TopologicalNode (bus).
     '''
-
+    
     TopologicalNode: Optional[TopologicalNode] = field(
         default=None,
         metadata={
@@ -14908,7 +14898,7 @@ class SvInjection(Identity):
     '''
     The topological node associated with the flow injection state variable.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14921,7 +14911,7 @@ class SvInjection(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvPowerFlow(Identity):
@@ -14930,7 +14920,7 @@ class SvPowerFlow(Identity):
     This means flow out from the TopologicalNode into the equipment is positive.
     '''
 
-    p: Optional[ float | ActivePower ] = field(
+    p: Optional[ ActivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14945,8 +14935,8 @@ class SvPowerFlow(Identity):
     sign means flow out from a TopologicalNode (bus) into the conducting
     equipment.
     '''
-
-    q: Optional[ float | ReactivePower ] = field(
+    
+    q: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -14961,7 +14951,7 @@ class SvPowerFlow(Identity):
     sign means flow out from a TopologicalNode (bus) into the conducting
     equipment.
     '''
-
+    
     Terminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -14976,7 +14966,7 @@ class SvPowerFlow(Identity):
     '''
     The terminal associated with the power flow state variable.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -14989,7 +14979,7 @@ class SvPowerFlow(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvShuntCompensatorSections(Identity):
@@ -15012,7 +15002,7 @@ class SvShuntCompensatorSections(Identity):
     shall be a positive value or zero. To get integer value scale with
     ShuntCompensator.bPerSection.
     '''
-
+    
     ShuntCompensator: Optional[ShuntCompensator] = field(
         default=None,
         metadata={
@@ -15027,7 +15017,7 @@ class SvShuntCompensatorSections(Identity):
     '''
     The shunt compensator for which the state applies.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15040,7 +15030,7 @@ class SvShuntCompensatorSections(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvStatus(Identity):
@@ -15065,7 +15055,7 @@ class SvStatus(Identity):
     necessarily reflect whether or not the island was solved by the power
     flow.
     '''
-
+    
     ConductingEquipment: Optional[ConductingEquipment] = field(
         default=None,
         metadata={
@@ -15080,7 +15070,7 @@ class SvStatus(Identity):
     '''
     The conducting equipment associated with the status state variable.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15093,7 +15083,7 @@ class SvStatus(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvSwitch(Identity):
@@ -15115,7 +15105,7 @@ class SvSwitch(Identity):
     The attribute tells if the computed state of the switch is considered
     open.
     '''
-
+    
     Switch: Optional[Switch] = field(
         default=None,
         metadata={
@@ -15130,7 +15120,7 @@ class SvSwitch(Identity):
     '''
     The switch associated with the switch state.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15143,7 +15133,7 @@ class SvSwitch(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvTapStep(Identity):
@@ -15167,7 +15157,7 @@ class SvTapStep(Identity):
     normally is constrained to be within the range of minimum and maximum
     tap positions.
     '''
-
+    
     TapChanger: Optional[TapChanger] = field(
         default=None,
         metadata={
@@ -15182,7 +15172,7 @@ class SvTapStep(Identity):
     '''
     The tap changer associated with the tap step state.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15195,7 +15185,7 @@ class SvTapStep(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SvVoltage(Identity):
@@ -15203,7 +15193,7 @@ class SvVoltage(Identity):
     State variable for voltage.
     '''
 
-    angle: Optional[ float | AngleDegrees ] = field(
+    angle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15217,8 +15207,8 @@ class SvVoltage(Identity):
     The voltage angle of the topological node complex voltage with respect
     to system reference.
     '''
-
-    v: Optional[ float | Voltage ] = field(
+    
+    v: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15232,7 +15222,7 @@ class SvVoltage(Identity):
     The voltage magnitude at the topological node. The attribute shall
     be a positive value.
     '''
-
+    
     TopologicalNode: Optional[TopologicalNode] = field(
         default=None,
         metadata={
@@ -15247,7 +15237,7 @@ class SvVoltage(Identity):
     '''
     The topological node associated with the voltage state.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15260,7 +15250,7 @@ class SvVoltage(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15288,7 +15278,7 @@ class Switch(ConductingEquipment):
     is present. If the Switch has a status measurement the Discrete.normalValue
     is expected to match with the Switch.normalOpen.
     '''
-
+    
     retained: Optional[bool] = field(
         default=None,
         metadata={
@@ -15303,8 +15293,8 @@ class Switch(ConductingEquipment):
     Branch is retained in the topological solution. The flow through retained
     switches will normally be calculated in power flow.
     '''
-
-    ratedCurrent: Optional[ float | CurrentFlow ] = field(
+    
+    ratedCurrent: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15319,7 +15309,7 @@ class Switch(ConductingEquipment):
     the device material and construction.
     The attribute shall be a positive value.
     '''
-
+    
     SwitchSchedules: list[SwitchSchedule] = field(
         default_factory=list,
         metadata={
@@ -15334,7 +15324,7 @@ class Switch(ConductingEquipment):
     '''
     A Switch can be associated with SwitchSchedules.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15347,7 +15337,7 @@ class Switch(ConductingEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     locked: Optional[bool] = field(
         default=None,
         metadata={
@@ -15368,7 +15358,7 @@ class Switch(ConductingEquipment):
     <li>locked=false and Switch.open=false. The resulting state is closed.</li>
     </ul>
     '''
-
+    
     open: Optional[bool] = field(
         default=None,
         metadata={
@@ -15383,7 +15373,7 @@ class Switch(ConductingEquipment):
     The attribute tells if the switch is considered open when used as input
     to topology processing.
     '''
-
+    
     SvSwitch: list[SvSwitch] = field(
         default_factory=list,
         metadata={
@@ -15398,7 +15388,7 @@ class Switch(ConductingEquipment):
     '''
     The switch state associated with the switch.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Cut(Switch):
@@ -15417,7 +15407,7 @@ class Cut(Switch):
     equipment can be connected at them.
     '''
 
-    lengthFromTerminal1: Optional[ float | Length ] = field(
+    lengthFromTerminal1: Optional[ Length ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15432,7 +15422,7 @@ class Cut(Switch):
     one of the cut line segment, i.e. the line segment Terminal with sequenceNumber
     equal to 1.
     '''
-
+    
     ACLineSegment: Optional[ACLineSegment] = field(
         default=None,
         metadata={
@@ -15447,7 +15437,7 @@ class Cut(Switch):
     '''
     The line segment to which the cut is applied.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15460,7 +15450,7 @@ class Cut(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15484,7 +15474,7 @@ class Disconnector(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15507,7 +15497,7 @@ class Fuse(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15529,7 +15519,7 @@ class GroundDisconnector(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15552,7 +15542,7 @@ class Jumper(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class ProtectedSwitch(Switch):
     '''
@@ -15571,7 +15561,7 @@ class ProtectedSwitch(Switch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15595,7 +15585,7 @@ class Breaker(ProtectedSwitch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15617,7 +15607,7 @@ class DisconnectingCircuitBreaker(Breaker):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -15639,7 +15629,7 @@ class LoadBreakSwitch(ProtectedSwitch):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SwitchSchedule(SeasonDayTypeSchedule):
@@ -15662,7 +15652,7 @@ class SwitchSchedule(SeasonDayTypeSchedule):
     '''
     A SwitchSchedule is associated with a Switch.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15675,7 +15665,7 @@ class SwitchSchedule(SeasonDayTypeSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ByReference)
 @stereotype(CIMStereotype.Description)
@@ -15687,7 +15677,7 @@ class SynchronousMachine(RotatingMachine):
     or synchronous condenser or pump.
     '''
 
-    maxQ: Optional[ float | ReactivePower ] = field(
+    maxQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15701,8 +15691,8 @@ class SynchronousMachine(RotatingMachine):
     Maximum reactive power limit. This is the maximum (nameplate) limit
     for the unit.
     '''
-
-    minQ: Optional[ float | ReactivePower ] = field(
+    
+    minQ: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15715,8 +15705,8 @@ class SynchronousMachine(RotatingMachine):
     '''
     Minimum reactive power limit for the unit.
     '''
-
-    qPercent: Optional[ float | PerCent ] = field(
+    
+    qPercent: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15731,7 +15721,7 @@ class SynchronousMachine(RotatingMachine):
     The attribute is used as a participation factor not necessarily summing
     up to 100% for the participating devices in the control.
     '''
-
+    
     type: Optional[ SynchronousMachineKind ] = field(
         default=None,
         metadata={
@@ -15745,12 +15735,12 @@ class SynchronousMachine(RotatingMachine):
     '''
     Modes that this synchronous machine can operate in.
     '''
-
+    
     InitialReactiveCapabilityCurve: Optional[ReactiveCapabilityCurve] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension', 'ByReference'],
+        'stereotypes': ['ByReference'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines',
@@ -15760,7 +15750,7 @@ class SynchronousMachine(RotatingMachine):
     '''
     The default reactive capability curve for use by a synchronous machine.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -15773,7 +15763,7 @@ class SynchronousMachine(RotatingMachine):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     earthing: Optional[bool] = field(
         default=None,
         metadata={
@@ -15788,7 +15778,7 @@ class SynchronousMachine(RotatingMachine):
     Indicates whether or not the generator is earthed. Used for short circuit
     data exchange according to IEC 60909.
     '''
-
+    
     mu: Optional[float] = field(
         default=None,
         metadata={
@@ -15804,8 +15794,8 @@ class SynchronousMachine(RotatingMachine):
     Used only for single fed short circuit on a generator (Section 4.3.4.2.
     in IEC 60909-0).
     '''
-
-    earthingStarPointR: Optional[ float | Resistance ] = field(
+    
+    earthingStarPointR: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15819,8 +15809,8 @@ class SynchronousMachine(RotatingMachine):
     Generator star point earthing resistance (Re). Used for short circuit
     data exchange according to IEC 60909.
     '''
-
-    earthingStarPointX: Optional[ float | Reactance ] = field(
+    
+    earthingStarPointX: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15834,8 +15824,8 @@ class SynchronousMachine(RotatingMachine):
     Generator star point earthing reactance (Xe). Used for short circuit
     data exchange according to IEC 60909.
     '''
-
-    ikk: Optional[ float | CurrentFlow ] = field(
+    
+    ikk: Optional[ CurrentFlow ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15856,8 +15846,8 @@ class SynchronousMachine(RotatingMachine):
     Used only for single fed short circuit on a generator. (4.3.4.2. in
     IEC 60909-0:2001).
     '''
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15872,8 +15862,8 @@ class SynchronousMachine(RotatingMachine):
     of all currents, except for the calculation of the peak current ip.
     Used for short circuit data exchange according to IEC 60909.
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15886,8 +15876,8 @@ class SynchronousMachine(RotatingMachine):
     '''
     Zero sequence resistance of the synchronous machine.
     '''
-
-    r2: Optional[ float | Resistance ] = field(
+    
+    r2: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15900,8 +15890,8 @@ class SynchronousMachine(RotatingMachine):
     '''
     Negative sequence resistance.
     '''
-
-    satDirectSubtransX: Optional[ float | PU ] = field(
+    
+    satDirectSubtransX: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15914,8 +15904,8 @@ class SynchronousMachine(RotatingMachine):
     '''
     Direct-axis subtransient reactance saturated, also known as Xd"sat.
     '''
-
-    satDirectSyncX: Optional[ float | PU ] = field(
+    
+    satDirectSyncX: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15930,8 +15920,8 @@ class SynchronousMachine(RotatingMachine):
     short-circuit ration. Used for short circuit data exchange, only for
     single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
     '''
-
-    satDirectTransX: Optional[ float | PU ] = field(
+    
+    satDirectTransX: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15945,7 +15935,7 @@ class SynchronousMachine(RotatingMachine):
     Saturated Direct-axis transient reactance. The attribute is primarily
     used for short circuit calculations according to ANSI.
     '''
-
+    
     shortCircuitRotorType: Optional[ ShortCircuitRotorKind ] = field(
         default=None,
         metadata={
@@ -15960,8 +15950,8 @@ class SynchronousMachine(RotatingMachine):
     Type of rotor, used by short circuit applications, only for single
     fed short circuit according to IEC 60909.
     '''
-
-    voltageRegulationRange: Optional[ float | PerCent ] = field(
+    
+    voltageRegulationRange: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15977,8 +15967,8 @@ class SynchronousMachine(RotatingMachine):
     This attribute is used to describe the operating voltage of the generating
     unit.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -15991,8 +15981,8 @@ class SynchronousMachine(RotatingMachine):
     '''
     Zero sequence reactance of the synchronous machine.
     '''
-
-    x2: Optional[ float | Reactance ] = field(
+    
+    x2: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16005,7 +15995,7 @@ class SynchronousMachine(RotatingMachine):
     '''
     Negative sequence reactance.
     '''
-
+    
     referencePriority: Optional[int] = field(
         default=None,
         metadata={
@@ -16021,7 +16011,7 @@ class SynchronousMachine(RotatingMachine):
     bus selection. 0 = don t care (default) 1 = highest priority. 2 is
     less than 1 and so on.
     '''
-
+    
     operatingMode: Optional[ SynchronousMachineOperatingMode ] = field(
         default=None,
         metadata={
@@ -16035,7 +16025,7 @@ class SynchronousMachine(RotatingMachine):
     '''
     Current mode of operation.
     '''
-
+    
 @stereotype(CIMStereotype.enumeration)
 class SynchronousMachineKind(Enum):
     '''
@@ -16046,40 +16036,40 @@ class SynchronousMachineKind(Enum):
     '''
     Indicates the synchronous machine can operate as a condenser.
     '''
-
+    
     generator = 'generator'
     '''
     Indicates the synchronous machine can operate as a generator.
     '''
-
+    
     generatorOrCondenser = 'generatorOrCondenser'
     '''
     Indicates the synchronous machine can operate as a generator or as
     a condenser.
     '''
-
+    
     generatorOrCondenserOrMotor = 'generatorOrCondenserOrMotor'
     '''
     Indicates the synchronous machine can operate as a generator or as
     a condenser or as a motor.
     '''
-
+    
     generatorOrMotor = 'generatorOrMotor'
     '''
     Indicates the synchronous machine can operate as a generator or as
     a motor.
     '''
-
+    
     motor = 'motor'
     '''
     Indicates the synchronous machine can operate as a motor.
     '''
-
+    
     motorOrCondenser = 'motorOrCondenser'
     '''
     Indicates the synchronous machine can operate as a motor or as a condenser.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16092,7 +16082,7 @@ class SynchronousMachineKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class SynchronousMachineOperatingMode(Enum):
     '''
@@ -16103,17 +16093,17 @@ class SynchronousMachineOperatingMode(Enum):
     '''
     Operating as condenser.
     '''
-
+    
     generator = 'generator'
     '''
     Operating as generator.
     '''
-
+    
     motor = 'motor'
     '''
     Operating as motor.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16126,7 +16116,7 @@ class SynchronousMachineOperatingMode(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class TapChanger(PowerSystemResource):
     '''
@@ -16147,7 +16137,7 @@ class TapChanger(PowerSystemResource):
     Highest possible tap step position, advance from neutral.
     The attribute shall be greater than lowStep.
     '''
-
+    
     lowStep: Optional[int] = field(
         default=None,
         metadata={
@@ -16161,7 +16151,7 @@ class TapChanger(PowerSystemResource):
     '''
     Lowest possible tap step position, retard from neutral.
     '''
-
+    
     ltcFlag: Optional[bool] = field(
         default=None,
         metadata={
@@ -16175,7 +16165,7 @@ class TapChanger(PowerSystemResource):
     '''
     Specifies whether or not a TapChanger has load tap changing capabilities.
     '''
-
+    
     neutralStep: Optional[int] = field(
         default=None,
         metadata={
@@ -16195,7 +16185,7 @@ class TapChanger(PowerSystemResource):
     tap changers on the transformer those taps are kept constant at their
     neutralStep.
     '''
-
+    
     normalStep: Optional[int] = field(
         default=None,
         metadata={
@@ -16212,8 +16202,8 @@ class TapChanger(PowerSystemResource):
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
     '''
-
-    neutralU: Optional[ float | Voltage ] = field(
+    
+    neutralU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16234,22 +16224,7 @@ class TapChanger(PowerSystemResource):
     This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical
     and PhaseTapChangerLinear.
     '''
-
-    TapChangerControl: Optional[TapChangerControl] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'TapChangerControl.TapChanger',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The regulating control scheme in which this tap changer participates.
-    '''
-
+    
     TapSchedules: list[TapSchedule] = field(
         default_factory=list,
         metadata={
@@ -16264,7 +16239,22 @@ class TapChanger(PowerSystemResource):
     '''
     A TapChanger can have TapSchedules.
     '''
-
+    
+    TapChangerControl: Optional[TapChangerControl] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'TapChangerControl.TapChanger',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The regulating control scheme in which this tap changer participates.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16277,7 +16267,7 @@ class TapChanger(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     controlEnabled: Optional[bool] = field(
         default=None,
         metadata={
@@ -16292,7 +16282,7 @@ class TapChanger(PowerSystemResource):
     Specifies the regulation status of the equipment. True is regulating,
     false is not regulating.
     '''
-
+    
     step: Optional[float] = field(
         default=None,
         metadata={
@@ -16313,7 +16303,7 @@ class TapChanger(PowerSystemResource):
     The attribute shall be equal to or greater than lowStep and equal to
     or less than highStep.
     '''
-
+    
     SvTapStep: Optional[SvTapStep] = field(
         default=None,
         metadata={
@@ -16328,7 +16318,7 @@ class TapChanger(PowerSystemResource):
     '''
     The tap step state associated with the tap changer.
     '''
-
+    
 @dataclass(repr=False, eq=False)
 class PhaseTapChanger(TapChanger):
     '''
@@ -16352,7 +16342,7 @@ class PhaseTapChanger(TapChanger):
     '''
     Transformer end to which this phase tap changer belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16365,7 +16355,7 @@ class PhaseTapChanger(TapChanger):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16378,7 +16368,7 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     The voltage magnitude of both sides is the same.
     '''
 
-    stepPhaseShiftIncrement: Optional[ float | AngleDegrees ] = field(
+    stepPhaseShiftIncrement: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16396,8 +16386,8 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     from the symmetrical or asymmetrical models or a tap step table lookup
     if those are available.
     '''
-
-    xMax: Optional[ float | Reactance ] = field(
+    
+    xMax: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16413,8 +16403,8 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     positions. Depending on the “u” curve the attribute can be either higher
     or lower than PowerTransformerEnd.x.
     '''
-
-    xMin: Optional[ float | Reactance ] = field(
+    
+    xMin: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16431,7 +16421,7 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x
     shall be used.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16444,7 +16434,7 @@ class PhaseTapChangerLinear(PhaseTapChanger):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class PhaseTapChangerNonLinear(PhaseTapChanger):
     '''
@@ -16454,7 +16444,7 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     61970-301.
     '''
 
-    voltageStepIncrement: Optional[ float | PerCent ] = field(
+    voltageStepIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16473,8 +16463,8 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     When the increment is negative, the voltage decreases when the tap
     step increases.
     '''
-
-    xMax: Optional[ float | Reactance ] = field(
+    
+    xMax: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16490,8 +16480,8 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     positions. Depending on the “u” curve the attribute can be either higher
     or lower than PowerTransformerEnd.x.
     '''
-
-    xMin: Optional[ float | Reactance ] = field(
+    
+    xMin: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16508,7 +16498,7 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x
     shall be used.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16521,7 +16511,7 @@ class PhaseTapChangerNonLinear(PhaseTapChanger):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16535,7 +16525,7 @@ class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
     magnitude and the winding connection angle.
     '''
 
-    windingConnectionAngle: Optional[ float | AngleDegrees ] = field(
+    windingConnectionAngle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16553,7 +16543,7 @@ class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
     be multiples of 30 degrees. The allowed range is -150 degrees to 150
     degrees excluding 0.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16566,7 +16556,7 @@ class PhaseTapChangerAsymmetrical(PhaseTapChangerNonLinear):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16592,7 +16582,7 @@ class PhaseTapChangerSymmetrical(PhaseTapChangerNonLinear):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16616,7 +16606,7 @@ class PhaseTapChangerTabular(PhaseTapChanger):
     '''
     The phase tap changer table for this phase tap changer.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16629,7 +16619,7 @@ class PhaseTapChangerTabular(PhaseTapChanger):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16642,7 +16632,7 @@ class RatioTapChanger(TapChanger):
     a two-winding transformer).
     '''
 
-    stepVoltageIncrement: Optional[ float | PerCent ] = field(
+    stepVoltageIncrement: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16658,7 +16648,7 @@ class RatioTapChanger(TapChanger):
     When the increment is negative, the voltage decreases when the tap
     step increases.
     '''
-
+    
     RatioTapChangerTable: Optional[RatioTapChangerTable] = field(
         default=None,
         metadata={
@@ -16673,7 +16663,7 @@ class RatioTapChanger(TapChanger):
     '''
     The tap ratio table for this ratio tap changer.
     '''
-
+    
     TransformerEnd: Optional[TransformerEnd] = field(
         default=None,
         metadata={
@@ -16688,7 +16678,7 @@ class RatioTapChanger(TapChanger):
     '''
     Transformer end to which this ratio tap changer belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16701,7 +16691,7 @@ class RatioTapChanger(TapChanger):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -16726,7 +16716,7 @@ class TapChangerControl(RegulatingControl):
     '''
     The tap changers that participates in this regulating tap control scheme.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16739,7 +16729,7 @@ class TapChangerControl(RegulatingControl):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class TapChangerTablePoint(Identity):
     '''
@@ -16763,7 +16753,7 @@ class TapChangerTablePoint(Identity):
     of the transformer end is 110kV, then the voltage obtained by setting
     the tap changer to step 1 to is 111.1kV.
     '''
-
+    
     step: Optional[int] = field(
         default=None,
         metadata={
@@ -16777,8 +16767,8 @@ class TapChangerTablePoint(Identity):
     '''
     The tap step.
     '''
-
-    b: Optional[ float | PerCent ] = field(
+    
+    b: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16796,8 +16786,8 @@ class TapChangerTablePoint(Identity):
     on the associated power transformer end or ends. This model assumes
     the star impedance (pi model) form.
     '''
-
-    g: Optional[ float | PerCent ] = field(
+    
+    g: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16815,8 +16805,8 @@ class TapChangerTablePoint(Identity):
     on the associated power transformer end or ends. This model assumes
     the star impedance (pi model) form.
     '''
-
-    r: Optional[ float | PerCent ] = field(
+    
+    r: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16834,8 +16824,8 @@ class TapChangerTablePoint(Identity):
     power transformer end or ends. This model assumes the star impedance
     (pi model) form.
     '''
-
-    x: Optional[ float | PerCent ] = field(
+    
+    x: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16853,7 +16843,7 @@ class TapChangerTablePoint(Identity):
     power transformer end or ends. This model assumes the star impedance
     (pi model) form.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16866,7 +16856,7 @@ class TapChangerTablePoint(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PhaseTapChangerTablePoint(TapChangerTablePoint):
@@ -16874,7 +16864,7 @@ class PhaseTapChangerTablePoint(TapChangerTablePoint):
     Describes each tap step in the phase tap changer tabular curve.
     '''
 
-    angle: Optional[ float | AngleDegrees ] = field(
+    angle: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -16889,7 +16879,7 @@ class PhaseTapChangerTablePoint(TapChangerTablePoint):
     angle variation from the Terminal at the PowerTransformerEnd, where
     the TapChanger is located, into the transformer.
     '''
-
+    
     PhaseTapChangerTable: Optional[PhaseTapChangerTable] = field(
         default=None,
         metadata={
@@ -16904,7 +16894,7 @@ class PhaseTapChangerTablePoint(TapChangerTablePoint):
     '''
     The table of this point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16917,7 +16907,7 @@ class PhaseTapChangerTablePoint(TapChangerTablePoint):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class RatioTapChangerTablePoint(TapChangerTablePoint):
@@ -16939,7 +16929,7 @@ class RatioTapChangerTablePoint(TapChangerTablePoint):
     '''
     Table of this point.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16952,7 +16942,7 @@ class RatioTapChangerTablePoint(TapChangerTablePoint):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TapSchedule(SeasonDayTypeSchedule):
@@ -16974,7 +16964,7 @@ class TapSchedule(SeasonDayTypeSchedule):
     '''
     A TapSchedule is associated with a TapChanger.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -16987,20 +16977,20 @@ class TapSchedule(SeasonDayTypeSchedule):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Temperature(CIMUnit):
     '''
     Value of temperature in degrees Celsius.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.degC
-    def __init__(self, value, input_unit: str='degC', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='degC', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -17014,7 +17004,7 @@ class Temperature(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
@@ -17045,7 +17035,82 @@ class Terminal(ACDCTerminal):
     TopologicalNode as well as for equipment between two terminals shall
     be consistent.
     '''
-
+    
+    ConverterDCSides: list[ACDCConverter] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ACDCConverter.PccTerminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    All converters' DC sides linked to this point of common coupling terminal.
+    '''
+    
+    AuxiliaryEquipment: list[AuxiliaryEquipment] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'AuxiliaryEquipment.Terminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    The auxiliary equipment connected to the terminal.
+    '''
+    
+    RegulatingControl: list[RegulatingControl] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'RegulatingControl.Terminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    The controls regulating this terminal.
+    '''
+    
+    TieFlow: list[TieFlow] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TieFlow.Terminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    The control area tie flows to which this terminal associates.
+    '''
+    
+    TransformerEnd: list[TransformerEnd] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'TransformerEnd.Terminal',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': False,
+        })
+    '''
+    All transformer ends connected at this terminal.
+    '''
+    
     ConductingEquipment: Optional[ConductingEquipment] = field(
         default=None,
         metadata={
@@ -17062,7 +17127,7 @@ class Terminal(ACDCTerminal):
     terminals that may be connected to other conducting equipment terminals
     via connectivity nodes or topological nodes.
     '''
-
+    
     ConnectivityNode: Optional[ConnectivityNode] = field(
         default=None,
         metadata={
@@ -17077,82 +17142,7 @@ class Terminal(ACDCTerminal):
     '''
     The connectivity node to which this terminal connects with zero impedance.
     '''
-
-    ConverterDCSides: list[ACDCConverter] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'ACDCConverter.PccTerminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    All converters' DC sides linked to this point of common coupling terminal.
-    '''
-
-    AuxiliaryEquipment: list[AuxiliaryEquipment] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'AuxiliaryEquipment.Terminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    The auxiliary equipment connected to the terminal.
-    '''
-
-    RegulatingControl: list[RegulatingControl] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'RegulatingControl.Terminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    The controls regulating this terminal.
-    '''
-
-    TieFlow: list[TieFlow] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'TieFlow.Terminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    The control area tie flows to which this terminal associates.
-    '''
-
-    TransformerEnd: list[TransformerEnd] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'TransformerEnd.Terminal',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': False,
-        })
-    '''
-    All transformer ends connected at this terminal.
-    '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17165,7 +17155,7 @@ class Terminal(ACDCTerminal):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     HasFirstMutualCoupling: list[MutualCoupling] = field(
         default_factory=list,
         metadata={
@@ -17180,7 +17170,7 @@ class Terminal(ACDCTerminal):
     '''
     Mutual couplings associated with the branch as the first branch.
     '''
-
+    
     HasSecondMutualCoupling: list[MutualCoupling] = field(
         default_factory=list,
         metadata={
@@ -17195,7 +17185,7 @@ class Terminal(ACDCTerminal):
     '''
     Mutual couplings with the branch associated as the first branch.
     '''
-
+    
     SvPowerFlow: list[SvPowerFlow] = field(
         default_factory=list,
         metadata={
@@ -17210,12 +17200,12 @@ class Terminal(ACDCTerminal):
     '''
     The power flow state variable associated with the terminal.
     '''
-
+    
     TopologicalNode: Optional[TopologicalNode] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
+        'stereotypes': ['ByReference'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'TopologicalNode.Terminal',
@@ -17229,7 +17219,7 @@ class Terminal(ACDCTerminal):
     Note that the if connectivity nodes are in the model, this association
     would probably not be used as an input specification.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TextDiagramObject(DiagramObject):
@@ -17251,7 +17241,7 @@ class TextDiagramObject(DiagramObject):
     '''
     The text that is displayed by this text diagram object.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17264,7 +17254,7 @@ class TextDiagramObject(DiagramObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -17272,52 +17262,6 @@ class ThermalGeneratingUnit(GeneratingUnit):
     '''
     A generating unit whose prime mover could be a steam turbine, combustion
     turbine, or diesel engine.
-    '''
-
-    CAESPlant: Optional[CAESPlant] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'CAESPlant.ThermalGeneratingUnit',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A thermal generating unit may be a member of a compressed air energy
-    storage plant.
-    '''
-
-    CogenerationPlant: Optional[CogenerationPlant] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'CogenerationPlant.ThermalGeneratingUnits',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A thermal generating unit may be a member of a cogeneration plant.
-    '''
-
-    CombinedCyclePlant: Optional[CombinedCyclePlant] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'CombinedCyclePlant.ThermalGeneratingUnits',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    A thermal generating unit may be a member of a combined cycle plant.
     '''
 
     FossilFuels: list[FossilFuel] = field(
@@ -17334,7 +17278,53 @@ class ThermalGeneratingUnit(GeneratingUnit):
     '''
     A thermal generating unit may have one or more fossil fuels.
     '''
-
+    
+    CAESPlant: Optional[CAESPlant] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'CAESPlant.ThermalGeneratingUnit',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A thermal generating unit may be a member of a compressed air energy
+    storage plant.
+    '''
+    
+    CogenerationPlant: Optional[CogenerationPlant] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'CogenerationPlant.ThermalGeneratingUnits',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A thermal generating unit may be a member of a cogeneration plant.
+    '''
+    
+    CombinedCyclePlant: Optional[CombinedCyclePlant] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'CombinedCyclePlant.ThermalGeneratingUnits',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    A thermal generating unit may be a member of a combined cycle plant.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17347,7 +17337,7 @@ class ThermalGeneratingUnit(GeneratingUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TieFlow(IdentifiedObject):
@@ -17373,7 +17363,7 @@ class TieFlow(IdentifiedObject):
     flow into the control area. See the description of ControlArea for
     further explanation of how TieFlow.positiveFlowIn is used.
     '''
-
+    
     ControlArea: Optional[ControlArea] = field(
         default=None,
         metadata={
@@ -17388,7 +17378,7 @@ class TieFlow(IdentifiedObject):
     '''
     The control area of the tie flows.
     '''
-
+    
     Terminal: Optional[Terminal] = field(
         default=None,
         metadata={
@@ -17403,7 +17393,7 @@ class TieFlow(IdentifiedObject):
     '''
     The terminal to which this tie flow belongs.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17416,7 +17406,7 @@ class TieFlow(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TopologicalIsland(IdentifiedObject):
@@ -17445,7 +17435,7 @@ class TopologicalIsland(IdentifiedObject):
     that is selected as the angle reference for each island. Other reference
     schemes exist, so the association is typically optional.
     '''
-
+    
     TopologicalNodes: list[TopologicalNode] = field(
         default_factory=list,
         metadata={
@@ -17460,7 +17450,7 @@ class TopologicalIsland(IdentifiedObject):
     '''
     A topological node belongs to a topological island.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17473,10 +17463,8 @@ class TopologicalIsland(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-@stereotype(CIMStereotype.Description)
+    
 @stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.ByReference)
 @dataclass(repr=False, eq=False)
 class TopologicalNode(IdentifiedObject):
     '''
@@ -17505,7 +17493,7 @@ class TopologicalNode(IdentifiedObject):
     The injection flows state variables associated with the topological
     node.
     '''
-
+    
     SvVoltage: list[SvVoltage] = field(
         default_factory=list,
         metadata={
@@ -17520,7 +17508,7 @@ class TopologicalNode(IdentifiedObject):
     '''
     The state voltage associated with the topological node.
     '''
-
+    
     AngleRefTopologicalIsland: Optional[TopologicalIsland] = field(
         default=None,
         metadata={
@@ -17536,7 +17524,7 @@ class TopologicalNode(IdentifiedObject):
     The island for which the node is an angle reference. Normally there
     is one angle reference node for each island.
     '''
-
+    
     TopologicalIsland: Optional[TopologicalIsland] = field(
         default=None,
         metadata={
@@ -17551,7 +17539,7 @@ class TopologicalNode(IdentifiedObject):
     '''
     A topological node belongs to a topological island.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17564,52 +17552,7 @@ class TopologicalNode(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    BaseVoltage: Optional[BaseVoltage] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'BaseVoltage.TopologicalNode',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The base voltage of the topological node.
-    '''
-
-    ConnectivityNodeContainer: Optional[ConnectivityNodeContainer] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'ConnectivityNodeContainer.TopologicalNode',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The connectivity node container to which the topological node belongs.
-    '''
-
-    ReportingGroup: Optional[ReportingGroup] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ReportingGroup.TopologicalNode',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The reporting group to which the topological node belongs.
-    '''
-
+    
     ConnectivityNodes: list[ConnectivityNode] = field(
         default_factory=list,
         metadata={
@@ -17625,7 +17568,7 @@ class TopologicalNode(IdentifiedObject):
     The connectivity nodes combine together to form this topological node.
     May depend on the current state of switches in the network.
     '''
-
+    
     Terminal: list[Terminal] = field(
         default_factory=list,
         metadata={
@@ -17644,7 +17587,52 @@ class TopologicalNode(IdentifiedObject):
     if connectivity nodes are in the model, this association would probably
     not be used as an input specification.
     '''
-
+    
+    BaseVoltage: Optional[BaseVoltage] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'BaseVoltage.TopologicalNode',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The base voltage of the topological node.
+    '''
+    
+    ConnectivityNodeContainer: Optional[ConnectivityNodeContainer] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'ConnectivityNodeContainer.TopologicalNode',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The connectivity node container to which the topological node belongs.
+    '''
+    
+    ReportingGroup: Optional[ReportingGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ReportingGroup.TopologicalNode',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The reporting group to which the topological node belongs.
+    '''
+    
 @stereotype(CIMStereotype.Compound)
 @dataclass(repr=False, eq=False)
 class TownDetail(Identity):
@@ -17665,7 +17653,7 @@ class TownDetail(Identity):
     '''
     Town code.
     '''
-
+    
     country: Optional[str] = field(
         default=None,
         metadata={
@@ -17679,7 +17667,7 @@ class TownDetail(Identity):
     '''
     Name of the country.
     '''
-
+    
     name: Optional[str] = field(
         default=None,
         metadata={
@@ -17693,7 +17681,7 @@ class TownDetail(Identity):
     '''
     Town name.
     '''
-
+    
     section: Optional[str] = field(
         default=None,
         metadata={
@@ -17708,7 +17696,7 @@ class TownDetail(Identity):
     Town section. For example, it is common for there to be 36 sections
     per township.
     '''
-
+    
     stateOrProvince: Optional[str] = field(
         default=None,
         metadata={
@@ -17722,7 +17710,7 @@ class TownDetail(Identity):
     '''
     Name of the state or province.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17735,6 +17723,7 @@ class TownDetail(Identity):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
 
 @dataclass(repr=False, eq=False)
 class TransformerEnd(IdentifiedObject):
@@ -17762,37 +17751,7 @@ class TransformerEnd(IdentifiedObject):
     have a unique subsequent end number. Note the transformer end number
     need not match the terminal sequence number.
     '''
-
-    BaseVoltage: Optional[BaseVoltage] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'BaseVoltage.TransformerEnds',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Base voltage of the transformer end. This is essential for PU calculation.
-    '''
-
-    Terminal: Optional[Terminal] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Terminal.TransformerEnd',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    Terminal of the power transformer to which this transformer end belongs.
-    '''
-
+    
     PhaseTapChanger: Optional[PhaseTapChanger] = field(
         default=None,
         metadata={
@@ -17807,7 +17766,7 @@ class TransformerEnd(IdentifiedObject):
     '''
     Phase tap changer associated with this transformer end.
     '''
-
+    
     RatioTapChanger: Optional[RatioTapChanger] = field(
         default=None,
         metadata={
@@ -17822,7 +17781,37 @@ class TransformerEnd(IdentifiedObject):
     '''
     Ratio tap changer associated with this transformer end.
     '''
-
+    
+    BaseVoltage: Optional[BaseVoltage] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'BaseVoltage.TransformerEnds',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Base voltage of the transformer end. This is essential for PU calculation.
+    '''
+    
+    Terminal: Optional[Terminal] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Terminal.TransformerEnd',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    Terminal of the power transformer to which this transformer end belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -17835,7 +17824,7 @@ class TransformerEnd(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     grounded: Optional[bool] = field(
         default=None,
         metadata={
@@ -17849,8 +17838,8 @@ class TransformerEnd(IdentifiedObject):
     '''
     (for Yn and Zn connections) True if the neutral is solidly grounded.
     '''
-
-    rground: Optional[ float | Resistance ] = field(
+    
+    rground: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17864,8 +17853,8 @@ class TransformerEnd(IdentifiedObject):
     (for Yn and Zn connections) Resistance part of neutral impedance where
     'grounded' is true.
     '''
-
-    xground: Optional[ float | Reactance ] = field(
+    
+    xground: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17879,7 +17868,7 @@ class TransformerEnd(IdentifiedObject):
     (for Yn and Zn connections) Reactive part of neutral impedance where
     'grounded' is true.
     '''
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -17912,7 +17901,7 @@ class PowerTransformerEnd(TransformerEnd):
     EquipmentContainer (Substation, VoltageLevel, etc).
     '''
 
-    b: Optional[ float | Susceptance ] = field(
+    b: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17926,7 +17915,7 @@ class PowerTransformerEnd(TransformerEnd):
     Magnetizing branch susceptance (B mag). The value can be positive or
     negative.
     '''
-
+    
     connectionKind: Optional[ WindingConnection ] = field(
         default=None,
         metadata={
@@ -17940,8 +17929,8 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Kind of connection.
     '''
-
-    g: Optional[ float | Conductance ] = field(
+    
+    g: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17954,8 +17943,8 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Magnetizing branch conductance.
     '''
-
-    r: Optional[ float | Resistance ] = field(
+    
+    r: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17970,8 +17959,8 @@ class PowerTransformerEnd(TransformerEnd):
     The attribute shall be equal to or greater than zero for non-equivalent
     transformers.
     '''
-
-    ratedS: Optional[ float | ApparentPower ] = field(
+    
+    ratedS: Optional[ ApparentPower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -17986,8 +17975,8 @@ class PowerTransformerEnd(TransformerEnd):
     The attribute shall be a positive value. For a two-winding transformer
     the values for the high and low voltage sides shall be identical.
     '''
-
-    ratedU: Optional[ float | Voltage ] = field(
+    
+    ratedU: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18005,8 +17994,8 @@ class PowerTransformerEnd(TransformerEnd):
     sides.
     The attribute shall be a positive value.
     '''
-
-    x: Optional[ float | Reactance ] = field(
+    
+    x: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18020,7 +18009,7 @@ class PowerTransformerEnd(TransformerEnd):
     Positive sequence series reactance (star-model) of the transformer
     end.
     '''
-
+    
     PowerTransformer: Optional[PowerTransformer] = field(
         default=None,
         metadata={
@@ -18035,7 +18024,7 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     The power transformer of this power transformer end.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -18048,7 +18037,7 @@ class PowerTransformerEnd(TransformerEnd):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     phaseAngleClock: Optional[int] = field(
         default=None,
         metadata={
@@ -18068,8 +18057,8 @@ class PowerTransformerEnd(TransformerEnd):
     specified as 1, is assumed to be zero. Note the transformer end number
     is not assumed to be the same as the terminal sequence number.
     '''
-
-    b0: Optional[ float | Susceptance ] = field(
+    
+    b0: Optional[ Susceptance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18082,8 +18071,8 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Zero sequence magnetizing branch susceptance.
     '''
-
-    g0: Optional[ float | Conductance ] = field(
+    
+    g0: Optional[ Conductance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18096,8 +18085,8 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Zero sequence magnetizing branch conductance (star-model).
     '''
-
-    r0: Optional[ float | Resistance ] = field(
+    
+    r0: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18110,8 +18099,8 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Zero sequence series resistance (star-model) of the transformer end.
     '''
-
-    x0: Optional[ float | Reactance ] = field(
+    
+    x0: Optional[ Reactance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -18124,959 +18113,7 @@ class PowerTransformerEnd(TransformerEnd):
     '''
     Zero sequence series reactance of the transformer end.
     '''
-
-@stereotype(CIMStereotype.enumeration)
-class UnitMultiplier(Enum):
-    '''
-    The unit multipliers defined for the CIM. When applied to unit symbols,
-    the unit symbol is treated as a derived unit. Regardless of the contents
-    of the unit symbol text, the unit symbol shall be treated as if it were
-    a single-character unit symbol. Unit symbols should not contain multipliers,
-    and it should be left to the multiplier to define the multiple for an entire
-    data type.
-    For example, if a unit symbol is "m2Pers" and the multiplier is "k", then
-    the value is k(m**2/s), and the multiplier applies to the entire final
-    value, not to any individual part of the value. This can be conceptualized
-    by substituting a derived unit symbol for the unit type. If one imagines
-    that the symbol "Þ" represents the derived unit "m2Pers", then applying
-    the multiplier "k" can be conceptualized simply as "kÞ".
-    For example, the SI unit for mass is "kg" and not "g". If the unit symbol
-    is defined as "kg", then the multiplier is applied to "kg" as a whole and
-    does not replace the "k" in front of the "g". In this case, the multiplier
-    of "m" would be used with the unit symbol of "kg" to represent one gram.
-    As a text string, this violates the instructions in IEC 80000-1. However,
-    because the unit symbol in CIM is treated as a derived unit instead of
-    as an SI unit, it makes more sense to conceptualize the "kg" as if it were
-    replaced by one of the proposed replacements for the SI mass symbol. If
-    one imagines that the "kg" were replaced by a symbol "Þ", then it is easier
-    to conceptualize the multiplier "m" as creating the proper unit "mÞ", and
-    not the forbidden unit "mkg".
-    '''
-
-    E = 'E'
-    '''
-    Exa 10**18.
-    '''
-
-    G = 'G'
-    '''
-    Giga 10**9.
-    '''
-
-    M = 'M'
-    '''
-    Mega 10**6.
-    '''
-
-    P = 'P'
-    '''
-    Peta 10**15.
-    '''
-
-    T = 'T'
-    '''
-    Tera 10**12.
-    '''
-
-    Y = 'Y'
-    '''
-    Yotta 10**24.
-    '''
-
-    Z = 'Z'
-    '''
-    Zetta 10**21.
-    '''
-
-    a = 'a'
-    '''
-    Atto 10**-18.
-    '''
-
-    c = 'c'
-    '''
-    Centi 10**-2.
-    '''
-
-    d = 'd'
-    '''
-    Deci 10**-1.
-    '''
-
-    da = 'da'
-    '''
-    Deca 10**1.
-    '''
-
-    f = 'f'
-    '''
-    Femto 10**-15.
-    '''
-
-    h = 'h'
-    '''
-    Hecto 10**2.
-    '''
-
-    k = 'k'
-    '''
-    Kilo 10**3.
-    '''
-
-    m = 'm'
-    '''
-    Milli 10**-3.
-    '''
-
-    micro = 'micro'
-    '''
-    Micro 10**-6.
-    '''
-
-    n = 'n'
-    '''
-    Nano 10**-9.
-    '''
-
-    none = 'none'
-    '''
-    No multiplier or equivalently multiply by 1.
-    '''
-
-    p = 'p'
-    '''
-    Pico 10**-12.
-    '''
-
-    y = 'y'
-    '''
-    Yocto 10**-24.
-    '''
-
-    z = 'z'
-    '''
-    Zepto 10**-21.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://iec.ch/TC57/CIM100#'
-    @property
-    def __package__(self):
-        return 'Domain'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-
-@stereotype(CIMStereotype.enumeration)
-class UnitSymbol(Enum):
-    '''
-    The derived units defined for usage in the CIM. In some cases, the derived
-    unit is equal to an SI unit. Whenever possible, the standard derived symbol
-    is used instead of the formula for the derived unit. For example, the unit
-    symbol Farad is defined as "F" instead of "CPerV". In cases where a standard
-    symbol does not exist for a derived unit, the formula for the unit is used
-    as the unit symbol. For example, density does not have a standard symbol
-    and so it is represented as "kgPerm3". With the exception of the "kg",
-    which is an SI unit, the unit symbols do not contain multipliers and therefore
-    represent the base derived unit to which a multiplier can be applied as
-    a whole.
-    Every unit symbol is treated as an unparseable text as if it were a single-letter
-    symbol. The meaning of each unit symbol is defined by the accompanying
-    descriptive text and not by the text contents of the unit symbol.
-    To allow the widest possible range of serializations without requiring
-    special character handling, several substitutions are made which deviate
-    from the format described in IEC 80000-1. The division symbol "/" is replaced
-    by the letters "Per". Exponents are written in plain text after the unit
-    as "m3" instead of being formatted as "m" with a superscript of 3 or introducing
-    a symbol as in "m^3". The degree symbol "°" is replaced with the letters
-    "deg". Any clarification of the meaning for a substitution is included
-    in the description for the unit symbol.
-    Non-SI units are included in list of unit symbols to allow sources of data
-    to be correctly labelled with their non-SI units (for example, a GPS sensor
-    that is reporting numbers that represent feet instead of meters). This
-    allows software to use the unit symbol information correctly convert and
-    scale the raw data of those sources into SI-based units.
-    The integer values are used for harmonization with IEC 61850.
-    '''
-
-    A = 'A'
-    '''
-    Current in amperes.
-    '''
-
-    A2 = 'A2'
-    '''
-    Amperes squared (A²).
-    '''
-
-    A2h = 'A2h'
-    '''
-    Ampere-squared hour, ampere-squared hour.
-    '''
-
-    A2s = 'A2s'
-    '''
-    Ampere squared time in square amperes (A²s).
-    '''
-
-    APerA = 'APerA'
-    '''
-    Current, ratio of amperages. Note: Users may need to supply a prefix
-    such as ‘m’ to show rates such as ‘mA/A’.
-    '''
-
-    APerm = 'APerm'
-    '''
-    A/m, magnetic field strength, amperes per metre.
-    '''
-
-    Ah = 'Ah'
-    '''
-    Ampere-hours, ampere-hours.
-    '''
-
-    As = 'As'
-    '''
-    Ampere seconds (A·s).
-    '''
-
-    Bq = 'Bq'
-    '''
-    Radioactivity in becquerels (1/s).
-    '''
-
-    Btu = 'Btu'
-    '''
-    Energy, British Thermal Units.
-    '''
-
-    C = 'C'
-    '''
-    Electric charge in coulombs (A·s).
-    '''
-
-    CPerkg = 'CPerkg'
-    '''
-    Exposure (x rays), coulombs per kilogram.
-    '''
-
-    CPerm2 = 'CPerm2'
-    '''
-    Surface charge density, coulombs per square metre.
-    '''
-
-    CPerm3 = 'CPerm3'
-    '''
-    Electric charge density, coulombs per cubic metre.
-    '''
-
-    F = 'F'
-    '''
-    Electric capacitance in farads (C/V).
-    '''
-
-    FPerm = 'FPerm'
-    '''
-    Permittivity, farads per metre.
-    '''
-
-    G = 'G'
-    '''
-    Magnetic flux density, gausses (1 G = 10-4 T).
-    '''
-
-    Gy = 'Gy'
-    '''
-    Absorbed dose in grays (J/kg).
-    '''
-
-    GyPers = 'GyPers'
-    '''
-    Absorbed dose rate, grays per second.
-    '''
-
-    H = 'H'
-    '''
-    Electric inductance in henrys (Wb/A).
-    '''
-
-    HPerm = 'HPerm'
-    '''
-    Permeability, henrys per metre.
-    '''
-
-    Hz = 'Hz'
-    '''
-    Frequency in hertz (1/s).
-    '''
-
-    HzPerHz = 'HzPerHz'
-    '''
-    Frequency, rate of frequency change. Note: Users may need to supply
-    a prefix such as ‘m’ to show rates such as ‘mHz/Hz’.
-    '''
-
-    HzPers = 'HzPers'
-    '''
-    Rate of change of frequency in hertz per second.
-    '''
-
-    J = 'J'
-    '''
-    Energy in joules (N·m = C·V = W·s).
-    '''
-
-    JPerK = 'JPerK'
-    '''
-    Heat capacity in joules/kelvin.
-    '''
-
-    JPerkg = 'JPerkg'
-    '''
-    Specific energy, Joules / kg.
-    '''
-
-    JPerkgK = 'JPerkgK'
-    '''
-    Specific heat capacity, specific entropy, joules per kilogram Kelvin.
-    '''
-
-    JPerm2 = 'JPerm2'
-    '''
-    Insulation energy density, joules per square metre or watt second per
-    square metre.
-    '''
-
-    JPerm3 = 'JPerm3'
-    '''
-    Energy density, joules per cubic metre.
-    '''
-
-    JPermol = 'JPermol'
-    '''
-    Molar energy, joules per mole.
-    '''
-
-    JPermolK = 'JPermolK'
-    '''
-    Molar entropy, molar heat capacity, joules per mole kelvin.
-    '''
-
-    JPers = 'JPers'
-    '''
-    Energy rate in joules per second (J/s).
-    '''
-
-    K = 'K'
-    '''
-    Temperature in kelvins.
-    '''
-
-    KPers = 'KPers'
-    '''
-    Temperature change rate in kelvins per second.
-    '''
-
-    M = 'M'
-    '''
-    Length, nautical miles (1 M = 1852 m).
-    '''
-
-    Mx = 'Mx'
-    '''
-    Magnetic flux, maxwells (1 Mx = 10-8 Wb).
-    '''
-
-    N = 'N'
-    '''
-    Force in newtons (kg·m/s²).
-    '''
-
-    NPerm = 'NPerm'
-    '''
-    Surface tension, newton per metre.
-    '''
-
-    Nm = 'Nm'
-    '''
-    Moment of force, newton metres.
-    '''
-
-    Oe = 'Oe'
-    '''
-    Magnetic field in oersteds, (1 Oe = (103/4p) A/m).
-    '''
-
-    Pa = 'Pa'
-    '''
-    Pressure in pascals (N/m²). Note: the absolute or relative measurement
-    of pressure is implied with this entry. See below for more explicit
-    forms.
-    '''
-
-    PaPers = 'PaPers'
-    '''
-    Pressure change rate in pascals per second.
-    '''
-
-    Pas = 'Pas'
-    '''
-    Dynamic viscosity, pascal seconds.
-    '''
-
-    Q = 'Q'
-    '''
-    Quantity power, Q.
-    '''
-
-    Qh = 'Qh'
-    '''
-    Quantity energy, Qh.
-    '''
-
-    S = 'S'
-    '''
-    Conductance in siemens.
-    '''
-
-    SPerm = 'SPerm'
-    '''
-    Conductance per length (F/m).
-    '''
-
-    Sv = 'Sv'
-    '''
-    Dose equivalent in sieverts (J/kg).
-    '''
-
-    T = 'T'
-    '''
-    Magnetic flux density in teslas (Wb/m2).
-    '''
-
-    V = 'V'
-    '''
-    Electric potential in volts (W/A).
-    '''
-
-    V2 = 'V2'
-    '''
-    Volt squared (W²/A²).
-    '''
-
-    V2h = 'V2h'
-    '''
-    Volt-squared hour, volt-squared-hours.
-    '''
-
-    VA = 'VA'
-    '''
-    Apparent power in volt amperes. See also real power and reactive power.
-    '''
-
-    VAh = 'VAh'
-    '''
-    Apparent energy in volt ampere hours.
-    '''
-
-    VAr = 'VAr'
-    '''
-    Reactive power in volt amperes reactive. The “reactive” or “imaginary”
-    component of electrical power (VIsin(phi)). (See also real power and
-    apparent power).
-    Note: Different meter designs use different methods to arrive at their
-    results. Some meters may compute reactive power as an arithmetic value,
-    while others compute the value vectorially. The data consumer should
-    determine the method in use and the suitability of the measurement
-    for the intended purpose.
-    '''
-
-    VArh = 'VArh'
-    '''
-    Reactive energy in volt ampere reactive hours.
-    '''
-
-    VPerHz = 'VPerHz'
-    '''
-    Magnetic flux in volt per hertz.
-    '''
-
-    VPerV = 'VPerV'
-    '''
-    Voltage, ratio of voltages. Note: Users may need to supply a prefix
-    such as ‘m’ to show rates such as ‘mV/V’.
-    '''
-
-    VPerVA = 'VPerVA'
-    '''
-    Power factor, PF, the ratio of the active power to the apparent power.
-    Note: The sign convention used for power factor will differ between
-    IEC meters and EEI (ANSI) meters. It is assumed that the data consumers
-    understand the type of meter being used and agree on the sign convention
-    in use at any given utility.
-    '''
-
-    VPerVAr = 'VPerVAr'
-    '''
-    Power factor, PF, the ratio of the active power to the apparent power.
-    Note: The sign convention used for power factor will differ between
-    IEC meters and EEI (ANSI) meters. It is assumed that the data consumers
-    understand the type of meter being used and agree on the sign convention
-    in use at any given utility.
-    '''
-
-    VPerm = 'VPerm'
-    '''
-    Electric field strength, volts per metre.
-    '''
-
-    Vh = 'Vh'
-    '''
-    Volt-hour, Volt hours.
-    '''
-
-    Vs = 'Vs'
-    '''
-    Volt seconds (Ws/A).
-    '''
-
-    W = 'W'
-    '''
-    Real power in watts (J/s). Electrical power may have real and reactive
-    components. The real portion of electrical power (I&#178;R or VIcos(phi)),
-    is expressed in Watts. See also apparent power and reactive power.
-    '''
-
-    WPerA = 'WPerA'
-    '''
-    Active power per current flow, watts per Ampere.
-    '''
-
-    WPerW = 'WPerW'
-    '''
-    Signal Strength, ratio of power. Note: Users may need to supply a prefix
-    such as ‘m’ to show rates such as ‘mW/W’.
-    '''
-
-    WPerm2 = 'WPerm2'
-    '''
-    Heat flux density, irradiance, watts per square metre.
-    '''
-
-    WPerm2sr = 'WPerm2sr'
-    '''
-    Radiance, watts per square metre steradian.
-    '''
-
-    WPermK = 'WPermK'
-    '''
-    Thermal conductivity in watt/metres kelvin.
-    '''
-
-    WPers = 'WPers'
-    '''
-    Ramp rate in watts per second.
-    '''
-
-    WPersr = 'WPersr'
-    '''
-    Radiant intensity, watts per steradian.
-    '''
-
-    Wb = 'Wb'
-    '''
-    Magnetic flux in webers (V·s).
-    '''
-
-    Wh = 'Wh'
-    '''
-    Real energy in watt hours.
-    '''
-
-    anglemin = 'anglemin'
-    '''
-    Plane angle, minutes.
-    '''
-
-    anglesec = 'anglesec'
-    '''
-    Plane angle, seconds.
-    '''
-
-    bar = 'bar'
-    '''
-    Pressure in bars, (1 bar = 100 kPa).
-    '''
-
-    cd = 'cd'
-    '''
-    Luminous intensity in candelas.
-    '''
-
-    charPers = 'charPers'
-    '''
-    Data rate (baud) in characters per second.
-    '''
-
-    character = 'character'
-    '''
-    Number of characters.
-    '''
-
-    cosPhi = 'cosPhi'
-    '''
-    Power factor, dimensionless.
-    Note 1: This definition of power factor only holds for balanced systems.
-    See the alternative definition under code 153.
-    Note 2 : Beware of differing sign conventions in use between the IEC
-    and EEI. It is assumed that the data consumer understands the type
-    of meter in use and the sign convention in use by the utility.
-    '''
-
-    count = 'count'
-    '''
-    Amount of substance, Counter value.
-    '''
-
-    d = 'd'
-    '''
-    Time in days, day = 24 h = 86400 s.
-    '''
-
-    dB = 'dB'
-    '''
-    Sound pressure level in decibels. Note: multiplier “d” is included
-    in this unit symbol for compatibility with IEC 61850-7-3.
-    '''
-
-    dBm = 'dBm'
-    '''
-    Power level (logarithmic ratio of signal strength , Bel-mW), normalized
-    to 1mW. Note: multiplier “d” is included in this unit symbol for compatibility
-    with IEC 61850-7-3.
-    '''
-
-    deg = 'deg'
-    '''
-    Plane angle in degrees.
-    '''
-
-    degC = 'degC'
-    '''
-    Relative temperature in degrees Celsius.
-    In the SI unit system the symbol is °C. Electric charge is measured
-    in coulomb that has the unit symbol C. To distinguish degree Celsius
-    from coulomb the symbol used in the UML is degC. The reason for not
-    using °C is that the special character ° is difficult to manage in
-    software.
-    '''
-
-    ft3 = 'ft3'
-    '''
-    Volume, cubic feet.
-    '''
-
-    gPerg = 'gPerg'
-    '''
-    Concentration, The ratio of the mass of a solute divided by the mass
-    of the solution. Note: Users may need use a prefix such a ‘µ’ to express
-    a quantity such as ‘µg/g’.
-    '''
-
-    gal = 'gal'
-    '''
-    Volume in gallons, US gallon (1 gal = 231 in3 = 128 fl ounce).
-    '''
-
-    h = 'h'
-    '''
-    Time in hours, hour = 60 min = 3600 s.
-    '''
-
-    ha = 'ha'
-    '''
-    Area, hectares.
-    '''
-
-    kat = 'kat'
-    '''
-    Catalytic activity, katal = mol / s.
-    '''
-
-    katPerm3 = 'katPerm3'
-    '''
-    Catalytic activity concentration, katals per cubic metre.
-    '''
-
-    kg = 'kg'
-    '''
-    Mass in kilograms. Note: multiplier “k” is included in this unit symbol
-    for compatibility with IEC 61850-7-3.
-    '''
-
-    kgPerJ = 'kgPerJ'
-    '''
-    Weight per energy in kilograms per joule (kg/J). Note: multiplier “k”
-    is included in this unit symbol for compatibility with IEC 61850-7-3.
-    '''
-
-    kgPerm3 = 'kgPerm3'
-    '''
-    Density in kilogram/cubic metres (kg/m³). Note: multiplier “k” is included
-    in this unit symbol for compatibility with IEC 61850-7-3.
-    '''
-
-    kgm = 'kgm'
-    '''
-    Moment of mass in kilogram metres (kg·m) (first moment of mass). Note:
-    multiplier “k” is included in this unit symbol for compatibility with
-    IEC 61850-7-3.
-    '''
-
-    kgm2 = 'kgm2'
-    '''
-    Moment of mass in kilogram square metres (kg·m²) (Second moment of
-    mass, commonly called the moment of inertia). Note: multiplier “k”
-    is included in this unit symbol for compatibility with IEC 61850-7-3.
-    '''
-
-    kn = 'kn'
-    '''
-    Speed, knots (1 kn = 1852/3600) m/s.
-    '''
-
-    l = 'l'
-    '''
-    Volume in litres, litre = dm3 = m3/1000.
-    '''
-
-    lPerh = 'lPerh'
-    '''
-    Volumetric flow rate, litres per hour.
-    '''
-
-    lPerl = 'lPerl'
-    '''
-    Concentration, The ratio of the volume of a solute divided by the volume
-    of the solution. Note: Users may need use a prefix such a ‘µ’ to express
-    a quantity such as ‘µL/L’.
-    '''
-
-    lPers = 'lPers'
-    '''
-    Volumetric flow rate in litres per second.
-    '''
-
-    lm = 'lm'
-    '''
-    Luminous flux in lumens (cd·sr).
-    '''
-
-    lx = 'lx'
-    '''
-    Illuminance in lux (lm/m²).
-    '''
-
-    m = 'm'
-    '''
-    Length in metres.
-    '''
-
-    m2 = 'm2'
-    '''
-    Area in square metres (m²).
-    '''
-
-    m2Pers = 'm2Pers'
-    '''
-    Viscosity in square metres / second (m²/s).
-    '''
-
-    m3 = 'm3'
-    '''
-    Volume in cubic metres (m³).
-    '''
-
-    m3Compensated = 'm3Compensated'
-    '''
-    Volume, cubic metres, with the value compensated for weather effects.
-    '''
-
-    m3Perh = 'm3Perh'
-    '''
-    Volumetric flow rate, cubic metres per hour.
-    '''
-
-    m3Perkg = 'm3Perkg'
-    '''
-    Specific volume, cubic metres per kilogram, v.
-    '''
-
-    m3Pers = 'm3Pers'
-    '''
-    Volumetric flow rate in cubic metres per second (m³/s).
-    '''
-
-    m3Uncompensated = 'm3Uncompensated'
-    '''
-    Volume, cubic metres, with the value uncompensated for weather effects.
-    '''
-
-    mPerm3 = 'mPerm3'
-    '''
-    Fuel efficiency in metres per cubic metres (m/m³).
-    '''
-
-    mPers = 'mPers'
-    '''
-    Velocity in metres per second (m/s).
-    '''
-
-    mPers2 = 'mPers2'
-    '''
-    Acceleration in metres per second squared (m/s²).
-    '''
-
-    min = 'min'
-    '''
-    Time in minutes, minute = 60 s.
-    '''
-
-    mmHg = 'mmHg'
-    '''
-    Pressure, millimetres of mercury (1 mmHg is approximately 133.3 Pa).
-    '''
-
-    mol = 'mol'
-    '''
-    Amount of substance in moles.
-    '''
-
-    molPerkg = 'molPerkg'
-    '''
-    Concentration, Molality, the amount of solute in moles and the amount
-    of solvent in kilograms.
-    '''
-
-    molPerm3 = 'molPerm3'
-    '''
-    Concentration, The amount of substance concentration, (c), the amount
-    of solvent in moles divided by the volume of solution in m³.
-    '''
-
-    molPermol = 'molPermol'
-    '''
-    Concentration, Molar fraction, the ratio of the molar amount of a solute
-    divided by the molar amount of the solution.
-    '''
-
-    none = 'none'
-    '''
-    Dimension less quantity, e.g. count, per unit, etc.
-    '''
-
-    ohm = 'ohm'
-    '''
-    Electric resistance in ohms (V/A).
-    '''
-
-    ohmPerm = 'ohmPerm'
-    '''
-    Electric resistance per length in ohms per metre ((V/A)/m).
-    '''
-
-    ohmm = 'ohmm'
-    '''
-    Resistivity, ohm metres, (rho).
-    '''
-
-    onePerHz = 'onePerHz'
-    '''
-    Reciprocal of frequency (1/Hz).
-    '''
-
-    onePerm = 'onePerm'
-    '''
-    Wavenumber, reciprocal metres, (1/m).
-    '''
-
-    ppm = 'ppm'
-    '''
-    Concentration in parts per million.
-    '''
-
-    rad = 'rad'
-    '''
-    Plane angle in radians (m/m).
-    '''
-
-    radPers = 'radPers'
-    '''
-    Angular velocity in radians per second (rad/s).
-    '''
-
-    radPers2 = 'radPers2'
-    '''
-    Angular acceleration, radians per second squared.
-    '''
-
-    rev = 'rev'
-    '''
-    Amount of rotation, revolutions.
-    '''
-
-    rotPers = 'rotPers'
-    '''
-    Rotations per second (1/s). See also Hz (1/s).
-    '''
-
-    s = 's'
-    '''
-    Time in seconds.
-    '''
-
-    sPers = 'sPers'
-    '''
-    Time, Ratio of time. Note: Users may need to supply a prefix such as
-    ‘&#181;’ to show rates such as ‘&#181;s/s’.
-    '''
-
-    sr = 'sr'
-    '''
-    Solid angle in steradians (m2/m2).
-    '''
-
-    therm = 'therm'
-    '''
-    Energy, therms.
-    '''
-
-    tonne = 'tonne'
-    '''
-    Mass in tons, “tonne” or “metric ton” (1000 kg = 1 Mg).
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://iec.ch/TC57/CIM100#'
-    @property
-    def __package__(self):
-        return 'Domain'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-
-    g = 'g'
-    '''
-    '''
-
+    
 @stereotype(CIMStereotype.enumeration)
 class Validity(Enum):
     '''
@@ -19088,7 +18125,7 @@ class Validity(Enum):
     The value is marked good if no abnormal condition of the acquisition
     function or the information source is detected.
     '''
-
+    
     INVALID = 'INVALID'
     '''
     The value is marked invalid when a supervision function recognises
@@ -19097,7 +18134,7 @@ class Validity(Enum):
     defined under this condition. The mark invalid is used to indicate
     to the client that the value may be incorrect and shall not be used.
     '''
-
+    
     QUESTIONABLE = 'QUESTIONABLE'
     '''
     The value is marked questionable if a supervision function detects
@@ -19105,7 +18142,7 @@ class Validity(Enum):
     client is responsible for determining whether or not values marked
     "questionable" should be used.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19118,7 +18155,7 @@ class Validity(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ValueAliasSet(IdentifiedObject):
@@ -19146,7 +18183,7 @@ class ValueAliasSet(IdentifiedObject):
     '''
     The Commands using the set for translation.
     '''
-
+    
     Discretes: list[Discrete] = field(
         default_factory=list,
         metadata={
@@ -19161,7 +18198,7 @@ class ValueAliasSet(IdentifiedObject):
     '''
     The Measurements using the set for translation.
     '''
-
+    
     RaiseLowerCommands: list[RaiseLowerCommand] = field(
         default_factory=list,
         metadata={
@@ -19176,7 +18213,7 @@ class ValueAliasSet(IdentifiedObject):
     '''
     The Commands using the set for translation.
     '''
-
+    
     Values: list[ValueToAlias] = field(
         default_factory=list,
         metadata={
@@ -19191,7 +18228,7 @@ class ValueAliasSet(IdentifiedObject):
     '''
     The ValueToAlias mappings included in the set.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19204,7 +18241,7 @@ class ValueAliasSet(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ValueToAlias(IdentifiedObject):
@@ -19226,7 +18263,7 @@ class ValueToAlias(IdentifiedObject):
     '''
     The value that is mapped.
     '''
-
+    
     ValueAliasSet: Optional[ValueAliasSet] = field(
         default=None,
         metadata={
@@ -19241,7 +18278,7 @@ class ValueToAlias(IdentifiedObject):
     '''
     The ValueAliasSet having the ValueToAlias mappings.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19254,7 +18291,7 @@ class ValueToAlias(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class VisibilityLayer(IdentifiedObject):
@@ -19284,7 +18321,7 @@ class VisibilityLayer(IdentifiedObject):
     The drawing order for this layer. The higher the number, the later
     the layer and the objects within it are rendered.
     '''
-
+    
     VisibleObjects: list[DiagramObject] = field(
         default_factory=list,
         metadata={
@@ -19299,7 +18336,7 @@ class VisibilityLayer(IdentifiedObject):
     '''
     A visibility layer can contain one or more diagram objects.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19312,20 +18349,20 @@ class VisibilityLayer(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Voltage(CIMUnit):
     '''
     Electrical voltage, can be both AC and DC.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.V
-    def __init__(self, value, input_unit: str='V', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='V', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -19339,7 +18376,7 @@ class Voltage(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
-
+    
 
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -19351,7 +18388,7 @@ class VoltageLevel(EquipmentContainer):
     these.
     '''
 
-    highVoltageLimit: Optional[ float | Voltage ] = field(
+    highVoltageLimit: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19368,8 +18405,8 @@ class VoltageLevel(EquipmentContainer):
     It is preferable to use operational VoltageLimit, which prevails, if
     present.
     '''
-
-    lowVoltageLimit: Optional[ float | Voltage ] = field(
+    
+    lowVoltageLimit: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19386,37 +18423,7 @@ class VoltageLevel(EquipmentContainer):
     It is preferable to use operational VoltageLimit, which prevails, if
     present.
     '''
-
-    BaseVoltage: Optional[BaseVoltage] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'BaseVoltage.VoltageLevel',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The base voltage used for all equipment within the voltage level.
-    '''
-
-    Substation: Optional[Substation] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['OfAggregate', 'ByReference'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Substation.VoltageLevels',
-        'namespace': 'http://iec.ch/TC57/CIM100#',
-        'serialize': True,
-        })
-    '''
-    The substation of the voltage level.
-    '''
-
+    
     Bays: list[Bay] = field(
         default_factory=list,
         metadata={
@@ -19431,7 +18438,37 @@ class VoltageLevel(EquipmentContainer):
     '''
     The bays within this voltage level.
     '''
-
+    
+    BaseVoltage: Optional[BaseVoltage] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'BaseVoltage.VoltageLevel',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The base voltage used for all equipment within the voltage level.
+    '''
+    
+    Substation: Optional[Substation] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate', 'ByReference'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Substation.VoltageLevels',
+        'namespace': 'http://iec.ch/TC57/CIM100#',
+        'serialize': True,
+        })
+    '''
+    The substation of the voltage level.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19444,7 +18481,7 @@ class VoltageLevel(EquipmentContainer):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -19455,7 +18492,7 @@ class VoltageLimit(OperationalLimit):
     at VoltageLevel. The operational VoltageLimits are used, if present.
     '''
 
-    normalValue: Optional[ float | Voltage ] = field(
+    normalValue: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19470,7 +18507,7 @@ class VoltageLimit(OperationalLimit):
     depends upon the properties of the operational limit type. The attribute
     shall be a positive value or zero.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19483,8 +18520,8 @@ class VoltageLimit(OperationalLimit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
-    value: Optional[ float | Voltage ] = field(
+    
+    value: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19499,20 +18536,20 @@ class VoltageLimit(OperationalLimit):
     the properties of the operational limit type. The attribute shall be
     a positive value or zero.
     '''
-
+    
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VoltagePerReactivePower(CIMUnit):
     '''
     Voltage variation with reactive power.
     '''
 
-    value: float = field(default=None)
+    value: float = field()
     multiplier: UnitMultiplier = field(default=UnitMultiplier.none)
     @property # read-only
     def unit(self):
         return UnitSymbol.VPerVAr
-    def __init__(self, value, input_unit: str='VPerVAr', input_multiplier: str=None):
+    def __init__(self, value, input_unit: str='VPerVAr', input_multiplier: Optional[str]=None):
         self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)
     @property
     def __namespace__(self):
@@ -19526,8 +18563,9 @@ class VoltagePerReactivePower(CIMUnit):
     @property
     def __maxOccurs__(self):
         return '1'
+    
 
-@stereotype(CIMStereotype.ShadowExtension)
+
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class VsCapabilityCurve(Curve):
@@ -19550,7 +18588,7 @@ class VsCapabilityCurve(Curve):
     '''
     All converters with this capability curve.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19563,7 +18601,7 @@ class VsCapabilityCurve(Curve):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -19587,12 +18625,12 @@ class VsConverter(ACDCConverter):
     (Ud). A factor typically less than 1. It is converter’s configuration
     data used in power flow.
     '''
-
+    
     CapabilityCurve: Optional[VsCapabilityCurve] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension', 'ByReference'],
+        'stereotypes': ['ByReference'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'VsCapabilityCurve.VsConverterDCSides',
@@ -19602,7 +18640,7 @@ class VsConverter(ACDCConverter):
     '''
     Capability curve of this converter.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19615,7 +18653,7 @@ class VsConverter(ACDCConverter):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
     targetPowerFactorPcc: Optional[float] = field(
         default=None,
         metadata={
@@ -19630,7 +18668,7 @@ class VsConverter(ACDCConverter):
     Power factor target at the AC side, at point of common coupling. The
     attribute shall be a positive value.
     '''
-
+    
     targetPWMfactor: Optional[float] = field(
         default=None,
         metadata={
@@ -19645,8 +18683,8 @@ class VsConverter(ACDCConverter):
     Magnitude of pulse-modulation factor. The attribute shall be a positive
     value.
     '''
-
-    droop: Optional[ float | PU ] = field(
+    
+    droop: Optional[ PU ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19660,8 +18698,8 @@ class VsConverter(ACDCConverter):
     Droop constant. The pu value is obtained as D [kV/MW] x Sb / Ubdc.
     The attribute shall be a positive value.
     '''
-
-    droopCompensation: Optional[ float | Resistance ] = field(
+    
+    droopCompensation: Optional[ Resistance ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19675,7 +18713,7 @@ class VsConverter(ACDCConverter):
     Compensation constant. Used to compensate for voltage drop when controlling
     voltage at a distant bus. The attribute shall be a positive value.
     '''
-
+    
     pPccControl: Optional[ VsPpccControlKind ] = field(
         default=None,
         metadata={
@@ -19689,7 +18727,7 @@ class VsConverter(ACDCConverter):
     '''
     Kind of control of real power and/or DC voltage.
     '''
-
+    
     qPccControl: Optional[ VsQpccControlKind ] = field(
         default=None,
         metadata={
@@ -19703,8 +18741,8 @@ class VsConverter(ACDCConverter):
     '''
     Kind of reactive power control.
     '''
-
-    qShare: Optional[ float | PerCent ] = field(
+    
+    qShare: Optional[ PerCent ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19718,8 +18756,8 @@ class VsConverter(ACDCConverter):
     Reactive power sharing factor among parallel converters on Uac control.
     The attribute shall be a positive value or zero.
     '''
-
-    targetPhasePcc: Optional[ float | AngleDegrees ] = field(
+    
+    targetPhasePcc: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19733,8 +18771,8 @@ class VsConverter(ACDCConverter):
     Phase target at AC side, at point of common coupling. The attribute
     shall be a positive value.
     '''
-
-    targetQpcc: Optional[ float | ReactivePower ] = field(
+    
+    targetQpcc: Optional[ ReactivePower ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19749,8 +18787,8 @@ class VsConverter(ACDCConverter):
     Load sign convention is used, i.e. positive sign means flow out from
     a node.
     '''
-
-    targetUpcc: Optional[ float | Voltage ] = field(
+    
+    targetUpcc: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19764,8 +18802,8 @@ class VsConverter(ACDCConverter):
     Voltage target in AC grid, at point of common coupling. The attribute
     shall be a positive value.
     '''
-
-    delta: Optional[ float | AngleDegrees ] = field(
+    
+    delta: Optional[ AngleDegrees ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19780,8 +18818,8 @@ class VsConverter(ACDCConverter):
     state variable used in power flow. The attribute shall be a positive
     value or zero.
     '''
-
-    uv: Optional[ float | Voltage ] = field(
+    
+    uv: Optional[ Voltage ] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -19796,7 +18834,7 @@ class VsConverter(ACDCConverter):
     It is converter’s state variable, result from power flow. The attribute
     shall be a positive value.
     '''
-
+    
 @stereotype(CIMStereotype.enumeration)
 class VsPpccControlKind(Enum):
     '''
@@ -19809,14 +18847,14 @@ class VsPpccControlKind(Enum):
     Control is real power at point of common coupling. The target value
     is provided by ACDCConverter.targetPpcc.
     '''
-
+    
     pPccAndUdcDroop = 'pPccAndUdcDroop'
     '''
     Control is active power at point of common coupling and local DC voltage,
     with the droop. Target values are provided by ACDCConverter.targetPpcc,
     ACDCConverter.targetUdc and VsConverter.droop.
     '''
-
+    
     pPccAndUdcDroopPilot = 'pPccAndUdcDroopPilot'
     '''
     Control is active power at point of common coupling and the pilot DC
@@ -19826,7 +18864,7 @@ class VsPpccControlKind(Enum):
     the control the DC voltage across the HVDC substations. Targets are
     provided by ACDCConverter.targetPpcc, ACDCConverter.targetUdc and VsConverter.droop.
     '''
-
+    
     pPccAndUdcDroopWithCompensation = 'pPccAndUdcDroopWithCompensation'
     '''
     Control is active power at point of common coupling and compensated
@@ -19835,18 +18873,18 @@ class VsPpccControlKind(Enum):
     node in the DC network. Targets are provided by ACDCConverter.targetPpcc,
     ACDCConverter.targetUdc, VsConverter.droop and VsConverter.droopCompensation.
     '''
-
+    
     phasePcc = 'phasePcc'
     '''
     Control is phase at point of common coupling. Target is provided by
     VsConverter.targetPhasePcc.
     '''
-
+    
     udc = 'udc'
     '''
     Control is DC voltage with target value provided by ACDCConverter.targetUdc.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19859,7 +18897,7 @@ class VsPpccControlKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class VsQpccControlKind(Enum):
     '''
@@ -19872,25 +18910,25 @@ class VsQpccControlKind(Enum):
     Control is power factor at point of common coupling. Target is provided
     by VsConverter.targetPowerFactorPcc.
     '''
-
+    
     pulseWidthModulation = 'pulseWidthModulation'
     '''
     No explicit control. Pulse-modulation factor is directly set in magnitude
     (VsConverter.targetPWMfactor) and phase (VsConverter.targetPhasePcc).
     '''
-
+    
     reactivePcc = 'reactivePcc'
     '''
     Control is reactive power at point of common coupling. Target is provided
     by VsConverter.targetQpcc.
     '''
-
+    
     voltagePcc = 'voltagePcc'
     '''
     Control is voltage at point of common coupling. Target is provided
     by VsConverter.targetUpcc.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19903,7 +18941,7 @@ class VsQpccControlKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class WaveTrap(AuxiliaryEquipment):
@@ -19924,7 +18962,7 @@ class WaveTrap(AuxiliaryEquipment):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class WindGenUnitKind(Enum):
     '''
@@ -19935,12 +18973,12 @@ class WindGenUnitKind(Enum):
     '''
     The wind generating unit is located offshore.
     '''
-
+    
     onshore = 'onshore'
     '''
     The wind generating unit is located onshore.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -19953,7 +18991,7 @@ class WindGenUnitKind(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
@@ -19976,7 +19014,7 @@ class WindGeneratingUnit(GeneratingUnit):
     '''
     The kind of wind generating unit.
     '''
-
+    
     WindPowerPlant: Optional[WindPowerPlant] = field(
         default=None,
         metadata={
@@ -19991,7 +19029,7 @@ class WindGeneratingUnit(GeneratingUnit):
     '''
     A wind power plant may have wind generating units.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -20004,7 +19042,7 @@ class WindGeneratingUnit(GeneratingUnit):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.European)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -20027,7 +19065,7 @@ class WindPowerPlant(PowerSystemResource):
     '''
     A wind generating unit or units may be a member of a wind power plant.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100-European#'
@@ -20040,7 +19078,7 @@ class WindPowerPlant(PowerSystemResource):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.enumeration)
 class WindingConnection(Enum):
     '''
@@ -20051,37 +19089,37 @@ class WindingConnection(Enum):
     '''
     Autotransformer common winding.
     '''
-
+    
     D = 'D'
     '''
     Delta.
     '''
-
+    
     I = 'I'
     '''
     Independent winding, for single-phase connections.
     '''
-
+    
     Y = 'Y'
     '''
     Wye.
     '''
-
+    
     Yn = 'Yn'
     '''
     Wye, with neutral brought out for grounding.
     '''
-
+    
     Z = 'Z'
     '''
     ZigZag.
     '''
-
+    
     Zn = 'Zn'
     '''
     ZigZag, with neutral brought out for grounding.
     '''
-
+    
     @property
     def __namespace__(self):
         return 'http://iec.ch/TC57/CIM100#'
@@ -20094,7 +19132,7 @@ class WindingConnection(Enum):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @dataclass(repr=False, eq=False)
 class WorkLocation(Location):
     '''
@@ -20113,7 +19151,7 @@ class WorkLocation(Location):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
-
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ServiceLocation(WorkLocation):
@@ -20133,3 +19171,4 @@ class ServiceLocation(WorkLocation):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
