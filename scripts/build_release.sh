@@ -56,7 +56,7 @@ done < <(tail -n +2 <<< "$plan")
 
 while read -r cim_version package module stem; do
     scripts/import_cimtool_output.sh "$cim_version" "$source_dir/$stem.cimantic-graphs.py" \
-        "$source_dir/$stem.__init__.py" "$package" "$module" | head -1
+        "$source_dir/$stem.__init__.py" "$package" "$module" | sed -n 1p  # sed reads to the end; head would SIGPIPE the import
 done < <(tail -n +2 <<< "$plan")
 
 uv run python -m cimprofiles.dedupe_profile_fields --log dedupe_profile_fields.log
