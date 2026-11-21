@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import numbers
 from dataclasses import dataclass, field
 from enum import Enum
 from functools import cache
@@ -27,6 +28,15 @@ _pint_log.setLevel(_prev_level)
 
 
 class CIMUnit():
+    """
+    Base class of the CIM unit datatypes (Voltage, ActivePower, ...), which store their
+    value as a pint quantity in the class's unit.
+
+    Two CIMUnits are equal when their quantities are (Voltage(4.16, 'kV') ==
+    Voltage(4160, 'V')). Comparing with a plain number raises TypeError, as < and +
+    do: convert first with .to(unit) or float(). CIMUnits are mutable, so unhashable.
+    Generated subclasses must use @dataclass(eq=False) to inherit this.
+    """
     value: Optional[float]|CIMUnit
     unit: UnitSymbol
     multiplier: UnitMultiplier
@@ -57,6 +67,17 @@ class CIMUnit():
 
     def __repr__(self):
         return str(self.quantity)
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, CIMUnit):
+            return self.quantity == other.quantity
+        if isinstance(other, numbers.Real):
+            raise TypeError(
+                f'Cannot compare {type(self).__name__} with the plain number {other!r}: '
+                f"convert it first with .to(unit) or float(), e.g. value.to('{self.quantity.units:~}') == {other!r}")
+        return NotImplemented
+
+    __hash__ = None
 
     def __float__(self):
         return float(self.quantity.magnitude)

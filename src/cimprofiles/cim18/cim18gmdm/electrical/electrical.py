@@ -3656,7 +3656,7 @@ class WindGenUnitKind(Enum):
         return 'unbounded'
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the in-phase component
@@ -3685,7 +3685,7 @@ class ActivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ApparentPower(CIMUnit):
     '''
     Product of the RMS value of the voltage and the RMS value of the current.
@@ -3713,7 +3713,7 @@ class ApparentPower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Conductance(CIMUnit):
     '''
     Factor by which voltage must be multiplied to give corresponding power
@@ -3742,7 +3742,7 @@ class Conductance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentFlow(CIMUnit):
     '''
     Electrical current with sign convention: positive flow is out of the conducting
@@ -3771,7 +3771,7 @@ class CurrentFlow(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Length(CIMUnit):
     '''
     Unit of length. It shall be a positive value or zero.
@@ -3799,7 +3799,7 @@ class Length(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PerCent(CIMUnit):
     '''
     Percentage on a defined base. For example, specify as 100 to indicate at
@@ -3828,7 +3828,7 @@ class PerCent(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Reactance(CIMUnit):
     '''
     Reactance (imaginary part of impedance), at rated frequency.
@@ -3856,7 +3856,7 @@ class Reactance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ReactancePerLength(CIMUnit):
     '''
     Reactance (imaginary part of impedance) per unit of length, at rated frequency.
@@ -3884,7 +3884,7 @@ class ReactancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ReactivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the quadrature
@@ -3913,7 +3913,7 @@ class ReactivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RealEnergy(CIMUnit):
     '''
     Real electrical energy.
@@ -3941,7 +3941,7 @@ class RealEnergy(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Resistance(CIMUnit):
     '''
     Resistance (real part of impedance).
@@ -3969,7 +3969,7 @@ class Resistance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ResistancePerLength(CIMUnit):
     '''
     Resistance (real part of impedance) per unit of length.
@@ -3997,7 +3997,7 @@ class ResistancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Seconds(CIMUnit):
     '''
     Time, in seconds.
@@ -4025,7 +4025,7 @@ class Seconds(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Susceptance(CIMUnit):
     '''
     Imaginary part of admittance.
@@ -4053,7 +4053,7 @@ class Susceptance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SusceptancePerLength(CIMUnit):
     '''
     Imaginary part of admittance per unit of length.
@@ -4081,7 +4081,7 @@ class SusceptancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Voltage(CIMUnit):
     '''
     Electrical voltage, can be both AC and DC.

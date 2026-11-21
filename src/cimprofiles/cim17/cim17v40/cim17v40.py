@@ -172081,7 +172081,7 @@ class runTypeCAISO(Enum):
         return 'unbounded'
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the in-phase component
@@ -172110,7 +172110,7 @@ class ActivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePowerChangeRate(CIMUnit):
     '''
     Rate of change of active power per time.
@@ -172138,7 +172138,7 @@ class ActivePowerChangeRate(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePowerPerCurrentFlow(CIMUnit):
     '''
     Active power variation with current flow.
@@ -172166,7 +172166,7 @@ class ActivePowerPerCurrentFlow(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ActivePowerPerFrequency(CIMUnit):
     '''
     Active power variation with frequency.
@@ -172194,7 +172194,7 @@ class ActivePowerPerFrequency(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AngleDegrees(CIMUnit):
     '''
     Measurement of angle in degrees.
@@ -172222,7 +172222,7 @@ class AngleDegrees(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AngleRadians(CIMUnit):
     '''
     Phase angle in radians.
@@ -172250,7 +172250,7 @@ class AngleRadians(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ApparentPower(CIMUnit):
     '''
     Product of the RMS value of the voltage and the RMS value of the current.
@@ -172278,7 +172278,7 @@ class ApparentPower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Area(CIMUnit):
     '''
     Area.
@@ -172306,7 +172306,7 @@ class Area(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Bearing(CIMUnit):
     '''
     The bearing in degrees (with 360 degrees being True North). Measured in
@@ -172336,7 +172336,7 @@ class Bearing(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Capacitance(CIMUnit):
     '''
     Capacitive part of reactance (imaginary part of impedance), at rated frequency.
@@ -172364,7 +172364,7 @@ class Capacitance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CapacitancePerLength(CIMUnit):
     '''
     Capacitance per unit of length.
@@ -172392,7 +172392,7 @@ class CapacitancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Classification(CIMUnit):
     '''
     Classification of level. Specify as 1..n, with 1 being the most detailed,
@@ -172421,7 +172421,7 @@ class Classification(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Conductance(CIMUnit):
     '''
     Factor by which voltage must be multiplied to give corresponding power
@@ -172450,7 +172450,7 @@ class Conductance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ConductancePerLength(CIMUnit):
     '''
     Real part of admittance per unit of length.
@@ -172478,7 +172478,7 @@ class ConductancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CostPerEnergyUnit(CIMUnit):
     '''
     Cost, in units of currency, per quantity of electrical energy generated.
@@ -172506,7 +172506,7 @@ class CostPerEnergyUnit(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CostPerHeatUnit(CIMUnit):
     '''
     Cost, in units of currency, per quantity of heat generated.
@@ -172534,7 +172534,7 @@ class CostPerHeatUnit(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CostPerVolume(CIMUnit):
     '''
     Cost per unit volume.
@@ -172562,7 +172562,7 @@ class CostPerVolume(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CostRate(CIMUnit):
     '''
     Cost, in units of currency, per elapsed time.
@@ -172590,7 +172590,7 @@ class CostRate(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentFlow(CIMUnit):
     '''
     Electrical current with sign convention: positive flow is out of the conducting
@@ -172619,7 +172619,7 @@ class CurrentFlow(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Displacement(CIMUnit):
     '''
     Unit of displacement relative to a reference position, hence can be negative.
@@ -172647,7 +172647,7 @@ class Displacement(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Emission(CIMUnit):
     '''
     Quantity of emission per fuel heat content.
@@ -172675,7 +172675,7 @@ class Emission(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Frequency(CIMUnit):
     '''
     Cycles per second.
@@ -172703,7 +172703,7 @@ class Frequency(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class HeatRate(CIMUnit):
     '''
     Heat generated, in energy per time unit of elapsed time.
@@ -172731,7 +172731,7 @@ class HeatRate(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Hours(CIMUnit):
     '''
     Time specified in hours.
@@ -172759,7 +172759,7 @@ class Hours(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Impedance(CIMUnit):
     '''
     Ratio of voltage to current.
@@ -172787,7 +172787,7 @@ class Impedance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Inductance(CIMUnit):
     '''
     Inductive part of reactance (imaginary part of impedance), at rated frequency.
@@ -172815,7 +172815,7 @@ class Inductance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class InductancePerLength(CIMUnit):
     '''
     Inductance per unit of length.
@@ -172843,7 +172843,7 @@ class InductancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class KiloActivePower(CIMUnit):
     '''
     Active power in kilowatts.
@@ -172871,7 +172871,7 @@ class KiloActivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Length(CIMUnit):
     '''
     Unit of length. It shall be a positive value or zero.
@@ -172899,7 +172899,7 @@ class Length(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class MagneticField(CIMUnit):
     '''
     Magnetic field in nanotesla.
@@ -172927,7 +172927,7 @@ class MagneticField(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Mass(CIMUnit):
     '''
     Mass.
@@ -172955,7 +172955,7 @@ class Mass(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Minutes(CIMUnit):
     '''
     Time in minutes.
@@ -172983,7 +172983,7 @@ class Minutes(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Money(CIMUnit):
     '''
     Amount of money.
@@ -173011,7 +173011,7 @@ class Money(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PU(CIMUnit):
     '''
     Per Unit - a positive or negative value referred to a defined base. Values
@@ -173040,7 +173040,7 @@ class PU(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ParticulateDensity(CIMUnit):
     '''
     Particulate density as kg/m<sup>3</sup>.
@@ -173068,7 +173068,7 @@ class ParticulateDensity(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PerCent(CIMUnit):
     '''
     Percentage on a defined base. For example, specify as 100 to indicate at
@@ -173097,7 +173097,7 @@ class PerCent(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Pressure(CIMUnit):
     '''
     Pressure in pascals.
@@ -173125,7 +173125,7 @@ class Pressure(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Reactance(CIMUnit):
     '''
     Reactance (imaginary part of impedance), at rated frequency.
@@ -173153,7 +173153,7 @@ class Reactance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ReactancePerLength(CIMUnit):
     '''
     Reactance (imaginary part of impedance) per unit of length, at rated frequency.
@@ -173181,7 +173181,7 @@ class ReactancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ReactivePower(CIMUnit):
     '''
     Product of RMS value of the voltage and the RMS value of the quadrature
@@ -173210,7 +173210,7 @@ class ReactivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RealEnergy(CIMUnit):
     '''
     Real electrical energy.
@@ -173238,7 +173238,7 @@ class RealEnergy(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Resistance(CIMUnit):
     '''
     Resistance (real part of impedance).
@@ -173266,7 +173266,7 @@ class Resistance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ResistancePerLength(CIMUnit):
     '''
     Resistance (real part of impedance) per unit of length.
@@ -173294,7 +173294,7 @@ class ResistancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class RotationSpeed(CIMUnit):
     '''
     Number of revolutions per second.
@@ -173322,7 +173322,7 @@ class RotationSpeed(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Seconds(CIMUnit):
     '''
     Time, in seconds.
@@ -173350,7 +173350,7 @@ class Seconds(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Speed(CIMUnit):
     '''
     Distance per unit of time.
@@ -173378,7 +173378,7 @@ class Speed(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Susceptance(CIMUnit):
     '''
     Imaginary part of admittance.
@@ -173406,7 +173406,7 @@ class Susceptance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class SusceptancePerLength(CIMUnit):
     '''
     Imaginary part of admittance per unit of length.
@@ -173434,7 +173434,7 @@ class SusceptancePerLength(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Temperature(CIMUnit):
     '''
     Value of temperature in degrees Celsius.
@@ -173462,7 +173462,7 @@ class Temperature(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Voltage(CIMUnit):
     '''
     Electrical voltage, can be both AC and DC.
@@ -173490,7 +173490,7 @@ class Voltage(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VoltagePerReactivePower(CIMUnit):
     '''
     Voltage variation with reactive power.
@@ -173518,7 +173518,7 @@ class VoltagePerReactivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Volume(CIMUnit):
     '''
     Volume.
@@ -173546,7 +173546,7 @@ class Volume(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class VolumeFlowRate(CIMUnit):
     '''
     Volume per time.
@@ -173574,7 +173574,7 @@ class VolumeFlowRate(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class WaterLevel(CIMUnit):
     '''
     Reservoir water level referred to a given datum such as mean sea level.

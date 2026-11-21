@@ -2765,7 +2765,7 @@ class WindingConnection(Enum):
         return 'unbounded'
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Voltage(CIMUnit):
     '''
     Electrical voltage, can be both AC and DC.

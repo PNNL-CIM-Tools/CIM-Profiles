@@ -744,7 +744,7 @@ class OrientationKind(Enum):
     '''
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class AngleDegrees(CIMUnit):
     '''
     Measurement of angle in degrees.
