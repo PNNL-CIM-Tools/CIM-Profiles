@@ -78,6 +78,51 @@ stored in LFS). Then import the project folder into a CIMTool workspace with *Fi
 Existing Projects into Workspace* (see
 [Exchange a project](https://cimtool.ucaiug.io/how-to/exchange-a-project/)).
 
+## Where the profiles come from
+
+![The CIM toolchain and its licenses: the UCAIug Apache 2.0 open-source artifacts, draft standards
+available to UCA members, the IEC copyrighted standards, and the PNNL-CIM-Tools BSD-3 Python
+libraries](https://raw.githubusercontent.com/PNNL-CIM-Tools/CIM-Profiles/refs/heads/develop/UCA-Licensing.png)
+
+The CIM starts as a UML information model. The UCAIug publishes the model and two tools that work
+with it, jCleanCIM and CIMTool, as open source under the Apache 2.0 license. CIMTool selects the
+classes and properties a profile needs from the model and saves them as an OWL profile, from
+which it generates RDFS and XSD schemas.
+
+The jCleanCIM output and the schemas go into the draft standards documents, which UCA members can
+read through the UCAIug liaison agreement. Once published, they become the IEC 61970, 61968, 62325
+and 62746 standards, which are copyrighted by the IEC.
+
+The PNNL-CIM-Tools Python libraries start from the OWL profiles alone, so they use only the
+Apache 2.0 artifacts and are released under the BSD 3-Clause license. This repository is the
+first step: its CIMTool workspaces hold the OWL profiles, and the cimantic-graphs builders in
+`CIMTool_plugin/` turn them into the `cimprofiles` package.
+[CIMantic Graphs](https://github.com/PNNL-CIM-Tools/CIM-Graph) (cim-graph) builds on the
+package, and two chains of libraries build on cim-graph:
+
+- CIM-Tables → CIM-Builder → CIMHub, which converts models for OpenDSS, GridLAB-D, ArcGIS and
+  other tools
+- CIM-Loader → CIM-Validator → CIM-Repair
+
+### CIM releases
+
+The CIM is a living standard, and the UML model is updated continuously between editions of
+the IEC standards.
+
+- **Major releases** are the CIM versions, for example CIM 16, 17 and 18. Each new version
+  becomes the basis for the next editions of the IEC standards.
+- **Minor releases** are numbered within a version. For example, CIM17v40 is the model behind
+  IEC 61970-301 Ed 7.1, and Grid18v16 is an interim release of the CIM 18 work in progress.
+
+The workspace folders here are named after the release they are built from (`cim17v40/`,
+`cim18v15/`). Each UCAIug task force publishes its releases on its own site. Every release
+there has its release notes and a change log of the UML changes since the previous release:
+
+| Grid | Enterprise | Market |
+|---|---|---|
+| IEC 61970 | IEC 61968 | IEC 62325 |
+| <https://utf13-releases.ucaiug.io/> | <https://utf14-releases.ucaiug.io/> | <https://utf16-releases.ucaiug.io/> |
+
 ## Repository layout
 
 | Path | Contents |
@@ -120,9 +165,13 @@ uuid = uuid5(namespace, f'{model_name}+{ClassName}+{mRID}+{name}+{seed}')
 ```
 
 - `model_authority` is a URI (`CIMG_MODEL_AUTHORITY`, default
-  `https://github.com/PNNL-CIM-Tools/CIM-Graph`), as in `md:Model.modelingAuthoritySet`. The
-  namespace is also the identifier of the `cim:ModelAuthority` object cim-graph writes in file
-  headers, so each authority's UUIDs live in its own namespace.
+  `https://github.com/PNNL-CIM-Tools/CIM-Graph`), as in `md:Model.modelingAuthoritySet`, so
+  each authority's UUIDs live in its own namespace. cim-graph writes the authority URI as
+  `md:Model.modelingAuthoritySet` in every file header, and its readers restore it from there.
+  In CIM XML the header is by default an `md:FullModel` followed by a `cim:ModelAuthority`
+  object whose identifier is this namespace (`write_xml`). JSON-LD files (`write_json_ld`), and
+  CIM XML written with `write_xml(header=...)`, have a `dcat:Dataset` header instead, with no
+  `cim:ModelAuthority` object.
 - `model_name` comes from `CIMG_MODEL_NAME` (default empty).
 - `mRID` is the object's mRID, or the non-UUID `rdf:ID`/`rdf:about` of an object read from a
   file. It is normalized so every serialization of one object agrees: surrounding whitespace, a
@@ -226,3 +275,17 @@ uv run pytest
 
 BSD 3-Clause. See [LICENSE](LICENSE). The vendored `CGMES-CIM16/` and `CGMES-CIM17/` workspaces
 keep the UCAIug Apache 2.0 license; see the `LICENSE` in each folder.
+
+
+## Attribution and Disclaimer
+
+This software was created under a project sponsored by the U.S. Department of Energy’s Office of Electricity, an agency of the United States Government.  Neither the United States Government nor the United States Department of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated in the development of these materials, makes any warranty, express or implied, or assumes any legal liability or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software, or process disclosed, or represents that its use would not infringe privately owned rights.
+
+Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed herein do not necessarily state or reflect those of the United States Government or any agency thereof.
+
+PACIFIC NORTHWEST NATIONAL LABORATORY
+operated by
+BATTELLE
+for the
+UNITED STATES DEPARTMENT OF ENERGY
+under Contract DE-AC05-76RL01830

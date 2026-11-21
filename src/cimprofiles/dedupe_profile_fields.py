@@ -20,6 +20,10 @@ otherwise the last definition, which is what Python already used at runtime.
 Run from the repo root:
     uv run python -m cimprofiles.dedupe_profile_fields
     uv run python -m cimprofiles.dedupe_profile_fields --check   # report only
+
+By default it scans the profiles in cimprofiles. Pass a profile directory or module
+file to de-duplicate a profile kept elsewhere, e.g. in your own package:
+    python -m cimprofiles.dedupe_profile_fields path/to/my_package/my_profile
 """
 from __future__ import annotations
 
@@ -112,28 +116,42 @@ def _describe(info: dict) -> str:
 def log_duplicates(path: Path, duplicates: list[dict]) -> None:
     for dup in duplicates:
         log = _log.warning if dup['kind'] == 'UML conflict' else _log.info
-        log(f"{dup['kind']}: {path.relative_to(PROFILE_ROOT)} {dup['class']}.{dup['field']}")
+        log(f"{dup['kind']}: {path} {dup['class']}.{dup['field']}")
         for info in dup['definitions']:
             marker = 'keep' if info is dup['keep'] else 'drop'
             log(f'    {marker} {_describe(info)}')
 
 
-def main() -> int:
+def profile_files(root: Path) -> list[Path]:
+    """The profile module root, or every module under the profile directory root."""
+    if root.is_file():
+        return [root]
+    if not root.is_dir():
+        raise FileNotFoundError(f'No profile module or directory at {root}')
+    return sorted(root.rglob('*.py'))
+
+
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description='Remove duplicate field definitions from CIM profiles.')
+    parser.add_argument('path', nargs='?', type=Path, default=PROFILE_ROOT,
+                        help='Profile directory or module file (default: the cimprofiles profiles).')
     parser.add_argument('--check', action='store_true', help='Report duplicates without editing files.')
     parser.add_argument('--log', default='dedupe_profile_fields.log', help='Log file path.')
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    files = profile_files(args.path)
+    # Paths are logged relative to the scanned directory
+    log_root = args.path if args.path.is_dir() else args.path.parent
 
     logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s',
                         handlers=[logging.FileHandler(args.log, mode='w'), logging.StreamHandler()])
 
     totals = {'exporter duplicate': 0, 'UML conflict': 0}
-    for path in sorted(PROFILE_ROOT.rglob('*.py')):
+    for path in files:
         source = path.read_text(encoding='utf-8')
         duplicates = find_duplicates(source)
         if not duplicates:
             continue
-        log_duplicates(path, duplicates)
+        log_duplicates(path.relative_to(log_root), duplicates)
         for dup in duplicates:
             totals[dup['kind']] += 1
         if not args.check:

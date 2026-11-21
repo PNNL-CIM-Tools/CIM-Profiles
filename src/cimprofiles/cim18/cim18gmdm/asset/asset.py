@@ -1203,7 +1203,7 @@ class WindingConnection(Enum):
         return 'unbounded'
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class ApparentPower(CIMUnit):
     '''
     Product of the RMS value of the voltage and the RMS value of the current.
@@ -1231,7 +1231,7 @@ class ApparentPower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class CurrentFlow(CIMUnit):
     '''
     Electrical current with sign convention: positive flow is out of the conducting
@@ -1260,7 +1260,7 @@ class CurrentFlow(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Impedance(CIMUnit):
     '''
     Ratio of voltage to current.
@@ -1288,7 +1288,7 @@ class Impedance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class KiloActivePower(CIMUnit):
     '''
     Active power in kilowatts.
@@ -1316,7 +1316,7 @@ class KiloActivePower(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class PerCent(CIMUnit):
     '''
     Percentage on a defined base. For example, specify as 100 to indicate at
@@ -1345,7 +1345,7 @@ class PerCent(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Resistance(CIMUnit):
     '''
     Resistance (real part of impedance).
@@ -1373,7 +1373,7 @@ class Resistance(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Temperature(CIMUnit):
     '''
     Value of temperature in degrees Celsius.
@@ -1401,7 +1401,7 @@ class Temperature(CIMUnit):
 
 
 @stereotype(CIMStereotype.CIMDatatype)
-@dataclass(repr=False)
+@dataclass(repr=False, eq=False)
 class Voltage(CIMUnit):
     '''
     Electrical voltage, can be both AC and DC.
