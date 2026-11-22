@@ -66,6 +66,246 @@
     },
     "version": "0.2.0"
   },
+  "cim18v17.asset": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.asset_deployment": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_deployment/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_deployment/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.asset_info": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.connectivity_unbalanced": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.construction": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.electrical_balanced": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_balanced/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_balanced/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.electrical_unbalanced": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_unbalanced/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_unbalanced/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.facts": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/facts/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/facts/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.function_block_control": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/function_block_control/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/function_block_control/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.hvdc": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.load_area": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/load_area/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/load_area/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.location": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/location/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/location/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.measurement": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/measurement/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/measurement/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.metadata": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.nc_schedule": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/nc_schedule/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/nc_schedule/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.operational_limit": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.protection": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/protection/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/protection/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.regulating_control": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/regulating_control/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/regulating_control/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.short_circuit": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/short_circuit/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/short_circuit/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.simulation_result": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.state_variable": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.steady_state_hypothesis": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/steady_state_hypothesis/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/steady_state_hypothesis/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.substation": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/substation/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/substation/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
+  "cim18v17.topology": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/topology/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/topology/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
   "cim18v17_distribution": {
     "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17_distribution/0.2.0/context.jsonld",
     "default": "si",

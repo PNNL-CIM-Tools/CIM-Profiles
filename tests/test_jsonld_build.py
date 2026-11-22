@@ -1,14 +1,14 @@
 import importlib
 import json
+from pathlib import Path
 
 import pytest
-import yaml
 
 import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
 from cimprofiles.jsonld import load_document, load_vocabulary_units, profile_jsonld
 from cimprofiles.jsonld.build import (build_context, build_profile, build_vocabulary, convention_units,
-                                      stable_version)
+                                      expand_parts, load_specs, part_profile, stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
                                         vocabulary_units)
 from cimprofiles.jsonld.documents import CACHE
@@ -102,13 +102,16 @@ def test_cgmes_default_units_are_transmission_units():
     assert units['EnergyConsumer.p'] == 'MW'
 
 
-@pytest.mark.parametrize('spec_file', sorted(p.name for p in CONVENTIONS.iterdir() if p.name.endswith('.yaml')))
-def test_cache_is_up_to_date(spec_file):
-    spec = yaml.safe_load(CONVENTIONS.joinpath(spec_file).read_text())
+SPECS = load_specs(sorted(Path(str(CONVENTIONS)).glob('*.yaml')))
+
+
+@pytest.mark.parametrize('spec', SPECS, ids=[spec['profile'] for spec in SPECS])
+def test_cache_is_up_to_date(spec):
     # The cached version, not the installed one: a profile keeps the release that last
     # changed its documents
     version = profile_jsonld(spec['profile']).get('version', stable_version())
-    documents, entry = build_profile(spec, version)
+    part_contexts = [profile_jsonld(part)['context'] for part in spec.get('parts', [])]
+    documents, entry = build_profile(spec, version, part_contexts=part_contexts)
     for path, document in documents.items():
         assert json.loads(CACHE.joinpath(path).read_text()) == document, \
             f'{path} is stale: run python -m cimprofiles.jsonld.build {spec["profile"]}'
@@ -124,6 +127,42 @@ def test_documents_are_versioned_in_their_url():
     assert context['@id'] == entry['context']
     assert context['owl:versionInfo'] == entry['version']
     assert all(iri.startswith(directory) for iris in entry['conventions'].values() for iri in iris)
+
+
+def test_parts_are_published_under_their_set():
+    entry = profile_jsonld('cim18v17.connectivity_unbalanced')
+    directory = f'https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/{entry["version"]}/'
+    assert entry['context'] == directory + 'context.jsonld'
+    assert list(entry['conventions']) == ['si']
+    assert 'cim:Terminal.ConnectivityNode' in load_document(entry['context'])['@context']
+
+
+def test_master_context_lists_its_parts_in_merge_order():
+    master = load_document(profile_jsonld('cim18v17')['context'])
+    parts = [item['@id'] for item in master['dct:hasPart']]
+    assert len(parts) == 24
+    assert parts[:2] == [profile_jsonld('cim18v17.substation')['context'],
+                         profile_jsonld('cim18v17.connectivity_unbalanced')['context']]
+    assert parts[-1] == profile_jsonld('cim18v17.metadata')['context']
+    assert 'dct:hasPart' not in load_document(profile_jsonld('cim18v17_distribution')['context'])
+
+
+def test_part_profile_names():
+    assert part_profile('cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced') \
+        == 'cim18v17.connectivity_unbalanced'
+    with pytest.raises(ValueError, match='not in a known profile package'):
+        part_profile('elsewhere.part.part')
+
+
+def test_shared_parts_are_built_once_and_first():
+    releases = [{'name': 'a', 'parts': ['cimprofiles.cim17.cimhub_2023.x.x', 'cimprofiles.cim17.cimhub_2023.y.y']},
+                {'name': 'b', 'parts': ['cimprofiles.cim17.cimhub_2023.y.y']}]
+    specs = expand_parts([{'profile': 'a', 'parts': True}, {'profile': 'b', 'parts': True},
+                          {'profile': 'c'}], releases)
+    assert [spec['profile'] for spec in specs] == ['cimhub_2023.x', 'cimhub_2023.y', 'a', 'b', 'c']
+    assert specs[3]['parts'] == ['cimhub_2023.y']
+    with pytest.raises(ValueError, match='not a release'):
+        expand_parts([{'profile': 'c', 'parts': True}], releases)
 
 
 @pytest.mark.parametrize('installed, stable', [('0.2.0', '0.2.0'), ('0.2.0a3', '0.2.0'), ('1.10.2rc1', '1.10.2')])

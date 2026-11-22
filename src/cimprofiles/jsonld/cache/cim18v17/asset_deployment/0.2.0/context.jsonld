@@ -1,0 +1,118 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACLineSegmentPhase.WireInfo": {
+      "@type": "@id"
+    },
+    "cim:Asset.critical": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Asset.baselineLossOfLife": {
+      "@type": "xsd:float"
+    },
+    "cim:Asset.inUseState": {
+      "@type": "@id"
+    },
+    "cim:Asset.kind": {
+      "@type": "@id"
+    },
+    "cim:Asset.lifecycleState": {
+      "@type": "@id"
+    },
+    "cim:Asset.purchasePrice": {
+      "@type": "xsd:float"
+    },
+    "cim:Asset.retiredReason": {
+      "@type": "@id"
+    },
+    "cim:Asset.AssetContainer": {
+      "@type": "@id"
+    },
+    "cim:Asset.AssetDeployment": {
+      "@type": "@id"
+    },
+    "cim:AssetContainer.Assets": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.likelihoodOfFailure": {
+      "@type": "xsd:integer"
+    },
+    "cim:AssetDeployment.deploymentState": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.Asset": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:AssetInfo.PowerSystemResources": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.NetworkAssetDeployment": {
+      "@type": "@id"
+    },
+    "cim:BreakerAssetDeployment.breakerApplication": {
+      "@type": "@id"
+    },
+    "cim:PowerSystemResource.AssetDatasheet": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerAssetDeployment.transformerApplication": {
+      "@type": "@id"
+    },
+    "gad:PowerTransformerAssetDeployment.TransformerBankAssembly": {
+      "@type": "@id"
+    },
+    "gad:TransformerBankConfiguration.AssetDeployments": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.WireSequence": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.ACLineSegmentPhase": {
+      "@type": "@id"
+    },
+    "gad:WireInfo.WireSequenceConfiguration": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.WireConfiguration": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.WireInfo": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_deployment/0.2.0/context.jsonld",
+  "owl:versionInfo": "0.2.0"
+}

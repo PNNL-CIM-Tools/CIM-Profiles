@@ -7,8 +7,7 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     AssemblyWideModel,
     Boundary,
     BoundaryModel,
-    Dataset,
-    Distribution,
+    DateTimeInterval,
     EdgeModel,
     EquivalentModel,
     Frame,
@@ -17,9 +16,10 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     GridAssembly,
     GridDataset,
     GridModel,
+    IdentifiedObject,
+    Location,
     MetaThing,
     NonAlignedModel,
-    PeriodOfTime,
     Reference,
     ReferenceModel
 )
@@ -28,8 +28,7 @@ __all__ = [
     'AssemblyWideModel' ,
     'Boundary' ,
     'BoundaryModel' ,
-    'Dataset' ,
-    'Distribution' ,
+    'DateTimeInterval' ,
     'EdgeModel' ,
     'EquivalentModel' ,
     'Frame' ,
@@ -38,9 +37,10 @@ __all__ = [
     'GridAssembly' ,
     'GridDataset' ,
     'GridModel' ,
+    'IdentifiedObject' ,
+    'Location' ,
     'MetaThing' ,
     'NonAlignedModel' ,
-    'PeriodOfTime' ,
     'Reference' ,
     'ReferenceModel'
 ]

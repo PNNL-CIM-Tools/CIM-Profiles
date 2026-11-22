@@ -1,0 +1,69 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.simulation_result 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:ClearSimulationEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:ParameterEvent.eventTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:ParameterEvent.rampDuration",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.activePowerTolerance",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.reactivePowerTolerance",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:PowerFlowSettings.voltageAngleLimit",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:SimulationSettings.integrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.maximumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.minimumIntegrationStepSize",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SimulationSettings.simulationResultsRecordedEvery",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    }
+  ]
+}

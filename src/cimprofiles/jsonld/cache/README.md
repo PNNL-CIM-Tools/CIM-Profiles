@@ -15,5 +15,8 @@ Offline copies of JSON-LD contexts and unit vocabularies, loaded by
   `python -m cimprofiles.jsonld.build`, also published on GitHub Pages. `<version>` is the
   stable release that last changed them: rebuilt in place during its alphas, frozen once it is
   released. Earlier versions stay, since files written with them still name them.
+- `<profile>/<part>/<version>/` — the same for each part of a merged release with `parts: true`
+  in its conventions YAML (the cim18v17 master), e.g. `cim18v17/connectivity_unbalanced/0.2.0/`.
+  The release's context lists its parts' contexts in `dct:hasPart`.
 
 To refresh `inst4cim/`, download the same files again and keep `index.json` entries in sync.

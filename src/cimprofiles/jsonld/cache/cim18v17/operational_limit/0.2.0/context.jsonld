@@ -1,0 +1,174 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCTerminal.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:ActivePowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ActivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:ApparentPowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ApparentPowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.monitorActivePower": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroup.monitorReactivePower": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroup.maximumActivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.maximumReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.minimumActivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.minimumReactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:BranchGroup.BranchGroupTerminal": {
+      "@type": "@id"
+    },
+    "cim:BranchGroupTerminal.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BranchGroupTerminal.BranchGroup": {
+      "@type": "@id"
+    },
+    "cim:BranchGroupTerminal.Terminal": {
+      "@type": "@id"
+    },
+    "cim:CurrentLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:Equipment.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitType": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.StepOperationalLimitTable": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.OperationalLimitValue": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Equipment": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Terminal": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitType.isInfiniteDuration": {
+      "@type": "xsd:boolean"
+    },
+    "nc:OperationalLimitType.isMinimum": {
+      "@type": "xsd:boolean"
+    },
+    "cim:OperationalLimitType.acceptableDuration": {
+      "@type": "xsd:float"
+    },
+    "cim:OperationalLimitType.direction": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitType.durationKind": {
+      "@type": "@id"
+    },
+    "eu:OperationalLimitType.kind": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitType.season": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitType.OperationalLimit": {
+      "@type": "@id"
+    },
+    "cim:ReactivePowerLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:StepOperationalLimitTable.OperationalLimit": {
+      "@type": "@id"
+    },
+    "cim:StepOperationalLimitTable.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:TapChanger.StepOperationalLimitTable": {
+      "@type": "@id"
+    },
+    "cim:Terminal.BranchGroupTerminal": {
+      "@type": "@id"
+    },
+    "cim:Terminal.VoltageAngleLimit": {
+      "@type": "@id"
+    },
+    "cim:VoltageAngleLimit.isFlowToRefTerminal": {
+      "@type": "xsd:boolean"
+    },
+    "cim:VoltageAngleLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageAngleLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageAngleLimit.AngleReferenceTerminal": {
+      "@type": "@id"
+    },
+    "cim:VoltageLimit.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLimit.value": {
+      "@type": "xsd:float"
+    }
+  },
+  "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/context.jsonld",
+  "owl:versionInfo": "0.2.0"
+}

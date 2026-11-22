@@ -27,25 +27,308 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
-  <rdf:Description rdf:nodeID="X63X238b548Xa3X1a1ff93f6edXa3X-7d22">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7ffd">
-    <rdf:first rdf:resource="#GridModel"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7ffe">
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f65">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:allValuesFrom rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7fff"/>
-    <owl:onProperty rdf:resource="http://purl.org/dc/terms/GridAssembly.isPartOf"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameModel.RepresentedFrame"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7fff">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#dct"/>
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f67">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameModel.RepresentedFrame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f68">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f69"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameModel.RepresentedFrame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f69">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>isPartOf</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#GridModel"/>
-    <owl:unionOf rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7ffd"/>
+    <rdfs:label>RepresentedFrame</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Frame"/>
+    <rdfs:subClassOf rdf:resource="#Frame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6b"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#DateTimeInterval.start"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6b">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>start</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel.TerminatedBoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel.TerminatedBoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f70"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel.TerminatedBoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f70">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TerminatedBoundaryModel</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel"/>
+    <rdfs:subClassOf rdf:resource="#BoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f71">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f72"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject.name"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f72">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>name</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f73">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f74"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridDataset.profileType"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f74">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>profileType</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f75">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel.DefinedBoundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f77">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel.DefinedBoundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f78">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f79"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel.DefinedBoundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f79">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DefinedBoundary</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Boundary"/>
+    <rdfs:subClassOf rdf:resource="#Boundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7b"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameworkEdition.IncludedBoundaries"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7b">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>IncludedBoundaries</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Boundary"/>
+    <rdfs:subClassOf rdf:resource="#Boundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#Frame.Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7f"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#Frame.Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Location</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Location"/>
+    <rdfs:subClassOf rdf:resource="#Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f80">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f81"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameworkEdition.IncludedFrames"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f81">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>IncludedFrames</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Frame"/>
+    <rdfs:subClassOf rdf:resource="#Frame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f82">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f83"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameModel.PerimeterBoundaryModels"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f83">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PerimeterBoundaryModels</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel"/>
+    <rdfs:subClassOf rdf:resource="#BoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f84">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridDataset.validFor"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f86">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f87"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridDataset.validFor"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f87">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>validFor</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DateTimeInterval"/>
+    <rdfs:subClassOf rdf:resource="#DateTimeInterval"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f88">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EquivalentModel.JoinedBoundaryModels"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8b"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EquivalentModel.JoinedBoundaryModels"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8b">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>JoinedBoundaryModels</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel"/>
+    <rdfs:subClassOf rdf:resource="#BoundaryModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8c">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8d"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridDataset.businessPurpose"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8d">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>businessPurpose</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel.ReplacedFrame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f90">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f91"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel.ReplacedFrame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f91">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ReplacedFrame</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Frame"/>
+    <rdfs:subClassOf rdf:resource="#Frame"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f92">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f93"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject.mRID"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f93">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>mRID</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f94">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:maxCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#ReferenceModel.RepresentedReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f96">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#ReferenceModel.RepresentedReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f97">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f98"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#ReferenceModel.RepresentedReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f98">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>RepresentedReference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Reference"/>
+    <rdfs:subClassOf rdf:resource="#Reference"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f99">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9a"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#FrameworkEdition.IncludedReferences"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>IncludedReferences</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Reference"/>
+    <rdfs:subClassOf rdf:resource="#Reference"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9b">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9c"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject.description"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9c">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>description</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9e"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#Frame.PerimeterBoundaries"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9e">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PerimeterBoundaries</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Boundary"/>
+    <rdfs:subClassOf rdf:resource="#Boundary"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa0"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridModel.GridAssembly"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa0">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>GridAssembly</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#GridAssembly"/>
+    <rdfs:subClassOf rdf:resource="#GridAssembly"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa2"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#GridDataset.publishedOn"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa2">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>publishedOn</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa4"/>
+    <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#DateTimeInterval.end"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa4">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>end</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#__init__.py">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
@@ -58,43 +341,176 @@
     <rdfs:label>metadata</rdfs:label>
     <owl:imports rdf:resource="http://cim.ucaiug.io/cim101/draft"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#AssemblyWideModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>AssemblyWideModel</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#AssemblyWideModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Boundary">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Boundary</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Boundary"/>
+    <rdfs:subClassOf rdf:resource="#MetaThing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#BoundaryModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>BoundaryModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f75"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f77"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f78"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BoundaryModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#DateTimeInterval">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#compound"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>DateTimeInterval</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6a"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa3"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DateTimeInterval"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EdgeModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>EdgeModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6c"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6e"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f6f"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8e"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f90"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EdgeModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EquivalentModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>EquivalentModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f88"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8a"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EquivalentModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Frame">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Frame</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7c"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7e"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9d"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Frame"/>
+    <rdfs:subClassOf rdf:resource="#MetaThing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FrameModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FrameModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f65"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f67"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f68"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f82"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#FrameModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FrameworkEdition">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FrameworkEdition</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f7a"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f80"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f99"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#FrameworkEdition"/>
+    <rdfs:subClassOf rdf:resource="#GridDataset"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#GridAssembly">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:nodeID="Xd2X38b767bXa3X1a200b38a45Xa3X-7ffe"/>
+    <rdfs:label>GridAssembly</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#GridAssembly"/>
     <rdfs:subClassOf rdf:resource="#GridDataset"/>
   </rdf:Description>
   <rdf:Description rdf:about="#GridDataset">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>GridDataset</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f73"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f84"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f86"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f8c"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7fa1"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#GridDataset"/>
     <rdfs:subClassOf rdf:resource="#MetaThing"/>
   </rdf:Description>
   <rdf:Description rdf:about="#GridModel">
-    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>GridModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9f"/>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#GridModel"/>
     <rdfs:subClassOf rdf:resource="#GridDataset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>IdentifiedObject</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f71"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f92"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f9b"/>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Location">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Location</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Location"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
   </rdf:Description>
   <rdf:Description rdf:about="#MetaThing">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>MetaThing</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#MetaThing"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#NonAlignedModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>NonAlignedModel</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#NonAlignedModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_Base">
+    <rdfs:label>Base</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="#Package_CIM">
     <rdfs:label>CIM</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="#Package_DCAT">
-    <rdfs:label>DCAT</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="#Package_Ext501">
-    <rdfs:label>Ext501</rdfs:label>
+  <rdf:Description rdf:about="#Package_Core">
+    <rdfs:label>Core</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="#Package_Grid">
     <rdfs:label>Grid</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_GridAPPS-D">
+    <rdfs:label>GridAPPS-D</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_GridEXT">
+    <rdfs:label>GridEXT</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="#Package_InfExtEUNetworkCodes">
     <rdfs:label>InfExtEUNetworkCodes</rdfs:label>
@@ -102,17 +518,42 @@
   <rdf:Description rdf:about="#Package_InfGrid">
     <rdfs:label>InfGrid</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="#Package_Metadata">
-    <rdfs:label>Metadata</rdfs:label>
+  <rdf:Description rdf:about="#Package_MetadataEXT">
+    <rdfs:label>MetadataEXT</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="#Package_W3Contology">
     <rdfs:label>W3Contology</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="#StringIRI">
-    <rdfs:label>StringIRI</rdfs:label>
+  <rdf:Description rdf:about="#Package_prov">
+    <rdfs:label>prov</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="#URL">
-    <rdfs:label>URL</rdfs:label>
+  <rdf:Description rdf:about="#Package_prov-ontology">
+    <rdfs:label>prov-ontology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_time">
+    <rdfs:label>time</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Package_time-ontology">
+    <rdfs:label>time-ontology</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Reference">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Reference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#Reference"/>
+    <rdfs:subClassOf rdf:resource="#MetaThing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ReferenceModel">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ReferenceModel</rdfs:label>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f94"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f96"/>
+    <rdfs:subClassOf rdf:nodeID="X23X19e83afXa3X1a201893797Xa3X-7f97"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ReferenceModel"/>
+    <rdfs:subClassOf rdf:resource="#GridModel"/>
   </rdf:Description>
   <rdf:Description rdf:about="#global_package">
     <rdfs:label>Global</rdfs:label>
