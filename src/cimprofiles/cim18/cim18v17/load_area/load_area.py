@@ -29,89 +29,6 @@ ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#'}
 
 @dataclass(repr=False, eq=False)
-class AnalogValue(Identity):
-    '''
-    AnalogValue represents an analog MeasurementValue.
-    '''
-
-    AltGeneratingUnit: list[AltGeneratingUnitMeas] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'AltGeneratingUnitMeas.AnalogValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The alternate generating unit for which this measurement value applies.
-    '''
-    
-    AltTieMeas: list[AltTieMeas] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'AltTieMeas.AnalogValue',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    The usage of the measurement within the control area specification.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Meas'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
-class AreaInterchangeController(Identity):
-    '''
-    Area interchange control is set to control active power of an area.
-    '''
-
-    ControlArea: Optional[ControlArea] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'ControlArea.AreaInterchangeController',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Control area that has a area interchange controller.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Control'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
     This is a class that provides common identification for all classes needing
@@ -370,6 +287,55 @@ class AltTieMeas(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@dataclass(repr=False, eq=False)
+class AnalogValue(IdentifiedObject):
+    '''
+    AnalogValue represents an analog MeasurementValue.
+    '''
+
+    AltGeneratingUnit: list[AltGeneratingUnitMeas] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'AltGeneratingUnitMeas.AnalogValue',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The alternate generating unit for which this measurement value applies.
+    '''
+    
+    AltTieMeas: list[AltTieMeas] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'AltTieMeas.AnalogValue',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The usage of the measurement within the control area specification.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Meas'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class BasicIntervalSchedule(IdentifiedObject):
@@ -532,7 +498,26 @@ class BasicIntervalSchedule(IdentifiedObject):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
-class SeasonDayTypeSchedule(BasicIntervalSchedule):
+class RegularIntervalSchedule(BasicIntervalSchedule):
+    '''
+    The schedule has time points where the time between them is constant.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     A time schedule covering a 24 hour period, with curve data for a specific
     type of season and day.
@@ -591,6 +576,21 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     day type and season.
     '''
 
+    ConformLoadGroup: Optional[ConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConformLoadGroup.ConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The ConformLoadGroup where the ConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -613,6 +613,21 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     or power station service (where modelled).
     '''
 
+    NonConformLoadGroup: Optional[NonConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonConformLoadGroup.NonConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -627,6 +642,7 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlAreaGeneratingUnit(IdentifiedObject):
     '''
@@ -825,6 +841,7 @@ class EnergyArea(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadArea(EnergyArea):
@@ -874,6 +891,7 @@ class LoadArea(EnergyArea):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubLoadArea(EnergyArea):
@@ -961,6 +979,7 @@ class LoadGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadGroup(LoadGroup):
@@ -983,6 +1002,21 @@ class ConformLoadGroup(LoadGroup):
     Conform loads assigned to this ConformLoadGroup.
     '''
     
+    ConformLoadSchedules: list[ConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConformLoadSchedule.ConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The ConformLoadSchedules in the ConformLoadGroup.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -996,6 +1030,7 @@ class ConformLoadGroup(LoadGroup):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadGroup(LoadGroup):
@@ -1016,6 +1051,21 @@ class NonConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    NonConformLoadSchedules: list[NonConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonConformLoadSchedule.NonConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The NonConformLoadSchedules in the NonConformLoadGroup.
     '''
     
     @property
@@ -1109,8 +1159,43 @@ class PowerSystemResource(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@dataclass(repr=False, eq=False)
+class AreaInterchangeController(PowerSystemResource):
+    '''
+    Area interchange control is set to control active power of an area.
+    '''
+
+    ControlArea: Optional[ControlArea] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ControlArea.AreaInterchangeController',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    Control area that has a area interchange controller.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Control'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlArea(PowerSystemResource):
     '''
@@ -1174,7 +1259,7 @@ class ControlArea(PowerSystemResource):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['ToBeDeleted', 'enumeration', 'Attribute'],
+        'stereotypes': ['enumeration', 'ToBeDeleted', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
@@ -1565,6 +1650,7 @@ class PowerElectronicsUnit(Equipment):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerCutZone(PowerSystemResource):
@@ -1728,6 +1814,7 @@ class Season(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class TieFlow(IdentifiedObject):
     '''
@@ -1827,7 +1914,9 @@ class TieFlow(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.ToBeDeleted)
 @stereotype(CIMStereotype.enumeration)
+@stereotype(CIMStereotype.Attribute)
 class ControlAreaTypeKind(Enum):
     '''
     The type of control area.

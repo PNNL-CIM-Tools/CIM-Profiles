@@ -953,16 +953,19 @@
     "cim:Boundary.IncludedIn": {
       "@type": "@id"
     },
+    "cim:Boundary.IsDefinedBy": {
+      "@type": "@id"
+    },
     "cim:Boundary.Separates": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.canBeTerminatedBy": {
+    "cim:BoundaryModel.CanBeTerminatedBy": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.partOfPerimeter": {
+    "cim:BoundaryModel.Defines": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.defines": {
+    "cim:BoundaryModel.PartOfPerimeter": {
       "@type": "@id"
     },
     "cim:Brace.OverheadStructure": {
@@ -1461,6 +1464,12 @@
       "@type": "@id"
     },
     "cim:ConformLoadGroup.EnergyConsumers": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadGroup.ConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
     "cim:ConnectedArea.kind": {
@@ -2150,7 +2159,13 @@
     "cim:DCVoltageControlFunction.targetValue": {
       "@type": "xsd:float"
     },
-    "dcat:Dataset.isRealizedAs": {
+    "dcat:Dataset.Distribution": {
+      "@type": "@id"
+    },
+    "dcterms:Dataset.temporal": {
+      "@type": "@id"
+    },
+    "cim:Dataset.replaces": {
       "@type": "@id"
     },
     "cim:DayType.SeasonDayTypeSchedules": {
@@ -2255,7 +2270,7 @@
     "cim:DiscreteValue.Discrete": {
       "@type": "@id"
     },
-    "dcat:Distribution.realizes": {
+    "dcat:Distribution.Dataset": {
       "@type": "@id"
     },
     "cim:DynamicsFunctionBlock.enabled": {
@@ -2282,10 +2297,10 @@
     "gad:EarthResistivity.PerLengthLineParameter": {
       "@type": "@id"
     },
-    "cim:EdgeModel.replaces": {
+    "cim:EdgeModel.Replaces": {
       "@type": "@id"
     },
-    "cim:EdgeModel.terrminates": {
+    "cim:EdgeModel.Terminates": {
       "@type": "@id"
     },
     "gad:ElectricVehicleInfo.v2gCapable": {
@@ -2654,7 +2669,7 @@
     "nc:EquivalentInjectionTimePoint.EquivalentInjectionSchedule": {
       "@type": "@id"
     },
-    "cim:EquivalentModel.joinsWith": {
+    "cim:EquivalentModel.JoinsWith": {
       "@type": "@id"
     },
     "cim:EquivalentNetwork.EquivalentEquipments": {
@@ -2855,22 +2870,22 @@
     "cim:Feeder.NormalEnergizingSubstation": {
       "@type": "@id"
     },
-    "cim:Frame.terminatedBy": {
-      "@type": "@id"
-    },
-    "cim:Frame.isReferencedBy": {
+    "cim:Frame.TerminatedBy": {
       "@type": "@id"
     },
     "cim:Frame.ConnectsTo": {
       "@type": "@id"
     },
-    "cim:Frame.InlcudedIn": {
+    "cim:Frame.IncludedIn": {
       "@type": "@id"
     },
-    "cim:FrameModel.perimeter": {
+    "cim:Frame.IsReferencedBy": {
       "@type": "@id"
     },
-    "cim:FrameModel.represents": {
+    "cim:FrameModel.Perimeter": {
+      "@type": "@id"
+    },
+    "cim:FrameModel.Represents": {
       "@type": "@id"
     },
     "cim:FrameworkEdition.Includes": {
@@ -3053,7 +3068,7 @@
     "cim:Geometry.Location": {
       "@type": "@id"
     },
-    "cim:GridAssembly.contains": {
+    "cim:GridAssembly.Contains": {
       "@type": "@id"
     },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
@@ -3065,7 +3080,7 @@
     "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
       "@type": "xsd:float"
     },
-    "cim:GridModel.usedIn": {
+    "cim:GridModel.UsedIn": {
       "@type": "@id"
     },
     "nc:GridStateAlteration.enabled": {
@@ -3678,6 +3693,12 @@
       "@type": "@id"
     },
     "cim:NonConformLoadGroup.EnergyConsumers": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadSchedule.NonConformLoadGroup": {
       "@type": "@id"
     },
     "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {

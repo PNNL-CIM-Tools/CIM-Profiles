@@ -6415,6 +6415,323 @@ class Displacement(CIMUnit):
         return '1'
     
 
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class Distribution(Identity):
+    '''
+    A specific representation of a dataset. A dataset might be available in
+    multiple serializations that may differ in various ways, including natural
+    language, media-type or format, schematic organization, temporal and spatial
+    resolution, level of detail or profiles (which might specify any or all
+    of the above).
+    '''
+
+    accessRights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about who access the resource or an indication of its security
+    status.
+    Access Rights may include information regarding access or restrictions
+    based on privacy, security, or other policies.
+    '''
+    
+    accessURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A URL of the resource that gives access to a distribution of the dataset.
+    E.g., landing page, feed, SPARQL endpoint.
+    dcat:accessURL SHOULD be used for the URL of a service or location
+    that can provide access to this distribution, typically through a Web
+    form, query or API call.
+    dcat:downloadURL is preferred for direct links to downloadable resources.
+    If the distribution(s) are accessible only through a landing page (i.e.,
+    direct download URLs are not known), then the landing page URL associated
+    with the dcat:Dataset SHOULD be duplicated as access URL on a distribution
+    '''
+    
+    byteSize: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The size of a distribution in bytes. The size in bytes can be approximated
+    when the precise size is not known.
+    '''
+    
+    compressFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The compression format of the distribution in which the data is contained
+    in a compressed form, e.g. to reduce the size of the downloadable file.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A free-text account of the distribution.
+    '''
+    
+    downloadURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The URL of the downloadable file in a given format. E.g., CSV file
+    or RDF file. The format is indicated by the distribution's dcterms:format
+    and/or dcat:mediaType
+    dcat:downloadURL SHOULD be used for the URL at which this distribution
+    is available directly, typically through a HTTP Get request.
+    '''
+    
+    format: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The file format of the distribution.
+    dcat:mediaType SHOULD be used if the type of the distribution is defined
+    by IANA
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An unambiguous reference to the resource within a given context.
+    Recommended practice is to identify the resource by means of a string
+    conforming to an identification system. Examples include International
+    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
+    Resource Name (URN). Persistent identifiers should be provided as HTTP
+    URIs.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date of formal issuance (e.g., publication) of the distribution.
+    '''
+    
+    license: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A legal document giving official permission to do something with the
+    resource.
+    Recommended practice is to identify the license document with a URI.
+    If this is not possible or feasible, a literal value that identifies
+    the license may be provided.
+    '''
+    
+    mediaType: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The media type of the distribution as defined by IANA
+    This property SHOULD be used when the media type of the distribution
+    is defined in IANA, otherwise dcterms:format MAY be used with different
+    values.
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date on which the resource was changed.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    packageFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The package format of the distribution in which one or more data files
+    are grouped together, e.g. to enable a set of related files to be downloaded
+    together.
+    This property is to be used when the files in the distribution are
+    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
+    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
+    if available.
+    '''
+    
+    rights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A statement that concerns all rights not addressed with dct:license
+    or dct:accessRights, such as copyright statements.
+    '''
+    
+    spatialResolutionInMeters: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum spatial separation resolvable in a dataset, measured in metres.
+    '''
+    
+    temporalResolution: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum time period resolvable in a dataset.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A name given to the distribution.
+    '''
+    
+    Dataset: Optional[Dataset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Dataset.Distribution',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class EVTypeKind(Enum):
@@ -13125,6 +13442,7 @@ class ControlAction(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlAreaGeneratingUnit(IdentifiedObject):
     '''
@@ -20353,6 +20671,7 @@ class LineElement(GeometricElement):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadArea(EnergyArea):
@@ -20438,6 +20757,7 @@ class LoadGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadGroup(LoadGroup):
@@ -20458,6 +20778,21 @@ class ConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    ConformLoadSchedules: list[ConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConformLoadSchedule.ConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The ConformLoadSchedules in the ConformLoadGroup.
     '''
     
     @property
@@ -22344,6 +22679,43 @@ class MetaThing(Identity):
     by a metadata object.
     '''
 
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Provides a unique identifier for whatever an object represents. The
+    identity is used as follows:
+    <ul>
+    <li>In a metadata artifact, an identifies must be unique.</li>
+    <li>Identifiers and used in serializations to define the target of
+    an association.</li>
+    <li>If sets of metadata are DIFFed, the identity determines when the
+    same thing is described by objects in different sets.</li>
+    </ul>
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A human readable name for the thing represented. The name property
+    is used in queries.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -22372,7 +22744,7 @@ class Boundary(MetaThing):
         metadata={
         'type': 'Association',
         'stereotypes': [],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': 'unbounded',
         'inverse': 'FrameworkEdition.Includes',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
@@ -22380,6 +22752,21 @@ class Boundary(MetaThing):
         })
     '''
     Tthe framework editions that the boundary is included in.
+    '''
+    
+    IsDefinedBy: list[BoundaryModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BoundaryModel.Defines',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The models that define a boundary in different framework editions.
     '''
     
     Separates: list[Frame] = field(
@@ -22409,6 +22796,7 @@ class Boundary(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.dcat)
 @dataclass(repr=False, eq=False)
 class Dataset(MetaThing):
     '''
@@ -22423,20 +22811,96 @@ class Dataset(MetaThing):
     </ul>
     '''
 
-    isRealizedAs: list[Distribution] = field(
+    authority: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Normally this indicates the original creator of the dataset information.
+    '''
+    
+    businessPurpose: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Describes the business purpose of the information set, which is usually
+    a string defined by the business process that publishes the information
+    set and is often used by business process logic to recognize the purpose
+    of a message.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The datetime that the dataset was published, where publish means declaring
+    the content complete and fit for purpose. It is the declaration more
+    than the content that determines the timing.
+    '''
+    
+    Distribution: list[Distribution] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': ['dcat'],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'Distribution.realizes',
+        'inverse': 'Distribution.Dataset',
         'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    An available distribution of the dataset.
+    '''
+    
+    temporal: Optional[PeriodOfTime] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
-    A realization of dataset information, usually a file conforming to
-    some specifications.
+    Temporal characteristics of the resource.
+    '''
+    
+    replaces: Optional[Dataset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Indicates the dataset that has been superseded.
     '''
     
     @property
@@ -22445,324 +22909,6 @@ class Dataset(MetaThing):
     @property
     def __package__(self):
         return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.dcat)
-@dataclass(repr=False, eq=False)
-class Distribution(MetaThing):
-    '''
-    A specific representation of a dataset. A dataset might be available in
-    multiple serializations that may differ in various ways, including natural
-    language, media-type or format, schematic organization, temporal and spatial
-    resolution, level of detail or profiles (which might specify any or all
-    of the above).
-    '''
-
-    accessRights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Information about who access the resource or an indication of its security
-    status.
-    Access Rights may include information regarding access or restrictions
-    based on privacy, security, or other policies.
-    '''
-    
-    accessURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    A URL of the resource that gives access to a distribution of the dataset.
-    E.g., landing page, feed, SPARQL endpoint.
-    dcat:accessURL SHOULD be used for the URL of a service or location
-    that can provide access to this distribution, typically through a Web
-    form, query or API call.
-    dcat:downloadURL is preferred for direct links to downloadable resources.
-    If the distribution(s) are accessible only through a landing page (i.e.,
-    direct download URLs are not known), then the landing page URL associated
-    with the dcat:Dataset SHOULD be duplicated as access URL on a distribution
-    '''
-    
-    byteSize: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The size of a distribution in bytes. The size in bytes can be approximated
-    when the precise size is not known.
-    '''
-    
-    compressFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The compression format of the distribution in which the data is contained
-    in a compressed form, e.g. to reduce the size of the downloadable file.
-    '''
-    
-    description: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A free-text account of the distribution.
-    '''
-    
-    downloadURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The URL of the downloadable file in a given format. E.g., CSV file
-    or RDF file. The format is indicated by the distribution's dcterms:format
-    and/or dcat:mediaType
-    dcat:downloadURL SHOULD be used for the URL at which this distribution
-    is available directly, typically through a HTTP Get request.
-    '''
-    
-    format: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    The file format of the distribution.
-    dcat:mediaType SHOULD be used if the type of the distribution is defined
-    by IANA
-    '''
-    
-    identifier: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    An unambiguous reference to the resource within a given context.
-    Recommended practice is to identify the resource by means of a string
-    conforming to an identification system. Examples include International
-    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
-    Resource Name (URN). Persistent identifiers should be provided as HTTP
-    URIs.
-    '''
-    
-    issued: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Date of formal issuance (e.g., publication) of the distribution.
-    '''
-    
-    license: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A legal document giving official permission to do something with the
-    resource.
-    Recommended practice is to identify the license document with a URI.
-    If this is not possible or feasible, a literal value that identifies
-    the license may be provided.
-    '''
-    
-    mediaType: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The media type of the distribution as defined by IANA
-    This property SHOULD be used when the media type of the distribution
-    is defined in IANA, otherwise dcterms:format MAY be used with different
-    values.
-    '''
-    
-    modified: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Date on which the resource was changed.
-    Recommended practice is to describe the date, date/time, or period
-    of time as recommended for the property Date, of which this is a subproperty.
-    '''
-    
-    packageFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The package format of the distribution in which one or more data files
-    are grouped together, e.g. to enable a set of related files to be downloaded
-    together.
-    This property is to be used when the files in the distribution are
-    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
-    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
-    if available.
-    '''
-    
-    rights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A statement that concerns all rights not addressed with dct:license
-    or dct:accessRights, such as copyright statements.
-    '''
-    
-    spatialResolutionInMeters: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum spatial separation resolvable in a dataset, measured in metres.
-    '''
-    
-    temporalResolution: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum time period resolvable in a dataset.
-    '''
-    
-    title: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A name given to the distribution.
-    '''
-    
-    realizes: Optional[Dataset] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Dataset.isRealizedAs',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The information in a file.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://www.w3.org/ns/dcat#'
-    @property
-    def __package__(self):
-        return 'DCAT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22789,35 +22935,20 @@ class Frame(MetaThing):
     Frame and therefore be located by a same query.
     '''
 
-    terminatedBy: list[EdgeModel] = field(
+    TerminatedBy: list[EdgeModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.replaces',
+        'inverse': 'EdgeModel.Replaces',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
     '''
     Identifies an edge model that may be used to represent flow into an
     adjacent frame.
-    '''
-    
-    isReferencedBy: list[FrameModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.represents',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Frame models that reference a frame.
     '''
     
     ConnectsTo: list[Boundary] = field(
@@ -22834,7 +22965,7 @@ class Frame(MetaThing):
     '''
     '''
     
-    InlcudedIn: Optional[FrameworkEdition] = field(
+    IncludedIn: Optional[FrameworkEdition] = field(
         default=None,
         metadata={
         'type': 'Association',
@@ -22847,6 +22978,21 @@ class Frame(MetaThing):
         })
     '''
     Identfies the framework editions that a frame is included in.
+    '''
+    
+    IsReferencedBy: Optional[FrameModel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'FrameModel.Represents',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Frame models that reference a frame.
     '''
     
     @property
@@ -22862,6 +23008,7 @@ class Frame(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class FrameworkEdition(Dataset):
     '''
@@ -22871,6 +23018,19 @@ class FrameworkEdition(Dataset):
     evolutionary state applies. Usually, this is a time range.
     '''
 
+    framework: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     Includes: Optional[Frame] = field(
         default=None,
         metadata={
@@ -22878,9 +23038,9 @@ class FrameworkEdition(Dataset):
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'Frame.InlcudedIn',
+        'inverse': 'Boundary.IncludedIn',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     Identifies the frames that are included in a framework ediition.
@@ -22895,7 +23055,7 @@ class FrameworkEdition(Dataset):
         'maxOccurs': '1',
         'inverse': 'Reference.IncludedIn',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     The reference models included in a framework edition.
@@ -22932,14 +23092,14 @@ class GridAssembly(Dataset):
     of the grid.
     '''
 
-    contains: list[GridModel] = field(
+    Contains: list[GridModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.usedIn',
+        'inverse': 'GridModel.UsedIn',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': False,
         })
@@ -23020,14 +23180,14 @@ class GridModel(GridDataset):
     profile is extracted from a stack and used as part of another stack.
     '''
 
-    usedIn: list[GridAssembly] = field(
+    UsedIn: list[GridAssembly] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'GridAssembly.contains',
+        'inverse': 'GridAssembly.Contains',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -23035,6 +23195,27 @@ class GridModel(GridDataset):
     Identifies the assemblies that include the grid model.
     '''
     
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Metadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AssemblyWideModel(GridModel):
+    '''
+    A grid model whose scope matches that of an entire assembly, such as a
+    power flow solution grid model.
+    '''
+
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -23061,53 +23242,50 @@ class BoundaryModel(GridModel):
     should define their applicability to a situation criteria.
     '''
 
-    canBeTerminatedBy: list[EdgeModel] = field(
+    CanBeTerminatedBy: list[EdgeModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.terrminates',
+        'inverse': 'EdgeModel.Terminates',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     Identifies a boundary edge that terminates a boundary model.
     '''
     
-    partOfPerimeter: list[FrameModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.perimeter',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
-        })
-    '''
-    Is part of a FramePerimeter. Note that it is allowed that a FramePerimeter
-    may be made up of BoundaryModels for Boundaries from different Frameworks.
-    '''
-    
-    defines: Optional[EquivalentModel] = field(
+    Defines: Optional[EquivalentModel] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'EquivalentModel.joinsWith',
+        'inverse': 'Boundary.IsDefinedBy',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
     '''
-    Any model that approximates a part of the grid. Most often the result
-    of a mathematical reduction of a set of frame models, but may also
-    be used to describe more complex manually generated edges of areas
-    modeled in detail.
+    The boundary that a boundary model defines.
+    '''
+    
+    PartOfPerimeter: list[FrameModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameModel.Perimeter',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Is part of a FramePerimeter. Note that it is allowed that a FramePerimeter
+    may be made up of BoundaryModels for Boundaries from different Frameworks.
     '''
     
     @property
@@ -23140,14 +23318,14 @@ class EdgeModel(GridModel):
     See reference notes on Frameworks and Grid Models for more information.
     '''
 
-    replaces: Optional[Frame] = field(
+    Replaces: Optional[Frame] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'Frame.terminatedBy',
+        'inverse': 'Frame.TerminatedBy',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -23155,14 +23333,14 @@ class EdgeModel(GridModel):
     Identifies the frame that the edge model replaces.
     '''
     
-    terrminates: Optional[BoundaryModel] = field(
+    Terminates: Optional[BoundaryModel] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'BoundaryModel.canBeTerminatedBy',
+        'inverse': 'BoundaryModel.CanBeTerminatedBy',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -23194,16 +23372,16 @@ class EquivalentModel(GridModel):
     the processes that defined the model.
     '''
 
-    joinsWith: list[BoundaryModel] = field(
+    JoinsWith: list[BoundaryModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.defines',
+        'inverse': 'BoundaryModel.Defines',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     A perimeter definition for the set of boundary models that the equivalent
@@ -23234,14 +23412,14 @@ class FrameModel(GridModel):
     models.
     '''
 
-    perimeter: list[BoundaryModel] = field(
-        default_factory=list,
+    Perimeter: Optional[BoundaryModel] = field(
+        default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.partOfPerimeter',
+        'maxOccurs': '1',
+        'inverse': 'BoundaryModel.PartOfPerimeter',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -23250,14 +23428,14 @@ class FrameModel(GridModel):
     model was created.
     '''
     
-    represents: Optional[Frame] = field(
+    Represents: Optional[Frame] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'Frame.isReferencedBy',
+        'inverse': 'Frame.IsReferencedBy',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
         'serialize': True,
         })
@@ -24092,6 +24270,7 @@ class NonAlignedModel(GridModel):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadGroup(LoadGroup):
@@ -24112,6 +24291,21 @@ class NonConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    NonConformLoadSchedules: list[NonConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonConformLoadSchedule.NonConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The NonConformLoadSchedules in the NonConformLoadGroup.
     '''
     
     @property
@@ -26517,6 +26711,29 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     Zero sequence series reactance, per unit of length.
     '''
     
+@stereotype(CIMStereotype.dct)
+@stereotype(CIMStereotype.Compound)
+@dataclass(repr=False, eq=False)
+class PeriodOfTime(Identity):
+    '''
+    Period of Time.
+    An interval of time that is named or defined by its start and end dates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://purl.org/dc/terms/'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class PhaseCode(Enum):
@@ -30103,6 +30320,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
 class ControlArea(PowerSystemResource):
@@ -36470,6 +36688,7 @@ class PointOnWaveSensor(MeasurementSystem):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerCutZone(PowerSystemResource):
@@ -40095,7 +40314,6 @@ class Reference(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
-
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ReferenceModel(GridModel):
@@ -40112,7 +40330,7 @@ class ReferenceModel(GridModel):
         metadata={
         'type': 'Association',
         'stereotypes': [],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': 'unbounded',
         'inverse': 'Reference.ConsistsOf',
         'namespace': 'http://cim.ucaiug.io/cim101/draft#',
@@ -40142,6 +40360,19 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     The schedule has time points where the time between them is constant.
     '''
 
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
     endTime: Optional[str] = field(
         default=None,
         metadata={
@@ -40186,19 +40417,6 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     '''
     The regular interval time point data values that define this schedule.
     '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Core'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -44641,7 +44859,7 @@ class Season(IdentifiedObject):
     '''
     
 @dataclass(repr=False, eq=False)
-class SeasonDayTypeSchedule(BasicIntervalSchedule):
+class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     A time schedule covering a 24 hour period, with curve data for a specific
     type of season and day.
@@ -44700,6 +44918,21 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     day type and season.
     '''
 
+    ConformLoadGroup: Optional[ConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConformLoadGroup.ConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The ConformLoadGroup where the ConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -44722,6 +44955,21 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     or power station service (where modelled).
     '''
 
+    NonConformLoadGroup: Optional[NonConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonConformLoadGroup.NonConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -49051,6 +49299,7 @@ class SubGeographicalRegion(IdentifiedObject):
     The DC lines in this sub-geographical region.
     '''
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubLoadArea(EnergyArea):
@@ -55105,6 +55354,7 @@ class DCTieCorridor(TieCorridor):
     '''
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class TieFlow(IdentifiedObject):
     '''

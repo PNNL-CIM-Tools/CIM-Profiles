@@ -4,6 +4,7 @@
 '''
 from cimprofiles.cim18.cim18v17.metadata.metadata import (
     Identity,
+    AssemblyWideModel,
     Boundary,
     BoundaryModel,
     Dataset,
@@ -18,11 +19,13 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     GridModel,
     MetaThing,
     NonAlignedModel,
+    PeriodOfTime,
     Reference,
     ReferenceModel
 )
 __all__ = [
     'Identity',
+    'AssemblyWideModel' ,
     'Boundary' ,
     'BoundaryModel' ,
     'Dataset' ,
@@ -37,6 +40,7 @@ __all__ = [
     'GridModel' ,
     'MetaThing' ,
     'NonAlignedModel' ,
+    'PeriodOfTime' ,
     'Reference' ,
     'ReferenceModel'
 ]
