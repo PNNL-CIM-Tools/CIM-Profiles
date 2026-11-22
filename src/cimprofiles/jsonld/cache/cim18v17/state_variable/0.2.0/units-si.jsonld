@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.state_variable 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:SvDCPowerFlow.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:SvDCVoltage.v",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:SvInjection.pInjection",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:SvInjection.qInjection",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:SvPowerFlow.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:SvPowerFlow.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:SvVoltage.angle",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:SvVoltage.v",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    }
+  ]
+}

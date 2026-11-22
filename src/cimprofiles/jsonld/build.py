@@ -20,6 +20,14 @@ Build them into ``jsonld/cache/<profile>/<version>/`` (also the GitHub Pages con
     uv run python -m cimprofiles.jsonld.build cimhub_2023     # one profile
     uv run python -m cimprofiles.jsonld.build my.yaml --base-url https://example.org/cim/ --output site
 
+Parts: a spec with ``parts: true`` is a merged release of ``merge_releases.yaml`` (the cim18v17
+master). Each of its parts is also built as a profile of its own, ``<profile>.<part>`` with SI
+units only, published under ``<profile>/<part>/<version>/`` ('cim18v17.connectivity_unbalanced' ->
+``cim18v17/connectivity_unbalanced/0.2.0/context.jsonld``), so a file holding one part can name
+that part's context in ``dct:conformsTo``, and a reader can load the parts a set of files names
+as a comma-spec merge (``cimprofiles.merge``). The release's context lists its parts' contexts,
+in merge order, in ``dct:hasPart``. A part shared by several such releases is built once.
+
 Versions: the URL names a stable cim-profiles release X.Y.Z, as CGMES versions its IRIs.
 While X.Y.Z is in alpha (X.Y.ZaN), its documents are rebuilt in place as often as needed.
 Once X.Y.Z is released, they are frozen: files written with it name them. A profile gets a
@@ -44,7 +52,7 @@ from pathlib import Path
 
 from pint.errors import DimensionalityError
 
-from cimprofiles import profile_module
+from cimprofiles import PROFILE_PACKAGES, profile_module
 from cimprofiles.identity import Identity
 from cimprofiles.jsonld.qudt import QUDT_UNIT_NAMESPACE, qudt_name
 from cimprofiles.merge import merge_namespaces
@@ -77,6 +85,8 @@ VOCABULARY_NAMESPACES = {
     'unit': QUDT_UNIT_NAMESPACE,
 }
 CACHE_DIR = Path(__file__).parent / 'cache'
+RELEASES_FILE = Path(__file__).parents[1] / 'merge_releases.yaml'
+PART_CONVENTIONS = {'si': {}}
 _TYPE_NAME = re.compile(r'[A-Za-z_]\w*')
 PAGES_URL = 'https://pnnl-cim-tools.github.io/CIM-Profiles/'
 PYPI_URL = 'https://pypi.org/pypi/cim-profiles/json'
@@ -203,12 +213,51 @@ def build_vocabulary(profile, convention: dict, vocabulary_iri: str, title: str)
     return {'@context': {**namespaces, **VOCABULARY_NAMESPACES}, '@graph': graph}
 
 
-def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[dict[str, dict], dict]:
+def part_profile(module: str) -> str:
+    """The profile name of a merged release part: 'cimprofiles.cim18.cim18v17.connectivity_unbalanced.
+    connectivity_unbalanced' -> 'cim18v17.connectivity_unbalanced'."""
+    package = module.rpartition('.')[0]
+    for name, profile_package in PROFILE_PACKAGES.items():
+        if package.startswith(profile_package + '.'):
+            return name + package.removeprefix(profile_package)
+    raise ValueError(f'{module} is not in a known profile package')
+
+
+def expand_parts(specs: list[dict], releases: list[dict]) -> list[dict]:
+    """The specs of every part of the specs with ``parts: true``, each part once, then the specs,
+    with ``parts`` replaced by the list of their part profiles."""
+    release_parts = {release['name']: [part_profile(module) for module in release['parts']]
+                     for release in releases}
+    part_specs, expanded = {}, []
+    for spec in specs:
+        if not spec.get('parts'):
+            expanded.append(spec)
+            continue
+        if spec['profile'] not in release_parts:
+            raise ValueError(f'{spec["profile"]}: parts: true, but it is not a release in {RELEASES_FILE.name}')
+        parts = release_parts[spec['profile']]
+        for part in parts:
+            part_specs.setdefault(part, {'profile': part, 'default': 'si', 'conventions': PART_CONVENTIONS})
+        expanded.append({**spec, 'parts': parts})
+    return list(part_specs.values()) + expanded
+
+
+def load_specs(paths: list[Path]) -> list[dict]:
+    """The parsed conventions YAMLs, with their parts expanded (expand_parts)."""
+    import yaml  # build-time (dev) dependency only
+
+    releases = yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']
+    return expand_parts([yaml.safe_load(path.read_text(encoding='utf-8')) for path in paths], releases)
+
+
+def build_profile(spec: dict, version: str, base_url: str = PAGES_URL,
+                  part_contexts: list[str] = ()) -> tuple[dict[str, dict], dict]:
     """
     Build the documents of one convention spec (a parsed conventions YAML) for the
     stable cim-profiles release `version` (X.Y.Z). Generated documents are published under
     ``<profile>/<X.Y.Z>/`` (the CGMES style of a version in the IRI), and the context
-    records it in ``owl:versionInfo``.
+    records it in ``owl:versionInfo``. A profile set's context lists `part_contexts`, the
+    context URLs of its parts, in ``dct:hasPart``.
 
     Returns ({relative path: document}, manifest entry). The manifest entry is
     {'context': url, 'default': name, 'conventions': {name: [vocabulary IRIs]}}, plus the
@@ -217,13 +266,15 @@ def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[
     """
     name = spec['profile']
     profile = importlib.import_module(profile_module(name))
-    directory = f'{name}/{version}/'
+    directory = f'{name.replace(".", "/")}/{version}/'
     documents = {}
     context_url = spec.get('context')
     if context_url is None:
         context_url = f'{base_url}{directory}context.jsonld'
-        documents[f'{directory}context.jsonld'] = {**build_context(profile), '@id': context_url,
-                                                   'owl:versionInfo': version}
+        document = {**build_context(profile), '@id': context_url, 'owl:versionInfo': version}
+        if part_contexts:
+            document['dct:hasPart'] = [{'@id': url} for url in part_contexts]
+        documents[f'{directory}context.jsonld'] = document
     conventions = {}
     for convention_name, convention in spec['conventions'].items():
         if 'vocabularies' in convention:
@@ -241,10 +292,11 @@ def build_profile(spec: dict, version: str, base_url: str = PAGES_URL) -> tuple[
     return documents, entry
 
 
-def _unchanged(spec: dict, version: str, base_url: str, output: Path, manifest: dict) -> bool:
+def _unchanged(spec: dict, version: str, base_url: str, part_contexts: list[str], output: Path,
+               manifest: dict) -> bool:
     """True if the spec builds the same documents and manifest entry as the ones `output`
     holds for `version`."""
-    documents, entry = build_profile(spec, version, base_url)
+    documents, entry = build_profile(spec, version, base_url, part_contexts)
     return (manifest.get(spec['profile']) == entry
             and all(_read_json(output / path) == document for path, document in documents.items()))
 
@@ -266,8 +318,6 @@ def _write_json(path: Path, document: dict) -> None:
 
 
 def main(argv: list[str] | None = None) -> None:
-    import yaml  # build-time (dev) dependency only
-
     conventions_dir = Path(__file__).parent / 'conventions'
     parser = argparse.ArgumentParser(description='Build JSON-LD contexts and unit vocabularies')
     parser.add_argument('specs', nargs='*', help='profile names or conventions YAML paths (default: all)')
@@ -282,14 +332,14 @@ def main(argv: list[str] | None = None) -> None:
     version = stable_version()
     index = _read_json(args.output / 'index.json')
     manifest = _read_json(args.output / 'profiles.json')
-    for path in paths or sorted(conventions_dir.glob('*.yaml')):
-        spec = yaml.safe_load(path.read_text(encoding='utf-8'))
+    for spec in load_specs(paths or sorted(conventions_dir.glob('*.yaml'))):
         name = spec['profile']
+        part_contexts = [manifest[part]['context'] for part in spec.get('parts', [])]
         previous = manifest.get(name, {}).get('version')
-        if previous is not None and _unchanged(spec, previous, base_url, args.output, manifest):
+        if previous is not None and _unchanged(spec, previous, base_url, part_contexts, args.output, manifest):
             print(f'{name}: unchanged since {previous}')
             continue
-        documents, entry = build_profile(spec, version, base_url)
+        documents, entry = build_profile(spec, version, base_url, part_contexts)
         if documents and frozen and _released(version):
             raise SystemExit(f'error: {name} documents changed, but cim-profiles {version} is released '
                              f'and its documents are frozen. Set the next release target in '

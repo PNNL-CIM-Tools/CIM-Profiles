@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.construction 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:ACLineSegment.ySpacingOffset",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:ConductorDistance.distance",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:ConductorGroupPosition.orientation",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "gad:EarthResistivity.earthReturnGMR",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "gad:EarthResistivity.rho",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:EquivalentDistanceSpacing.averageNeutralDistanceToGround",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:EquivalentDistanceSpacing.averagePhaseDistanceToGround",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:EquivalentDistanceSpacing.phaseToNeutralGMD",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:EquivalentDistanceSpacing.phaseToPhaseGMD",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:RegularBundlePosition.subConductorSpacing",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:SpacingPosition.xCoord",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "cim:SpacingPosition.yCoord",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Displacement"
+    },
+    {
+      "@id": "gad:TransformerTankConfiguration.loadLoss",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "gad:TransformerTankConfiguration.noLoadLoss",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "gad:TransformerTankConfiguration.percentImpedance",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "gad:TransformerTankConfiguration.percentMagnetizingCurrent",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    }
+  ]
+}

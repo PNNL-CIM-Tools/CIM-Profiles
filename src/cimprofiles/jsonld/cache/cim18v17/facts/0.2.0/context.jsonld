@@ -1,0 +1,267 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCTerminal.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:CurrentDroopControlFunction.droopCapacitive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopControlFunction.droopInductive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopControlFunction.offsetCapacitive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopControlFunction.offsetInductive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopControlFunction.targetValueCapacitive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopControlFunction.targetValueInductive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.droopCapacitive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.droopInductive": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CurrentDroopOverride.offsetCapacitiveI": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.offsetInductiveI": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.targetValueCapacitiveI": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.targetValueInductiveI": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentDroopOverride.SSSCController": {
+      "@type": "@id"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.CurveDatas": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y3value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:Equipment.aggregate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.networkAnalysisEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.normallyInService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:FACTSEquipment.maxC": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.maxL": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.minC": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.minL": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.q": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.ratedC": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.ratedI": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.ratedL": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.slope": {
+      "@type": "xsd:float"
+    },
+    "cim:FACTSEquipment.LossCurve": {
+      "@type": "@id"
+    },
+    "cim:LossCurve.FACTSEquipment": {
+      "@type": "@id"
+    },
+    "cim:RegulatingCondEq.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SSSCController.maxInjectionU": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCController.maxLimitI": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCController.minInjectionU": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCController.minLimitI": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCController.mode": {
+      "@type": "@id"
+    },
+    "cim:SSSCController.CurrentDroopOverride": {
+      "@type": "@id"
+    },
+    "cim:SSSCController.SSSCSimulationSettings": {
+      "@type": "@id"
+    },
+    "cim:SSSCSimulationSettings.isEstimateDLDVSensitive": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SSSCSimulationSettings.maxIterations": {
+      "@type": "xsd:integer"
+    },
+    "cim:SSSCSimulationSettings.deltaX": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCSimulationSettings.maxCorrectionX": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCSimulationSettings.maxMismatch": {
+      "@type": "xsd:float"
+    },
+    "cim:SSSCSimulationSettings.SSSCController": {
+      "@type": "@id"
+    },
+    "cim:StaticVarCompensator.capacitiveRating": {
+      "@type": "xsd:float"
+    },
+    "cim:StaticVarCompensator.inductiveRating": {
+      "@type": "xsd:float"
+    },
+    "cim:StaticVarCompensator.q": {
+      "@type": "xsd:float"
+    },
+    "cim:StaticVarCompensator.slope": {
+      "@type": "xsd:float"
+    },
+    "cim:StaticVarCompensator.sVCControlMode": {
+      "@type": "@id"
+    },
+    "cim:StaticVarCompensator.voltageSetPoint": {
+      "@type": "xsd:float"
+    },
+    "cim:TCSCCompensationPoint.section": {
+      "@type": "xsd:integer"
+    },
+    "cim:TCSCCompensationPoint.compensationZ": {
+      "@type": "xsd:float"
+    },
+    "cim:TCSCCompensationPoint.ThyristorControlledSeriesCompensator": {
+      "@type": "@id"
+    },
+    "cim:Terminal.phases": {
+      "@type": "@id"
+    },
+    "cim:ThyristorControlledSeriesCompensator.compensationZ": {
+      "@type": "xsd:float"
+    },
+    "cim:ThyristorControlledSeriesCompensator.flexibleCapacitiveZ": {
+      "@type": "xsd:float"
+    },
+    "cim:ThyristorControlledSeriesCompensator.flexibleInductiveZ": {
+      "@type": "xsd:float"
+    },
+    "cim:ThyristorControlledSeriesCompensator.minI": {
+      "@type": "xsd:float"
+    },
+    "cim:ThyristorControlledSeriesCompensator.reconnectionI": {
+      "@type": "xsd:float"
+    },
+    "cim:ThyristorControlledSeriesCompensator.TCSCCompensationPoint": {
+      "@type": "@id"
+    },
+    "cim:VoltageInjectionControlFunction.targetValue": {
+      "@type": "xsd:float"
+    }
+  },
+  "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/facts/0.2.0/context.jsonld",
+  "owl:versionInfo": "0.2.0"
+}

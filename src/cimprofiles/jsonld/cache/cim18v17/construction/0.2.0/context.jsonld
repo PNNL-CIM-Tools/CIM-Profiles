@@ -1,0 +1,331 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACLineSegment.circuitNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ACLineSegment.ySpacingOffset": {
+      "@type": "xsd:float"
+    },
+    "gad:ACLineSegment.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:ACLineSegment.WireSpacing": {
+      "@type": "@id"
+    },
+    "gad:ConductorDistance.fromSequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.sequenceNumber1": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.sequenceNumber2": {
+      "@type": "xsd:integer"
+    },
+    "gad:ConductorDistance.toSequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorDistance.conductorKind1": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.conductorKind2": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.distance": {
+      "@type": "xsd:float"
+    },
+    "gad:ConductorDistance.fromPhase": {
+      "@type": "@id"
+    },
+    "gad:ConductorDistance.toPhase": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistance.ConductorDistanceSpacing": {
+      "@type": "@id"
+    },
+    "cim:ConductorDistanceSpacing.ConductorDistance": {
+      "@type": "@id"
+    },
+    "cim:ConductorGroupPosition.orientation": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductorGroupPosition.SubConductorPosition": {
+      "@type": "@id"
+    },
+    "cim:ConductorPosition.circuitNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorPosition.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConductorPosition.kind": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.earthModelType": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.earthReturnGMR": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.rho": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.WireAssemblies": {
+      "@type": "@id"
+    },
+    "cim:Equipment.EquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:EquipmentContainer.Equipments": {
+      "@type": "@id"
+    },
+    "cim:EquivalentDistanceSpacing.averageNeutralDistanceToGround": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.averagePhaseDistanceToGround": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.phaseToNeutralGMD": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentDistanceSpacing.phaseToPhaseGMD": {
+      "@type": "xsd:float"
+    },
+    "cim:MultiCircuitGroup.WireSpacing": {
+      "@type": "@id"
+    },
+    "gad:PerLengthImpedance.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformer.TransformerTanks": {
+      "@type": "@id"
+    },
+    "cim:RegularBundlePosition.subConductorCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:RegularBundlePosition.subConductorSpacing": {
+      "@type": "xsd:float"
+    },
+    "cim:SpacingPosition.xCoord": {
+      "@type": "xsd:float"
+    },
+    "cim:SpacingPosition.yCoord": {
+      "@type": "xsd:float"
+    },
+    "cim:SubConductorPosition.subConductorNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:SubConductorPosition.ConductorGroupPosition": {
+      "@type": "@id"
+    },
+    "gad:TransformerBankConfiguration.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.form": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.TransformerWindings": {
+      "@type": "@id"
+    },
+    "gad:TransformerCore.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.TransformerTank": {
+      "@type": "@id"
+    },
+    "gad:TransformerEnd.TransformerLugs": {
+      "@type": "@id"
+    },
+    "gad:TransformerEnd.FromTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerEnd.ToTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.sequenceNumber": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerLug.AutoTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.FromTransformerWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.ToTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerLug.TankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerLug.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerLug.TransformerTank": {
+      "@type": "@id"
+    },
+    "gad:TransformerPhaseEnd.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.TransformerCore": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.TransformerLug": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.TransformerWindings": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.PowerTransformer": {
+      "@type": "@id"
+    },
+    "gad:TransformerTank.TankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.loadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.noLoadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentMagnetizingCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.TransformerCore": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerLugs": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerPhaseEnd": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerTank": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerTankEnd": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.TransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankConfiguration.BankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankEnd.connectionKind": {
+      "@type": "@id"
+    },
+    "gad:TransformerTankEnd.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.connection": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.AutoTransformerLug": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.FromTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.FromTransformerLug": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.TankConfiguration": {
+      "@type": "@id"
+    },
+    "gad:TransformerWinding.ToTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.ToTransformerLug": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.TransformerCore": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.TransformerTank": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.numberOfPhases": {
+      "@type": "xsd:integer"
+    },
+    "gad:WireConfiguration.installationType": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.usage": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.ACLineSegements": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.WireSequence": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.EarthResistivity": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.WireSpacing": {
+      "@type": "@id"
+    },
+    "gad:WireSequenceConfiguration.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:WireSequenceConfiguration.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:WireSpacing.isTemplate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:WireSpacing.ACLineSegment": {
+      "@type": "@id"
+    },
+    "gad:WireSpacing.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:WireSpacing.MultiCircuitGroup": {
+      "@type": "@id"
+    },
+    "cim:XYConductorPosition.XYSpacing": {
+      "@type": "@id"
+    },
+    "cim:XYSpacing.XYConductorPosition": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/context.jsonld",
+  "owl:versionInfo": "0.2.0"
+}

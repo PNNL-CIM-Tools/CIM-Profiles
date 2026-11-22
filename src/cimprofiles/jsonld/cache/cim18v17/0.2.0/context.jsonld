@@ -1,12 +1,11 @@
 {
   "@context": {
     "cim": "http://cim.ucaiug.io/cim101/draft#",
-    "dcat": "http://www.w3.org/ns/dcat#",
-    "dcterms": "http://purl.org/dc/terms/",
     "eu": "http://iec.ch/TC57/CIM100-European#",
     "gad": "http://gridappsd.org/CIM/extension#",
     "gb": "http://GB/placeholder/ext#",
     "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
     "dct": "http://purl.org/dc/terms/",
     "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -950,19 +949,25 @@
     "cim:BipolarDCSystem.DCBiPole": {
       "@type": "@id"
     },
-    "cim:Boundary.IncludedIn": {
+    "gad:Boundary.BoundaryModels": {
       "@type": "@id"
     },
-    "cim:Boundary.Separates": {
+    "gad:Boundary.Frames": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.canBeTerminatedBy": {
+    "gad:Boundary.FrameworkEditions": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.partOfPerimeter": {
+    "gad:BoundaryModel.EdgeModels": {
       "@type": "@id"
     },
-    "cim:BoundaryModel.defines": {
+    "gad:BoundaryModel.EquivalentModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.FrameModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.DefinedBoundary": {
       "@type": "@id"
     },
     "cim:Brace.OverheadStructure": {
@@ -1461,6 +1466,12 @@
       "@type": "@id"
     },
     "cim:ConformLoadGroup.EnergyConsumers": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadGroup.ConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
     "cim:ConnectedArea.kind": {
@@ -2150,9 +2161,6 @@
     "cim:DCVoltageControlFunction.targetValue": {
       "@type": "xsd:float"
     },
-    "dcat:Dataset.isRealizedAs": {
-      "@type": "@id"
-    },
     "cim:DayType.SeasonDayTypeSchedules": {
       "@type": "@id"
     },
@@ -2255,9 +2263,6 @@
     "cim:DiscreteValue.Discrete": {
       "@type": "@id"
     },
-    "dcat:Distribution.realizes": {
-      "@type": "@id"
-    },
     "cim:DynamicsFunctionBlock.enabled": {
       "@type": "xsd:boolean"
     },
@@ -2282,10 +2287,10 @@
     "gad:EarthResistivity.PerLengthLineParameter": {
       "@type": "@id"
     },
-    "cim:EdgeModel.replaces": {
+    "gad:EdgeModel.ReplacedFrame": {
       "@type": "@id"
     },
-    "cim:EdgeModel.terrminates": {
+    "gad:EdgeModel.TerminatedBoundaryModel": {
       "@type": "@id"
     },
     "gad:ElectricVehicleInfo.v2gCapable": {
@@ -2654,7 +2659,7 @@
     "nc:EquivalentInjectionTimePoint.EquivalentInjectionSchedule": {
       "@type": "@id"
     },
-    "cim:EquivalentModel.joinsWith": {
+    "gad:EquivalentModel.JoinedBoundaryModels": {
       "@type": "@id"
     },
     "cim:EquivalentNetwork.EquivalentEquipments": {
@@ -2855,28 +2860,34 @@
     "cim:Feeder.NormalEnergizingSubstation": {
       "@type": "@id"
     },
-    "cim:Frame.terminatedBy": {
+    "gad:Frame.EdgeModels": {
       "@type": "@id"
     },
-    "cim:Frame.isReferencedBy": {
+    "gad:Frame.FrameModels": {
       "@type": "@id"
     },
-    "cim:Frame.ConnectsTo": {
+    "gad:Frame.FrameworkEditions": {
       "@type": "@id"
     },
-    "cim:Frame.InlcudedIn": {
+    "gad:Frame.Location": {
       "@type": "@id"
     },
-    "cim:FrameModel.perimeter": {
+    "gad:Frame.PerimeterBoundaries": {
       "@type": "@id"
     },
-    "cim:FrameModel.represents": {
+    "gad:FrameModel.PerimeterBoundaryModels": {
       "@type": "@id"
     },
-    "cim:FrameworkEdition.Includes": {
+    "gad:FrameModel.RepresentedFrame": {
       "@type": "@id"
     },
-    "cim:FrameworkEdition.Inlcudes": {
+    "gad:FrameworkEdition.IncludedBoundaries": {
+      "@type": "@id"
+    },
+    "gad:FrameworkEdition.IncludedFrames": {
+      "@type": "@id"
+    },
+    "gad:FrameworkEdition.IncludedReferences": {
       "@type": "@id"
     },
     "cim:FrequencyControlFunction.frequencyBias": {
@@ -3053,7 +3064,7 @@
     "cim:Geometry.Location": {
       "@type": "@id"
     },
-    "cim:GridAssembly.contains": {
+    "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
@@ -3065,7 +3076,7 @@
     "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
       "@type": "xsd:float"
     },
-    "cim:GridModel.usedIn": {
+    "gad:GridModel.GridAssembly": {
       "@type": "@id"
     },
     "nc:GridStateAlteration.enabled": {
@@ -3431,6 +3442,9 @@
     "cim:Location.CoordinateSystem": {
       "@type": "@id"
     },
+    "gad:Location.Frames": {
+      "@type": "@id"
+    },
     "cim:LossCurve.FACTSEquipment": {
       "@type": "@id"
     },
@@ -3678,6 +3692,12 @@
       "@type": "@id"
     },
     "cim:NonConformLoadGroup.EnergyConsumers": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadSchedule.NonConformLoadGroup": {
       "@type": "@id"
     },
     "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
@@ -4703,13 +4723,13 @@
     "cim:RecloseSequence.ProtectedSwitch": {
       "@type": "@id"
     },
-    "cim:Reference.ConsistsOf": {
+    "gad:Reference.FrameworkEditions": {
       "@type": "@id"
     },
-    "cim:Reference.IncludedIn": {
+    "gad:Reference.ReferenceModels": {
       "@type": "@id"
     },
-    "cim:ReferenceModel.Represents": {
+    "gad:ReferenceModel.RepresentedReference": {
       "@type": "@id"
     },
     "cim:RegularBundlePosition.subConductorCount": {
@@ -6853,5 +6873,79 @@
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/0.2.0/context.jsonld",
-  "owl:versionInfo": "0.2.0"
+  "owl:versionInfo": "0.2.0",
+  "dct:hasPart": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/substation/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_balanced/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/electrical_unbalanced/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/steady_state_hypothesis/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/regulating_control/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/function_block_control/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/measurement/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/location/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_deployment/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/facts/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/short_circuit/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/topology/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/load_area/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/protection/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/nc_schedule/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/context.jsonld"
+    }
+  ]
 }

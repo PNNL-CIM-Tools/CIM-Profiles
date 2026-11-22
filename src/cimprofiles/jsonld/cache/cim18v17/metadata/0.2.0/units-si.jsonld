@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.metadata 0.2.0 JSON-LD units: si"
+    }
+  ]
+}

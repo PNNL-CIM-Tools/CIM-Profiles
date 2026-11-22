@@ -4,10 +4,10 @@
 '''
 from cimprofiles.cim18.cim18v17.metadata.metadata import (
     Identity,
+    AssemblyWideModel,
     Boundary,
     BoundaryModel,
-    Dataset,
-    Distribution,
+    DateTimeInterval,
     EdgeModel,
     EquivalentModel,
     Frame,
@@ -16,6 +16,8 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     GridAssembly,
     GridDataset,
     GridModel,
+    IdentifiedObject,
+    Location,
     MetaThing,
     NonAlignedModel,
     Reference,
@@ -23,10 +25,10 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
 )
 __all__ = [
     'Identity',
+    'AssemblyWideModel' ,
     'Boundary' ,
     'BoundaryModel' ,
-    'Dataset' ,
-    'Distribution' ,
+    'DateTimeInterval' ,
     'EdgeModel' ,
     'EquivalentModel' ,
     'Frame' ,
@@ -35,6 +37,8 @@ __all__ = [
     'GridAssembly' ,
     'GridDataset' ,
     'GridModel' ,
+    'IdentifiedObject' ,
+    'Location' ,
     'MetaThing' ,
     'NonAlignedModel' ,
     'Reference' ,

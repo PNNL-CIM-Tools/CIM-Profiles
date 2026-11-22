@@ -3687,6 +3687,7 @@ class ControlAction(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlAreaGeneratingUnit(IdentifiedObject):
     '''
@@ -6988,6 +6989,7 @@ class LineElement(GeometricElement):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadArea(EnergyArea):
@@ -7073,6 +7075,7 @@ class LoadGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadGroup(LoadGroup):
@@ -7093,6 +7096,21 @@ class ConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    ConformLoadSchedules: list[ConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConformLoadSchedule.ConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The ConformLoadSchedules in the ConformLoadGroup.
     '''
     
     @property
@@ -9032,6 +9050,7 @@ class MutualCoupling(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadGroup(LoadGroup):
@@ -9052,6 +9071,21 @@ class NonConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    NonConformLoadSchedules: list[NonConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonConformLoadSchedule.NonConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The NonConformLoadSchedules in the NonConformLoadGroup.
     '''
     
     @property
@@ -12720,6 +12754,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlArea(PowerSystemResource):
     '''
@@ -18654,6 +18689,7 @@ class PointOnWaveSensor(MeasurementSystem):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerCutZone(PowerSystemResource):
@@ -21275,6 +21311,25 @@ class RecloseSequence(IdentifiedObject):
     @property
     def __package__(self):
         return 'Protection'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@dataclass(repr=False, eq=False)
+class RegularIntervalSchedule(BasicIntervalSchedule):
+    '''
+    The schedule has time points where the time between them is constant.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23960,7 +24015,7 @@ class Season(IdentifiedObject):
         return 'unbounded'
     
 @dataclass(repr=False, eq=False)
-class SeasonDayTypeSchedule(BasicIntervalSchedule):
+class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     A time schedule covering a 24 hour period, with curve data for a specific
     type of season and day.
@@ -24019,6 +24074,21 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     day type and season.
     '''
 
+    ConformLoadGroup: Optional[ConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConformLoadGroup.ConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The ConformLoadGroup where the ConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -24041,6 +24111,21 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     or power station service (where modelled).
     '''
 
+    NonConformLoadGroup: Optional[NonConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonConformLoadGroup.NonConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -26025,6 +26110,7 @@ class SubGeographicalRegion(IdentifiedObject):
     The DC lines in this sub-geographical region.
     '''
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubLoadArea(EnergyArea):
@@ -30905,6 +30991,7 @@ class DCTieCorridor(TieCorridor):
     '''
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class TieFlow(IdentifiedObject):
     '''

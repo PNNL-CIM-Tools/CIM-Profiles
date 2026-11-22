@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.connectivity_unbalanced 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:BaseFrequency.frequency",
+      "qudt:hasUnit": "unit:HZ",
+      "qudt:hasQuantityKind": "cim:Frequency"
+    },
+    {
+      "@id": "cim:BasePower.basePower",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
+      "@id": "cim:BaseVoltage.nominalVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:Clamp.lengthFromTerminal1",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Conductor.length",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Cut.lengthFromTerminal1",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:EnergySource.nominalVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "gad:TransformerPhaseEnd.phaseNeutralU",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    }
+  ]
+}

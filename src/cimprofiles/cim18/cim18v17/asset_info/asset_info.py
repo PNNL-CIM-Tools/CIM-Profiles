@@ -29,6 +29,8 @@ class CIMStereotype(Enum):
     add = "add"
     archive = "archive"
     enumeration = "enumeration"
+    foaf = "foaf"
+    gk = "gk"
     informative = "informative"
     moved = "moved"
     profcim = "profcim"
@@ -311,6 +313,7 @@ class IdentifiedObject(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.foaf)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Agent(IdentifiedObject):
@@ -425,7 +428,7 @@ class AgentRole(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['foaf'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'Agent.AgentRole',
@@ -5406,7 +5409,7 @@ class StructureInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['gk'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'DimensionsInfo.ConstructedStructureInfo',
@@ -6331,12 +6334,11 @@ class CatalogAssetType(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.gk)
 @dataclass(repr=False, eq=False)
 class Dimension(IdentifiedObject):
     '''
-    As applicable, the basic linear, area, or volume dimensions of an asset,
-    asset type (AssetModel) or other type of object (such as land area). Units
-    and multipliers are specified per dimension.
+    A DQV quality dimension of the feeder record.
     '''
 
     orientation: Optional[str] = field(
@@ -6574,6 +6576,7 @@ class DimensionsInfo(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.foaf)
 @dataclass(repr=False, eq=False)
 class Document(IdentifiedObject):
     '''

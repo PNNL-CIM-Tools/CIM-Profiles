@@ -41,8 +41,6 @@ BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {
     'cim': 'http://cim.ucaiug.io/cim101/draft#',
-    'dcat': 'http://www.w3.org/ns/dcat#',
-    'dcterms': 'http://purl.org/dc/terms/',
     'eu': 'http://iec.ch/TC57/CIM100-European#',
     'gad': 'http://gridappsd.org/CIM/extension#',
     'gb': 'http://GB/placeholder/ext#',
@@ -207,13 +205,12 @@ class CIMStereotype(Enum):
     NeedsWork = "NeedsWork"
     ToBeDiscussed = "ToBeDiscussed"
     add = "add"
+    foaf = "foaf"
+    gk = "gk"
     moved = "moved"
     remove = "remove"
 
     European = "European"
-    dcat = "dcat"
-    dct = "dct"
-    dcterms = "dcterms"
 @stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
 class ACDCTimePoint(Identity):
@@ -6177,6 +6174,81 @@ class DCTerminalPolarityKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Compound)
+@stereotype(CIMStereotype.Attribute)
+@dataclass(repr=False, eq=False)
+class DateTimeInterval(Identity):
+    '''
+    rdfs:label : "Date-time interval"@en
+    rdfs:comment : "'intervalo de fecha-hora' es una subclase de 'intervalo
+    propio', definida utilizando el multi-elemento 'descripci�n de fecha-hora'."@es
+    <http://www.w3.org/2004/02/skos/core#note> : "'intervalo de fecha-hora'
+    se puede utilizar s�lo para un intervalo cuyos l�mites coinciden con un
+    elemento de fecha-hora alineados con el calendario y la zona horaria indicados.
+    Por ejemplo, aunque ambos tienen una duraci�n de un d�a, el intervalo de
+    24 horas que empieza en la media noche del comienzo del 8 mayo en Europa
+    Central se puede expresar como un 'intervalo de fecha-hora', el intervalo
+    de 24 horas que empieza a las 1:30pm no."@es
+    rdfs:label : "intervalo de fecha-hora"@es
+    <http://www.w3.org/2004/02/skos/core#definition> : "DateTimeInterval is
+    a subclass of ProperInterval, defined using the multi-element DateTimeDescription."@en
+    rdfs:comment : "DateTimeInterval is a subclass of ProperInterval, defined
+    using the multi-element DateTimeDescription."@en
+    <http://www.w3.org/2004/02/skos/core#note> : ":DateTimeInterval can only
+    be used for an interval whose limits coincide with a date-time element
+    aligned to the calendar and timezone indicated. For example, while both
+    have a duration of one day, the 24-hour interval beginning at midnight
+    at the beginning of 8 May in Central Europe can be expressed as a :DateTimeInterval,
+    but the 24-hour interval starting at 1:30pm cannot."@en
+    <http://www.w3.org/2004/02/skos/core#definition> : "'intervalo de fecha-hora'
+    es una subclase de 'intervalo propio', definida utilizando el multi-elemento
+    'descripci�n de fecha-hora'."@es
+    '''
+
+    end: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    End date and time of this interval. The end date and time where the
+    interval is defined up to, but excluded.
+    '''
+    
+    start: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Start date and time of this interval. The start date and time is included
+    in the defined interval.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'time'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -7991,6 +8063,7 @@ class ACPointOfCommonCoupling(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.foaf)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Agent(IdentifiedObject):
@@ -8105,7 +8178,7 @@ class AgentRole(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['foaf'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'Agent.AgentRole',
@@ -13125,6 +13198,7 @@ class ControlAction(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class ControlAreaGeneratingUnit(IdentifiedObject):
     '''
@@ -14593,12 +14667,11 @@ class DelayTimer(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.gk)
 @dataclass(repr=False, eq=False)
 class Dimension(IdentifiedObject):
     '''
-    As applicable, the basic linear, area, or volume dimensions of an asset,
-    asset type (AssetModel) or other type of object (such as land area). Units
-    and multipliers are specified per dimension.
+    A DQV quality dimension of the feeder record.
     '''
 
     orientation: Optional[str] = field(
@@ -14836,6 +14909,7 @@ class DimensionsInfo(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.foaf)
 @dataclass(repr=False, eq=False)
 class Document(IdentifiedObject):
     '''
@@ -20353,6 +20427,7 @@ class LineElement(GeometricElement):
         return 'unbounded'
     
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class LoadArea(EnergyArea):
@@ -20438,6 +20513,7 @@ class LoadGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ConformLoadGroup(LoadGroup):
@@ -20458,6 +20534,21 @@ class ConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    ConformLoadSchedules: list[ConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'ConformLoadSchedule.ConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The ConformLoadSchedules in the ConformLoadGroup.
     '''
     
     @property
@@ -20715,6 +20806,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class Location(IdentifiedObject):
     '''
@@ -20852,6 +20944,22 @@ class Location(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    Frames: list[Frame] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.Location',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of frames from different profile parts that are part of the
+    same location
+    '''
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -22337,19 +22445,18 @@ class MediumKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
-class MetaThing(Identity):
+class MetaThing(IdentifiedObject):
     '''
-    Provides consistent identification for whatever information is represented
-    by a metadata object.
     '''
 
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22357,6 +22464,7 @@ class MetaThing(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Boundary(MetaThing):
@@ -22367,41 +22475,54 @@ class Boundary(MetaThing):
     frame models join.
     '''
 
-    IncludedIn: list[FrameworkEdition] = field(
+    BoundaryModels: list[BoundaryModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'FrameworkEdition.Includes',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'inverse': 'BoundaryModel.DefinedBoundary',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
         })
     '''
-    Tthe framework editions that the boundary is included in.
     '''
     
-    Separates: list[Frame] = field(
+    Frames: list[Frame] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'Frame.ConnectsTo',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'inverse': 'Frame.PerimeterBoundaries',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    FrameworkEditions: list[FrameworkEdition] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameworkEdition.IncludedBoundaries',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
         })
     '''
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22409,367 +22530,7 @@ class Boundary(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False, eq=False)
-class Dataset(MetaThing):
-    '''
-    A superclass describing a set of information.
-    For grid data management, the UML subclasses Dataset to describe different
-    kinds of information.
-    <ul>
-    <li>Many subclasses of Dataset are completely described in metadata and
-    do not have corresponding Distributions.</li>
-    <li>GridDataset and Attachment subclasses are summary desriptions of information
-    that are detailed in associated Distributions.</li>
-    </ul>
-    '''
-
-    isRealizedAs: list[Distribution] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['dcat'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Distribution.realizes',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    A realization of dataset information, usually a file conforming to
-    some specifications.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.dcat)
-@dataclass(repr=False, eq=False)
-class Distribution(MetaThing):
-    '''
-    A specific representation of a dataset. A dataset might be available in
-    multiple serializations that may differ in various ways, including natural
-    language, media-type or format, schematic organization, temporal and spatial
-    resolution, level of detail or profiles (which might specify any or all
-    of the above).
-    '''
-
-    accessRights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Information about who access the resource or an indication of its security
-    status.
-    Access Rights may include information regarding access or restrictions
-    based on privacy, security, or other policies.
-    '''
-    
-    accessURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    A URL of the resource that gives access to a distribution of the dataset.
-    E.g., landing page, feed, SPARQL endpoint.
-    dcat:accessURL SHOULD be used for the URL of a service or location
-    that can provide access to this distribution, typically through a Web
-    form, query or API call.
-    dcat:downloadURL is preferred for direct links to downloadable resources.
-    If the distribution(s) are accessible only through a landing page (i.e.,
-    direct download URLs are not known), then the landing page URL associated
-    with the dcat:Dataset SHOULD be duplicated as access URL on a distribution
-    '''
-    
-    byteSize: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The size of a distribution in bytes. The size in bytes can be approximated
-    when the precise size is not known.
-    '''
-    
-    compressFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The compression format of the distribution in which the data is contained
-    in a compressed form, e.g. to reduce the size of the downloadable file.
-    '''
-    
-    description: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A free-text account of the distribution.
-    '''
-    
-    downloadURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The URL of the downloadable file in a given format. E.g., CSV file
-    or RDF file. The format is indicated by the distribution's dcterms:format
-    and/or dcat:mediaType
-    dcat:downloadURL SHOULD be used for the URL at which this distribution
-    is available directly, typically through a HTTP Get request.
-    '''
-    
-    format: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    The file format of the distribution.
-    dcat:mediaType SHOULD be used if the type of the distribution is defined
-    by IANA
-    '''
-    
-    identifier: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    An unambiguous reference to the resource within a given context.
-    Recommended practice is to identify the resource by means of a string
-    conforming to an identification system. Examples include International
-    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
-    Resource Name (URN). Persistent identifiers should be provided as HTTP
-    URIs.
-    '''
-    
-    issued: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Date of formal issuance (e.g., publication) of the distribution.
-    '''
-    
-    license: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcterms', 'dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A legal document giving official permission to do something with the
-    resource.
-    Recommended practice is to identify the license document with a URI.
-    If this is not possible or feasible, a literal value that identifies
-    the license may be provided.
-    '''
-    
-    mediaType: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The media type of the distribution as defined by IANA
-    This property SHOULD be used when the media type of the distribution
-    is defined in IANA, otherwise dcterms:format MAY be used with different
-    values.
-    '''
-    
-    modified: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    Date on which the resource was changed.
-    Recommended practice is to describe the date, date/time, or period
-    of time as recommended for the property Date, of which this is a subproperty.
-    '''
-    
-    packageFormat: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The package format of the distribution in which one or more data files
-    are grouped together, e.g. to enable a set of related files to be downloaded
-    together.
-    This property is to be used when the files in the distribution are
-    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
-    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
-    if available.
-    '''
-    
-    rights: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A statement that concerns all rights not addressed with dct:license
-    or dct:accessRights, such as copyright statements.
-    '''
-    
-    spatialResolutionInMeters: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum spatial separation resolvable in a dataset, measured in metres.
-    '''
-    
-    temporalResolution: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dcat', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    Minimum time period resolvable in a dataset.
-    '''
-    
-    title: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['dct', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://purl.org/dc/terms/',
-        'serialize': True,
-        })
-    '''
-    A name given to the distribution.
-    '''
-    
-    realizes: Optional[Dataset] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Dataset.isRealizedAs',
-        'namespace': 'http://www.w3.org/ns/dcat#',
-        'serialize': True,
-        })
-    '''
-    The information in a file.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://www.w3.org/ns/dcat#'
-    @property
-    def __package__(self):
-        return 'DCAT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Frame(MetaThing):
@@ -22789,72 +22550,83 @@ class Frame(MetaThing):
     Frame and therefore be located by a same query.
     '''
 
-    terminatedBy: list[EdgeModel] = field(
+    EdgeModels: list[EdgeModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.replaces',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'EdgeModel.ReplacedFrame',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
         })
     '''
-    Identifies an edge model that may be used to represent flow into an
-    adjacent frame.
     '''
     
-    isReferencedBy: list[FrameModel] = field(
+    FrameModels: list[FrameModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.represents',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'FrameModel.RepresentedFrame',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
         })
     '''
-    Frame models that reference a frame.
     '''
     
-    ConnectsTo: list[Boundary] = field(
+    FrameworkEditions: list[FrameworkEdition] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'Boundary.Separates',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'inverse': 'FrameworkEdition.IncludedFrames',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
         })
     '''
     '''
     
-    InlcudedIn: Optional[FrameworkEdition] = field(
+    Location: Optional[Location] = field(
         default=None,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'FrameworkEdition.Includes',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'Location.Frames',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    Identfies the framework editions that a frame is included in.
+    The location describing the overall footprint of a set of frames
+    '''
+    
+    PerimeterBoundaries: list[Boundary] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Boundary.Frames',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22862,8 +22634,81 @@ class Frame(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
-class FrameworkEdition(Dataset):
+class GridDataset(MetaThing):
+    '''
+    GridDataset describes a set of grid modeling information:
+    GridDataset description is valid regardless of the syntax or semantics
+    used to realize the information, so it valid whether the information is
+    realized in a standard form or is maintained internal to a product.
+    '''
+
+    businessPurpose: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Describes the business purpose of the information set, which is usually
+    a string defined by the business process that publishes the information
+    set and is often used by business process logic to recognize the purpose
+    of a message.
+    '''
+    
+    profileType: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Describes the profile name to which the dataset was created, such as
+    connectivity, electrical, short circuit, or state variable.
+    '''
+    
+    publishedOn: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The datetime that the dataset was published, where publish means declaring
+    the content complete and fit for purpose. It is the declaration more
+    than the content that determines the timing.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class FrameworkEdition(GridDataset):
     '''
     A framework edition defines the set of frames, boundaries and reference
     models for an evolutionary state of a framework.
@@ -22871,42 +22716,54 @@ class FrameworkEdition(Dataset):
     evolutionary state applies. Usually, this is a time range.
     '''
 
-    Includes: Optional[Frame] = field(
-        default=None,
+    IncludedBoundaries: list[Boundary] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Frame.InlcudedIn',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'maxOccurs': 'unbounded',
+        'inverse': 'Boundary.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
-    Identifies the frames that are included in a framework ediition.
     '''
     
-    Inlcudes: Optional[Reference] = field(
-        default=None,
+    IncludedFrames: list[Frame] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Reference.IncludedIn',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
-    The reference models included in a framework edition.
+    '''
+    
+    IncludedReferences: list[Reference] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Reference.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22914,8 +22771,10 @@ class FrameworkEdition(Dataset):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
-class GridAssembly(Dataset):
+class GridAssembly(GridDataset):
     '''
     A set of grid models that join together through grid data associations
     to create a set of modeling for some business purpose, most often a set
@@ -22932,27 +22791,26 @@ class GridAssembly(Dataset):
     of the grid.
     '''
 
-    contains: list[GridModel] = field(
+    GridModelParts: list[GridModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.usedIn',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'GridModel.GridAssembly',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
         })
     '''
-    Identifies the grid models that make up the assembly.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22960,58 +22818,12 @@ class GridAssembly(Dataset):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@dataclass(repr=False, eq=False)
-class GridDataset(Dataset):
-    '''
-    GridDataset describes a set of grid modeling information:
-    <ul>
-    <li>business purpose is inherited from Dataset. e.g. Day-ahead congestion
-    or state estimation or ....</li>
-    <li>datetime describes the moment is time represented.</li>
-    <li>type describes a category of information, such as physical, sitatuional,
-    solution.</li>
-    <li>GridDelta subclass represent components of change description.</li>
-    <li>GridModel subclass represents complete sets of modeling and is further
-    subclassed to indicate coverage.</li>
-    </ul>
-    GridDataset description is valid regardless of the syntax or semantics
-    used to realize the information, so it valid whether the information is
-    realized in a standard form or is maintained internal to a product.
-    '''
-
-    type: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    This property is available to processes to distinguish a category of
-    information, such as physical vs situational vs solution.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Metadata'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class GridModel(GridDataset):
     '''
     Classes that inherit from GridModel all represent a set of information
-    about a part of the grod in one state.
+    about a part of the grid in one state.
     The kind of information is indicated by the profileType inherited from
     GridDataset, which may be either an individual curated profile or a stack
     of profiles. A stack GridModel is necessary when grid artifact Distributions
@@ -23020,27 +22832,26 @@ class GridModel(GridDataset):
     profile is extracted from a stack and used as part of another stack.
     '''
 
-    usedIn: list[GridAssembly] = field(
+    GridAssembly: list[GridAssembly] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'GridAssembly.contains',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'GridAssembly.GridModelParts',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    Identifies the assemblies that include the grid model.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23048,6 +22859,30 @@ class GridModel(GridDataset):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AssemblyWideModel(GridModel):
+    '''
+    A grid model whose scope matches that of an entire assembly, such as a
+    power flow solution grid model.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class BoundaryModel(GridModel):
     '''
@@ -23061,61 +22896,68 @@ class BoundaryModel(GridModel):
     should define their applicability to a situation criteria.
     '''
 
-    canBeTerminatedBy: list[EdgeModel] = field(
+    EdgeModels: list[EdgeModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.terrminates',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'EdgeModel.TerminatedBoundaryModel',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
         })
     '''
-    Identifies a boundary edge that terminates a boundary model.
     '''
     
-    partOfPerimeter: list[FrameModel] = field(
+    EquivalentModels: list[EquivalentModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.perimeter',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'EquivalentModel.JoinedBoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': False,
         })
     '''
-    Is part of a FramePerimeter. Note that it is allowed that a FramePerimeter
-    may be made up of BoundaryModels for Boundaries from different Frameworks.
     '''
     
-    defines: Optional[EquivalentModel] = field(
+    FrameModels: list[FrameModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameModel.PerimeterBoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    DefinedBoundary: Optional[Boundary] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'EquivalentModel.joinsWith',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'Boundary.BoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    Any model that approximates a part of the grid. Most often the result
-    of a mathematical reduction of a set of frame models, but may also
-    be used to describe more complex manually generated edges of areas
-    modeled in detail.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23124,6 +22966,7 @@ class BoundaryModel(GridModel):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class EdgeModel(GridModel):
     '''
@@ -23137,45 +22980,42 @@ class EdgeModel(GridModel):
     are only changed when a new boundary model is defined. A boundary may have
     edges for each of its adjacent frames if the studies conducted by a utility
     require them.
-    See reference notes on Frameworks and Grid Models for more information.
     '''
 
-    replaces: Optional[Frame] = field(
+    ReplacedFrame: Optional[Frame] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'inverse': 'Frame.terminatedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'Frame.EdgeModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    Identifies the frame that the edge model replaces.
     '''
     
-    terrminates: Optional[BoundaryModel] = field(
+    TerminatedBoundaryModel: Optional[BoundaryModel] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'BoundaryModel.canBeTerminatedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'BoundaryModel.EdgeModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    A boundary model that an edge model terminates -- i.e. joins with.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23183,39 +23023,33 @@ class EdgeModel(GridModel):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class EquivalentModel(GridModel):
     '''
-    Represents grid modeling produced by executing a mathematical reduction
-    of one or more frames of an assembly. In a framework, the resulting equivalent
-    model will plug into the set of boundary models that connect unreduced
-    frames to reduced frames. If no framework element is referenced as reduced,
-    the meaning of the equivalent is not described and must be controlled by
-    the processes that defined the model.
     '''
 
-    joinsWith: list[BoundaryModel] = field(
-        default_factory=list,
+    JoinedBoundaryModels: Optional[BoundaryModel] = field(
+        default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.defines',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': False,
+        'maxOccurs': '1',
+        'inverse': 'BoundaryModel.EquivalentModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
         })
     '''
-    A perimeter definition for the set of boundary models that the equivalent
-    joins with.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -23223,6 +23057,7 @@ class EquivalentModel(GridModel):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class FrameModel(GridModel):
@@ -23234,43 +23069,40 @@ class FrameModel(GridModel):
     models.
     '''
 
-    perimeter: list[BoundaryModel] = field(
+    PerimeterBoundaryModels: list[BoundaryModel] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['GridAPPSD'],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.partOfPerimeter',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'BoundaryModel.FrameModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    The boundary models that the frame model was joined with when the frame
-    model was created.
     '''
     
-    represents: Optional[Frame] = field(
+    RepresentedFrame: Optional[Frame] = field(
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
         'maxOccurs': '1',
-        'inverse': 'Frame.isReferencedBy',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'inverse': 'Frame.FrameModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
-    The frame that the frame model represents.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -24065,26 +23897,19 @@ class MutualCoupling(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonAlignedModel(GridModel):
     '''
-    GridModels that are not aligned with any framework part shall be represented
-    as non-aligned.
-    When frameworks are not being used, all models are either non-aligned or
-    assembly wide, and procedures that use the modeling need to know how to
-    put them together by other means.
-    When modeling is being imported into a framework structure, the modeling
-    is usually received as non-aligned and then operated on to extract and
-    save framework parts.
     '''
 
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -24092,6 +23917,7 @@ class NonAlignedModel(GridModel):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NonConformLoadGroup(LoadGroup):
@@ -24112,6 +23938,21 @@ class NonConformLoadGroup(LoadGroup):
         })
     '''
     Conform loads assigned to this ConformLoadGroup.
+    '''
+    
+    NonConformLoadSchedules: list[NonConformLoadSchedule] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['AggregateOf'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'NonConformLoadSchedule.NonConformLoadGroup',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': False,
+        })
+    '''
+    The NonConformLoadSchedules in the NonConformLoadGroup.
     '''
     
     @property
@@ -30103,6 +29944,7 @@ class ConnectivityNodeContainer(PowerSystemResource):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.ShadowExtension)
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
 class ControlArea(PowerSystemResource):
@@ -36470,6 +36312,7 @@ class PointOnWaveSensor(MeasurementSystem):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class PowerCutZone(PowerSystemResource):
@@ -40044,6 +39887,7 @@ class RecloseSequence(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Reference(MetaThing):
@@ -40053,41 +39897,40 @@ class Reference(MetaThing):
     be used.
     '''
 
-    ConsistsOf: list[ReferenceModel] = field(
+    FrameworkEditions: list[FrameworkEdition] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
-        'inverse': 'ReferenceModel.Represents',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'inverse': 'FrameworkEdition.IncludedReferences',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
         })
     '''
     '''
     
-    IncludedIn: Optional[FrameworkEdition] = field(
-        default=None,
+    ReferenceModels: list[ReferenceModel] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': [],
         'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'FrameworkEdition.Inlcudes',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
+        'maxOccurs': 'unbounded',
+        'inverse': 'ReferenceModel.RepresentedReference',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
         })
     '''
-    The framework editions that the reference model is included in.
     '''
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -40096,6 +39939,7 @@ class Reference(MetaThing):
         return 'unbounded'
     
 
+@stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class ReferenceModel(GridModel):
@@ -40107,15 +39951,15 @@ class ReferenceModel(GridModel):
     should define their applicability to a situation criteria.
     '''
 
-    Represents: list[Reference] = field(
-        default_factory=list,
+    RepresentedReference: Optional[Reference] = field(
+        default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Reference.ConsistsOf',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Reference.ReferenceModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
     '''
@@ -40123,10 +39967,10 @@ class ReferenceModel(GridModel):
     
     @property
     def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
-        return 'Metadata'
+        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -40142,6 +39986,19 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     The schedule has time points where the time between them is constant.
     '''
 
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
     endTime: Optional[str] = field(
         default=None,
         metadata={
@@ -40186,19 +40043,6 @@ class RegularIntervalSchedule(BasicIntervalSchedule):
     '''
     The regular interval time point data values that define this schedule.
     '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Core'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
@@ -44641,7 +44485,7 @@ class Season(IdentifiedObject):
     '''
     
 @dataclass(repr=False, eq=False)
-class SeasonDayTypeSchedule(BasicIntervalSchedule):
+class SeasonDayTypeSchedule(RegularIntervalSchedule):
     '''
     A time schedule covering a 24 hour period, with curve data for a specific
     type of season and day.
@@ -44700,6 +44544,21 @@ class ConformLoadSchedule(SeasonDayTypeSchedule):
     day type and season.
     '''
 
+    ConformLoadGroup: Optional[ConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ConformLoadGroup.ConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The ConformLoadGroup where the ConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -44722,6 +44581,21 @@ class NonConformLoadSchedule(SeasonDayTypeSchedule):
     or power station service (where modelled).
     '''
 
+    NonConformLoadGroup: Optional[NonConformLoadGroup] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['OfAggregate'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'NonConformLoadGroup.NonConformLoadSchedules',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+    '''
+    
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
@@ -48781,7 +48655,7 @@ class StructureInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
+        'stereotypes': ['gk'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': 'DimensionsInfo.ConstructedStructureInfo',
@@ -49051,6 +48925,7 @@ class SubGeographicalRegion(IdentifiedObject):
     The DC lines in this sub-geographical region.
     '''
     
+@stereotype(CIMStereotype.OfAggregate)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class SubLoadArea(EnergyArea):
@@ -55105,6 +54980,7 @@ class DCTieCorridor(TieCorridor):
     '''
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.OfAggregate)
 @dataclass(repr=False, eq=False)
 class TieFlow(IdentifiedObject):
     '''

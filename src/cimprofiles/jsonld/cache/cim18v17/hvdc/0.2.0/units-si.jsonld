@@ -1,0 +1,365 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.hvdc 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:ACDCConverter.baseS",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
+      "@id": "cim:ACDCConverter.idc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:ACDCConverter.idleLoss",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.maxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.maxUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.minP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.minUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.poleLossP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.ratedUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.resistiveLoss",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:ACDCConverter.switchingLoss",
+      "qudt:hasUnit": "unit:W-PER-A",
+      "qudt:hasQuantityKind": "cim:ActivePowerPerCurrentFlow"
+    },
+    {
+      "@id": "cim:ACDCConverter.targetPpcc",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ACDCConverter.targetUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.uc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.udc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:ACDCConverter.valveU0",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:CsConverter.alpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.gamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.maxAlpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.maxGamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.maxIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:CsConverter.minAlpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.minGamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.minIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:CsConverter.ratedIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:CsConverter.targetAlpha",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.targetGamma",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:CsConverter.targetIdc",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:DCConductingEquipment.ratedCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:DCConductingEquipment.ratedUdc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:DCGround.inductance",
+      "qudt:hasUnit": "unit:H",
+      "qudt:hasQuantityKind": "cim:Inductance"
+    },
+    {
+      "@id": "cim:DCGround.r",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:DCLineSegment.capacitance",
+      "qudt:hasUnit": "unit:FARAD",
+      "qudt:hasQuantityKind": "cim:Capacitance"
+    },
+    {
+      "@id": "cim:DCLineSegment.inductance",
+      "qudt:hasUnit": "unit:H",
+      "qudt:hasQuantityKind": "cim:Inductance"
+    },
+    {
+      "@id": "cim:DCLineSegment.length",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:DCLineSegment.resistance",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:DCPole.maxEconomicP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCPole.minEconomicP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCPole.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCSeriesDevice.inductance",
+      "qudt:hasUnit": "unit:H",
+      "qudt:hasQuantityKind": "cim:Inductance"
+    },
+    {
+      "@id": "cim:DCSeriesDevice.resistance",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:DCShunt.capacitance",
+      "qudt:hasUnit": "unit:FARAD",
+      "qudt:hasQuantityKind": "cim:Capacitance"
+    },
+    {
+      "@id": "cim:DCShunt.resistance",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:DCTieCorridor.maxRegulatingReserve",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCTieCorridor.minRegulatingReserve",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCTieCorridor.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:DCTieCorridor.q",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "nc:MustRunTimePoint.mustRunP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "nc:MustRunTimePoint.mustRunQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:PerLengthDCLineParameter.capacitance",
+      "qudt:hasUnit": "unit:FARAD-PER-M",
+      "qudt:hasQuantityKind": "cim:CapacitancePerLength"
+    },
+    {
+      "@id": "cim:PerLengthDCLineParameter.inductance",
+      "qudt:hasUnit": "unit:H-PER-M",
+      "qudt:hasQuantityKind": "cim:InductancePerLength"
+    },
+    {
+      "@id": "cim:PerLengthDCLineParameter.resistance",
+      "qudt:hasUnit": "unit:OHM-PER-M",
+      "qudt:hasQuantityKind": "cim:ResistancePerLength"
+    },
+    {
+      "@id": "cim:SvDCPowerFlow.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:SvDCVoltage.v",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:TieCorridor.delayRegulatingReserve",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:TieCorridor.thresholdRegulatingReserve",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:TopologicalNode.pInjection",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:TopologicalNode.qInjection",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:VsCapabilityCurve.referenceVoltage",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:VsConverter.delta",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:VsConverter.droopCompensation",
+      "qudt:hasUnit": "unit:OHM",
+      "qudt:hasQuantityKind": "cim:Resistance"
+    },
+    {
+      "@id": "cim:VsConverter.maxValveCurrent",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:VsConverter.qShare",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:VsConverter.targetPhasePcc",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:VsConverter.targetQpcc",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:VsConverter.targetUpcc",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:VsConverter.uv",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    }
+  ]
+}

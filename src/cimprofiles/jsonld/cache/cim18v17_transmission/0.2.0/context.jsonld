@@ -610,6 +610,12 @@
     "cim:ConformLoadGroup.EnergyConsumers": {
       "@type": "@id"
     },
+    "cim:ConformLoadGroup.ConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadSchedule.ConformLoadGroup": {
+      "@type": "@id"
+    },
     "cim:ConnectedArea.kind": {
       "@type": "@id"
     },
@@ -1973,6 +1979,12 @@
       "@type": "@id"
     },
     "cim:NonConformLoadGroup.EnergyConsumers": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadSchedule.NonConformLoadGroup": {
       "@type": "@id"
     },
     "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {

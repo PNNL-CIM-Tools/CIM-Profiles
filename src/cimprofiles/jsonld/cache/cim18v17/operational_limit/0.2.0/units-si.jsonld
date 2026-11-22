@@ -1,0 +1,107 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.operational_limit 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:ActivePowerLimit.normalValue",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ActivePowerLimit.value",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:ApparentPowerLimit.normalValue",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
+      "@id": "cim:ApparentPowerLimit.value",
+      "qudt:hasUnit": "unit:V-A",
+      "qudt:hasQuantityKind": "cim:ApparentPower"
+    },
+    {
+      "@id": "cim:BranchGroup.maximumActivePower",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:BranchGroup.maximumReactivePower",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:BranchGroup.minimumActivePower",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:BranchGroup.minimumReactivePower",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:CurrentLimit.normalValue",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:CurrentLimit.value",
+      "qudt:hasUnit": "unit:A",
+      "qudt:hasQuantityKind": "cim:CurrentFlow"
+    },
+    {
+      "@id": "cim:OperationalLimitType.acceptableDuration",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:ReactivePowerLimit.normalValue",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:ReactivePowerLimit.value",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "cim:VoltageAngleLimit.normalValue",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:VoltageAngleLimit.value",
+      "qudt:hasUnit": "unit:DEG",
+      "qudt:hasQuantityKind": "cim:AngleDegrees"
+    },
+    {
+      "@id": "cim:VoltageLimit.normalValue",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    },
+    {
+      "@id": "cim:VoltageLimit.value",
+      "qudt:hasUnit": "unit:V",
+      "qudt:hasQuantityKind": "cim:Voltage"
+    }
+  ]
+}
