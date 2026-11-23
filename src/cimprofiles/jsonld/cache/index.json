@@ -38,6 +38,8 @@
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/facts/0.2.0/units-si.jsonld": "cim18v17/facts/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/function_block_control/0.2.0/context.jsonld": "cim18v17/function_block_control/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/function_block_control/0.2.0/units-si.jsonld": "cim18v17/function_block_control/0.2.0/units-si.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/generation/0.2.0/context.jsonld": "cim18v17/generation/0.2.0/context.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/generation/0.2.0/units-si.jsonld": "cim18v17/generation/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/context.jsonld": "cim18v17/hvdc/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/hvdc/0.2.0/units-si.jsonld": "cim18v17/hvdc/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/load_area/0.2.0/context.jsonld": "cim18v17/load_area/0.2.0/context.jsonld",
