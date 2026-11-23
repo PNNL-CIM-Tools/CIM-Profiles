@@ -3,11 +3,12 @@ import json
 from pathlib import Path
 
 import pytest
+import yaml
 
 import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
 from cimprofiles.jsonld import load_document, load_vocabulary_units, profile_jsonld
-from cimprofiles.jsonld.build import (build_context, build_profile, build_vocabulary, convention_units,
+from cimprofiles.jsonld.build import (RELEASES_FILE, build_context, build_profile, build_vocabulary, convention_units,
                                       expand_parts, load_specs, part_profile, stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
                                         vocabulary_units)
@@ -137,13 +138,21 @@ def test_parts_are_published_under_their_set():
     assert 'cim:Terminal.ConnectivityNode' in load_document(entry['context'])['@context']
 
 
+def test_w3c_properties_are_terms_by_bare_name():
+    from cimprofiles.cim18.cim18v17.metadata import metadata
+    context = build_context(metadata)['@context']
+    assert context['dct:temporal'] == context['dct:creator'] == {'@type': '@id'}
+    assert context['dct:conformsTo'] == {'@type': '@id'}               # HEADER_TERMS
+    assert context['dct:issued'] == {'@type': 'xsd:dateTime'}          # HEADER_TERMS types the literal
+    assert context['dcat:startDate'] == {'@type': 'xsd:dateTimeStamp'}
+    assert not [term for term in context if term.startswith(('dct:GridDataset.', 'dcterms:GridDataset.'))]
+
 def test_master_context_lists_its_parts_in_merge_order():
+    releases = yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']
+    modules = next(release['parts'] for release in releases if release['name'] == 'cim18v17')
     master = load_document(profile_jsonld('cim18v17')['context'])
-    parts = [item['@id'] for item in master['dct:hasPart']]
-    assert len(parts) == 24
-    assert parts[:2] == [profile_jsonld('cim18v17.substation')['context'],
-                         profile_jsonld('cim18v17.connectivity_unbalanced')['context']]
-    assert parts[-1] == profile_jsonld('cim18v17.metadata')['context']
+    assert [item['@id'] for item in master['dct:hasPart']] \
+        == [profile_jsonld(part_profile(module))['context'] for module in modules]
     assert 'dct:hasPart' not in load_document(profile_jsonld('cim18v17_distribution')['context'])
 
 

@@ -36,6 +36,12 @@ project:
       tool:profile_namespace
               "http://www.gridappsd.org/vfm#" .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/boundary.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.gridappsd.org/vfm#" .
+
 <http://cimtoole.langdale.com.au/2009/project/Profiles/connectivity_unbalanced.owl>
       tool:profile_envelope
               "Profile" ;
@@ -67,6 +73,12 @@ project:
               "http://www.gridappsd.org/vfm#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/function_block_control.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.gridappsd.org/vfm#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/generation.owl>
       tool:profile_envelope
               "Profile" ;
       tool:profile_namespace

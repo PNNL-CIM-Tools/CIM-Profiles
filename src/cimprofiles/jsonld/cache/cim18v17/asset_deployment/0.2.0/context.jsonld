@@ -55,6 +55,15 @@
     "cim:Asset.retiredReason": {
       "@type": "@id"
     },
+    "cim:Asset.acceptanceTest": {
+      "@type": "@id"
+    },
+    "cim:Asset.inUseDate": {
+      "@type": "@id"
+    },
+    "cim:Asset.lifecycleDate": {
+      "@type": "@id"
+    },
     "cim:Asset.AssetContainer": {
       "@type": "@id"
     },
@@ -68,6 +77,9 @@
       "@type": "xsd:integer"
     },
     "cim:AssetDeployment.deploymentState": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.deploymentDate": {
       "@type": "@id"
     },
     "cim:AssetDeployment.Asset": {

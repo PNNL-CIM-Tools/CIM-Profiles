@@ -78,6 +78,8 @@ HEADER_TERMS = {
     'dcat:startDate': {'@type': 'xsd:dateTimeStamp'},   # md:Model.scenarioTime
     'dcat:endDate': {'@type': 'xsd:dateTimeStamp'},
 }
+# W3C vocabulary properties are terms by bare name (dct:temporal), not Class.property
+W3C_PREFIXES = {DOCUMENT_NAMESPACES[prefix]: prefix for prefix in ('dcat', 'dct')}
 VOCABULARY_NAMESPACES = {
     'dct': 'http://purl.org/dc/terms/',
     'owl': 'http://www.w3.org/2002/07/owl#',
@@ -156,10 +158,22 @@ def build_context(profile) -> dict:
     context = {**namespaces, **DOCUMENT_NAMESPACES, **HEADER_TERMS}
     for cls, attribute, field in _declared_fields(profile):
         datatype = _datatype(profile, field)
-        if datatype is not None:
-            term = f'{_prefix(namespaces, field.metadata["namespace"])}:{cls.__name__}.{attribute}'
-            context[term] = {'@type': datatype}
+        namespace = field.metadata['namespace']
+        if namespace in W3C_PREFIXES:
+            _add_w3c_term(f'{W3C_PREFIXES[namespace]}:{attribute}', datatype, context)
+        elif datatype is not None:
+            context[f'{_prefix(namespaces, namespace)}:{cls.__name__}.{attribute}'] = {'@type': datatype}
     return {'@context': context}
+
+
+def _add_w3c_term(term: str, datatype: str | None, context: dict) -> None:
+    """Add a W3C property's term, or check it against the HEADER_TERMS one. A literal string
+    field takes the HEADER_TERMS typing (dct:issued is an xsd:dateTime)."""
+    if term in HEADER_TERMS:
+        if datatype not in (None, HEADER_TERMS[term]['@type']):
+            raise ValueError(f'{term}: the profile types it {datatype}, HEADER_TERMS {HEADER_TERMS[term]["@type"]}')
+    elif datatype is not None:
+        context[term] = {'@type': datatype}
 
 
 def _checked_unit(name: str, unit: str, unit_class: type) -> str:

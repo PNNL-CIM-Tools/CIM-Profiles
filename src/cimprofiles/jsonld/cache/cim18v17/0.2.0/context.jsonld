@@ -1,11 +1,12 @@
 {
   "@context": {
     "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
     "eu": "http://iec.ch/TC57/CIM100-European#",
     "gad": "http://gridappsd.org/CIM/extension#",
     "gb": "http://GB/placeholder/ext#",
     "nc": "http://entsoe.eu/ns/nc#",
-    "dcat": "http://www.w3.org/ns/dcat#",
     "dct": "http://purl.org/dc/terms/",
     "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -637,6 +638,15 @@
     "cim:Asset.purchasePrice": {
       "@type": "xsd:float"
     },
+    "cim:Asset.acceptanceTest": {
+      "@type": "@id"
+    },
+    "cim:Asset.inUseDate": {
+      "@type": "@id"
+    },
+    "cim:Asset.lifecycleDate": {
+      "@type": "@id"
+    },
     "cim:Asset.AssetDeployment": {
       "@type": "@id"
     },
@@ -647,6 +657,9 @@
       "@type": "xsd:integer"
     },
     "cim:AssetDeployment.deploymentState": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.deploymentDate": {
       "@type": "@id"
     },
     "cim:AssetDeployment.Asset": {
@@ -970,6 +983,15 @@
     "gad:BoundaryModel.DefinedBoundary": {
       "@type": "@id"
     },
+    "eu:BoundaryPoint.isDirectCurrent": {
+      "@type": "xsd:boolean"
+    },
+    "eu:BoundaryPoint.isExcludedFromAreaInterchange": {
+      "@type": "xsd:boolean"
+    },
+    "eu:BoundaryPoint.ConnectivityNode": {
+      "@type": "@id"
+    },
     "cim:Brace.OverheadStructure": {
       "@type": "@id"
     },
@@ -1168,6 +1190,9 @@
     "cim:CapacitorCanInfo.terminalConnectionType": {
       "@type": "@id"
     },
+    "cim:CapacitorCanInfo.rated10PctVoltTime": {
+      "@type": "@id"
+    },
     "cim:CapacitorInfo.maxAmbientTempRating": {
       "@type": "xsd:float"
     },
@@ -1229,6 +1254,9 @@
       "@type": "@id"
     },
     "cim:CatalogAssetType.ProductAssetModel": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.quantity": {
       "@type": "@id"
     },
     "cim:CatalogAssetType.AssetInfo": {
@@ -1523,6 +1551,9 @@
       "@type": "@id"
     },
     "cim:ConnectivityNode.TopologicalNode": {
+      "@type": "@id"
+    },
+    "eu:ConnectivityNode.BoundaryPoint": {
       "@type": "@id"
     },
     "cim:ConnectivityNodeContainer.ConnectivityNodes": {
@@ -2872,6 +2903,9 @@
     "gad:Frame.Location": {
       "@type": "@id"
     },
+    "gad:Frame.ModelAuthority": {
+      "@type": "@id"
+    },
     "gad:Frame.PerimeterBoundaries": {
       "@type": "@id"
     },
@@ -3067,6 +3101,12 @@
     "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
+    "dct:temporal": {
+      "@type": "@id"
+    },
+    "dct:creator": {
+      "@type": "@id"
+    },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
       "@type": "xsd:float"
     },
@@ -3076,7 +3116,10 @@
     "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
       "@type": "xsd:float"
     },
-    "gad:GridModel.GridAssembly": {
+    "gad:GridModel.GridAssemblies": {
+      "@type": "@id"
+    },
+    "gad:GridModel.ModelAuthority": {
       "@type": "@id"
     },
     "nc:GridStateAlteration.enabled": {
@@ -3603,6 +3646,12 @@
     },
     "cim:MeterInfo.waterMetering": {
       "@type": "xsd:boolean"
+    },
+    "gad:ModelAuthority.ModeledFrames": {
+      "@type": "@id"
+    },
+    "gad:ModelAuthority.GridModels": {
+      "@type": "@id"
     },
     "cim:MonopolarDCSystem.isSymmetrical": {
       "@type": "xsd:boolean"
@@ -6946,6 +6995,9 @@
     },
     {
       "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/boundary/0.2.0/context.jsonld"
     }
   ]
 }

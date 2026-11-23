@@ -24,6 +24,8 @@
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_deployment/0.2.0/units-si.jsonld": "cim18v17/asset_deployment/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/context.jsonld": "cim18v17/asset_info/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/units-si.jsonld": "cim18v17/asset_info/0.2.0/units-si.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/boundary/0.2.0/context.jsonld": "cim18v17/boundary/0.2.0/context.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/boundary/0.2.0/units-si.jsonld": "cim18v17/boundary/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/context.jsonld": "cim18v17/connectivity_unbalanced/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/units-si.jsonld": "cim18v17/connectivity_unbalanced/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/construction/0.2.0/context.jsonld": "cim18v17/construction/0.2.0/context.jsonld",

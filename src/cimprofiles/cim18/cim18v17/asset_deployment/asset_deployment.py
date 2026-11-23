@@ -317,6 +317,52 @@ class Asset(IdentifiedObject):
     Reason asset retired.
     '''
     
+    acceptanceTest: Optional[AcceptanceTest] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Information on acceptance test.
+    '''
+    
+    inUseDate: Optional[InUseDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    In use dates for this asset.
+    '''
+    
+    lifecycleDate: Optional[LifecycleDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    <was lifecycle>
+    Lifecycle dates for this asset.
+    '''
+    
     AssetContainer: Optional[AssetContainer] = field(
         default=None,
         metadata={
@@ -448,6 +494,21 @@ class AssetDeployment(IdentifiedObject):
         })
     '''
     Current deployment state of asset.
+    '''
+    
+    deploymentDate: Optional[DeploymentDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Dates of asset deployment.
     '''
     
     Asset: Optional[Asset] = field(

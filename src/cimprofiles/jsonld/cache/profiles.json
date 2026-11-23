@@ -96,6 +96,16 @@
     },
     "version": "0.2.0"
   },
+  "cim18v17.boundary": {
+    "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/boundary/0.2.0/context.jsonld",
+    "default": "si",
+    "conventions": {
+      "si": [
+        "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/boundary/0.2.0/units-si.jsonld"
+      ]
+    },
+    "version": "0.2.0"
+  },
   "cim18v17.connectivity_unbalanced": {
     "context": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/0.2.0/context.jsonld",
     "default": "si",
