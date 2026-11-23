@@ -1,0 +1,517 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/"
+  },
+  "@graph": [
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/generation/0.2.0/units-si.jsonld",
+      "@type": "owl:Ontology",
+      "owl:versionIRI": {
+        "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/generation/0.2.0/units-si.jsonld"
+      },
+      "dct:title": "cim18v17.generation 0.2.0 JSON-LD units: si"
+    },
+    {
+      "@id": "cim:BWRSteamSupply.inCoreThermalTC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:BWRSteamSupply.pressureSetpointTC1",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:BWRSteamSupply.pressureSetpointTC2",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "gad:BatteryUnit.chargingEfficiency",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "gad:BatteryUnit.dischargingEfficiency",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "gad:BatteryUnit.idlingP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "gad:BatteryUnit.idlingQ",
+      "qudt:hasUnit": "unit:V-A_Reactive",
+      "qudt:hasQuantityKind": "cim:ReactivePower"
+    },
+    {
+      "@id": "gad:BatteryUnit.minimumE",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:BatteryUnit.ratedE",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:BatteryUnit.storedE",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:CAESPlant.energyStorageCapacity",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:CAESPlant.ratedCapacityP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:CogenerationPlant.ratedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:CombinedCyclePlant.combCyclePlantRating",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:CombustionTurbine.ambientTemp",
+      "qudt:hasUnit": "unit:DEG_C",
+      "qudt:hasQuantityKind": "cim:Temperature"
+    },
+    {
+      "@id": "cim:CombustionTurbine.referenceTemp",
+      "qudt:hasUnit": "unit:DEG_C",
+      "qudt:hasQuantityKind": "cim:Temperature"
+    },
+    {
+      "@id": "cim:CombustionTurbine.timeConstant",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:EmissionCurve.emissionContent",
+      "qudt:hasUnit": "unit:KiloGM-PER-J",
+      "qudt:hasQuantityKind": "cim:Emission"
+    },
+    {
+      "@id": "cim:FlexibleEnergyUnit.buffer",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FlexibleEnergyUnit.timeShift",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FlexibleEnergyUnit.unconstrained",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FlexibleEnergyUnit.uncontrollable",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FossilFuel.fuelMixture",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:FossilFuel.highBreakpointP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FossilFuel.lowBreakpointP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:FossilSteamSupply.feedWaterTC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:FossilSteamSupply.fuelSupplyDelay",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:FossilSteamSupply.fuelSupplyTC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:FossilSteamSupply.mechPowerSensorLag",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:FuelStorage.energyStorage",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:GeneratingUnit.allocSpinResP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.autoCntrlMarginP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.baseP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.controlDeadband",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.controlPulseHigh",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:GeneratingUnit.controlPulseLow",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:GeneratingUnit.controlResponseRate",
+      "qudt:hasUnit": "unit:W-PER-SEC",
+      "qudt:hasQuantityKind": "cim:ActivePowerChangeRate"
+    },
+    {
+      "@id": "cim:GeneratingUnit.efficiency",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:GeneratingUnit.governorSCD",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:GeneratingUnit.highControlLimit",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.initialP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.lowControlLimit",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.lowerRampRate",
+      "qudt:hasUnit": "unit:W-PER-SEC",
+      "qudt:hasQuantityKind": "cim:ActivePowerChangeRate"
+    },
+    {
+      "@id": "cim:GeneratingUnit.maxEconomicP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.maxOperatingP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.maximumAllowableSpinningReserve",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.minEconomicP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.minOperatingP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.minimumOffTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:GeneratingUnit.nominalP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.raiseRampRate",
+      "qudt:hasUnit": "unit:W-PER-SEC",
+      "qudt:hasQuantityKind": "cim:ActivePowerChangeRate"
+    },
+    {
+      "@id": "cim:GeneratingUnit.ratedGrossMaxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.ratedGrossMinP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.ratedNetMaxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:GeneratingUnit.startupTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:GeneratingUnit.totalEfficiency",
+      "qudt:hasUnit": "unit:PERCENT",
+      "qudt:hasQuantityKind": "cim:PerCent"
+    },
+    {
+      "@id": "cim:HeatInputCurve.auxPowerOffset",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HeatInputCurve.heatInputOffset",
+      "qudt:hasUnit": "unit:J",
+      "qudt:hasQuantityKind": "cim:HeatRate"
+    },
+    {
+      "@id": "cim:HydroGeneratingUnit.dropHeight",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.dischargeTravelDelay",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.genRatedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.plantDischargeCapacity",
+      "qudt:hasUnit": "unit:M3-PER-SEC",
+      "qudt:hasQuantityKind": "cim:VolumeFlowRate"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.plantRatedHead",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.pumpRatedP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroPowerPlant.surgeTankCrestLevel",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    },
+    {
+      "@id": "cim:HydroPump.pumpDischAtMaxHead",
+      "qudt:hasUnit": "unit:M3-PER-SEC",
+      "qudt:hasQuantityKind": "cim:VolumeFlowRate"
+    },
+    {
+      "@id": "cim:HydroPump.pumpDischAtMinHead",
+      "qudt:hasUnit": "unit:M3-PER-SEC",
+      "qudt:hasQuantityKind": "cim:VolumeFlowRate"
+    },
+    {
+      "@id": "cim:HydroPump.pumpPowerAtMaxHead",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroPump.pumpPowerAtMinHead",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroTurbine.maxHeadMaxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroTurbine.minHeadMaxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroTurbine.speedRating",
+      "qudt:hasUnit": "unit:HZ",
+      "qudt:hasQuantityKind": "cim:RotationSpeed"
+    },
+    {
+      "@id": "cim:HydroTurbine.transientDroopTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:HydroTurbine.turbineRating",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:HydroTurbine.waterStartingTime",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "gad:PhotoVoltaicUnit.irradiance",
+      "qudt:hasUnit": "unit:W-PER-M2",
+      "qudt:hasQuantityKind": "cim:ActivePowerPerArea"
+    },
+    {
+      "@id": "cim:PowerElectronicsUnit.maxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:PowerElectronicsUnit.minP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "gad:PowerElectronicsUnit.p",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:RegularIntervalSchedule.timeStep",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:Reservoir.activeStorageCapacity",
+      "qudt:hasUnit": "unit:M3",
+      "qudt:hasQuantityKind": "cim:Volume"
+    },
+    {
+      "@id": "nc:Reservoir.energyStorage",
+      "qudt:hasUnit": "unit:W-HR",
+      "qudt:hasQuantityKind": "cim:RealEnergy"
+    },
+    {
+      "@id": "cim:Reservoir.fullSupplyLevel",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    },
+    {
+      "@id": "cim:Reservoir.grossCapacity",
+      "qudt:hasUnit": "unit:M3",
+      "qudt:hasQuantityKind": "cim:Volume"
+    },
+    {
+      "@id": "cim:Reservoir.normalMinOperateLevel",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    },
+    {
+      "@id": "cim:Reservoir.spillTravelDelay",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:Reservoir.spillwayCrestLength",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:Length"
+    },
+    {
+      "@id": "cim:Reservoir.spillwayCrestLevel",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    },
+    {
+      "@id": "cim:StartRampCurve.hotStandbyRamp",
+      "qudt:hasUnit": "unit:W-PER-SEC",
+      "qudt:hasQuantityKind": "cim:ActivePowerChangeRate"
+    },
+    {
+      "@id": "cim:StartupModel.hotStandbyHeat",
+      "qudt:hasUnit": "unit:J",
+      "qudt:hasQuantityKind": "cim:HeatRate"
+    },
+    {
+      "@id": "cim:StartupModel.minimumDownTime",
+      "qudt:hasUnit": "unit:HR",
+      "qudt:hasQuantityKind": "cim:Hours"
+    },
+    {
+      "@id": "cim:StartupModel.minimumRunTime",
+      "qudt:hasUnit": "unit:HR",
+      "qudt:hasQuantityKind": "cim:Hours"
+    },
+    {
+      "@id": "cim:StartupModel.stbyAuxP",
+      "qudt:hasUnit": "unit:W",
+      "qudt:hasQuantityKind": "cim:ActivePower"
+    },
+    {
+      "@id": "cim:SteamTurbine.crossoverTC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SteamTurbine.reheater1TC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SteamTurbine.reheater2TC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:SteamTurbine.steamChestTC",
+      "qudt:hasUnit": "unit:SEC",
+      "qudt:hasQuantityKind": "cim:Seconds"
+    },
+    {
+      "@id": "cim:TargetLevelSchedule.highLevelLimit",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    },
+    {
+      "@id": "cim:TargetLevelSchedule.lowLevelLimit",
+      "qudt:hasUnit": "unit:M",
+      "qudt:hasQuantityKind": "cim:WaterLevel"
+    }
+  ]
+}

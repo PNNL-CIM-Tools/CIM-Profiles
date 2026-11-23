@@ -3555,7 +3555,6 @@ class ACDCTerminal(IdentifiedObject):
     The signal recorder where this signal is recorded.
     '''
     
-@stereotype(CIMStereotype.foaf)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Agent(IdentifiedObject):
@@ -3670,7 +3669,7 @@ class AgentRole(IdentifiedObject):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['foaf'],
+        'stereotypes': [],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'Agent.AgentRole',
@@ -3987,6 +3986,52 @@ class Asset(IdentifiedObject):
     Purchase price of asset.
     '''
     
+    acceptanceTest: Optional[AcceptanceTest] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Information on acceptance test.
+    '''
+    
+    inUseDate: Optional[InUseDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    In use dates for this asset.
+    '''
+    
+    lifecycleDate: Optional[LifecycleDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    <was lifecycle>
+    Lifecycle dates for this asset.
+    '''
+    
     AssetDeployment: Optional[AssetDeployment] = field(
         default=None,
         metadata={
@@ -4069,6 +4114,21 @@ class AssetDeployment(IdentifiedObject):
         })
     '''
     Current deployment state of asset.
+    '''
+    
+    deploymentDate: Optional[DeploymentDate] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Dates of asset deployment.
     '''
     
     Asset: Optional[Asset] = field(
@@ -5251,6 +5311,21 @@ class CatalogAssetType(IdentifiedObject):
     Product asset model conforming to this catalog asset type.
     '''
     
+    quantity: Optional[StringQuantity] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The value, unit of measure, and multiplier for the quantity.
+    '''
+    
     AssetInfo: Optional[AssetInfo] = field(
         default=None,
         metadata={
@@ -6036,6 +6111,22 @@ class CapacitorCanInfo(ConductingAssetInfo):
     '''
     The terminal connection of the capacitor cans (i.e. single bushing
     double bushing or triple bushing).
+    '''
+    
+    rated10PctVoltTime: Optional[TimeInterval] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    The time it takes to discharge to one tenth of the capacitor cans voltage
+    rating.
     '''
     
     @property

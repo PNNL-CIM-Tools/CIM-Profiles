@@ -172,7 +172,7 @@ under Contract DE-AC05-76RL01830
                      also emitted below as this class's own reference (serialize=True).
                      Python keeps the last definition, so the own reference must come last. -->
                 <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
-                <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
+                <xsl:apply-templates select="a:Instance | a:Reference | a:Compound" mode="association"/>
 
                 <!-- Add class metadata -->
                 <xsl:call-template name="generate-class-metadata"/>
@@ -204,7 +204,7 @@ under Contract DE-AC05-76RL01830
                      also emitted below as this class's own reference (serialize=True).
                      Python keeps the last definition, so the own reference must come last. -->
                 <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
-                <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
+                <xsl:apply-templates select="a:Instance | a:Reference | a:Compound" mode="association"/>
 
                 <!-- Add class metadata -->
                 <xsl:call-template name="generate-class-metadata"/>
@@ -340,7 +340,7 @@ under Contract DE-AC05-76RL01830
     </xsl:template>
 
     <!-- Template for associations with other classes -->
-    <xsl:template match="a:Instance | a:Reference" mode="association">
+    <xsl:template match="a:Instance | a:Reference | a:Compound" mode="association">
         <xsl:variable name="field_name" select="local:sanitize_name(@name, (@type, 'unknown')[1])"/>
 
         <list begin="" indent="    " end="">

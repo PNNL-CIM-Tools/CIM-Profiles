@@ -15,90 +15,17 @@ class CIMStereotype(Enum):
     Attribute = "Attribute"
     Compound = "Compound"
     Concrete = "Concrete"
-    Description = "Description"
     GridAPPSD = "GridAPPSD"
     Primitive = "Primitive"
+    dcat = "dcat"
+    dct = "dct"
+    dcterms = "dcterms"
     profcim = "profcim"
 
 BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
-NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'gad': 'http://gridappsd.org/CIM/extension#'}
+NAMESPACES = {'cim': 'http://cim.ucaiug.io/cim101/draft#', 'dcat': 'http://www.w3.org/ns/dcat#', 'dcterms': 'http://purl.org/dc/terms/', 'gad': 'http://gridappsd.org/CIM/extension#'}
 
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.Compound)
-@stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False, eq=False)
-class DateTimeInterval(Identity):
-    '''
-    rdfs:label : "Date-time interval"@en
-    rdfs:comment : "'intervalo de fecha-hora' es una subclase de 'intervalo
-    propio', definida utilizando el multi-elemento 'descripci�n de fecha-hora'."@es
-    <http://www.w3.org/2004/02/skos/core#note> : "'intervalo de fecha-hora'
-    se puede utilizar s�lo para un intervalo cuyos l�mites coinciden con un
-    elemento de fecha-hora alineados con el calendario y la zona horaria indicados.
-    Por ejemplo, aunque ambos tienen una duraci�n de un d�a, el intervalo de
-    24 horas que empieza en la media noche del comienzo del 8 mayo en Europa
-    Central se puede expresar como un 'intervalo de fecha-hora', el intervalo
-    de 24 horas que empieza a las 1:30pm no."@es
-    rdfs:label : "intervalo de fecha-hora"@es
-    <http://www.w3.org/2004/02/skos/core#definition> : "DateTimeInterval is
-    a subclass of ProperInterval, defined using the multi-element DateTimeDescription."@en
-    rdfs:comment : "DateTimeInterval is a subclass of ProperInterval, defined
-    using the multi-element DateTimeDescription."@en
-    <http://www.w3.org/2004/02/skos/core#note> : ":DateTimeInterval can only
-    be used for an interval whose limits coincide with a date-time element
-    aligned to the calendar and timezone indicated. For example, while both
-    have a duration of one day, the 24-hour interval beginning at midnight
-    at the beginning of 8 May in Central Europe can be expressed as a :DateTimeInterval,
-    but the 24-hour interval starting at 1:30pm cannot."@en
-    <http://www.w3.org/2004/02/skos/core#definition> : "'intervalo de fecha-hora'
-    es una subclase de 'intervalo propio', definida utilizando el multi-elemento
-    'descripci�n de fecha-hora'."@es
-    '''
-
-    end: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    End date and time of this interval. The end date and time where the
-    interval is defined up to, but excluded.
-    '''
-    
-    start: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Start date and time of this interval. The start date and time is included
-    in the defined interval.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'time'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @dataclass(repr=False, eq=False)
 class IdentifiedObject(Identity):
     '''
@@ -170,7 +97,27 @@ class IdentifiedObject(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.dct)
+@dataclass(repr=False, eq=False)
+class Agent(IdentifiedObject):
+    '''
+    An agent is an entity that bears some form of responsibility for an activity
+    taking place, for the existence of an entity, or for another agent's activity.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Common'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Location(IdentifiedObject):
@@ -202,6 +149,20 @@ class Location(IdentifiedObject):
     '''
     The set of frames from different profile parts that are part of the
     same location
+    '''
+    
+    PositionPoints: list[PositionPoint] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'PositionPoint.Location',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
     '''
     
     @property
@@ -379,6 +340,22 @@ class Frame(MetaThing):
     The location describing the overall footprint of a set of frames
     '''
     
+    ModelAuthority: Optional[ModelAuthority] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'ModelAuthority.ModeledFrames',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The model authority responsible for modeling the portion of the electric
+    grid described by this frame
+    '''
+    
     PerimeterBoundaries: list[Boundary] = field(
         default_factory=list,
         metadata={
@@ -433,35 +410,64 @@ class GridDataset(MetaThing):
     of a message.
     '''
     
-    profileType: Optional[str] = field(
+    issued: Optional[str] = field(
         default=None,
         metadata={
         'type': 'Attribute',
         'stereotypes': ['Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Describes the profile name to which the dataset was created, such as
-    connectivity, electrical, short circuit, or state variable.
-    '''
-    
-    publishedOn: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'namespace': 'http://purl.org/dc/terms/',
         'serialize': True,
         })
     '''
     The datetime that the dataset was published, where publish means declaring
     the content complete and fit for purpose. It is the declaration more
     than the content that determines the timing.
+    '''
+    
+    temporal: Optional[PeriodOfTime] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms', 'dct', 'Compound'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The period of time for which this dataset is valid
+    '''
+    
+    conformsTo: list[Standard] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms', 'dct'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Profile context URI to which the dataset conforms
+    '''
+    
+    creator: Optional[Agent] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dct'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
     '''
     
     @property
@@ -488,6 +494,19 @@ class FrameworkEdition(GridDataset):
     evolutionary state applies. Usually, this is a time range.
     '''
 
+    framework: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
     IncludedBoundaries: list[Boundary] = field(
         default_factory=list,
         metadata={
@@ -567,12 +586,12 @@ class GridAssembly(GridDataset):
         default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
         'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.GridAssembly',
+        'inverse': 'GridModel.GridAssemblies',
         'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
+        'serialize': True,
         })
     '''
     '''
@@ -604,14 +623,28 @@ class GridModel(GridDataset):
     profile is extracted from a stack and used as part of another stack.
     '''
 
-    GridAssembly: list[GridAssembly] = field(
+    GridAssemblies: list[GridAssembly] = field(
         default_factory=list,
         metadata={
         'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
+        'stereotypes': [],
         'minOccurs': '0',
         'maxOccurs': 'unbounded',
         'inverse': 'GridAssembly.GridModelParts',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    ModelAuthority: Optional[ModelAuthority] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'ModelAuthority.GridModels',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
         })
@@ -759,7 +792,7 @@ class EdgeModel(GridModel):
         metadata={
         'type': 'Association',
         'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
+        'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'Frame.EdgeModels',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -802,13 +835,13 @@ class EquivalentModel(GridModel):
     '''
     '''
 
-    JoinedBoundaryModels: Optional[BoundaryModel] = field(
-        default=None,
+    JoinedBoundaryModels: list[BoundaryModel] = field(
+        default_factory=list,
         metadata={
         'type': 'Association',
         'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
         'inverse': 'BoundaryModel.EquivalentModels',
         'namespace': 'http://gridappsd.org/CIM/extension#',
         'serialize': True,
@@ -985,6 +1018,221 @@ class Reference(MetaThing):
     @property
     def __package__(self):
         return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class ModelAuthority(IdentifiedObject):
+    '''
+    '''
+
+    ModeledFrames: list[Frame] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.ModelAuthority',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The set of frames maintained by this modeling authority
+    '''
+    
+    GridModels: list[GridModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'GridModel.ModelAuthority',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class PositionPoint(Identity):
+    '''
+    Set of spatial coordinates that determine a point, defined in the coordinate
+    system specified in 'Location.CoordinateSystem'. Use a single position
+    point instance to describe a point-oriented location. Use a sequence of
+    position points to describe a line-oriented object (physical location of
+    non-point oriented objects like cables or lines), or area of an object
+    (like a substation or a geographical zone - in this case, have first and
+    last position point with the same values).
+    '''
+
+    sequenceNumber: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    xPosition: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    X axis position.
+    '''
+    
+    yPosition: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    Y axis position.
+    '''
+    
+    zPosition: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
+        'serialize': True,
+        })
+    '''
+    (if applicable) Z axis position.
+    '''
+    
+    Location: Optional[Location] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Location.PositionPoints',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Common'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.dcterms)
+@stereotype(CIMStereotype.dct)
+@dataclass(repr=False, eq=False)
+class Standard(Identity):
+    '''
+    A reference point against which other things can be evaluated or compared.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://purl.org/dc/terms/'
+    @property
+    def __package__(self):
+        return 'DCT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.dcterms)
+@stereotype(CIMStereotype.dct)
+@stereotype(CIMStereotype.Compound)
+@dataclass(repr=False, eq=False)
+class PeriodOfTime(Identity):
+    '''
+    An interval of time that is named or defined by its start and end dates.
+    '''
+
+    endDate: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The start of the period.
+    '''
+    
+    startDate: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The end of the period.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://purl.org/dc/terms/'
+    @property
+    def __package__(self):
+        return 'DCT'
     @property
     def __minOccurs__(self):
         return '0'

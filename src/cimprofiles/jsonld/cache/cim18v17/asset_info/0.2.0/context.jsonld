@@ -229,6 +229,9 @@
     "cim:CapacitorCanInfo.terminalConnectionType": {
       "@type": "@id"
     },
+    "cim:CapacitorCanInfo.rated10PctVoltTime": {
+      "@type": "@id"
+    },
     "cim:CapacitorInfo.maxAmbientTempRating": {
       "@type": "xsd:float"
     },
@@ -260,6 +263,9 @@
       "@type": "@id"
     },
     "cim:CatalogAssetType.ProductAssetModel": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.quantity": {
       "@type": "@id"
     },
     "cim:CatalogAssetType.AssetInfo": {
