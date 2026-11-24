@@ -102,7 +102,7 @@ def test_cim18v17_flavors_keep_only_their_grid():
     import cimprofiles.cim18.cim18v17_transmission as transmission
 
     shared = ('ACLineSegment', 'PowerTransformer', 'ConnectivityNode', 'Breaker', 'OperationalLimitSet')
-    distribution_only = ('TransformerTankConfiguration', 'XYSpacing', 'OverheadWireInfo',
+    distribution_only = ('TransformerTankInfo', 'XYSpacing', 'OverheadWireInfo',
                          'PerLengthPhaseImpedance')
     transmission_only = ('VsConverter', 'DCLineSegment', 'StaticSynchronousCompensator', 'ControlArea')
     for name in shared:

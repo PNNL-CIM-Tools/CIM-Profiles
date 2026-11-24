@@ -87,6 +87,9 @@
     "cim:Equipment.OperationalLimitSet": {
       "@type": "@id"
     },
+    "gad:EquipmentConfiguration.OperationalLimitSet": {
+      "@type": "@id"
+    },
     "cim:OperationalLimit.OperationalLimitSet": {
       "@type": "@id"
     },
@@ -94,6 +97,9 @@
       "@type": "@id"
     },
     "cim:OperationalLimit.StepOperationalLimitTable": {
+      "@type": "@id"
+    },
+    "gad:OperationalLimitSet.EquipmentConfiguration": {
       "@type": "@id"
     },
     "cim:OperationalLimitSet.OperationalLimitValue": {

@@ -5645,6 +5645,40 @@ class EnergyArea(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EquipmentConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    OperationalLimitSet: Optional[OperationalLimitSet] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'OperationalLimitSet.EquipmentConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The set of ratings applicable to this equipment configuration template
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class Fault(IdentifiedObject):
@@ -11346,6 +11380,21 @@ class OperationalLimitSet(IdentifiedObject):
     together as a set.
     '''
 
+    EquipmentConfiguration: Optional[EquipmentConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquipmentConfiguration.OperationalLimitSet',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The equipment configuration template using this set of ratings
+    '''
+    
     OperationalLimitValue: list[OperationalLimit] = field(
         default_factory=list,
         metadata={
@@ -38619,6 +38668,27 @@ class TopologicalUsageKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerBankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class TransformerCharacteristicCurve(TimeCurrentCurve):
@@ -39595,6 +39665,27 @@ class TransformerTank(Equipment):
     @property
     def __namespace__(self):
         return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerTankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
     @property
     def __package__(self):
         return 'WiresEXT'
@@ -41834,8 +41925,9 @@ class WindingConnection(Enum):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
-class WireConfiguration(IdentifiedObject):
+class WireConfiguration(EquipmentConfiguration):
     '''
     '''
 

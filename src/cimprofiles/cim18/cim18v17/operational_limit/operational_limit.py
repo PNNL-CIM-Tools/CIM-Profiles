@@ -377,6 +377,103 @@ class BranchGroup(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EquipmentConfiguration(IdentifiedObject):
+    '''
+    '''
+
+    OperationalLimitSet: Optional[OperationalLimitSet] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'OperationalLimitSet.EquipmentConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The set of ratings applicable to this equipment configuration template
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerBankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class TransformerTankConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class WireConfiguration(EquipmentConfiguration):
+    '''
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'WiresEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @dataclass(repr=False, eq=False)
 class OperationalLimit(IdentifiedObject):
     '''
@@ -801,6 +898,21 @@ class OperationalLimitSet(IdentifiedObject):
     together as a set.
     '''
 
+    EquipmentConfiguration: Optional[EquipmentConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquipmentConfiguration.OperationalLimitSet',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The equipment configuration template using this set of ratings
+    '''
+    
     OperationalLimitValue: list[OperationalLimit] = field(
         default_factory=list,
         metadata={

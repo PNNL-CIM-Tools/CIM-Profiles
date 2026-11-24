@@ -16493,6 +16493,21 @@ class EquipmentConfiguration(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
+    OperationalLimitSet: Optional[OperationalLimitSet] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'OperationalLimitSet.EquipmentConfiguration',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    The set of ratings applicable to this equipment configuration template
+    '''
+    
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
@@ -26710,6 +26725,21 @@ class OperationalLimitSet(IdentifiedObject):
     @property
     def __maxOccurs__(self):
         return 'unbounded'
+    
+    EquipmentConfiguration: Optional[EquipmentConfiguration] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'EquipmentConfiguration.OperationalLimitSet',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    The equipment configuration template using this set of ratings
+    '''
     
     OperationalLimitValue: list[OperationalLimit] = field(
         default_factory=list,
@@ -68875,6 +68905,7 @@ class WindingResistanceTest(TransformerTest):
     
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class WireConfiguration(EquipmentConfiguration):
     '''
