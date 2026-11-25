@@ -1,12 +1,11 @@
 {
   "@context": {
     "cim": "http://cim.ucaiug.io/cim101/draft#",
-    "dcat": "http://www.w3.org/ns/dcat#",
-    "dcterms": "http://purl.org/dc/terms/",
     "eu": "http://iec.ch/TC57/CIM100-European#",
     "gad": "http://gridappsd.org/CIM/extension#",
     "gb": "http://GB/placeholder/ext#",
     "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
     "dct": "http://purl.org/dc/terms/",
     "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
     "owl": "http://www.w3.org/2002/07/owl#",
@@ -3566,10 +3565,16 @@
     "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
-    "dct:temporal": {
+    "gad:GridDataset.validityInterval": {
       "@type": "@id"
     },
-    "dct:creator": {
+    "gad:GridDistribution.byteSize": {
+      "@type": "xsd:integer"
+    },
+    "gad:GridDistribution.RealizedGridModel": {
+      "@type": "@id"
+    },
+    "gad:GridDistribution.Specifications": {
       "@type": "@id"
     },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
@@ -3584,7 +3589,16 @@
     "gad:GridModel.GridAssemblies": {
       "@type": "@id"
     },
+    "gad:GridModel.Distributions": {
+      "@type": "@id"
+    },
     "gad:GridModel.ModelAuthority": {
+      "@type": "@id"
+    },
+    "gad:GridModel.NamingAuthority": {
+      "@type": "@id"
+    },
+    "gad:GridSpecification.Distributions": {
       "@type": "@id"
     },
     "nc:GridStateAlteration.enabled": {
@@ -3810,6 +3824,15 @@
       "@type": "@id"
     },
     "cim:IdentifiedObject.ParameterEvent": {
+      "@type": "@id"
+    },
+    "cim:IdentifiedObject.ObjectIdentificationRevision": {
+      "@type": "@id"
+    },
+    "cim:IdentifiedObject.ObjectIdentificationRevisionSet": {
+      "@type": "@id"
+    },
+    "cim:IdentifiedObject.ObjectType": {
       "@type": "@id"
     },
     "cim:ImpedanceControlFunction.targetValue": {
@@ -4367,6 +4390,21 @@
     "cim:MutualCoupling.Second_Terminal": {
       "@type": "@id"
     },
+    "cim:Name.NameType": {
+      "@type": "@id"
+    },
+    "cim:NameType.Name": {
+      "@type": "@id"
+    },
+    "cim:NameType.NamingAuthority": {
+      "@type": "@id"
+    },
+    "gad:NamingAuthority.NamedGridModels": {
+      "@type": "@id"
+    },
+    "cim:NamingAuthority.NameType": {
+      "@type": "@id"
+    },
     "cim:NonConformLoad.LoadGroup": {
       "@type": "@id"
     },
@@ -4416,6 +4454,24 @@
       "@type": "xsd:float"
     },
     "nc:NuclearGeneratingUnit.reactorKind": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.revisionKind": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.IdentifiedObjectRevision": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.ObjectIdentificationRevisionSet": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.ObjectIdentificationRevision": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.Object": {
+      "@type": "@id"
+    },
+    "cim:ObjectType.IdentifiedObject": {
       "@type": "@id"
     },
     "cim:OldPerson.MeasurementValues": {
@@ -7946,6 +8002,9 @@
     },
     {
       "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/generation/0.2.0/context.jsonld"
+    },
+    {
+      "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/names/0.2.0/context.jsonld"
     }
   ]
 }

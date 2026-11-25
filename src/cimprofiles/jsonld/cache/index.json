@@ -50,6 +50,8 @@
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/measurement/0.2.0/units-si.jsonld": "cim18v17/measurement/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/context.jsonld": "cim18v17/metadata/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/metadata/0.2.0/units-si.jsonld": "cim18v17/metadata/0.2.0/units-si.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/names/0.2.0/context.jsonld": "cim18v17/names/0.2.0/context.jsonld",
+  "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/names/0.2.0/units-si.jsonld": "cim18v17/names/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/nc_schedule/0.2.0/context.jsonld": "cim18v17/nc_schedule/0.2.0/context.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/nc_schedule/0.2.0/units-si.jsonld": "cim18v17/nc_schedule/0.2.0/units-si.jsonld",
   "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/operational_limit/0.2.0/context.jsonld": "cim18v17/operational_limit/0.2.0/context.jsonld",

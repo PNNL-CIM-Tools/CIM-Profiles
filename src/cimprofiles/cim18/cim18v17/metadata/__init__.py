@@ -4,10 +4,10 @@
 '''
 from cimprofiles.cim18.cim18v17.metadata.metadata import (
     Identity,
-    Agent,
     AssemblyWideModel,
     Boundary,
     BoundaryModel,
+    DateTimeInterval,
     EdgeModel,
     EquivalentModel,
     Frame,
@@ -15,24 +15,24 @@ from cimprofiles.cim18.cim18v17.metadata.metadata import (
     FrameworkEdition,
     GridAssembly,
     GridDataset,
+    GridDistribution,
     GridModel,
+    GridSpecification,
     IdentifiedObject,
     Location,
     MetaThing,
     ModelAuthority,
+    NamingAuthority,
     NonAlignedModel,
-    PeriodOfTime,
-    PositionPoint,
     Reference,
-    ReferenceModel,
-    Standard
+    ReferenceModel
 )
 __all__ = [
     'Identity',
-    'Agent' ,
     'AssemblyWideModel' ,
     'Boundary' ,
     'BoundaryModel' ,
+    'DateTimeInterval' ,
     'EdgeModel' ,
     'EquivalentModel' ,
     'Frame' ,
@@ -40,15 +40,15 @@ __all__ = [
     'FrameworkEdition' ,
     'GridAssembly' ,
     'GridDataset' ,
+    'GridDistribution' ,
     'GridModel' ,
+    'GridSpecification' ,
     'IdentifiedObject' ,
     'Location' ,
     'MetaThing' ,
     'ModelAuthority' ,
+    'NamingAuthority' ,
     'NonAlignedModel' ,
-    'PeriodOfTime' ,
-    'PositionPoint' ,
     'Reference' ,
-    'ReferenceModel' ,
-    'Standard'
+    'ReferenceModel'
 ]

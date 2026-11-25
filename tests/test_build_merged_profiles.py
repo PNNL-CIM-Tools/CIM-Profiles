@@ -5,6 +5,8 @@ import ast
 import dataclasses
 import importlib
 import logging
+import sys
+import types
 from pathlib import Path
 
 import pytest
@@ -12,10 +14,11 @@ import pytest
 from cimprofiles.build_merged_profiles import (_CONFIG, _first_line, _load_config,
                                                _module_source, _package_dir, build_release,
                                                merge_sources)
+from cimprofiles.identity import Identity
 from cimprofiles.merge import merge_profiles, most_specific_base
+from cimprofiles.units import UnitMultiplier, UnitSymbol
 
 RELEASES = _load_config(_CONFIG)
-CIM18V17 = next(release for release in RELEASES if release['name'] == 'cim18v17')
 
 
 def _field(cls, name):
@@ -62,66 +65,120 @@ def test_most_specific_base_rejects_unrelated_candidates():
         most_specific_base('X', {'A', 'B'}, parents)
 
 
-def test_runtime_merge_resolves_flattened_bases():
-    """asset declares Terminal(Identity), substation Terminal(ACDCTerminal)."""
-    from cimprofiles.cim18.cim18v17 import asset, substation
+# Two parts in the shape of CIMTool output. Part B selects Terminal without
+# IdentifiedObject, so CIMTool flattened its base to Identity.
+PART_A = """from __future__ import annotations
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Optional
+from cimprofiles.identity import Identity, stereotype
 
-    merged = merge_profiles(asset, substation)
-    assert issubclass(merged.Terminal, merged.ACDCTerminal)
+NAMESPACES = {'cim': 'http://cim#'}
+
+class CIMStereotype(Enum):
+    Concrete = 'Concrete'
+
+class PhaseKind(Enum):
+    A = 'A'
+
+@dataclass(repr=False, eq=False)
+class IdentifiedObject(Identity):
+    name: Optional[str] = field(default=None, metadata={'serialize': True})
+
+@dataclass(repr=False, eq=False)
+class Terminal(IdentifiedObject):
+    '''Terminal from part A.'''
+    phases: Optional[PhaseKind] = field(default=None, metadata={'serialize': True})
+    Equipment: Optional[Equipment] = field(default=None, metadata={'inverse': 'Equipment.Terminals', 'serialize': False})
+    '''inverse end, from part A'''
+
+@dataclass(repr=False, eq=False)
+class Equipment(IdentifiedObject):
+    Terminals: list[Terminal] = field(default_factory=list, metadata={'inverse': 'Terminal.Equipment', 'serialize': False})
+    '''Terminals, from part A'''
+"""
+PART_B = """from __future__ import annotations
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Optional
+from cimprofiles.identity import Identity, stereotype
+
+NAMESPACES = {'cim': 'http://cim#', 'gad': 'http://gad#'}
+
+class CIMStereotype(Enum):
+    Concrete = 'Concrete'
+
+class PhaseKind(Enum):
+    A = 'A'
+    B = 'B'
+
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Terminal(Identity):
+    '''Terminal from part B.'''
+    Equipment: Optional[Equipment] = field(default=None, metadata={'inverse': 'Equipment.Terminals', 'serialize': True})
+    '''own end, from part B'''
+    sequenceNumber: Optional[int] = field(default=None, metadata={'serialize': True})
+
+@dataclass(repr=False, eq=False)
+class Equipment(Identity):
+    Terminals: list[Terminal] = field(default_factory=list, metadata={'inverse': 'Terminal.Equipment', 'serialize': False})
+    '''Terminals, from part B'''
+"""
 
 
-def test_cim18v17_unions_fields_across_parts():
-    import cimprofiles.cim18.cim18v17 as cim
-
-    field_names = {f.name for f in dataclasses.fields(cim.ACLineSegment)}
-    assert 'r' in field_names                     # electrical_balanced
-    assert 'WireConfiguration' in field_names     # electrical_unbalanced
-    assert issubclass(cim.Terminal, cim.ACDCTerminal)
-    assert cim.Identity is importlib.import_module('cimprofiles.identity').Identity
-
-
-def test_cim18v17_keeps_the_serialized_association_end():
-    """asset serializes Asset.AssetDeployment; asset_deployment only has the inverse end."""
-    import cimprofiles.cim18.cim18v17 as cim
-
-    assert _field(cim.Asset, 'AssetDeployment').metadata['serialize'] is True
+def _module(monkeypatch, name: str, source: str) -> types.ModuleType:
+    module = types.ModuleType(name)
+    monkeypatch.setitem(sys.modules, name, module)
+    exec(source, module.__dict__)
+    # Exported like a CIMTool init file: Identity and the part's classes but CIMStereotype
+    module.__all__ = ['Identity'] + [key for key, value in vars(module).items() if isinstance(value, type)
+                                     and value.__module__ == name and key != 'CIMStereotype']
+    return module
 
 
-def test_cim18v17_unions_enum_members():
-    import cimprofiles.cim18.cim18v17 as cim
+def test_merge_sources_follows_the_merge_rules(monkeypatch):
+    own_identity = "\nclass Identity:\n    '''A profile's own Identity class.'''\n"
+    source, exported = merge_sources({'part_a': PART_A, 'part_b': PART_B + own_identity})
+    merged = _module(monkeypatch, 'merged_parts', source)
 
-    members = set(cim.SinglePhaseKind.__members__)
-    for part in ('electrical_balanced', 'construction', 'connectivity_unbalanced'):
-        module = importlib.import_module(f'cimprofiles.cim18.cim18v17.{part}')
-        assert set(module.SinglePhaseKind.__members__) <= members
-
-
-def test_cim18v17_flavors_keep_only_their_grid():
-    """The distribution and transmission flavors drop the other grid's parts."""
-    import cimprofiles.cim18.cim18v17_distribution as distribution
-    import cimprofiles.cim18.cim18v17_transmission as transmission
-
-    shared = ('ACLineSegment', 'PowerTransformer', 'ConnectivityNode', 'Breaker', 'OperationalLimitSet')
-    distribution_only = ('TransformerTankInfo', 'XYSpacing', 'OverheadWireInfo',
-                         'PerLengthPhaseImpedance')
-    transmission_only = ('VsConverter', 'DCLineSegment', 'StaticSynchronousCompensator', 'ControlArea')
-    for name in shared:
-        assert hasattr(distribution, name) and hasattr(transmission, name), name
-    for name in distribution_only:
-        assert hasattr(distribution, name) and not hasattr(transmission, name), name
-    for name in transmission_only:
-        assert hasattr(transmission, name) and not hasattr(distribution, name), name
-    assert 'WireConfiguration' not in {f.name for f in dataclasses.fields(transmission.ACLineSegment)}
+    assert merged.Terminal.__bases__ == (merged.IdentifiedObject,)       # the most specific base
+    assert merged.Identity is Identity                                     # the profile's own is dropped
+    assert [f.name for f in dataclasses.fields(merged.Terminal)] \
+        == ['identifier', 'name', 'phases', 'Equipment', 'sequenceNumber']  # union, first-seen order
+    assert _field(merged.Terminal, 'Equipment').metadata['serialize'] is True  # the serialized end
+    assert "'''own end, from part B'''" in source and 'inverse end, from part A' not in source
+    assert 'Terminals, from part A' in source and 'Terminals, from part B' not in source  # else the earliest
+    assert "'''Terminal from part A.'''" in source                         # the first docstring
+    assert '@stereotype(CIMStereotype.Concrete)\n@dataclass(repr=False, eq=False)\nclass Terminal(' in source
+    assert set(merged.PhaseKind.__members__) == {'A', 'B'}
+    assert 'CIMStereotype' not in exported
+    assert {'Identity', 'UnitSymbol', 'UnitMultiplier'} <= set(exported)
 
 
-def test_cim18v17_source_keeps_field_docstrings_and_line_width():
-    merged = (_package_dir(CIM18V17['package']) / 'cim18v17.py').read_text(encoding='utf-8')
-    part_width = max(len(line) for part in CIM18V17['parts']
-                     for line in _module_source(part).split('\n'))
+def test_merge_sources_rejects_disagreeing_enum_values():
+    with pytest.raises(ValueError, match='PhaseKind: parts disagree on member A'):
+        merge_sources({'part_a': PART_A, 'part_b': PART_B.replace("A = 'A'", "A = 'X'")})
 
+
+def test_runtime_merge_resolves_flattened_bases(monkeypatch):
+    merged = merge_profiles(_module(monkeypatch, 'part_a', PART_A), _module(monkeypatch, 'part_b', PART_B))
+    assert issubclass(merged.Terminal, merged.IdentifiedObject)
+    assert {'phases', 'Equipment', 'sequenceNumber'} <= {f.name for f in dataclasses.fields(merged.Terminal)}
+
+
+@pytest.mark.parametrize('release', RELEASES, ids=lambda release: release['name'])
+def test_merged_source_fits_the_parts_line_width(release):
+    merged = build_release(release)[f"{release['name']}.py"]
+    part_width = max(len(line) for part in release['parts'] for line in _module_source(part).split('\n'))
     assert max(len(line) for line in merged.split('\n')) <= part_width
-    assert "    mRID: Optional[str] = field(\n        default=None,\n" in merged
-    assert 'Master resource identifier issued by a model authority.' in merged
+
+
+@pytest.mark.parametrize('release', RELEASES, ids=lambda release: release['name'])
+def test_merged_profiles_use_the_library_unit_enums(release):
+    """The parts import UnitSymbol/UnitMultiplier from cimprofiles, so CIMUnit.unit is the library enum."""
+    package = importlib.import_module(release['package'])
+    assert package.UnitSymbol is UnitSymbol and package.UnitMultiplier is UnitMultiplier
 
 
 def test_conflicting_property_raises():
@@ -140,16 +197,6 @@ def test_uml_conflict_is_logged(caplog):
         merged, _ = merge_sources({'a': part_a, 'b': part_b})
     assert 'UML conflict: X.Y' in caplog.text
     assert 'Optional[A]' in merged and 'Optional[B]' not in merged
-
-
-def test_cim18v17_uses_the_library_unit_enums():
-    """The parts no longer define UnitSymbol/UnitMultiplier, so CIMUnit.unit is the library enum."""
-    import cimprofiles.cim18.cim18v17 as cim
-    from cimprofiles.units import UnitMultiplier, UnitSymbol
-
-    assert cim.UnitSymbol is UnitSymbol and cim.UnitMultiplier is UnitMultiplier
-    assert cim.ActivePower(5, 'kW').unit is UnitSymbol.W
-    assert {'unitMultiplier', 'unitSymbol'} <= {f.name for f in dataclasses.fields(cim.Measurement)}
 
 
 def _part_source(namespaces: dict | None) -> str:
