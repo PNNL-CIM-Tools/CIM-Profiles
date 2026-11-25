@@ -12,6 +12,7 @@ from pathlib import Path
 
 import pytest
 
+from cimprofiles.build_merged_profiles import _CONFIG, _load_config
 from cimprofiles.cim18.cim18gmdm import connectivity, electrical
 
 
@@ -318,13 +319,13 @@ def test_merge_namespaces_rejects_a_namespace_with_two_prefixes():
                          {'gridappsd': 'http://gridappsd.org/CIM/extension#'})
 
 
-_CIM18V17_MODULES = ['cimprofiles.cim18.cim18v17.cim18v17'] + [
-    f'cimprofiles.cim18.cim18v17.{part}.{part}' for part in (
-        'connectivity_unbalanced', 'electrical_unbalanced', 'electrical_balanced', 'substation',
-        'topology', 'steady_state_hypothesis', 'measurement', 'asset_info')]
+_RELEASES = _load_config(_CONFIG)
+# Every part and merged module of merge_releases.yaml
+_RELEASE_MODULES = sorted({part for release in _RELEASES for part in release['parts']}
+                          | {f"{release['package']}.{release['name']}" for release in _RELEASES})
 
 
-@pytest.mark.parametrize('module_name', _CIM18V17_MODULES)
+@pytest.mark.parametrize('module_name', _RELEASE_MODULES)
 def test_profile_declares_a_prefix_for_every_namespace_it_uses(module_name):
     """cimantic-graphs.xsl output: NAMESPACES covers the ontology and every field's namespace."""
     module = importlib.import_module(module_name)

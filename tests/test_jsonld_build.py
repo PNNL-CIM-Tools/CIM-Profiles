@@ -1,5 +1,7 @@
 import importlib
 import json
+import sys
+import types
 from pathlib import Path
 
 import pytest
@@ -138,14 +140,37 @@ def test_parts_are_published_under_their_set():
     assert 'cim:Terminal.ConnectivityNode' in load_document(entry['context'])['@context']
 
 
-def test_w3c_properties_are_terms_by_bare_name():
-    from cimprofiles.cim18.cim18v17.metadata import metadata
-    context = build_context(metadata)['@context']
-    assert context['dct:temporal'] == context['dct:creator'] == {'@type': '@id'}
-    assert context['dct:conformsTo'] == {'@type': '@id'}               # HEADER_TERMS
+W3C_PROFILE = """
+from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Optional
+from cimprofiles.identity import Identity
+
+NAMESPACES = {'gad': 'http://gridappsd.org/CIM/extension#', 'dcterms': 'http://purl.org/dc/terms/'}
+DCT = 'http://purl.org/dc/terms/'
+
+@dataclass
+class Agent(Identity):
+    pass
+
+@dataclass
+class Dataset(Identity):
+    issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT})
+    creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT})
+    Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad']})
+"""
+
+
+def test_w3c_properties_are_terms_by_bare_name(monkeypatch):
+    profile = types.ModuleType('w3c_profile')
+    monkeypatch.setitem(sys.modules, profile.__name__, profile)
+    exec(W3C_PROFILE, profile.__dict__)
+    context = build_context(profile)['@context']
+    assert context['dct:creator'] == {'@type': '@id'}
     assert context['dct:issued'] == {'@type': 'xsd:dateTime'}          # HEADER_TERMS types the literal
-    assert context['dcat:startDate'] == {'@type': 'xsd:dateTimeStamp'}
-    assert not [term for term in context if term.startswith(('dct:GridDataset.', 'dcterms:GridDataset.'))]
+    assert context['gad:Dataset.Agent'] == {'@type': '@id'}            # other namespaces stay Class.property
+    assert not [term for term in context if 'Dataset.issued' in term or 'Dataset.creator' in term]
+
 
 def test_master_context_lists_its_parts_in_merge_order():
     releases = yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']

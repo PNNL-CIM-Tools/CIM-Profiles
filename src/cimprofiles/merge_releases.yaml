@@ -88,6 +88,7 @@ releases:
       - cimprofiles.cim18.cim18v17.metadata.metadata
       - cimprofiles.cim18.cim18v17.boundary.boundary
       - cimprofiles.cim18.cim18v17.generation.generation
+      - cimprofiles.cim18.cim18v17.names.names
     description: "GridAPPS-D CIM18 merged profile, the 16 CIMTool profiles in cim18v15/Profiles"
 
   # cim18v17 split by grid: the same parts, in the same order, without the other grid's.

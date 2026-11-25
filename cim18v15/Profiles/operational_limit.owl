@@ -27,6 +27,21 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.gridappsd.org/vfm" > 
+  <rdf:Description rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffa">
+    <rdf:first rdf:resource="#OperationalLimitSet"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffc"/>
+    <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#EquipmentConfiguration.OperationalLimitSet"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffc">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OperationalLimitSet</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OperationalLimitSet"/>
+    <owl:unionOf rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffa"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X33X4d91950Xa3X1a1bcfc9cf5Xa3X-7ff0">
     <rdf:first rdf:resource="#CalendarSeasonKind"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -211,6 +226,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltageAngleLimit.AngleReferenceTerminal"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ea0">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AngleReferenceTerminal</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Terminal"/>
@@ -269,6 +285,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#BranchGroupTerminal.Terminal"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ead">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Terminal</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Terminal"/>
@@ -416,6 +433,8 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#StepOperationalLimitTable.TapChanger"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7eca">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gmdm"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TapChanger</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TapChanger"/>
@@ -747,6 +766,13 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Equipment"/>
     <rdfs:subClassOf rdf:resource="#PowerSystemResource"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#EquipmentConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X73Xc351949Xa3X1a20f56c033Xa3X-7ffb"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#EquipmentConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#IdentifiedObject">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>IdentifiedObject</rdfs:label>
@@ -901,6 +927,22 @@
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Terminal"/>
     <rdfs:subClassOf rdf:resource="#ACDCTerminal"/>
   </rdf:Description>
+  <rdf:Description rdf:about="#TransformerBankConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerBankConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#EquipmentConfiguration"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TransformerTankConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerTankConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#EquipmentConfiguration"/>
+  </rdf:Description>
   <rdf:Description rdf:about="#Voltage">
     <rdfs:label>Voltage</rdfs:label>
   </rdf:Description>
@@ -924,6 +966,14 @@
     <rdfs:subClassOf rdf:nodeID="X33X716eccaXa3X1a17ac6d19fXa3X-7ebc"/>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#VoltageLimit"/>
     <rdfs:subClassOf rdf:resource="#OperationalLimit"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#WireConfiguration">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WireConfiguration"/>
+    <rdfs:subClassOf rdf:resource="#EquipmentConfiguration"/>
   </rdf:Description>
   <rdf:Description rdf:about="#global_package">
     <rdfs:label>Global</rdfs:label>
