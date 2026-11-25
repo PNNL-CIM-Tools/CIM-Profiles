@@ -40,6 +40,9 @@
     "gad:Boundary.FrameworkEditions": {
       "@type": "@id"
     },
+    "gad:BoundaryModel.DefinedBoundary": {
+      "@type": "@id"
+    },
     "gad:BoundaryModel.EdgeModels": {
       "@type": "@id"
     },
@@ -49,8 +52,11 @@
     "gad:BoundaryModel.FrameModels": {
       "@type": "@id"
     },
-    "gad:BoundaryModel.DefinedBoundary": {
-      "@type": "@id"
+    "cim:DateTimeInterval.end": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:DateTimeInterval.start": {
+      "@type": "xsd:dateTime"
     },
     "gad:EdgeModel.ReplacedFrame": {
       "@type": "@id"
@@ -97,11 +103,11 @@
     "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
+    "gad:GridDataset.issued": {
+      "@type": "xsd:dateTime"
+    },
     "gad:GridDataset.validityInterval": {
       "@type": "@id"
-    },
-    "gad:GridDistribution.byteSize": {
-      "@type": "xsd:integer"
     },
     "gad:GridDistribution.RealizedGridModel": {
       "@type": "@id"
@@ -109,10 +115,16 @@
     "gad:GridDistribution.Specifications": {
       "@type": "@id"
     },
-    "gad:GridModel.GridAssemblies": {
-      "@type": "@id"
+    "gad:GridDistribution.accessURL": {
+      "@type": "xsd:anyURI"
+    },
+    "gad:GridDistribution.byteSize": {
+      "@type": "xsd:integer"
     },
     "gad:GridModel.Distributions": {
+      "@type": "@id"
+    },
+    "gad:GridModel.GridAssemblies": {
       "@type": "@id"
     },
     "gad:GridModel.ModelAuthority": {
@@ -127,10 +139,10 @@
     "gad:Location.Frames": {
       "@type": "@id"
     },
-    "gad:ModelAuthority.ModeledFrames": {
+    "gad:ModelAuthority.GridModels": {
       "@type": "@id"
     },
-    "gad:ModelAuthority.GridModels": {
+    "gad:ModelAuthority.ModeledFrames": {
       "@type": "@id"
     },
     "gad:NamingAuthority.NamedGridModels": {

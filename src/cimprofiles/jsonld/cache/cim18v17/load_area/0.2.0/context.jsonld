@@ -30,16 +30,13 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:AltGeneratingUnitMeas.priority": {
-      "@type": "xsd:integer"
-    },
     "cim:AltGeneratingUnitMeas.AnalogValue": {
       "@type": "@id"
     },
     "cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit": {
       "@type": "@id"
     },
-    "cim:AltTieMeas.priority": {
+    "cim:AltGeneratingUnitMeas.priority": {
       "@type": "xsd:integer"
     },
     "cim:AltTieMeas.AnalogValue": {
@@ -47,6 +44,9 @@
     },
     "cim:AltTieMeas.TieFlow": {
       "@type": "@id"
+    },
+    "cim:AltTieMeas.priority": {
+      "@type": "xsd:integer"
     },
     "cim:AnalogValue.AltGeneratingUnit": {
       "@type": "@id"
@@ -56,6 +56,9 @@
     },
     "cim:AreaInterchangeController.ControlArea": {
       "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.startTime": {
+      "@type": "xsd:dateTime"
     },
     "cim:BasicIntervalSchedule.value1Multiplier": {
       "@type": "@id"
@@ -78,22 +81,16 @@
     "cim:ConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.EnergyConsumers": {
+    "cim:ConformLoadGroup.ConformLoadSchedules": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
+    "cim:ConformLoadGroup.EnergyConsumers": {
       "@type": "@id"
     },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
-    "cim:ControlArea.netInterchange": {
-      "@type": "xsd:float"
-    },
-    "cim:ControlArea.pTolerance": {
-      "@type": "xsd:float"
-    },
-    "cim:ControlArea.type": {
+    "cim:ControlArea.AreaInterchangeController": {
       "@type": "@id"
     },
     "cim:ControlArea.ControlAreaGeneratingUnit": {
@@ -108,7 +105,13 @@
     "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
-    "cim:ControlArea.AreaInterchangeController": {
+    "cim:ControlArea.netInterchange": {
+      "@type": "xsd:float"
+    },
+    "cim:ControlArea.pTolerance": {
+      "@type": "xsd:float"
+    },
+    "cim:ControlArea.type": {
       "@type": "@id"
     },
     "cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas": {
@@ -138,11 +141,11 @@
     "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
       "@type": "@id"
     },
-    "cim:LoadArea.peakLoad": {
-      "@type": "xsd:float"
-    },
     "cim:LoadArea.SubLoadAreas": {
       "@type": "@id"
+    },
+    "cim:LoadArea.peakLoad": {
+      "@type": "xsd:float"
     },
     "cim:LoadGroup.SubLoadArea": {
       "@type": "@id"
@@ -159,14 +162,14 @@
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
       "@type": "@id"
     },
+    "cim:PowerCutZone.EnergyConsumers": {
+      "@type": "@id"
+    },
     "cim:PowerCutZone.cutLevel1": {
       "@type": "xsd:float"
     },
     "cim:PowerCutZone.cutLevel2": {
       "@type": "xsd:float"
-    },
-    "cim:PowerCutZone.EnergyConsumers": {
-      "@type": "@id"
     },
     "cim:PowerElectronicsUnit.ControlAreaPowerElectronicsUnit": {
       "@type": "@id"
@@ -174,16 +177,22 @@
     "cim:Season.SeasonDayTypeSchedules": {
       "@type": "@id"
     },
+    "cim:Season.endDate": {
+      "@type": "xsd:gMonthDay"
+    },
+    "cim:Season.startDate": {
+      "@type": "xsd:gMonthDay"
+    },
     "cim:SeasonDayTypeSchedule.DayType": {
       "@type": "@id"
     },
     "cim:SeasonDayTypeSchedule.Season": {
       "@type": "@id"
     },
-    "cim:SubLoadArea.LoadGroups": {
+    "cim:SubLoadArea.LoadArea": {
       "@type": "@id"
     },
-    "cim:SubLoadArea.LoadArea": {
+    "cim:SubLoadArea.LoadGroups": {
       "@type": "@id"
     },
     "cim:Terminal.TieFlow": {
@@ -191,9 +200,6 @@
     },
     "cim:TieCorridor.TieFlow": {
       "@type": "@id"
-    },
-    "cim:TieFlow.positiveFlowIn": {
-      "@type": "xsd:boolean"
     },
     "cim:TieFlow.AltTieMeas": {
       "@type": "@id"
@@ -206,6 +212,9 @@
     },
     "cim:TieFlow.TieCorridor": {
       "@type": "@id"
+    },
+    "cim:TieFlow.positiveFlowIn": {
+      "@type": "xsd:boolean"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/load_area/0.2.0/context.jsonld",

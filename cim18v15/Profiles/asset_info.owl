@@ -39,6 +39,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a26">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactorCoreKind"/>
@@ -66,6 +67,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#SolarPanelInfo.SolarArray"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a2e">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>SolarArray</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#SolarArrayInfo"/>
@@ -204,6 +206,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a4c">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>legType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLegKind"/>
@@ -255,6 +259,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a56">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>capacitorRackType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CapacitorRackKind"/>
@@ -294,6 +299,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a5e">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>formType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MeterFormKind"/>
@@ -311,6 +317,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a62">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#compound"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>quantity</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#StringQuantity"/>
@@ -366,6 +373,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a6e">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#BushingInsulationKind"/>
@@ -382,6 +390,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#ElectricVehicleInfo.BatteryInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a72">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>BatteryInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BatteryInfo"/>
@@ -464,6 +473,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#Asset.AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a82">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
@@ -558,6 +568,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a94">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>outerJacketKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableOuterJacketKind"/>
@@ -652,6 +663,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7aa8">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>phaseCount</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCountKind"/>
@@ -811,6 +823,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ac7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>powerElectronicsGateType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PowerElectronicsGateKind"/>
@@ -844,6 +857,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ace">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>activePowerSourceType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ActivePowerSourceKind"/>
@@ -916,6 +930,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7adc">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInsulationKind"/>
@@ -954,6 +969,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#CatalogAssetType.AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ae4">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
@@ -1234,6 +1250,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b1f">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>interruptingMedium</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#InterruptingMediumKind"/>
@@ -1272,6 +1289,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#ProductAssetModel.AssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b27">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>AssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
@@ -1289,6 +1307,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b2b">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>pipeType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PipeBusbarKind"/>
@@ -1317,6 +1336,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b31">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMedium</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ReactorInsulationMediumKind"/>
@@ -1377,6 +1397,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b3f">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>shieldMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableShieldMaterialKind"/>
@@ -1586,6 +1607,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b67">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#compound"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>rated10PctVoltTime</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TimeInterval"/>
@@ -1603,6 +1625,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b6b">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>material</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireMaterialKind"/>
@@ -1741,6 +1764,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b87">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>materialKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#StructureMaterialKind"/>
@@ -1813,6 +1837,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7b97">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>laminationAssembly</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLaminationAssemblyKind"/>
@@ -2029,6 +2055,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bc0">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>wireConstructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireConstructionKind"/>
@@ -2046,6 +2073,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bc4">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MediumKind"/>
@@ -2244,6 +2272,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bee">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>windingArrangement</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#WindingArrangementKind"/>
@@ -2261,6 +2291,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bf2">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UndergroundStructureKind"/>
@@ -2322,6 +2353,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7bfe">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CompositeSwitchKind"/>
@@ -2384,6 +2416,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c0c">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetKind"/>
@@ -2434,6 +2467,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c16">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>insulationMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInsulationKind"/>
@@ -2451,6 +2485,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c1a">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>connectorType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ConnectorTypeKind"/>
@@ -2516,6 +2551,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfoComponent.ChildAssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c2a">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ChildAssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
@@ -2544,6 +2580,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c30">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>technology</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ComTechnologyKind"/>
@@ -2561,6 +2598,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c34">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>circulationAndCoolingType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CirculationAndCoolingKind"/>
@@ -2584,6 +2622,7 @@
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c39">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#add"/>
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>wireConstructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireConstructionKind"/>
@@ -2656,6 +2695,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c47">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>usageKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetModelUsageKind"/>
@@ -2733,6 +2773,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c58">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>dcConverterType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#STATCOMKind"/>
@@ -2831,6 +2872,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c6d">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>direction</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#ComDirectionKind"/>
@@ -2897,6 +2939,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#ChargingStation.ChargingConnector"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c7b">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ChargingConnector</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#ChargingConnectorInfo"/>
@@ -2980,6 +3023,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c8b">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>constructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CableConstructionKind"/>
@@ -3008,6 +3052,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c91">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>constructionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireMaterialKind"/>
@@ -3025,6 +3070,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7c95">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreMaterial</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerCoreMaterialKind"/>
@@ -3096,6 +3143,7 @@
     <owl:onProperty rdf:resource="http://gridappsd.org/CIM/extension#BundleConfiguration.WireInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ca5">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>WireInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#WireInfo"/>
@@ -3146,6 +3194,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#StructureInfo.ConstructedDimensions"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7caf">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gk"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ConstructedDimensions</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#Dimension"/>
@@ -3240,6 +3289,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cc3">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>coreType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CoreConstructionKind"/>
@@ -3301,6 +3351,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ccf">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>oilPreservationType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OilPreservationKind"/>
@@ -3329,6 +3380,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cd5">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>laminationShape</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#TransformerLaminationShapeKind"/>
@@ -3389,6 +3442,7 @@
     <owl:onProperty rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfoComponent.ParentAssetInfo"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ce1">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#shadowextension"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>ParentAssetInfo</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AssetInfo"/>
@@ -3439,6 +3493,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7ceb">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>dischargeResistorType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#DischargeResistorKind"/>
@@ -3534,6 +3589,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7cff">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>unit</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitSymbol"/>
@@ -3595,6 +3651,8 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d0b">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gridappsd"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>batteryType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://gridappsd.org/CIM/extension#BatteryTypeKind"/>
@@ -3634,6 +3692,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d13">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>mechanismKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#OperatingMechanismKind"/>
@@ -3711,6 +3770,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d23">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>fusingType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CapacitorCanFusingKind"/>
@@ -3832,6 +3892,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d3b">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>connectionKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CompensatorConnectionKind"/>
@@ -3937,6 +3998,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d51">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>faultSequenceType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCodeExtension"/>
@@ -4223,6 +4285,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d87">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>evType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#EVTypeKind"/>
@@ -4262,6 +4325,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7d8f">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>multiplier</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#UnitMultiplier"/>
@@ -4498,6 +4562,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dbf">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>terminalConnectionType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#TerminalConnectionKind"/>
@@ -4542,6 +4607,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dc8">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>svcReactiveControlType</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#SVCReactiveControlKind"/>
@@ -4592,6 +4658,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7dd2">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>phaseCode</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#PhaseCode"/>
@@ -4680,6 +4747,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7de6">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>corporateStandardKind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#CorporateStandardKind"/>
@@ -4763,6 +4831,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7df7">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#MarineStructureKind"/>
@@ -4835,6 +4904,7 @@
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7e07">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>kind</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://cim.ucaiug.io/cim101/draft#AgentRoleKind"/>
@@ -8344,6 +8414,9 @@
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#cimantic-graphs.py">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#context.jsonld">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
   <rdf:Description rdf:about="">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
     <rdfs:label>asset_info</rdfs:label>
@@ -8949,6 +9022,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="#Dimension">
     <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#gk"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Dimension</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a41"/>
@@ -8986,6 +9060,7 @@
     <rdfs:label>Displacement</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="#Document">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#foaf"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Document</rdfs:label>
     <rdfs:subClassOf rdf:nodeID="Xd2X77400478Xa3X1a1d216b86fXa3X-7a7b"/>

@@ -671,4 +671,7 @@
   <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#cimantic-graphs.py">
     <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#context.jsonld">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
 </rdf:RDF>

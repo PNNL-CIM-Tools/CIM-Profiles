@@ -1,0 +1,161 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "gad:Boundary.BoundaryModels": {
+      "@type": "@id"
+    },
+    "gad:Boundary.Frames": {
+      "@type": "@id"
+    },
+    "gad:Boundary.FrameworkEditions": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.DefinedBoundary": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.EdgeModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.EquivalentModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.FrameModels": {
+      "@type": "@id"
+    },
+    "cim:DateTimeInterval.end": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:DateTimeInterval.start": {
+      "@type": "xsd:dateTime"
+    },
+    "gad:EdgeModel.ReplacedFrame": {
+      "@type": "@id"
+    },
+    "gad:EdgeModel.TerminatedBoundaryModel": {
+      "@type": "@id"
+    },
+    "gad:EquivalentModel.JoinedBoundaryModels": {
+      "@type": "@id"
+    },
+    "gad:Frame.EdgeModels": {
+      "@type": "@id"
+    },
+    "gad:Frame.FrameModels": {
+      "@type": "@id"
+    },
+    "gad:Frame.FrameworkEditions": {
+      "@type": "@id"
+    },
+    "gad:Frame.Location": {
+      "@type": "@id"
+    },
+    "gad:Frame.ModelAuthority": {
+      "@type": "@id"
+    },
+    "gad:Frame.PerimeterBoundaries": {
+      "@type": "@id"
+    },
+    "gad:FrameModel.PerimeterBoundaryModels": {
+      "@type": "@id"
+    },
+    "gad:FrameModel.RepresentedFrame": {
+      "@type": "@id"
+    },
+    "gad:FrameworkEdition.IncludedBoundaries": {
+      "@type": "@id"
+    },
+    "gad:FrameworkEdition.IncludedFrames": {
+      "@type": "@id"
+    },
+    "gad:FrameworkEdition.IncludedReferences": {
+      "@type": "@id"
+    },
+    "gad:GridAssembly.GridModelParts": {
+      "@type": "@id"
+    },
+    "gad:GridDataset.issued": {
+      "@type": "xsd:dateTime"
+    },
+    "gad:GridDataset.validityInterval": {
+      "@type": "@id"
+    },
+    "gad:GridDistribution.RealizedGridModel": {
+      "@type": "@id"
+    },
+    "gad:GridDistribution.Specifications": {
+      "@type": "@id"
+    },
+    "gad:GridDistribution.accessURL": {
+      "@type": "xsd:anyURI"
+    },
+    "gad:GridDistribution.byteSize": {
+      "@type": "xsd:integer"
+    },
+    "gad:GridModel.Distributions": {
+      "@type": "@id"
+    },
+    "gad:GridModel.GridAssemblies": {
+      "@type": "@id"
+    },
+    "gad:GridModel.ModelAuthority": {
+      "@type": "@id"
+    },
+    "gad:GridModel.NamingAuthority": {
+      "@type": "@id"
+    },
+    "gad:GridSpecification.Distributions": {
+      "@type": "@id"
+    },
+    "gad:Location.Frames": {
+      "@type": "@id"
+    },
+    "gad:ModelAuthority.GridModels": {
+      "@type": "@id"
+    },
+    "gad:ModelAuthority.ModeledFrames": {
+      "@type": "@id"
+    },
+    "gad:NamingAuthority.NamedGridModels": {
+      "@type": "@id"
+    },
+    "gad:Reference.FrameworkEditions": {
+      "@type": "@id"
+    },
+    "gad:Reference.ReferenceModels": {
+      "@type": "@id"
+    },
+    "gad:ReferenceModel.RepresentedReference": {
+      "@type": "@id"
+    }
+  }
+}

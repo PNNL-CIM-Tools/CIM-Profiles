@@ -34,11 +34,23 @@
     "cim:ACLineSegmentPhase.WireInfo": {
       "@type": "@id"
     },
-    "cim:Asset.critical": {
-      "@type": "xsd:boolean"
+    "cim:Asset.AssetContainer": {
+      "@type": "@id"
+    },
+    "cim:Asset.AssetDeployment": {
+      "@type": "@id"
+    },
+    "cim:Asset.acceptanceTest": {
+      "@type": "@id"
     },
     "cim:Asset.baselineLossOfLife": {
       "@type": "xsd:float"
+    },
+    "cim:Asset.critical": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Asset.inUseDate": {
+      "@type": "@id"
     },
     "cim:Asset.inUseState": {
       "@type": "@id"
@@ -46,40 +58,19 @@
     "cim:Asset.kind": {
       "@type": "@id"
     },
+    "cim:Asset.lifecycleDate": {
+      "@type": "@id"
+    },
     "cim:Asset.lifecycleState": {
       "@type": "@id"
     },
     "cim:Asset.purchasePrice": {
-      "@type": "xsd:float"
+      "@type": "xsd:decimal"
     },
     "cim:Asset.retiredReason": {
       "@type": "@id"
     },
-    "cim:Asset.acceptanceTest": {
-      "@type": "@id"
-    },
-    "cim:Asset.inUseDate": {
-      "@type": "@id"
-    },
-    "cim:Asset.lifecycleDate": {
-      "@type": "@id"
-    },
-    "cim:Asset.AssetContainer": {
-      "@type": "@id"
-    },
-    "cim:Asset.AssetDeployment": {
-      "@type": "@id"
-    },
     "cim:AssetContainer.Assets": {
-      "@type": "@id"
-    },
-    "cim:AssetDeployment.likelihoodOfFailure": {
-      "@type": "xsd:integer"
-    },
-    "cim:AssetDeployment.deploymentState": {
-      "@type": "@id"
-    },
-    "cim:AssetDeployment.deploymentDate": {
       "@type": "@id"
     },
     "cim:AssetDeployment.Asset": {
@@ -87,6 +78,15 @@
     },
     "cim:AssetDeployment.BaseVoltage": {
       "@type": "@id"
+    },
+    "cim:AssetDeployment.deploymentDate": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.deploymentState": {
+      "@type": "@id"
+    },
+    "cim:AssetDeployment.likelihoodOfFailure": {
+      "@type": "xsd:integer"
     },
     "cim:AssetInfo.PowerSystemResources": {
       "@type": "@id"
@@ -100,10 +100,10 @@
     "cim:PowerSystemResource.AssetDatasheet": {
       "@type": "@id"
     },
-    "cim:PowerTransformerAssetDeployment.transformerApplication": {
+    "gad:PowerTransformerAssetDeployment.TransformerBankAssembly": {
       "@type": "@id"
     },
-    "gad:PowerTransformerAssetDeployment.TransformerBankAssembly": {
+    "cim:PowerTransformerAssetDeployment.transformerApplication": {
       "@type": "@id"
     },
     "gad:TransformerBankConfiguration.AssetDeployments": {

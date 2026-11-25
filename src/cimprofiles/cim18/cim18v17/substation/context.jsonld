@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCTerminal.BusNameMarker": {
+      "@type": "@id"
+    },
+    "cim:ACDCTerminal.connected": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ACDCTerminal.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:BaseVoltage.VoltageLevel": {
+      "@type": "@id"
+    },
+    "cim:Bay.Substation": {
+      "@type": "@id"
+    },
+    "cim:Bay.VoltageLevel": {
+      "@type": "@id"
+    },
+    "cim:Bay.breakerConfiguration": {
+      "@type": "@id"
+    },
+    "cim:Bay.busBarConfiguration": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.Terminal": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:BusbarSection.ipMax": {
+      "@type": "xsd:float"
+    },
+    "cim:ConductingEquipment.Terminals": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.Terminals": {
+      "@type": "@id"
+    },
+    "cim:Equipment.EquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:Equipment.aggregate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EquipmentContainer.Equipments": {
+      "@type": "@id"
+    },
+    "cim:Feeder.NamingSecondarySubstation": {
+      "@type": "@id"
+    },
+    "cim:Feeder.NormalEnergizedSubstation": {
+      "@type": "@id"
+    },
+    "cim:GeographicalRegion.Regions": {
+      "@type": "@id"
+    },
+    "cim:Line.Region": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Lines": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Region": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Substations": {
+      "@type": "@id"
+    },
+    "cim:Substation.Bays": {
+      "@type": "@id"
+    },
+    "cim:Substation.NamingFeeder": {
+      "@type": "@id"
+    },
+    "cim:Substation.NormalEnergizingFeeder": {
+      "@type": "@id"
+    },
+    "cim:Substation.Region": {
+      "@type": "@id"
+    },
+    "cim:Substation.VoltageLevels": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.Bays": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.Substation": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.highVoltageLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLevel.lowVoltageLimit": {
+      "@type": "xsd:float"
+    }
+  }
+}

@@ -51,20 +51,23 @@
     "cim:NamingAuthority.NameType": {
       "@type": "@id"
     },
-    "cim:ObjectIdentificationRevision.revisionKind": {
-      "@type": "@id"
-    },
     "cim:ObjectIdentificationRevision.IdentifiedObjectRevision": {
       "@type": "@id"
     },
     "cim:ObjectIdentificationRevision.ObjectIdentificationRevisionSet": {
       "@type": "@id"
     },
-    "cim:ObjectIdentificationRevisionSet.ObjectIdentificationRevision": {
+    "cim:ObjectIdentificationRevision.revisionKind": {
       "@type": "@id"
     },
     "cim:ObjectIdentificationRevisionSet.Object": {
       "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.ObjectIdentificationRevision": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.effectiveDateTime": {
+      "@type": "xsd:dateTime"
     },
     "cim:ObjectType.IdentifiedObject": {
       "@type": "@id"

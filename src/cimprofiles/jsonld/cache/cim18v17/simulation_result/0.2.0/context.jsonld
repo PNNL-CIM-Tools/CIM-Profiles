@@ -33,9 +33,6 @@
     "cim:ACDCTerminal.SignalRecorder": {
       "@type": "@id"
     },
-    "cim:ClearSimulationEvent.eventTime": {
-      "@type": "xsd:float"
-    },
     "cim:ClearSimulationEvent.ClearedFaultEvent": {
       "@type": "@id"
     },
@@ -43,6 +40,12 @@
       "@type": "@id"
     },
     "cim:ClearSimulationEvent.SimulationEvents": {
+      "@type": "@id"
+    },
+    "cim:ClearSimulationEvent.eventTime": {
+      "@type": "xsd:float"
+    },
+    "cim:Curve.CurveDatas": {
       "@type": "@id"
     },
     "cim:Curve.curveStyle": {
@@ -72,7 +75,7 @@
     "cim:Curve.y3Unit": {
       "@type": "@id"
     },
-    "cim:Curve.CurveDatas": {
+    "cim:CurveData.Curve": {
       "@type": "@id"
     },
     "cim:CurveData.xvalue": {
@@ -87,38 +90,17 @@
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
     },
-    "cim:CurveData.Curve": {
+    "cim:DynamicsFunctionBlock.SignalRecorder": {
       "@type": "@id"
     },
     "cim:DynamicsFunctionBlock.enabled": {
       "@type": "xsd:boolean"
-    },
-    "cim:DynamicsFunctionBlock.SignalRecorder": {
-      "@type": "@id"
     },
     "cim:Fault.ClearSimulationEvent": {
       "@type": "@id"
     },
     "cim:IdentifiedObject.ParameterEvent": {
       "@type": "@id"
-    },
-    "cim:ParameterEvent.booleanParameterValue": {
-      "@type": "xsd:boolean"
-    },
-    "cim:ParameterEvent.floatParementerValue": {
-      "@type": "xsd:float"
-    },
-    "cim:ParameterEvent.integerParameterValue": {
-      "@type": "xsd:integer"
-    },
-    "cim:ParameterEvent.changeKind": {
-      "@type": "@id"
-    },
-    "cim:ParameterEvent.eventTime": {
-      "@type": "xsd:float"
-    },
-    "cim:ParameterEvent.rampDuration": {
-      "@type": "xsd:float"
     },
     "cim:ParameterEvent.ClearSimulationEvent": {
       "@type": "@id"
@@ -129,8 +111,38 @@
     "cim:ParameterEvent.UsesParameterOf": {
       "@type": "@id"
     },
+    "cim:ParameterEvent.booleanParameterValue": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ParameterEvent.changeKind": {
+      "@type": "@id"
+    },
+    "cim:ParameterEvent.eventTime": {
+      "@type": "xsd:float"
+    },
+    "cim:ParameterEvent.floatParementerValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ParameterEvent.integerParameterValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:ParameterEvent.rampDuration": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerFlowSettings.SimulationSettings": {
+      "@type": "@id"
+    },
+    "cim:PowerFlowSettings.activePowerTolerance": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerFlowSettings.algorithmKind": {
+      "@type": "@id"
+    },
     "cim:PowerFlowSettings.flatStart": {
       "@type": "xsd:boolean"
+    },
+    "cim:PowerFlowSettings.impedanceThreshold": {
+      "@type": "xsd:float"
     },
     "cim:PowerFlowSettings.interchangeControlEnabled": {
       "@type": "xsd:boolean"
@@ -147,11 +159,20 @@
     "cim:PowerFlowSettings.maxIterationsOuterLoop": {
       "@type": "xsd:integer"
     },
+    "cim:PowerFlowSettings.reactivePowerTolerance": {
+      "@type": "xsd:float"
+    },
     "cim:PowerFlowSettings.respectActivePowerLimits": {
       "@type": "xsd:boolean"
     },
     "cim:PowerFlowSettings.respectReactivePowerLimits": {
       "@type": "xsd:boolean"
+    },
+    "cim:PowerFlowSettings.shiftKind": {
+      "@type": "@id"
+    },
+    "cim:PowerFlowSettings.slackDistributionKind": {
+      "@type": "@id"
     },
     "cim:PowerFlowSettings.staticVarCompensatorControlPriority": {
       "@type": "xsd:integer"
@@ -165,40 +186,16 @@
     "cim:PowerFlowSettings.transformerRatioTapControlPriority": {
       "@type": "xsd:integer"
     },
-    "cim:PowerFlowSettings.activePowerTolerance": {
-      "@type": "xsd:float"
-    },
-    "cim:PowerFlowSettings.algorithmKind": {
-      "@type": "@id"
-    },
-    "cim:PowerFlowSettings.impedanceThreshold": {
-      "@type": "xsd:float"
-    },
-    "cim:PowerFlowSettings.reactivePowerTolerance": {
-      "@type": "xsd:float"
-    },
-    "cim:PowerFlowSettings.shiftKind": {
-      "@type": "@id"
-    },
-    "cim:PowerFlowSettings.slackDistributionKind": {
-      "@type": "@id"
-    },
     "cim:PowerFlowSettings.voltageAngleLimit": {
       "@type": "xsd:float"
     },
     "cim:PowerFlowSettings.voltageTolerance": {
       "@type": "xsd:float"
     },
-    "cim:PowerFlowSettings.SimulationSettings": {
-      "@type": "@id"
-    },
     "cim:SignalConfiguration.SignalRecorder": {
       "@type": "@id"
     },
     "cim:SignalConfiguration.SimulationResult": {
-      "@type": "@id"
-    },
-    "cim:SignalRecorder.signalKind": {
       "@type": "@id"
     },
     "cim:SignalRecorder.RecordedSignalAt": {
@@ -219,6 +216,9 @@
     "cim:SignalRecorder.SimulationConfiguration": {
       "@type": "@id"
     },
+    "cim:SignalRecorder.signalKind": {
+      "@type": "@id"
+    },
     "cim:SimulationEvents.ClearSimulationEvent": {
       "@type": "@id"
     },
@@ -228,13 +228,13 @@
     "cim:SimulationEvents.SimulationResult": {
       "@type": "@id"
     },
-    "cim:SimulationResult.SimulationResultCharacteristic": {
-      "@type": "@id"
-    },
     "cim:SimulationResult.SignalConfiguration": {
       "@type": "@id"
     },
     "cim:SimulationResult.SimulationEvents": {
+      "@type": "@id"
+    },
+    "cim:SimulationResult.SimulationResultCharacteristic": {
       "@type": "@id"
     },
     "cim:SimulationResult.SimulationSettings": {
@@ -252,11 +252,20 @@
     "cim:SimulationResultCharacteristic.Y3valueSignal": {
       "@type": "@id"
     },
-    "cim:SimulationSettings.isIntegrationStepSizeVariable": {
-      "@type": "xsd:boolean"
+    "cim:SimulationSettings.PowerFlowSettings": {
+      "@type": "@id"
+    },
+    "cim:SimulationSettings.SimulationResult": {
+      "@type": "@id"
+    },
+    "cim:SimulationSettings.duration": {
+      "@type": "xsd:duration"
     },
     "cim:SimulationSettings.integrationStepSize": {
       "@type": "xsd:float"
+    },
+    "cim:SimulationSettings.isIntegrationStepSizeVariable": {
+      "@type": "xsd:boolean"
     },
     "cim:SimulationSettings.maximumIntegrationStepSize": {
       "@type": "xsd:float"
@@ -266,12 +275,6 @@
     },
     "cim:SimulationSettings.simulationResultsRecordedEvery": {
       "@type": "xsd:float"
-    },
-    "cim:SimulationSettings.SimulationResult": {
-      "@type": "@id"
-    },
-    "cim:SimulationSettings.PowerFlowSettings": {
-      "@type": "@id"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/simulation_result/0.2.0/context.jsonld",

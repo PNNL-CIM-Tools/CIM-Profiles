@@ -194,9 +194,12 @@ language with a UUID library can reproduce it from this description.
 ## Updating a profile
 
 1. In CIMTool, edit the profile in its project and regenerate it with the cimantic-graphs
-   builders (see [How the profiles are made](#how-the-profiles-are-made)). CIMTool writes the
-   output next to the profile, in `Profiles/`.
-2. Import it. This rewrites the `cimgraph.data_profile` imports emitted by CIMTool before 2.3.1:
+   builders (see [How the profiles are made](#how-the-profiles-are-made)), including the
+   JSON-LD context builder (`custom-builders/cimantic-graphs-jsonld-context` of the
+   CIMTool-Builders-Library, imported as a `TEXT` builder with the extension `context.jsonld`). CIMTool writes the output
+   next to the profile, in `Profiles/`.
+2. Import it. This copies the context into the package as `context.jsonld` and rewrites the
+   `cimgraph.data_profile` imports emitted by CIMTool before 2.3.1:
    ```bash
    scripts/import_cimtool_output.sh cim17 <Profiles/name.py> <Profiles/name.__init__.py>
    ```
@@ -229,9 +232,14 @@ cim-profiles release, in the URL as CGMES puts versions in its IRIs:
   release that last changed them. Earlier directories stay published.
 
 - **Context** (`context.jsonld`): prefixes, and each property's datatype (`{"@type": "@id"}` for
-  references and enumerations, `xsd:float`, `xsd:integer`, `xsd:boolean`), plus the
-  `dcat:Dataset` header terms typed as in the Inst4CIM CGMES context (`dct:conformsTo`,
-  `dcat:isVersionOf` as IRIs, `dct:issued` as `xsd:dateTime`). Next to `@context`, the file
+  references and enumerations, else the XSD type of its values: `xsd:float`, `xsd:decimal`,
+  `xsd:integer`, `xsd:boolean`, `xsd:dateTime`, ...), plus the `dcat:Dataset` header terms, all
+  typed as in the Inst4CIM CGMES context (`dct:conformsTo`, `dcat:isVersionOf` as IRIs,
+  `dct:issued` as `xsd:dateTime`). It is generated from the profile's `.owl` by the CIMTool
+  context builder and imported into the profile's package; a merged release's context is the
+  union of its parts'. Profiles whose `.owl` is not in this repo (cim16v33, cim18gmdm,
+  cimhub_2023, cimhub_2026, rc4_2021) have theirs built from their classes instead, which types
+  only floats, integers and booleans and leaves dates as strings. Next to `@context`, the file
   records its `@id` (its URL) and `owl:versionInfo` (the full release, e.g. `0.2.0`); JSON-LD processors read only
   `@context` from a remote context. A JSON-LD context cannot carry units.
 - **Unit vocabulary** (`units-<convention>.jsonld`): `qudt:hasUnit` per property, the CGMES way.

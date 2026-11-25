@@ -1,0 +1,113 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:Circle.CircleCenterPositionPoint": {
+      "@type": "@id"
+    },
+    "cim:Circle.innerRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:Circle.outerRadius": {
+      "@type": "xsd:float"
+    },
+    "cim:CoordinateSystem.Geometry": {
+      "@type": "@id"
+    },
+    "cim:CoordinateSystem.Location": {
+      "@type": "@id"
+    },
+    "cim:GeometricElement.Geometry": {
+      "@type": "@id"
+    },
+    "cim:Geometry.CoordinateSystem": {
+      "@type": "@id"
+    },
+    "cim:Geometry.GeometricElement": {
+      "@type": "@id"
+    },
+    "cim:Geometry.Location": {
+      "@type": "@id"
+    },
+    "cim:LineElement.LinearCoordinate": {
+      "@type": "@id"
+    },
+    "cim:LineElement.Polygon": {
+      "@type": "@id"
+    },
+    "cim:LinearCoordinate.Line": {
+      "@type": "@id"
+    },
+    "cim:LinearCoordinate.bulge": {
+      "@type": "xsd:decimal"
+    },
+    "cim:LinearCoordinate.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:Location.CoordinateSystem": {
+      "@type": "@id"
+    },
+    "cim:Location.Geometry": {
+      "@type": "@id"
+    },
+    "gad:Location.PositionPoints": {
+      "@type": "@id"
+    },
+    "cim:Location.PowerSystemResources": {
+      "@type": "@id"
+    },
+    "cim:Polygon.InnerBoundaryLineElement": {
+      "@type": "@id"
+    },
+    "cim:PositionPoint.Circle": {
+      "@type": "@id"
+    },
+    "gad:PositionPoint.Location": {
+      "@type": "@id"
+    },
+    "cim:PositionPoint.RelativeHeight": {
+      "@type": "@id"
+    },
+    "gad:PositionPoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:PowerSystemResource.Location": {
+      "@type": "@id"
+    },
+    "cim:RelativeHeight.PositionPoint": {
+      "@type": "@id"
+    },
+    "cim:RelativeHeight.verticalOffset": {
+      "@type": "xsd:float"
+    }
+  }
+}

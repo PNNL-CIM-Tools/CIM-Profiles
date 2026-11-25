@@ -6,7 +6,8 @@
 # usage: scripts/build_release.sh <release name>      e.g. scripts/build_release.sh cim18v17
 #
 # A part cimprofiles.<cim version>.<package path>.<module> is imported from
-# <source>/<stem>.cimantic-graphs.py and <source>/<stem>.__init__.py, where <stem> is
+# <source>/<stem>.cimantic-graphs.py, <source>/<stem>.__init__.py and
+# <source>/<stem>.context.jsonld, where <stem> is
 # <module>, or <source_prefix><Module> (CamelCase) when the release sets a source_prefix.
 set -euo pipefail
 
@@ -45,7 +46,8 @@ source_dir=$(head -1 <<< "$plan")
 # Check every part was generated before importing any of them
 missing=0
 while read -r cim_version package module stem; do
-    for file in "$source_dir/$stem.cimantic-graphs.py" "$source_dir/$stem.__init__.py"; do
+    for file in "$source_dir/$stem.cimantic-graphs.py" "$source_dir/$stem.__init__.py" \
+                "$source_dir/$stem.context.jsonld"; do
         if [ ! -f "$file" ]; then
             echo "error: $file not found; run the cimantic-graphs builders in CIMTool" >&2
             missing=1

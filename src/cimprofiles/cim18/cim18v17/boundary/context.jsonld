@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:BaseVoltage.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "cim:BaseVoltage.VoltageLevel": {
+      "@type": "@id"
+    },
+    "eu:BoundaryPoint.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "eu:BoundaryPoint.isDirectCurrent": {
+      "@type": "xsd:boolean"
+    },
+    "eu:BoundaryPoint.isExcludedFromAreaInterchange": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ConnectedArea.BoundaryTerminal": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.ContainedArea": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.ContainedWithin": {
+      "@type": "@id"
+    },
+    "cim:ConnectedArea.kind": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.BaseVoltage": {
+      "@type": "@id"
+    },
+    "eu:ConnectivityNode.BoundaryPoint": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.ConnectivityNodeContainer": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.Terminals": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
+      "@type": "@id"
+    },
+    "cim:Substation.VoltageLevels": {
+      "@type": "@id"
+    },
+    "cim:Terminal.BoundedConnectedArea": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ConnectivityNode": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:VoltageLevel.Substation": {
+      "@type": "@id"
+    }
+  }
+}

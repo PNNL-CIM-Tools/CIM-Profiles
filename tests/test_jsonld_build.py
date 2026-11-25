@@ -11,7 +11,8 @@ import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
 from cimprofiles.jsonld import load_document, load_vocabulary_units, profile_jsonld
 from cimprofiles.jsonld.build import (RELEASES_FILE, build_context, build_profile, build_vocabulary, convention_units,
-                                      expand_parts, load_specs, part_profile, stable_version)
+                                      expand_parts, load_specs, merge_contexts, part_profile, profile_context,
+                                      stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
                                         vocabulary_units)
 from cimprofiles.jsonld.documents import CACHE
@@ -40,12 +41,34 @@ def test_context_types_the_dataset_header():
 
 
 def test_cgmes_context_matches_the_published_cgmes_context():
+    """The CIMTool contexts of the CGMES 3.0 parts type every property as the Inst4CIM
+    CGMES context does, dates and Money (xsd:decimal) included."""
     cgmes = importlib.import_module(PROFILE_PACKAGES['cgmes_3_0_0'])
-    ours = property_datatypes(build_context(cgmes))
+    ours = property_datatypes(profile_context('cgmes_3_0_0', cgmes))
     published = property_datatypes(load_document(profile_jsonld('cgmes_3_0_0')['context']))
-    differ = {name for name in set(ours) & set(published) if ours[name] != published[name]}
-    # Money is xsd:decimal in CGMES; generated profiles type it as float
-    assert differ == {'GeneratingUnit.variableCost', 'GeneratingUnit.startupCost'}
+    assert ours['GeneratingUnit.startupCost'] == 'xsd:decimal'
+    assert ours['BasicIntervalSchedule.startTime'] == 'xsd:dateTime'
+    assert {name for name in set(ours) & set(published) if ours[name] != published[name]} == set()
+
+
+def test_profiles_without_a_cimtool_context_are_built_from_their_classes():
+    assert profile_context('cimhub_2023', cimhub) == build_context(cimhub)
+
+
+def test_a_release_context_is_the_union_of_its_parts():
+    release = importlib.import_module(PROFILE_PACKAGES['cim18v17'])
+    context = profile_context('cim18v17', release)['@context']
+    for part in ('cim18v17.substation', 'cim18v17.names'):
+        part_context = profile_context(part, importlib.import_module(f'cimprofiles.cim18.{part}'))['@context']
+        assert part_context.items() <= context.items()
+
+
+def test_merging_contexts_that_disagree_fails():
+    first = {'@context': {'cim': 'http://iec.ch/TC57/CIM100#', 'cim:A.b': {'@type': 'xsd:float'}}}
+    second = {'@context': {'cim': 'http://iec.ch/TC57/CIM100#', 'cim:A.b': {'@type': '@id'}}}
+    assert merge_contexts([first, first]) == first
+    with pytest.raises(ValueError, match='cim:A.b'):
+        merge_contexts([first, second])
 
 
 def test_convention_resolution_order():

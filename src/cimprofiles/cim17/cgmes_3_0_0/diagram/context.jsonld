@@ -1,0 +1,121 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/CIM100#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:Diagram.DiagramElements": {
+      "@type": "@id"
+    },
+    "cim:Diagram.DiagramStyle": {
+      "@type": "@id"
+    },
+    "cim:Diagram.orientation": {
+      "@type": "@id"
+    },
+    "cim:Diagram.x1InitialView": {
+      "@type": "xsd:float"
+    },
+    "cim:Diagram.x2InitialView": {
+      "@type": "xsd:float"
+    },
+    "cim:Diagram.y1InitialView": {
+      "@type": "xsd:float"
+    },
+    "cim:Diagram.y2InitialView": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObject.Diagram": {
+      "@type": "@id"
+    },
+    "cim:DiagramObject.DiagramObjectPoints": {
+      "@type": "@id"
+    },
+    "cim:DiagramObject.DiagramObjectStyle": {
+      "@type": "@id"
+    },
+    "cim:DiagramObject.IdentifiedObject": {
+      "@type": "@id"
+    },
+    "cim:DiagramObject.VisibilityLayers": {
+      "@type": "@id"
+    },
+    "cim:DiagramObject.drawingOrder": {
+      "@type": "xsd:integer"
+    },
+    "cim:DiagramObject.isPolygon": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DiagramObject.offsetX": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObject.offsetY": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObject.rotation": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObjectGluePoint.DiagramObjectPoints": {
+      "@type": "@id"
+    },
+    "cim:DiagramObjectPoint.DiagramObject": {
+      "@type": "@id"
+    },
+    "cim:DiagramObjectPoint.DiagramObjectGluePoint": {
+      "@type": "@id"
+    },
+    "cim:DiagramObjectPoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:DiagramObjectPoint.xPosition": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObjectPoint.yPosition": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObjectPoint.zPosition": {
+      "@type": "xsd:float"
+    },
+    "cim:DiagramObjectStyle.StyledObjects": {
+      "@type": "@id"
+    },
+    "cim:DiagramStyle.Diagram": {
+      "@type": "@id"
+    },
+    "cim:IdentifiedObject.DiagramObjects": {
+      "@type": "@id"
+    },
+    "cim:VisibilityLayer.VisibleObjects": {
+      "@type": "@id"
+    },
+    "cim:VisibilityLayer.drawingOrder": {
+      "@type": "xsd:integer"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:Anchor.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:Anchor.anchorKind": {
+      "@type": "@id"
+    },
+    "cim:Anchor.anchorRodCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:Anchor.anchorRodLength": {
+      "@type": "xsd:float"
+    },
+    "cim:Asset.AssetContainer": {
+      "@type": "@id"
+    },
+    "cim:Asset.retiredReason": {
+      "@type": "@id"
+    },
+    "cim:AssetContainer.Assets": {
+      "@type": "@id"
+    },
+    "cim:AssetOwner.Ownerships": {
+      "@type": "@id"
+    },
+    "cim:Brace.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:BusSegment.retained": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Bushing.FixedContact": {
+      "@type": "@id"
+    },
+    "cim:Bushing.MovingContact": {
+      "@type": "@id"
+    },
+    "cim:Bushing.Terminal": {
+      "@type": "@id"
+    },
+    "cim:CathodicSystem.OverheadStructure": {
+      "@type": "@id"
+    },
+    "cim:InterrupterUnit.FixedContactBushing": {
+      "@type": "@id"
+    },
+    "cim:InterrupterUnit.MovingContactBushing": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.Anchor": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.Brace": {
+      "@type": "@id"
+    },
+    "cim:OverheadStructure.CathodicSystem": {
+      "@type": "@id"
+    },
+    "cim:Ownership.AssetOwner": {
+      "@type": "@id"
+    },
+    "cim:Terminal.Bushing": {
+      "@type": "@id"
+    }
+  }
+}

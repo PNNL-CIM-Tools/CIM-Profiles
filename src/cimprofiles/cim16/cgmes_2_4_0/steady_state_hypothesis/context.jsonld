@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/2013/CIM-schema-cim16#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCConverter.p": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.q": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.targetPpcc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.targetUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCTerminal.connected": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ActivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:ApparentPowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.asynchronousMachineType": {
+      "@type": "@id"
+    },
+    "cim:ControlArea.netInterchange": {
+      "@type": "xsd:float"
+    },
+    "cim:ControlArea.pTolerance": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.operatingMode": {
+      "@type": "@id"
+    },
+    "cim:CsConverter.pPccControl": {
+      "@type": "@id"
+    },
+    "cim:CsConverter.targetAlpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.targetGamma": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.targetIdc": {
+      "@type": "xsd:float"
+    },
+    "cim:CurrentLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.p": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.q": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.activePower": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.reactivePower": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.p": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.q": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentInjection.regulationStatus": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EquivalentInjection.regulationTarget": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.p": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.q": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.referencePriority": {
+      "@type": "xsd:integer"
+    },
+    "cim:GeneratingUnit.normalPF": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingCondEq.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.discrete": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.targetDeadband": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.targetValue": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.targetValueUnitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:RotatingMachine.p": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.q": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:StaticVarCompensator.q": {
+      "@type": "xsd:float"
+    },
+    "cim:Switch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SynchronousMachine.operatingMode": {
+      "@type": "@id"
+    },
+    "cim:SynchronousMachine.referencePriority": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:TapChanger.step": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.droop": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.droopCompensation": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.pPccControl": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.qPccControl": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.qShare": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetQpcc": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetUpcc": {
+      "@type": "xsd:float"
+    }
+  }
+}
