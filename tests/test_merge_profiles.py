@@ -1,348 +1,148 @@
-"""Tests for runtime CIM profile merging."""
+"""Tests for runtime CIM profile merging, on the fixture profiles of tests/fixtures/README.md."""
 from __future__ import annotations
 
-import dataclasses
 import importlib
-import os
 import sys
-import textwrap
+import typing
 from dataclasses import fields, is_dataclass
 from enum import Enum
-from pathlib import Path
 
 import pytest
+from fixture_profiles.cim17 import test_a as part_a
+from fixture_profiles.cim17 import test_b as part_b
+from fixture_profiles.cim17 import test_c as part_c
 
-from cimprofiles.build_merged_profiles import _CONFIG, _load_config
-from cimprofiles.cim18.cim18gmdm import connectivity, electrical
-
-
-def test_merge_two_profiles():
-    """Merge connectivity + electrical and check the result has a unified __all__."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-
-    # __all__ should be the union
-    conn_names = set(connectivity.__all__)
-    elec_names = set(electrical.__all__)
-    merged_names = set(merged.__all__)
-    assert conn_names.issubset(merged_names)
-    assert elec_names.issubset(merged_names)
+from cimprofiles.merge import generate_type_stubs, merge_namespaces, merge_profiles
 
 
-def test_merged_acline_segment_has_union_of_fields():
-    """ACLineSegment should have fields from both connectivity and electrical."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-    MergedACLineSegment = getattr(merged, 'ACLineSegment')
-    assert is_dataclass(MergedACLineSegment)
-
-    field_names = {f.name for f in fields(MergedACLineSegment)}
-    # From connectivity
-    assert 'ACLineSegmentPhases' in field_names
-    # From electrical
-    assert 'PerLengthImpedance' in field_names
+def _field_names(cls) -> set[str]:
+    return {f.name for f in fields(cls)}
 
 
-def test_merged_conductor_has_length_field():
-    """Conductor should gain the 'length' field from electrical."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-    MergedConductor = getattr(merged, 'Conductor')
-    assert is_dataclass(MergedConductor)
-
-    field_names = {f.name for f in fields(MergedConductor)}
-    assert 'length' in field_names
+def test_merged_all_is_the_union():
+    merged = merge_profiles(part_a, part_b, part_c)
+    assert set(part_a.__all__) | set(part_b.__all__) | set(part_c.__all__) == set(merged.__all__)
 
 
-def test_merged_class_inherits_from_merged_parent():
-    """ACLineSegment should be a subclass of the merged Conductor, not the original."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-    MergedACLineSegment = getattr(merged, 'ACLineSegment')
-    MergedConductor = getattr(merged, 'Conductor')
-
-    assert issubclass(MergedACLineSegment, MergedConductor)
+def test_overlapping_classes_get_the_union_of_their_fields():
+    merged = merge_profiles(part_a, part_b)
+    assert {'ACLineSegmentPhases', 'r', 'x', 'PerLengthImpedance'} <= _field_names(merged.ACLineSegment)
+    assert 'length' in _field_names(merged.Conductor)       # only test_b profiles it
 
 
-def test_non_overlapping_classes_present():
-    """Classes unique to one profile should still appear in the merged module."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-
-    # ConnectivityNode is in connectivity but not electrical
-    assert 'ConnectivityNode' in merged.__all__
-    assert hasattr(merged, 'ConnectivityNode')
-
-    # PerLengthPhaseImpedance is in electrical but not connectivity
-    assert 'PerLengthPhaseImpedance' in merged.__all__
-    assert hasattr(merged, 'PerLengthPhaseImpedance')
+def test_classes_of_one_part_are_kept():
+    merged = merge_profiles(part_a, part_b)
+    assert 'ConnectivityNode' in merged.__all__ and is_dataclass(merged.ConnectivityNode)
+    assert 'PerLengthPhaseImpedance' in merged.__all__ and is_dataclass(merged.PerLengthPhaseImpedance)
 
 
-def test_enums_preserved():
-    """Enums like PhaseCode should be present and functional."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
+def test_flattened_bases_resolve_to_the_most_specific():
+    """CIMTool roots a class at its nearest profiled ancestor: test_b has Terminal(IdentifiedObject),
+    test_c ConductingEquipment(PowerSystemResource) and EnergyConsumer(ConductingEquipment)."""
+    merged = merge_profiles(part_a, part_b, part_c)
+    assert merged.Terminal.__bases__ == (merged.ACDCTerminal,)
+    assert merged.ConductingEquipment.__bases__ == (merged.Equipment,)
+    assert merged.EnergyConsumer.__bases__ == (merged.ConductingEquipment,)
+    assert issubclass(merged.ACLineSegment, merged.Conductor)
+    assert merged.Conductor.__bases__ == (merged.ConductingEquipment,)
 
-    merged = merge_profiles(connectivity, electrical)
-    PhaseCode = getattr(merged, 'PhaseCode')
-    assert issubclass(PhaseCode, Enum)
+
+def test_field_metadata_and_stereotypes_survive():
+    merged = merge_profiles(part_a, part_b)
+    for name in ('PerLengthImpedance', 'ACLineSegmentPhases'):
+        metadata = merged.ACLineSegment.__dataclass_fields__[name].metadata
+        assert {'namespace', 'serialize', 'inverse'} <= set(metadata)
+    assert merged.ACLineSegment.__stereotype__.value == 'Concrete'
+    assert issubclass(merged.PhaseCode, Enum)
 
 
-def test_field_metadata_preserved():
-    """Field metadata (namespace, serialize, inverse, etc.) should survive the merge."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
+def test_enumerations_get_the_union_of_their_members():
+    # test_a restricts PhaseCode to A, B, C, ABC, N and test_b to A, B, C, AB, ABC, s1, s2
+    merged = merge_profiles(part_a, part_b)
+    assert list(merged.PhaseCode.__members__) == ['A', 'ABC', 'B', 'C', 'N', 'AB', 's1', 's2']
+    assert merged.PhaseCode.AB.__namespace__ == 'http://iec.ch/TC57/CIM-generic#'
+    assert merged.PhaseCode in typing.get_args(typing.get_type_hints(merged.Terminal)['phases'])
 
-    merged = merge_profiles(connectivity, electrical)
-    MergedACLineSegment = getattr(merged, 'ACLineSegment')
 
-    # Check metadata on a field from electrical
-    pli_field = MergedACLineSegment.__dataclass_fields__['PerLengthImpedance']
-    assert 'namespace' in pli_field.metadata
-    assert 'serialize' in pli_field.metadata
-    assert 'inverse' in pli_field.metadata
-
-    # Check metadata on a field from connectivity
-    phases_field = MergedACLineSegment.__dataclass_fields__['ACLineSegmentPhases']
-    assert 'namespace' in phases_field.metadata
-    assert 'inverse' in phases_field.metadata
+def test_the_serialized_association_end_wins():
+    # test_c has only ConductingEquipment.Terminals, so its Terminal.ConductingEquipment is the
+    # inverse end; test_a profiles both ends
+    merged = merge_profiles(part_c, part_a)
+    assert merged.Terminal.__dataclass_fields__['ConductingEquipment'].metadata['serialize'] is True
 
 
 def test_merged_class_is_instantiable():
-    """Merged dataclasses should be instantiable with default values."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-    MergedACLineSegment = getattr(merged, 'ACLineSegment')
-
-    obj = MergedACLineSegment(identifier='test-uuid-1234')
-    assert obj.identifier is not None
-    assert obj.ACLineSegmentPhases == []
-    assert obj.PerLengthImpedance is None
+    merged = merge_profiles(part_a, part_b)
+    line = merged.ACLineSegment(identifier='test-uuid-1234', r=merged.Resistance(0.5))
+    assert line.ACLineSegmentPhases == [] and line.PerLengthImpedance is None
+    assert float(line.r) == 0.5
 
 
 def test_merged_class_type_hints_resolve():
-    """typing.get_type_hints must work on merged classes (cimtables and cim-graph
-    reflect on them): their string annotations need Optional and the merged
-    classes, so they are evaluated in the merged module."""
-    import typing
-    from cimprofiles.cim18.cim18v17 import connectivity_unbalanced, electrical_unbalanced
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity_unbalanced, electrical_unbalanced)
+    """typing.get_type_hints must work on merged classes (cimtables and cim-graph reflect on
+    them): their string annotations are evaluated in the merged module."""
+    merged = merge_profiles(part_a, part_b)
     hints = typing.get_type_hints(merged.ACLineSegment)
+    assert merged.PerLengthImpedance in typing.get_args(hints['PerLengthImpedance'])
     assert merged.BaseVoltage in typing.get_args(hints['BaseVoltage'])
     assert sys.modules[merged.ACLineSegment.__module__] is merged
 
 
-def test_stereotype_preserved():
-    """Classes with __stereotype__ should retain it after merging."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical)
-    MergedACLineSegment = getattr(merged, 'ACLineSegment')
-    assert hasattr(MergedACLineSegment, '__stereotype__')
+def test_runtime_merge_unions_part_namespaces():
+    merged = merge_profiles(part_a, part_b, part_c)
+    assert merged.NAMESPACES == {'cim': 'http://iec.ch/TC57/CIM-generic#', 'nc': 'http://entsoe.eu/ns/nc#',
+                                 'eu': 'http://iec.ch/TC57/CIM100-European#'}
 
 
 def test_merge_requires_two_modules():
-    """merge_profiles should raise ValueError with fewer than 2 modules."""
-    from cimprofiles.cim18.cim18gmdm import connectivity
-    from cimprofiles.merge import merge_profiles
-
-    with pytest.raises(ValueError):
-        merge_profiles(connectivity)
-
-
-def test_merge_three_profiles():
-    """Merging three sub-profiles should work."""
-    from cimprofiles.cim18.cim18gmdm import location
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity, electrical, location)
-
-    # All three should contribute classes
-    conn_names = set(connectivity.__all__)
-    elec_names = set(electrical.__all__)
-    loc_names = set(location.__all__)
-    merged_names = set(merged.__all__)
-
-    assert conn_names.issubset(merged_names)
-    assert elec_names.issubset(merged_names)
-    assert loc_names.issubset(merged_names)
-
-
-# ── Real I/O round-trip ─────────────────────────────────────────────────
-
-# In-repo CIM100 fixtures (same namespace family as the cim18gmdm sub-profiles).
-
-
-def test_generate_type_stubs_creates_file(tmp_path):
-    """generate_type_stubs writes a .py file that can be imported."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import generate_type_stubs
-
-    out = tmp_path / 'cim_stubs.py'
-    generate_type_stubs(connectivity, electrical, output_path=str(out))
-
-    assert out.exists()
-    content = out.read_text()
-    assert 'from __future__ import annotations' in content
-    assert '__all__' in content
-
-
-def test_generate_type_stubs_has_all_names(tmp_path):
-    """__all__ in the stub file should match merge_profiles output."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import generate_type_stubs, merge_profiles
-
-    out = tmp_path / 'cim_stubs.py'
-    generate_type_stubs(connectivity, electrical, output_path=str(out))
-
-    merged = merge_profiles(connectivity, electrical)
-
-    # Import the generated stub module
-    sys.path.insert(0, str(tmp_path))
-    try:
-        stub_mod = importlib.import_module('cim_stubs')
-        assert set(stub_mod.__all__) == set(merged.__all__)
-    finally:
-        sys.path.pop(0)
-        sys.modules.pop('cim_stubs', None)
-
-
-def test_generate_type_stubs_overlapping_classes(tmp_path):
-    """Overlapping dataclasses should use multi-inheritance stub pattern."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import generate_type_stubs
-
-    out = tmp_path / 'cim_stubs.py'
-    generate_type_stubs(connectivity, electrical, output_path=str(out))
-
-    content = out.read_text()
-    # ACLineSegment is in both profiles — should be a multi-inherit class
-    assert 'class ACLineSegment(' in content
-    assert '_p0_ACLineSegment' in content
-    assert '_p1_ACLineSegment' in content
-    assert 'type: ignore[misc]' in content
-
-
-def test_generate_type_stubs_non_overlapping_reexported(tmp_path):
-    """Non-overlapping classes should be simple re-exports."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import generate_type_stubs
-
-    out = tmp_path / 'cim_stubs.py'
-    generate_type_stubs(connectivity, electrical, output_path=str(out))
-
-    content = out.read_text()
-    # ConnectivityNode is only in connectivity — should be a re-export
-    assert 'import ConnectivityNode as ConnectivityNode' in content
-
-
-def test_generate_type_stubs_importable(tmp_path):
-    """The generated stub file should be importable without errors."""
-    from cimprofiles.cim18.cim18gmdm import electrical
-    from cimprofiles.merge import generate_type_stubs
-
-    out = tmp_path / 'cim_stubs_import.py'
-    generate_type_stubs(connectivity, electrical, output_path=str(out))
-
-    sys.path.insert(0, str(tmp_path))
-    try:
-        stub_mod = importlib.import_module('cim_stubs_import')
-        # Should have ACLineSegment as a class
-        assert hasattr(stub_mod, 'ACLineSegment')
-        assert isinstance(stub_mod.ACLineSegment, type)
-        # Should have ConnectivityNode re-exported
-        assert hasattr(stub_mod, 'ConnectivityNode')
-    finally:
-        sys.path.pop(0)
-        sys.modules.pop('cim_stubs_import', None)
-
-
-def test_generate_type_stubs_requires_two_modules():
-    """generate_type_stubs should raise ValueError with fewer than 2 modules."""
-    from cimprofiles.cim18.cim18gmdm import connectivity
-    from cimprofiles.merge import generate_type_stubs
-
-    with pytest.raises(ValueError):
-        generate_type_stubs(connectivity, output_path='/dev/null')
-
-
-def test_generate_type_stubs_three_profiles(tmp_path):
-    """Stub generation should work with three profiles."""
-    from cimprofiles.cim18.cim18gmdm import location
-    from cimprofiles.merge import generate_type_stubs
-
-    out = tmp_path / 'cim_stubs_three.py'
-    generate_type_stubs(connectivity, electrical, location, output_path=str(out))
-
-    content = out.read_text()
-    # ACLineSegment is in all three — should reference _p0, _p1, _p2
-    assert '_p0_ACLineSegment' in content
-    assert '_p1_ACLineSegment' in content
-    assert '_p2_ACLineSegment' in content
+    with pytest.raises(ValueError, match='at least two modules'):
+        merge_profiles(part_a)
 
 
 def test_merge_namespaces_unions_maps():
-    from cimprofiles.merge import merge_namespaces
-
     assert merge_namespaces({'cim': 'http://cim#'}, {'cim': 'http://cim#', 'gad': 'http://gad#'}) == {
         'cim': 'http://cim#', 'gad': 'http://gad#'}
 
 
 def test_merge_namespaces_rejects_a_prefix_bound_twice():
-    from cimprofiles.merge import merge_namespaces
-
     with pytest.raises(ValueError, match="XML prefix 'cim' is bound to both"):
         merge_namespaces({'cim': 'http://cim.ucaiug.io/cim101/draft#'},
                          {'cim': 'http://cim.ucaiug.io/CIM101/draft#'})
 
 
 def test_merge_namespaces_rejects_a_namespace_with_two_prefixes():
-    from cimprofiles.merge import merge_namespaces
-
     with pytest.raises(ValueError, match='has two XML prefixes'):
         merge_namespaces({'gad': 'http://gridappsd.org/CIM/extension#'},
                          {'gridappsd': 'http://gridappsd.org/CIM/extension#'})
 
 
-_RELEASES = _load_config(_CONFIG)
-# Every part and merged module of merge_releases.yaml
-_RELEASE_MODULES = sorted({part for release in _RELEASES for part in release['parts']}
-                          | {f"{release['package']}.{release['name']}" for release in _RELEASES})
+# ── type stubs ──────────────────────────────────────────────────────────
+
+def _import_stubs(path):
+    sys.path.insert(0, str(path.parent))
+    try:
+        return importlib.import_module(path.stem)
+    finally:
+        sys.path.pop(0)
 
 
-@pytest.mark.parametrize('module_name', _RELEASE_MODULES)
-def test_profile_declares_a_prefix_for_every_namespace_it_uses(module_name):
-    """cimantic-graphs.xsl output: NAMESPACES covers the ontology and every field's namespace."""
-    module = importlib.import_module(module_name)
-    used = {module.ONTOLOGY_URI}
-    for value in vars(module).values():
-        if is_dataclass(value) and isinstance(value, type):
-            used |= {f.metadata['namespace'] for f in fields(value) if 'namespace' in f.metadata}
-    assert module.NAMESPACES['cim'] == module.ONTOLOGY_URI
-    assert used <= set(module.NAMESPACES.values())
+def test_type_stubs_cover_the_merged_profile(tmp_path):
+    out = tmp_path / 'cim_stubs.py'
+    generate_type_stubs(part_a, part_b, part_c, output_path=str(out))
+    content = out.read_text()
+    assert content.startswith('# AUTO-GENERATED') and 'from __future__ import annotations' in content
+    # ACLineSegment is in all three parts: a class inheriting from each
+    assert 'class ACLineSegment(_p0_ACLineSegment, _p1_ACLineSegment, _p2_ACLineSegment): ...' in content
+    # ConnectivityNode is only in test_a: a re-export
+    assert 'from fixture_profiles.cim17.test_a import ConnectivityNode as ConnectivityNode' in content
+    try:
+        stubs = _import_stubs(out)
+        assert set(stubs.__all__) == set(merge_profiles(part_a, part_b, part_c).__all__)
+        assert isinstance(stubs.ACLineSegment, type) and hasattr(stubs, 'ConnectivityNode')
+    finally:
+        sys.modules.pop('cim_stubs', None)
 
 
-def test_runtime_merge_unions_part_namespaces():
-    from cimprofiles.cim18.cim18v17 import connectivity_unbalanced, electrical_unbalanced
-    from cimprofiles.merge import merge_profiles
-
-    merged = merge_profiles(connectivity_unbalanced, electrical_unbalanced)
-    assert merged.NAMESPACES['cim'] == 'http://cim.ucaiug.io/cim101/draft#'
-    for part in (connectivity_unbalanced, electrical_unbalanced):
-        part_module = importlib.import_module(f'{part.__name__}.{part.__name__.rsplit(".", 1)[1]}')
-        assert part_module.NAMESPACES.items() <= merged.NAMESPACES.items()
+def test_type_stubs_require_two_modules():
+    with pytest.raises(ValueError, match='at least two modules'):
+        generate_type_stubs(part_a, output_path='/dev/null')

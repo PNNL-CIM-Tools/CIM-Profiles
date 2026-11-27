@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/CIM-generic#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:BasicIntervalSchedule.startTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:ConductingEquipment.Terminals": {
+      "@type": "@id"
+    },
+    "cim:CoordinateSystem.Locations": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.governorMPL": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.startupCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:Location.CoordinateSystem": {
+      "@type": "@id"
+    },
+    "cim:Location.PositionPoints": {
+      "@type": "@id"
+    },
+    "cim:Location.PowerSystemResources": {
+      "@type": "@id"
+    },
+    "cim:Location.mainAddress": {
+      "@type": "@id"
+    },
+    "cim:PositionPoint.Location": {
+      "@type": "@id"
+    },
+    "cim:PositionPoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:PowerSystemResource.Location": {
+      "@type": "@id"
+    },
+    "cim:ShortCircuitTest.loss": {
+      "@type": "xsd:float"
+    },
+    "cim:StreetAddress.streetDetail": {
+      "@type": "@id"
+    },
+    "cim:Terminal.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:WireInfo.gmr": {
+      "@type": "xsd:float"
+    },
+    "cim:WireInfo.radius": {
+      "@type": "xsd:float"
+    }
+  }
+}

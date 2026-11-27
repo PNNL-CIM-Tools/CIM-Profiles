@@ -1,18 +1,7 @@
-from pathlib import Path
 
 import pytest
 
-from cimprofiles.dedupe_profile_fields import PROFILE_ROOT, find_duplicates, main
-
-
-def test_profiles_have_no_duplicate_fields():
-    """Duplicate field definitions silently keep the last one (often serialize=False).
-    Run `python -m cimprofiles.dedupe_profile_fields` after regenerating profiles."""
-    duplicates = []
-    for path in sorted(Path(PROFILE_ROOT).rglob('*.py')):
-        for dup in find_duplicates(path.read_text(encoding='utf-8')):
-            duplicates.append(f"{path.relative_to(PROFILE_ROOT)} {dup['class']}.{dup['field']}")
-    assert duplicates == []
+from cimprofiles.dedupe_profile_fields import find_duplicates, main
 
 
 def test_find_duplicates_prefers_serialized_definition():

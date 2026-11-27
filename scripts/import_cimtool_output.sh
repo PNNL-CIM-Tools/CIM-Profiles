@@ -11,6 +11,10 @@
 #            part of a merged profile (e.g. cim18v17/substation).
 #   module:  the module name, if not the package's last segment
 #            (e.g. diagram_layout in cgmes_3_0_0/diagram).
+#
+# IMPORT_ROOT and IMPORT_PACKAGE import into another package than cimprofiles (default
+# src/cimprofiles and cimprofiles), e.g. the test fixtures:
+#   IMPORT_ROOT=tests/fixture_profiles IMPORT_PACKAGE=fixture_profiles scripts/import_cimtool_output.sh ...
 set -euo pipefail
 
 if [ $# -lt 3 ] || [ $# -gt 5 ]; then
@@ -41,13 +45,15 @@ package=${4:-$envelope}
 module=${5:-$(basename "$package")}
 dotted_package=${package//\//.}
 
-dest="$(cd "$(dirname "$0")/.." && pwd)/src/cimprofiles/$cim_version/$package"
+root=${IMPORT_ROOT:-$(cd "$(dirname "$0")/.." && pwd)/src/cimprofiles}
+import_package=${IMPORT_PACKAGE:-cimprofiles}
+dest="$root/$cim_version/$package"
 mkdir -p "$dest"
 cp "$profile_py" "$dest/$module.py"
 cp "$init_py" "$dest/__init__.py"
 cp "$context_jsonld" "$dest/context.jsonld"
 # The profile's own module first, then identity and units
-sed -i -e "s/cimgraph\.data_profile\.$envelope\.$envelope\b/cimprofiles.$cim_version.$dotted_package.$module/g" \
+sed -i -e "s/cimgraph\.data_profile\.$envelope\.$envelope\b/$import_package.$cim_version.$dotted_package.$module/g" \
        -e 's/cimgraph\.data_profile\./cimprofiles./g' "$dest/$module.py" "$dest/__init__.py"
 
 echo "imported $envelope into $dest/$module.py"

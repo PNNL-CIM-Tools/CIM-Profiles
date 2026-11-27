@@ -55,3 +55,6 @@ include = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# The test profiles of tests/fixtures/README.md: importable as fixture_profiles, not collected
+pythonpath = ["tests"]
+norecursedirs = [".*", "fixtures", "fixture_profiles"]

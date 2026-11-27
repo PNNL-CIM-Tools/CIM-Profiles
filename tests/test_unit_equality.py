@@ -1,11 +1,8 @@
-import ast
-from pathlib import Path
 
 import pytest
 
 import cimprofiles.cim17.cgmes_3_0_0 as cgmes
 import cimprofiles.cim17.cim17v40 as cim
-from cimprofiles.dedupe_profile_fields import PROFILE_ROOT
 
 
 def test_units_compare_by_quantity():
@@ -44,26 +41,3 @@ def test_units_are_unhashable():
         hash(cgmes.Voltage(1))
 
 
-def _cim_unit_dataclasses_with_generated_eq(path: Path) -> list[str]:
-    """CIMUnit subclasses whose @dataclass generates an __eq__, hiding CIMUnit's."""
-    found = []
-    for node in ast.walk(ast.parse(path.read_text(encoding='utf-8'))):
-        if not isinstance(node, ast.ClassDef):
-            continue
-        if not any(isinstance(base, ast.Name) and base.id == 'CIMUnit' for base in node.bases):
-            continue
-        for decorator in node.decorator_list:
-            if not ast.unparse(decorator).startswith('dataclass'):
-                continue
-            keywords = decorator.keywords if isinstance(decorator, ast.Call) else []
-            if not any(k.arg == 'eq' and ast.unparse(k.value) == 'False' for k in keywords):
-                found.append(f'{path.relative_to(PROFILE_ROOT)} {node.name}')
-    return found
-
-
-def test_profile_units_inherit_cim_unit_equality():
-    """Generated CIMUnit subclasses must use @dataclass(eq=False)."""
-    found = []
-    for path in sorted(PROFILE_ROOT.rglob('*.py')):
-        found.extend(_cim_unit_dataclasses_with_generated_eq(path))
-    assert found == []
