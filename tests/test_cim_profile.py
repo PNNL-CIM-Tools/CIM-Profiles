@@ -1,14 +1,13 @@
-
 import pytest
 
-from cimprofiles import profile_module
+from cimprofiles import PROFILE_PACKAGES, profile_module
 
 
-def test_sub_profile_name_resolves():
-    assert (profile_module('cim18gmdm.connectivity')
-            == 'cimprofiles.cim18.cim18gmdm.connectivity')
+def test_sub_profile_name_resolves(monkeypatch):
+    monkeypatch.setitem(PROFILE_PACKAGES, 'fixture', 'fixture_profiles.cim17')
+    assert profile_module('fixture.test_a') == 'fixture_profiles.cim17.test_a'
 
 
 def test_unknown_profile_name_is_rejected():
-    with pytest.raises(ValueError, match='cimhub_2023'):
-        profile_module('cimhub_2099')
+    with pytest.raises(ValueError, match="Unknown CIM profile 'test_z'"):
+        profile_module('test_z')

@@ -36,7 +36,25 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
+    "gad:Boundary.BoundaryModels": {
+      "@type": "@id"
+    },
+    "gad:Boundary.Frames": {
+      "@type": "@id"
+    },
+    "gad:Boundary.FrameworkEditions": {
+      "@type": "@id"
+    },
     "gad:BoundaryModel.DefinedBoundary": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.EdgeModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.EquivalentModels": {
+      "@type": "@id"
+    },
+    "gad:BoundaryModel.FrameModels": {
       "@type": "@id"
     },
     "eu:BoundaryPoint.ConnectivityNode": {
@@ -51,10 +69,19 @@
     "dcat:Catalog": {
       "@type": "@id"
     },
+    "eu:ConnectivityNode.BoundaryPoint": {
+      "@type": "@id"
+    },
     "cim:ConnectivityNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
+    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
+      "@type": "@id"
+    },
     "dcat:Dataset": {
+      "@type": "@id"
+    },
+    "dcat:Distribution": {
       "@type": "@id"
     },
     "gad:EdgeModel.ReplacedFrame": {
@@ -75,6 +102,15 @@
     "gad:EquivalentModel.JoinedBoundaryModels": {
       "@type": "@id"
     },
+    "gad:Frame.EdgeModels": {
+      "@type": "@id"
+    },
+    "gad:Frame.FrameModels": {
+      "@type": "@id"
+    },
+    "gad:Frame.FrameworkEditions": {
+      "@type": "@id"
+    },
     "gad:Frame.Location": {
       "@type": "@id"
     },
@@ -83,6 +119,9 @@
     },
     "gad:Frame.PerimeterBoundaries": {
       "@type": "@id"
+    },
+    "gad:Frame.fidelityTier": {
+      "@type": "xsd:integer"
     },
     "gad:FrameModel.PerimeterBoundaryModels": {
       "@type": "@id"
@@ -102,6 +141,12 @@
     "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
+    "gad:GridModel.GridAssemblies": {
+      "@type": "@id"
+    },
+    "gad:Location.Frames": {
+      "@type": "@id"
+    },
     "md:Model.ModelDataset": {
       "@type": "@id"
     },
@@ -110,6 +155,9 @@
     },
     "md:Model.created": {
       "@type": "xsd:dateTime"
+    },
+    "md:Model.hasAlternativeVersion": {
+      "@type": "@id"
     },
     "md:Model.hasPreferredVersion": {
       "@type": "@id"
@@ -120,13 +168,55 @@
     "md:Model.preferredVersion": {
       "@type": "@id"
     },
-    "eumd:Model.processType": {
-      "@type": "@id"
-    },
     "md:Model.scenarioTime": {
       "@type": "xsd:dateTime"
     },
+    "gad:ModelAuthority.ModeledFrames": {
+      "@type": "@id"
+    },
+    "eumd:ModelDataset.Model": {
+      "@type": "@id"
+    },
+    "dcat:Record": {
+      "@type": "@id"
+    },
+    "gad:Reference.FrameworkEditions": {
+      "@type": "@id"
+    },
+    "gad:Reference.ReferenceModels": {
+      "@type": "@id"
+    },
     "gad:ReferenceModel.RepresentedReference": {
+      "@type": "@id"
+    },
+    "dct:Resource1": {
+      "@type": "@id"
+    },
+    "dct:Resource10": {
+      "@type": "@id"
+    },
+    "dct:Resource11": {
+      "@type": "@id"
+    },
+    "dct:Resource2": {
+      "@type": "@id"
+    },
+    "dct:Resource3": {
+      "@type": "@id"
+    },
+    "dct:Resource4": {
+      "@type": "@id"
+    },
+    "dct:Resource6": {
+      "@type": "@id"
+    },
+    "dcat:Resource7": {
+      "@type": "@id"
+    },
+    "dcat:Resource8": {
+      "@type": "@id"
+    },
+    "dcat:Service": {
       "@type": "@id"
     },
     "dct:accessRights": {
@@ -136,7 +226,7 @@
       "@type": "@id"
     },
     "dcat:byteSize": {
-      "@type": "xsd:decimal"
+      "@type": "xsd:integer"
     },
     "dcat:compressFormat": {
       "@type": "@id"
@@ -154,6 +244,9 @@
       "@type": "@id"
     },
     "dct:isReferencedBy": {
+      "@type": "@id"
+    },
+    "dct:isRequiredBy": {
       "@type": "@id"
     },
     "dct:license": {

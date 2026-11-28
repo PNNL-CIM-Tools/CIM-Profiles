@@ -4,7 +4,8 @@ import re
 import unittest
 from uuid import NAMESPACE_URL, UUID, uuid5
 
-import cimprofiles.cim17.cimhub_2023 as cim
+from fixture_profiles.cim17 import test_a as cim
+
 from cimprofiles.env_vars import get_model_authority, get_model_name
 from cimprofiles.identity import model_authority_namespace, read_identifier
 
@@ -245,8 +246,8 @@ class TestModelAuthorityUUID(unittest.TestCase):
 
     def test_mrid_is_seeded_verbatim(self):
         # CIMHub R10: '#' in an mRID is not an rdf:about fragment (IEEE8500 line codes)
-        self.assertNotEqual(cim.PerLengthSequenceImpedance(mRID='lc_1p_#2acsr_#2n').identifier,
-                            cim.PerLengthSequenceImpedance(mRID='lc_1p_#2arv_#2n').identifier)
+        self.assertNotEqual(cim.ConnectivityNode(mRID='lc_1p_#2acsr_#2n').identifier,
+                            cim.ConnectivityNode(mRID='lc_1p_#2arv_#2n').identifier)
         self.assertNotEqual(cim.ACLineSegment(mRID='_LINE_1').identifier,
                             cim.ACLineSegment(mRID='LINE_1').identifier)
         # the uri route still strips the serialization: rdf:ID="_LINE_1" is mRID LINE_1

@@ -74,6 +74,7 @@ DOCUMENT_NAMESPACES = {
     'dct': 'http://purl.org/dc/terms/',
     'md': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
     'owl': 'http://www.w3.org/2002/07/owl#',
+    'prov': 'http://www.w3.org/ns/prov#',
     'xsd': 'http://www.w3.org/2001/XMLSchema#',
 }
 # The dcat:Dataset header terms of IEC 61970-552 ed3 and the ENTSO-E metadata specification,
@@ -87,9 +88,20 @@ HEADER_TERMS = {
     'dcat:isVersionOf': {'@type': '@id'},               # md:Model.modelingAuthoritySet
     'dcat:startDate': {'@type': 'xsd:dateTimeStamp'},   # md:Model.scenarioTime
     'dcat:endDate': {'@type': 'xsd:dateTimeStamp'},
+    'prov:atLocation': {'@type': '@id'},
+    'prov:generatedAtTime': {'@type': 'xsd:dateTime'},
+    'prov:invalidatedAtTime': {'@type': 'xsd:dateTime'},
 }
-# W3C vocabulary properties are terms by bare name (dct:temporal), not Class.property
-W3C_PREFIXES = {DOCUMENT_NAMESPACES[prefix]: prefix for prefix in ('dcat', 'dct')}
+# Properties of the dataset header vocabularies (W3C and the ENTSO-E 552 metadata) are terms
+# by bare name (dct:temporal, eumd:processType), not Class.property; md: stays Class.property.
+# CIM-Graph writes the same list (BARE_TERM_PREFIXES in cimgraph/core/attribute_utils.py).
+BARE_TERM_PREFIXES = {
+    'http://www.w3.org/ns/dcat#': 'dcat',
+    'http://purl.org/dc/terms/': 'dct',
+    'http://www.w3.org/ns/adms#': 'adms',
+    'http://www.w3.org/ns/prov#': 'prov',
+    'https://cim4.eu/ns/Metadata-European#': 'eumd',
+}
 VOCABULARY_NAMESPACES = {
     'dct': 'http://purl.org/dc/terms/',
     'owl': 'http://www.w3.org/2002/07/owl#',
@@ -173,16 +185,16 @@ def build_context(profile) -> dict:
             continue
         datatype = _datatype(profile, field)
         namespace = field.metadata['namespace']
-        if namespace in W3C_PREFIXES:
-            _add_w3c_term(f'{W3C_PREFIXES[namespace]}:{attribute}', datatype, context)
+        if namespace in BARE_TERM_PREFIXES:
+            _add_bare_term(f'{BARE_TERM_PREFIXES[namespace]}:{attribute}', datatype, context)
         elif datatype is not None:
             context[f'{_prefix(namespaces, namespace)}:{cls.__name__}.{attribute}'] = {'@type': datatype}
     return {'@context': context}
 
 
-def _add_w3c_term(term: str, datatype: str | None, context: dict) -> None:
-    """Add a W3C property's term, or check it against the HEADER_TERMS one. A literal string
-    field takes the HEADER_TERMS typing (dct:issued is an xsd:dateTime)."""
+def _add_bare_term(term: str, datatype: str | None, context: dict) -> None:
+    """Add a bare term (dct:temporal), or check it against the HEADER_TERMS one. A literal
+    string field takes the HEADER_TERMS typing (dct:issued is an xsd:dateTime)."""
     if term in HEADER_TERMS:
         if datatype not in (None, HEADER_TERMS[term]['@type']):
             raise ValueError(f'{term}: the profile types it {datatype}, HEADER_TERMS {HEADER_TERMS[term]["@type"]}')

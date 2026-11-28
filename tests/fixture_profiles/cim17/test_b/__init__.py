@@ -13,13 +13,15 @@ from fixture_profiles.cim17.test_b.test_b import (
     PerLengthSequenceImpedance,
     PhaseCode,
     PhaseShuntConnectionKind,
+    PowerTransformerEnd,
     Terminal,
     ActivePower,
     Length,
     PerCent,
     Reactance,
     Resistance,
-    ResistancePerLength
+    ResistancePerLength,
+    Voltage
 )
 __all__ = [
     'Identity',
@@ -32,11 +34,13 @@ __all__ = [
     'PerLengthSequenceImpedance' ,
     'PhaseCode' ,
     'PhaseShuntConnectionKind' ,
+    'PowerTransformerEnd' ,
     'Terminal' ,
     'ActivePower' ,
     'Length' ,
     'PerCent' ,
     'Reactance' ,
     'Resistance' ,
-    'ResistancePerLength'
+    'ResistancePerLength' ,
+    'Voltage'
 ]

@@ -73,6 +73,7 @@ public class BuildFixtures {
         {"PerLengthImpedance", "ACLineSegments"},
         {"PerLengthPhaseImpedance*"},
         {"PerLengthSequenceImpedance*", "r"},
+        {"PowerTransformerEnd*", "ratedU"},
         {"Terminal*", "phases"},
         {"EnergyConsumer*", "pfixed", "pfixedPct", "phaseConnection",
             "nc:EnergyConsumer.participationFactor", "nc:EnergyConsumer.maxEconomicP"},

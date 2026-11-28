@@ -179,7 +179,7 @@ class Distribution(Identity):
     a simple download link, in which case downloadURL is preferred.
     '''
     
-    byteSize: Optional[str] = field(
+    byteSize: Optional[int] = field(
         default=None,
         metadata={
         'type': 'Attribute',
@@ -567,27 +567,6 @@ class Model(Entity):
     as previous document generated from the same model data.
     '''
 
-    applicationSoftware: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['eumd', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'https://cim4.eu/ns/Metadata-European#',
-        'serialize': True,
-        })
-    '''
-    Identifies the application software which generated this instance file.
-    The application software term is defined in ISO/IEC/IEEE 24765:2017.
-    The application software can be identified either:
-    - as a string which contains information on the software name and version,
-    e.g. &lt;tool_name&gt;-&lt;major_version&gt;.&lt;minor_version&gt;.&lt;patch&gt;,
-    or
-    - as a reference to a software identification tag as defined by ISO/IEC
-    19770-2:2015 and ISO/IEC/IEEE 24765:2017.
-    '''
-    
     created: Optional[str] = field(
         default=None,
         metadata={
@@ -883,21 +862,6 @@ class Model(Entity):
     The resoource of a previous version that has this next version.
     '''
     
-    Model2: list[Model] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['eumd'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Model.processType',
-        'namespace': 'https://cim4.eu/ns/Metadata-European#',
-        'serialize': False,
-        })
-    '''
-    The model for this process type.
-    '''
-    
     Resource11: list[Model] = field(
         default_factory=list,
         metadata={
@@ -1164,21 +1128,6 @@ class Model(Entity):
     resulting from revisions occurring to a resource as part of its life-cycle.
     One of the typical cases here is representing the history of the versions
     of a dataset that have been released over time.
-    '''
-    
-    processType: Optional[Model] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['md', 'eumd'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'Model.Model2',
-        'namespace': 'https://cim4.eu/ns/Metadata-European#',
-        'serialize': True,
-        })
-    '''
-    The exact business nature. Reference to Business Process configurations.
     '''
     
     publisher: list[Model] = field(
@@ -2064,6 +2013,23 @@ class Frame(MetaThing):
     Frame and therefore be located by a same query.
     '''
 
+    fidelityTier: Optional[int] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    Describes the level of modeling fidelity and aggregation used to describe
+    a specific frame representation. Depending on exchange needs, frames
+    with varying fidelity (e.g. positive sequence vs phase unbalanced)
+    can be exchanged
+    '''
+    
     EdgeModels: list[EdgeModel] = field(
         default_factory=list,
         metadata={
@@ -3205,7 +3171,7 @@ class Dataset(Model, Resource):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['Compound', 'dct', 'Attribute'],
+        'stereotypes': ['dct', 'Compound', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'inverse': '',

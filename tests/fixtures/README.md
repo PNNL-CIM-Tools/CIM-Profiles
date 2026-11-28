@@ -33,7 +33,7 @@ All three use the schema's `cim` namespace `http://iec.ch/TC57/CIM-generic#`.
 | Hierarchy | Complete, IdentifiedObject → … → ACLineSegment | Leaves out PowerSystemResource, Equipment, ConductingEquipment and ACDCTerminal: `Conductor`, `Terminal` and `EnergyConsumer` are rooted at `IdentifiedObject` | Leaves out Equipment and EnergyConnection: `ConductingEquipment(PowerSystemResource)`, `EnergyConsumer(ConductingEquipment)` |
 | Associations | Both ends of Terminal–ConductingEquipment, Terminal–ConnectivityNode and ACLineSegment–ACLineSegmentPhase, so CIMTool writes duplicate fields that dedupe removes | ACLineSegment–PerLengthImpedance | Only `ConductingEquipment.Terminals`, so its `Terminal.ConductingEquipment` is the unserialized end |
 | Enumerations | `PhaseCode` restricted to A, B, C, ABC, N | `PhaseCode` restricted to A, B, C, AB, ABC, s1, s2 | |
-| Datatypes | Voltage, Boolean, Integer | ActivePower, PerCent, Resistance, Reactance, Length, ResistancePerLength | KiloActivePower (multiplier `k`), Money (`xsd:decimal`), PU, DateTime, a compound (`StreetAddress`) |
+| Datatypes | Voltage, Boolean, Integer | Voltage (`PowerTransformerEnd.ratedU`, so the units of two profiles can be compared), ActivePower, PerCent, Resistance, Reactance, Length, ResistancePerLength | KiloActivePower (multiplier `k`), Money (`xsd:decimal`), PU, DateTime, a compound (`StreetAddress`) |
 | Extensions | None | `nc:EnergyConsumer.participationFactor`, `nc:EnergyConsumer.maxEconomicP` | `eu:IdentifiedObject.shortName` |
 | Concrete | ACLineSegment, Terminal, … | ACLineSegment, EnergyConsumer, … | Not ACLineSegment or EnergyConsumer, so merging unions the `@stereotype` decorators |
 

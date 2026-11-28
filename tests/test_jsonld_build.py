@@ -4,10 +4,10 @@ import types
 from pathlib import Path
 
 import pytest
+from fixture_profiles.cim17 import test_a, test_b, test_c
 
-import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
-from cimprofiles.jsonld import build, profile_jsonld
+from cimprofiles.jsonld import build, documents, profile_jsonld
 from cimprofiles.jsonld.build import (build_context, build_vocabulary, convention_units,
                                       expand_parts, merge_contexts, part_profile, stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
@@ -17,21 +17,23 @@ FIXTURES = Path(__file__).parent / 'fixture_profiles' / 'cim17'
 
 
 def test_context_datatypes_follow_field_metadata():
-    datatypes = property_datatypes(build_context(cimhub))
-    assert datatypes['ACLineSegment.r'] == 'xsd:float'                 # CIMUnit
-    assert datatypes['Terminal.ConductingEquipment'] == '@id'          # association
-    assert 'ConductingEquipment.Terminals' not in datatypes            # its inverse end
-    assert datatypes['EnergyConsumer.phaseConnection'] == '@id'        # enumeration
-    assert datatypes['ACDCTerminal.connected'] == 'xsd:boolean'
-    assert datatypes['ACDCTerminal.sequenceNumber'] == 'xsd:integer'
-    assert 'IdentifiedObject.name' not in datatypes                    # string is the default
-    assert 'ACLineSegment.length' not in datatypes                     # declared on Conductor
-    assert context_prefixes(build_context(cimhub))['cim'] == 'http://iec.ch/TC57/CIM100#'
+    datatypes_a = property_datatypes(build_context(test_a))
+    datatypes_b = property_datatypes(build_context(test_b))
+    datatypes_c = property_datatypes(build_context(test_c))
+    assert datatypes_b['ACLineSegment.r'] == 'xsd:float'               # CIMUnit
+    assert datatypes_c['ConductingEquipment.Terminals'] == '@id'       # association
+    assert 'Terminal.ConductingEquipment' not in datatypes_c           # its inverse end
+    assert datatypes_b['EnergyConsumer.phaseConnection'] == '@id'      # enumeration
+    assert datatypes_a['ACDCTerminal.connected'] == 'xsd:boolean'
+    assert datatypes_a['ACDCTerminal.sequenceNumber'] == 'xsd:integer'
+    assert 'IdentifiedObject.name' not in datatypes_a                  # string is the default
+    assert 'ACLineSegment.length' not in datatypes_b                   # declared on Conductor
+    assert context_prefixes(build_context(test_a))['cim'] == 'http://iec.ch/TC57/CIM-generic#'
 
 
 def test_context_types_the_dataset_header():
     """Header references are IRIs and dates are dates, as in the Inst4CIM CGMES context."""
-    context = build_context(cimhub)['@context']
+    context = build_context(test_a)['@context']
     assert context['dct:conformsTo'] == {'@type': '@id'}
     assert context['dcat:isVersionOf'] == {'@type': '@id'}
     assert context['dct:issued'] == {'@type': 'xsd:dateTime'}
@@ -47,41 +49,44 @@ def test_merging_contexts_that_disagree_fails():
 
 def test_convention_resolution_order():
     convention = {'quantity_kinds': {'ActivePower': 'kW', 'Length': 'km'},
-                  'properties': {'WireInfo.radius': 'mm'}}
-    units = convention_units(cimhub, convention)
-    assert units['EnergyConsumer.p'][0] == 'kW'          # quantity kind default
-    assert units['WireInfo.radius'][0] == 'mm'           # property override wins
+                  'properties': {'PowerTransformerEnd.ratedU': 'kV'}}
+    units = convention_units(test_b, convention)
+    assert units['EnergyConsumer.pfixed'][0] == 'kW'         # quantity kind default
+    assert units['PowerTransformerEnd.ratedU'][0] == 'kV'    # property override wins
     assert units['Conductor.length'][0] == 'km'
-    assert units['ACLineSegment.r'][0] == 'ohm'          # CIMUnit base unit
-    assert convention_units(cimhub, {})['EnergyConsumer.p'][0] == 'W'
+    assert units['ACLineSegment.r'][0] == 'ohm'              # CIMUnit base unit
+    assert convention_units(test_b, {})['EnergyConsumer.pfixed'][0] == 'W'
 
 
 @pytest.mark.parametrize('convention, message', [
-    ({'properties': {'WireInfo.radius': 'kW'}}, 'not a unit of Length'),
-    ({'properties': {'WireInfo.nope': 'mm'}}, 'WireInfo.nope'),
+    ({'properties': {'PowerTransformerEnd.ratedU': 'kW'}}, 'not a unit of Voltage'),
+    ({'properties': {'PowerTransformerEnd.nope': 'kV'}}, 'PowerTransformerEnd.nope'),
     ({'quantity_kinds': {'Banana': 'kW'}}, 'Banana'),
 ])
 def test_bad_conventions_fail(convention, message):
     with pytest.raises(ValueError, match=message):
-        convention_units(cimhub, convention)
+        convention_units(test_b, convention)
 
 
 def test_vocabulary_round_trips_through_the_reader():
-    iri = 'https://example.org/cimhub/units-test.jsonld'
-    vocabulary = build_vocabulary(cimhub, {'quantity_kinds': {'ActivePower': 'kW'}}, iri, 'test')
+    iri = 'https://example.org/test_b/units-test.jsonld'
+    vocabulary = build_vocabulary(test_b, {'quantity_kinds': {'ActivePower': 'kW'}}, iri, 'test')
     prefixes = context_prefixes(vocabulary)
     assert vocabulary_iri(vocabulary, prefixes) == iri
     units = vocabulary_units(vocabulary, prefixes)
-    assert units['EnergyConsumer.p'] == 'kW'
+    assert units['EnergyConsumer.pfixed'] == 'kW'
     assert units['ACLineSegment.r'] == 'ohm'
-    assert 'PowerTransformerEnd.ratedU' in units
+    assert units['PowerTransformerEnd.ratedU'] == 'V'
     assert 'IdentifiedObject.name' not in units
 
 
-def test_profile_lookup_by_package_name():
-    assert profile_jsonld('cimprofiles.cim17.cimhub_2023') == profile_jsonld('cimhub_2023')
-    with pytest.raises(KeyError, match='cimhub_2099'):
-        profile_jsonld('cimhub_2099')
+def test_profile_lookup_by_package_name(monkeypatch):
+    monkeypatch.setitem(PROFILE_PACKAGES, 'test_a', 'fixture_profiles.cim17.test_a')
+    published = {'context': 'https://example.org/test_a/context.jsonld'}
+    monkeypatch.setattr(documents, '_profiles_manifest', lambda: {'test_a': published})
+    assert profile_jsonld('fixture_profiles.cim17.test_a') == profile_jsonld('test_a') == published
+    with pytest.raises(KeyError, match='test_z'):
+        profile_jsonld('test_z')
 
 
 W3C_PROFILE = """
@@ -90,8 +95,12 @@ from dataclasses import dataclass, field
 from typing import Optional
 from cimprofiles.identity import Identity
 
-NAMESPACES = {'gad': 'http://gridappsd.org/CIM/extension#', 'dcterms': 'http://purl.org/dc/terms/'}
+NAMESPACES = {'gad': 'http://gridappsd.org/CIM/extension#', 'dcterms': 'http://purl.org/dc/terms/',
+              'md': 'http://iec.ch/TC57/61970-552/ModelDescription/1#'}
 DCT = 'http://purl.org/dc/terms/'
+PROV = 'http://www.w3.org/ns/prov#'
+ADMS = 'http://www.w3.org/ns/adms#'
+EUMD = 'https://cim4.eu/ns/Metadata-European#'
 
 @dataclass
 class Agent(Identity):
@@ -101,35 +110,49 @@ class Agent(Identity):
 class Dataset(Identity):
     issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT, 'serialize': True})
     creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT, 'serialize': True})
+    generatedAtTime: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': PROV, 'serialize': True})
+    atLocation: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': PROV, 'serialize': True})
+    status: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': ADMS, 'serialize': True})
+    processType: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': EUMD, 'serialize': True})
     Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad'], 'serialize': True})
+    Supersedes: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['md'], 'serialize': True})
 """
 
 
-def test_w3c_properties_are_terms_by_bare_name(monkeypatch):
+def test_header_vocabulary_properties_are_terms_by_bare_name(monkeypatch):
+    """dct:, dcat:, prov:, adms: and eumd: properties are bare terms; other namespaces, md: too,
+    stay Class.property."""
     profile = types.ModuleType('w3c_profile')
     monkeypatch.setitem(sys.modules, profile.__name__, profile)
     exec(W3C_PROFILE, profile.__dict__)
     context = build_context(profile)['@context']
     assert context['dct:creator'] == {'@type': '@id'}
     assert context['dct:issued'] == {'@type': 'xsd:dateTime'}          # HEADER_TERMS types the literal
-    assert context['gad:Dataset.Agent'] == {'@type': '@id'}            # other namespaces stay Class.property
-    assert not [term for term in context if 'Dataset.issued' in term or 'Dataset.creator' in term]
+    assert context['prov:generatedAtTime'] == {'@type': 'xsd:dateTime'}
+    assert context['prov:atLocation'] == {'@type': '@id'}
+    assert context['adms:status'] == {'@type': '@id'}
+    assert context['eumd:processType'] == {'@type': '@id'}
+    assert context['gad:Dataset.Agent'] == {'@type': '@id'}
+    assert context['md:Dataset.Supersedes'] == {'@type': '@id'}
+    assert not [term for term in context if term.startswith(('dct:Dataset.', 'prov:Dataset.', 'adms:Dataset.',
+                                                               'eumd:Dataset.'))]
 
 
-def test_part_profile_names():
-    assert part_profile('cimprofiles.cim18.cim18v17.connectivity_unbalanced.connectivity_unbalanced') \
-        == 'cim18v17.connectivity_unbalanced'
+def test_part_profile_names(monkeypatch):
+    monkeypatch.setitem(PROFILE_PACKAGES, 'release', 'example.release')
+    assert part_profile('example.release.part_a.part_a') == 'release.part_a'
     with pytest.raises(ValueError, match='not in a known profile package'):
         part_profile('elsewhere.part.part')
 
 
-def test_shared_parts_are_built_once_and_first():
-    releases = [{'name': 'a', 'parts': ['cimprofiles.cim17.cimhub_2023.x.x', 'cimprofiles.cim17.cimhub_2023.y.y']},
-                {'name': 'b', 'parts': ['cimprofiles.cim17.cimhub_2023.y.y']}]
+def test_shared_parts_are_built_once_and_first(monkeypatch):
+    monkeypatch.setitem(PROFILE_PACKAGES, 'release', 'example.release')
+    releases = [{'name': 'a', 'parts': ['example.release.x.x', 'example.release.y.y']},
+                {'name': 'b', 'parts': ['example.release.y.y']}]
     specs = expand_parts([{'profile': 'a', 'parts': True}, {'profile': 'b', 'parts': True},
                           {'profile': 'c'}], releases)
-    assert [spec['profile'] for spec in specs] == ['cimhub_2023.x', 'cimhub_2023.y', 'a', 'b', 'c']
-    assert specs[3]['parts'] == ['cimhub_2023.y']
+    assert [spec['profile'] for spec in specs] == ['release.x', 'release.y', 'a', 'b', 'c']
+    assert specs[3]['parts'] == ['release.y']
     with pytest.raises(ValueError, match='not a release'):
         expand_parts([{'profile': 'c', 'parts': True}], releases)
 
@@ -193,8 +216,6 @@ def test_a_release_context_is_the_union_of_its_parts_contexts(monkeypatch):
 def test_vocabulary_units_of_the_cim_datatypes():
     """KiloActivePower keeps its kW, PerCent is qudt PERCENT, and dimensionless PU and Money
     carry no unit."""
-    from fixture_profiles.cim17 import test_b, test_c
-
     def units(profile, convention):
         vocabulary = build_vocabulary(profile, convention, 'https://example.org/units', 'test')
         return vocabulary_units(vocabulary, context_prefixes(vocabulary))
