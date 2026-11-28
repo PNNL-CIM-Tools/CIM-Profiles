@@ -1,0 +1,85 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:AutomationBlockGroup.AutomationFunction": {
+      "@type": "@id"
+    },
+    "cim:AutomationBlockGroup.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:AutomationFunction.PartOf": {
+      "@type": "@id"
+    },
+    "cim:AutomationFunction.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AutomationFunction.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Breaker.inTransitTime": {
+      "@type": "xsd:float"
+    },
+    "cim:Fuse.MiinimumMeltCurve": {
+      "@type": "@id"
+    },
+    "cim:Fuse.TotalClearingTimeCurve": {
+      "@type": "@id"
+    },
+    "cim:ProtectionFunctionBlock.operatingQuantityType": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.ProtectionEquipment": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.ProtectionSettingsGroup": {
+      "@type": "@id"
+    },
+    "cim:ProtectionRelatedFunctionBlock.operatingQuantityType": {
+      "@type": "@id"
+    },
+    "cim:RecloseSequence.AutoreclosingFunctionBlock": {
+      "@type": "@id"
+    },
+    "cim:RecloseSequence.ProtectedSwitch": {
+      "@type": "@id"
+    },
+    "cim:RecloseSequence.recloseDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:RecloseSequence.recloseStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:UnderFrequencyProtectionFunctionBlock.operateValue": {
+      "@type": "xsd:float"
+    }
+  }
+}

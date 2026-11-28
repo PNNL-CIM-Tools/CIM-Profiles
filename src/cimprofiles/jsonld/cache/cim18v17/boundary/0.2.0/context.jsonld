@@ -31,10 +31,7 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:BaseVoltage.ConnectivityNode": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.VoltageLevel": {
+    "eu:BoundaryPoint.ConnectivityNode": {
       "@type": "@id"
     },
     "eu:BoundaryPoint.isDirectCurrent": {
@@ -43,40 +40,19 @@
     "eu:BoundaryPoint.isExcludedFromAreaInterchange": {
       "@type": "xsd:boolean"
     },
-    "eu:BoundaryPoint.ConnectivityNode": {
-      "@type": "@id"
-    },
-    "cim:ConnectedArea.kind": {
-      "@type": "@id"
-    },
-    "cim:ConnectedArea.ContainedArea": {
-      "@type": "@id"
-    },
     "cim:ConnectedArea.BoundaryTerminal": {
       "@type": "@id"
     },
     "cim:ConnectedArea.ContainedWithin": {
       "@type": "@id"
     },
-    "eu:ConnectivityNode.BoundaryPoint": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNode.Terminals": {
+    "cim:ConnectedArea.kind": {
       "@type": "@id"
     },
     "cim:ConnectivityNode.BaseVoltage": {
       "@type": "@id"
     },
     "cim:ConnectivityNode.ConnectivityNodeContainer": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:Substation.VoltageLevels": {
-      "@type": "@id"
-    },
-    "cim:Terminal.BoundedConnectedArea": {
       "@type": "@id"
     },
     "cim:Terminal.ConnectivityNode": {

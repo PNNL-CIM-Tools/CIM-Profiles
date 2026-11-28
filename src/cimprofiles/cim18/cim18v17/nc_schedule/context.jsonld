@@ -1,0 +1,1280 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "nc:ACDCConverterRegularSchedule.p": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCConverterRegularSchedule.q": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCConverterRegularSchedule.targetPpcc": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCConverterRegularSchedule.targetUdc": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ACDCTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCTimePoint.targetPpcc": {
+      "@type": "xsd:float"
+    },
+    "nc:ACDCTimePoint.targetUdc": {
+      "@type": "xsd:float"
+    },
+    "nc:ActivePowerLimitSchedule.ActivePowerLimit": {
+      "@type": "@id"
+    },
+    "nc:ActivePowerLimitTimePoint.ActivePowerLimitSchedule": {
+      "@type": "@id"
+    },
+    "nc:ActivePowerLimitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ActivePowerLimitTimePoint.value": {
+      "@type": "xsd:float"
+    },
+    "nc:ApparentPowerLimitSchedule.ApparentPowerLimit": {
+      "@type": "@id"
+    },
+    "nc:ApparentPowerLimitTimePoint.ApparentPowerLimitSchedule": {
+      "@type": "@id"
+    },
+    "nc:ApparentPowerLimitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ApparentPowerLimitTimePoint.value": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.appointedMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.coordinatedValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.criticalElementContingency": {
+      "@type": "@id"
+    },
+    "nc:AssessedElement.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElement.exclusionReason": {
+      "@type": "@id"
+    },
+    "nc:AssessedElement.flowReliabilityMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.inBaseCase": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElement.individualValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.individualValidationAdjustmentShare": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.insideCapacityMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.isCombinableWithContingency": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElement.isCombinableWithRemedialAction": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElement.maxFlow": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.maxMarginAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalAppointedMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalCoordinatedValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElement.normalIndividualValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalIndividualValidationAdjustmentShare": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalMaxFlow": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalPositiveVirtualMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.normalScannedThresholdMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.outsideCapacityMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.positiveVirtualMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.scannedThresholdMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.targetCrossZonalCapacityMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElement.targetRemainingAvailableMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementRegularSchedule.AssessedElement": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementRegularTimePoint.AssessedElementRegularSchedule": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementRegularTimePoint.appointedMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementRegularTimePoint.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElementRegularTimePoint.maxFlow": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementRegularTimePoint.scannedThresholdMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementRegularTimePoint.virtualPositiveMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementSchedule.AssessedElement": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementTimePoint.AssessedElementSchedule": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementTimePoint.appointedMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:AssessedElementTimePoint.coordinatedValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElementTimePoint.exclusionReason": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementTimePoint.individualValidationAdjustment": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.individualValidationAdjustmentShare": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.maxFlow": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.scannedThresholdMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementTimePoint.virtualPositiveMargin": {
+      "@type": "xsd:float"
+    },
+    "nc:AssessedElementWithContingency.AssessedElement": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementWithContingency.combinationConstraintKind": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementWithContingency.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElementWithContingency.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElementWithRemedialAction.AssessedElement": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementWithRemedialAction.combinationConstraintKind": {
+      "@type": "@id"
+    },
+    "nc:AssessedElementWithRemedialAction.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AssessedElementWithRemedialAction.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:AsynchronousMachineRegularSchedule.AsynchronousMachine": {
+      "@type": "@id"
+    },
+    "nc:AsynchronousMachineRegularSchedule.asynchronousMachineType": {
+      "@type": "@id"
+    },
+    "nc:AsynchronousMachineSchedule.AsynchronousMachine": {
+      "@type": "@id"
+    },
+    "nc:AsynchronousMachineTimePoint.AsynchronousMachineSchedule": {
+      "@type": "@id"
+    },
+    "nc:AsynchronousMachineTimePoint.asynchronousMachineType": {
+      "@type": "@id"
+    },
+    "nc:AsynchronousMachineTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:AvailabilityTimePoint.GenericAvailabilitySchedule": {
+      "@type": "@id"
+    },
+    "nc:AvailabilityTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:AvailabilityTimePoint.available": {
+      "@type": "xsd:boolean"
+    },
+    "nc:BaseRegularIntervalSchedule.HourPattern": {
+      "@type": "@id"
+    },
+    "nc:BaseRegularIntervalSchedule.Season": {
+      "@type": "@id"
+    },
+    "nc:BaseRegularIntervalSchedule.dayOfWeek": {
+      "@type": "@id"
+    },
+    "nc:BaseRegularIntervalSchedule.intervalEndTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:BaseRegularIntervalSchedule.intervalStartTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:BaseTimeSeries.generatedAtTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:BaseTimeSeries.interpolationKind": {
+      "@type": "@id"
+    },
+    "nc:BaseTimeSeries.percentile": {
+      "@type": "xsd:integer"
+    },
+    "nc:BaseTimeSeries.timeSeriesKind": {
+      "@type": "@id"
+    },
+    "nc:BatteryUnitSchedule.BatteryUnit": {
+      "@type": "@id"
+    },
+    "nc:BatteryUnitTimePoint.BatteryUnitSchedule": {
+      "@type": "@id"
+    },
+    "nc:BatteryUnitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:BatteryUnitTimePoint.batteryState": {
+      "@type": "@id"
+    },
+    "nc:BatteryUnitTimePoint.storedE": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.CapacitySchedule": {
+      "@type": "@id"
+    },
+    "nc:CapacityTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:CapacityTimePoint.maxAllocatedP": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.maxAllocatedQ": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.maxP": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.maxQ": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.minAllocatedP": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.minAllocatedQ": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.minP": {
+      "@type": "xsd:float"
+    },
+    "nc:CapacityTimePoint.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:Contingency.mustStudy": {
+      "@type": "xsd:boolean"
+    },
+    "nc:ContingencySchedule.Contingency": {
+      "@type": "@id"
+    },
+    "nc:ContingencyTimePoint.ContingencySchedule": {
+      "@type": "@id"
+    },
+    "nc:ContingencyTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ContingencyTimePoint.mustStudy": {
+      "@type": "xsd:boolean"
+    },
+    "nc:ContingencyTimePoint.probability": {
+      "@type": "xsd:float"
+    },
+    "nc:ContingencyWithRemedialAction.Contingency": {
+      "@type": "@id"
+    },
+    "nc:ContingencyWithRemedialAction.combinationConstraintKind": {
+      "@type": "@id"
+    },
+    "nc:ContingencyWithRemedialAction.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:ContingencyWithRemedialAction.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:ControlAreaRegularSchedule.ControlArea": {
+      "@type": "@id"
+    },
+    "nc:ControlAreaRegularSchedule.netInterchange": {
+      "@type": "xsd:float"
+    },
+    "nc:ControlAreaRegularSchedule.pTolerance": {
+      "@type": "xsd:float"
+    },
+    "nc:ControlAreaTimePoint.ControlAreaSchedule": {
+      "@type": "@id"
+    },
+    "nc:ControlAreaTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ControlAreaTimePoint.netInterchange": {
+      "@type": "xsd:float"
+    },
+    "nc:ControlAreaTimePoint.pTolerance": {
+      "@type": "xsd:float"
+    },
+    "nc:CostVolumePotentialTimePoint.CostVolumePotentialSchedule": {
+      "@type": "@id"
+    },
+    "nc:CostVolumePotentialTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:CostVolumePotentialTimePoint.currency": {
+      "@type": "@id"
+    },
+    "nc:CostVolumePotentialTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:CostVolumePotentialTimePoint.price": {
+      "@type": "xsd:decimal"
+    },
+    "nc:CsConverterRegularSchedule.CsConverter": {
+      "@type": "@id"
+    },
+    "nc:CsConverterRegularSchedule.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:CsConverterRegularSchedule.pPccControl": {
+      "@type": "@id"
+    },
+    "nc:CsConverterRegularSchedule.targetAlpha": {
+      "@type": "xsd:float"
+    },
+    "nc:CsConverterRegularSchedule.targetGamma": {
+      "@type": "xsd:float"
+    },
+    "nc:CsConverterRegularSchedule.targetIdc": {
+      "@type": "xsd:float"
+    },
+    "nc:CsConverterTimePoint.CsConverterSchedule": {
+      "@type": "@id"
+    },
+    "nc:CsConverterTimePoint.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:CsConverterTimePoint.pPccControl": {
+      "@type": "@id"
+    },
+    "nc:CsConverterTimePoint.targetAlpha": {
+      "@type": "xsd:float"
+    },
+    "nc:CsConverterTimePoint.targetGamma": {
+      "@type": "xsd:float"
+    },
+    "nc:CsConverterTimePoint.targetIdc": {
+      "@type": "xsd:float"
+    },
+    "nc:CurrentLimitSchedule.CurrentLimit": {
+      "@type": "@id"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Unit": {
+      "@type": "@id"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y3value": {
+      "@type": "xsd:float"
+    },
+    "nc:EnablingTimePoint.GenericEnablingSchedule": {
+      "@type": "@id"
+    },
+    "nc:EnablingTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:EnablingTimePoint.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:EnergyBlockOrder.EnergyBlockComponent": {
+      "@type": "@id"
+    },
+    "nc:EnergyBlockOrder.normalParticipationFactor": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyBlockOrder.normalSequence": {
+      "@type": "xsd:integer"
+    },
+    "nc:EnergyBlockOrder.p": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyBlockOrder.participationFactor": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyBlockOrder.powerDuration": {
+      "@type": "xsd:duration"
+    },
+    "nc:EnergyBlockOrder.sequence": {
+      "@type": "xsd:integer"
+    },
+    "nc:EnergyConnectionRegularSchedule.EnergyConnection": {
+      "@type": "@id"
+    },
+    "nc:EnergyConnectionRegularSchedule.p": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyConnectionRegularSchedule.q": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyConnectionSchedule.EnergyConnection": {
+      "@type": "@id"
+    },
+    "nc:EnergyConnectionTimePoint.EnergyConnectionSchedule": {
+      "@type": "@id"
+    },
+    "nc:EnergyConnectionTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:EnergyConnectionTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:EnergyConnectionTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionRegularSchedule.EquivalentInjection": {
+      "@type": "@id"
+    },
+    "nc:EquivalentInjectionRegularSchedule.p": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionRegularSchedule.q": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionRegularSchedule.regulationTarget": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionSchedule.EquivalentInjection": {
+      "@type": "@id"
+    },
+    "nc:EquivalentInjectionTimePoint.EquivalentInjectionSchedule": {
+      "@type": "@id"
+    },
+    "nc:EquivalentInjectionTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:EquivalentInjectionTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "nc:EquivalentInjectionTimePoint.regulationTarget": {
+      "@type": "xsd:float"
+    },
+    "nc:EventSchedule.ActualAvailabilitySchedule": {
+      "@type": "@id"
+    },
+    "nc:EventSchedule.PlannedAvailabilitySchedule": {
+      "@type": "@id"
+    },
+    "nc:EventSchedule.RemedialActionSchedule": {
+      "@type": "@id"
+    },
+    "nc:EventTimePoint.EventSchedule": {
+      "@type": "@id"
+    },
+    "nc:EventTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:EventTimePoint.isActive": {
+      "@type": "xsd:boolean"
+    },
+    "nc:ExternalNetworkInjectionRegularSchedule.ExternalNetworkinjection": {
+      "@type": "@id"
+    },
+    "nc:ExternalNetworkInjectionRegularSchedule.p": {
+      "@type": "xsd:float"
+    },
+    "nc:ExternalNetworkInjectionRegularSchedule.q": {
+      "@type": "xsd:float"
+    },
+    "nc:ExternalNetworkInjectionSchedule.ExternalNetworkInjection": {
+      "@type": "@id"
+    },
+    "nc:ExternalNetworkInjectionTimePoint.ExternalNetworkInjectionSchedule": {
+      "@type": "@id"
+    },
+    "nc:ExternalNetworkInjectionTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ExternalNetworkInjectionTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:ExternalNetworkInjectionTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "nc:GeneratingUnitSchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "nc:GeneratingUnitTimePoint.GeneratingUnitSchedule": {
+      "@type": "@id"
+    },
+    "nc:GeneratingUnitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:GeneratingUnitTimePoint.normalPF": {
+      "@type": "xsd:float"
+    },
+    "nc:GenericAvailableSchedule.RemedialAction": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.AssessedElementWithContingency": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.AssessedElementWithRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.AutomationFunction": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.ContingencyWithRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.CrossBorderRelevance": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.FunctionBlock": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.PowerTransferCorridor": {
+      "@type": "@id"
+    },
+    "nc:GenericEnablingSchedule.RemedialActionDependency": {
+      "@type": "@id"
+    },
+    "nc:GenericSequenceSchedule.EnergyBlockOrder": {
+      "@type": "@id"
+    },
+    "nc:GenericValueSchedule.RangeConstraint": {
+      "@type": "@id"
+    },
+    "nc:GenericValueSchedule.RemedialActionSchedule": {
+      "@type": "@id"
+    },
+    "nc:GenericValueTimePoint.GenericValueSchedule": {
+      "@type": "@id"
+    },
+    "nc:GenericValueTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:GenericValueTimePoint.value": {
+      "@type": "xsd:float"
+    },
+    "nc:GridStateAlteration.GridStateAlterationCollection": {
+      "@type": "@id"
+    },
+    "nc:GridStateAlteration.GridStateAlterationRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:GridStateAlteration.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:GridStateAlteration.maximumPerDay": {
+      "@type": "xsd:integer"
+    },
+    "nc:GridStateAlteration.minimumActivation": {
+      "@type": "xsd:duration"
+    },
+    "nc:GridStateAlteration.normalEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:GridStateAlteration.participationFactor": {
+      "@type": "xsd:float"
+    },
+    "nc:GridStateAlteration.timePerStage": {
+      "@type": "xsd:duration"
+    },
+    "nc:GridStateAlterationSchedule.GridStateAlteration": {
+      "@type": "@id"
+    },
+    "nc:GridStateAlterationTimePoint.GridStateAlterationSchedule": {
+      "@type": "@id"
+    },
+    "nc:GridStateAlterationTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:GridStateAlterationTimePoint.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "nc:GridStateAlterationTimePoint.participationFactor": {
+      "@type": "xsd:float"
+    },
+    "nc:HourPattern.energyDemandKind": {
+      "@type": "@id"
+    },
+    "nc:HourPattern.peakKind": {
+      "@type": "@id"
+    },
+    "nc:HourPeriod.HourPattern": {
+      "@type": "@id"
+    },
+    "nc:HourPeriod.endTime": {
+      "@type": "xsd:time"
+    },
+    "nc:HourPeriod.startTime": {
+      "@type": "xsd:time"
+    },
+    "nc:InServiceRegularSchedule.Equipment": {
+      "@type": "@id"
+    },
+    "nc:InServiceSchedule.Equipment": {
+      "@type": "@id"
+    },
+    "nc:InServiceTimePoint.InServiceSchedule": {
+      "@type": "@id"
+    },
+    "nc:InServiceTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:InfeedLimit.normalValueA": {
+      "@type": "xsd:float"
+    },
+    "cim:InfeedLimit.normalValueW": {
+      "@type": "xsd:float"
+    },
+    "cim:InfeedLimit.valueA": {
+      "@type": "xsd:float"
+    },
+    "cim:InfeedLimit.valueW": {
+      "@type": "xsd:float"
+    },
+    "nc:InfeedLimitSchedule.InfeedLimit": {
+      "@type": "@id"
+    },
+    "nc:InfeedLimitTimePoint.InfeedLimitSchedule": {
+      "@type": "@id"
+    },
+    "nc:InfeedLimitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:InfeedLimitTimePoint.valueA": {
+      "@type": "xsd:float"
+    },
+    "nc:InfeedLimitTimePoint.valueW": {
+      "@type": "xsd:float"
+    },
+    "cim:IrregularTimePoint.IntervalSchedule": {
+      "@type": "@id"
+    },
+    "cim:IrregularTimePoint.time": {
+      "@type": "xsd:float"
+    },
+    "cim:IrregularTimePoint.value1": {
+      "@type": "xsd:float"
+    },
+    "cim:IrregularTimePoint.value2": {
+      "@type": "xsd:float"
+    },
+    "cim:IrregularTimePoint.value3": {
+      "@type": "xsd:float"
+    },
+    "nc:MustRunSchedule.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "nc:MustRunSchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "nc:MustRunTimePoint.MustRunSchedule": {
+      "@type": "@id"
+    },
+    "nc:MustRunTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:MustRunTimePoint.mustRun": {
+      "@type": "xsd:boolean"
+    },
+    "nc:MustRunTimePoint.mustRunP": {
+      "@type": "xsd:float"
+    },
+    "nc:MustRunTimePoint.mustRunQ": {
+      "@type": "xsd:float"
+    },
+    "nc:ParticipationFactorTimePoint.PowerShiftKeySchedule": {
+      "@type": "@id"
+    },
+    "nc:ParticipationFactorTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ParticipationFactorTimePoint.participationFactor": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidDependency.DependentPowerBidSchedule": {
+      "@type": "@id"
+    },
+    "nc:PowerBidDependency.MainPowerBidSchedule": {
+      "@type": "@id"
+    },
+    "nc:PowerBidDependency.delay": {
+      "@type": "xsd:duration"
+    },
+    "nc:PowerBidDependency.kind": {
+      "@type": "@id"
+    },
+    "nc:PowerBidSchedule.activationCost": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerBidSchedule.currency": {
+      "@type": "@id"
+    },
+    "nc:PowerBidSchedule.direction": {
+      "@type": "@id"
+    },
+    "nc:PowerBidSchedule.energyBlock": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidSchedule.isFixed": {
+      "@type": "xsd:boolean"
+    },
+    "nc:PowerBidSchedule.isOffer": {
+      "@type": "xsd:boolean"
+    },
+    "nc:PowerBidSchedule.leadTime": {
+      "@type": "xsd:duration"
+    },
+    "nc:PowerBidSchedule.maxRampDownP": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidSchedule.maxRampUpP": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidSchedule.maximumUptime": {
+      "@type": "xsd:duration"
+    },
+    "nc:PowerBidSchedule.minimumOffTime": {
+      "@type": "xsd:duration"
+    },
+    "nc:PowerBidSchedule.minimumUptime": {
+      "@type": "xsd:duration"
+    },
+    "nc:PowerBidSchedule.priority": {
+      "@type": "xsd:integer"
+    },
+    "nc:PowerBidSchedule.shutdownCost": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerBidSchedule.totalMaximumEnergy": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidSchedule.totalMinimumEnergy": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidScheduleTimePoint.PowerBidSchedule": {
+      "@type": "@id"
+    },
+    "nc:PowerBidScheduleTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:PowerBidScheduleTimePoint.minimumActivationP": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidScheduleTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerBidScheduleTimePoint.price": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerBidScheduleTimePoint.reservePrice": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerBidScheduleTimePoint.stepIncrementP": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerRemedialAction.maxRegulatingDown": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerRemedialAction.maxRegulatingUp": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerRemedialActionSchedule.PowerRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:PowerRemedialActionTimePoint.PowerRemedialActionSchedule": {
+      "@type": "@id"
+    },
+    "nc:PowerRemedialActionTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:PowerRemedialActionTimePoint.maxRegulatingDown": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerRemedialActionTimePoint.maxRegulatingUp": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerSchedule.AreaDispatchableUnit": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.BiddingZone": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.BiddingZoneBorder": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.DCPole": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.EnergyConnection": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.EnergyGroup": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.EquivalentInjection": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.HydroPump": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.PowerElectronicsUnit": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.PowerRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.PowerScheduleAction": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.ScheduleResource": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.SchedulingArea": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.direction": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.powerScheduleKind": {
+      "@type": "@id"
+    },
+    "nc:PowerShiftKeySchedule.EnergyConsumer": {
+      "@type": "@id"
+    },
+    "nc:PowerShiftKeySchedule.EnergySource": {
+      "@type": "@id"
+    },
+    "nc:PowerShiftKeySchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "nc:PowerTimePoint.PowerSchedule": {
+      "@type": "@id"
+    },
+    "nc:PowerTimePoint.activatedP": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerTimePoint.activatedPrice": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerTimePoint.activatedQ": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:PowerTimePoint.meritOrder": {
+      "@type": "xsd:integer"
+    },
+    "nc:PowerTimePoint.p": {
+      "@type": "xsd:float"
+    },
+    "nc:PowerTimePoint.price": {
+      "@type": "xsd:decimal"
+    },
+    "nc:PowerTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularIntervalSchedule.endTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:RegularIntervalSchedule.timeStep": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.IntervalSchedule": {
+      "@type": "@id"
+    },
+    "cim:RegularTimePoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:RegularTimePoint.value1": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.value2": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.value3": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlRegularSchedule.RegulatingControl": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlRegularSchedule.maxAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlRegularSchedule.minAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlRegularSchedule.targetDeadband": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlRegularSchedule.targetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlRegularSchedule.targetValueUnitMultiplier": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlSchedule.RegulatingControl": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlTimePoint.RegulatingControlSchedule": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlTimePoint.TapChangerControlSchedule": {
+      "@type": "@id"
+    },
+    "nc:RegulatingControlTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:RegulatingControlTimePoint.maxAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlTimePoint.minAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlTimePoint.targetValue": {
+      "@type": "xsd:float"
+    },
+    "nc:RegulatingControlTimePoint.targetValueUnitMultiplier": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionGroup.maxRegulatingDown": {
+      "@type": "xsd:float"
+    },
+    "nc:RemedialActionGroup.maxRegulatingUp": {
+      "@type": "xsd:float"
+    },
+    "nc:RemedialActionGroupSchedule.RemedialActionGroup": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionGroupTimePoint.RemedialActionGroupSchedule": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionGroupTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:RemedialActionGroupTimePoint.maxRegulatingDown": {
+      "@type": "xsd:float"
+    },
+    "nc:RemedialActionGroupTimePoint.maxRegulatingUp": {
+      "@type": "xsd:float"
+    },
+    "cim:RemedialActionScheme.armed": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RemedialActionScheme.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RemedialActionScheme.kind": {
+      "@type": "@id"
+    },
+    "cim:RemedialActionScheme.normalArmed": {
+      "@type": "xsd:boolean"
+    },
+    "nc:RemedialActionSchemeSchedule.ArmedRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionSchemeSchedule.SchemeRemedialAction": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionSchemeTimePoint.RemedialActionSchemeSchedule": {
+      "@type": "@id"
+    },
+    "nc:RemedialActionSchemeTimePoint.armed": {
+      "@type": "xsd:boolean"
+    },
+    "nc:RemedialActionSchemeTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:RemedialActionSchemeTimePoint.inService": {
+      "@type": "xsd:boolean"
+    },
+    "nc:SequenceTimePoint.GenericSequenceSchedule": {
+      "@type": "@id"
+    },
+    "nc:SequenceTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:SequenceTimePoint.sequence": {
+      "@type": "xsd:integer"
+    },
+    "nc:ShuntCompensatorSchedule.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "nc:ShuntCompensatorTimePoint.ShuntCompensatorSchedule": {
+      "@type": "@id"
+    },
+    "nc:ShuntCompensatorTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:ShuntCompensatorTimePoint.sections": {
+      "@type": "xsd:float"
+    },
+    "nc:StageTriggerTimePoint.StageTriggerSchedule": {
+      "@type": "@id"
+    },
+    "nc:StageTriggerTimePoint.armed": {
+      "@type": "xsd:boolean"
+    },
+    "nc:StageTriggerTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:StageTriggerTimePoint.inService": {
+      "@type": "xsd:boolean"
+    },
+    "nc:StaticVarCompensatorSchedule.StaticVarCompensator": {
+      "@type": "@id"
+    },
+    "nc:StaticVarCompensatorTimePoint.StaticVarCompensatorSchedule": {
+      "@type": "@id"
+    },
+    "nc:StaticVarCompensatorTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:StaticVarCompensatorTimePoint.q": {
+      "@type": "xsd:float"
+    },
+    "nc:SwitchRegularSchedule.Switch": {
+      "@type": "@id"
+    },
+    "nc:SwitchSchedule.Switch": {
+      "@type": "@id"
+    },
+    "nc:SwitchTimePoint.SwitchSchedule": {
+      "@type": "@id"
+    },
+    "nc:SwitchTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:SynchronousMachineRegularSchedule.SynchronousMachine": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineRegularSchedule.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineSchedule.SynchronousMachine": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineTimePoint.SynchronousMachineSchedule": {
+      "@type": "@id"
+    },
+    "nc:SynchronousMachineTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:SynchronousMachineTimePoint.operatingMode": {
+      "@type": "@id"
+    },
+    "nc:TapChangerControlSchedule.TapChangerControl": {
+      "@type": "@id"
+    },
+    "nc:TapRegularSchedule.TapChanger": {
+      "@type": "@id"
+    },
+    "nc:TapRegularSchedule.step": {
+      "@type": "xsd:float"
+    },
+    "nc:TapScheduleTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:TapScheduleTimePoint.step": {
+      "@type": "xsd:float"
+    },
+    "nc:UnitCostSchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "nc:UnitCostTimePoint.UnitCostSchedule": {
+      "@type": "@id"
+    },
+    "nc:UnitCostTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:UnitCostTimePoint.startupCost": {
+      "@type": "xsd:decimal"
+    },
+    "nc:UnitCostTimePoint.warmStartupCost": {
+      "@type": "xsd:decimal"
+    },
+    "nc:VoltageAngleTimePoint.VoltageAngleSchedule": {
+      "@type": "@id"
+    },
+    "nc:VoltageAngleTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:VoltageAngleTimePoint.value": {
+      "@type": "xsd:float"
+    },
+    "nc:VoltageLimitSchedule.VoltageLimit": {
+      "@type": "@id"
+    },
+    "nc:VoltageLimitTimePoint.VoltageLimitSchedule": {
+      "@type": "@id"
+    },
+    "nc:VoltageLimitTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:VoltageLimitTimePoint.value": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterSchedule.VsConverter": {
+      "@type": "@id"
+    },
+    "nc:VsConverterTimePoint.VsConverterSchedule": {
+      "@type": "@id"
+    },
+    "nc:VsConverterTimePoint.droop": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.droopCompensation": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.pPccControl": {
+      "@type": "@id"
+    },
+    "nc:VsConverterTimePoint.qPccControl": {
+      "@type": "@id"
+    },
+    "nc:VsConverterTimePoint.qShare": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.targetPWMfactor": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.targetPhasePcc": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.targetPowerFactorPcc": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.targetQpcc": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterTimePoint.targetUpcc": {
+      "@type": "xsd:float"
+    }
+  }
+}

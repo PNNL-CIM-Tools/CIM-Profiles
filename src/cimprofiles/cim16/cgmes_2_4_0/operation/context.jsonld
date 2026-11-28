@@ -1,0 +1,262 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/2013/CIM-schema-cim16#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:AccumulatorLimitSet.Measurements": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorValue.Accumulator": {
+      "@type": "@id"
+    },
+    "cim:ActivePowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:Analog.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AnalogLimitSet.Measurements": {
+      "@type": "@id"
+    },
+    "cim:AnalogValue.Analog": {
+      "@type": "@id"
+    },
+    "cim:ApparentPowerLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:BasicIntervalSchedule.startTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:BasicIntervalSchedule.value1Unit": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value2Unit": {
+      "@type": "@id"
+    },
+    "cim:ConformLoadSchedule.ConformLoadGroup": {
+      "@type": "@id"
+    },
+    "cim:ControlArea.EnergyArea": {
+      "@type": "@id"
+    },
+    "cim:ControlArea.type": {
+      "@type": "@id"
+    },
+    "cim:ControlAreaGeneratingUnit.ControlArea": {
+      "@type": "@id"
+    },
+    "cim:ControlAreaGeneratingUnit.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:CurrentLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:DiscreteValue.Discrete": {
+      "@type": "@id"
+    },
+    "cim:GrossToNetActivePowerCurve.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:LoadGroup.SubLoadArea": {
+      "@type": "@id"
+    },
+    "cim:Measurement.PowerSystemResource": {
+      "@type": "@id"
+    },
+    "cim:Measurement.Terminal": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.MeasurementValueSource": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValueQuality.MeasurementValue": {
+      "@type": "@id"
+    },
+    "cim:NonConformLoadSchedule.NonConformLoadGroup": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitSet": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimit.OperationalLimitType": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Equipment": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitSet.Terminal": {
+      "@type": "@id"
+    },
+    "cim:OperationalLimitType.acceptableDuration": {
+      "@type": "xsd:float"
+    },
+    "cim:OperationalLimitType.direction": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.badReference": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.estimatorReplaced": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.failure": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oldData": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.operatorBlocked": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oscillatory": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.outOfRange": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.overFlow": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.source": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.suspect": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.test": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.validity": {
+      "@type": "@id"
+    },
+    "cim:RegularIntervalSchedule.endTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:RegularIntervalSchedule.timeStep": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.IntervalSchedule": {
+      "@type": "@id"
+    },
+    "cim:RegularTimePoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:RegularTimePoint.value1": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.value2": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulatingControl.RegulatingCondEq": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.Terminal": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.discrete": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.mode": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.targetValue": {
+      "@type": "xsd:float"
+    },
+    "cim:RegulationSchedule.RegulatingControl": {
+      "@type": "@id"
+    },
+    "cim:Season.endDate": {
+      "@type": "xsd:gMonthDay"
+    },
+    "cim:Season.startDate": {
+      "@type": "xsd:gMonthDay"
+    },
+    "cim:SeasonDayTypeSchedule.DayType": {
+      "@type": "@id"
+    },
+    "cim:SeasonDayTypeSchedule.Season": {
+      "@type": "@id"
+    },
+    "cim:StringMeasurementValue.StringMeasurement": {
+      "@type": "@id"
+    },
+    "cim:SubLoadArea.LoadArea": {
+      "@type": "@id"
+    },
+    "cim:SwitchSchedule.Switch": {
+      "@type": "@id"
+    },
+    "cim:TapSchedule.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:TieFlow.ControlArea": {
+      "@type": "@id"
+    },
+    "cim:TieFlow.Terminal": {
+      "@type": "@id"
+    },
+    "cim:TieFlow.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:VoltageLimit.value": {
+      "@type": "xsd:float"
+    }
+  }
+}

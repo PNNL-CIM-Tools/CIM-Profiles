@@ -15,7 +15,13 @@ def test_adds_a_flag_for_each_python_builder():
     updated = enable_python_builders.enable_python_builders(OWL)
     assert updated.count('Buildlet#__init__.py"') == 1
     assert updated.count('Buildlet#cimantic-graphs.py"') == 1
+    assert updated.count('Buildlet#context.jsonld"') == 1
     assert updated.endswith('</rdf:Description>\n</rdf:RDF>\n')
+
+
+def test_keeps_crlf_line_endings():
+    updated = enable_python_builders.enable_python_builders(OWL.replace('\n', '\r\n'))
+    assert '\n' not in updated.replace('\r\n', '')
 
 
 def test_is_idempotent():

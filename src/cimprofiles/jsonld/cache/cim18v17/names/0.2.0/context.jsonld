@@ -30,28 +30,13 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:IdentifiedObject.ObjectIdentificationRevision": {
-      "@type": "@id"
-    },
-    "cim:IdentifiedObject.ObjectIdentificationRevisionSet": {
-      "@type": "@id"
-    },
     "cim:IdentifiedObject.ObjectType": {
       "@type": "@id"
     },
     "cim:Name.NameType": {
       "@type": "@id"
     },
-    "cim:NameType.Name": {
-      "@type": "@id"
-    },
     "cim:NameType.NamingAuthority": {
-      "@type": "@id"
-    },
-    "cim:NamingAuthority.NameType": {
-      "@type": "@id"
-    },
-    "cim:ObjectIdentificationRevision.revisionKind": {
       "@type": "@id"
     },
     "cim:ObjectIdentificationRevision.IdentifiedObjectRevision": {
@@ -60,14 +45,14 @@
     "cim:ObjectIdentificationRevision.ObjectIdentificationRevisionSet": {
       "@type": "@id"
     },
-    "cim:ObjectIdentificationRevisionSet.ObjectIdentificationRevision": {
+    "cim:ObjectIdentificationRevision.revisionKind": {
       "@type": "@id"
     },
     "cim:ObjectIdentificationRevisionSet.Object": {
       "@type": "@id"
     },
-    "cim:ObjectType.IdentifiedObject": {
-      "@type": "@id"
+    "cim:ObjectIdentificationRevisionSet.effectiveDateTime": {
+      "@type": "xsd:dateTime"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/names/0.2.0/context.jsonld",

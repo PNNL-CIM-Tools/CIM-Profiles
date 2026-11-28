@@ -1,0 +1,115 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:SvDCPowerFlow.DCTerminal": {
+      "@type": "@id"
+    },
+    "cim:SvDCPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvDCVoltage.DCTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvDCVoltage.v": {
+      "@type": "xsd:float"
+    },
+    "cim:SvInjection.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvInjection.phase": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.qInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.Terminal": {
+      "@type": "@id"
+    },
+    "cim:SvPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.phase": {
+      "@type": "@id"
+    },
+    "cim:SvPowerFlow.q": {
+      "@type": "xsd:float"
+    },
+    "cim:SvShuntCompensatorSections.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.phase": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:SvStatus.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:SvStatus.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvStatus.phase": {
+      "@type": "@id"
+    },
+    "cim:SvSwitch.Switch": {
+      "@type": "@id"
+    },
+    "cim:SvSwitch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvSwitch.phase": {
+      "@type": "@id"
+    },
+    "cim:SvTapStep.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:SvTapStep.position": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvVoltage.angle": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.phase": {
+      "@type": "@id"
+    },
+    "cim:SvVoltage.v": {
+      "@type": "xsd:float"
+    }
+  }
+}

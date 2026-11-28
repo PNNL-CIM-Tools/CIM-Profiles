@@ -31,13 +31,10 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:Agent.AgentRole": {
+    "cim:AgentRole.Agent": {
       "@type": "@id"
     },
     "cim:AgentRole.kind": {
-      "@type": "@id"
-    },
-    "cim:AgentRole.Agent": {
       "@type": "@id"
     },
     "cim:AngleBusbarInfo.crossSectionWidth": {
@@ -46,13 +43,7 @@
     "cim:AngleBusbarInfo.thickness": {
       "@type": "xsd:float"
     },
-    "cim:Asset.ProcedureDataSet": {
-      "@type": "@id"
-    },
     "cim:Asset.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:AssetInfo.Asset": {
       "@type": "@id"
     },
     "cim:AssetInfo.CatalogAssetType": {
@@ -88,11 +79,11 @@
     "cim:BareWireInfo.wireConstructionKind": {
       "@type": "@id"
     },
-    "gad:BatteryInfo.numberOfCells": {
-      "@type": "xsd:integer"
-    },
     "gad:BatteryInfo.batteryType": {
       "@type": "@id"
+    },
+    "gad:BatteryInfo.numberOfCells": {
+      "@type": "xsd:integer"
     },
     "gad:BatteryInfo.ratedCapacity": {
       "@type": "xsd:float"
@@ -100,7 +91,7 @@
     "gad:BatteryInfo.usableCapacity": {
       "@type": "xsd:float"
     },
-    "gad:BatteryInfo.ElectricVehicleInfo": {
+    "gad:BundleConfiguration.WireInfo": {
       "@type": "@id"
     },
     "gad:BundleConfiguration.conductorCount": {
@@ -114,9 +105,6 @@
     },
     "gad:BundleConfiguration.radius": {
       "@type": "xsd:float"
-    },
-    "gad:BundleConfiguration.WireInfo": {
-      "@type": "@id"
     },
     "cim:BundledCableInfo.additionalConductorCount": {
       "@type": "xsd:integer"
@@ -154,6 +142,12 @@
     "cim:BushingInfo.ratedLineToGroundVoltage": {
       "@type": "xsd:float"
     },
+    "gad:CableArmorInfo.TapeWidth": {
+      "@type": "xsd:float"
+    },
+    "gad:CableArmorInfo.Thickness": {
+      "@type": "xsd:float"
+    },
     "gad:CableArmorInfo.diameterOverArmor": {
       "@type": "xsd:float"
     },
@@ -169,17 +163,8 @@
     "gad:CableArmorInfo.tapeThickness": {
       "@type": "xsd:float"
     },
-    "gad:CableArmorInfo.TapeWidth": {
-      "@type": "xsd:float"
-    },
-    "gad:CableArmorInfo.Thickness": {
-      "@type": "xsd:float"
-    },
-    "cim:CableInfo.isStrandFill": {
-      "@type": "xsd:boolean"
-    },
-    "cim:CableInfo.sheathAsNeutral": {
-      "@type": "xsd:boolean"
+    "cim:CableInfo.InsulationInfo": {
+      "@type": "@id"
     },
     "cim:CableInfo.constructionKind": {
       "@type": "@id"
@@ -196,28 +181,22 @@
     "cim:CableInfo.diameterOverScreen": {
       "@type": "xsd:float"
     },
+    "cim:CableInfo.isStrandFill": {
+      "@type": "xsd:boolean"
+    },
     "cim:CableInfo.nominalTemperature": {
       "@type": "xsd:float"
     },
     "cim:CableInfo.outerJacketKind": {
       "@type": "@id"
     },
+    "cim:CableInfo.sheathAsNeutral": {
+      "@type": "xsd:boolean"
+    },
     "cim:CableInfo.shieldMaterial": {
       "@type": "@id"
     },
-    "cim:CableInfo.InsulationInfo": {
-      "@type": "@id"
-    },
     "cim:CapacitorCanInfo.dielectricFluidVolume": {
-      "@type": "xsd:float"
-    },
-    "cim:CapacitorCanInfo.ratedCapacitance": {
-      "@type": "xsd:float"
-    },
-    "cim:CapacitorCanInfo.ratedReactiveRating": {
-      "@type": "xsd:float"
-    },
-    "cim:CapacitorCanInfo.weight": {
       "@type": "xsd:float"
     },
     "cim:CapacitorCanInfo.dischargeResistorType": {
@@ -226,10 +205,22 @@
     "cim:CapacitorCanInfo.fusingType": {
       "@type": "@id"
     },
+    "cim:CapacitorCanInfo.rated10PctVoltTime": {
+      "@type": "@id"
+    },
+    "cim:CapacitorCanInfo.ratedCapacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorCanInfo.ratedReactiveRating": {
+      "@type": "xsd:float"
+    },
     "cim:CapacitorCanInfo.terminalConnectionType": {
       "@type": "@id"
     },
-    "cim:CapacitorCanInfo.rated10PctVoltTime": {
+    "cim:CapacitorCanInfo.weight": {
+      "@type": "xsd:float"
+    },
+    "cim:CapacitorInfo.capacitorRackType": {
       "@type": "@id"
     },
     "cim:CapacitorInfo.maxAmbientTempRating": {
@@ -244,29 +235,11 @@
     "cim:CapacitorInfo.parallelUnitsPerPhase": {
       "@type": "xsd:integer"
     },
-    "cim:CapacitorInfo.seriesGroupsPerPhase": {
-      "@type": "xsd:integer"
-    },
-    "cim:CapacitorInfo.capacitorRackType": {
-      "@type": "@id"
-    },
     "cim:CapacitorInfo.ratedImpulseWithstandVoltage": {
       "@type": "xsd:float"
     },
-    "cim:CatalogAssetType.stockItem": {
-      "@type": "xsd:boolean"
-    },
-    "cim:CatalogAssetType.estimatedUnitCost": {
-      "@type": "xsd:float"
-    },
-    "cim:CatalogAssetType.kind": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.ProductAssetModel": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.quantity": {
-      "@type": "@id"
+    "cim:CapacitorInfo.seriesGroupsPerPhase": {
+      "@type": "xsd:integer"
     },
     "cim:CatalogAssetType.AssetInfo": {
       "@type": "@id"
@@ -274,23 +247,29 @@
     "cim:CatalogAssetType.TypeAssetCatalogue": {
       "@type": "@id"
     },
-    "cim:CathodicSystem.OverheadStructure": {
+    "cim:CatalogAssetType.estimatedUnitCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:CatalogAssetType.kind": {
       "@type": "@id"
     },
-    "gad:ChargingConnectorInfo.hasLockingMechanism": {
+    "cim:CatalogAssetType.quantity": {
+      "@type": "@id"
+    },
+    "cim:CatalogAssetType.stockItem": {
       "@type": "xsd:boolean"
     },
     "gad:ChargingConnectorInfo.connectorType": {
       "@type": "@id"
     },
-    "gad:ChargingConnectorInfo.ChargingStation": {
-      "@type": "@id"
-    },
-    "gad:ChargingStation.weatherProtection": {
+    "gad:ChargingConnectorInfo.hasLockingMechanism": {
       "@type": "xsd:boolean"
     },
     "gad:ChargingStation.ChargingConnector": {
       "@type": "@id"
+    },
+    "gad:ChargingStation.weatherProtection": {
+      "@type": "xsd:boolean"
     },
     "cim:ComModuleInfo.direction": {
       "@type": "@id"
@@ -307,15 +286,6 @@
     "cim:CompositeSwitchInfo.ganged": {
       "@type": "xsd:boolean"
     },
-    "cim:CompositeSwitchInfo.phaseCount": {
-      "@type": "xsd:integer"
-    },
-    "cim:CompositeSwitchInfo.remote": {
-      "@type": "xsd:boolean"
-    },
-    "cim:CompositeSwitchInfo.switchStateCount": {
-      "@type": "xsd:integer"
-    },
     "cim:CompositeSwitchInfo.interruptingRating": {
       "@type": "xsd:float"
     },
@@ -325,22 +295,31 @@
     "cim:CompositeSwitchInfo.phaseCode": {
       "@type": "@id"
     },
+    "cim:CompositeSwitchInfo.phaseCount": {
+      "@type": "xsd:integer"
+    },
     "cim:CompositeSwitchInfo.ratedVoltage": {
       "@type": "xsd:float"
     },
-    "cim:ConcentricNeutralCableInfo.neutralStrandCount": {
+    "cim:CompositeSwitchInfo.remote": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CompositeSwitchInfo.switchStateCount": {
       "@type": "xsd:integer"
     },
     "cim:ConcentricNeutralCableInfo.diameterOverNeutral": {
       "@type": "xsd:float"
     },
+    "cim:ConcentricNeutralCableInfo.neutralStrandCount": {
+      "@type": "xsd:integer"
+    },
     "cim:ConcentricNeutralCableInfo.neutralStrandGmr": {
       "@type": "xsd:float"
     },
-    "cim:ConcentricNeutralCableInfo.neutralStrandRadius": {
+    "cim:ConcentricNeutralCableInfo.neutralStrandRDC20": {
       "@type": "xsd:float"
     },
-    "cim:ConcentricNeutralCableInfo.neutralStrandRDC20": {
+    "cim:ConcentricNeutralCableInfo.neutralStrandRadius": {
       "@type": "xsd:float"
     },
     "cim:ConductingAssetInfo.phaseCount": {
@@ -354,9 +333,6 @@
     },
     "cim:ConductingAssetInfo.ratedVoltage": {
       "@type": "xsd:float"
-    },
-    "cim:ConductingAssetInfo.ShortCircuitRespone": {
-      "@type": "@id"
     },
     "cim:ConductorInfo.crossSection": {
       "@type": "xsd:float"
@@ -385,6 +361,9 @@
     "cim:Crossarm.OverheadStructure": {
       "@type": "@id"
     },
+    "cim:Dimension.ProductAssetModel": {
+      "@type": "@id"
+    },
     "cim:Dimension.sizeDepth": {
       "@type": "xsd:float"
     },
@@ -396,12 +375,6 @@
     },
     "cim:Dimension.sizeWidth": {
       "@type": "xsd:float"
-    },
-    "cim:Dimension.TransportStructureInfo": {
-      "@type": "@id"
-    },
-    "cim:Dimension.ProductAssetModel": {
-      "@type": "@id"
     },
     "cim:DimensionsInfo.sizeDepth": {
       "@type": "xsd:float"
@@ -415,11 +388,17 @@
     "cim:DimensionsInfo.sizeWidth": {
       "@type": "xsd:float"
     },
-    "cim:DimensionsInfo.ConstructedStructureInfo": {
-      "@type": "@id"
+    "cim:Document.createdDateTime": {
+      "@type": "xsd:dateTime"
     },
-    "gad:ElectricVehicleInfo.v2gCapable": {
-      "@type": "xsd:boolean"
+    "cim:Document.lastModifiedDateTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:Document.url": {
+      "@type": "xsd:anyURI"
+    },
+    "gad:ElectricVehicleInfo.BatteryInfo": {
+      "@type": "@id"
     },
     "gad:ElectricVehicleInfo.batteryCapacity": {
       "@type": "xsd:float"
@@ -430,8 +409,8 @@
     "gad:ElectricVehicleInfo.maxChargingRate": {
       "@type": "xsd:float"
     },
-    "gad:ElectricVehicleInfo.BatteryInfo": {
-      "@type": "@id"
+    "gad:ElectricVehicleInfo.v2gCapable": {
+      "@type": "xsd:boolean"
     },
     "cim:FACTSInfo.capacitorHarmonicFilterRating": {
       "@type": "xsd:float"
@@ -463,6 +442,9 @@
     "cim:GridEdgeDeviceInfo.ratedVoltageMin": {
       "@type": "xsd:float"
     },
+    "cim:InsulationInfo.CableInfo": {
+      "@type": "@id"
+    },
     "cim:InsulationInfo.insulated": {
       "@type": "xsd:boolean"
     },
@@ -471,9 +453,6 @@
     },
     "cim:InsulationInfo.insulationThickness": {
       "@type": "xsd:float"
-    },
-    "cim:InsulationInfo.CableInfo": {
-      "@type": "@id"
     },
     "cim:IntegralWebBusbarInfo.crossSectionHeight": {
       "@type": "xsd:float"
@@ -520,14 +499,8 @@
     "cim:InverterCapabilities.isProtectionCapableVoltageTrip": {
       "@type": "xsd:boolean"
     },
-    "cim:InverterCapabilities.InverterInfo": {
+    "cim:InverterInfo.InverterCapabilities": {
       "@type": "@id"
-    },
-    "cim:InverterInfo.powerFactorOverExcited": {
-      "@type": "xsd:float"
-    },
-    "cim:InverterInfo.powerFactorUnderExcited": {
-      "@type": "xsd:float"
     },
     "cim:InverterInfo.activePowerRatingOverExcited": {
       "@type": "xsd:float"
@@ -536,6 +509,12 @@
       "@type": "xsd:float"
     },
     "cim:InverterInfo.activePowerRatingUnityPowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:InverterInfo.powerFactorOverExcited": {
+      "@type": "xsd:float"
+    },
+    "cim:InverterInfo.powerFactorUnderExcited": {
       "@type": "xsd:float"
     },
     "cim:InverterInfo.reactivePowerAbsorbedMax": {
@@ -547,13 +526,10 @@
     "cim:InverterInfo.susceptanceOffline": {
       "@type": "xsd:float"
     },
-    "cim:InverterInfo.InverterCapabilities": {
-      "@type": "@id"
-    },
-    "cim:Manufacturer.ProductAssetModels": {
-      "@type": "@id"
-    },
     "cim:MarineStructureInfo.kind": {
+      "@type": "@id"
+    },
+    "cim:Medium.Specification": {
       "@type": "@id"
     },
     "cim:Medium.kind": {
@@ -561,9 +537,6 @@
     },
     "cim:Medium.volumeSpec": {
       "@type": "xsd:float"
-    },
-    "cim:Medium.Specification": {
-      "@type": "@id"
     },
     "cim:MeterInfo.electricMetering": {
       "@type": "xsd:boolean"
@@ -619,11 +592,11 @@
     "cim:MultiCoreCableInfo.neutralStrandCount": {
       "@type": "xsd:integer"
     },
-    "cim:MultiCoreCableInfo.phaseCount": {
-      "@type": "xsd:integer"
-    },
     "cim:MultiCoreCableInfo.neutralStrandRDC20": {
       "@type": "xsd:float"
+    },
+    "cim:MultiCoreCableInfo.phaseCount": {
+      "@type": "xsd:integer"
     },
     "cim:OperatingMechanismInfo.closeAmps": {
       "@type": "xsd:float"
@@ -649,12 +622,6 @@
     "cim:OperatingMechanismInfo.tripVoltage": {
       "@type": "xsd:float"
     },
-    "gad:OperationalLimitSet.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Crossarm": {
-      "@type": "@id"
-    },
     "cim:OverheadStructure.CathodicSystem": {
       "@type": "@id"
     },
@@ -664,16 +631,22 @@
     "cim:PipeBusbarInfo.pipeType": {
       "@type": "@id"
     },
-    "cim:PowerTransformerInfo.TransformerTankInfos": {
-      "@type": "@id"
-    },
-    "cim:Procedure.ProcedureDataSets": {
-      "@type": "@id"
-    },
     "cim:ProcedureDataSet.Asset": {
       "@type": "@id"
     },
     "cim:ProcedureDataSet.Procedure": {
+      "@type": "@id"
+    },
+    "cim:ProcedureDataSet.completedDateTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:ProductAssetModel.AssetInfo": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.CatalogAssetType": {
+      "@type": "@id"
+    },
+    "cim:ProductAssetModel.Manufacturer": {
       "@type": "@id"
     },
     "cim:ProductAssetModel.corporateStandardKind": {
@@ -688,22 +661,25 @@
     "cim:ProductAssetModel.weightTotal": {
       "@type": "xsd:float"
     },
-    "cim:ProductAssetModel.Dimension": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.CatalogAssetType": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.Manufacturer": {
+    "cim:ReactorInfo.circulationAndCoolingType": {
       "@type": "@id"
     },
     "cim:ReactorInfo.coreCoilsWeight": {
       "@type": "xsd:float"
     },
+    "cim:ReactorInfo.coreType": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.insulationMedium": {
+      "@type": "@id"
+    },
+    "cim:ReactorInfo.oilPreservationType": {
+      "@type": "@id"
+    },
     "cim:ReactorInfo.oilWeight": {
+      "@type": "xsd:float"
+    },
+    "cim:ReactorInfo.ratedImpulseWithstandVoltage": {
       "@type": "xsd:float"
     },
     "cim:ReactorInfo.ratedInductance": {
@@ -724,29 +700,14 @@
     "cim:ReactorInfo.volumeOfOil": {
       "@type": "xsd:float"
     },
-    "cim:ReactorInfo.circulationAndCoolingType": {
+    "cim:ReliabilityInfo.Specification": {
       "@type": "@id"
-    },
-    "cim:ReactorInfo.coreType": {
-      "@type": "@id"
-    },
-    "cim:ReactorInfo.insulationMedium": {
-      "@type": "@id"
-    },
-    "cim:ReactorInfo.oilPreservationType": {
-      "@type": "@id"
-    },
-    "cim:ReactorInfo.ratedImpulseWithstandVoltage": {
-      "@type": "xsd:float"
-    },
-    "cim:ReliabilityInfo.momFailureRate": {
-      "@type": "xsd:float"
     },
     "cim:ReliabilityInfo.mTTR": {
       "@type": "xsd:float"
     },
-    "cim:ReliabilityInfo.Specification": {
-      "@type": "@id"
+    "cim:ReliabilityInfo.momFailureRate": {
+      "@type": "xsd:float"
     },
     "cim:SVCInfo.svcReactiveControlType": {
       "@type": "@id"
@@ -763,20 +724,23 @@
     "cim:SelfSaturatedReactorInfo.fixedShuntCapacitance": {
       "@type": "xsd:float"
     },
+    "gad:ServiceMeterInfo.formType": {
+      "@type": "@id"
+    },
     "gad:ServiceMeterInfo.hasRemoteDisconnect": {
       "@type": "xsd:boolean"
     },
     "gad:ServiceMeterInfo.socketJawCount": {
       "@type": "xsd:integer"
     },
+    "gad:ServiceMeterInfo.startingCurrent": {
+      "@type": "xsd:float"
+    },
     "gad:ServiceMeterInfo.wireCount": {
       "@type": "xsd:integer"
     },
-    "gad:ServiceMeterInfo.formType": {
+    "cim:ShortCircuitResponse.ConductingAssetInfo": {
       "@type": "@id"
-    },
-    "gad:ServiceMeterInfo.startingCurrent": {
-      "@type": "xsd:float"
     },
     "cim:ShortCircuitResponse.faultSequenceType": {
       "@type": "@id"
@@ -789,9 +753,6 @@
     },
     "cim:ShortCircuitResponse.terminalVoltage": {
       "@type": "xsd:float"
-    },
-    "cim:ShortCircuitResponse.ConductingAssetInfo": {
-      "@type": "@id"
     },
     "cim:ShuntCapacitorInfo.connectionKind": {
       "@type": "@id"
@@ -820,7 +781,7 @@
     "gad:SolarArrayInfo.tiltAngle": {
       "@type": "xsd:float"
     },
-    "gad:SolarArrayInfo.SolarPanels": {
+    "gad:SolarPanelInfo.SolarArray": {
       "@type": "@id"
     },
     "gad:SolarPanelInfo.efficiency": {
@@ -838,32 +799,11 @@
     "gad:SolarPanelInfo.shortCircuitCurrent": {
       "@type": "xsd:float"
     },
-    "gad:SolarPanelInfo.SolarArray": {
+    "cim:SoundInfo.Specification": {
       "@type": "@id"
     },
     "cim:SoundInfo.minSoundPressureLevel": {
       "@type": "xsd:float"
-    },
-    "cim:SoundInfo.Specification": {
-      "@type": "@id"
-    },
-    "cim:Specification.AssetRequirement": {
-      "@type": "@id"
-    },
-    "cim:Specification.CoolingInfo": {
-      "@type": "@id"
-    },
-    "cim:Specification.Mediums": {
-      "@type": "@id"
-    },
-    "cim:Specification.ReliabilityInfos": {
-      "@type": "@id"
-    },
-    "cim:Specification.SoundInfo": {
-      "@type": "@id"
-    },
-    "cim:Specification.SurfaceTreatmentInfo": {
-      "@type": "@id"
     },
     "cim:StatComInfo.activePowerSourceType": {
       "@type": "@id"
@@ -895,6 +835,12 @@
     "cim:StringQuantity.unit": {
       "@type": "@id"
     },
+    "cim:StructureInfo.ConstructedDimensions": {
+      "@type": "@id"
+    },
+    "cim:StructureInfo.TransportDimensionsInfo": {
+      "@type": "@id"
+    },
     "cim:StructureInfo.hasTemperatureMeasurement": {
       "@type": "xsd:boolean"
     },
@@ -907,10 +853,7 @@
     "cim:StructureInfo.ratedVoltage": {
       "@type": "xsd:float"
     },
-    "cim:StructureInfo.ConstructedDimensions": {
-      "@type": "@id"
-    },
-    "cim:StructureInfo.TransportDimensionsInfo": {
+    "cim:SurfaceTreatmentInfo.Specification": {
       "@type": "@id"
     },
     "cim:SurfaceTreatmentInfo.galvanizationThickness": {
@@ -919,20 +862,17 @@
     "cim:SurfaceTreatmentInfo.paintThickness": {
       "@type": "xsd:float"
     },
-    "cim:SurfaceTreatmentInfo.Specification": {
-      "@type": "@id"
+    "cim:SwitchInfo.breakingCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchInfo.gasWeightPerTank": {
+      "@type": "xsd:float"
     },
     "cim:SwitchInfo.isSinglePhase": {
       "@type": "xsd:boolean"
     },
     "cim:SwitchInfo.isUnganged": {
       "@type": "xsd:boolean"
-    },
-    "cim:SwitchInfo.breakingCapacity": {
-      "@type": "xsd:float"
-    },
-    "cim:SwitchInfo.gasWeightPerTank": {
-      "@type": "xsd:float"
     },
     "cim:SwitchInfo.lowPressureAlarm": {
       "@type": "xsd:float"
@@ -952,7 +892,16 @@
     "cim:SwitchInfo.ratedInterruptingTime": {
       "@type": "xsd:float"
     },
+    "cim:TapChangerInfo.bil": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.ctRating": {
+      "@type": "xsd:float"
+    },
     "cim:TapChangerInfo.ctRatio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.frequency": {
       "@type": "xsd:float"
     },
     "cim:TapChangerInfo.highStep": {
@@ -967,19 +916,10 @@
     "cim:TapChangerInfo.neutralStep": {
       "@type": "xsd:integer"
     },
-    "cim:TapChangerInfo.ptRatio": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChangerInfo.bil": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChangerInfo.ctRating": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChangerInfo.frequency": {
-      "@type": "xsd:float"
-    },
     "cim:TapChangerInfo.neutralU": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerInfo.ptRatio": {
       "@type": "xsd:float"
     },
     "cim:TapChangerInfo.ratedApparentPower": {
@@ -994,14 +934,20 @@
     "cim:TapChangerInfo.stepVoltageIncrement": {
       "@type": "xsd:float"
     },
-    "cim:TapChangerInfo.ShuntReactorInfo": {
-      "@type": "@id"
-    },
     "cim:TapeShieldCableInfo.tapeLap": {
       "@type": "xsd:float"
     },
     "cim:TapeShieldCableInfo.tapeThickness": {
       "@type": "xsd:float"
+    },
+    "cim:TestDataSet.specimenToLabDateTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:TimeInterval.end": {
+      "@type": "xsd:time"
+    },
+    "cim:TimeInterval.start": {
+      "@type": "xsd:time"
     },
     "gad:TransformerCoreInfo.coreMaterial": {
       "@type": "@id"
@@ -1036,10 +982,10 @@
     "gad:TransformerCoreInfo.yokeLength": {
       "@type": "xsd:float"
     },
-    "gad:TransformerTankInfo.completelySelfProtected": {
-      "@type": "xsd:boolean"
+    "cim:TransformerTankInfo.PowerTransformerInfo": {
+      "@type": "@id"
     },
-    "gad:TransformerTankInfo.submersible": {
+    "gad:TransformerTankInfo.completelySelfProtected": {
       "@type": "xsd:boolean"
     },
     "gad:TransformerTankInfo.oilCapacity": {
@@ -1048,8 +994,8 @@
     "gad:TransformerTankInfo.percentImpedance": {
       "@type": "xsd:float"
     },
-    "cim:TransformerTankInfo.PowerTransformerInfo": {
-      "@type": "@id"
+    "gad:TransformerTankInfo.submersible": {
+      "@type": "xsd:boolean"
     },
     "cim:TransformerTest.basePower": {
       "@type": "xsd:float"
@@ -1066,20 +1012,8 @@
     "cim:TubeBusbarInfo.wallThickness": {
       "@type": "xsd:float"
     },
-    "cim:TypeAssetCatalogue.TypeAssets": {
-      "@type": "@id"
-    },
     "cim:UndergroundStructureInfo.kind": {
       "@type": "@id"
-    },
-    "cim:WireInfo.coreStrandCount": {
-      "@type": "xsd:integer"
-    },
-    "cim:WireInfo.insulated": {
-      "@type": "xsd:boolean"
-    },
-    "cim:WireInfo.strandCount": {
-      "@type": "xsd:integer"
     },
     "cim:WireInfo.constructionKind": {
       "@type": "@id"
@@ -1087,11 +1021,17 @@
     "cim:WireInfo.coreRadius": {
       "@type": "xsd:float"
     },
+    "cim:WireInfo.coreStrandCount": {
+      "@type": "xsd:integer"
+    },
     "cim:WireInfo.coreStrandRadius": {
       "@type": "xsd:float"
     },
     "cim:WireInfo.gmr": {
       "@type": "xsd:float"
+    },
+    "cim:WireInfo.insulated": {
+      "@type": "xsd:boolean"
     },
     "cim:WireInfo.insulationMaterial": {
       "@type": "@id"
@@ -1105,11 +1045,11 @@
     "cim:WireInfo.ratedStrength": {
       "@type": "xsd:float"
     },
+    "cim:WireInfo.strandCount": {
+      "@type": "xsd:integer"
+    },
     "cim:WireInfo.strandRadius": {
       "@type": "xsd:float"
-    },
-    "gad:WireInfo.WireBundleInfo": {
-      "@type": "@id"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/asset_info/0.2.0/context.jsonld",

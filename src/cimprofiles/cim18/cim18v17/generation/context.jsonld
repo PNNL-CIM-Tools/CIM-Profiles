@@ -1,0 +1,1033 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "eu": "http://iec.ch/TC57/CIM100-European#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:AirCompressor.CAESPlant": {
+      "@type": "@id"
+    },
+    "cim:AirCompressor.CombustionTurbine": {
+      "@type": "@id"
+    },
+    "cim:AirCompressor.airCompressorRating": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.highPowerLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.inCoreThermalTC": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.integralGain": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.lowPowerLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.lowerLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.pressureLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.pressureSetpointGA": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.pressureSetpointTC1": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.pressureSetpointTC2": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.proportionalGain": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux1": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux2": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux3": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux4": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux5": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux6": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux7": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rfAux8": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rodPattern": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.rodPatternConstant": {
+      "@type": "xsd:float"
+    },
+    "cim:BWRSteamSupply.upperLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:BasicIntervalSchedule.startTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:BasicIntervalSchedule.value1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value1Unit": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value2Unit": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:BasicIntervalSchedule.value3Unit": {
+      "@type": "@id"
+    },
+    "cim:BatteryUnit.batteryState": {
+      "@type": "@id"
+    },
+    "gad:BatteryUnit.chargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.dischargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.idlingP": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.idlingQ": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.minimumE": {
+      "@type": "xsd:float"
+    },
+    "cim:BatteryUnit.ratedE": {
+      "@type": "xsd:float"
+    },
+    "cim:BatteryUnit.storedE": {
+      "@type": "xsd:float"
+    },
+    "cim:CAESPlant.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:CAESPlant.energyStorageCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:CAESPlant.ratedCapacityP": {
+      "@type": "xsd:float"
+    },
+    "cim:CTTempActivePowerCurve.CombustionTurbine": {
+      "@type": "@id"
+    },
+    "cim:CogenerationPlant.cogenHPSendoutRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CogenerationPlant.cogenHPSteamRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CogenerationPlant.cogenLPSendoutRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CogenerationPlant.cogenLPSteamRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CogenerationPlant.ratedP": {
+      "@type": "xsd:float"
+    },
+    "cim:CombinedCyclePlant.combCyclePlantRating": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.AirCompressor": {
+      "@type": "@id"
+    },
+    "cim:CombustionTurbine.HeatRecoveryBoiler": {
+      "@type": "@id"
+    },
+    "cim:CombustionTurbine.ambientTemp": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.auxPowerVersusFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.auxPowerVersusVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.capabilityVersusFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.heatRecoveryFlag": {
+      "@type": "xsd:boolean"
+    },
+    "cim:CombustionTurbine.powerVariationByTemp": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.referenceTemp": {
+      "@type": "xsd:float"
+    },
+    "cim:CombustionTurbine.timeConstant": {
+      "@type": "xsd:float"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Unit": {
+      "@type": "@id"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y3value": {
+      "@type": "xsd:float"
+    },
+    "cim:DrumBoiler.drumBoilerRating": {
+      "@type": "xsd:float"
+    },
+    "cim:EmissionAccount.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:EmissionAccount.emissionType": {
+      "@type": "@id"
+    },
+    "cim:EmissionAccount.emissionValueSource": {
+      "@type": "@id"
+    },
+    "cim:EmissionCurve.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:EmissionCurve.emissionContent": {
+      "@type": "xsd:float"
+    },
+    "cim:EmissionCurve.emissionType": {
+      "@type": "@id"
+    },
+    "cim:EmissionCurve.isNetGrossP": {
+      "@type": "xsd:boolean"
+    },
+    "cim:FlexibleEnergyUnit.buffer": {
+      "@type": "xsd:float"
+    },
+    "cim:FlexibleEnergyUnit.timeShift": {
+      "@type": "xsd:float"
+    },
+    "cim:FlexibleEnergyUnit.unconstrained": {
+      "@type": "xsd:float"
+    },
+    "cim:FlexibleEnergyUnit.uncontrollable": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.FuelStorage": {
+      "@type": "@id"
+    },
+    "cim:FossilFuel.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:FossilFuel.fossilFuelType": {
+      "@type": "@id"
+    },
+    "cim:FossilFuel.fuelCost": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelDispatchCost": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelEffFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelHandlingCost": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelHeatContent": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelMixture": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.fuelSulfur": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.highBreakpointP": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilFuel.lowBreakpointP": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.auxPowerVersusFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.auxPowerVersusVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.boilerControlMode": {
+      "@type": "@id"
+    },
+    "cim:FossilSteamSupply.controlErrorBiasP": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.controlIC": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.controlPC": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.controlPEB": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.controlPED": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.controlTC": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.feedWaterIG": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.feedWaterPG": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.feedWaterTC": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.fuelDemandLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.fuelSupplyDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.fuelSupplyTC": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.maxErrorRateP": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.mechPowerSensorLag": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.minErrorRateP": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.pressureCtrlDG": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.pressureCtrlIG": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.pressureCtrlPG": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.pressureFeedback": {
+      "@type": "xsd:integer"
+    },
+    "cim:FossilSteamSupply.superHeater1Capacity": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.superHeater2Capacity": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.superHeaterPipePD": {
+      "@type": "xsd:float"
+    },
+    "cim:FossilSteamSupply.throttlePressureSP": {
+      "@type": "xsd:float"
+    },
+    "cim:FuelAllocationSchedule.FossilFuel": {
+      "@type": "@id"
+    },
+    "cim:FuelAllocationSchedule.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:FuelAllocationSchedule.fuelAllocationEndDate": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:FuelAllocationSchedule.fuelAllocationStartDate": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:FuelAllocationSchedule.fuelType": {
+      "@type": "@id"
+    },
+    "cim:FuelAllocationSchedule.maxFuelAllocation": {
+      "@type": "xsd:float"
+    },
+    "cim:FuelAllocationSchedule.minFuelAllocation": {
+      "@type": "xsd:float"
+    },
+    "cim:FuelStorage.energyStorage": {
+      "@type": "xsd:float"
+    },
+    "cim:GenUnitOpCostCurve.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:GenUnitOpCostCurve.isNetGrossP": {
+      "@type": "xsd:boolean"
+    },
+    "cim:GenUnitOpSchedule.GenUnitOpScheduleGroup": {
+      "@type": "@id"
+    },
+    "cim:GenUnitOpSchedule.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.GenUnitOpScheduleGroup": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.allocSpinResP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.autoCntrlMarginP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.baseP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.controlDeadband": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.controlPulseHigh": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.controlPulseLow": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.controlResponseRate": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.efficiency": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.genControlMode": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.genControlSource": {
+      "@type": "@id"
+    },
+    "cim:GeneratingUnit.governorMPL": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.governorSCD": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.highControlLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.initialP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.longPF": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.lowControlLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.lowerRampRate": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.maxEconomicP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.maxOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.maximumAllowableSpinningReserve": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.minEconomicP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.minOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.minimumOffTime": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.modelDetail": {
+      "@type": "xsd:integer"
+    },
+    "cim:GeneratingUnit.nominalP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.normalPF": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.penaltyFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.raiseRampRate": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.ratedGrossMaxP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.ratedGrossMinP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.ratedNetMaxP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.shortPF": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.startupCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:GeneratingUnit.startupTime": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.tieLinePF": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.totalEfficiency": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.variableCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:GeothermalGeneratingUnit.kind": {
+      "@type": "@id"
+    },
+    "cim:GrossToNetActivePowerCurve.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:HeatInputCurve.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:HeatInputCurve.auxPowerMult": {
+      "@type": "xsd:float"
+    },
+    "cim:HeatInputCurve.auxPowerOffset": {
+      "@type": "xsd:float"
+    },
+    "cim:HeatInputCurve.heatInputEff": {
+      "@type": "xsd:float"
+    },
+    "cim:HeatInputCurve.heatInputOffset": {
+      "@type": "xsd:float"
+    },
+    "cim:HeatInputCurve.isNetGrossP": {
+      "@type": "xsd:boolean"
+    },
+    "cim:HeatRateCurve.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:HeatRateCurve.isNetGrossP": {
+      "@type": "xsd:boolean"
+    },
+    "cim:HeatRecoveryBoiler.steamSupplyRating2": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:HydroGeneratingUnit.HydroPowerPlant": {
+      "@type": "@id"
+    },
+    "cim:HydroGeneratingUnit.PenstockLossCurve": {
+      "@type": "@id"
+    },
+    "cim:HydroGeneratingUnit.dropHeight": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroGeneratingUnit.energyConversionCapability": {
+      "@type": "@id"
+    },
+    "cim:HydroGeneratingUnit.hydroUnitWaterCost": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroGeneratingUnit.turbineType": {
+      "@type": "@id"
+    },
+    "cim:HydroPowerPlant.GenSourcePumpDischargeReservoir": {
+      "@type": "@id"
+    },
+    "cim:HydroPowerPlant.Reservoir": {
+      "@type": "@id"
+    },
+    "cim:HydroPowerPlant.dischargeTravelDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPowerPlant.genRatedP": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPowerPlant.hydroPlantStorageType": {
+      "@type": "@id"
+    },
+    "cim:HydroPowerPlant.plantDischargeCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPowerPlant.plantRatedHead": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPowerPlant.pumpRatedP": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPowerPlant.surgeTankCrestLevel": {
+      "@type": "xsd:float"
+    },
+    "nc:HydroPump.AreaDispatchableUnit": {
+      "@type": "@id"
+    },
+    "cim:HydroPump.HydroPowerPlant": {
+      "@type": "@id"
+    },
+    "cim:HydroPump.HydroPumpOpSchedule": {
+      "@type": "@id"
+    },
+    "cim:HydroPump.RotatingMachine": {
+      "@type": "@id"
+    },
+    "cim:HydroPump.pumpDischAtMaxHead": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPump.pumpDischAtMinHead": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPump.pumpPowerAtMaxHead": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPump.pumpPowerAtMinHead": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroPumpOpSchedule.HydroPump": {
+      "@type": "@id"
+    },
+    "cim:HydroTurbine.gateRateLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.gateUpperLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.maxHeadMaxP": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.minHeadMaxP": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.speedRating": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.speedRegulation": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.transientDroopTime": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.transientRegulation": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.turbineRating": {
+      "@type": "xsd:float"
+    },
+    "cim:HydroTurbine.turbineType": {
+      "@type": "@id"
+    },
+    "cim:HydroTurbine.waterStartingTime": {
+      "@type": "xsd:float"
+    },
+    "cim:IncrementalHeatRateCurve.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:IncrementalHeatRateCurve.isNetGrossP": {
+      "@type": "xsd:boolean"
+    },
+    "cim:InflowForecast.Reservoir": {
+      "@type": "@id"
+    },
+    "cim:LevelVsVolumeCurve.Reservoir": {
+      "@type": "@id"
+    },
+    "nc:NuclearGeneratingUnit.reactorKind": {
+      "@type": "@id"
+    },
+    "cim:PWRSteamSupply.coldLegFBLagTC": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coldLegFBLeadTC1": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coldLegFBLeadTC2": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coldLegFG1": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coldLegFG2": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coldLegLagTC": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coreHTLagTC1": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coreHTLagTC2": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coreNeutronicsEffTC": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.coreNeutronicsHT": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.feedbackFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.hotLegLagTC": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.hotLegSteamGain": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.hotLegToColdLegGain": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.pressureCG": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.steamFlowFG": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.steamPressureDropLagTC": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.steamPressureFG": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.throttlePressureFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:PWRSteamSupply.throttlePressureSP": {
+      "@type": "xsd:float"
+    },
+    "cim:PenstockLossCurve.HydroGeneratingUnit": {
+      "@type": "@id"
+    },
+    "gad:PhotoVoltaicUnit.irradiance": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectricalChemicalUnit.kind": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsMarineUnit.kind": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsUnit.PowerElectronicsConnection": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsUnit.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.minP": {
+      "@type": "xsd:float"
+    },
+    "gad:PowerElectronicsUnit.p": {
+      "@type": "xsd:float"
+    },
+    "cim:PrimeMover.primeMoverRating": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularIntervalSchedule.endTime": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:RegularIntervalSchedule.timeStep": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.IntervalSchedule": {
+      "@type": "@id"
+    },
+    "cim:RegularTimePoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:RegularTimePoint.value1": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.value2": {
+      "@type": "xsd:float"
+    },
+    "cim:RegularTimePoint.value3": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.InflowForecasts": {
+      "@type": "@id"
+    },
+    "cim:Reservoir.LevelVsVolumeCurves": {
+      "@type": "@id"
+    },
+    "cim:Reservoir.SpillsFromReservoir": {
+      "@type": "@id"
+    },
+    "cim:Reservoir.TargetLevelSchedule": {
+      "@type": "@id"
+    },
+    "cim:Reservoir.activeStorageCapacity": {
+      "@type": "xsd:float"
+    },
+    "nc:Reservoir.energyStorage": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.energyStorageRating": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.fullSupplyLevel": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.grossCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.normalMinOperateLevel": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.spillTravelDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.spillwayCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.spillwayCrestLength": {
+      "@type": "xsd:float"
+    },
+    "cim:Reservoir.spillwayCrestLevel": {
+      "@type": "xsd:float"
+    },
+    "cim:ShutdownCurve.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:ShutdownCurve.shutdownCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:ShutdownCurve.shutdownDate": {
+      "@type": "xsd:dateTime"
+    },
+    "eu:SolarGeneratingUnit.SolarPowerPlant": {
+      "@type": "@id"
+    },
+    "cim:StartIgnFuelCurve.StartupModel": {
+      "@type": "@id"
+    },
+    "cim:StartIgnFuelCurve.ignitionFuelType": {
+      "@type": "@id"
+    },
+    "cim:StartMainFuelCurve.StartupModel": {
+      "@type": "@id"
+    },
+    "cim:StartMainFuelCurve.mainFuelType": {
+      "@type": "@id"
+    },
+    "cim:StartRampCurve.StartupModel": {
+      "@type": "@id"
+    },
+    "cim:StartRampCurve.hotStandbyRamp": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.StartIgnFuelCurve": {
+      "@type": "@id"
+    },
+    "cim:StartupModel.StartMainFuelCurve": {
+      "@type": "@id"
+    },
+    "cim:StartupModel.StartRampCurve": {
+      "@type": "@id"
+    },
+    "cim:StartupModel.ThermalGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:StartupModel.fixedMaintCost": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.hotStandbyHeat": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.incrementalMaintCost": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.minimumDownTime": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.minimumRunTime": {
+      "@type": "xsd:float"
+    },
+    "cim:StartupModel.riskFactorCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:StartupModel.startupCost": {
+      "@type": "xsd:decimal"
+    },
+    "cim:StartupModel.startupDate": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:StartupModel.startupPriority": {
+      "@type": "xsd:integer"
+    },
+    "cim:StartupModel.stbyAuxP": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamSendoutSchedule.CogenerationPlant": {
+      "@type": "@id"
+    },
+    "cim:SteamSupply.steamSupplyRating": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.SteamSupplys": {
+      "@type": "@id"
+    },
+    "cim:SteamTurbine.crossoverTC": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.reheater1TC": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.reheater2TC": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft1PowerHP": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft1PowerIP": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft1PowerLP1": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft1PowerLP2": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft2PowerHP": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft2PowerIP": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft2PowerLP1": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.shaft2PowerLP2": {
+      "@type": "xsd:float"
+    },
+    "cim:SteamTurbine.steamChestTC": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.PrimeMovers": {
+      "@type": "@id"
+    },
+    "cim:TailbayLossCurve.HydroGeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:TargetLevelSchedule.Reservoir": {
+      "@type": "@id"
+    },
+    "cim:TargetLevelSchedule.highLevelLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:TargetLevelSchedule.lowLevelLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:ThermalGeneratingUnit.CAESPlant": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.CogenerationPlant": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.CombinedCyclePlant": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.EmissionCurves": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.EmmissionAccounts": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.HeatInputCurve": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.HeatRateCurve": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.IncrementalHeatRateCurve": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.ShutdownCurve": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.StartupModel": {
+      "@type": "@id"
+    },
+    "cim:ThermalGeneratingUnit.oMCost": {
+      "@type": "xsd:float"
+    },
+    "eu:WindGeneratingUnit.WindPowerPlant": {
+      "@type": "@id"
+    },
+    "cim:WindGeneratingUnit.windGenUnitType": {
+      "@type": "@id"
+    }
+  }
+}

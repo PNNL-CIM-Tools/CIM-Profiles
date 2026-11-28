@@ -1,0 +1,528 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "gb": "http://GB/placeholder/ext#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACLineSegment.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:ACLineSegment.WireConfiguration": {
+      "@type": "@id"
+    },
+    "cim:AsynchronousMachine.efficiency": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.nominalFrequency": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.nominalSpeed": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.ratedMechanicalPower": {
+      "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.reversible": {
+      "@type": "xsd:boolean"
+    },
+    "gad:AutoTransformer.AutoTransformerWinding": {
+      "@type": "@id"
+    },
+    "gad:AutoTransformerEnd.baseU": {
+      "@type": "xsd:float"
+    },
+    "gad:AutoTransformerEnd.ratedS": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.chargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.dischargingEfficiency": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.idlingP": {
+      "@type": "xsd:float"
+    },
+    "gad:BatteryUnit.minimumE": {
+      "@type": "xsd:float"
+    },
+    "cim:BatteryUnit.ratedE": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.earthModelType": {
+      "@type": "@id"
+    },
+    "gad:EarthResistivity.earthReturnGMR": {
+      "@type": "xsd:float"
+    },
+    "gad:EarthResistivity.rho": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.LoadResponse": {
+      "@type": "@id"
+    },
+    "gad:EnergyConsumer.maxP": {
+      "@type": "xsd:float"
+    },
+    "gad:EnergyConsumer.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.pfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.pfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.qfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumer.qfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.pfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.pfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.qfixed": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergyConsumerPhase.qfixedPct": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.pMax": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.pMin": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x": {
+      "@type": "xsd:float"
+    },
+    "cim:Equipment.networkAnalysisEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:GeneratingUnit.maxOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.minOperatingP": {
+      "@type": "xsd:float"
+    },
+    "cim:GeneratingUnit.nominalP": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.bPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.gPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensatorPhase.bPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensatorPhase.gPerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.exponentModel": {
+      "@type": "xsd:boolean"
+    },
+    "cim:LoadResponseCharacteristic.pConstantCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pConstantImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pConstantPower": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pFrequencyExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.pVoltageExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qConstantPower": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qFrequencyExponent": {
+      "@type": "xsd:float"
+    },
+    "cim:LoadResponseCharacteristic.qVoltageExponent": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.b": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.fromEndNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:MatrixImpedanceData.fromPhase": {
+      "@type": "@id"
+    },
+    "gad:MatrixImpedanceData.g": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.r": {
+      "@type": "xsd:float"
+    },
+    "gad:MatrixImpedanceData.toEndNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:MatrixImpedanceData.toPhase": {
+      "@type": "@id"
+    },
+    "gad:MatrixImpedanceData.x": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.bTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.gTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPhasePoint.sectionNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:NonlinearShuntCompensatorPoint.bTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.gTotal": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
+      "@type": "xsd:integer"
+    },
+    "gad:PerLengthImpedance.WireConfiguration": {
+      "@type": "@id"
+    },
+    "gad:PerLengthImpedance.calculatedFrequency": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.isTemplate": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.rg": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.userDefined": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.xg": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthLineParameter.EarthResistivity": {
+      "@type": "@id"
+    },
+    "cim:PerLengthLineParameter.calculatedTemperature": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthPhaseImpedance.conductorCount": {
+      "@type": "xsd:integer"
+    },
+    "cim:PhaseImpedanceData.PhaseImpedance": {
+      "@type": "@id"
+    },
+    "cim:PhaseImpedanceData.b": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.column": {
+      "@type": "xsd:integer"
+    },
+    "cim:PhaseImpedanceData.fromPhase": {
+      "@type": "@id"
+    },
+    "cim:PhaseImpedanceData.g": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.r": {
+      "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.row": {
+      "@type": "xsd:integer"
+    },
+    "cim:PhaseImpedanceData.toPhase": {
+      "@type": "@id"
+    },
+    "cim:PhaseImpedanceData.x": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.PowerElectronicsConnection": {
+      "@type": "@id"
+    },
+    "cim:PowerElectronicsUnit.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsUnit.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.phaseShift": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:ProtectedSwitch.breakingCapacity": {
+      "@type": "xsd:float"
+    },
+    "gb:ProtectedSwitch.makingCapacity": {
+      "@type": "xsd:float"
+    },
+    "cim:RatioTapChanger.TransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:RatioTapChanger.stepVoltageIncrement": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.GeneratingUnit": {
+      "@type": "@id"
+    },
+    "cim:RotatingMachine.ratedPowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.r": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.varistorPresent": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SeriesCompensator.varistorRatedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.varistorVoltageThreshold": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.x": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.maximumSections": {
+      "@type": "xsd:integer"
+    },
+    "gad:ShuntCompensator.nomQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.nomU": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.normalSections": {
+      "@type": "xsd:integer"
+    },
+    "cim:ShuntCompensator.voltageSensitivity": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorPhase.maximumSections": {
+      "@type": "xsd:integer"
+    },
+    "gad:ShuntCompensatorPhase.nomQ": {
+      "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorPhase.normalSections": {
+      "@type": "xsd:integer"
+    },
+    "cim:Switch.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:SwitchPhase.Switch": {
+      "@type": "@id"
+    },
+    "cim:SwitchPhase.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.maxQ": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.minQ": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChanger.highStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.lowStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.normalStep": {
+      "@type": "xsd:integer"
+    },
+    "cim:TapChanger.step": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerCore.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.TransformerTank": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.b": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.form": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.g": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerEnd.rground": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerEnd.xground": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.FromTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.FromWinding": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.ToTransformerEnd": {
+      "@type": "@id"
+    },
+    "cim:TransformerMeshImpedance.ToWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerMeshImpedance.cs": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.r": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.x": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTank.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerTank.baseS": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.loadLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.noLoadLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerTank.percentMagnetizingCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.baseS": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.loadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.noLoadLoss": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentImpedance": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTankConfiguration.percentMagnetizingCurrent": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerWinding.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerWinding.baseS": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.baseU": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.r": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.rDC": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.ratedS": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerWinding.ratedU": {
+      "@type": "xsd:float"
+    },
+    "gad:VoltageRegulator.construction": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.EarthResistivity": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.installationType": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.numberOfPhases": {
+      "@type": "xsd:integer"
+    },
+    "gad:WireConfiguration.usage": {
+      "@type": "@id"
+    }
+  }
+}

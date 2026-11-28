@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:IdentifiedObject.ObjectType": {
+      "@type": "@id"
+    },
+    "cim:Name.NameType": {
+      "@type": "@id"
+    },
+    "cim:NameType.NamingAuthority": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.IdentifiedObjectRevision": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.ObjectIdentificationRevisionSet": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevision.revisionKind": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.Object": {
+      "@type": "@id"
+    },
+    "cim:ObjectIdentificationRevisionSet.effectiveDateTime": {
+      "@type": "xsd:dateTime"
+    }
+  }
+}

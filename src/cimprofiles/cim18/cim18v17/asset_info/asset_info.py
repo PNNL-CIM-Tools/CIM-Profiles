@@ -4646,7 +4646,7 @@ class BatteryInfo(DCConductingAssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5656,7 +5656,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5682,7 +5682,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5695,7 +5695,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5708,7 +5708,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -5906,7 +5906,7 @@ class TransformerWindingInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -6368,7 +6368,9 @@ class CatalogAssetType(IdentifiedObject):
 @dataclass(repr=False, eq=False)
 class Dimension(IdentifiedObject):
     '''
-    A DQV quality dimension of the feeder record.
+    As applicable, the basic linear, area, or volume dimensions of an asset,
+    asset type (AssetModel) or other type of object (such as land area). Units
+    and multipliers are specified per dimension.
     '''
 
     orientation: Optional[str] = field(

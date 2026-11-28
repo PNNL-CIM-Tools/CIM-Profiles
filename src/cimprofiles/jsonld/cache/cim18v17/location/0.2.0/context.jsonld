@@ -31,25 +31,16 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
+    "cim:Circle.CircleCenterPositionPoint": {
+      "@type": "@id"
+    },
     "cim:Circle.innerRadius": {
       "@type": "xsd:float"
     },
     "cim:Circle.outerRadius": {
       "@type": "xsd:float"
     },
-    "cim:Circle.CircleCenterPositionPoint": {
-      "@type": "@id"
-    },
-    "cim:CoordinateSystem.Geometry": {
-      "@type": "@id"
-    },
-    "cim:CoordinateSystem.Location": {
-      "@type": "@id"
-    },
     "cim:GeometricElement.Geometry": {
-      "@type": "@id"
-    },
-    "cim:Geometry.GeometricElement": {
       "@type": "@id"
     },
     "cim:Geometry.CoordinateSystem": {
@@ -64,31 +55,16 @@
     "cim:LineElement.Polygon": {
       "@type": "@id"
     },
-    "cim:LinearCoordinate.sequenceNumber": {
-      "@type": "xsd:integer"
-    },
     "cim:LinearCoordinate.Line": {
       "@type": "@id"
     },
-    "cim:Location.Geometry": {
-      "@type": "@id"
+    "cim:LinearCoordinate.bulge": {
+      "@type": "xsd:decimal"
     },
-    "gad:Location.PositionPoints": {
-      "@type": "@id"
-    },
-    "cim:Location.PowerSystemResources": {
-      "@type": "@id"
-    },
-    "cim:Location.CoordinateSystem": {
-      "@type": "@id"
-    },
-    "cim:Polygon.InnerBoundaryLineElement": {
-      "@type": "@id"
-    },
-    "gad:PositionPoint.sequenceNumber": {
+    "cim:LinearCoordinate.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:PositionPoint.Circle": {
+    "cim:Location.CoordinateSystem": {
       "@type": "@id"
     },
     "gad:PositionPoint.Location": {
@@ -97,14 +73,14 @@
     "cim:PositionPoint.RelativeHeight": {
       "@type": "@id"
     },
+    "gad:PositionPoint.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
     "cim:PowerSystemResource.Location": {
       "@type": "@id"
     },
     "cim:RelativeHeight.verticalOffset": {
       "@type": "xsd:float"
-    },
-    "cim:RelativeHeight.PositionPoint": {
-      "@type": "@id"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/location/0.2.0/context.jsonld",

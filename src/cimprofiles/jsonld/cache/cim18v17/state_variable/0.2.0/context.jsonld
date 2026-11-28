@@ -30,40 +30,31 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ConductingEquipment.SvStatus": {
-      "@type": "@id"
-    },
-    "cim:DCTerminal.SvDCPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.SvDCVoltage": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.SvShuntCompensatorSections": {
+    "cim:SvDCPowerFlow.DCTerminal": {
       "@type": "@id"
     },
     "cim:SvDCPowerFlow.p": {
       "@type": "xsd:float"
     },
-    "cim:SvDCPowerFlow.DCTerminal": {
+    "cim:SvDCVoltage.DCTopologicalNode": {
       "@type": "@id"
     },
     "cim:SvDCVoltage.v": {
       "@type": "xsd:float"
     },
-    "cim:SvDCVoltage.DCTopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:SvInjection.phase": {
+    "cim:SvInjection.TopologicalNode": {
       "@type": "@id"
     },
     "cim:SvInjection.pInjection": {
       "@type": "xsd:float"
     },
+    "cim:SvInjection.phase": {
+      "@type": "@id"
+    },
     "cim:SvInjection.qInjection": {
       "@type": "xsd:float"
     },
-    "cim:SvInjection.TopologicalNode": {
+    "cim:SvPowerFlow.Terminal": {
       "@type": "@id"
     },
     "cim:SvPowerFlow.p": {
@@ -75,16 +66,16 @@
     "cim:SvPowerFlow.q": {
       "@type": "xsd:float"
     },
-    "cim:SvPowerFlow.Terminal": {
+    "cim:SvShuntCompensatorSections.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.phase": {
       "@type": "@id"
     },
     "cim:SvShuntCompensatorSections.sections": {
       "@type": "xsd:float"
     },
-    "cim:SvShuntCompensatorSections.phase": {
-      "@type": "@id"
-    },
-    "cim:SvShuntCompensatorSections.ShuntCompensator": {
+    "cim:SvStatus.ConductingEquipment": {
       "@type": "@id"
     },
     "cim:SvStatus.inService": {
@@ -93,7 +84,7 @@
     "cim:SvStatus.phase": {
       "@type": "@id"
     },
-    "cim:SvStatus.ConductingEquipment": {
+    "cim:SvSwitch.Switch": {
       "@type": "@id"
     },
     "cim:SvSwitch.open": {
@@ -102,13 +93,13 @@
     "cim:SvSwitch.phase": {
       "@type": "@id"
     },
-    "cim:SvSwitch.Switch": {
+    "cim:SvTapStep.TapChanger": {
       "@type": "@id"
     },
     "cim:SvTapStep.position": {
       "@type": "xsd:float"
     },
-    "cim:SvTapStep.TapChanger": {
+    "cim:SvVoltage.TopologicalNode": {
       "@type": "@id"
     },
     "cim:SvVoltage.angle": {
@@ -119,24 +110,6 @@
     },
     "cim:SvVoltage.v": {
       "@type": "xsd:float"
-    },
-    "cim:SvVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:Switch.SvSwitch": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.SvTapStep": {
-      "@type": "@id"
-    },
-    "cim:Terminal.SvPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/state_variable/0.2.0/context.jsonld",

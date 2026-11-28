@@ -1,0 +1,118 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/CIM100#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCConverter.idc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.poleLossP": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.uc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.udc": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.alpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.gamma": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTopologicalIsland.DCTopologicalNodes": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvInjection.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvInjection.qInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.Terminal": {
+      "@type": "@id"
+    },
+    "cim:SvPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvPowerFlow.q": {
+      "@type": "xsd:float"
+    },
+    "cim:SvShuntCompensatorSections.ShuntCompensator": {
+      "@type": "@id"
+    },
+    "cim:SvShuntCompensatorSections.sections": {
+      "@type": "xsd:float"
+    },
+    "cim:SvStatus.ConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:SvStatus.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvSwitch.Switch": {
+      "@type": "@id"
+    },
+    "cim:SvSwitch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SvTapStep.TapChanger": {
+      "@type": "@id"
+    },
+    "cim:SvTapStep.position": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvVoltage.angle": {
+      "@type": "xsd:float"
+    },
+    "cim:SvVoltage.v": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalIsland.AngleRefTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:TopologicalIsland.TopologicalNodes": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.delta": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.uv": {
+      "@type": "xsd:float"
+    }
+  }
+}

@@ -30,10 +30,13 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
+    "cim:AutomationBlockGroup.AutomationFunction": {
+      "@type": "@id"
+    },
     "cim:AutomationBlockGroup.priority": {
       "@type": "xsd:integer"
     },
-    "cim:AutomationBlockGroup.AutomationFunction": {
+    "cim:AutomationFunction.PartOf": {
       "@type": "@id"
     },
     "cim:AutomationFunction.enabled": {
@@ -41,18 +44,6 @@
     },
     "cim:AutomationFunction.normalEnabled": {
       "@type": "xsd:boolean"
-    },
-    "cim:AutomationFunction.AutomationBlockGroup": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.HasPart": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.PartOf": {
-      "@type": "@id"
-    },
-    "cim:AutoreclosingFunctionBlock.RecloseSequences": {
-      "@type": "@id"
     },
     "cim:Breaker.inTransitTime": {
       "@type": "xsd:float"
@@ -63,22 +54,7 @@
     "cim:Fuse.TotalClearingTimeCurve": {
       "@type": "@id"
     },
-    "cim:FuseCharacteristicCurve.FuseMinimumMelt": {
-      "@type": "@id"
-    },
-    "cim:FuseCharacteristicCurve.FuseTotalClearing": {
-      "@type": "@id"
-    },
-    "cim:ProtectedSwitch.RecloseSequences": {
-      "@type": "@id"
-    },
-    "cim:ProtectionEquipment.ProtectionRelatedFunctionBlock": {
-      "@type": "@id"
-    },
     "cim:ProtectionFunctionBlock.operatingQuantityType": {
-      "@type": "@id"
-    },
-    "cim:ProtectionRelatedFunctionBlock.operatingQuantityType": {
       "@type": "@id"
     },
     "cim:ProtectionRelatedFunctionBlock.ProtectionEquipment": {
@@ -87,20 +63,20 @@
     "cim:ProtectionRelatedFunctionBlock.ProtectionSettingsGroup": {
       "@type": "@id"
     },
-    "cim:ProtectionSettingsGroup.ProtectionRelatedFunctionBlock": {
+    "cim:ProtectionRelatedFunctionBlock.operatingQuantityType": {
       "@type": "@id"
-    },
-    "cim:RecloseSequence.recloseStep": {
-      "@type": "xsd:integer"
-    },
-    "cim:RecloseSequence.recloseDelay": {
-      "@type": "xsd:float"
     },
     "cim:RecloseSequence.AutoreclosingFunctionBlock": {
       "@type": "@id"
     },
     "cim:RecloseSequence.ProtectedSwitch": {
       "@type": "@id"
+    },
+    "cim:RecloseSequence.recloseDelay": {
+      "@type": "xsd:float"
+    },
+    "cim:RecloseSequence.recloseStep": {
+      "@type": "xsd:integer"
     },
     "cim:UnderFrequencyProtectionFunctionBlock.operateValue": {
       "@type": "xsd:float"

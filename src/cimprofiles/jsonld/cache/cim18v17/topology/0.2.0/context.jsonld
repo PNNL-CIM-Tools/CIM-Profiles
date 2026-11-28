@@ -36,23 +36,14 @@
     "cim:AreaConfiguration.priority": {
       "@type": "xsd:integer"
     },
-    "cim:AreaConfiguration.ConnectedArea": {
-      "@type": "@id"
-    },
-    "cim:AreaConfiguration.TopologicalArea": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:BusNameMarker.priority": {
-      "@type": "xsd:integer"
-    },
     "cim:BusNameMarker.ReportingGroup": {
       "@type": "@id"
     },
     "cim:BusNameMarker.TopologicalNode": {
       "@type": "@id"
+    },
+    "cim:BusNameMarker.priority": {
+      "@type": "xsd:integer"
     },
     "cim:ConnectedArea.AreaConfiguration": {
       "@type": "@id"
@@ -60,16 +51,7 @@
     "cim:ConnectivityNode.TopologicalNode": {
       "@type": "@id"
     },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.BusNameMarker": {
-      "@type": "@id"
-    },
     "cim:Terminal.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:TopologicalArea.kind": {
       "@type": "@id"
     },
     "cim:TopologicalArea.AreaConfiguration": {
@@ -84,31 +66,7 @@
     "cim:TopologicalArea.UpstreamTopolgicalArea": {
       "@type": "@id"
     },
-    "cim:TopologicalIsland.TopologicalArea": {
-      "@type": "@id"
-    },
-    "cim:TopologicalIsland.AngleRefTopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:TopologicalIsland.TopologicalNodes": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.busNumber": {
-      "@type": "xsd:integer"
-    },
-    "cim:TopologicalNode.pInjection": {
-      "@type": "xsd:float"
-    },
-    "cim:TopologicalNode.qInjection": {
-      "@type": "xsd:float"
-    },
-    "cim:TopologicalNode.BusNameMarker": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
+    "cim:TopologicalArea.kind": {
       "@type": "@id"
     },
     "cim:TopologicalNode.AngleRefTopologicalIsland": {
@@ -122,6 +80,15 @@
     },
     "cim:TopologicalNode.TopologicalIsland": {
       "@type": "@id"
+    },
+    "cim:TopologicalNode.busNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:TopologicalNode.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.qInjection": {
+      "@type": "xsd:float"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/topology/0.2.0/context.jsonld",

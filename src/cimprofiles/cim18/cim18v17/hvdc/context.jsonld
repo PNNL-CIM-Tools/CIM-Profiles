@@ -1,0 +1,575 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "nc": "http://entsoe.eu/ns/nc#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCConverter.PccTerminal": {
+      "@type": "@id"
+    },
+    "cim:ACDCConverter.baseS": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.idc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.idleLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.maxP": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.maxUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.minUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.numberOfValves": {
+      "@type": "xsd:integer"
+    },
+    "cim:ACDCConverter.p": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.poleLossP": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.q": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.ratedUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.resistiveLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.switchingLoss": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.targetPpcc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.targetUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.uc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.udc": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverter.valveU0": {
+      "@type": "xsd:float"
+    },
+    "cim:ACDCConverterDCTerminal.DCConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:ACDCConverterDCTerminal.polarity": {
+      "@type": "@id"
+    },
+    "cim:ACDCTerminal.BusNameMarker": {
+      "@type": "@id"
+    },
+    "cim:ACDCTerminal.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:BipolarDCSystem.DCBiPole": {
+      "@type": "@id"
+    },
+    "cim:BipolarDCSystem.isRigid": {
+      "@type": "xsd:boolean"
+    },
+    "cim:BusNameMarker.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:CsConverter.alpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.gamma": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.maxAlpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.maxGamma": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.maxIdc": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.minAlpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.minGamma": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.minIdc": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.operatingMode": {
+      "@type": "@id"
+    },
+    "cim:CsConverter.pPccControl": {
+      "@type": "@id"
+    },
+    "cim:CsConverter.ratedIdc": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.targetAlpha": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.targetGamma": {
+      "@type": "xsd:float"
+    },
+    "cim:CsConverter.targetIdc": {
+      "@type": "xsd:float"
+    },
+    "cim:Curve.curveStyle": {
+      "@type": "@id"
+    },
+    "cim:Curve.xMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.xUnit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y1Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y2Unit": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Multiplier": {
+      "@type": "@id"
+    },
+    "cim:Curve.y3Unit": {
+      "@type": "@id"
+    },
+    "cim:CurveData.Curve": {
+      "@type": "@id"
+    },
+    "cim:CurveData.xvalue": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y1value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y2value": {
+      "@type": "xsd:float"
+    },
+    "cim:CurveData.y3value": {
+      "@type": "xsd:float"
+    },
+    "cim:DCBaseTerminal.DCNode": {
+      "@type": "@id"
+    },
+    "cim:DCBaseTerminal.DCTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:DCBiPole.BipolarDCSystem": {
+      "@type": "@id"
+    },
+    "cim:DCConductingEquipment.ratedCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:DCConductingEquipment.ratedUdc": {
+      "@type": "xsd:float"
+    },
+    "cim:DCConverterUnit.ACPointOfCommonCoupling": {
+      "@type": "@id"
+    },
+    "cim:DCConverterUnit.DCPointOfCommonCoupling": {
+      "@type": "@id"
+    },
+    "cim:DCConverterUnit.DCPole": {
+      "@type": "@id"
+    },
+    "cim:DCConverterUnit.DCSubstation": {
+      "@type": "@id"
+    },
+    "cim:DCConverterUnit.Substation": {
+      "@type": "@id"
+    },
+    "cim:DCConverterUnit.operationMode": {
+      "@type": "@id"
+    },
+    "cim:DCEquipmentContainer.HVDCInterconnectionDynamics": {
+      "@type": "@id"
+    },
+    "cim:DCGround.inductance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCGround.r": {
+      "@type": "xsd:float"
+    },
+    "cim:DCLine.DCPole": {
+      "@type": "@id"
+    },
+    "cim:DCLine.Region": {
+      "@type": "@id"
+    },
+    "cim:DCLineSegment.PerLengthParameter": {
+      "@type": "@id"
+    },
+    "cim:DCLineSegment.capacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCLineSegment.inductance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCLineSegment.length": {
+      "@type": "xsd:float"
+    },
+    "cim:DCLineSegment.resistance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCNode.DCEquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:DCNode.DCPointOfCommonCoupling": {
+      "@type": "@id"
+    },
+    "cim:DCNode.DCTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:DCPointOfCommonCoupling.DCConverterUnit": {
+      "@type": "@id"
+    },
+    "cim:DCPointOfCommonCoupling.DCNode": {
+      "@type": "@id"
+    },
+    "cim:DCPole.AsymmetricMonopolarDCSystem": {
+      "@type": "@id"
+    },
+    "cim:DCPole.DCBiPole": {
+      "@type": "@id"
+    },
+    "cim:DCPole.DCLine": {
+      "@type": "@id"
+    },
+    "cim:DCPole.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "cim:DCPole.DirectCurrentPoleController": {
+      "@type": "@id"
+    },
+    "cim:DCPole.maxEconomicP": {
+      "@type": "xsd:float"
+    },
+    "cim:DCPole.minEconomicP": {
+      "@type": "xsd:float"
+    },
+    "cim:DCPole.normalParticipationFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:DCPole.p": {
+      "@type": "xsd:float"
+    },
+    "cim:DCPole.participationFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:DCSeriesDevice.inductance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCSeriesDevice.resistance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCShunt.capacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCShunt.resistance": {
+      "@type": "xsd:float"
+    },
+    "cim:DCSubstation.Substation": {
+      "@type": "@id"
+    },
+    "cim:DCSubstation.isTapping": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DCSubstationBipole.DCSubstation": {
+      "@type": "@id"
+    },
+    "cim:DCSubstationBipole.DirectCurrentSubstationBipoleController": {
+      "@type": "@id"
+    },
+    "cim:DCSubstationPole.DCSubstation": {
+      "@type": "@id"
+    },
+    "cim:DCSubstationPole.DirectCurrentSubstationPoleController": {
+      "@type": "@id"
+    },
+    "cim:DCSwitch.locked": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DCSwitch.normalOpen": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DCSwitch.open": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DCSwitch.retained": {
+      "@type": "xsd:boolean"
+    },
+    "cim:DCSystem.directionKind": {
+      "@type": "@id"
+    },
+    "cim:DCSystem.transmissionKind": {
+      "@type": "@id"
+    },
+    "cim:DCTerminal.DCConductingEquipment": {
+      "@type": "@id"
+    },
+    "cim:DCTerminal.polarity": {
+      "@type": "@id"
+    },
+    "cim:DCTieCorridor.DirectCurrentMasterController": {
+      "@type": "@id"
+    },
+    "nc:DCTieCorridor.SchedulingArea": {
+      "@type": "@id"
+    },
+    "cim:DCTieCorridor.maxRegulatingReserve": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTieCorridor.minRegulatingReserve": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTieCorridor.p": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTieCorridor.q": {
+      "@type": "xsd:float"
+    },
+    "cim:DCTieCorridor.rampingKind": {
+      "@type": "@id"
+    },
+    "cim:DCTopologicalNode.DCEquipmentContainer": {
+      "@type": "@id"
+    },
+    "cim:DCTopologicalNode.DCTopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentBipoleController.DirectCurrentMasterController": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentMasterController.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentPoleController.DCPole": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentPoleController.DirectCurrentBipoleController": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentPoleController.DirectCurrentMasterController": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentSubstationBipoleController.DCSubstationBipole": {
+      "@type": "@id"
+    },
+    "cim:DirectCurrentSubstationPoleController.DCSubstationPole": {
+      "@type": "@id"
+    },
+    "cim:Equipment.inService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.networkAnalysisEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Equipment.normallyInService": {
+      "@type": "xsd:boolean"
+    },
+    "cim:MonopolarDCSystem.DCPole": {
+      "@type": "@id"
+    },
+    "cim:MonopolarDCSystem.isSymmetrical": {
+      "@type": "xsd:boolean"
+    },
+    "nc:MustRunSchedule.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "nc:MustRunTimePoint.MustRunSchedule": {
+      "@type": "@id"
+    },
+    "nc:MustRunTimePoint.atTime": {
+      "@type": "xsd:dateTime"
+    },
+    "nc:MustRunTimePoint.mustRun": {
+      "@type": "xsd:boolean"
+    },
+    "nc:MustRunTimePoint.mustRunP": {
+      "@type": "xsd:float"
+    },
+    "nc:MustRunTimePoint.mustRunQ": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthDCLineParameter.capacitance": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthDCLineParameter.inductance": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthDCLineParameter.resistance": {
+      "@type": "xsd:float"
+    },
+    "cim:PinDCTerminal.DCTerminal": {
+      "@type": "@id"
+    },
+    "cim:PinDCTerminal.kind": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.DCPole": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.direction": {
+      "@type": "@id"
+    },
+    "nc:PowerSchedule.powerScheduleKind": {
+      "@type": "@id"
+    },
+    "nc:SchedulingArea.DCTieCorridor": {
+      "@type": "@id"
+    },
+    "cim:SubGeographicalRegion.Region": {
+      "@type": "@id"
+    },
+    "cim:Substation.Region": {
+      "@type": "@id"
+    },
+    "cim:SvDCPowerFlow.DCTerminal": {
+      "@type": "@id"
+    },
+    "cim:SvDCPowerFlow.p": {
+      "@type": "xsd:float"
+    },
+    "cim:SvDCVoltage.DCTopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:SvDCVoltage.v": {
+      "@type": "xsd:float"
+    },
+    "cim:TieCorridor.delayRegulatingReserve": {
+      "@type": "xsd:float"
+    },
+    "cim:TieCorridor.maxRegulatingReserveRamp": {
+      "@type": "xsd:float"
+    },
+    "cim:TieCorridor.thresholdRegulatingReserve": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.busNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:TopologicalNode.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.qInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:VsCapabilityCurve.VsConverter": {
+      "@type": "@id"
+    },
+    "cim:VsCapabilityCurve.referenceVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.VSCDynamics": {
+      "@type": "@id"
+    },
+    "nc:VsConverter.VsConverterRegularSchedule": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.delta": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.droop": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.droopCompensation": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.maxModulationIndex": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.maxValveCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.pPccControl": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.qPccControl": {
+      "@type": "@id"
+    },
+    "cim:VsConverter.qShare": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetPWMfactor": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetPhasePcc": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetPowerFactorPcc": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetQpcc": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.targetUpcc": {
+      "@type": "xsd:float"
+    },
+    "cim:VsConverter.uv": {
+      "@type": "xsd:float"
+    },
+    "nc:VsConverterRegularSchedule.VsConverter": {
+      "@type": "@id"
+    },
+    "nc:VsConverterSchedule.VsConverter": {
+      "@type": "@id"
+    },
+    "nc:VsConverterTimePoint.VsConverterSchedule": {
+      "@type": "@id"
+    }
+  }
+}

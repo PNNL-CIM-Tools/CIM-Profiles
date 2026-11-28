@@ -4,10 +4,12 @@ Runtime CIM profile merging.
 Combines multiple CIM sub-profile modules (e.g. connectivity, electrical)
 into a single synthetic module with merged dataclasses.
 
-Overlapping classes get the union of their fields.  Non-overlapping classes
+Overlapping classes get the union of their fields, keeping the serialized
+association end of a field defined twice, and enumerations the union of their
+members.  Non-overlapping classes
 are adopted as-is but reparented onto the merged inheritance chain.  Where
-profiles declare different bases for a class, the most specific one is used
-(see ``most_specific_base``).
+profiles declare different bases for a class, the most specific ones are used
+(see ``most_specific_bases``).
 
 This replaces the need for a single hand-maintained "canonical" profile
 module (hundreds of dataclasses in one .py) when reading split exports
@@ -159,19 +161,22 @@ def _ancestors(name: str, parents: dict[str, set[str]]) -> set[str]:
     return found
 
 
-def most_specific_base(name: str, candidates: set[str],
-                       parents: dict[str, set[str]]) -> str:
+def most_specific_bases(name: str, candidates: set[tuple[str, ...]],
+                        parents: dict[str, set[str]]) -> tuple[str, ...]:
     """
-    Pick the base class of *name* when profiles disagree on it.
+    Pick the base classes of *name* when profiles disagree on them.
 
-    CIMTool drops intermediate classes a profile does not use, so one profile
-    may declare ``Terminal(Identity)`` and another ``Terminal(ACDCTerminal)``.
-    The right base is the candidate that has every other candidate among its
-    ancestors, where *parents* maps each class name to the base names declared
-    for it across all profiles.
+    Each candidate is the tuple of bases one profile declares: ``('Identity',)``,
+    or ``('Model', 'Resource')`` for a class with several supertypes. CIMTool
+    drops intermediate classes a profile does not use, so one profile may
+    declare ``Terminal(Identity)`` and another ``Terminal(ACDCTerminal)``.
+    The right bases are the candidate whose bases and their ancestors include
+    every other candidate's bases, where *parents* maps each class name to the
+    base names declared for it across all profiles.
     """
     for candidate in sorted(candidates):
-        if candidates - {candidate} <= _ancestors(candidate, parents):
+        covered = set(candidate).union(*(_ancestors(base, parents) for base in candidate))
+        if all(set(other) <= covered for other in candidates):
             return candidate
     raise ValueError(
         f'Conflicting base classes for {name!r} across profiles: '
@@ -179,14 +184,11 @@ def most_specific_base(name: str, candidates: set[str],
     )
 
 
-# ── class creation ─────────────────────────────────────────────────────
+def _base_names(cls: type) -> tuple[str, ...]:
+    return tuple(base.__name__ for base in cls.__bases__)
 
-def _first_real_base(cls):
-    """Return the first parent of *cls* that isn't ``object``, or ``object``."""
-    for base in cls.__mro__[1:]:
-        if base is not object:
-            return base
-    return object
+
+# ── class creation ─────────────────────────────────────────────────────
 
 
 def _build_class(name: str, definitions: list[type],
@@ -196,20 +198,23 @@ def _build_class(name: str, definitions: list[type],
     Create a single merged dataclass from one or more *definitions* of the
     same class name.
     """
-    # ── 1. Determine the base class ────────────────────────────────────
-    bases = {_first_real_base(cls) for cls in definitions}
-    base_name = most_specific_base(name, {base.__name__ for base in bases}, parents)
-    original_base = next(base for base in bases if base.__name__ == base_name)
-    merged_base = getattr(merged_module, base_name, original_base)
+    # ── 1. Determine the base classes ──────────────────────────────────
+    base_names = most_specific_bases(name, {_base_names(cls) for cls in definitions}, parents)
+    original_bases = next(cls.__bases__ for cls in definitions if _base_names(cls) == base_names)
+    merged_bases = tuple(getattr(merged_module, base.__name__, base) for base in original_bases)
 
     # ── 2. Collect the union of direct fields ──────────────────────────
     # Profile fields all carry defaults, so first-seen insertion order is
     # preserved as-is.  A field without a default (should not occur) would
-    # raise a normal dataclass TypeError at build time below.
+    # raise a normal dataclass TypeError at build time below.  A field defined
+    # by several parts keeps the serialized association end: a part profiling
+    # only the other end marks this one serialize=False.
     all_fields: dict[str, tuple[str, dataclasses.Field]] = {}
     for cls in definitions:
         for fname, f in _get_direct_fields(cls).items():
-            if fname not in all_fields:
+            kept = all_fields.get(fname)
+            if kept is None or (kept[1].metadata.get('serialize') is not True
+                                and f.metadata.get('serialize') is True):
                 all_fields[fname] = (f.type, f)
 
     # ── 3. Collect @property descriptors ───────────────────────────────
@@ -235,7 +240,7 @@ def _build_class(name: str, definitions: list[type],
     namespace['__module__'] = merged_module.__name__
 
     # ── 5. Create the class ────────────────────────────────────────────
-    new_cls = type(name, (merged_base,), namespace)
+    new_cls = type(name, merged_bases, namespace)
     new_cls = dataclass(repr=False, eq=False)(new_cls)
 
     # ── 6. Carry over __stereotype__ ───────────────────────────────────
@@ -251,6 +256,31 @@ def _build_class(name: str, definitions: list[type],
             break
 
     return new_cls
+
+
+def _merge_enum(name: str, definitions: list[type[Enum]],
+                merged_module: types.ModuleType) -> type[Enum]:
+    """
+    The union of the members of *definitions*, in first-seen order.
+
+    Profiles restrict an enumeration to the values they use, so parts may
+    each have a different subset.  The first definition is kept as-is when it
+    already has every member.  Raises ``ValueError`` if parts give a member
+    different values.
+    """
+    members: dict[str, object] = {}
+    for enum in definitions:
+        for member_name, member in enum.__members__.items():
+            if members.setdefault(member_name, member.value) != member.value:
+                raise ValueError(f'{name}: parts disagree on the value of {member_name}')
+    first = definitions[0]
+    if members.keys() == first.__members__.keys():
+        return first
+    merged_enum = Enum(name, list(members.items()), module=merged_module.__name__)
+    merged_enum.__doc__ = first.__doc__
+    for property_name, prop in _collect_properties(first).items():
+        setattr(merged_enum, property_name, prop)
+    return merged_enum
 
 
 # ── namespaces ─────────────────────────────────────────────────────────
@@ -319,7 +349,7 @@ def merge_profiles(*modules: types.ModuleType) -> types.ModuleType:
 
     all_names = list(class_defs.keys())
     parents = {
-        name: {_first_real_base(cls).__name__ for cls in definitions}
+        name: {base for cls in definitions for base in _base_names(cls)}
         for name, definitions in class_defs.items()
     }
 
@@ -357,7 +387,9 @@ def merge_profiles(*modules: types.ModuleType) -> types.ModuleType:
             # Always use the real Identity class — it has uri(), uuid(),
             # __post_init__(), etc. that must not be lost in a rebuild.
             merged_cls = Identity
-        elif cat in ('enum', 'cimunit', 'other'):
+        elif cat == 'enum':
+            merged_cls = _merge_enum(name, definitions, merged)
+        elif cat in ('cimunit', 'other'):
             # For non-dataclass types, take the first definition
             merged_cls = definitions[0]
         elif cat == 'dataclass':

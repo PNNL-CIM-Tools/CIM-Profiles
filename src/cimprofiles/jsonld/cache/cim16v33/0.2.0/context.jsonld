@@ -333,25 +333,7 @@
     "cim:Asset.PowerSystemResources": {
       "@type": "@id"
     },
-    "cim:Asset.ActivityRecords": {
-      "@type": "@id"
-    },
-    "cim:Asset.OrganisationRoles": {
-      "@type": "@id"
-    },
-    "cim:Asset.ConfigurationEvents": {
-      "@type": "@id"
-    },
-    "cim:Asset.Ownerships": {
-      "@type": "@id"
-    },
-    "cim:Asset.Procedures": {
-      "@type": "@id"
-    },
     "cim:AssetContainer.Assets": {
-      "@type": "@id"
-    },
-    "cim:AssetContainer.Seals": {
       "@type": "@id"
     },
     "cim:AssetInfo.AssetModel": {
@@ -367,9 +349,6 @@
       "@type": "@id"
     },
     "cim:AssetModel.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:AssetModelCatalogueItem.AssetModel": {
       "@type": "@id"
     },
     "cim:AssetOrganisationRole.Assets": {
@@ -928,12 +907,6 @@
       "@type": "@id"
     },
     "cim:ControlArea.EnergyArea": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
     "cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas": {
@@ -1701,9 +1674,6 @@
     "cim:FaultImpedance.xLineToLine": {
       "@type": "xsd:float"
     },
-    "cim:FinancialInfo.Asset": {
-      "@type": "@id"
-    },
     "cim:FloatQuantity.value": {
       "@type": "xsd:float"
     },
@@ -1992,9 +1962,6 @@
     "cim:GeneratingUnit.RotatingMachine": {
       "@type": "@id"
     },
-    "cim:GenericAssetModelOrMaterial.ProductAssetModels": {
-      "@type": "@id"
-    },
     "cim:GeographicalRegion.Regions": {
       "@type": "@id"
     },
@@ -2065,12 +2032,6 @@
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.PenstockLossCurve": {
-      "@type": "@id"
-    },
-    "cim:HydroGeneratingUnit.HydroGeneratingEfficiencyCurves": {
-      "@type": "@id"
-    },
-    "cim:HydroGeneratingUnit.TailbayLossCurve": {
       "@type": "@id"
     },
     "cim:HydroPowerPlant.dischargeTravelDelay": {
@@ -2235,9 +2196,6 @@
     "cim:LimitDependency.OperationalLimit": {
       "@type": "@id"
     },
-    "cim:LimitScalingLimit.SourceOperationalLimit": {
-      "@type": "@id"
-    },
     "cim:LimitSet.isPercentageLimits": {
       "@type": "xsd:boolean"
     },
@@ -2364,12 +2322,6 @@
     "cim:Measurement.Terminal": {
       "@type": "@id"
     },
-    "cim:Measurement.Procedures": {
-      "@type": "@id"
-    },
-    "cim:MeasurementCalculator.MeasurementCalculatorInput": {
-      "@type": "@id"
-    },
     "cim:MeasurementCalculatorInput.absoluteValue": {
       "@type": "xsd:boolean"
     },
@@ -2392,9 +2344,6 @@
       "@type": "@id"
     },
     "cim:MeasurementValue.RemoteSource": {
-      "@type": "@id"
-    },
-    "cim:MeasurementValue.ProcedureDataSets": {
       "@type": "@id"
     },
     "cim:MeasurementValueQuality.MeasurementValue": {
@@ -2601,16 +2550,7 @@
     "cim:Operator.SwitchingSteps": {
       "@type": "@id"
     },
-    "cim:Organisation.ActivityRecords": {
-      "@type": "@id"
-    },
-    "cim:Organisation.Roles": {
-      "@type": "@id"
-    },
     "cim:OrganisationRole.Organisation": {
-      "@type": "@id"
-    },
-    "cim:OrganisationRole.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:Outage.isPlanned": {
@@ -2620,9 +2560,6 @@
       "@type": "@id"
     },
     "cim:Outage.OpenedSwitches": {
-      "@type": "@id"
-    },
-    "cim:Outage.Faults": {
       "@type": "@id"
     },
     "cim:Ownership.share": {
@@ -2755,12 +2692,6 @@
       "@type": "@id"
     },
     "cim:PersonRole.Person": {
-      "@type": "@id"
-    },
-    "cim:PersonRole.Appointments": {
-      "@type": "@id"
-    },
-    "cim:PersonRole.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:PetersenCoil.mode": {
@@ -2931,9 +2862,6 @@
     "cim:PowerSystemResource.ReportingGroup": {
       "@type": "@id"
     },
-    "cim:PowerSystemResource.OperatingShare": {
-      "@type": "@id"
-    },
     "cim:PowerTransformer.isPartOfGeneratorUnit": {
       "@type": "xsd:boolean"
     },
@@ -3054,9 +2982,6 @@
     "cim:ProductAssetModel.Manufacturer": {
       "@type": "@id"
     },
-    "cim:ProductAssetModel.OperationalRestrictions": {
-      "@type": "@id"
-    },
     "cim:ProtectedSwitch.breakingCapacity": {
       "@type": "xsd:float"
     },
@@ -3091,9 +3016,6 @@
       "@type": "@id"
     },
     "cim:ProtectionEquipment.ProtectiveAction": {
-      "@type": "@id"
-    },
-    "cim:ProtectiveAction.ProtectionEquipment": {
       "@type": "@id"
     },
     "cim:ProtectiveActionAdjustment.byValue": {
@@ -3205,9 +3127,6 @@
       "@type": "@id"
     },
     "cim:ReactiveCapabilityCurve.SynchronousMachines": {
-      "@type": "@id"
-    },
-    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines": {
       "@type": "@id"
     },
     "cim:RecloseSequence.recloseStep": {
@@ -3372,18 +3291,6 @@
     "cim:Reservoir.TargetLevelSchedule": {
       "@type": "@id"
     },
-    "cim:Reservoir.UpstreamFromHydroPowerPlants": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.InflowForecasts": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.LevelVsVolumeCurves": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.SpillsIntoReservoirs": {
-      "@type": "@id"
-    },
     "cim:RotatingMachine.ratedPowerFactor": {
       "@type": "xsd:float"
     },
@@ -3426,9 +3333,6 @@
     "cim:Seal.AssetContainer": {
       "@type": "@id"
     },
-    "cim:Season.SeasonDayTypeSchedules": {
-      "@type": "@id"
-    },
     "cim:SeasonDayTypeSchedule.DayType": {
       "@type": "@id"
     },
@@ -3460,9 +3364,6 @@
       "@type": "@id"
     },
     "cim:ServiceCategory.kind": {
-      "@type": "@id"
-    },
-    "cim:ServiceCategory.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:SetPoint.normalValue": {
@@ -3604,12 +3505,6 @@
       "@type": "xsd:float"
     },
     "cim:ShutdownCurve.ThermalGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:Specification.AssetProperites": {
-      "@type": "@id"
-    },
-    "cim:Specification.Ratings": {
       "@type": "@id"
     },
     "cim:StartIgnFuelCurve.ignitionFuelType": {
@@ -3762,9 +3657,6 @@
     "cim:Structure.materialKind": {
       "@type": "@id"
     },
-    "cim:Structure.WireSpacingInfos": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.DCLines": {
       "@type": "@id"
     },
@@ -3912,21 +3804,6 @@
     "cim:SwitchSchedule.Switch": {
       "@type": "@id"
     },
-    "cim:SwitchingStep.Operator": {
-      "@type": "@id"
-    },
-    "cim:SwitchingStepGroup.CutActions": {
-      "@type": "@id"
-    },
-    "cim:SwitchingStepGroup.EnergySourceActions": {
-      "@type": "@id"
-    },
-    "cim:SwitchingStepGroup.GroundActions": {
-      "@type": "@id"
-    },
-    "cim:SwitchingStepGroup.JumperActions": {
-      "@type": "@id"
-    },
     "cim:SynchrocheckRelay.maxAngleDiff": {
       "@type": "xsd:float"
     },
@@ -4036,9 +3913,6 @@
       "@type": "@id"
     },
     "cim:SynchronousMachine.SynchronousMachineDynamics": {
-      "@type": "@id"
-    },
-    "cim:SynchronousMachineDynamics.SynchronousMachine": {
       "@type": "@id"
     },
     "cim:TailbayLossCurve.HydroGeneratingUnit": {
@@ -4218,18 +4092,6 @@
     "cim:Terminal.TransformerEnd": {
       "@type": "@id"
     },
-    "cim:Terminal.ConverterDCSides": {
-      "@type": "@id"
-    },
-    "cim:Terminal.BranchGroupTerminal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.EquipmentFaults": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TieFlow": {
-      "@type": "@id"
-    },
     "cim:ThermalGeneratingUnit.oMCost": {
       "@type": "xsd:float"
     },
@@ -4257,18 +4119,6 @@
     "cim:ThermalGeneratingUnit.StartupModel": {
       "@type": "@id"
     },
-    "cim:ThermalGeneratingUnit.EmmissionAccounts": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.EmissionCurves": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FossilFuels": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FuelAllocationSchedules": {
-      "@type": "@id"
-    },
     "cim:TieFlow.positiveFlowIn": {
       "@type": "xsd:boolean"
     },
@@ -4276,9 +4126,6 @@
       "@type": "@id"
     },
     "cim:TieFlow.Terminal": {
-      "@type": "@id"
-    },
-    "cim:TieFlow.AltTieMeas": {
       "@type": "@id"
     },
     "cim:TimePoint.sequenceNumber": {
@@ -4339,9 +4186,6 @@
       "@type": "@id"
     },
     "cim:TopologicalNode.TopologicalIsland": {
-      "@type": "@id"
-    },
-    "cim:Transaction.UserAttributes": {
       "@type": "@id"
     },
     "cim:TransformerCoreAdmittance.b": {
@@ -4509,12 +4353,6 @@
     "cim:TransformerObservation.Transformer": {
       "@type": "@id"
     },
-    "cim:TransformerObservation.BushingInsultationPFs": {
-      "@type": "@id"
-    },
-    "cim:TransformerObservation.ProcedureDataSets": {
-      "@type": "@id"
-    },
     "cim:TransformerStarImpedance.r": {
       "@type": "xsd:float"
     },
@@ -4599,9 +4437,6 @@
     "cim:UsagePoint.Equipments": {
       "@type": "@id"
     },
-    "cim:UsagePoint.ConfigurationEvents": {
-      "@type": "@id"
-    },
     "cim:UserAttribute.sequenceNumber": {
       "@type": "xsd:integer"
     },
@@ -4612,24 +4447,6 @@
       "@type": "@id"
     },
     "cim:UserAttribute.Transaction": {
-      "@type": "@id"
-    },
-    "cim:UserAttribute.ProcedureDataSets": {
-      "@type": "@id"
-    },
-    "cim:VSCDynamics.VsConverter": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Commands": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Discretes": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.RaiseLowerCommands": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Values": {
       "@type": "@id"
     },
     "cim:ValueToAlias.value": {
@@ -4662,14 +4479,8 @@
     "cim:VoltageLevel.Substation": {
       "@type": "@id"
     },
-    "cim:VoltageLevel.Bays": {
-      "@type": "@id"
-    },
     "cim:VoltageLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:VsCapabilityCurve.VsConverterDCSides": {
-      "@type": "@id"
     },
     "cim:VsConverter.maxModulationIndex": {
       "@type": "xsd:float"
@@ -4717,12 +4528,6 @@
       "@type": "@id"
     },
     "cim:WindTurbineType3or4Dynamics.PowerElectronicsConnection": {
-      "@type": "@id"
-    },
-    "cim:WindingInsulation.FromWinding": {
-      "@type": "@id"
-    },
-    "cim:WindingInsulation.ToWinding": {
       "@type": "@id"
     },
     "cim:WireInfo.coreStrandCount": {
@@ -4804,9 +4609,6 @@
       "@type": "@id"
     },
     "cim:WireSpacingInfo.WirePositions": {
-      "@type": "@id"
-    },
-    "cim:Work.Appointments": {
       "@type": "@id"
     }
   },

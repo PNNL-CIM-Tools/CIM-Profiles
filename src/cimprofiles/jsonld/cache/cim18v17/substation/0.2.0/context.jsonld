@@ -30,16 +30,19 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
+    "cim:ACDCTerminal.BusNameMarker": {
+      "@type": "@id"
+    },
     "cim:ACDCTerminal.connected": {
       "@type": "xsd:boolean"
     },
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ACDCTerminal.BusNameMarker": {
+    "cim:Bay.Substation": {
       "@type": "@id"
     },
-    "cim:BaseVoltage.VoltageLevel": {
+    "cim:Bay.VoltageLevel": {
       "@type": "@id"
     },
     "cim:Bay.breakerConfiguration": {
@@ -48,61 +51,22 @@
     "cim:Bay.busBarConfiguration": {
       "@type": "@id"
     },
-    "cim:Bay.Substation": {
-      "@type": "@id"
-    },
-    "cim:Bay.VoltageLevel": {
-      "@type": "@id"
-    },
     "cim:BusNameMarker.priority": {
       "@type": "xsd:integer"
-    },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
     },
     "cim:BusbarSection.ipMax": {
       "@type": "xsd:float"
     },
-    "cim:ConductingEquipment.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNode.Terminals": {
+    "cim:Equipment.EquipmentContainer": {
       "@type": "@id"
     },
     "cim:Equipment.aggregate": {
       "@type": "xsd:boolean"
     },
-    "cim:Equipment.EquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NamingSecondarySubstation": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NormalEnergizedSubstation": {
-      "@type": "@id"
-    },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
-    },
     "cim:Line.Region": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
-      "@type": "@id"
-    },
-    "cim:Substation.Bays": {
-      "@type": "@id"
-    },
-    "cim:Substation.VoltageLevels": {
       "@type": "@id"
     },
     "cim:Substation.NamingFeeder": {
@@ -120,20 +84,17 @@
     "cim:Terminal.ConnectivityNode": {
       "@type": "@id"
     },
-    "cim:VoltageLevel.highVoltageLimit": {
-      "@type": "xsd:float"
-    },
-    "cim:VoltageLevel.lowVoltageLimit": {
-      "@type": "xsd:float"
-    },
-    "cim:VoltageLevel.Bays": {
-      "@type": "@id"
-    },
     "cim:VoltageLevel.BaseVoltage": {
       "@type": "@id"
     },
     "cim:VoltageLevel.Substation": {
       "@type": "@id"
+    },
+    "cim:VoltageLevel.highVoltageLimit": {
+      "@type": "xsd:float"
+    },
+    "cim:VoltageLevel.lowVoltageLimit": {
+      "@type": "xsd:float"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/substation/0.2.0/context.jsonld",

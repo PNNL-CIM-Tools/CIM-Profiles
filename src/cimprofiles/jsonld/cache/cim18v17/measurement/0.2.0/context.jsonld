@@ -31,41 +31,29 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCTerminal.Measurements": {
+    "cim:Accumulator.LimitSets": {
       "@type": "@id"
     },
     "cim:Accumulator.maxValue": {
       "@type": "xsd:integer"
     },
-    "cim:Accumulator.AccumulatorValues": {
-      "@type": "@id"
-    },
-    "cim:Accumulator.LimitSets": {
+    "cim:AccumulatorLimit.LimitSet": {
       "@type": "@id"
     },
     "cim:AccumulatorLimit.value": {
       "@type": "xsd:integer"
     },
-    "cim:AccumulatorLimit.LimitSet": {
-      "@type": "@id"
-    },
-    "cim:AccumulatorLimitSet.Measurements": {
-      "@type": "@id"
-    },
-    "cim:AccumulatorLimitSet.Limits": {
-      "@type": "@id"
-    },
     "cim:AccumulatorReset.AccumulatorValue": {
       "@type": "@id"
-    },
-    "cim:AccumulatorValue.value": {
-      "@type": "xsd:integer"
     },
     "cim:AccumulatorValue.Accumulator": {
       "@type": "@id"
     },
     "cim:AccumulatorValue.AccumulatorReset": {
       "@type": "@id"
+    },
+    "cim:AccumulatorValue.value": {
+      "@type": "xsd:integer"
     },
     "cim:Analog.maxValue": {
       "@type": "xsd:float"
@@ -79,10 +67,7 @@
     "cim:Analog.positiveFlowIn": {
       "@type": "xsd:boolean"
     },
-    "cim:Analog.AnalogValues": {
-      "@type": "@id"
-    },
-    "gad:Analog.PointOnWaveValues": {
+    "cim:AnalogControl.AnalogValue": {
       "@type": "@id"
     },
     "cim:AnalogControl.maxValue": {
@@ -91,19 +76,10 @@
     "cim:AnalogControl.minValue": {
       "@type": "xsd:float"
     },
-    "cim:AnalogControl.AnalogValue": {
-      "@type": "@id"
-    },
-    "cim:AnalogLimit.value": {
-      "@type": "xsd:float"
-    },
     "cim:AnalogLimit.LimitSet": {
       "@type": "@id"
     },
-    "cim:AnalogLimitSet.Limits": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.value": {
+    "cim:AnalogLimit.value": {
       "@type": "xsd:float"
     },
     "cim:AnalogValue.Analog": {
@@ -112,16 +88,13 @@
     "cim:AnalogValue.AnalogControl": {
       "@type": "@id"
     },
-    "cim:Asset.Measurements": {
+    "cim:AnalogValue.value": {
+      "@type": "xsd:float"
+    },
+    "cim:Command.DiscreteValue": {
       "@type": "@id"
     },
-    "cim:BilateralExchangeActor.CommunicationLink": {
-      "@type": "@id"
-    },
-    "cim:CalculationMethodHierarchy.Measurement": {
-      "@type": "@id"
-    },
-    "cim:CalculationMethodHierarchy.MeasurementValue": {
+    "cim:Command.ValueAliasSet": {
       "@type": "@id"
     },
     "cim:Command.normalValue": {
@@ -130,34 +103,16 @@
     "cim:Command.value": {
       "@type": "xsd:integer"
     },
-    "cim:Command.DiscreteValue": {
-      "@type": "@id"
-    },
-    "cim:Command.ValueAliasSet": {
-      "@type": "@id"
-    },
-    "cim:CommunicationLink.communicationMediumKind": {
-      "@type": "@id"
-    },
-    "cim:CommunicationLink.communicationProtocolType": {
-      "@type": "@id"
-    },
-    "gad:CommunicationLink.Sensors": {
-      "@type": "@id"
-    },
     "cim:CommunicationLink.BilateralExchangeActor": {
       "@type": "@id"
     },
     "cim:CommunicationLink.RemoteUnits": {
       "@type": "@id"
     },
-    "cim:Control.operationInProgress": {
-      "@type": "xsd:boolean"
-    },
-    "cim:Control.unitMultiplier": {
+    "cim:CommunicationLink.communicationMediumKind": {
       "@type": "@id"
     },
-    "cim:Control.unitSymbol": {
+    "cim:CommunicationLink.communicationProtocolType": {
       "@type": "@id"
     },
     "cim:Control.ControlAction": {
@@ -169,20 +124,35 @@
     "cim:Control.RemoteControl": {
       "@type": "@id"
     },
+    "cim:Control.operationInProgress": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Control.timeStamp": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:Control.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Control.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:ControlAction.Control": {
+      "@type": "@id"
+    },
     "cim:ControlAction.analogValue": {
       "@type": "xsd:float"
     },
     "cim:ControlAction.discreteValue": {
       "@type": "xsd:integer"
     },
-    "cim:ControlAction.Control": {
-      "@type": "@id"
-    },
     "cim:CurrentTransformer.accuracyLimit": {
       "@type": "xsd:float"
     },
     "cim:CurrentTransformer.coreBurden": {
       "@type": "xsd:float"
+    },
+    "cim:Discrete.ValueAliasSet": {
+      "@type": "@id"
     },
     "cim:Discrete.maxValue": {
       "@type": "xsd:integer"
@@ -193,41 +163,20 @@
     "cim:Discrete.normalValue": {
       "@type": "xsd:integer"
     },
-    "cim:Discrete.DiscreteValues": {
-      "@type": "@id"
-    },
-    "cim:Discrete.ValueAliasSet": {
-      "@type": "@id"
-    },
-    "cim:DiscreteValue.value": {
-      "@type": "xsd:integer"
-    },
     "cim:DiscreteValue.Command": {
       "@type": "@id"
     },
     "cim:DiscreteValue.Discrete": {
       "@type": "@id"
     },
-    "cim:IOPoint.IOPointSource": {
-      "@type": "@id"
+    "cim:DiscreteValue.value": {
+      "@type": "xsd:integer"
     },
-    "cim:IOPointSource.IOPoint": {
+    "cim:IOPoint.IOPointSource": {
       "@type": "@id"
     },
     "cim:LimitSet.isPercentageLimits": {
       "@type": "xsd:boolean"
-    },
-    "cim:Measurement.phases": {
-      "@type": "@id"
-    },
-    "cim:Measurement.sourceType": {
-      "@type": "@id"
-    },
-    "cim:Measurement.unitMultiplier": {
-      "@type": "@id"
-    },
-    "cim:Measurement.unitSymbol": {
-      "@type": "@id"
     },
     "cim:Measurement.Asset": {
       "@type": "@id"
@@ -247,22 +196,25 @@
     "cim:Measurement.Terminal": {
       "@type": "@id"
     },
+    "cim:Measurement.phases": {
+      "@type": "@id"
+    },
+    "cim:Measurement.sourceType": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitSymbol": {
+      "@type": "@id"
+    },
     "cim:MeasurementAction.Measurement": {
-      "@type": "@id"
-    },
-    "gad:MeasurementSystem.reportingRate": {
-      "@type": "xsd:float"
-    },
-    "gad:MeasurementSystem.Measurements": {
-      "@type": "@id"
-    },
-    "gad:MeasurementSystem.Sensors": {
       "@type": "@id"
     },
     "gad:MeasurementSystem.CommunicationLink": {
       "@type": "@id"
     },
-    "cim:MeasurementValue.sensorAccuracy": {
+    "gad:MeasurementSystem.reportingRate": {
       "@type": "xsd:float"
     },
     "cim:MeasurementValue.CalculationMethodHierarchy": {
@@ -280,13 +232,19 @@
     "cim:MeasurementValue.RemoteSource": {
       "@type": "@id"
     },
+    "cim:MeasurementValue.sensorAccuracy": {
+      "@type": "xsd:float"
+    },
+    "cim:MeasurementValue.timeStamp": {
+      "@type": "xsd:dateTime"
+    },
     "cim:MeasurementValueQuality.MeasurementValue": {
       "@type": "@id"
     },
-    "cim:MeasurementValueSource.MeasurementValues": {
+    "gad:PMUConfiguration.PMUConfigurationFrame": {
       "@type": "@id"
     },
-    "cim:OldPerson.MeasurementValues": {
+    "gad:PMUConfiguration.PhasorMeasurementUnit": {
       "@type": "@id"
     },
     "gad:PMUConfiguration.anNmr": {
@@ -301,6 +259,9 @@
     "gad:PMUConfiguration.frNmr": {
       "@type": "xsd:integer"
     },
+    "gad:PMUConfiguration.grpDly": {
+      "@type": "xsd:time"
+    },
     "gad:PMUConfiguration.phNmr": {
       "@type": "xsd:integer"
     },
@@ -310,11 +271,11 @@
     "gad:PMUConfiguration.streamDataRate": {
       "@type": "xsd:integer"
     },
-    "gad:PMUConfiguration.PhasorMeasurementUnit": {
-      "@type": "@id"
+    "gad:PMUConfiguration.waitTime": {
+      "@type": "xsd:time"
     },
-    "gad:PMUConfiguration.PMUConfigurationFrame": {
-      "@type": "@id"
+    "gad:PMUConfiguration.window": {
+      "@type": "xsd:time"
     },
     "gad:PMUConfigurationFrame.dataRate": {
       "@type": "xsd:integer"
@@ -327,9 +288,6 @@
     },
     "gad:PMUConfigurationFrame.timeBase": {
       "@type": "xsd:integer"
-    },
-    "gad:PMUConfigurationFrame.PMUConfigurations": {
-      "@type": "@id"
     },
     "gad:PMUStream.PMU": {
       "@type": "@id"
@@ -349,25 +307,19 @@
     "gad:PMUValueQuality.pmuSync": {
       "@type": "xsd:boolean"
     },
-    "gad:PhasorDataConcentrator.LocalPDC": {
-      "@type": "@id"
-    },
-    "gad:PhasorDataConcentrator.PhasorMeasurementUnits": {
-      "@type": "@id"
-    },
     "gad:PhasorDataConcentrator.CentralPDC": {
-      "@type": "@id"
-    },
-    "gad:PhasorMeasurementUnit.timeSourceType": {
-      "@type": "@id"
-    },
-    "gad:PhasorMeasurementUnit.PhasorDataConcentrator": {
       "@type": "@id"
     },
     "gad:PhasorMeasurementUnit.PMUConfiguration": {
       "@type": "@id"
     },
     "gad:PhasorMeasurementUnit.PMUStream": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.PhasorDataConcentrator": {
+      "@type": "@id"
+    },
+    "gad:PhasorMeasurementUnit.timeSourceType": {
       "@type": "@id"
     },
     "gad:PointOnWaveValue.Analog": {
@@ -377,12 +329,6 @@
       "@type": "xsd:float"
     },
     "cim:PotentialTransformer.type": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Controls": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Measurements": {
       "@type": "@id"
     },
     "cim:Quality61850.badReference": {
@@ -409,19 +355,22 @@
     "cim:Quality61850.overFlow": {
       "@type": "xsd:boolean"
     },
+    "cim:Quality61850.source": {
+      "@type": "@id"
+    },
     "cim:Quality61850.suspect": {
       "@type": "xsd:boolean"
     },
     "cim:Quality61850.test": {
       "@type": "xsd:boolean"
     },
-    "cim:Quality61850.source": {
-      "@type": "@id"
-    },
     "cim:Quality61850.validity": {
       "@type": "@id"
     },
     "cim:RaiseLowerCommand.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:RemoteControl.Control": {
       "@type": "@id"
     },
     "cim:RemoteControl.actuatorMaximum": {
@@ -433,13 +382,16 @@
     "cim:RemoteControl.remoteControlled": {
       "@type": "xsd:boolean"
     },
-    "cim:RemoteControl.Control": {
-      "@type": "@id"
-    },
     "cim:RemotePoint.RemoteUnit": {
       "@type": "@id"
     },
+    "cim:RemoteSource.MeasurementValue": {
+      "@type": "@id"
+    },
     "cim:RemoteSource.deadband": {
+      "@type": "xsd:float"
+    },
+    "cim:RemoteSource.scanInterval": {
       "@type": "xsd:float"
     },
     "cim:RemoteSource.sensorMaximum": {
@@ -448,19 +400,10 @@
     "cim:RemoteSource.sensorMinimum": {
       "@type": "xsd:float"
     },
-    "cim:RemoteSource.scanInterval": {
-      "@type": "xsd:float"
-    },
-    "cim:RemoteSource.MeasurementValue": {
+    "cim:RemoteUnit.CommunicationLinks": {
       "@type": "@id"
     },
     "cim:RemoteUnit.remoteUnitType": {
-      "@type": "@id"
-    },
-    "cim:RemoteUnit.RemotePoints": {
-      "@type": "@id"
-    },
-    "cim:RemoteUnit.CommunicationLinks": {
       "@type": "@id"
     },
     "gad:Sensor.MeasurementSystem": {
@@ -471,9 +414,6 @@
     },
     "cim:SetPoint.value": {
       "@type": "xsd:float"
-    },
-    "cim:StringMeasurement.StringMeasurementValues": {
-      "@type": "@id"
     },
     "cim:StringMeasurementValue.StringMeasurement": {
       "@type": "@id"
@@ -487,29 +427,20 @@
     "gad:SynchrophaserFrame.framesize": {
       "@type": "xsd:integer"
     },
-    "gad:SynchrophaserFrame.streamId": {
-      "@type": "xsd:integer"
-    },
     "gad:SynchrophaserFrame.leapByte": {
       "@type": "xsd:float"
     },
-    "cim:ValueAliasSet.Commands": {
-      "@type": "@id"
+    "gad:SynchrophaserFrame.soc": {
+      "@type": "xsd:time"
     },
-    "cim:ValueAliasSet.Discretes": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.RaiseLowerCommands": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Values": {
-      "@type": "@id"
-    },
-    "cim:ValueToAlias.value": {
+    "gad:SynchrophaserFrame.streamId": {
       "@type": "xsd:integer"
     },
     "cim:ValueToAlias.ValueAliasSet": {
       "@type": "@id"
+    },
+    "cim:ValueToAlias.value": {
+      "@type": "xsd:integer"
     }
   },
   "@id": "https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/measurement/0.2.0/context.jsonld",

@@ -124,6 +124,9 @@
     "cim:ExternalNetworkInjection.ikSecond": {
       "@type": "xsd:boolean"
     },
+    "cim:ExternalNetworkInjection.maxInitialSymShCCurrent": {
+      "@type": "xsd:float"
+    },
     "cim:ExternalNetworkInjection.maxR0ToX0Ratio": {
       "@type": "xsd:float"
     },
@@ -131,6 +134,9 @@
       "@type": "xsd:float"
     },
     "cim:ExternalNetworkInjection.maxZ0ToZ1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minInitialSymShCCurrent": {
       "@type": "xsd:float"
     },
     "cim:ExternalNetworkInjection.minR0ToX0Ratio": {
@@ -142,12 +148,6 @@
     "cim:ExternalNetworkInjection.minZ0ToZ1Ratio": {
       "@type": "xsd:float"
     },
-    "cim:ExternalNetworkInjection.maxInitialSymShCCurrent": {
-      "@type": "xsd:float"
-    },
-    "cim:ExternalNetworkInjection.minInitialSymShCCurrent": {
-      "@type": "xsd:float"
-    },
     "cim:ExternalNetworkInjection.voltageFactor": {
       "@type": "xsd:float"
     },
@@ -156,6 +156,12 @@
     },
     "cim:LinearShuntCompensator.g0PerSection": {
       "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.First_Terminal": {
+      "@type": "@id"
+    },
+    "cim:MutualCoupling.Second_Terminal": {
+      "@type": "@id"
     },
     "cim:MutualCoupling.b0ch": {
       "@type": "xsd:float"
@@ -180,12 +186,6 @@
     },
     "cim:MutualCoupling.x0": {
       "@type": "xsd:float"
-    },
-    "cim:MutualCoupling.First_Terminal": {
-      "@type": "@id"
-    },
-    "cim:MutualCoupling.Second_Terminal": {
-      "@type": "@id"
     },
     "cim:NonlinearShuntCompensatorPoint.b0Total": {
       "@type": "xsd:float"
@@ -217,7 +217,7 @@
     "cim:PowerTransformer.beforeShortCircuitAnglePf": {
       "@type": "xsd:float"
     },
-    "cim:PowerTransformer.PowerTransformerEnd": {
+    "cim:PowerTransformerEnd.PowerTransformer": {
       "@type": "@id"
     },
     "cim:PowerTransformerEnd.b0": {
@@ -231,9 +231,6 @@
     },
     "cim:PowerTransformerEnd.x0": {
       "@type": "xsd:float"
-    },
-    "cim:PowerTransformerEnd.PowerTransformer": {
-      "@type": "@id"
     },
     "cim:RotatingMachine.ratedPowerFactor": {
       "@type": "xsd:float"
@@ -250,9 +247,6 @@
     "cim:SynchronousMachine.earthing": {
       "@type": "xsd:boolean"
     },
-    "cim:SynchronousMachine.mu": {
-      "@type": "xsd:float"
-    },
     "cim:SynchronousMachine.earthingStarPointR": {
       "@type": "xsd:float"
     },
@@ -260,6 +254,9 @@
       "@type": "xsd:float"
     },
     "cim:SynchronousMachine.ikk": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.mu": {
       "@type": "xsd:float"
     },
     "cim:SynchronousMachine.r": {
@@ -276,12 +273,6 @@
     },
     "cim:SynchronousMachine.x2": {
       "@type": "xsd:float"
-    },
-    "cim:Terminal.HasFirstMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasSecondMutualCoupling": {
-      "@type": "@id"
     },
     "cim:TransformerCore.b0": {
       "@type": "xsd:float"

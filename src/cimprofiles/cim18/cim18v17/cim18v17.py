@@ -44,10 +44,16 @@ BASE_URI = 'http://www.gridappsd.org/vfm#'
 ONTOLOGY_URI = 'http://cim.ucaiug.io/cim101/draft#'
 NAMESPACES = {
     'cim': 'http://cim.ucaiug.io/cim101/draft#',
+    'adms': 'http://www.w3.org/ns/adms#',
+    'dcat': 'http://www.w3.org/ns/dcat#',
+    'dcterms': 'http://purl.org/dc/terms/',
     'eu': 'http://iec.ch/TC57/CIM100-European#',
+    'eumd': 'https://cim4.eu/ns/Metadata-European#',
     'gad': 'http://gridappsd.org/CIM/extension#',
     'gb': 'http://GB/placeholder/ext#',
+    'md': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
     'nc': 'http://entsoe.eu/ns/nc#',
+    'prov': 'http://www.w3.org/ns/prov#',
 }
 
 @dataclass(repr=False, eq=False)
@@ -214,6 +220,15 @@ class CIMStereotype(Enum):
     remove = "remove"
 
     European = "European"
+    adms = "adms"
+    dcat = "dcat"
+    dcatcim = "dcatcim"
+    dct = "dct"
+    dcterms = "dcterms"
+    eumd = "eumd"
+    md = "md"
+    prov = "prov"
+
 @stereotype(CIMStereotype.NC)
 @dataclass(repr=False, eq=False)
 class ACDCTimePoint(Identity):
@@ -3208,6 +3223,105 @@ class CapacityTimePoint(Identity):
     @property
     def __package__(self):
         return 'ExtSchedule'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class CatalogRecord(Identity):
+    '''
+    A record in a data catalog, describing the registration of a single dataset
+    or data service.
+    '''
+
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An account of the resource.
+    Description may include but is not limited to: an abstract, a table
+    of contents, a graphical representation, or a free-text account of
+    the resource.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The date of listing (i.e. formal recording) of the corresponding dataset
+    or service in the catalog.
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date on which the resource was changed.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A name given to the record.
+    '''
+    
+    Catalog: Optional[Catalog] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Catalog.Record',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The catalog the record is based on.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -6377,59 +6491,6 @@ class DCTerminalPolarityKind(Enum):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Compound)
-@stereotype(CIMStereotype.Attribute)
-@dataclass(repr=False, eq=False)
-class DateTimeInterval(Identity):
-    '''
-    Interval between two date and time points, where the interval includes
-    the start time but excludes end time.
-    '''
-
-    end: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    End date and time of this interval. The end date and time where the
-    interval is defined up to, but excluded.
-    '''
-    
-    start: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://cim.ucaiug.io/cim101/draft#',
-        'serialize': True,
-        })
-    '''
-    Start date and time of this interval. The start date and time is included
-    in the defined interval.
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Domain'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-
 @stereotype(CIMStereotype.NC)
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
@@ -6668,6 +6729,330 @@ class Displacement(CIMUnit):
         return '1'
     
 
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class Distribution(Identity):
+    '''
+    A specific representation of a dataset. A dataset might be available in
+    multiple serializations that may differ in various ways, including natural
+    language, media-type or format, schematic organization, temporal and spatial
+    resolution, level of detail or profiles (which might specify any or all
+    of the above).
+    '''
+
+    accessRights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about who access the resource or an indication of its security
+    status.
+    Access Rights may include information regarding access or restrictions
+    based on privacy, security, or other policies.
+    '''
+    
+    accessURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A URL of a resource that gives access to a distribution of the dataset.
+    E.g. landing page, feed, SPARQL endpoint. Use for all cases except
+    a simple download link, in which case downloadURL is preferred.
+    '''
+    
+    byteSize: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The size of a distribution in bytes. The size in bytes can be approximated
+    when the precise size is not known.
+    '''
+    
+    compressFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The compression format of the distribution in which the data is contained
+    in a compressed form, e.g. to reduce the size of the downloadable file.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A free-text account of the distribution.
+    '''
+    
+    downloadURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The URL of the downloadable file in a given format. E.g. CSV file or
+    RDF file. The format is indicated by the distribution's dct:format
+    and/or dcat:mediaType.
+    SHOULD be used for the address at which this distribution is available
+    directly, typically through a HTTP Get request.
+    '''
+    
+    format: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The file format of the distribution.
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An unambiguous reference to the resource within a given context.
+    Recommended practice is to identify the resource by means of a string
+    conforming to an identification system. Examples include International
+    Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform
+    Resource Name (URN). Persistent identifiers should be provided as HTTP
+    URIs.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date of formal issuance (e.g., publication) of the distribution.
+    '''
+    
+    license: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A legal document giving official permission to do something with the
+    resource.
+    Recommended practice is to identify the license document with a URI.
+    If this is not possible or feasible, a literal value that identifies
+    the license may be provided.
+    '''
+    
+    mediaType: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The media type of the distribution as defined by IANA.
+    This property SHOULD be used when the media type of the distribution
+    is defined in the IANA media types registry https://www.iana.org/assignments/media-types/,
+    otherwise dct:format MAY be used with different values.
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date on which the resource was changed.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    packageFormat: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The package format of the distribution in which one or more data files
+    are grouped together, e.g. to enable a set of related files to be downloaded
+    together.
+    This property is to be used when the files in the distribution are
+    compressed, e.g. in a ZIP file. The format SHOULD be expressed using
+    a media type as defined by IANA media types registry https://www.iana.org/assignments/media-types/,
+    if available.
+    '''
+    
+    rights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A statement that concerns all rights not addressed with dct:license
+    or dct:accessRights, such as copyright statements.
+    '''
+    
+    spatialResolutionInMeters: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum spatial separation resolvable in a dataset, measured in metres.
+    '''
+    
+    temporalResolution: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum time period resolvable in a dataset.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A name given to the distribution.
+    '''
+    
+    accessService: list[DataService] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'DataService.Distribution',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A site or end-point that gives access to the distribution of the dataset.
+    '''
+    
+    Dataset: Optional[Dataset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Dataset.Distribution',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class EVTypeKind(Enum):
@@ -7071,6 +7456,94 @@ class EnergyDemandKind(Enum):
     @property
     def __package__(self):
         return 'ExtSchedule'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.prov)
+@dataclass(repr=False, eq=False)
+class Entity(Identity):
+    '''
+    Attribution is the ascribing of an entity to an agent.
+    [CIM context:
+    The Role of the service provider within Business Process. (Merging Agent,
+    System Operator, Security Assessment Coordinator, Remedial Action Optimization
+    Operator, Capacity Calculator etc.)]
+    '''
+
+    atLocation: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['prov', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/prov#',
+        'serialize': True,
+        })
+    '''
+    A location can be an identifiable geographic place (ISO 19112), but
+    it can also be a non-geographic place such as a directory, row, or
+    column. As such, there are numerous ways in which location can be expressed,
+    such as by a coordinate, address, landmark, and so forth.
+    '''
+    
+    generatedAtTime: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['prov', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/prov#',
+        'serialize': True,
+        })
+    '''
+    Generation is the completion of production of a new entity by an activity.
+    This entity did not exist before generation and becomes available for
+    usage after this generation.
+    '''
+    
+    invalidatedAtTime: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['prov', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/prov#',
+        'serialize': True,
+        })
+    '''
+    Invalidation is the start of the destruction, cessation, or expiry
+    of an existing entity by an activity. The entity is no longer available
+    for use (or further invalidation) after invalidation. Any generation
+    or usage of an entity precedes its invalidation.
+    '''
+    
+    value: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['prov', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/prov#',
+        'serialize': True,
+        })
+    '''
+    Provides a value that is a direct representation of an entity.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/prov#'
+    @property
+    def __package__(self):
+        return 'prov'
     @property
     def __minOccurs__(self):
         return '0'
@@ -13700,6 +14173,7 @@ class ConductorInfo(ConductingAssetInfo):
 @stereotype(CIMStereotype.ShadowExtension)
 @stereotype(CIMStereotype.Concrete)
 @stereotype(CIMStereotype.Description)
+@stereotype(CIMStereotype.ByReference)
 @stereotype(CIMStereotype.European)
 @dataclass(repr=False, eq=False)
 class ConnectivityNode(IdentifiedObject):
@@ -15002,7 +15476,7 @@ class BatteryInfo(DCConductingAssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -15517,7 +15991,9 @@ class DelayTimer(IdentifiedObject):
 @dataclass(repr=False, eq=False)
 class Dimension(IdentifiedObject):
     '''
-    A DQV quality dimension of the feeder record.
+    As applicable, the basic linear, area, or volume dimensions of an asset,
+    asset type (AssetModel) or other type of object (such as land area). Units
+    and multipliers are specified per dimension.
     '''
 
     orientation: Optional[str] = field(
@@ -18930,108 +19406,6 @@ class Geometry(IdentifiedObject):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class GridDistribution(IdentifiedObject):
-    '''
-    '''
-
-    accessURL: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    byteSize: Optional[int] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    checksum: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    mediaType: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    RealizedGridModel: Optional[GridModel] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'GridModel.Distributions',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The grid model realized by this distribution
-    '''
-    
-    Specifications: list[GridSpecification] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridSpecification.Distributions',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    One serialisation and the n profile editions of the stack
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @dataclass(repr=False, eq=False)
 class GridEdgeDeviceInfo(ConductingAssetInfo):
     '''
@@ -19098,39 +19472,6 @@ class GridEdgeDeviceInfo(ConductingAssetInfo):
     @property
     def __package__(self):
         return 'AssetInfo'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False, eq=False)
-class GridSpecification(IdentifiedObject):
-    '''
-    '''
-
-    Distributions: list[GridDistribution] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridDistribution.Specifications',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
     @property
     def __minOccurs__(self):
         return '0'
@@ -22728,6 +23069,7 @@ class LoadResponseCharacteristic(IdentifiedObject):
         return 'unbounded'
     
 @stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.Description)
 @dataclass(repr=False, eq=False)
 class Location(IdentifiedObject):
     '''
@@ -24618,563 +24960,6 @@ class Frame(MetaThing):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False, eq=False)
-class GridDataset(MetaThing):
-    '''
-    GridDataset describes a set of grid modeling information:
-    GridDataset description is valid regardless of the syntax or semantics
-    used to realize the information, so it valid whether the information is
-    realized in a standard form or is maintained internal to a product.
-    '''
-
-    businessPurpose: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    Describes the business purpose of the information set, which is usually
-    a string defined by the business process that publishes the information
-    set and is often used by business process logic to recognize the purpose
-    of a message.
-    '''
-    
-    issued: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    type: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    version: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    validityInterval: Optional[DateTimeInterval] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['Compound', 'Attribute'],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': '',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class FrameworkEdition(GridDataset):
-    '''
-    A framework edition defines the set of frames, boundaries and reference
-    models for an evolutionary state of a framework.
-    Framework edition properties must identify the situation for which the
-    evolutionary state applies. Usually, this is a time range.
-    '''
-
-    framework: Optional[str] = field(
-        default=None,
-        metadata={
-        'type': 'Attribute',
-        'stereotypes': ['Attribute'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    IncludedBoundaries: list[Boundary] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Boundary.FrameworkEditions',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    IncludedFrames: list[Frame] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Frame.FrameworkEditions',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    IncludedReferences: list[Reference] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'Reference.FrameworkEditions',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class GridAssembly(GridDataset):
-    '''
-    A set of grid models that join together through grid data associations
-    to create a set of modeling for some business purpose, most often a set
-    of modeling that either defines the input to or the result of grid analysis.
-    An Assembly should be viewed as a statement by the producer that it put
-    this information together in the internal form used by the producer and
-    generated any results based on the algorithm of the producer. When an Assembly
-    is passed to some other party, the information is exported in standard
-    form and imported to the other party's system. Receivers will typically
-    re-execute the analysis to assure successful transfer of information (assuming
-    they have that capability).
-    Note that assemblies may share common model components. For example, it
-    is common that many studies are conducted on the same physical description
-    of the grid.
-    '''
-
-    GridModelParts: list[GridModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.GridAssemblies',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False, eq=False)
-class GridModel(GridDataset):
-    '''
-    Classes that inherit from GridModel all represent a set of information
-    about a part of the grid in one state.
-    The kind of information is indicated by the profileType inherited from
-    GridDataset, which may be either an individual curated profile or a stack
-    of profiles. A stack GridModel is necessary when grid artifact Distributions
-    are a union of curated profiles, which is very common. Typically, products
-    work with stacks and exchange stacks. Occasionally, however, an individual
-    profile is extracted from a stack and used as part of another stack.
-    '''
-
-    GridAssemblies: list[GridAssembly] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridAssembly.GridModelParts',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    Distributions: list[GridDistribution] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridDistribution.RealizedGridModel',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    The set of grid distributions that are exchanged as part of this this
-    grid model
-    '''
-    
-    ModelAuthority: Optional[ModelAuthority] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'ModelAuthority.GridModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    NamingAuthority: Optional[NamingAuthority] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': '1',
-        'inverse': 'NamingAuthority.NamedGridModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    The naming authority that assigned names and identifiers to this grid
-    model
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class AssemblyWideModel(GridModel):
-    '''
-    A grid model whose scope matches that of an entire assembly, such as a
-    power flow solution grid model.
-    '''
-
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class BoundaryModel(GridModel):
-    '''
-    Represents a grid model that defines a boundary agreement for a framework.
-    A boundary model defines the set of physical grid objects that separate
-    adjacent frames such that frame models must have associations only with
-    the boundary objects and not with any adjacent frame model objects.
-    Bilateral boundary models separating two adjacent frames are recommended
-    practice but multilateral boundary models are allowed.
-    If multiple BoundaryModels are defined for a Boundary, their properties
-    should define their applicability to a situation criteria.
-    '''
-
-    EdgeModels: list[EdgeModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'EdgeModel.TerminatedBoundaryModel',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    EquivalentModels: list[EquivalentModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'EquivalentModel.JoinedBoundaryModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    FrameModels: list[FrameModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'FrameModel.PerimeterBoundaryModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    '''
-    
-    DefinedBoundary: Optional[Boundary] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Boundary.BoundaryModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.Concrete)
-@stereotype(CIMStereotype.GridAPPSD)
-@dataclass(repr=False, eq=False)
-class EdgeModel(GridModel):
-    '''
-    When there is a boundary between frame X that is included in a study and
-    another frame that is not included, a physical edge model is the recommended
-    means of representing the flow from X into the un-included frame. The edge
-    model has an association to the boundary model that it joins and to frame
-    X (the frame that the edge pairs with).
-    Normally, a utility examines each framework edition it receives and adds
-    new physical edge models for each new boundary models. Physical edge models
-    are only changed when a new boundary model is defined. A boundary may have
-    edges for each of its adjacent frames if the studies conducted by a utility
-    require them.
-    '''
-
-    ReplacedFrame: Optional[Frame] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Frame.EdgeModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    TerminatedBoundaryModel: Optional[BoundaryModel] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'BoundaryModel.EdgeModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class EquivalentModel(GridModel):
-    '''
-    '''
-
-    JoinedBoundaryModels: list[BoundaryModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.EquivalentModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
-@stereotype(CIMStereotype.GridAPPSD)
-@stereotype(CIMStereotype.Concrete)
-@dataclass(repr=False, eq=False)
-class FrameModel(GridModel):
-    '''
-    A model for a frame.
-    A created frame model references the set of boundary models that it was
-    created against. That frame model will remain valid without modification
-    for any situation where its frame is defined by the same set of boundary
-    models.
-    '''
-
-    PerimeterBoundaryModels: list[BoundaryModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'BoundaryModel.FrameModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    RepresentedFrame: Optional[Frame] = field(
-        default=None,
-        metadata={
-        'type': 'Association',
-        'stereotypes': ['GridAPPSD'],
-        'minOccurs': '1',
-        'maxOccurs': '1',
-        'inverse': 'Frame.FrameModels',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': True,
-        })
-    '''
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://gridappsd.org/CIM/extension#'
-    @property
-    def __package__(self):
-        return 'MetadataEXT'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class MeterFormKind(Enum):
@@ -25493,8 +25278,1180 @@ class MeterInfo(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
+@stereotype(CIMStereotype.dcterms)
+@stereotype(CIMStereotype.md)
+@stereotype(CIMStereotype.dcat)
+@stereotype(CIMStereotype.eumd)
+@stereotype(CIMStereotype.dcatcim)
+@dataclass(repr=False, eq=False)
+class Model(Entity):
+    '''
+    A Model is a collection of data describing instances, objects or entities,
+    real or computed. In the context of CIM the semantics of the data is defined
+    by profiles. Hence a model can contain equipment data, power flow initial
+    values, power flow results etc.
+    The Model class describes the header content that is the same for the FullModel
+    and the DifferenceModel. A Model is identified by an rdf:about attribute.
+    The rdf:about attribute uniquely describes the model data and not the CIMXML
+    document. A new rdf:about identification is generated for created documents
+    only when the model data has changed. A repeated creation of documents
+    from unchanged model data shall have the same rdf:about identification
+    as previous document generated from the same model data.
+    '''
+
+    applicationSoftware: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['eumd', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'https://cim4.eu/ns/Metadata-European#',
+        'serialize': True,
+        })
+    '''
+    Identifies the application software which generated this instance file.
+    The application software term is defined in ISO/IEC/IEEE 24765:2017.
+    The application software can be identified either:
+    - as a string which contains information on the software name and version,
+    e.g. &lt;tool_name&gt;-&lt;major_version&gt;.&lt;minor_version&gt;.&lt;patch&gt;,
+    or
+    - as a reference to a software identification tag as defined by ISO/IEC
+    19770-2:2015 and ISO/IEC/IEEE 24765:2017.
+    '''
+    
+    created: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['md', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    The date and time when the model was created. It is the time of the
+    serialization. The format is an extended format according to the ISO
+    8601-2005. European exchanges shall refer to UTC, e.g. &lt;md:Model.created&gt;2014-05-15T17:48:31.474Z&lt;/md:Model.created&gt;.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A free-text account of the item.
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An unambiguous reference to the resource within a given context. Recommended
+    practice is to identify the resource by means of a string conforming
+    to an identification system. Examples include International Standard
+    Book Number (ISBN), Digital Object Identifier (DOI), and Uniform Resource
+    Name (URN). Persistent identifiers should be provided as HTTP URIs.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The date of listing (i.e., formal recording) of the corresponding dataset
+    or service in the catalog.
+    [CIM context:
+    Reference to the date that the complete data set was made valid/available.].
+    '''
+    
+    modelingAuthoritySet: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['md', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    A URN/URI referring to the organisation role / model authority set
+    reference. The organization role is the source of the model. It is
+    the same for all profiles part of a model exchange.
+    '''
+    
+    rights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A statement that concerns all rights not addressed with dct:license
+    or dct:accessRights, such as copyright statements.
+    '''
+    
+    rightsHolder: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about rights held in and over the resource. Typically,
+    rights information includes a statement about various property rights
+    associated with the resource, including intellectual property rights.
+    Recommended practice is to refer to a rights statement with a URI.
+    If this is not possible or feasible, a literal value (name, label,
+    or short text) may be provided.
+    '''
+    
+    scenarioTime: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['md', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    The date and time that this model represents, i.e. for which the model
+    is valid. The format is an extended format according to the ISO 8601-2005.
+    European exchanges shall refer to UTC, e.g. &lt;md:Model.scenarioTime&gt;2030-01-15T17:00:00.000Z&lt;/md:Model.scenarioTime&gt;.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A name given to the resource
+    [CIM context:
+    The human readable name of the dataset that can form the instance file
+    name.]
+    '''
+    
+    version: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The version number of a resource.
+    '''
+    
+    versionNotes: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute', 'adms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/adms#',
+        'serialize': True,
+        })
+    '''
+    A description of changes between this version and the previous version
+    of the resource.
+    '''
+    
+    Resource1: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that has these access rights.
+    '''
+    
+    hasAlternativeVersion: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat-cim'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Model.alternativeVersionOf',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': False,
+        })
+    '''
+    This resource has a more specific, versioned alternative resource.
+    This property is intended for relating a non-versioned or abstract
+    resource to several versioned alternative resources, e.g. snapshots.
+    dcat-cim:hasAlternativeVersion is a specialisation of dcat:hasVersion
+    with the restriction that the resource shall have a preferred version
+    (dcat-cim:preferredVersion) so that the preferred dataset can be used
+    when there is no need to access all alternative versions.
+    '''
+    
+    Resource2: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that conforms to.
+    '''
+    
+    hasVersion: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Model.isVersionOf',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    This resource is a version of a non-versioned or abstract resource.
+    This property is intended for relating a versioned resource to a non-versioned
+    or abstract resource.
+    The notion of version used by this property is limited to versions
+    resulting from revisions occurring to a resource as part of its life-cycle.
+    Therefore, its semantics is more specific than its super-property dcterms:isVersionOf,
+    which makes use of a broader notion of version, including editions
+    and adaptations.
+    '''
+    
+    Resource3: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that has this license.
+    '''
+    
+    Resource8: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.nextVersion',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    The resource that has this next version.
+    '''
+    
+    Resource7: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.previousVersion',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    The resoource of a previous version that has this next version.
+    '''
+    
+    Model2: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['eumd'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Model.processType',
+        'namespace': 'https://cim4.eu/ns/Metadata-European#',
+        'serialize': False,
+        })
+    '''
+    The model for this process type.
+    '''
+    
+    Resource11: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that is made available.
+    '''
+    
+    isRequiredBy: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    Resource6: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that has this source.
+    '''
+    
+    Resource10: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that has this spatial location.
+    '''
+    
+    Resource4: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': False,
+        })
+    '''
+    The resource that has this type.
+    '''
+    
+    accessRights: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about who access the resource or an indication of its security
+    status. Access Rights may include information regarding access or restrictions
+    based on privacy, security, or other policies.
+    [CIM context:
+    Reference to the confidentiality level that shall be applied when handling
+    this model.].
+    '''
+    
+    alternativeVersionOf: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat-cim'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.hasAlternativeVersion',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    This resource is an alternative version of a non-versioned or abstract
+    resource.
+    This property is intended for relating a versioned resource to a non-versioned
+    or abstract resource at the same time express that multiple versions
+    exist.
+    dcat-cim:alternativeVersionOf is a specialisation of dcat:isVersionOf
+    with the restriction that the resource shall have a preferred version
+    (dcat-cim:preferredVersion) so that the preferred dataset can be used
+    when there is no need to access all alternative versions.
+    '''
+    
+    conformsTo: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An established standard to which the described resource conforms.
+    [CIM context:
+    An IRI describing the profile that governs this model. It uniquely
+    identifies the profile and its version. Multiple instances of the property
+    describe all standards or specifications to which the model and the
+    document representing this model conform to.
+    A document would normally conform to profile definitions, the constraints
+    that relate to the profile and/or the set of business specific constrains.
+    A reference to a machine- readable constraints or specification indicates
+    that the document was tested against these constraints and it conforms
+    to them.].
+    '''
+    
+    hasPreferredVersion: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat-cim'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.preferredVersion',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    The resource that has a preferred version.
+    '''
+    
+    isVersionOf: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.hasVersion',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    This resource has a more specific, versioned resource. This property
+    is intended for relating a non-versioned or abstract resource to several
+    versioned resources, e.g., snapshots.
+    The notion of version used by this property is limited to versions
+    resulting from revisions occurring to a resource as part of its life-cycle.
+    Therefore, its semantics is more specific than its super-property dcterms:hasVersion,
+    which makes use of a broader notion of version, including editions
+    and adaptations.
+    '''
+    
+    license: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A legal document giving official permission to do something with the
+    resource. Recommended practice is to identify the license document
+    with a URI. If this is not possible or feasible, a literal value that
+    identifies the license may be provided.
+    [CIM context:
+    Reference to the license under which the data is made available. If
+    no license holder is defined, then the original data provider holds
+    the license.].
+    '''
+    
+    ModelDataset: Optional[ModelDataset] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['eumd'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'ModelDataset.Model',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    nextVersion: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.Resource8',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The next version for the resource.
+    '''
+    
+    preferredVersion: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat-cim'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.hasPreferredVersion',
+        'namespace': 'http://iec.ch/TC57/61970-552/ModelDescription/1#',
+        'serialize': True,
+        })
+    '''
+    The preferred version of a resource in a lineage of alternative versions.
+    This property is used to specify a specific version to be the preference
+    in a chain of alternatives, consisting of snapshots of a resource.
+    '''
+    
+    previousVersion: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.Resource7',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The previous version of a resource in a lineage.
+    This property is meant to be used to specify a version chain, consisting
+    of snapshots of a resource.
+    The notion of version used by this property is limited to versions
+    resulting from revisions occurring to a resource as part of its life-cycle.
+    One of the typical cases here is representing the history of the versions
+    of a dataset that have been released over time.
+    '''
+    
+    processType: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'eumd'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'Model.Model2',
+        'namespace': 'https://cim4.eu/ns/Metadata-European#',
+        'serialize': True,
+        })
+    '''
+    The exact business nature. Reference to Business Process configurations.
+    '''
+    
+    publisher: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An entity responsible for making the resource available.
+    [CIM context:
+    The agent that is publishing the dataset on the given platform.]
+    '''
+    
+    requires: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    source: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A related resource from which the described resource is derived.
+    This property is intended to be used with non-literal values. The described
+    resource may be derived from the related resource in whole or in part.
+    Best practice is to identify the related resource by means of a URI
+    or a string conforming to a formal identification system.
+    '''
+    
+    spatial: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The geographical area covered by the dataset.
+    [CIM context:
+    The responsibility area that multiple model can describe, also referred
+    to frame.]
+    '''
+    
+    type: Optional[Model] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['md', 'dcterms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The nature or genre of the resource. Recommended practice is to use
+    a controlled vocabulary such as the DCMI Type Vocabulary [DCMI-TYPE].
+    To describe the file format, physical medium, or dimensions of the
+    resource, use the property Format.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://iec.ch/TC57/61970-552/ModelDescription/1#'
+    @property
+    def __package__(self):
+        return 'ExtPart552FileHeader'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class FrameworkEdition(Model):
+    '''
+    A framework edition defines the set of frames, boundaries and reference
+    models for an evolutionary state of a framework.
+    Framework edition properties must identify the situation for which the
+    evolutionary state applies. Usually, this is a time range.
+    '''
+
+    framework: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    IncludedBoundaries: list[Boundary] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Boundary.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    IncludedFrames: list[Frame] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Frame.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    IncludedReferences: list[Reference] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Reference.FrameworkEditions',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.md)
+@dataclass(repr=False, eq=False)
+class FullModel(Model):
+    '''
+    It represents the full model header and its contents is described by the
+    Model class.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://iec.ch/TC57/61970-552/ModelDescription/1#'
+    @property
+    def __package__(self):
+        return 'ExtPart552FileHeader'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class GridAssembly(FullModel):
+    '''
+    A set of grid models that join together through grid data associations
+    to create a set of modeling for some business purpose, most often a set
+    of modeling that either defines the input to or the result of grid analysis.
+    An Assembly should be viewed as a statement by the producer that it put
+    this information together in the internal form used by the producer and
+    generated any results based on the algorithm of the producer. When an Assembly
+    is passed to some other party, the information is exported in standard
+    form and imported to the other party's system. Receivers will typically
+    re-execute the analysis to assure successful transfer of information (assuming
+    they have that capability).
+    Note that assemblies may share common model components. For example, it
+    is common that many studies are conducted on the same physical description
+    of the grid.
+    '''
+
+    GridModelParts: list[GridModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': 'GridModel.GridAssemblies',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class GridModel(Model):
+    '''
+    Classes that inherit from GridModel all represent a set of information
+    about a part of the grid in one state.
+    The kind of information is indicated by the profileType inherited from
+    GridDataset, which may be either an individual curated profile or a stack
+    of profiles. A stack GridModel is necessary when grid artifact Distributions
+    are a union of curated profiles, which is very common. Typically, products
+    work with stacks and exchange stacks. Occasionally, however, an individual
+    profile is extracted from a stack and used as part of another stack.
+    '''
+
+    GridAssemblies: list[GridAssembly] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'GridAssembly.GridModelParts',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class AssemblyWideModel(GridModel):
+    '''
+    A grid model whose scope matches that of an entire assembly, such as a
+    power flow solution grid model.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class BoundaryModel(GridModel):
+    '''
+    Represents a grid model that defines a boundary agreement for a framework.
+    A boundary model defines the set of physical grid objects that separate
+    adjacent frames such that frame models must have associations only with
+    the boundary objects and not with any adjacent frame model objects.
+    Bilateral boundary models separating two adjacent frames are recommended
+    practice but multilateral boundary models are allowed.
+    If multiple BoundaryModels are defined for a Boundary, their properties
+    should define their applicability to a situation criteria.
+    '''
+
+    EdgeModels: list[EdgeModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EdgeModel.TerminatedBoundaryModel',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    EquivalentModels: list[EquivalentModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'EquivalentModel.JoinedBoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    FrameModels: list[FrameModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'FrameModel.PerimeterBoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    DefinedBoundary: Optional[Boundary] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Boundary.BoundaryModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.Concrete)
+@stereotype(CIMStereotype.GridAPPSD)
+@dataclass(repr=False, eq=False)
+class EdgeModel(GridModel):
+    '''
+    When there is a boundary between frame X that is included in a study and
+    another frame that is not included, a physical edge model is the recommended
+    means of representing the flow from X into the un-included frame. The edge
+    model has an association to the boundary model that it joins and to frame
+    X (the frame that the edge pairs with).
+    Normally, a utility examines each framework edition it receives and adds
+    new physical edge models for each new boundary models. Physical edge models
+    are only changed when a new boundary model is defined. A boundary may have
+    edges for each of its adjacent frames if the studies conducted by a utility
+    require them.
+    '''
+
+    ReplacedFrame: Optional[Frame] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Frame.EdgeModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    TerminatedBoundaryModel: Optional[BoundaryModel] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'BoundaryModel.EdgeModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class EquivalentModel(GridModel):
+    '''
+    '''
+
+    JoinedBoundaryModels: list[BoundaryModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BoundaryModel.EquivalentModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class FrameModel(GridModel):
+    '''
+    A model for a frame.
+    A created frame model references the set of boundary models that it was
+    created against. That frame model will remain valid without modification
+    for any situation where its frame is defined by the same set of boundary
+    models.
+    '''
+
+    PerimeterBoundaryModels: list[BoundaryModel] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'BoundaryModel.FrameModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    RepresentedFrame: Optional[Frame] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['GridAPPSD'],
+        'minOccurs': '1',
+        'maxOccurs': '1',
+        'inverse': 'Frame.FrameModels',
+        'namespace': 'http://gridappsd.org/CIM/extension#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://gridappsd.org/CIM/extension#'
+    @property
+    def __package__(self):
+        return 'MetadataEXT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.GridAPPSD)
 @dataclass(repr=False, eq=False)
 class ModelAuthority(IdentifiedObject):
     '''
@@ -25513,20 +26470,6 @@ class ModelAuthority(IdentifiedObject):
         })
     '''
     The set of frames maintained by this modeling authority
-    '''
-    
-    GridModels: list[GridModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.ModelAuthority',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
     '''
     
     @property
@@ -26210,7 +27153,6 @@ class NameType(Identity):
     def __maxOccurs__(self):
         return 'unbounded'
     
-@stereotype(CIMStereotype.Description)
 @stereotype(CIMStereotype.Concrete)
 @dataclass(repr=False, eq=False)
 class NamingAuthority(Identity):
@@ -26267,35 +27209,6 @@ class NamingAuthority(Identity):
     Name of the naming authority.
     '''
     
-    NamedGridModels: list[GridModel] = field(
-        default_factory=list,
-        metadata={
-        'type': 'Association',
-        'stereotypes': [],
-        'minOccurs': '0',
-        'maxOccurs': 'unbounded',
-        'inverse': 'GridModel.NamingAuthority',
-        'namespace': 'http://gridappsd.org/CIM/extension#',
-        'serialize': False,
-        })
-    '''
-    The set of grid models assigned names and identifiers by this naming
-    authority
-    '''
-    
-    @property
-    def __namespace__(self):
-        return 'http://cim.ucaiug.io/cim101/draft#'
-    @property
-    def __package__(self):
-        return 'Core'
-    @property
-    def __minOccurs__(self):
-        return '0'
-    @property
-    def __maxOccurs__(self):
-        return 'unbounded'
-    
     NameType: list[NameType] = field(
         default_factory=list,
         metadata={
@@ -26310,6 +27223,19 @@ class NamingAuthority(Identity):
     '''
     All name types managed by this authority.
     '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://cim.ucaiug.io/cim101/draft#'
+    @property
+    def __package__(self):
+        return 'Core'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
     
 @stereotype(CIMStereotype.GridAPPSD)
 @stereotype(CIMStereotype.Concrete)
@@ -29100,6 +30026,30 @@ class PerLengthSequenceImpedance(PerLengthImpedance):
     Zero sequence series reactance, per unit of length.
     '''
     
+@stereotype(CIMStereotype.dct)
+@stereotype(CIMStereotype.Compound)
+@stereotype(CIMStereotype.Attribute)
+@dataclass(repr=False, eq=False)
+class PeriodOfTime(Identity):
+    '''
+    Period of Time.
+    An interval of time that is named or defined by its start and end dates.
+    '''
+
+    @property
+    def __namespace__(self):
+        return 'http://purl.org/dc/terms/'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+
 @stereotype(CIMStereotype.enumeration)
 @stereotype(CIMStereotype.Attribute)
 class PhaseCode(Enum):
@@ -32819,7 +33769,7 @@ class BoundaryPoint(PowerSystemResource):
         default=None,
         metadata={
         'type': 'Association',
-        'stereotypes': ['ShadowExtension', 'European'],
+        'stereotypes': ['ShadowExtension', 'European', 'ByReference'],
         'minOccurs': '1',
         'maxOccurs': '1',
         'inverse': 'ConnectivityNode.BoundaryPoint',
@@ -48516,6 +49466,850 @@ class ResistancePerLength(CIMUnit):
         return '1'
     
 
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class Resource(Identity):
+    '''
+    Resource published or curated by a single agent.
+    '''
+
+    accessRights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about who access the resource or an indication of its security
+    status.
+    Access Rights may include information regarding access or restrictions
+    based on privacy, security, or other policies.
+    '''
+    
+    contactPoint: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Relevant contact information for the catalogued resource. Use of vCard
+    is recommended.
+    '''
+    
+    creator: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An entity responsible for making the resource.
+    Recommended practice is to identify the creator with a URI. If this
+    is not possible or feasible, a literal value that identifies the creator
+    may be provided.
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A free-text account of the resource.
+    Description may include but is not limited to: an abstract, a table
+    of contents, a graphical representation, or a free-text account of
+    the resource.
+    '''
+    
+    hasCurrentVersion: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    This resource has a more specific, versioned resource with equivalent
+    content.
+    '''
+    
+    hasPart: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A related resource that is included either physically or logically
+    in the described resource.
+    '''
+    
+    hasVersion: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    This resource has a more specific, versioned resource.
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A unique identifier of the resource being described or cataloged.
+    The identifier might be used as part of the IRI of the resource, but
+    still having it represented explicitly is useful.
+    The identifier is a text string which is assigned to the resource to
+    provide an unambiguous reference within a particular context.
+    '''
+    
+    isReferencedBy: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A related resource, such as a publication, that references, cites,
+    or otherwise points to the cataloged resource.
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Date of formal issuance of the resource.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    isVersionOf: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A related resource of which the described resource is a version, edition,
+    or adaptation.
+    Changes in version imply substantive changes in content rather than
+    differences in format. This property is intended to be used with non-literal
+    values. This property is an inverse property of hasVersion.
+    '''
+    
+    keyword: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A keyword or tag describing a resource.
+    '''
+    
+    license: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A legal document under which the resource is made available.
+    Recommended practice is to identify the license document with a URI.
+    If this is not possible or feasible, a literal value that identifies
+    the license may be provided.
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Most recent date on which the item was changed, updated or modified.
+    Recommended practice is to describe the date, date/time, or period
+    of time as recommended for the property Date, of which this is a subproperty.
+    '''
+    
+    previousVersion: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The previous version of a resource in a lineage.
+    '''
+    
+    publisher: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    An entity responsible for making the resource available.
+    '''
+    
+    relation: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A resource with an unspecified relationship to the cataloged resource.
+    '''
+    
+    replaces: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A related resource that is supplanted, displaced, or superseded by
+    the described resource.
+    '''
+    
+    rights: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A statement that concerns all rights not addressed with dct:license
+    or dct:accessRights, such as copyright statements.
+    '''
+    
+    rightsHolder: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Information about rights held in and over the resource.
+    Typically, rights information includes a statement about various property
+    rights associated with the resource, including intellectual property
+    rights. Recommended practice is to refer to a rights statement with
+    a URI. If this is not possible or feasible, a literal value (name,
+    label, or short text) may be provided.
+    '''
+    
+    source: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A related resource from which the described resource is derived.
+    This property is intended to be used with non-literal values. The described
+    resource may be derived from the related resource in whole or in part.
+    Best practice is to identify the related resource by means of a URI
+    or a string conforming to a formal identification system.
+    '''
+    
+    status: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute', 'adms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/adms#',
+        'serialize': True,
+        })
+    '''
+    The status of the resource in the context of a particular workflow
+    process.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    A name given to the resource.
+    '''
+    
+    type: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcterms', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The nature or genre of the resource.
+    Recommended practice is to use a controlled vocabulary such as the
+    DCMI Type Vocabulary [DCMI-TYPE]. To describe the file format, physical
+    medium, or dimensions of the resource, use the property Format.
+    '''
+    
+    version: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The version indicator (name or identifier) of a resource.
+    '''
+    
+    versionNotes: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute', 'adms'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/adms#',
+        'serialize': True,
+        })
+    '''
+    A description of changes between this version and the previous version
+    of the resource.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class DataService(Resource):
+    '''
+    A site or end-point providing operations related to the discovery of, access
+    to, or processing functions on, data or related resources.
+    '''
+
+    endpointDescription: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    A description of the service end-point, including its operations, parameters
+    etc.
+    '''
+    
+    endpointURL: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The root location or primary endpoint of the service (a web-resolvable
+    IRI).
+    '''
+    
+    Distribution: list[Distribution] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Distribution.accessService',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    Catalog: list[Catalog] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Catalog.Service',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The catalog for the service.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.dcat)
+@stereotype(CIMStereotype.Concrete)
+@dataclass(repr=False, eq=False)
+class Dataset(Model, Resource):
+    '''
+    A collection of data, published or curated by a single source, and available
+    for access or download in one or more representations.
+    '''
+
+    accurualPeriodicity: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    The frequency with which items are added to a collection.
+    Recommended practice is to use a value from the Collection Description
+    Frequency Vocabulary [DCMI-COLLFREQ].
+    '''
+    
+    contactPoint: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    description: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    identifier: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    issued: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    keyword: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    language: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    modified: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    spatial: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Spatial characteristics of the resource.
+    '''
+    
+    spatialResolutionInMeters: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum spatial separation resolvable in a dataset, measured in metres.
+    '''
+    
+    temporalResolution: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    Minimum time period resolvable in a dataset.
+    '''
+    
+    title: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    '''
+    
+    wasGeneratedBy: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['prov', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/prov#',
+        'serialize': True,
+        })
+    '''
+    An activity that generated, or provides the business context for, the
+    creation of the dataset.
+    '''
+    
+    Distribution: list[Distribution] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Distribution.Dataset',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    An available distribution of the dataset.
+    '''
+    
+    temporal: Optional[PeriodOfTime] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['Compound', 'dct', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': '',
+        'namespace': 'http://purl.org/dc/terms/',
+        'serialize': True,
+        })
+    '''
+    Temporal characteristics of the resource.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.dcat)
+@dataclass(repr=False, eq=False)
+class Catalog(Dataset):
+    '''
+    A curated collection of metadata about resources (e.g., datasets and data
+    services in the context of a data catalog).
+    '''
+
+    themeTaxonomy: Optional[str] = field(
+        default=None,
+        metadata={
+        'type': 'Attribute',
+        'stereotypes': ['dcat', 'Attribute'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': True,
+        })
+    '''
+    The knowledge organization system (KOS) used to classify catalog's
+    datasets and services.
+    '''
+    
+    Record: Optional[CatalogRecord] = field(
+        default=None,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': '1',
+        'inverse': 'CatalogRecord.Catalog',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    This is optional and not all catalogs will use it. It exists for catalogs
+    where a distinction is made between metadata about a dataset or data
+    service and metadata about the entry for the dataset or data service
+    in the catalog. For example, the publication date property of the dataset
+    reflects the date when the information was originally made available
+    by the publishing agency, while the publication date of the catalog
+    record is the date when the dataset was added to the catalog. In cases
+    where both dates differ, or where only the latter is known, the publication
+    date should only be specified for the catalog record.
+    '''
+    
+    Service: list[DataService] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': ['dcat'],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'DataService.Catalog',
+        'namespace': 'http://www.w3.org/ns/dcat#',
+        'serialize': False,
+        })
+    '''
+    A site or endpoint that is listed in the catalog.
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'http://www.w3.org/ns/dcat#'
+    @property
+    def __package__(self):
+        return 'DCAT'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
+@stereotype(CIMStereotype.eumd)
+@dataclass(repr=False, eq=False)
+class ModelDataset(Dataset):
+    '''
+    '''
+
+    Model: list[Model] = field(
+        default_factory=list,
+        metadata={
+        'type': 'Association',
+        'stereotypes': [],
+        'minOccurs': '0',
+        'maxOccurs': 'unbounded',
+        'inverse': 'Model.ModelDataset',
+        'namespace': 'https://cim4.eu/ns/Metadata-European#',
+        'serialize': False,
+        })
+    '''
+    '''
+    
+    @property
+    def __namespace__(self):
+        return 'https://cim4.eu/ns/Metadata-European#'
+    @property
+    def __package__(self):
+        return 'ExtHeaderMetadata'
+    @property
+    def __minOccurs__(self):
+        return '0'
+    @property
+    def __maxOccurs__(self):
+        return 'unbounded'
+    
 @stereotype(CIMStereotype.enumeration)
 class RetiredReasonKind(Enum):
     '''
@@ -64085,7 +65879,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -64111,7 +65905,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -64124,7 +65918,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -64137,7 +65931,7 @@ class TransformerCoreInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',
@@ -66583,7 +68377,7 @@ class TransformerWindingInfo(AssetInfo):
         default=None,
         metadata={
         'type': 'Attribute',
-        'stereotypes': ['enumeration', 'GridAPPSD', 'Attribute'],
+        'stereotypes': ['GridAPPSD', 'enumeration', 'Attribute'],
         'minOccurs': '0',
         'maxOccurs': '1',
         'namespace': 'http://gridappsd.org/CIM/extension#',

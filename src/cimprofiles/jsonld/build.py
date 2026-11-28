@@ -1,9 +1,16 @@
-"""Build a profile's JSON-LD context and unit vocabularies from its generated classes.
+"""Build a profile's JSON-LD context and unit vocabularies.
 
-- Context: the dcat:Dataset header terms (HEADER_TERMS), then one term definition per
-  property, from the field metadata. Associations and enumerations are
-  ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
-  ``xsd:integer`` / ``xsd:boolean``; strings are left to the JSON-LD default.
+- Context: generated from the profile's CIMTool .owl by the cimantic-graphs-jsonld-context
+  builder (CIMTool-Builders-Library), as ``context.jsonld`` in the profile's package, where
+  scripts/import_cimtool_output.sh copies it with the generated classes. It holds the
+  dcat:Dataset header terms, then one term definition per property, typed by the XSD type
+  of its values as in the Inst4CIM CGMES context. A merged release of merge_releases.yaml
+  takes the union of its parts' contexts. A profile with no CIMTool context in this repo
+  (its .owl is elsewhere) is built from its classes' field metadata by build_context
+  instead, with the same header terms and, like the builder, only the association ends
+  the profile declares (inverse ends, ``serialize: False``, have no term): associations and
+  enumerations are ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
+  ``xsd:integer`` / ``xsd:boolean``; other types, dates included, are left as strings.
   The published file also names itself (``@id``, its URL) and the cim-profiles release it
   was built for (``owl:versionInfo``, as the CGMES vocabularies do); JSON-LD processors use
   only the ``@context`` entry of a remote context, so these are ignored there.
@@ -35,7 +42,9 @@ new version directory only when its documents change; otherwise its manifest ent
 naming the release that last changed them. Building changed documents for a released
 version fails, and asks for the next release target in pyproject.toml.
 
-The functions above _released() are pure; _released() and main() do the I/O.
+The functions above _released() are pure but for reading the package files they build from
+(profile modules, CIMTool contexts, merge_releases.yaml); _released() and main() do the rest
+of the I/O.
 """
 from __future__ import annotations
 
@@ -43,6 +52,7 @@ import argparse
 import functools
 import importlib
 import importlib.metadata
+import importlib.resources
 import json
 import re
 import sys
@@ -87,6 +97,8 @@ VOCABULARY_NAMESPACES = {
     'unit': QUDT_UNIT_NAMESPACE,
 }
 CACHE_DIR = Path(__file__).parent / 'cache'
+# The output of the cimantic-graphs-jsonld-context CIMTool builder, in the profile's package
+CIMTOOL_CONTEXT = 'context.jsonld'
 RELEASES_FILE = Path(__file__).parents[1] / 'merge_releases.yaml'
 PART_CONVENTIONS = {'si': {}}
 _TYPE_NAME = re.compile(r'[A-Za-z_]\w*')
@@ -157,6 +169,8 @@ def build_context(profile) -> dict:
     namespaces = profile_namespace_map(profile)
     context = {**namespaces, **DOCUMENT_NAMESPACES, **HEADER_TERMS}
     for cls, attribute, field in _declared_fields(profile):
+        if not field.metadata['serialize']:          # an inverse association end
+            continue
         datatype = _datatype(profile, field)
         namespace = field.metadata['namespace']
         if namespace in W3C_PREFIXES:
@@ -174,6 +188,46 @@ def _add_w3c_term(term: str, datatype: str | None, context: dict) -> None:
             raise ValueError(f'{term}: the profile types it {datatype}, HEADER_TERMS {HEADER_TERMS[term]["@type"]}')
     elif datatype is not None:
         context[term] = {'@type': datatype}
+
+
+def merge_contexts(contexts: list[dict]) -> dict:
+    """The union of part contexts, prefixes first. Raises ValueError if parts define a
+    prefix or term differently."""
+    prefixes, terms = {}, {}
+    for context in contexts:
+        for key, value in context['@context'].items():
+            entries = prefixes if isinstance(value, str) else terms
+            if entries.get(key, value) != value:
+                raise ValueError(f'{key} is both {entries[key]} and {value} in the merged parts')
+            entries[key] = value
+    return {'@context': {**prefixes, **terms}}
+
+
+def _cimtool_context(package: str) -> dict | None:
+    """The CIMTool-generated context in a package, or None if it has none."""
+    path = importlib.resources.files(package) / CIMTOOL_CONTEXT
+    return json.loads(path.read_text(encoding='utf-8')) if path.is_file() else None
+
+
+def profile_context(name: str, profile) -> dict:
+    """
+    The JSON-LD context of a profile: the one CIMTool generated from its .owl; for a merged
+    release, the union of its parts' (all its parts have one, or none do); else, for a
+    profile whose .owl is not in this repo, build_context of its classes.
+    """
+    release_parts = {release['name']: release['parts'] for release in _releases()}
+    if name not in release_parts:
+        context = _cimtool_context(profile_module(name))
+        return build_context(profile) if context is None else context
+    packages = [module.rpartition('.')[0] for module in release_parts[name]]
+    contexts = {package: _cimtool_context(package) for package in packages}
+    missing = [package for package, context in contexts.items() if context is None]
+    if len(missing) == len(packages):
+        return build_context(profile)
+    if missing:
+        raise ValueError(f'{name}: parts without a CIMTool {CIMTOOL_CONTEXT}: {missing}; '
+                         f'run the cimantic-graphs-jsonld-context builder and re-import them')
+    return merge_contexts(list(contexts.values()))
 
 
 def _checked_unit(name: str, unit: str, unit_class: type) -> str:
@@ -256,12 +310,19 @@ def expand_parts(specs: list[dict], releases: list[dict]) -> list[dict]:
     return list(part_specs.values()) + expanded
 
 
+@functools.cache
+def _releases() -> list[dict]:
+    """The merged releases of merge_releases.yaml."""
+    import yaml  # build-time (dev) dependency only
+
+    return yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']
+
+
 def load_specs(paths: list[Path]) -> list[dict]:
     """The parsed conventions YAMLs, with their parts expanded (expand_parts)."""
     import yaml  # build-time (dev) dependency only
 
-    releases = yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']
-    return expand_parts([yaml.safe_load(path.read_text(encoding='utf-8')) for path in paths], releases)
+    return expand_parts([yaml.safe_load(path.read_text(encoding='utf-8')) for path in paths], _releases())
 
 
 def build_profile(spec: dict, version: str, base_url: str = PAGES_URL,
@@ -285,7 +346,7 @@ def build_profile(spec: dict, version: str, base_url: str = PAGES_URL,
     context_url = spec.get('context')
     if context_url is None:
         context_url = f'{base_url}{directory}context.jsonld'
-        document = {**build_context(profile), '@id': context_url, 'owl:versionInfo': version}
+        document = {**profile_context(name, profile), '@id': context_url, 'owl:versionInfo': version}
         if part_contexts:
             document['dct:hasPart'] = [{'@id': url} for url in part_contexts]
         documents[f'{directory}context.jsonld'] = document

@@ -1,0 +1,290 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "gad": "http://gridappsd.org/CIM/extension#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACLineSegment.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:ACLineSegment.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:BusbarSection.ipMax": {
+      "@type": "xsd:float"
+    },
+    "gad:EnergyConsumer.maxP": {
+      "@type": "xsd:float"
+    },
+    "gad:EnergyConsumer.minP": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:EnergySource.x2": {
+      "@type": "xsd:float"
+    },
+    "cim:Equipment.aggregate": {
+      "@type": "xsd:boolean"
+    },
+    "cim:EquivalentBranch.negativeR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.negativeX21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.positiveX21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.r21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.x21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroR12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroR21": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroX12": {
+      "@type": "xsd:float"
+    },
+    "cim:EquivalentBranch.zeroX21": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:ExtendedWardEquivalent.x2": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.ikSecond": {
+      "@type": "xsd:boolean"
+    },
+    "cim:ExternalNetworkInjection.maxInitialSymShCCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxR0ToX0Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxR1ToX1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.maxZ0ToZ1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minInitialSymShCCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minR0ToX0Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minR1ToX1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.minZ0ToZ1Ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ExternalNetworkInjection.voltageFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.b0PerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:LinearShuntCompensator.g0PerSection": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.First_Terminal": {
+      "@type": "@id"
+    },
+    "cim:MutualCoupling.Second_Terminal": {
+      "@type": "@id"
+    },
+    "cim:MutualCoupling.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance11": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance12": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance21": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.distance22": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:MutualCoupling.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.b0Total": {
+      "@type": "xsd:float"
+    },
+    "cim:NonlinearShuntCompensatorPoint.g0Total": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.b0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.g0ch": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:PerLengthSequenceImpedance.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerElectronicsConnection.maxIFault": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShCircuitHighestOperatingVoltage": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformer.beforeShortCircuitAnglePf": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.PowerTransformer": {
+      "@type": "@id"
+    },
+    "cim:PowerTransformerEnd.b0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.g0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:PowerTransformerEnd.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedPowerFactor": {
+      "@type": "xsd:float"
+    },
+    "cim:RotatingMachine.ratedU": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:SeriesCompensator.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.earthing": {
+      "@type": "xsd:boolean"
+    },
+    "cim:SynchronousMachine.earthingStarPointR": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.earthingStarPointX": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.ikk": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.mu": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.r2": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.x0": {
+      "@type": "xsd:float"
+    },
+    "cim:SynchronousMachine.x2": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.b0": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerCore.g0": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.r0": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.x0": {
+      "@type": "xsd:float"
+    }
+  }
+}

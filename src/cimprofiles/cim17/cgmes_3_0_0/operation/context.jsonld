@@ -1,0 +1,190 @@
+{
+  "@context": {
+    "cim": "http://iec.ch/TC57/CIM100#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:AccumulatorLimit.LimitSet": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorLimit.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:AccumulatorLimitSet.Measurements": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorReset.AccumulatorValue": {
+      "@type": "@id"
+    },
+    "cim:AccumulatorValue.Accumulator": {
+      "@type": "@id"
+    },
+    "cim:Analog.positiveFlowIn": {
+      "@type": "xsd:boolean"
+    },
+    "cim:AnalogControl.AnalogValue": {
+      "@type": "@id"
+    },
+    "cim:AnalogControl.maxValue": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogControl.minValue": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogLimit.LimitSet": {
+      "@type": "@id"
+    },
+    "cim:AnalogLimit.value": {
+      "@type": "xsd:float"
+    },
+    "cim:AnalogLimitSet.Measurements": {
+      "@type": "@id"
+    },
+    "cim:AnalogValue.Analog": {
+      "@type": "@id"
+    },
+    "cim:Command.DiscreteValue": {
+      "@type": "@id"
+    },
+    "cim:Command.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:Command.normalValue": {
+      "@type": "xsd:integer"
+    },
+    "cim:Command.value": {
+      "@type": "xsd:integer"
+    },
+    "cim:Control.PowerSystemResource": {
+      "@type": "@id"
+    },
+    "cim:Control.operationInProgress": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Control.timeStamp": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:Control.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Control.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:Discrete.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:DiscreteValue.Discrete": {
+      "@type": "@id"
+    },
+    "cim:LimitSet.isPercentageLimits": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Measurement.PowerSystemResource": {
+      "@type": "@id"
+    },
+    "cim:Measurement.Terminal": {
+      "@type": "@id"
+    },
+    "cim:Measurement.phases": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitMultiplier": {
+      "@type": "@id"
+    },
+    "cim:Measurement.unitSymbol": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.MeasurementValueSource": {
+      "@type": "@id"
+    },
+    "cim:MeasurementValue.sensorAccuracy": {
+      "@type": "xsd:float"
+    },
+    "cim:MeasurementValue.timeStamp": {
+      "@type": "xsd:dateTime"
+    },
+    "cim:MeasurementValueQuality.MeasurementValue": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.badReference": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.estimatorReplaced": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.failure": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oldData": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.operatorBlocked": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.oscillatory": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.outOfRange": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.overFlow": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.source": {
+      "@type": "@id"
+    },
+    "cim:Quality61850.suspect": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.test": {
+      "@type": "xsd:boolean"
+    },
+    "cim:Quality61850.validity": {
+      "@type": "@id"
+    },
+    "cim:RaiseLowerCommand.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:SetPoint.normalValue": {
+      "@type": "xsd:float"
+    },
+    "cim:SetPoint.value": {
+      "@type": "xsd:float"
+    },
+    "cim:StringMeasurementValue.StringMeasurement": {
+      "@type": "@id"
+    },
+    "cim:ValueToAlias.ValueAliasSet": {
+      "@type": "@id"
+    },
+    "cim:ValueToAlias.value": {
+      "@type": "xsd:integer"
+    }
+  }
+}

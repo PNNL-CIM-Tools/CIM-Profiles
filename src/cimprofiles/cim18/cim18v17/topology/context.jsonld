@@ -1,0 +1,94 @@
+{
+  "@context": {
+    "cim": "http://cim.ucaiug.io/cim101/draft#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "md": "http://iec.ch/TC57/61970-552/ModelDescription/1#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct:conformsTo": {
+      "@type": "@id"
+    },
+    "dct:issued": {
+      "@type": "xsd:dateTime"
+    },
+    "dct:references": {
+      "@type": "@id"
+    },
+    "dct:requires": {
+      "@type": "@id"
+    },
+    "dct:replaces": {
+      "@type": "@id"
+    },
+    "dcat:isVersionOf": {
+      "@type": "@id"
+    },
+    "dcat:startDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "dcat:endDate": {
+      "@type": "xsd:dateTimeStamp"
+    },
+    "cim:ACDCTerminal.sequenceNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:AreaConfiguration.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:BusNameMarker.ReportingGroup": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:BusNameMarker.priority": {
+      "@type": "xsd:integer"
+    },
+    "cim:ConnectedArea.AreaConfiguration": {
+      "@type": "@id"
+    },
+    "cim:ConnectivityNode.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:Terminal.TopologicalNode": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.AreaConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.DownstreamTopologicalArea": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.TopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.UpstreamTopolgicalArea": {
+      "@type": "@id"
+    },
+    "cim:TopologicalArea.kind": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.AngleRefTopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.BaseVoltage": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.ConnectivityNodeContainer": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.TopologicalIsland": {
+      "@type": "@id"
+    },
+    "cim:TopologicalNode.busNumber": {
+      "@type": "xsd:integer"
+    },
+    "cim:TopologicalNode.pInjection": {
+      "@type": "xsd:float"
+    },
+    "cim:TopologicalNode.qInjection": {
+      "@type": "xsd:float"
+    }
+  }
+}

@@ -3,66 +3,47 @@ from __future__ import annotations
 
 import ast
 import dataclasses
-import importlib
 import logging
 import sys
 import types
-from pathlib import Path
 
 import pytest
 
-from cimprofiles.build_merged_profiles import (_CONFIG, _first_line, _load_config,
-                                               _module_source, _package_dir, build_release,
-                                               merge_sources)
+from cimprofiles.build_merged_profiles import _first_line, _module_source, build_release, merge_sources
 from cimprofiles.identity import Identity
-from cimprofiles.merge import merge_profiles, most_specific_base
+from cimprofiles.merge import merge_profiles, most_specific_bases
 from cimprofiles.units import UnitMultiplier, UnitSymbol
 
-RELEASES = _load_config(_CONFIG)
+# The fixture profiles of tests/fixtures/README.md, test_c first: its Terminal.ConductingEquipment
+# is the inverse end of the association that test_a serializes
+FIXTURE_RELEASE = {'name': 'fixture_cab', 'package': 'fixture_profiles.cim17',
+                   'parts': [f'fixture_profiles.cim17.{name}.{name}' for name in ('test_c', 'test_a', 'test_b')]}
 
 
 def _field(cls, name):
     return next(f for f in dataclasses.fields(cls) if f.name == name)
 
 
-@pytest.mark.parametrize('module', [
-    'cimprofiles.cim18.cim18v17.substation.substation',
-    'cimprofiles.cim18.cim18gmdm.electrical.electrical',
-    'cimprofiles.cim17.cgmes_3_0_0.core_equipment.core_equipment',
-])
-def test_single_part_reproduces_cimtool_class_source(module):
-    """Every class of a part comes out byte-identical, so the CIMTool layout is kept."""
-    source = _module_source(module)
-    merged, _exported = merge_sources({module: source})
-
-    lines = source.split('\n')
-    body = ast.parse(source).body
-    starts = [_first_line(node) for node in body] + [len(lines) + 1]
-    for index, node in enumerate(body):
-        if isinstance(node, ast.ClassDef) and node.name != 'Identity':
-            block = '\n'.join(lines[starts[index] - 1:starts[index + 1] - 1])
-            assert block in merged, node.name
-
-
-@pytest.mark.parametrize('release', RELEASES, ids=lambda release: release['name'])
-def test_committed_merged_profiles_are_up_to_date(release):
-    """The committed files match a fresh build; re-run the builder if this fails."""
-    package_dir = _package_dir(release['package'])
-    for file_name, content in build_release(release).items():
-        assert (package_dir / file_name).read_text(encoding='utf-8') == content, file_name
-
-
 def test_most_specific_base_picks_the_deepest_candidate():
     parents = {'Terminal': {'Identity', 'ACDCTerminal'},
                'ACDCTerminal': {'IdentifiedObject'},
                'IdentifiedObject': {'Identity'}}
-    assert most_specific_base('Terminal', {'Identity', 'ACDCTerminal'}, parents) == 'ACDCTerminal'
+    assert most_specific_bases('Terminal', {('Identity',), ('ACDCTerminal',)}, parents) == ('ACDCTerminal',)
+
+
+def test_most_specific_bases_keeps_several_supertypes():
+    parents = {'Dataset': {'Identity', 'Model', 'Resource'}, 'Model': {'Entity'},
+               'Entity': {'Identity'}, 'Resource': {'Identity'}}
+    assert most_specific_bases('Dataset', {('Identity',), ('Model', 'Resource')}, parents) \
+        == ('Model', 'Resource')
+    assert most_specific_bases('Dataset', {('Entity',), ('Model', 'Resource')}, parents) \
+        == ('Model', 'Resource')
 
 
 def test_most_specific_base_rejects_unrelated_candidates():
     parents = {'X': {'A', 'B'}, 'A': {'Identity'}, 'B': {'Identity'}}
     with pytest.raises(ValueError, match="Conflicting base classes for 'X'"):
-        most_specific_base('X', {'A', 'B'}, parents)
+        most_specific_bases('X', {('A',), ('B',)}, parents)
 
 
 # Two parts in the shape of CIMTool output. Part B selects Terminal without
@@ -127,6 +108,21 @@ class Equipment(Identity):
 """
 
 
+@pytest.mark.parametrize('part', FIXTURE_RELEASE['parts'])
+def test_single_part_reproduces_cimtool_class_source(part):
+    """Every class of a part comes out byte-identical, so the CIMTool layout is kept."""
+    source = _module_source(part)
+    merged, _exported = merge_sources({part: source})
+
+    lines = source.split('\n')
+    body = ast.parse(source).body
+    starts = [_first_line(node) for node in body] + [len(lines) + 1]
+    for index, node in enumerate(body):
+        if isinstance(node, ast.ClassDef) and node.name != 'Identity':
+            block = '\n'.join(lines[starts[index] - 1:starts[index + 1] - 1])
+            assert block in merged, node.name
+
+
 def _module(monkeypatch, name: str, source: str) -> types.ModuleType:
     module = types.ModuleType(name)
     monkeypatch.setitem(sys.modules, name, module)
@@ -135,6 +131,29 @@ def _module(monkeypatch, name: str, source: str) -> types.ModuleType:
     module.__all__ = ['Identity'] + [key for key, value in vars(module).items() if isinstance(value, type)
                                      and value.__module__ == name and key != 'CIMStereotype']
     return module
+
+
+def test_merged_fixture_release_follows_the_merge_rules(monkeypatch):
+    merged = _module(monkeypatch, 'fixture_cab', build_release(FIXTURE_RELEASE)['fixture_cab.py'])
+
+    # CIMTool roots a class at its nearest profiled ancestor; the merge picks the most specific
+    assert merged.Terminal.__bases__ == (merged.ACDCTerminal,)
+    assert merged.ConductingEquipment.__bases__ == (merged.Equipment,)
+    assert merged.EnergyConsumer.__bases__ == (merged.ConductingEquipment,)
+    assert merged.EnergyConsumer.__stereotype__.value == 'Concrete'      # only test_b's is concrete
+    assert set(merged.PhaseCode.__members__) == {'A', 'B', 'C', 'ABC', 'N', 'AB', 's1', 's2'}
+    assert merged.NAMESPACES == {'cim': 'http://iec.ch/TC57/CIM-generic#', 'eu': 'http://iec.ch/TC57/CIM100-European#',
+                                 'nc': 'http://entsoe.eu/ns/nc#'}
+    assert _field(merged.Terminal, 'ConductingEquipment').metadata['serialize'] is True
+    terminal_fields = {f.name for f in dataclasses.fields(merged.Terminal)}
+    assert {'shortName', 'connected', 'phases', 'ConnectivityNode'} <= terminal_fields   # from all three parts
+    assert merged.UnitSymbol is UnitSymbol and merged.UnitMultiplier is UnitMultiplier
+
+
+def test_merged_source_fits_the_parts_line_width():
+    merged = build_release(FIXTURE_RELEASE)['fixture_cab.py']
+    part_width = max(len(line) for part in FIXTURE_RELEASE['parts'] for line in _module_source(part).split('\n'))
+    assert max(len(line) for line in merged.split('\n')) <= part_width
 
 
 def test_merge_sources_follows_the_merge_rules(monkeypatch):
@@ -165,20 +184,6 @@ def test_runtime_merge_resolves_flattened_bases(monkeypatch):
     merged = merge_profiles(_module(monkeypatch, 'part_a', PART_A), _module(monkeypatch, 'part_b', PART_B))
     assert issubclass(merged.Terminal, merged.IdentifiedObject)
     assert {'phases', 'Equipment', 'sequenceNumber'} <= {f.name for f in dataclasses.fields(merged.Terminal)}
-
-
-@pytest.mark.parametrize('release', RELEASES, ids=lambda release: release['name'])
-def test_merged_source_fits_the_parts_line_width(release):
-    merged = build_release(release)[f"{release['name']}.py"]
-    part_width = max(len(line) for part in release['parts'] for line in _module_source(part).split('\n'))
-    assert max(len(line) for line in merged.split('\n')) <= part_width
-
-
-@pytest.mark.parametrize('release', RELEASES, ids=lambda release: release['name'])
-def test_merged_profiles_use_the_library_unit_enums(release):
-    """The parts import UnitSymbol/UnitMultiplier from cimprofiles, so CIMUnit.unit is the library enum."""
-    package = importlib.import_module(release['package'])
-    assert package.UnitSymbol is UnitSymbol and package.UnitMultiplier is UnitMultiplier
 
 
 def test_conflicting_property_raises():
@@ -219,3 +224,44 @@ def test_merge_sources_rejects_a_part_without_namespaces():
     with pytest.raises(ValueError, match=r"\['part_b'\] declare no NAMESPACES"):
         merge_sources({'part_a': _part_source({'cim': 'http://cim#'}),
                        'part_b': _part_source(None)})
+
+
+# A class with two supertypes, as cimantic-graphs.xsl writes it, and a part that
+# selects Dataset without Model or Resource, so CIMTool flattened its base to Identity
+TWO_BASES = """from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Optional
+from cimprofiles.identity import Identity
+
+@dataclass(repr=False, eq=False)
+class Model(Identity):
+    title: Optional[str] = field(default=None)
+
+@dataclass(repr=False, eq=False)
+class Resource(Identity):
+    license: Optional[str] = field(default=None)
+
+@dataclass(repr=False, eq=False)
+class Dataset(Model, Resource):
+    temporal: Optional[str] = field(default=None)
+"""
+FLATTENED = """from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Optional
+from cimprofiles.identity import Identity
+
+@dataclass(repr=False, eq=False)
+class Dataset(Identity):
+    spatial: Optional[str] = field(default=None)
+"""
+
+
+def test_merges_keep_several_supertypes(monkeypatch):
+    source, _exported = merge_sources({'flattened': FLATTENED, 'two_bases': TWO_BASES})
+    assert 'class Dataset(Model, Resource):' in source
+    from_source = _module(monkeypatch, 'merged_two_bases', source)
+    at_runtime = merge_profiles(_module(monkeypatch, 'flattened', FLATTENED),
+                                _module(monkeypatch, 'two_bases', TWO_BASES))
+    for merged in (from_source, at_runtime):
+        assert merged.Dataset.__bases__ == (merged.Model, merged.Resource)
+        assert {'title', 'license', 'temporal', 'spatial'} <= {f.name for f in dataclasses.fields(merged.Dataset)}

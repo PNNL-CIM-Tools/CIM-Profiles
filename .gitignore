@@ -4,6 +4,7 @@
 *.class
 *.puml
 */Profiles/*.py
+*/Profiles/*.context.jsonld
 # Log file
 *.log
 

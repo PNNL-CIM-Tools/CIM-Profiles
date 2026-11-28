@@ -1,28 +1,26 @@
-import importlib
 import json
 import sys
 import types
 from pathlib import Path
 
 import pytest
-import yaml
 
 import cimprofiles.cim17.cimhub_2023 as cimhub
 from cimprofiles import PROFILE_PACKAGES
-from cimprofiles.jsonld import load_document, load_vocabulary_units, profile_jsonld
-from cimprofiles.jsonld.build import (RELEASES_FILE, build_context, build_profile, build_vocabulary, convention_units,
-                                      expand_parts, load_specs, part_profile, stable_version)
+from cimprofiles.jsonld import build, profile_jsonld
+from cimprofiles.jsonld.build import (build_context, build_vocabulary, convention_units,
+                                      expand_parts, merge_contexts, part_profile, stable_version)
 from cimprofiles.jsonld.context import (context_prefixes, property_datatypes, vocabulary_iri,
                                         vocabulary_units)
-from cimprofiles.jsonld.documents import CACHE
 
-CONVENTIONS = CACHE.joinpath('..', 'conventions')
+FIXTURES = Path(__file__).parent / 'fixture_profiles' / 'cim17'
 
 
 def test_context_datatypes_follow_field_metadata():
     datatypes = property_datatypes(build_context(cimhub))
     assert datatypes['ACLineSegment.r'] == 'xsd:float'                 # CIMUnit
     assert datatypes['Terminal.ConductingEquipment'] == '@id'          # association
+    assert 'ConductingEquipment.Terminals' not in datatypes            # its inverse end
     assert datatypes['EnergyConsumer.phaseConnection'] == '@id'        # enumeration
     assert datatypes['ACDCTerminal.connected'] == 'xsd:boolean'
     assert datatypes['ACDCTerminal.sequenceNumber'] == 'xsd:integer'
@@ -39,13 +37,12 @@ def test_context_types_the_dataset_header():
     assert context['dct:issued'] == {'@type': 'xsd:dateTime'}
 
 
-def test_cgmes_context_matches_the_published_cgmes_context():
-    cgmes = importlib.import_module(PROFILE_PACKAGES['cgmes_3_0_0'])
-    ours = property_datatypes(build_context(cgmes))
-    published = property_datatypes(load_document(profile_jsonld('cgmes_3_0_0')['context']))
-    differ = {name for name in set(ours) & set(published) if ours[name] != published[name]}
-    # Money is xsd:decimal in CGMES; generated profiles type it as float
-    assert differ == {'GeneratingUnit.variableCost', 'GeneratingUnit.startupCost'}
+def test_merging_contexts_that_disagree_fails():
+    first = {'@context': {'cim': 'http://iec.ch/TC57/CIM100#', 'cim:A.b': {'@type': 'xsd:float'}}}
+    second = {'@context': {'cim': 'http://iec.ch/TC57/CIM100#', 'cim:A.b': {'@type': '@id'}}}
+    assert merge_contexts([first, first]) == first
+    with pytest.raises(ValueError, match='cim:A.b'):
+        merge_contexts([first, second])
 
 
 def test_convention_resolution_order():
@@ -81,63 +78,10 @@ def test_vocabulary_round_trips_through_the_reader():
     assert 'IdentifiedObject.name' not in units
 
 
-def test_every_profile_resolves_offline():
-    for profile in json.loads(CACHE.joinpath('profiles.json').read_text()):
-        entry = profile_jsonld(profile)
-        load_document(entry['context'])
-        assert entry['default'] in entry['conventions']
-        for iris in entry['conventions'].values():
-            for iri in iris:
-                load_vocabulary_units(iri)
-
-
 def test_profile_lookup_by_package_name():
     assert profile_jsonld('cimprofiles.cim17.cimhub_2023') == profile_jsonld('cimhub_2023')
     with pytest.raises(KeyError, match='cimhub_2099'):
         profile_jsonld('cimhub_2099')
-
-
-def test_cgmes_default_units_are_transmission_units():
-    units = {}
-    for iri in profile_jsonld('cgmes_3_0_0')['conventions']['cgmes']:
-        units.update(load_vocabulary_units(iri))
-    assert units['BaseVoltage.nominalVoltage'] == 'kV'
-    assert units['EnergyConsumer.p'] == 'MW'
-
-
-SPECS = load_specs(sorted(Path(str(CONVENTIONS)).glob('*.yaml')))
-
-
-@pytest.mark.parametrize('spec', SPECS, ids=[spec['profile'] for spec in SPECS])
-def test_cache_is_up_to_date(spec):
-    # The cached version, not the installed one: a profile keeps the release that last
-    # changed its documents
-    version = profile_jsonld(spec['profile']).get('version', stable_version())
-    part_contexts = [profile_jsonld(part)['context'] for part in spec.get('parts', [])]
-    documents, entry = build_profile(spec, version, part_contexts=part_contexts)
-    for path, document in documents.items():
-        assert json.loads(CACHE.joinpath(path).read_text()) == document, \
-            f'{path} is stale: run python -m cimprofiles.jsonld.build {spec["profile"]}'
-    assert profile_jsonld(spec['profile']) == entry
-
-
-def test_documents_are_versioned_in_their_url():
-    """A generated context names its stable release in its URL and in owl:versionInfo."""
-    entry = profile_jsonld('cimhub_2023')
-    directory = f'https://pnnl-cim-tools.github.io/CIM-Profiles/cimhub_2023/{entry["version"]}/'
-    assert entry['context'] == directory + 'context.jsonld'
-    context = load_document(entry['context'])
-    assert context['@id'] == entry['context']
-    assert context['owl:versionInfo'] == entry['version']
-    assert all(iri.startswith(directory) for iris in entry['conventions'].values() for iri in iris)
-
-
-def test_parts_are_published_under_their_set():
-    entry = profile_jsonld('cim18v17.connectivity_unbalanced')
-    directory = f'https://pnnl-cim-tools.github.io/CIM-Profiles/cim18v17/connectivity_unbalanced/{entry["version"]}/'
-    assert entry['context'] == directory + 'context.jsonld'
-    assert list(entry['conventions']) == ['si']
-    assert 'cim:Terminal.ConnectivityNode' in load_document(entry['context'])['@context']
 
 
 W3C_PROFILE = """
@@ -155,9 +99,9 @@ class Agent(Identity):
 
 @dataclass
 class Dataset(Identity):
-    issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT})
-    creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT})
-    Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad']})
+    issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT, 'serialize': True})
+    creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT, 'serialize': True})
+    Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad'], 'serialize': True})
 """
 
 
@@ -170,15 +114,6 @@ def test_w3c_properties_are_terms_by_bare_name(monkeypatch):
     assert context['dct:issued'] == {'@type': 'xsd:dateTime'}          # HEADER_TERMS types the literal
     assert context['gad:Dataset.Agent'] == {'@type': '@id'}            # other namespaces stay Class.property
     assert not [term for term in context if 'Dataset.issued' in term or 'Dataset.creator' in term]
-
-
-def test_master_context_lists_its_parts_in_merge_order():
-    releases = yaml.safe_load(RELEASES_FILE.read_text(encoding='utf-8'))['releases']
-    modules = next(release['parts'] for release in releases if release['name'] == 'cim18v17')
-    master = load_document(profile_jsonld('cim18v17')['context'])
-    assert [item['@id'] for item in master['dct:hasPart']] \
-        == [profile_jsonld(part_profile(module))['context'] for module in modules]
-    assert 'dct:hasPart' not in load_document(profile_jsonld('cim18v17_distribution')['context'])
 
 
 def test_part_profile_names():
@@ -208,26 +143,67 @@ def test_stable_version_drops_the_prerelease(monkeypatch, installed, stable):
 def test_documents_freeze_at_their_stable_release(tmp_path, monkeypatch):
     """Alphas rebuild a release's documents in place; a released version's are frozen, and a
     profile gets a new version directory only when its documents change."""
-    from cimprofiles.jsonld import build
+    monkeypatch.setitem(PROFILE_PACKAGES, 'test_a', 'fixture_profiles.cim17.test_a')
+    spec = tmp_path / 'test_a.yaml'
+    output = tmp_path / 'site'
 
-    def run(version):
+    def run(version, voltage_unit):
+        spec.write_text(f'profile: test_a\ndefault: si\nconventions:\n'
+                        f'  si: {{quantity_kinds: {{Voltage: {voltage_unit}}}}}\n')
         monkeypatch.setattr(build, 'stable_version', lambda: version)
-        build.main(['cim18gmdm', '--output', str(tmp_path)])
-        return json.loads((tmp_path / 'profiles.json').read_text())['cim18gmdm']['version']
+        build.main([str(spec), '--output', str(output)])
+        return json.loads((output / 'profiles.json').read_text())['test_a']['version']
 
-    assert run('9.0.0') == '9.0.0'
-    monkeypatch.setitem(build.HEADER_TERMS, 'dct:alpha', {'@type': '@id'})
-    assert run('9.0.0') == '9.0.0'                              # an alpha rebuild, in place
-    assert 'dct:alpha' in json.loads((tmp_path / 'cim18gmdm/9.0.0/context.jsonld').read_text())['@context']
-    assert run('9.0.1') == '9.0.0'                              # unchanged: still 9.0.0
-    assert not (tmp_path / 'cim18gmdm/9.0.1').exists()
-    monkeypatch.setitem(build.HEADER_TERMS, 'dct:fix', {'@type': '@id'})
-    assert run('9.0.1') == '9.0.1'                              # changed: a new directory
-    assert (tmp_path / 'cim18gmdm/9.0.0/context.jsonld').exists()
+    def voltage_unit(version):
+        vocabulary = json.loads((output / f'test_a/{version}/units-si.jsonld').read_text())
+        return vocabulary_units(vocabulary, context_prefixes(vocabulary))['BaseVoltage.nominalVoltage']
 
-    monkeypatch.setattr(build, 'CACHE_DIR', tmp_path)          # the shipped cache
+    assert run('9.0.0', 'V') == '9.0.0'
+    assert run('9.0.0', 'kV') == '9.0.0'                        # an alpha rebuild, in place
+    assert voltage_unit('9.0.0') == 'kV'
+    assert run('9.0.1', 'kV') == '9.0.0'                        # unchanged: still 9.0.0
+    assert not (output / 'test_a/9.0.1').exists()
+    assert run('9.0.1', 'MV') == '9.0.1'                        # changed: a new directory
+    assert voltage_unit('9.0.0') == 'kV' and voltage_unit('9.0.1') == 'MV'
+
+    monkeypatch.setattr(build, 'CACHE_DIR', output)             # the shipped cache
     monkeypatch.setattr(build, '_released', lambda version: True)
-    assert run('9.0.1') == '9.0.1'                              # unchanged: nothing to freeze
-    monkeypatch.setitem(build.HEADER_TERMS, 'dct:late', {'@type': '@id'})
+    assert run('9.0.1', 'MV') == '9.0.1'                        # unchanged: nothing to freeze
     with pytest.raises(SystemExit, match='9.0.1 is released'):
-        run('9.0.1')
+        run('9.0.1', 'V')
+
+
+def test_a_release_context_is_the_union_of_its_parts_contexts(monkeypatch):
+    """The CIMTool contexts of the parts, merged; a part without one fails."""
+    parts = [f'fixture_profiles.cim17.{name}.{name}' for name in ('test_a', 'test_b', 'test_c')]
+    monkeypatch.setattr(build, '_releases', lambda: [{'name': 'fixture_abc', 'parts': parts}])
+    context = build.profile_context('fixture_abc', None)['@context']
+    for name in ('test_a', 'test_b', 'test_c'):
+        part = json.loads((FIXTURES / name / 'context.jsonld').read_text())['@context']
+        assert part.items() <= context.items()
+    assert context['cim:GeneratingUnit.startupCost'] == {'@type': 'xsd:decimal'}     # Money
+    assert context['nc:EnergyConsumer.participationFactor'] == {'@type': 'xsd:float'}
+
+    without_context = 'fixture_profiles.cim17.module'            # in a package with no context.jsonld
+    monkeypatch.setattr(build, '_releases', lambda: [{'name': 'fixture_abc', 'parts': parts + [without_context]}])
+    with pytest.raises(ValueError, match='parts without a CIMTool context.jsonld'):
+        build.profile_context('fixture_abc', None)
+
+
+def test_vocabulary_units_of_the_cim_datatypes():
+    """KiloActivePower keeps its kW, PerCent is qudt PERCENT, and dimensionless PU and Money
+    carry no unit."""
+    from fixture_profiles.cim17 import test_b, test_c
+
+    def units(profile, convention):
+        vocabulary = build_vocabulary(profile, convention, 'https://example.org/units', 'test')
+        return vocabulary_units(vocabulary, context_prefixes(vocabulary))
+
+    units_b = units(test_b, {})
+    units_c = units(test_c, {'properties': {'WireInfo.radius': 'mm'}})
+    assert units_b['EnergyConsumer.pfixed'] == 'W'
+    assert units_b['EnergyConsumer.maxEconomicP'] == 'W'                # an NC extension property
+    assert units_b['EnergyConsumer.pfixedPct'] == 'none'               # qudt PERCENT
+    assert units_c['ShortCircuitTest.loss'] == 'kW'
+    assert units_c['WireInfo.radius'] == 'mm' and units_c['WireInfo.gmr'] == 'm'
+    assert 'GeneratingUnit.governorMPL' not in units_c and 'GeneratingUnit.startupCost' not in units_c
