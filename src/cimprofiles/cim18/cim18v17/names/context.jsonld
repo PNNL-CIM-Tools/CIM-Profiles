@@ -30,25 +30,13 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:IdentifiedObject.ObjectIdentificationRevision": {
-      "@type": "@id"
-    },
-    "cim:IdentifiedObject.ObjectIdentificationRevisionSet": {
-      "@type": "@id"
-    },
     "cim:IdentifiedObject.ObjectType": {
       "@type": "@id"
     },
     "cim:Name.NameType": {
       "@type": "@id"
     },
-    "cim:NameType.Name": {
-      "@type": "@id"
-    },
     "cim:NameType.NamingAuthority": {
-      "@type": "@id"
-    },
-    "cim:NamingAuthority.NameType": {
       "@type": "@id"
     },
     "cim:ObjectIdentificationRevision.IdentifiedObjectRevision": {
@@ -63,14 +51,8 @@
     "cim:ObjectIdentificationRevisionSet.Object": {
       "@type": "@id"
     },
-    "cim:ObjectIdentificationRevisionSet.ObjectIdentificationRevision": {
-      "@type": "@id"
-    },
     "cim:ObjectIdentificationRevisionSet.effectiveDateTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:ObjectType.IdentifiedObject": {
-      "@type": "@id"
     }
   }
 }

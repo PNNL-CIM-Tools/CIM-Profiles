@@ -30,25 +30,22 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:Anchor.anchorRodCount": {
-      "@type": "xsd:integer"
+    "cim:Anchor.OverheadStructure": {
+      "@type": "@id"
     },
     "cim:Anchor.anchorKind": {
       "@type": "@id"
     },
+    "cim:Anchor.anchorRodCount": {
+      "@type": "xsd:integer"
+    },
     "cim:Anchor.anchorRodLength": {
       "@type": "xsd:float"
-    },
-    "cim:Anchor.OverheadStructure": {
-      "@type": "@id"
-    },
-    "cim:Asset.retiredReason": {
-      "@type": "@id"
     },
     "cim:Asset.AssetContainer": {
       "@type": "@id"
     },
-    "cim:AssetContainer.Assets": {
+    "cim:Asset.retiredReason": {
       "@type": "@id"
     },
     "cim:AssetOwner.Ownerships": {
@@ -70,27 +67,6 @@
       "@type": "@id"
     },
     "cim:CathodicSystem.OverheadStructure": {
-      "@type": "@id"
-    },
-    "cim:InterrupterUnit.FixedContactBushing": {
-      "@type": "@id"
-    },
-    "cim:InterrupterUnit.MovingContactBushing": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Anchor": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Brace": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.CathodicSystem": {
-      "@type": "@id"
-    },
-    "cim:Ownership.AssetOwner": {
-      "@type": "@id"
-    },
-    "cim:Terminal.Bushing": {
       "@type": "@id"
     }
   },

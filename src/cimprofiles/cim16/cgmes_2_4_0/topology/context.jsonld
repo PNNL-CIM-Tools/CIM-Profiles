@@ -42,12 +42,6 @@
     "cim:DCTopologicalNode.DCEquipmentContainer": {
       "@type": "@id"
     },
-    "cim:DCTopologicalNode.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:Terminal.TopologicalNode": {
       "@type": "@id"
     },
@@ -57,13 +51,7 @@
     "cim:TopologicalNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.ReportingGroup": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
       "@type": "@id"
     }
   }

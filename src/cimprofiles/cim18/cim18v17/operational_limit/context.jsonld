@@ -33,9 +33,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCTerminal.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "cim:ActivePowerLimit.normalValue": {
       "@type": "xsd:float"
     },
@@ -47,9 +44,6 @@
     },
     "cim:ApparentPowerLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:BranchGroup.BranchGroupTerminal": {
-      "@type": "@id"
     },
     "cim:BranchGroup.maximumActivePower": {
       "@type": "xsd:float"
@@ -84,9 +78,6 @@
     "cim:CurrentLimit.value": {
       "@type": "xsd:float"
     },
-    "cim:Equipment.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "gad:EquipmentConfiguration.OperationalLimitSet": {
       "@type": "@id"
     },
@@ -102,16 +93,7 @@
     "cim:OperationalLimitSet.Equipment": {
       "@type": "@id"
     },
-    "gad:OperationalLimitSet.EquipmentConfiguration": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitSet.OperationalLimitValue": {
-      "@type": "@id"
-    },
     "cim:OperationalLimitSet.Terminal": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.OperationalLimit": {
       "@type": "@id"
     },
     "cim:OperationalLimitType.acceptableDuration": {
@@ -141,19 +123,7 @@
     "cim:ReactivePowerLimit.value": {
       "@type": "xsd:float"
     },
-    "cim:StepOperationalLimitTable.OperationalLimit": {
-      "@type": "@id"
-    },
     "cim:StepOperationalLimitTable.TapChanger": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.StepOperationalLimitTable": {
-      "@type": "@id"
-    },
-    "cim:Terminal.BranchGroupTerminal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.VoltageAngleLimit": {
       "@type": "@id"
     },
     "cim:VoltageAngleLimit.AngleReferenceTerminal": {

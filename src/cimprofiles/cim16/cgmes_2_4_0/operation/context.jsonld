@@ -30,18 +30,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCTerminal.Measurements": {
-      "@type": "@id"
-    },
-    "cim:ACDCTerminal.OperationalLimitSet": {
-      "@type": "@id"
-    },
-    "cim:Accumulator.AccumulatorValues": {
-      "@type": "@id"
-    },
-    "cim:Accumulator.LimitSets": {
-      "@type": "@id"
-    },
     "cim:AccumulatorLimitSet.Measurements": {
       "@type": "@id"
     },
@@ -50,12 +38,6 @@
     },
     "cim:ActivePowerLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:Analog.AnalogValues": {
-      "@type": "@id"
-    },
-    "cim:Analog.LimitSets": {
-      "@type": "@id"
     },
     "cim:Analog.positiveFlowIn": {
       "@type": "xsd:boolean"
@@ -78,19 +60,10 @@
     "cim:BasicIntervalSchedule.value2Unit": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
     "cim:ControlArea.EnergyArea": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
     "cim:ControlArea.type": {
@@ -104,9 +77,6 @@
     },
     "cim:CurrentLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -132,31 +102,10 @@
     "cim:CurveData.y2value": {
       "@type": "xsd:float"
     },
-    "cim:DayType.SeasonDayTypeSchedules": {
-      "@type": "@id"
-    },
-    "cim:Discrete.DiscreteValues": {
-      "@type": "@id"
-    },
     "cim:DiscreteValue.Discrete": {
       "@type": "@id"
     },
-    "cim:EnergyArea.ControlArea": {
-      "@type": "@id"
-    },
-    "cim:Equipment.OperationalLimitSet": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GrossToNetActivePowerCurves": {
-      "@type": "@id"
-    },
     "cim:GrossToNetActivePowerCurve.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:LoadArea.SubLoadAreas": {
       "@type": "@id"
     },
     "cim:LoadGroup.SubLoadArea": {
@@ -174,19 +123,10 @@
     "cim:Measurement.unitSymbol": {
       "@type": "@id"
     },
-    "cim:MeasurementValue.MeasurementValueQuality": {
-      "@type": "@id"
-    },
     "cim:MeasurementValue.MeasurementValueSource": {
       "@type": "@id"
     },
     "cim:MeasurementValueQuality.MeasurementValue": {
-      "@type": "@id"
-    },
-    "cim:MeasurementValueSource.MeasurementValues": {
-      "@type": "@id"
-    },
-    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
       "@type": "@id"
     },
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
@@ -201,22 +141,13 @@
     "cim:OperationalLimitSet.Equipment": {
       "@type": "@id"
     },
-    "cim:OperationalLimitSet.OperationalLimitValue": {
-      "@type": "@id"
-    },
     "cim:OperationalLimitSet.Terminal": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.OperationalLimit": {
       "@type": "@id"
     },
     "cim:OperationalLimitType.acceptableDuration": {
       "@type": "xsd:float"
     },
     "cim:OperationalLimitType.direction": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Measurements": {
       "@type": "@id"
     },
     "cim:Quality61850.badReference": {
@@ -255,9 +186,6 @@
     "cim:Quality61850.validity": {
       "@type": "@id"
     },
-    "cim:RegularIntervalSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:RegularIntervalSchedule.endTime": {
       "@type": "xsd:dateTime"
     },
@@ -276,13 +204,7 @@
     "cim:RegularTimePoint.value2": {
       "@type": "xsd:float"
     },
-    "cim:RegulatingCondEq.RegulatingControl": {
-      "@type": "@id"
-    },
     "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.RegulationSchedule": {
       "@type": "@id"
     },
     "cim:RegulatingControl.Terminal": {
@@ -300,9 +222,6 @@
     "cim:RegulationSchedule.RegulatingControl": {
       "@type": "@id"
     },
-    "cim:Season.SeasonDayTypeSchedules": {
-      "@type": "@id"
-    },
     "cim:Season.endDate": {
       "@type": "xsd:gMonthDay"
     },
@@ -315,25 +234,13 @@
     "cim:SeasonDayTypeSchedule.Season": {
       "@type": "@id"
     },
-    "cim:StringMeasurement.StringMeasurementValues": {
-      "@type": "@id"
-    },
     "cim:StringMeasurementValue.StringMeasurement": {
       "@type": "@id"
     },
     "cim:SubLoadArea.LoadArea": {
       "@type": "@id"
     },
-    "cim:SubLoadArea.LoadGroups": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchSchedules": {
-      "@type": "@id"
-    },
     "cim:SwitchSchedule.Switch": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.TapSchedules": {
       "@type": "@id"
     },
     "cim:TapSchedule.TapChanger": {

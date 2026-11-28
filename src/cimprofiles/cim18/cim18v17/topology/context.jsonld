@@ -33,17 +33,8 @@
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:AreaConfiguration.ConnectedArea": {
-      "@type": "@id"
-    },
-    "cim:AreaConfiguration.TopologicalArea": {
-      "@type": "@id"
-    },
     "cim:AreaConfiguration.priority": {
       "@type": "xsd:integer"
-    },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
     },
     "cim:BusNameMarker.ReportingGroup": {
       "@type": "@id"
@@ -58,12 +49,6 @@
       "@type": "@id"
     },
     "cim:ConnectivityNode.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.BusNameMarker": {
       "@type": "@id"
     },
     "cim:Terminal.TopologicalNode": {
@@ -84,31 +69,13 @@
     "cim:TopologicalArea.kind": {
       "@type": "@id"
     },
-    "cim:TopologicalIsland.AngleRefTopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:TopologicalIsland.TopologicalArea": {
-      "@type": "@id"
-    },
-    "cim:TopologicalIsland.TopologicalNodes": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.AngleRefTopologicalIsland": {
       "@type": "@id"
     },
     "cim:TopologicalNode.BaseVoltage": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.BusNameMarker": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.ConnectivityNodeContainer": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
       "@type": "@id"
     },
     "cim:TopologicalNode.TopologicalIsland": {

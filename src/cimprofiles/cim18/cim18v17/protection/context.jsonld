@@ -36,12 +36,6 @@
     "cim:AutomationBlockGroup.priority": {
       "@type": "xsd:integer"
     },
-    "cim:AutomationFunction.AutomationBlockGroup": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.HasPart": {
-      "@type": "@id"
-    },
     "cim:AutomationFunction.PartOf": {
       "@type": "@id"
     },
@@ -51,9 +45,6 @@
     "cim:AutomationFunction.normalEnabled": {
       "@type": "xsd:boolean"
     },
-    "cim:AutoreclosingFunctionBlock.RecloseSequences": {
-      "@type": "@id"
-    },
     "cim:Breaker.inTransitTime": {
       "@type": "xsd:float"
     },
@@ -61,18 +52,6 @@
       "@type": "@id"
     },
     "cim:Fuse.TotalClearingTimeCurve": {
-      "@type": "@id"
-    },
-    "cim:FuseCharacteristicCurve.FuseMinimumMelt": {
-      "@type": "@id"
-    },
-    "cim:FuseCharacteristicCurve.FuseTotalClearing": {
-      "@type": "@id"
-    },
-    "cim:ProtectedSwitch.RecloseSequences": {
-      "@type": "@id"
-    },
-    "cim:ProtectionEquipment.ProtectionRelatedFunctionBlock": {
       "@type": "@id"
     },
     "cim:ProtectionFunctionBlock.operatingQuantityType": {
@@ -85,9 +64,6 @@
       "@type": "@id"
     },
     "cim:ProtectionRelatedFunctionBlock.operatingQuantityType": {
-      "@type": "@id"
-    },
-    "cim:ProtectionSettingsGroup.ProtectionRelatedFunctionBlock": {
       "@type": "@id"
     },
     "cim:RecloseSequence.AutoreclosingFunctionBlock": {

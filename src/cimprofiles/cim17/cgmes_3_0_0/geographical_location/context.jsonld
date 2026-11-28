@@ -30,13 +30,7 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:CoordinateSystem.Locations": {
-      "@type": "@id"
-    },
     "cim:Location.CoordinateSystem": {
-      "@type": "@id"
-    },
-    "cim:Location.PositionPoints": {
       "@type": "@id"
     },
     "cim:Location.PowerSystemResources": {
@@ -50,9 +44,6 @@
     },
     "cim:PositionPoint.sequenceNumber": {
       "@type": "xsd:integer"
-    },
-    "cim:PowerSystemResource.Location": {
-      "@type": "@id"
     },
     "cim:Status.dateTime": {
       "@type": "xsd:dateTime"

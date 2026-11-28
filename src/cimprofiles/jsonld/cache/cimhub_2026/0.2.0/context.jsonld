@@ -43,12 +43,6 @@
     "cim:ACDCTerminal.BusNameMarker": {
       "@type": "@id"
     },
-    "cim:ACDCTerminal.Measurements": {
-      "@type": "@id"
-    },
-    "cim:ACDCTerminal.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "gad:ACLineSegment.circuitNumber": {
       "@type": "xsd:integer"
     },
@@ -94,18 +88,6 @@
     "cim:ACLineSegment.WireSpacingInfo": {
       "@type": "@id"
     },
-    "cim:ACLineSegment.ACLineSegmentPhases": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.Clamp": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.Cut": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.LineSegmentCoupling": {
-      "@type": "@id"
-    },
     "cim:ACLineSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
@@ -122,9 +104,6 @@
       "@type": "@id"
     },
     "cim:ACPointOfCommonCoupling.DCConverterUnit": {
-      "@type": "@id"
-    },
-    "cim:ACTieCorridor.Line": {
       "@type": "@id"
     },
     "cim:ActivePowerLimit.normalValue": {
@@ -151,25 +130,10 @@
     "cim:AltTieMeas.TieFlow": {
       "@type": "@id"
     },
-    "cim:AmbientTemperatureDependencyCurve.OperationalLimitType": {
-      "@type": "@id"
-    },
-    "cim:Analog.AnalogValues": {
-      "@type": "@id"
-    },
-    "gad:Analog.PointOnWaveValues": {
-      "@type": "@id"
-    },
     "cim:AnalogValue.value": {
       "@type": "xsd:float"
     },
     "cim:AnalogValue.Analog": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.AltGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.AltTieMeas": {
       "@type": "@id"
     },
     "cim:AngleBusbarInfo.crossSectionWidth": {
@@ -184,25 +148,16 @@
     "cim:ApparentPowerLimit.value": {
       "@type": "xsd:float"
     },
-    "nc:AreaDispatchableUnit.EnergyConsumer": {
-      "@type": "@id"
-    },
     "cim:AreaInterchangeController.pTolerance": {
       "@type": "xsd:float"
     },
     "cim:AreaInterchangeController.ControlArea": {
       "@type": "@id"
     },
-    "cim:Asset.Measurements": {
-      "@type": "@id"
-    },
     "cim:AssetInfo.CatalogAssetType": {
       "@type": "@id"
     },
     "cim:AssetInfo.ProductAssetModel": {
-      "@type": "@id"
-    },
-    "cim:AssetInfo.PowerSystemResources": {
       "@type": "@id"
     },
     "cim:AsynchronousMachine.converterFedDrive": {
@@ -268,38 +223,17 @@
     "cim:AsynchronousMachine.AsynchronousMachineDynamics": {
       "@type": "@id"
     },
-    "cim:AsynchronousMachineDynamics.AsynchronousMachine": {
-      "@type": "@id"
-    },
     "cim:BareWireInfo.wireConstructionKind": {
       "@type": "@id"
     },
     "cim:BaseFrequency.frequency": {
       "@type": "xsd:float"
     },
-    "cim:BaseOverloadLimitCurve.OperationalLimitType": {
-      "@type": "@id"
-    },
     "cim:BasePower.basePower": {
       "@type": "xsd:float"
     },
     "cim:BaseVoltage.nominalVoltage": {
       "@type": "xsd:float"
-    },
-    "cim:BaseVoltage.ConductingEquipment": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TransformerEnds": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.VoltageLevel": {
-      "@type": "@id"
     },
     "cim:BasicIntervalSchedule.value1Multiplier": {
       "@type": "@id"
@@ -330,9 +264,6 @@
     },
     "gad:BatteryInfo.usableCapacity": {
       "@type": "xsd:float"
-    },
-    "gad:BatteryInfo.ElectricVehicleInfo": {
-      "@type": "@id"
     },
     "cim:BatteryUnit.batteryState": {
       "@type": "@id"
@@ -376,12 +307,6 @@
     "cim:Bay.VoltageLevel": {
       "@type": "@id"
     },
-    "cim:BilateralExchangeActor.CommunicationLink": {
-      "@type": "@id"
-    },
-    "eu:BoundaryPoint.ConnectivityNode": {
-      "@type": "@id"
-    },
     "cim:BranchGroup.monitorActivePower": {
       "@type": "xsd:boolean"
     },
@@ -399,9 +324,6 @@
     },
     "cim:BranchGroup.minimumReactivePower": {
       "@type": "xsd:float"
-    },
-    "cim:BranchGroup.BranchGroupTerminal": {
-      "@type": "@id"
     },
     "cim:BranchGroupTerminal.positiveFlowIn": {
       "@type": "xsd:boolean"
@@ -439,9 +361,6 @@
     "cim:BusNameMarker.TopologicalNode": {
       "@type": "@id"
     },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
-    },
     "cim:BusSegment.Retain": {
       "@type": "xsd:boolean"
     },
@@ -452,9 +371,6 @@
       "@type": "xsd:float"
     },
     "cim:BusbarSection.VoltageControlZone": {
-      "@type": "@id"
-    },
-    "cim:Bushing.Terminal": {
       "@type": "@id"
     },
     "gad:CableArmorInfo.diameterOverArmor": {
@@ -511,12 +427,6 @@
     "cim:CableInfo.InsulationInfo": {
       "@type": "@id"
     },
-    "cim:CalculationMethodHierarchy.Measurement": {
-      "@type": "@id"
-    },
-    "cim:CalculationMethodHierarchy.MeasurementValue": {
-      "@type": "@id"
-    },
     "cim:CatalogAssetType.stockItem": {
       "@type": "xsd:boolean"
     },
@@ -526,19 +436,10 @@
     "cim:CatalogAssetType.kind": {
       "@type": "@id"
     },
-    "cim:CatalogAssetType.AssetInfo": {
-      "@type": "@id"
-    },
-    "gad:ChargingConnectorInfo.ChargingStation": {
-      "@type": "@id"
-    },
     "gad:ChargingStation.weatherProtection": {
       "@type": "xsd:boolean"
     },
     "gad:ChargingStation.ChargingConnector": {
-      "@type": "@id"
-    },
-    "gad:ChargingUnit.MobileElectricalUnit": {
       "@type": "@id"
     },
     "cim:Clamp.lengthFromTerminal1": {
@@ -554,15 +455,6 @@
       "@type": "@id"
     },
     "cim:CommunicationLink.BilateralExchangeActor": {
-      "@type": "@id"
-    },
-    "gad:CommunicationLink.Sensors": {
-      "@type": "@id"
-    },
-    "gad:Company.PowerSystemResources": {
-      "@type": "@id"
-    },
-    "cim:CompositeSwitch.Switches": {
       "@type": "@id"
     },
     "cim:ConcentricNeutralCableInfo.neutralStrandCount": {
@@ -604,19 +496,10 @@
     "cim:ConductingEquipment.Outage": {
       "@type": "@id"
     },
-    "cim:ConductingEquipment.SvStatus": {
-      "@type": "@id"
-    },
-    "cim:ConductingEquipment.Terminals": {
-      "@type": "@id"
-    },
     "cim:Conductor.length": {
       "@type": "xsd:float"
     },
     "cim:Conductor.DamageCurve": {
-      "@type": "@id"
-    },
-    "cim:ConductorCharacteristicCurve.Conductor": {
       "@type": "@id"
     },
     "gad:ConductorDistance.fromSequenceNumber": {
@@ -635,9 +518,6 @@
       "@type": "@id"
     },
     "gad:ConductorDistance.WireSpacing": {
-      "@type": "@id"
-    },
-    "gad:ConductorDistanceSpacing.ConductorDistance": {
       "@type": "@id"
     },
     "cim:ConductorInfo.crossSection": {
@@ -661,12 +541,6 @@
     "cim:ConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
@@ -685,9 +559,6 @@
     "cim:ConnectionAngleTapChanger.windingConnectionAngle": {
       "@type": "xsd:float"
     },
-    "cim:ConnectionAngleTapChanger.ConnectionAngleTapChangerTable": {
-      "@type": "@id"
-    },
     "cim:ConnectionAngleTapChangerTable.windingConnectionAngle": {
       "@type": "xsd:float"
     },
@@ -701,12 +572,6 @@
       "@type": "@id"
     },
     "gad:ConnectivityArea.ContainedWithin": {
-      "@type": "@id"
-    },
-    "gad:ConnectivityArea.ContainedAreas": {
-      "@type": "@id"
-    },
-    "gad:ConnectivityArea.BoundaryTerminals": {
       "@type": "@id"
     },
     "cim:ConnectivityNode.ACPointOfCommonCoupling": {
@@ -725,15 +590,6 @@
       "@type": "@id"
     },
     "cim:ConnectivityNode.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
       "@type": "@id"
     },
     "cim:ControlArea.netInterchange": {
@@ -760,31 +616,16 @@
     "nc:ControlArea.SystemOperator": {
       "@type": "@id"
     },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.ControlAreaPowerElectronicsUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
-      "@type": "@id"
-    },
     "cim:ControlAreaGeneratingUnit.ControlArea": {
       "@type": "@id"
     },
     "cim:ControlAreaGeneratingUnit.GeneratingUnit": {
       "@type": "@id"
     },
-    "cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas": {
-      "@type": "@id"
-    },
     "cim:ControlAreaPowerElectronicsUnit.ControlArea": {
       "@type": "@id"
     },
     "cim:ControlAreaPowerElectronicsUnit.PowerElectronicsUnit": {
-      "@type": "@id"
-    },
-    "cim:CoupledLineSegmentGroup.LineSegmentCoupling": {
       "@type": "@id"
     },
     "cim:CurrentDroopControlFunction.droopCapacitive": {
@@ -868,9 +709,6 @@
     "cim:Curve.y3Unit": {
       "@type": "@id"
     },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
-    },
     "cim:CurveData.xvalue": {
       "@type": "xsd:float"
     },
@@ -895,22 +733,7 @@
     "cim:Cut.CutAction": {
       "@type": "@id"
     },
-    "cim:CutAction.Cut": {
-      "@type": "@id"
-    },
-    "cim:DCConverterUnit.ACPointOfCommonCoupling": {
-      "@type": "@id"
-    },
-    "cim:DCTerminal.SvDCPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.SvDCVoltage": {
-      "@type": "@id"
-    },
     "cim:DateTimeInterval.timehasDateTimeDescription": {
-      "@type": "@id"
-    },
-    "cim:DayType.SeasonDayTypeSchedules": {
       "@type": "@id"
     },
     "cim:DecimalQuantity.currency": {
@@ -920,9 +743,6 @@
       "@type": "@id"
     },
     "cim:DecimalQuantity.unit": {
-      "@type": "@id"
-    },
-    "cim:DesignElement.PowerSystemResource": {
       "@type": "@id"
     },
     "cim:Discrete.maxValue": {
@@ -940,12 +760,6 @@
     "cim:DuctBank.circuitCount": {
       "@type": "xsd:integer"
     },
-    "cim:DuctBank.WireSpacingInfos": {
-      "@type": "@id"
-    },
-    "cim:DurationOverloadLimitCurve.OperationalLimitType": {
-      "@type": "@id"
-    },
     "gad:EVSE.chargingModeType": {
       "@type": "@id"
     },
@@ -960,9 +774,6 @@
     },
     "gad:EarthResistivity.rho": {
       "@type": "xsd:float"
-    },
-    "gad:EarthResistivity.ACLineSegments": {
-      "@type": "@id"
     },
     "gad:ElectricVehicleInfo.v2gCapable": {
       "@type": "xsd:boolean"
@@ -1027,12 +838,6 @@
     "cim:EnergyConsumer.PowerCutZone": {
       "@type": "@id"
     },
-    "cim:EnergyConsumer.EnergyConsumerPhase": {
-      "@type": "@id"
-    },
-    "cim:EnergyConsumerAction.EnergyConsumer": {
-      "@type": "@id"
-    },
     "cim:EnergyConsumerPhase.p": {
       "@type": "xsd:float"
     },
@@ -1055,9 +860,6 @@
       "@type": "xsd:float"
     },
     "cim:EnergyConsumerPhase.EnergyConsumer": {
-      "@type": "@id"
-    },
-    "cim:EnergySchedulingType.EnergySource": {
       "@type": "@id"
     },
     "cim:EnergySource.grounded": {
@@ -1108,12 +910,6 @@
     "cim:EnergySource.EnergySourceAction": {
       "@type": "@id"
     },
-    "cim:EnergySource.EnergySourcePhase": {
-      "@type": "@id"
-    },
-    "cim:EnergySourceAction.EnergySource": {
-      "@type": "@id"
-    },
     "cim:EnergySourcePhase.phase": {
       "@type": "@id"
     },
@@ -1138,18 +934,6 @@
     "cim:Equipment.EquipmentContainer": {
       "@type": "@id"
     },
-    "cim:Equipment.OperationalLimitSet": {
-      "@type": "@id"
-    },
-    "cim:EquipmentContainer.AdditionalGroupedEquipment": {
-      "@type": "@id"
-    },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
-    },
-    "cim:EquipmentController.RegulatingCondEq": {
-      "@type": "@id"
-    },
     "gad:EquivalentDistanceSpacing.averageNeutralHeight": {
       "@type": "xsd:float"
     },
@@ -1161,9 +945,6 @@
     },
     "gad:EquivalentDistanceSpacing.phaseToPhaseGMD": {
       "@type": "xsd:float"
-    },
-    "cim:ExtendedWardEquivalent.ReactiveCapabilityCurve": {
-      "@type": "@id"
     },
     "cim:ExternalNetworkInjection.ikSecond": {
       "@type": "xsd:boolean"
@@ -1249,19 +1030,10 @@
     "cim:FACTSEquipment.slope": {
       "@type": "xsd:float"
     },
-    "cim:FACTSEquipment.LossCurve": {
-      "@type": "@id"
-    },
     "cim:Feeder.NormalEnergizingSubstation": {
       "@type": "@id"
     },
     "nc:Feeder.SubSchedulingArea": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NamingSecondarySubstation": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NormalHeadTerminal": {
       "@type": "@id"
     },
     "cim:FloatQuantity.value": {
@@ -1324,19 +1096,10 @@
     "cim:FrequencyConverter.minU": {
       "@type": "xsd:float"
     },
-    "cim:FuelStorage.FossilFuel": {
-      "@type": "@id"
-    },
     "cim:Fuse.MiinimumMeltCurve": {
       "@type": "@id"
     },
     "cim:Fuse.TotalClearingTimeCurve": {
-      "@type": "@id"
-    },
-    "cim:FuseCharacteristicCurve.FuseMinimumMelt": {
-      "@type": "@id"
-    },
-    "cim:FuseCharacteristicCurve.FuseTotalClearing": {
       "@type": "@id"
     },
     "cim:GeneratingUnit.longPF": {
@@ -1450,15 +1213,6 @@
     "cim:GeneratingUnit.variableCost": {
       "@type": "xsd:float"
     },
-    "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.RotatingMachine": {
-      "@type": "@id"
-    },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
-    },
     "cim:GridEdgeDeviceInfo.apparentPowerMaximum": {
       "@type": "xsd:float"
     },
@@ -1471,31 +1225,13 @@
     "cim:Ground.GroundAction": {
       "@type": "@id"
     },
-    "cim:GroundAction.GroundedEquipment": {
-      "@type": "@id"
-    },
-    "cim:GroundAction.Ground": {
-      "@type": "@id"
-    },
     "cim:GroundingImpedance.x": {
       "@type": "xsd:float"
-    },
-    "cim:HydroPump.RotatingMachine": {
-      "@type": "@id"
     },
     "cim:IOPoint.IOPointSource": {
       "@type": "@id"
     },
-    "cim:IOPointSource.IOPoint": {
-      "@type": "@id"
-    },
     "cim:IdentifiedObject.InstanceSet": {
-      "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTabular": {
       "@type": "@id"
     },
     "cim:ImpedanceTapChangerTablePoint.ratio": {
@@ -1532,9 +1268,6 @@
       "@type": "@id"
     },
     "cim:IndividualPnode.ConnectivityNode": {
-      "@type": "@id"
-    },
-    "cim:InstanceSet.InstanceSetMember": {
       "@type": "@id"
     },
     "cim:InsulationInfo.insulated": {
@@ -1591,9 +1324,6 @@
     "cim:InverterCapabilities.isProtectionCapableVoltageTrip": {
       "@type": "xsd:boolean"
     },
-    "cim:InverterCapabilities.IntervalInfo": {
-      "@type": "@id"
-    },
     "cim:InverterInfo.powerFactorOverExcited": {
       "@type": "xsd:float"
     },
@@ -1621,9 +1351,6 @@
     "cim:InverterInfo.InverterCapabilites": {
       "@type": "@id"
     },
-    "cim:IrregularIntervalSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:IrregularTimePoint.value1": {
       "@type": "xsd:float"
     },
@@ -1640,12 +1367,6 @@
       "@type": "@id"
     },
     "cim:Jumper.JumperAction": {
-      "@type": "@id"
-    },
-    "cim:JumperAction.JumpedEquipments": {
-      "@type": "@id"
-    },
-    "cim:JumperAction.Jumper": {
       "@type": "@id"
     },
     "cim:Line.ACTieCorridor": {
@@ -1708,12 +1429,6 @@
     "cim:LoadArea.peakLoad": {
       "@type": "xsd:float"
     },
-    "cim:LoadArea.SubLoadAreas": {
-      "@type": "@id"
-    },
-    "cim:LoadDynamics.EnergyConsumer": {
-      "@type": "@id"
-    },
     "cim:LoadGroup.SubLoadArea": {
       "@type": "@id"
     },
@@ -1750,15 +1465,6 @@
     "cim:LoadResponseCharacteristic.qVoltageExponent": {
       "@type": "xsd:float"
     },
-    "cim:LoadResponseCharacteristic.EnergyConsumer": {
-      "@type": "@id"
-    },
-    "gad:Location.PositionPoints": {
-      "@type": "@id"
-    },
-    "cim:Location.PowerSystemResources": {
-      "@type": "@id"
-    },
     "cim:LossCurve.FACTSEquipment": {
       "@type": "@id"
     },
@@ -1792,16 +1498,10 @@
     "cim:Measurement.Terminal": {
       "@type": "@id"
     },
-    "cim:MeasurementAction.Measurement": {
-      "@type": "@id"
-    },
     "gad:MeasurementSystem.reportingRate": {
       "@type": "xsd:float"
     },
     "gad:MeasurementSystem.CommunicationLink": {
-      "@type": "@id"
-    },
-    "gad:MeasurementSystem.Measurements": {
       "@type": "@id"
     },
     "cim:MeasurementValue.sensorAccuracy": {
@@ -1823,9 +1523,6 @@
       "@type": "@id"
     },
     "cim:MeasurementValueQuality.MeasurementValue": {
-      "@type": "@id"
-    },
-    "cim:MeasurementValueSource.MeasurementValues": {
       "@type": "@id"
     },
     "gad:MeasurementVector.angle": {
@@ -1888,19 +1585,7 @@
     "cim:NonConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:NonConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
-    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints": {
       "@type": "@id"
     },
     "cim:NonlinearShuntCompensatorPhasePoint.sectionNumber": {
@@ -1931,9 +1616,6 @@
       "@type": "xsd:float"
     },
     "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
-      "@type": "@id"
-    },
-    "cim:OldPerson.MeasurementValues": {
       "@type": "@id"
     },
     "cim:OpenCircuitTest.energisedEndStep": {
@@ -1975,9 +1657,6 @@
     "cim:OperationalLimitSet.Terminal": {
       "@type": "@id"
     },
-    "cim:OperationalLimitSet.OperationalLimitValue": {
-      "@type": "@id"
-    },
     "cim:OperationalLimitType.isInfiniteDuration": {
       "@type": "xsd:boolean"
     },
@@ -2006,15 +1685,6 @@
       "@type": "@id"
     },
     "cim:OperationalLimitType.TemporaryDurationOverloadLimitCurve": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.OperationalLimit": {
-      "@type": "@id"
-    },
-    "cim:Outage.OutageIsolationEquipment": {
-      "@type": "@id"
-    },
-    "nc:OutageCoordinationRegion.ControlArea": {
       "@type": "@id"
     },
     "cim:OverheadWireInfo.wireConstructionKind": {
@@ -2059,9 +1729,6 @@
     "gad:PMUConfigurationFrame.timeBase": {
       "@type": "xsd:integer"
     },
-    "gad:PMUConfigurationFrame.PMUConfigurations": {
-      "@type": "@id"
-    },
     "gad:PMUStream.PMU": {
       "@type": "@id"
     },
@@ -2079,9 +1746,6 @@
     },
     "gad:PMUValueQuality.pmuSync": {
       "@type": "xsd:boolean"
-    },
-    "cim:PSRType.PowerSystemResources": {
-      "@type": "@id"
     },
     "gad:PerLengthImpedance.isUserDefined": {
       "@type": "xsd:boolean"
@@ -2101,17 +1765,11 @@
     "gad:PerLengthImpedance.WireAssemblyInfo": {
       "@type": "@id"
     },
-    "cim:PerLengthImpedance.ACLineSegments": {
-      "@type": "@id"
-    },
     "cim:PerLengthLineParameter.WireAssemblyInfo": {
       "@type": "@id"
     },
     "cim:PerLengthPhaseImpedance.conductorCount": {
       "@type": "xsd:integer"
-    },
-    "cim:PerLengthPhaseImpedance.PhaseImpedanceData": {
-      "@type": "@id"
     },
     "cim:PerLengthSequenceImpedance.b0ch": {
       "@type": "xsd:float"
@@ -2203,12 +1861,6 @@
     "cim:PhaseTapChangerNonLinear.xMax": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChangerTablePoint.angle": {
       "@type": "xsd:float"
     },
@@ -2219,12 +1871,6 @@
       "@type": "@id"
     },
     "gad:PhasorDataConcentrator.CentralPDC": {
-      "@type": "@id"
-    },
-    "gad:PhasorDataConcentrator.LocalPDC": {
-      "@type": "@id"
-    },
-    "gad:PhasorDataConcentrator.PhasorMeasurementUnits": {
       "@type": "@id"
     },
     "gad:PhasorMeasurementUnit.timeSourceType": {
@@ -2263,9 +1909,6 @@
     "cim:PowerCutZone.cutLevel2": {
       "@type": "xsd:float"
     },
-    "cim:PowerCutZone.EnergyConsumers": {
-      "@type": "@id"
-    },
     "cim:PowerElectricalChemicalUnit.kind": {
       "@type": "@id"
     },
@@ -2296,12 +1939,6 @@
     "cim:PowerElectronicsConnection.ratedU": {
       "@type": "xsd:float"
     },
-    "cim:PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
-      "@type": "@id"
-    },
-    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
-      "@type": "@id"
-    },
     "cim:PowerElectronicsConnectionPhase.p": {
       "@type": "xsd:float"
     },
@@ -2329,12 +1966,6 @@
     "cim:PowerElectronicsUnit.PowerElectronicsUnitController": {
       "@type": "@id"
     },
-    "cim:PowerElectronicsUnit.ControlAreaPowerElectronicsUnit": {
-      "@type": "@id"
-    },
-    "cim:PowerFrequencyController.ControlArea": {
-      "@type": "@id"
-    },
     "cim:PowerSystemResource.AssetDatasheet": {
       "@type": "@id"
     },
@@ -2351,12 +1982,6 @@
       "@type": "@id"
     },
     "gad:PowerSystemResource.ResourceContainer": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Measurements": {
-      "@type": "@id"
-    },
-    "nc:PowerTransferCorridor.OperationalLimitSet": {
       "@type": "@id"
     },
     "cim:PowerTransformer.isPartOfGeneratorUnit": {
@@ -2376,12 +2001,6 @@
     },
     "cim:PowerTransformer.highSideMinOperatingU": {
       "@type": "xsd:float"
-    },
-    "cim:PowerTransformer.PowerTransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformer.TransformerTanks": {
-      "@type": "@id"
     },
     "cim:PowerTransformerEnd.phaseAngleClock": {
       "@type": "xsd:integer"
@@ -2416,12 +2035,6 @@
     "cim:PowerTransformerEnd.PowerTransformer": {
       "@type": "@id"
     },
-    "cim:PowerTransformerInfo.TransformerTankInfos": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.AssetInfo": {
-      "@type": "@id"
-    },
     "cim:ProtectedSwitch.breakingCapacity": {
       "@type": "xsd:float"
     },
@@ -2435,12 +2048,6 @@
       "@type": "@id"
     },
     "cim:RatioTapChanger.TransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChangerTable.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
       "@type": "@id"
     },
     "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
@@ -2461,17 +2068,8 @@
     "cim:ReactiveCapabilityCurve.SynchronousMachine": {
       "@type": "@id"
     },
-    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachine": {
-      "@type": "@id"
-    },
-    "cim:RecoveryOverloadLimitCurve.OperationalLimitType": {
-      "@type": "@id"
-    },
     "cim:RegularIntervalSchedule.timeStep": {
       "@type": "xsd:float"
-    },
-    "cim:RegularIntervalSchedule.TimePoints": {
-      "@type": "@id"
     },
     "cim:RegularTimePoint.sequenceNumber": {
       "@type": "xsd:integer"
@@ -2539,34 +2137,7 @@
     "cim:RegulatingControl.Terminal": {
       "@type": "@id"
     },
-    "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.RegulationSchedule": {
-      "@type": "@id"
-    },
     "cim:RegulationSchedule.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:RegulationSchedule.VoltageControlZones": {
-      "@type": "@id"
-    },
-    "cim:RelativeHeight.PositionPoint": {
-      "@type": "@id"
-    },
-    "cim:RemoteSource.MeasurementValue": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.BusNameMarker": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.TopologicalNode": {
-      "@type": "@id"
-    },
-    "gad:ResourceContainer.ContainedResources": {
-      "@type": "@id"
-    },
-    "gad:ResourceContainer.BoundaryTerminals": {
       "@type": "@id"
     },
     "cim:RotatingMachine.ratedPowerFactor": {
@@ -2591,9 +2162,6 @@
       "@type": "@id"
     },
     "gad:RotatingMachine.RotatingMachinePhase": {
-      "@type": "@id"
-    },
-    "gad:RotatingMachinePhase.RotatingMachine": {
       "@type": "@id"
     },
     "cim:SSSCController.maxInjectionU": {
@@ -2631,18 +2199,6 @@
     },
     "cim:SSSCSimulationSettings.maxMismatch": {
       "@type": "xsd:float"
-    },
-    "cim:SSSCSimulationSettings.SSSCController": {
-      "@type": "@id"
-    },
-    "nc:SchedulingArea.Line": {
-      "@type": "@id"
-    },
-    "nc:SchedulingArea.Substation": {
-      "@type": "@id"
-    },
-    "cim:Season.SeasonDayTypeSchedules": {
-      "@type": "@id"
     },
     "cim:SeasonDayTypeSchedule.DayType": {
       "@type": "@id"
@@ -2737,18 +2293,6 @@
     "cim:ShuntCompensator.StaticVarCompensatorSystemDynamics": {
       "@type": "@id"
     },
-    "cim:ShuntCompensator.ShuntCompensatorPhase": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.SvShuntCompensatorSections": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensatorAction.ShuntCompensator": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensatorDynamics.ShuntCompensator": {
-      "@type": "@id"
-    },
     "cim:ShuntCompensatorPhase.maximumSections": {
       "@type": "xsd:integer"
     },
@@ -2765,18 +2309,6 @@
       "@type": "@id"
     },
     "eu:SolarGeneratingUnit.SolarPowerPlant": {
-      "@type": "@id"
-    },
-    "eu:SolarPowerPlant.SolarGeneratingUnits": {
-      "@type": "@id"
-    },
-    "cim:SolarRadiationDependencyCurve.OperationalLimitType": {
-      "@type": "@id"
-    },
-    "gb:StateShortCircuitResult.Terminal": {
-      "@type": "@id"
-    },
-    "gb:StateShortCircuitResult.TopologicalNode": {
       "@type": "@id"
     },
     "cim:StaticVarCompensator.capacitiveRating": {
@@ -2800,12 +2332,6 @@
     "cim:StaticVarCompensator.StaticVarCompensatorDynamics": {
       "@type": "@id"
     },
-    "cim:StaticVarCompensatorDynamics.StaticVarCompensator": {
-      "@type": "@id"
-    },
-    "cim:StaticVarCompensatorSystemDynamics.ShuntCompensator": {
-      "@type": "@id"
-    },
     "cim:StepLimitTablePoint.factor": {
       "@type": "xsd:float"
     },
@@ -2818,12 +2344,6 @@
     "cim:StepOperationalLimitTable.TapChanger": {
       "@type": "@id"
     },
-    "cim:StepOperationalLimitTable.OperationalLimit": {
-      "@type": "@id"
-    },
-    "cim:StepOperationalLimitTable.StepLimitTablePoint": {
-      "@type": "@id"
-    },
     "cim:StringQuantity.multiplier": {
       "@type": "@id"
     },
@@ -2833,19 +2353,7 @@
     "cim:SubGeographicalRegion.Region": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
     "cim:SubLoadArea.LoadArea": {
-      "@type": "@id"
-    },
-    "cim:SubLoadArea.LoadGroups": {
-      "@type": "@id"
-    },
-    "nc:SubSchedulingArea.Feeder": {
       "@type": "@id"
     },
     "cim:Substation.NamingFeeder": {
@@ -2855,15 +2363,6 @@
       "@type": "@id"
     },
     "nc:Substation.SchedulingArea": {
-      "@type": "@id"
-    },
-    "cim:Substation.Bays": {
-      "@type": "@id"
-    },
-    "cim:Substation.NormalEnergizedFeeder": {
-      "@type": "@id"
-    },
-    "cim:Substation.VoltageLevels": {
       "@type": "@id"
     },
     "cim:SvDCPowerFlow.p": {
@@ -2969,18 +2468,6 @@
       "@type": "@id"
     },
     "cim:Switch.SwitchAction": {
-      "@type": "@id"
-    },
-    "cim:Switch.SvSwitch": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchPhase": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchSchedules": {
-      "@type": "@id"
-    },
-    "cim:SwitchAction.OperatedSwitch": {
       "@type": "@id"
     },
     "cim:SwitchPhase.closed": {
@@ -3103,12 +2590,6 @@
     "cim:SynchronousMachine.SynchronousMachineDynamics": {
       "@type": "@id"
     },
-    "cim:SynchronousMachine.ReactiveCapabilityCurve": {
-      "@type": "@id"
-    },
-    "cim:SynchronousMachineDynamics.SynchronousMachine": {
-      "@type": "@id"
-    },
     "gad:SynchrophaserFrame.chk": {
       "@type": "xsd:integer"
     },
@@ -3123,9 +2604,6 @@
     },
     "gad:SynchrophaserFrame.leapByte": {
       "@type": "xsd:float"
-    },
-    "nc:SystemOperator.ControlArea": {
-      "@type": "@id"
     },
     "cim:TCSCCompensationPoint.section": {
       "@type": "xsd:integer"
@@ -3187,9 +2665,6 @@
     "cim:TapChanger.TapChangerControl": {
       "@type": "@id"
     },
-    "cim:TapChanger.StepOperationalLimitTable": {
-      "@type": "@id"
-    },
     "cim:TapChangerControl.lineDropCompensation": {
       "@type": "xsd:boolean"
     },
@@ -3222,12 +2697,6 @@
     },
     "gad:TapChangerControl.reversingPowerThreshold": {
       "@type": "xsd:float"
-    },
-    "cim:TapChangerControl.TapChanger": {
-      "@type": "@id"
-    },
-    "cim:TapChangerController.TapChanger": {
-      "@type": "@id"
     },
     "cim:TapChangerInfo.ctRatio": {
       "@type": "xsd:float"
@@ -3325,33 +2794,6 @@
     "cim:Terminal.UsagePoint": {
       "@type": "@id"
     },
-    "cim:Terminal.BranchGroupTerminal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasFirstMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasSecondMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:Terminal.SvPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TieFlow": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:Terminal.VoltageAngleLimit": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FossilFuels": {
-      "@type": "@id"
-    },
     "cim:ThyristorControlledSeriesCompensator.compensationZ": {
       "@type": "xsd:float"
     },
@@ -3367,12 +2809,6 @@
     "cim:ThyristorControlledSeriesCompensator.reconnectionI": {
       "@type": "xsd:float"
     },
-    "cim:ThyristorControlledSeriesCompensator.TCSCCompensationPoint": {
-      "@type": "@id"
-    },
-    "cim:TieCorridor.TieFlow": {
-      "@type": "@id"
-    },
     "cim:TieFlow.positiveFlowIn": {
       "@type": "xsd:boolean"
     },
@@ -3385,9 +2821,6 @@
     "cim:TieFlow.TieCorridor": {
       "@type": "@id"
     },
-    "cim:TieFlow.AltTieMeas": {
-      "@type": "@id"
-    },
     "gad:TopologicalArea.topologyType": {
       "@type": "@id"
     },
@@ -3395,12 +2828,6 @@
       "@type": "@id"
     },
     "cim:TopologicalIsland.AngleRefTopologicalNode": {
-      "@type": "@id"
-    },
-    "gad:TopologicalIsland.TopologicalAreas": {
-      "@type": "@id"
-    },
-    "cim:TopologicalIsland.TopologicalNodes": {
       "@type": "@id"
     },
     "cim:TopologicalNode.busNumber": {
@@ -3430,21 +2857,6 @@
     "cim:TopologicalNode.TopologicalIsland": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.BusNameMarker": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
-      "@type": "@id"
-    },
     "cim:TransformerCoreAdmittance.b": {
       "@type": "xsd:float"
     },
@@ -3458,9 +2870,6 @@
       "@type": "xsd:float"
     },
     "cim:TransformerCoreAdmittance.TransformerEndInfo": {
-      "@type": "@id"
-    },
-    "cim:TransformerCoreAdmittance.TransformerEnd": {
       "@type": "@id"
     },
     "cim:TransformerEnd.endNumber": {
@@ -3511,12 +2920,6 @@
     "cim:TransformerEnd.Terminal": {
       "@type": "@id"
     },
-    "cim:TransformerEnd.FromMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.ToMeshImpedance": {
-      "@type": "@id"
-    },
     "cim:TransformerEndInfo.endNumber": {
       "@type": "xsd:integer"
     },
@@ -3548,27 +2951,6 @@
       "@type": "@id"
     },
     "cim:TransformerEndInfo.TransformerTankInfo": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndNoLoadTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndOpenCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.OpenEndOpenCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndShortCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.GroundedEndShortCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.FromMeshImpedances": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.ToMeshImpedances": {
       "@type": "@id"
     },
     "cim:TransformerMeshImpedance.r": {
@@ -3610,16 +2992,10 @@
     "cim:TransformerStarImpedance.TransformerEndInfo": {
       "@type": "@id"
     },
-    "cim:TransformerStarImpedance.TransformerEnd": {
-      "@type": "@id"
-    },
     "cim:TransformerTank.PowerTransformer": {
       "@type": "@id"
     },
     "gad:TransformerTank.TransformerTankInfo": {
-      "@type": "@id"
-    },
-    "cim:TransformerTank.TransformerTankEnds": {
       "@type": "@id"
     },
     "gad:TransformerTankEnd.orderedPhases": {
@@ -3632,18 +3008,6 @@
       "@type": "@id"
     },
     "cim:TransformerTankInfo.PowerTransformerInfo": {
-      "@type": "@id"
-    },
-    "cim:TransformerTankInfo.TransformerEndInfos": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankInfo.TransformerTanks": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.Terminal": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Discretes": {
       "@type": "@id"
     },
     "cim:VoltageAngleLimit.isFlowToRefTerminal": {
@@ -3679,9 +3043,6 @@
     "cim:VoltageLevel.Substation": {
       "@type": "@id"
     },
-    "cim:VoltageLevel.Bays": {
-      "@type": "@id"
-    },
     "cim:VoltageLimit.normalValue": {
       "@type": "xsd:float"
     },
@@ -3692,15 +3053,6 @@
       "@type": "@id"
     },
     "eu:WindGeneratingUnit.WindPowerPlant": {
-      "@type": "@id"
-    },
-    "eu:WindPowerPlant.WindGeneratingUnits": {
-      "@type": "@id"
-    },
-    "cim:WireAssemblyInfo.PerLengthLineParameter": {
-      "@type": "@id"
-    },
-    "cim:WireAssemblyInfo.WirePhaseInfo": {
       "@type": "@id"
     },
     "cim:WireInfo.coreStrandCount": {
@@ -3739,15 +3091,6 @@
     "cim:WireInfo.strandRadius": {
       "@type": "xsd:float"
     },
-    "cim:WireInfo.ACLineSegmentPhase": {
-      "@type": "@id"
-    },
-    "gad:WireInfo.WireBundleInfo": {
-      "@type": "@id"
-    },
-    "cim:WireInfo.WirePhaseInfo": {
-      "@type": "@id"
-    },
     "cim:WirePhaseInfo.phaseInfo": {
       "@type": "@id"
     },
@@ -3775,12 +3118,6 @@
     "cim:WirePosition.WireSpacingInfo": {
       "@type": "@id"
     },
-    "cim:WirePosition.WirePhaseInfo": {
-      "@type": "@id"
-    },
-    "cim:WireSegment.WireSegmentPhases": {
-      "@type": "@id"
-    },
     "cim:WireSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
@@ -3788,9 +3125,6 @@
       "@type": "@id"
     },
     "cim:WireSegmentPhase.WireSegment": {
-      "@type": "@id"
-    },
-    "gad:WireSpacing.ACLineSegements": {
       "@type": "@id"
     },
     "cim:WireSpacingInfo.isCable": {
@@ -3806,15 +3140,6 @@
       "@type": "@id"
     },
     "cim:WireSpacingInfo.DuctBank": {
-      "@type": "@id"
-    },
-    "cim:WireSpacingInfo.ACLineSegment": {
-      "@type": "@id"
-    },
-    "cim:WireSpacingInfo.WirePositions": {
-      "@type": "@id"
-    },
-    "gad:WireTemplate.PerLengthImpedance": {
       "@type": "@id"
     }
   },

@@ -39,9 +39,6 @@
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:BaseVoltage.VoltageLevel": {
-      "@type": "@id"
-    },
     "cim:Bay.Substation": {
       "@type": "@id"
     },
@@ -54,20 +51,11 @@
     "cim:Bay.busBarConfiguration": {
       "@type": "@id"
     },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
-    },
     "cim:BusNameMarker.priority": {
       "@type": "xsd:integer"
     },
     "cim:BusbarSection.ipMax": {
       "@type": "xsd:float"
-    },
-    "cim:ConductingEquipment.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
     },
     "cim:Equipment.EquipmentContainer": {
       "@type": "@id"
@@ -75,31 +63,10 @@
     "cim:Equipment.aggregate": {
       "@type": "xsd:boolean"
     },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NamingSecondarySubstation": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NormalEnergizedSubstation": {
-      "@type": "@id"
-    },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
-    },
     "cim:Line.Region": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
-    "cim:Substation.Bays": {
       "@type": "@id"
     },
     "cim:Substation.NamingFeeder": {
@@ -111,9 +78,6 @@
     "cim:Substation.Region": {
       "@type": "@id"
     },
-    "cim:Substation.VoltageLevels": {
-      "@type": "@id"
-    },
     "cim:Terminal.ConductingEquipment": {
       "@type": "@id"
     },
@@ -121,9 +85,6 @@
       "@type": "@id"
     },
     "cim:VoltageLevel.BaseVoltage": {
-      "@type": "@id"
-    },
-    "cim:VoltageLevel.Bays": {
       "@type": "@id"
     },
     "cim:VoltageLevel.Substation": {

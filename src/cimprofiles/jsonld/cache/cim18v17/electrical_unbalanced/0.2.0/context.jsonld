@@ -38,9 +38,6 @@
     "gad:ACLineSegment.WireConfiguration": {
       "@type": "@id"
     },
-    "cim:AsynchronousMachine.reversible": {
-      "@type": "xsd:boolean"
-    },
     "cim:AsynchronousMachine.efficiency": {
       "@type": "xsd:float"
     },
@@ -52,6 +49,9 @@
     },
     "cim:AsynchronousMachine.ratedMechanicalPower": {
       "@type": "xsd:float"
+    },
+    "cim:AsynchronousMachine.reversible": {
+      "@type": "xsd:boolean"
     },
     "gad:AutoTransformer.AutoTransformerWinding": {
       "@type": "@id"
@@ -86,10 +86,7 @@
     "gad:EarthResistivity.rho": {
       "@type": "xsd:float"
     },
-    "gad:EarthResistivity.PerLengthLineParameter": {
-      "@type": "@id"
-    },
-    "gad:EarthResistivity.WireAssemblies": {
+    "cim:EnergyConsumer.LoadResponse": {
       "@type": "@id"
     },
     "gad:EnergyConsumer.maxP": {
@@ -109,9 +106,6 @@
     },
     "cim:EnergyConsumer.qfixedPct": {
       "@type": "xsd:float"
-    },
-    "cim:EnergyConsumer.LoadResponse": {
-      "@type": "@id"
     },
     "cim:EnergyConsumerPhase.pfixed": {
       "@type": "xsd:float"
@@ -148,9 +142,6 @@
     },
     "cim:GeneratingUnit.nominalP": {
       "@type": "xsd:float"
-    },
-    "cim:GeneratingUnit.RotatingMachine": {
-      "@type": "@id"
     },
     "cim:LinearShuntCompensator.bPerSection": {
       "@type": "xsd:float"
@@ -197,17 +188,11 @@
     "cim:LoadResponseCharacteristic.qVoltageExponent": {
       "@type": "xsd:float"
     },
-    "cim:LoadResponseCharacteristic.EnergyConsumer": {
-      "@type": "@id"
+    "gad:MatrixImpedanceData.b": {
+      "@type": "xsd:float"
     },
     "gad:MatrixImpedanceData.fromEndNumber": {
       "@type": "xsd:integer"
-    },
-    "gad:MatrixImpedanceData.toEndNumber": {
-      "@type": "xsd:integer"
-    },
-    "gad:MatrixImpedanceData.b": {
-      "@type": "xsd:float"
     },
     "gad:MatrixImpedanceData.fromPhase": {
       "@type": "@id"
@@ -218,20 +203,17 @@
     "gad:MatrixImpedanceData.r": {
       "@type": "xsd:float"
     },
+    "gad:MatrixImpedanceData.toEndNumber": {
+      "@type": "xsd:integer"
+    },
     "gad:MatrixImpedanceData.toPhase": {
       "@type": "@id"
     },
     "gad:MatrixImpedanceData.x": {
       "@type": "xsd:float"
     },
-    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
+    "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
       "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPhasePoint.sectionNumber": {
-      "@type": "xsd:integer"
     },
     "cim:NonlinearShuntCompensatorPhasePoint.bTotal": {
       "@type": "xsd:float"
@@ -239,11 +221,11 @@
     "cim:NonlinearShuntCompensatorPhasePoint.gTotal": {
       "@type": "xsd:float"
     },
-    "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
+    "cim:NonlinearShuntCompensatorPhasePoint.sectionNumber": {
       "@type": "xsd:integer"
+    },
+    "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
+      "@type": "@id"
     },
     "cim:NonlinearShuntCompensatorPoint.bTotal": {
       "@type": "xsd:float"
@@ -251,50 +233,44 @@
     "cim:NonlinearShuntCompensatorPoint.gTotal": {
       "@type": "xsd:float"
     },
-    "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
-      "@type": "@id"
-    },
-    "gad:PerLengthImpedance.isTemplate": {
-      "@type": "xsd:boolean"
-    },
-    "gad:PerLengthImpedance.userDefined": {
-      "@type": "xsd:boolean"
-    },
-    "gad:PerLengthImpedance.calculatedFrequency": {
-      "@type": "xsd:float"
-    },
-    "gad:PerLengthImpedance.rg": {
-      "@type": "xsd:float"
-    },
-    "gad:PerLengthImpedance.xg": {
-      "@type": "xsd:float"
-    },
-    "cim:PerLengthImpedance.ACLineSegments": {
-      "@type": "@id"
+    "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
+      "@type": "xsd:integer"
     },
     "gad:PerLengthImpedance.WireConfiguration": {
       "@type": "@id"
     },
-    "cim:PerLengthLineParameter.calculatedTemperature": {
+    "gad:PerLengthImpedance.calculatedFrequency": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.isTemplate": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.rg": {
+      "@type": "xsd:float"
+    },
+    "gad:PerLengthImpedance.userDefined": {
+      "@type": "xsd:boolean"
+    },
+    "gad:PerLengthImpedance.xg": {
       "@type": "xsd:float"
     },
     "gad:PerLengthLineParameter.EarthResistivity": {
       "@type": "@id"
     },
+    "cim:PerLengthLineParameter.calculatedTemperature": {
+      "@type": "xsd:float"
+    },
     "cim:PerLengthPhaseImpedance.conductorCount": {
       "@type": "xsd:integer"
     },
-    "cim:PerLengthPhaseImpedance.PhaseImpedanceData": {
+    "cim:PhaseImpedanceData.PhaseImpedance": {
       "@type": "@id"
-    },
-    "cim:PhaseImpedanceData.column": {
-      "@type": "xsd:integer"
-    },
-    "cim:PhaseImpedanceData.row": {
-      "@type": "xsd:integer"
     },
     "cim:PhaseImpedanceData.b": {
       "@type": "xsd:float"
+    },
+    "cim:PhaseImpedanceData.column": {
+      "@type": "xsd:integer"
     },
     "cim:PhaseImpedanceData.fromPhase": {
       "@type": "@id"
@@ -305,14 +281,14 @@
     "cim:PhaseImpedanceData.r": {
       "@type": "xsd:float"
     },
+    "cim:PhaseImpedanceData.row": {
+      "@type": "xsd:integer"
+    },
     "cim:PhaseImpedanceData.toPhase": {
       "@type": "@id"
     },
     "cim:PhaseImpedanceData.x": {
       "@type": "xsd:float"
-    },
-    "cim:PhaseImpedanceData.PhaseImpedance": {
-      "@type": "@id"
     },
     "cim:PowerElectronicsConnection.maxQ": {
       "@type": "xsd:float"
@@ -326,7 +302,7 @@
     "cim:PowerElectronicsConnection.ratedU": {
       "@type": "xsd:float"
     },
-    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
+    "cim:PowerElectronicsUnit.PowerElectronicsConnection": {
       "@type": "@id"
     },
     "cim:PowerElectronicsUnit.maxP": {
@@ -334,9 +310,6 @@
     },
     "cim:PowerElectronicsUnit.minP": {
       "@type": "xsd:float"
-    },
-    "cim:PowerElectronicsUnit.PowerElectronicsConnection": {
-      "@type": "@id"
     },
     "cim:PowerTransformerEnd.phaseShift": {
       "@type": "xsd:float"
@@ -353,10 +326,13 @@
     "gb:ProtectedSwitch.makingCapacity": {
       "@type": "xsd:float"
     },
+    "cim:RatioTapChanger.TransformerEnd": {
+      "@type": "@id"
+    },
     "cim:RatioTapChanger.stepVoltageIncrement": {
       "@type": "xsd:float"
     },
-    "cim:RatioTapChanger.TransformerEnd": {
+    "cim:RotatingMachine.GeneratingUnit": {
       "@type": "@id"
     },
     "cim:RotatingMachine.ratedPowerFactor": {
@@ -368,14 +344,11 @@
     "cim:RotatingMachine.ratedU": {
       "@type": "xsd:float"
     },
-    "cim:RotatingMachine.GeneratingUnit": {
-      "@type": "@id"
+    "cim:SeriesCompensator.r": {
+      "@type": "xsd:float"
     },
     "cim:SeriesCompensator.varistorPresent": {
       "@type": "xsd:boolean"
-    },
-    "cim:SeriesCompensator.r": {
-      "@type": "xsd:float"
     },
     "cim:SeriesCompensator.varistorRatedCurrent": {
       "@type": "xsd:float"
@@ -389,14 +362,14 @@
     "cim:ShuntCompensator.maximumSections": {
       "@type": "xsd:integer"
     },
-    "cim:ShuntCompensator.normalSections": {
-      "@type": "xsd:integer"
-    },
     "gad:ShuntCompensator.nomQ": {
       "@type": "xsd:float"
     },
     "cim:ShuntCompensator.nomU": {
       "@type": "xsd:float"
+    },
+    "cim:ShuntCompensator.normalSections": {
+      "@type": "xsd:integer"
     },
     "cim:ShuntCompensator.voltageSensitivity": {
       "@type": "xsd:float"
@@ -404,23 +377,20 @@
     "cim:ShuntCompensatorPhase.maximumSections": {
       "@type": "xsd:integer"
     },
-    "cim:ShuntCompensatorPhase.normalSections": {
-      "@type": "xsd:integer"
-    },
     "gad:ShuntCompensatorPhase.nomQ": {
       "@type": "xsd:float"
+    },
+    "cim:ShuntCompensatorPhase.normalSections": {
+      "@type": "xsd:integer"
     },
     "cim:Switch.ratedCurrent": {
       "@type": "xsd:float"
     },
-    "cim:Switch.SwitchPhase": {
+    "cim:SwitchPhase.Switch": {
       "@type": "@id"
     },
     "cim:SwitchPhase.ratedCurrent": {
       "@type": "xsd:float"
-    },
-    "cim:SwitchPhase.Switch": {
-      "@type": "@id"
     },
     "cim:SynchronousMachine.maxQ": {
       "@type": "xsd:float"
@@ -440,6 +410,12 @@
     "cim:TapChanger.step": {
       "@type": "xsd:float"
     },
+    "gad:TransformerCore.TankConfiguration": {
+      "@type": "@id"
+    },
+    "cim:TransformerCore.TransformerTank": {
+      "@type": "@id"
+    },
     "cim:TransformerCore.b": {
       "@type": "xsd:float"
     },
@@ -449,34 +425,10 @@
     "cim:TransformerCore.g": {
       "@type": "xsd:float"
     },
-    "gad:TransformerCore.TankConfiguration": {
-      "@type": "@id"
-    },
-    "cim:TransformerCore.TransformerTank": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.rground": {
       "@type": "xsd:float"
     },
     "cim:TransformerEnd.xground": {
-      "@type": "xsd:float"
-    },
-    "cim:TransformerEnd.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.FromMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.ToMeshImpedance": {
-      "@type": "@id"
-    },
-    "gad:TransformerMeshImpedance.cs": {
-      "@type": "xsd:float"
-    },
-    "cim:TransformerMeshImpedance.r": {
-      "@type": "xsd:float"
-    },
-    "cim:TransformerMeshImpedance.x": {
       "@type": "xsd:float"
     },
     "cim:TransformerMeshImpedance.FromTransformerEnd": {
@@ -489,6 +441,18 @@
       "@type": "@id"
     },
     "cim:TransformerMeshImpedance.ToWinding": {
+      "@type": "@id"
+    },
+    "gad:TransformerMeshImpedance.cs": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.r": {
+      "@type": "xsd:float"
+    },
+    "cim:TransformerMeshImpedance.x": {
+      "@type": "xsd:float"
+    },
+    "gad:TransformerTank.TankConfiguration": {
       "@type": "@id"
     },
     "cim:TransformerTank.baseS": {
@@ -506,12 +470,6 @@
     "cim:TransformerTank.percentMagnetizingCurrent": {
       "@type": "xsd:float"
     },
-    "cim:TransformerTank.TransformerCore": {
-      "@type": "@id"
-    },
-    "gad:TransformerTank.TankConfiguration": {
-      "@type": "@id"
-    },
     "gad:TransformerTankConfiguration.baseS": {
       "@type": "xsd:float"
     },
@@ -527,13 +485,7 @@
     "gad:TransformerTankConfiguration.percentMagnetizingCurrent": {
       "@type": "xsd:float"
     },
-    "gad:TransformerTankConfiguration.TransformerCore": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerTank": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerWinding": {
+    "gad:TransformerWinding.TankConfiguration": {
       "@type": "@id"
     },
     "cim:TransformerWinding.baseS": {
@@ -545,46 +497,31 @@
     "cim:TransformerWinding.r": {
       "@type": "xsd:float"
     },
+    "cim:TransformerWinding.rDC": {
+      "@type": "xsd:float"
+    },
     "cim:TransformerWinding.ratedS": {
       "@type": "xsd:float"
     },
     "cim:TransformerWinding.ratedU": {
       "@type": "xsd:float"
     },
-    "cim:TransformerWinding.rDC": {
-      "@type": "xsd:float"
-    },
-    "gad:TransformerWinding.AutoTransformer": {
-      "@type": "@id"
-    },
-    "cim:TransformerWinding.FromMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerWinding.ToMeshImpedance": {
-      "@type": "@id"
-    },
-    "gad:TransformerWinding.TankConfiguration": {
-      "@type": "@id"
-    },
     "gad:VoltageRegulator.construction": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.numberOfPhases": {
-      "@type": "xsd:integer"
-    },
-    "gad:WireConfiguration.installationType": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.usage": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.ACLineSegements": {
       "@type": "@id"
     },
     "gad:WireConfiguration.EarthResistivity": {
       "@type": "@id"
     },
     "gad:WireConfiguration.PerLengthImpedance": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.installationType": {
+      "@type": "@id"
+    },
+    "gad:WireConfiguration.numberOfPhases": {
+      "@type": "xsd:integer"
+    },
+    "gad:WireConfiguration.usage": {
       "@type": "@id"
     }
   },

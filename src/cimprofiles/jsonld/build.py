@@ -7,8 +7,9 @@
   of its values as in the Inst4CIM CGMES context. A merged release of merge_releases.yaml
   takes the union of its parts' contexts. A profile with no CIMTool context in this repo
   (its .owl is elsewhere) is built from its classes' field metadata by build_context
-  instead, with the same header terms: associations and enumerations are
-  ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
+  instead, with the same header terms and, like the builder, only the association ends
+  the profile declares (inverse ends, ``serialize: False``, have no term): associations and
+  enumerations are ``{"@type": "@id"}``; CIMUnit and float are ``xsd:float``; int and bool are
   ``xsd:integer`` / ``xsd:boolean``; other types, dates included, are left as strings.
   The published file also names itself (``@id``, its URL) and the cim-profiles release it
   was built for (``owl:versionInfo``, as the CGMES vocabularies do); JSON-LD processors use
@@ -168,6 +169,8 @@ def build_context(profile) -> dict:
     namespaces = profile_namespace_map(profile)
     context = {**namespaces, **DOCUMENT_NAMESPACES, **HEADER_TERMS}
     for cls, attribute, field in _declared_fields(profile):
+        if not field.metadata['serialize']:          # an inverse association end
+            continue
         datatype = _datatype(profile, field)
         namespace = field.metadata['namespace']
         if namespace in W3C_PREFIXES:

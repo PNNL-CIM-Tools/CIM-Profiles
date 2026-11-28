@@ -42,9 +42,6 @@
     "cim:AirCompressor.airCompressorRating": {
       "@type": "xsd:float"
     },
-    "nc:AreaDispatchableUnit.HydroPump": {
-      "@type": "@id"
-    },
     "cim:BWRSteamSupply.highPowerLimit": {
       "@type": "xsd:float"
     },
@@ -153,9 +150,6 @@
     "cim:BatteryUnit.storedE": {
       "@type": "xsd:float"
     },
-    "cim:CAESPlant.AirCompressor": {
-      "@type": "@id"
-    },
     "cim:CAESPlant.ThermalGeneratingUnit": {
       "@type": "@id"
     },
@@ -166,12 +160,6 @@
       "@type": "xsd:float"
     },
     "cim:CTTempActivePowerCurve.CombustionTurbine": {
-      "@type": "@id"
-    },
-    "cim:CogenerationPlant.SteamSendoutSchedule": {
-      "@type": "@id"
-    },
-    "cim:CogenerationPlant.ThermalGeneratingUnits": {
       "@type": "@id"
     },
     "cim:CogenerationPlant.cogenHPSendoutRating": {
@@ -189,16 +177,10 @@
     "cim:CogenerationPlant.ratedP": {
       "@type": "xsd:float"
     },
-    "cim:CombinedCyclePlant.ThermalGeneratingUnits": {
-      "@type": "@id"
-    },
     "cim:CombinedCyclePlant.combCyclePlantRating": {
       "@type": "xsd:float"
     },
     "cim:CombustionTurbine.AirCompressor": {
-      "@type": "@id"
-    },
-    "cim:CombustionTurbine.CTTempActivePowerCurve": {
       "@type": "@id"
     },
     "cim:CombustionTurbine.HeatRecoveryBoiler": {
@@ -227,9 +209,6 @@
     },
     "cim:CombustionTurbine.timeConstant": {
       "@type": "xsd:float"
-    },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -308,9 +287,6 @@
     },
     "cim:FlexibleEnergyUnit.uncontrollable": {
       "@type": "xsd:float"
-    },
-    "cim:FossilFuel.FuelAllocationSchedules": {
-      "@type": "@id"
     },
     "cim:FossilFuel.FuelStorage": {
       "@type": "@id"
@@ -447,9 +423,6 @@
     "cim:FuelAllocationSchedule.minFuelAllocation": {
       "@type": "xsd:float"
     },
-    "cim:FuelStorage.FossilFuel": {
-      "@type": "@id"
-    },
     "cim:FuelStorage.energyStorage": {
       "@type": "xsd:float"
     },
@@ -465,22 +438,7 @@
     "cim:GenUnitOpSchedule.GeneratingUnit": {
       "@type": "@id"
     },
-    "cim:GenUnitOpScheduleGroup.GenUnitOpSchedule": {
-      "@type": "@id"
-    },
-    "cim:GenUnitOpScheduleGroup.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GenUnitOpCostCurves": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GenUnitOpSchedule": {
-      "@type": "@id"
-    },
     "cim:GeneratingUnit.GenUnitOpScheduleGroup": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GrossToNetActivePowerCurves": {
       "@type": "@id"
     },
     "cim:GeneratingUnit.allocSpinResP": {
@@ -624,25 +582,16 @@
     "cim:HeatRateCurve.isNetGrossP": {
       "@type": "xsd:boolean"
     },
-    "cim:HeatRecoveryBoiler.CombustionTurbines": {
-      "@type": "@id"
-    },
     "cim:HeatRecoveryBoiler.steamSupplyRating2": {
       "@type": "xsd:float"
     },
     "cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit": {
       "@type": "@id"
     },
-    "cim:HydroGeneratingUnit.HydroGeneratingEfficiencyCurves": {
-      "@type": "@id"
-    },
     "cim:HydroGeneratingUnit.HydroPowerPlant": {
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.PenstockLossCurve": {
-      "@type": "@id"
-    },
-    "cim:HydroGeneratingUnit.TailbayLossCurve": {
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.dropHeight": {
@@ -658,12 +607,6 @@
       "@type": "@id"
     },
     "cim:HydroPowerPlant.GenSourcePumpDischargeReservoir": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroGeneratingUnits": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroPumps": {
       "@type": "@id"
     },
     "cim:HydroPowerPlant.Reservoir": {
@@ -834,9 +777,6 @@
     "cim:PowerElectricalChemicalUnit.kind": {
       "@type": "@id"
     },
-    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
-      "@type": "@id"
-    },
     "cim:PowerElectronicsMarineUnit.kind": {
       "@type": "@id"
     },
@@ -852,14 +792,8 @@
     "gad:PowerElectronicsUnit.p": {
       "@type": "xsd:float"
     },
-    "cim:PrimeMover.SynchronousMachines": {
-      "@type": "@id"
-    },
     "cim:PrimeMover.primeMoverRating": {
       "@type": "xsd:float"
-    },
-    "cim:RegularIntervalSchedule.TimePoints": {
-      "@type": "@id"
     },
     "cim:RegularIntervalSchedule.endTime": {
       "@type": "xsd:dateTime"
@@ -882,9 +816,6 @@
     "cim:RegularTimePoint.value3": {
       "@type": "xsd:float"
     },
-    "cim:Reservoir.HydroPowerPlants": {
-      "@type": "@id"
-    },
     "cim:Reservoir.InflowForecasts": {
       "@type": "@id"
     },
@@ -894,13 +825,7 @@
     "cim:Reservoir.SpillsFromReservoir": {
       "@type": "@id"
     },
-    "cim:Reservoir.SpillsIntoReservoirs": {
-      "@type": "@id"
-    },
     "cim:Reservoir.TargetLevelSchedule": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.UpstreamFromHydroPowerPlants": {
       "@type": "@id"
     },
     "cim:Reservoir.activeStorageCapacity": {
@@ -933,9 +858,6 @@
     "cim:Reservoir.spillwayCrestLevel": {
       "@type": "xsd:float"
     },
-    "cim:RotatingMachine.HydroPump": {
-      "@type": "@id"
-    },
     "cim:ShutdownCurve.ThermalGeneratingUnit": {
       "@type": "@id"
     },
@@ -946,9 +868,6 @@
       "@type": "xsd:dateTime"
     },
     "eu:SolarGeneratingUnit.SolarPowerPlant": {
-      "@type": "@id"
-    },
-    "eu:SolarPowerPlant.SolarGeneratingUnits": {
       "@type": "@id"
     },
     "cim:StartIgnFuelCurve.StartupModel": {
@@ -1012,9 +931,6 @@
       "@type": "xsd:float"
     },
     "cim:SteamSendoutSchedule.CogenerationPlant": {
-      "@type": "@id"
-    },
-    "cim:SteamSupply.SteamTurbines": {
       "@type": "@id"
     },
     "cim:SteamSupply.steamSupplyRating": {
@@ -1089,12 +1005,6 @@
     "cim:ThermalGeneratingUnit.EmmissionAccounts": {
       "@type": "@id"
     },
-    "cim:ThermalGeneratingUnit.FossilFuels": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FuelAllocationSchedules": {
-      "@type": "@id"
-    },
     "cim:ThermalGeneratingUnit.HeatInputCurve": {
       "@type": "@id"
     },
@@ -1117,9 +1027,6 @@
       "@type": "@id"
     },
     "cim:WindGeneratingUnit.windGenUnitType": {
-      "@type": "@id"
-    },
-    "eu:WindPowerPlant.WindGeneratingUnits": {
       "@type": "@id"
     }
   },

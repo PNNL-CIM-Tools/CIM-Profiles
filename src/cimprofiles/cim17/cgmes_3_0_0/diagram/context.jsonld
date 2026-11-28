@@ -30,9 +30,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:Diagram.DiagramElements": {
-      "@type": "@id"
-    },
     "cim:Diagram.DiagramStyle": {
       "@type": "@id"
     },
@@ -54,16 +51,10 @@
     "cim:DiagramObject.Diagram": {
       "@type": "@id"
     },
-    "cim:DiagramObject.DiagramObjectPoints": {
-      "@type": "@id"
-    },
     "cim:DiagramObject.DiagramObjectStyle": {
       "@type": "@id"
     },
     "cim:DiagramObject.IdentifiedObject": {
-      "@type": "@id"
-    },
-    "cim:DiagramObject.VisibilityLayers": {
       "@type": "@id"
     },
     "cim:DiagramObject.drawingOrder": {
@@ -80,9 +71,6 @@
     },
     "cim:DiagramObject.rotation": {
       "@type": "xsd:float"
-    },
-    "cim:DiagramObjectGluePoint.DiagramObjectPoints": {
-      "@type": "@id"
     },
     "cim:DiagramObjectPoint.DiagramObject": {
       "@type": "@id"
@@ -101,15 +89,6 @@
     },
     "cim:DiagramObjectPoint.zPosition": {
       "@type": "xsd:float"
-    },
-    "cim:DiagramObjectStyle.StyledObjects": {
-      "@type": "@id"
-    },
-    "cim:DiagramStyle.Diagram": {
-      "@type": "@id"
-    },
-    "cim:IdentifiedObject.DiagramObjects": {
-      "@type": "@id"
     },
     "cim:VisibilityLayer.VisibleObjects": {
       "@type": "@id"

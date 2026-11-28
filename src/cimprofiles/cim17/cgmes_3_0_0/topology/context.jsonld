@@ -31,34 +31,16 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
     "cim:ConnectivityNode.TopologicalNode": {
       "@type": "@id"
     },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
-      "@type": "@id"
-    },
     "cim:DCBaseTerminal.DCTopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCTopologicalNode": {
       "@type": "@id"
     },
     "cim:DCNode.DCTopologicalNode": {
       "@type": "@id"
     },
     "cim:DCTopologicalNode.DCEquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCTerminals": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.TopologicalNode": {
       "@type": "@id"
     },
     "cim:Terminal.TopologicalNode": {
@@ -70,13 +52,7 @@
     "cim:TopologicalNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.ReportingGroup": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
       "@type": "@id"
     }
   }

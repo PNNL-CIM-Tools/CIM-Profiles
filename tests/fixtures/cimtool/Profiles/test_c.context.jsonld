@@ -37,9 +37,6 @@
     "cim:ConductingEquipment.Terminals": {
       "@type": "@id"
     },
-    "cim:CoordinateSystem.Locations": {
-      "@type": "@id"
-    },
     "cim:GeneratingUnit.governorMPL": {
       "@type": "xsd:float"
     },
@@ -71,9 +68,6 @@
       "@type": "xsd:float"
     },
     "cim:StreetAddress.streetDetail": {
-      "@type": "@id"
-    },
-    "cim:Terminal.ConductingEquipment": {
       "@type": "@id"
     },
     "cim:WireInfo.gmr": {

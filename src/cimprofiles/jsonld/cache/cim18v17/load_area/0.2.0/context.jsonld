@@ -48,15 +48,6 @@
     "cim:AltTieMeas.priority": {
       "@type": "xsd:integer"
     },
-    "cim:AnalogValue.AltGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.AltTieMeas": {
-      "@type": "@id"
-    },
-    "cim:AreaInterchangeController.ControlArea": {
-      "@type": "@id"
-    },
     "cim:BasicIntervalSchedule.startTime": {
       "@type": "xsd:dateTime"
     },
@@ -81,28 +72,10 @@
     "cim:ConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
-      "@type": "@id"
-    },
-    "cim:ConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
     "cim:ControlArea.AreaInterchangeController": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.ControlAreaPowerElectronicsUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.EnergyArea": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
     "cim:ControlArea.netInterchange": {
@@ -112,9 +85,6 @@
       "@type": "xsd:float"
     },
     "cim:ControlArea.type": {
-      "@type": "@id"
-    },
-    "cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas": {
       "@type": "@id"
     },
     "cim:ControlAreaGeneratingUnit.ControlArea": {
@@ -129,19 +99,10 @@
     "cim:ControlAreaPowerElectronicsUnit.PowerElectronicsUnit": {
       "@type": "@id"
     },
-    "cim:DayType.SeasonDayTypeSchedules": {
-      "@type": "@id"
-    },
     "cim:EnergyArea.ControlArea": {
       "@type": "@id"
     },
     "cim:EnergyConsumer.PowerCutZone": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:LoadArea.SubLoadAreas": {
       "@type": "@id"
     },
     "cim:LoadArea.peakLoad": {
@@ -153,16 +114,7 @@
     "cim:NonConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:NonConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
-    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
-      "@type": "@id"
-    },
-    "cim:PowerCutZone.EnergyConsumers": {
       "@type": "@id"
     },
     "cim:PowerCutZone.cutLevel1": {
@@ -170,12 +122,6 @@
     },
     "cim:PowerCutZone.cutLevel2": {
       "@type": "xsd:float"
-    },
-    "cim:PowerElectronicsUnit.ControlAreaPowerElectronicsUnit": {
-      "@type": "@id"
-    },
-    "cim:Season.SeasonDayTypeSchedules": {
-      "@type": "@id"
     },
     "cim:Season.endDate": {
       "@type": "xsd:gMonthDay"
@@ -190,18 +136,6 @@
       "@type": "@id"
     },
     "cim:SubLoadArea.LoadArea": {
-      "@type": "@id"
-    },
-    "cim:SubLoadArea.LoadGroups": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TieFlow": {
-      "@type": "@id"
-    },
-    "cim:TieCorridor.TieFlow": {
-      "@type": "@id"
-    },
-    "cim:TieFlow.AltTieMeas": {
       "@type": "@id"
     },
     "cim:TieFlow.ControlArea": {

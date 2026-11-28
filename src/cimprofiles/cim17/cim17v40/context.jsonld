@@ -30,9 +30,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCConverter.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:ACDCConverter.PccTerminal": {
       "@type": "@id"
     },
@@ -102,29 +99,11 @@
     "cim:ACDCTerminal.BusNameMarker": {
       "@type": "@id"
     },
-    "cim:ACDCTerminal.Measurements": {
-      "@type": "@id"
-    },
-    "cim:ACDCTerminal.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "cim:ACDCTerminal.connected": {
       "@type": "xsd:boolean"
     },
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
-    },
-    "cim:ACLineSegment.ACLineSegmentPhases": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.Clamp": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.Cut": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.LineFaults": {
-      "@type": "@id"
     },
     "cim:ACLineSegment.LineGroundingAction": {
       "@type": "@id"
@@ -177,9 +156,6 @@
     "cim:ACLineSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ASRequirements.ReserveDemandCurve": {
-      "@type": "@id"
-    },
     "cim:ASRequirements.intervalStartTime": {
       "@type": "xsd:dateTime"
     },
@@ -228,9 +204,6 @@
     "cim:AccountingUnit.value": {
       "@type": "xsd:float"
     },
-    "cim:Accumulator.AccumulatorValues": {
-      "@type": "@id"
-    },
     "cim:Accumulator.maxValue": {
       "@type": "xsd:integer"
     },
@@ -239,9 +212,6 @@
     },
     "cim:AccumulatorLimit.value": {
       "@type": "xsd:integer"
-    },
-    "cim:AccumulatorLimitSet.Limits": {
-      "@type": "@id"
     },
     "cim:AccumulatorReset.AccumulatorValue": {
       "@type": "@id"
@@ -255,12 +225,6 @@
     "cim:AccumulatorValue.value": {
       "@type": "xsd:integer"
     },
-    "cim:ActionRequest.Bid": {
-      "@type": "@id"
-    },
-    "cim:ActionRequest.Trade": {
-      "@type": "@id"
-    },
     "cim:ActionRequest.actionName": {
       "@type": "@id"
     },
@@ -269,9 +233,6 @@
     },
     "cim:ActivePowerLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:ActivityRecord.Assets": {
-      "@type": "@id"
     },
     "cim:ActivityRecord.Author": {
       "@type": "@id"
@@ -285,37 +246,16 @@
     "cim:ActivityRecord.status": {
       "@type": "@id"
     },
-    "cim:AdjacentCASet.BidSelfSched": {
-      "@type": "@id"
-    },
     "cim:AdjacentCASet.HostControlArea": {
       "@type": "@id"
     },
     "cim:AdjacentCASet.RTO": {
       "@type": "@id"
     },
-    "cim:AdjacentCASet.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:AdjacentCASet.SubControlArea": {
-      "@type": "@id"
-    },
     "cim:AdjacentCASet.lossPercentage": {
       "@type": "xsd:float"
     },
-    "cim:AggregateNode.AreaLoadCurve": {
-      "@type": "@id"
-    },
-    "cim:AggregateNode.CnodeDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:AggregateNode.Instruction": {
-      "@type": "@id"
-    },
     "cim:AggregateNode.RTO": {
-      "@type": "@id"
-    },
-    "cim:AggregateNode.RegisteredResource": {
       "@type": "@id"
     },
     "cim:AggregateNode.anodeType": {
@@ -323,27 +263,6 @@
     },
     "cim:AggregateNode.qualifASOrder": {
       "@type": "xsd:integer"
-    },
-    "cim:AggregateScore.AnalyticScore": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.GenDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.LoadDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.MPMTestResults": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.MktCombinedCyclePlant": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.PnodeDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:AggregatedPnode.TradingHubValues": {
-      "@type": "@id"
     },
     "cim:AggregatedPnode.apnodeType": {
       "@type": "@id"
@@ -366,13 +285,7 @@
     "cim:AirCompressor.airCompressorRating": {
       "@type": "xsd:float"
     },
-    "cim:AlertTypeList.EnvironmentalAlert": {
-      "@type": "@id"
-    },
     "cim:AlertTypeList.EnvironmentalDataAuthority": {
-      "@type": "@id"
-    },
-    "cim:AllocationResult.AllocationResultValues": {
       "@type": "@id"
     },
     "cim:AllocationResult.intervalStartTime": {
@@ -417,12 +330,6 @@
     "cim:AlternateModel.Dataset": {
       "@type": "@id"
     },
-    "cim:AlternateModelGroup.AlternateModel": {
-      "@type": "@id"
-    },
-    "cim:Analog.AnalogValues": {
-      "@type": "@id"
-    },
     "cim:Analog.maxValue": {
       "@type": "xsd:float"
     },
@@ -450,15 +357,6 @@
     "cim:AnalogLimit.value": {
       "@type": "xsd:float"
     },
-    "cim:AnalogLimitSet.Limits": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.AltGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:AnalogValue.AltTieMeas": {
-      "@type": "@id"
-    },
     "cim:AnalogValue.Analog": {
       "@type": "@id"
     },
@@ -467,15 +365,6 @@
     },
     "cim:AnalogValue.value": {
       "@type": "xsd:float"
-    },
-    "cim:Analytic.AnalyticScore": {
-      "@type": "@id"
-    },
-    "cim:Analytic.Asset": {
-      "@type": "@id"
-    },
-    "cim:Analytic.AssetHealthEvent": {
-      "@type": "@id"
     },
     "cim:Analytic.bestValue": {
       "@type": "xsd:float"
@@ -513,9 +402,6 @@
     "cim:AncillaryServiceClearing.MarketCaseClearing": {
       "@type": "@id"
     },
-    "cim:AncillaryServiceClearing.MarketRegionResults": {
-      "@type": "@id"
-    },
     "cim:AnnotatedProjectDependency.DependentOnStage": {
       "@type": "@id"
     },
@@ -537,12 +423,6 @@
     "cim:Appointment.meetingInterval": {
       "@type": "@id"
     },
-    "cim:Approver.Documents": {
-      "@type": "@id"
-    },
-    "cim:AreaLoadBid.LoadBid": {
-      "@type": "@id"
-    },
     "cim:AreaLoadBid.demandBidMW": {
       "@type": "xsd:float"
     },
@@ -553,9 +433,6 @@
       "@type": "@id"
     },
     "cim:AreaLoadCurve.forecastType": {
-      "@type": "@id"
-    },
-    "cim:AreaReserveSpec.SubControlArea": {
       "@type": "@id"
     },
     "cim:AreaReserveSpec.lowerRegMarginReqt": {
@@ -579,16 +456,10 @@
     "cim:Asset.Analytic": {
       "@type": "@id"
     },
-    "cim:Asset.AnalyticScore": {
-      "@type": "@id"
-    },
     "cim:Asset.AssetContainer": {
       "@type": "@id"
     },
     "cim:Asset.AssetDeployment": {
-      "@type": "@id"
-    },
-    "cim:Asset.AssetFunction": {
       "@type": "@id"
     },
     "cim:Asset.AssetGroup": {
@@ -598,9 +469,6 @@
       "@type": "@id"
     },
     "cim:Asset.BreakerOperation": {
-      "@type": "@id"
-    },
-    "cim:Asset.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:Asset.ErpInventory": {
@@ -618,28 +486,13 @@
     "cim:Asset.Location": {
       "@type": "@id"
     },
-    "cim:Asset.Measurements": {
-      "@type": "@id"
-    },
-    "cim:Asset.OperationalTags": {
-      "@type": "@id"
-    },
     "cim:Asset.OrganisationRoles": {
-      "@type": "@id"
-    },
-    "cim:Asset.Ownerships": {
       "@type": "@id"
     },
     "cim:Asset.PowerSystemResources": {
       "@type": "@id"
     },
-    "cim:Asset.ProcedureDataSet": {
-      "@type": "@id"
-    },
     "cim:Asset.ProductAssetModel": {
-      "@type": "@id"
-    },
-    "cim:Asset.Reconditionings": {
       "@type": "@id"
     },
     "cim:Asset.ScheduledEvents": {
@@ -699,12 +552,6 @@
     "cim:AssetAnalog.reportingTemperature": {
       "@type": "xsd:float"
     },
-    "cim:AssetContainer.Assets": {
-      "@type": "@id"
-    },
-    "cim:AssetContainer.Seals": {
-      "@type": "@id"
-    },
     "cim:AssetDeployment.Asset": {
       "@type": "@id"
     },
@@ -735,12 +582,6 @@
     "cim:AssetFunction.Asset": {
       "@type": "@id"
     },
-    "cim:AssetGroup.AnalyticScore": {
-      "@type": "@id"
-    },
-    "cim:AssetGroup.Asset": {
-      "@type": "@id"
-    },
     "cim:AssetGroup.kind": {
       "@type": "@id"
     },
@@ -753,22 +594,13 @@
     "cim:AssetHealthEvent.effectiveDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:AssetInfo.Assets": {
-      "@type": "@id"
-    },
     "cim:AssetInfo.CatalogAssetType": {
-      "@type": "@id"
-    },
-    "cim:AssetInfo.PowerSystemResources": {
       "@type": "@id"
     },
     "cim:AssetInfo.ProductAssetModel": {
       "@type": "@id"
     },
     "cim:AssetLocationHazard.kind": {
-      "@type": "@id"
-    },
-    "cim:AssetModelCatalogue.AssetModelCatalogueItems": {
       "@type": "@id"
     },
     "cim:AssetModelCatalogue.status": {
@@ -780,20 +612,8 @@
     "cim:AssetModelCatalogueItem.AssetModelCatalogue": {
       "@type": "@id"
     },
-    "cim:AssetModelCatalogueItem.ErpPOLineItems": {
-      "@type": "@id"
-    },
-    "cim:AssetModelCatalogueItem.ErpQuoteLineItems": {
-      "@type": "@id"
-    },
     "cim:AssetModelCatalogueItem.unitCost": {
       "@type": "xsd:decimal"
-    },
-    "cim:AssetOrganisationRole.Assets": {
-      "@type": "@id"
-    },
-    "cim:AssetOwner.Ownerships": {
-      "@type": "@id"
     },
     "cim:AssetPropertyCurve.Specification": {
       "@type": "@id"
@@ -805,12 +625,6 @@
       "@type": "@id"
     },
     "cim:AssetTemperaturePressureAnalog.kind": {
-      "@type": "@id"
-    },
-    "cim:AssetTestLab.LabTestDataSet": {
-      "@type": "@id"
-    },
-    "cim:AssetTestSampleTaker.Specimen": {
       "@type": "@id"
     },
     "cim:Assignment.effectivePeriod": {
@@ -921,9 +735,6 @@
     "cim:AsynchronousMachineTimeConstantReactance.xs": {
       "@type": "xsd:float"
     },
-    "cim:AsynchronousMachineUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:AsynchronousMachineUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
@@ -954,16 +765,7 @@
     "cim:AttributeProperty.MktUserAttribute": {
       "@type": "@id"
     },
-    "cim:Author.ActivityRecords": {
-      "@type": "@id"
-    },
-    "cim:Author.Documents": {
-      "@type": "@id"
-    },
     "cim:AuxiliaryAccount.AuxiliaryAgreement": {
-      "@type": "@id"
-    },
-    "cim:AuxiliaryAccount.PaymentTransactions": {
       "@type": "@id"
     },
     "cim:AuxiliaryAccount.balance": {
@@ -980,9 +782,6 @@
     },
     "cim:AuxiliaryAccount.principleAmount": {
       "@type": "xsd:decimal"
-    },
-    "cim:AuxiliaryAgreement.AuxiliaryAccounts": {
-      "@type": "@id"
     },
     "cim:AuxiliaryAgreement.CustomerAgreement": {
       "@type": "@id"
@@ -1001,9 +800,6 @@
     },
     "cim:AuxiliaryAgreement.vendPortionArrear": {
       "@type": "xsd:float"
-    },
-    "cim:AuxiliaryCost.AuxillaryValues": {
-      "@type": "@id"
     },
     "cim:AuxiliaryCost.intervalStartTime": {
       "@type": "xsd:dateTime"
@@ -1122,9 +918,6 @@
     "cim:BWRSteamSupply.upperLimit": {
       "@type": "xsd:float"
     },
-    "cim:Bank.BankAccounts": {
-      "@type": "@id"
-    },
     "cim:BankAccount.Bank": {
       "@type": "@id"
     },
@@ -1140,38 +933,14 @@
     "cim:BasePower.basePower": {
       "@type": "xsd:float"
     },
-    "cim:BaseReading.ReadingQualities": {
-      "@type": "@id"
-    },
     "cim:BaseReading.reportedDateTime": {
       "@type": "xsd:dateTime"
     },
     "cim:BaseReading.timePeriod": {
       "@type": "@id"
     },
-    "cim:BaseVoltage.ConductingEquipment": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.NetworkAssetDeployment": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TransformerEnds": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.VoltageLevel": {
-      "@type": "@id"
-    },
     "cim:BaseVoltage.nominalVoltage": {
       "@type": "xsd:float"
-    },
-    "cim:BaseWork.TimeSchedules": {
-      "@type": "@id"
-    },
-    "cim:BaseWork.WorkActivityRecords": {
-      "@type": "@id"
     },
     "cim:BaseWork.WorkLocation": {
       "@type": "@id"
@@ -1233,28 +1002,10 @@
     "cim:Bid.ActionRequest": {
       "@type": "@id"
     },
-    "cim:Bid.BidHourlySchedule": {
-      "@type": "@id"
-    },
-    "cim:Bid.ChargeProfiles": {
-      "@type": "@id"
-    },
     "cim:Bid.EnergyMarket": {
       "@type": "@id"
     },
     "cim:Bid.MarketParticipant": {
-      "@type": "@id"
-    },
-    "cim:Bid.MitigatedBid": {
-      "@type": "@id"
-    },
-    "cim:Bid.MitigatedBidSegment": {
-      "@type": "@id"
-    },
-    "cim:Bid.ProductBids": {
-      "@type": "@id"
-    },
-    "cim:Bid.RMRDetermination": {
       "@type": "@id"
     },
     "cim:Bid.marketType": {
@@ -1265,9 +1016,6 @@
     },
     "cim:Bid.stopTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:BidDistributionFactor.PnodeDistributionFactor": {
-      "@type": "@id"
     },
     "cim:BidDistributionFactor.ProductBid": {
       "@type": "@id"
@@ -1326,9 +1074,6 @@
     "cim:BidPriceCap.marketType": {
       "@type": "@id"
     },
-    "cim:BidPriceCurve.BidSchedule": {
-      "@type": "@id"
-    },
     "cim:BidPriceSchedule.BidPriceCurve": {
       "@type": "@id"
     },
@@ -1380,9 +1125,6 @@
     "cim:BidSelfSched.updateType": {
       "@type": "@id"
     },
-    "cim:BidSet.GeneratingBids": {
-      "@type": "@id"
-    },
     "cim:BidTimeSeries.minimumActivationQuantity": {
       "@type": "xsd:decimal"
     },
@@ -1391,18 +1133,6 @@
     },
     "cim:BidTimeSeries.stepIncrementQuantity": {
       "@type": "xsd:decimal"
-    },
-    "cim:BilateralExchangeActor.CommunicationLink": {
-      "@type": "@id"
-    },
-    "cim:BilateralExchangeActor.ConsumerBilateralExchange": {
-      "@type": "@id"
-    },
-    "cim:BilateralExchangeActor.ProvidedBilateralIOPoint": {
-      "@type": "@id"
-    },
-    "cim:BilateralExchangeActor.ProviderBilateralExchange": {
-      "@type": "@id"
     },
     "cim:BilateralExchangeAgreement.Consumer": {
       "@type": "@id"
@@ -1428,9 +1158,6 @@
     "cim:BillDeterminant.ChargeProfile": {
       "@type": "@id"
     },
-    "cim:BillDeterminant.ChargeProfileData": {
-      "@type": "@id"
-    },
     "cim:BillDeterminant.effectiveDate": {
       "@type": "xsd:dateTime"
     },
@@ -1452,24 +1179,6 @@
     "cim:BlockingFunction.VSCtype1": {
       "@type": "@id"
     },
-    "cim:BranchEndFlow.MktACLineSegmentEndAFlow": {
-      "@type": "@id"
-    },
-    "cim:BranchEndFlow.MktACLineSegmentEndBFlow": {
-      "@type": "@id"
-    },
-    "cim:BranchEndFlow.MktPowerTransformerEndAFlow": {
-      "@type": "@id"
-    },
-    "cim:BranchEndFlow.MktPowerTransformerEndBFlow": {
-      "@type": "@id"
-    },
-    "cim:BranchEndFlow.MktSeriesCompensatorEndBFlow": {
-      "@type": "@id"
-    },
-    "cim:BranchEndFlow.MktSeriresCompensatorEndAFlow": {
-      "@type": "@id"
-    },
     "cim:BranchEndFlow.loadDumpRating": {
       "@type": "xsd:float"
     },
@@ -1487,12 +1196,6 @@
     },
     "cim:BranchEndFlow.shortTermRating": {
       "@type": "xsd:float"
-    },
-    "cim:BranchGroup.BranchGroupTerminal": {
-      "@type": "@id"
-    },
-    "cim:BranchGroup.PinBranchGroup": {
-      "@type": "@id"
     },
     "cim:BranchGroup.maximumActivePower": {
       "@type": "xsd:float"
@@ -1530,9 +1233,6 @@
     "cim:BusNameMarker.ReportingGroup": {
       "@type": "@id"
     },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
-    },
     "cim:BusNameMarker.TopologicalNode": {
       "@type": "@id"
     },
@@ -1550,9 +1250,6 @@
     },
     "cim:BusbarSectionInfo.ratedVoltage": {
       "@type": "xsd:float"
-    },
-    "cim:Bushing.BushingInsulationPFs": {
-      "@type": "@id"
     },
     "cim:Bushing.FixedContact": {
       "@type": "@id"
@@ -1602,12 +1299,6 @@
     "cim:BushingInsulationPF.testKind": {
       "@type": "@id"
     },
-    "cim:BusinessCase.Projects": {
-      "@type": "@id"
-    },
-    "cim:BusinessCase.Works": {
-      "@type": "@id"
-    },
     "cim:BusinessRole.status": {
       "@type": "@id"
     },
@@ -1627,9 +1318,6 @@
       "@type": "@id"
     },
     "cim:CIGREStandard.standardNumber": {
-      "@type": "@id"
-    },
-    "cim:CRRMarket.CongestionRevenueRight": {
       "@type": "@id"
     },
     "cim:CRROrgRole.CongestionRevenueRight": {
@@ -1662,16 +1350,10 @@
     "cim:CSCDynamics.CSConverter": {
       "@type": "@id"
     },
-    "cim:CSCUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:CSCUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
     "cim:CTTempActivePowerCurve.CombustionTurbine": {
-      "@type": "@id"
-    },
-    "cim:CUAllowableAction.CompatibleUnits": {
       "@type": "@id"
     },
     "cim:CUAllowableAction.status": {
@@ -1683,13 +1365,7 @@
     "cim:CUContractorItem.status": {
       "@type": "@id"
     },
-    "cim:CUGroup.CompatibleUnits": {
-      "@type": "@id"
-    },
     "cim:CUGroup.status": {
-      "@type": "@id"
-    },
-    "cim:CULaborCode.CULaborItems": {
       "@type": "@id"
     },
     "cim:CULaborCode.status": {
@@ -1755,12 +1431,6 @@
     "cim:CableInfo.shieldMaterial": {
       "@type": "@id"
     },
-    "cim:CalculationMethodHierarchy.CalculationMethodOrder": {
-      "@type": "@id"
-    },
-    "cim:CalculationMethodHierarchy.Measurement": {
-      "@type": "@id"
-    },
     "cim:CalculationMethodHierarchy.MeasurementValue": {
       "@type": "@id"
     },
@@ -1788,9 +1458,6 @@
     "cim:Card.expiryDate": {
       "@type": "xsd:date"
     },
-    "cim:Cashier.CashierShifts": {
-      "@type": "@id"
-    },
     "cim:Cashier.electronicAddress": {
       "@type": "@id"
     },
@@ -1800,31 +1467,10 @@
     "cim:CashierShift.PointOfSale": {
       "@type": "@id"
     },
-    "cim:CashierShift.Receipts": {
-      "@type": "@id"
-    },
-    "cim:CashierShift.Transactions": {
-      "@type": "@id"
-    },
     "cim:CashierShift.cashFloat": {
       "@type": "xsd:decimal"
     },
     "cim:CatalogAssetType.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.CompatibleUnits": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.ErpBomItemDatas": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.ErpInventoryIssues": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.ErpReqLineItems": {
-      "@type": "@id"
-    },
-    "cim:CatalogAssetType.ProductAssetModel": {
       "@type": "@id"
     },
     "cim:CatalogAssetType.TypeAssetCatalogue": {
@@ -1842,16 +1488,7 @@
     "cim:CatalogAssetType.stockItem": {
       "@type": "xsd:boolean"
     },
-    "cim:ChangeSet.ChangeSetMember": {
-      "@type": "@id"
-    },
-    "cim:ChangeSet.IncrementalDatasetArg": {
-      "@type": "@id"
-    },
     "cim:ChangeSet.NMProjectStage": {
-      "@type": "@id"
-    },
-    "cim:ChangeSet.NetworkModelProjectChangeVersion": {
       "@type": "@id"
     },
     "cim:ChangeSetMember.Changeset": {
@@ -1872,9 +1509,6 @@
     "cim:Channel.isVirtual": {
       "@type": "xsd:boolean"
     },
-    "cim:Charge.ChildCharges": {
-      "@type": "@id"
-    },
     "cim:Charge.ParentCharge": {
       "@type": "@id"
     },
@@ -1893,9 +1527,6 @@
     "cim:ChargeComponent.terminationDate": {
       "@type": "xsd:dateTime"
     },
-    "cim:ChargeGroup.ChargeGroupChild": {
-      "@type": "@id"
-    },
     "cim:ChargeGroup.ChargeGroupParent": {
       "@type": "@id"
     },
@@ -1909,9 +1540,6 @@
       "@type": "@id"
     },
     "cim:ChargeProfile.BillDeterminant": {
-      "@type": "@id"
-    },
-    "cim:ChargeProfile.ChargeProfileData": {
       "@type": "@id"
     },
     "cim:ChargeProfile.PassTroughBill": {
@@ -1953,12 +1581,6 @@
     "cim:Cheque.kind": {
       "@type": "@id"
     },
-    "cim:Circuit.EndBay": {
-      "@type": "@id"
-    },
-    "cim:Circuit.EndTerminal": {
-      "@type": "@id"
-    },
     "cim:Clamp.ACLineSegment": {
       "@type": "@id"
     },
@@ -1975,12 +1597,6 @@
       "@type": "@id"
     },
     "cim:ClampAction.kind": {
-      "@type": "@id"
-    },
-    "cim:ClassificationCondition.EnvironmentalAnalog": {
-      "@type": "@id"
-    },
-    "cim:ClassificationCondition.EnvironmentalStringMeasurement": {
       "@type": "@id"
     },
     "cim:ClassificationCondition.PhenomenonClassification": {
@@ -2031,9 +1647,6 @@
     "cim:CogenerationPlant.SteamSendoutSchedule": {
       "@type": "@id"
     },
-    "cim:CogenerationPlant.ThermalGeneratingUnits": {
-      "@type": "@id"
-    },
     "cim:CogenerationPlant.cogenHPSendoutRating": {
       "@type": "xsd:float"
     },
@@ -2058,22 +1671,13 @@
     "cim:ComFunction.technology": {
       "@type": "@id"
     },
-    "cim:ComModule.ComFunctions": {
-      "@type": "@id"
-    },
     "cim:ComModule.supportsAutonomousDst": {
       "@type": "xsd:boolean"
     },
     "cim:ComModule.timeZoneOffset": {
       "@type": "xsd:float"
     },
-    "cim:CombinedCycleConfiguration.CombinedCycleConfigurationMember": {
-      "@type": "@id"
-    },
     "cim:CombinedCycleConfiguration.CombinedCycleLogicalConfiguration": {
-      "@type": "@id"
-    },
-    "cim:CombinedCycleConfiguration.FromTransitionState": {
       "@type": "@id"
     },
     "cim:CombinedCycleConfiguration.ShutdownFlag": {
@@ -2081,9 +1685,6 @@
     },
     "cim:CombinedCycleConfiguration.StartupFlag": {
       "@type": "xsd:boolean"
-    },
-    "cim:CombinedCycleConfiguration.ToTransitionState": {
-      "@type": "@id"
     },
     "cim:CombinedCycleConfiguration.primaryConfiguration": {
       "@type": "xsd:boolean"
@@ -2100,13 +1701,7 @@
     "cim:CombinedCycleConfigurationMember.steam": {
       "@type": "xsd:boolean"
     },
-    "cim:CombinedCycleLogicalConfiguration.CombinedCycleConfiguration": {
-      "@type": "@id"
-    },
     "cim:CombinedCycleLogicalConfiguration.MktCombinedCyclePlant": {
-      "@type": "@id"
-    },
-    "cim:CombinedCyclePlant.ThermalGeneratingUnits": {
       "@type": "@id"
     },
     "cim:CombinedCyclePlant.combCyclePlantRating": {
@@ -2196,9 +1791,6 @@
     "cim:Commitments.updateType": {
       "@type": "@id"
     },
-    "cim:CommodityDefinition.CommodityPrice": {
-      "@type": "@id"
-    },
     "cim:CommodityDefinition.MarketProduct": {
       "@type": "@id"
     },
@@ -2255,9 +1847,6 @@
     },
     "cim:ComplianceEvent.deadline": {
       "@type": "xsd:dateTime"
-    },
-    "cim:CompositeSwitch.Switches": {
-      "@type": "@id"
     },
     "cim:CompositeSwitchInfo.ganged": {
       "@type": "xsd:boolean"
@@ -2316,15 +1905,6 @@
     "cim:ConductingEquipment.Outage": {
       "@type": "@id"
     },
-    "cim:ConductingEquipment.ProtectiveActionAdjustment": {
-      "@type": "@id"
-    },
-    "cim:ConductingEquipment.SvStatus": {
-      "@type": "@id"
-    },
-    "cim:ConductingEquipment.Terminals": {
-      "@type": "@id"
-    },
     "cim:Conductor.length": {
       "@type": "xsd:float"
     },
@@ -2361,22 +1941,10 @@
     "cim:ConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
-      "@type": "@id"
-    },
-    "cim:ConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
     "cim:CongestionRevenueRight.CRRMarket": {
-      "@type": "@id"
-    },
-    "cim:CongestionRevenueRight.CRROrgRole": {
-      "@type": "@id"
-    },
-    "cim:CongestionRevenueRight.CRRSegment": {
       "@type": "@id"
     },
     "cim:CongestionRevenueRight.Flowgate": {
@@ -2421,19 +1989,7 @@
     "cim:ConnectivityNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
-    "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
-    },
     "cim:ConnectivityNode.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ConstraintClearing.ConstraintResults": {
       "@type": "@id"
     },
     "cim:ConstraintDuration.duration": {
@@ -2502,9 +2058,6 @@
     "cim:ConsumptionTariffInterval.startValue": {
       "@type": "xsd:float"
     },
-    "cim:Contingency.ContingencyElement": {
-      "@type": "@id"
-    },
     "cim:Contingency.mustStudy": {
       "@type": "xsd:boolean"
     },
@@ -2544,13 +2097,7 @@
     "cim:ContractDistributionFactor.sourceFlag": {
       "@type": "@id"
     },
-    "cim:ContractRight.BidSelfSched": {
-      "@type": "@id"
-    },
     "cim:ContractRight.Chain_TransmissionRightChain": {
-      "@type": "@id"
-    },
-    "cim:ContractRight.ContractDistributionFactor": {
       "@type": "@id"
     },
     "cim:ContractRight.Ind_TransmissionRightChain": {
@@ -2562,16 +2109,7 @@
     "cim:ContractRight.SchedulingCoordinator": {
       "@type": "@id"
     },
-    "cim:ContractRight.SubstitutionResourceList": {
-      "@type": "@id"
-    },
-    "cim:ContractRight.TREntitlement": {
-      "@type": "@id"
-    },
     "cim:ContractRight.TRType": {
-      "@type": "@id"
-    },
-    "cim:ContractRight.TransmissionInterfaceEntitlement": {
       "@type": "@id"
     },
     "cim:ContractRight.chainOrder": {
@@ -2679,13 +2217,7 @@
     "cim:ControlAction.discreteValue": {
       "@type": "xsd:integer"
     },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
     "cim:ControlArea.EnergyArea": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
     "cim:ControlArea.netInterchange": {
@@ -2701,9 +2233,6 @@
       "@type": "@id"
     },
     "cim:ControlAreaDesignation.native": {
-      "@type": "@id"
-    },
-    "cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas": {
       "@type": "@id"
     },
     "cim:ControlAreaGeneratingUnit.ControlArea": {
@@ -2769,19 +2298,7 @@
     "cim:CoolingPowerRating.stage": {
       "@type": "xsd:integer"
     },
-    "cim:CoordinateSystem.Locations": {
-      "@type": "@id"
-    },
-    "cim:CostType.ChildCostTypes": {
-      "@type": "@id"
-    },
-    "cim:CostType.CompatibleUnits": {
-      "@type": "@id"
-    },
     "cim:CostType.ParentCostType": {
-      "@type": "@id"
-    },
-    "cim:CostType.WorkCostDetails": {
       "@type": "@id"
     },
     "cim:CostType.amountAssignable": {
@@ -2793,13 +2310,7 @@
     "cim:Craft.status": {
       "@type": "@id"
     },
-    "cim:Crew.CrewMembers": {
-      "@type": "@id"
-    },
     "cim:Crew.CrewType": {
-      "@type": "@id"
-    },
-    "cim:Crew.FieldDispatchHistory": {
       "@type": "@id"
     },
     "cim:Crew.Location": {
@@ -2808,16 +2319,10 @@
     "cim:Crew.SwitchingAction": {
       "@type": "@id"
     },
-    "cim:Crew.WorkAssets": {
-      "@type": "@id"
-    },
     "cim:Crew.status": {
       "@type": "@id"
     },
     "cim:CrewMember.Crew": {
-      "@type": "@id"
-    },
-    "cim:CrewType.Crews": {
       "@type": "@id"
     },
     "cim:CrossCompoundTurbineGovernorDynamics.HighPressureSynchronousMachineDynamics": {
@@ -2967,9 +2472,6 @@
     "cim:CurtailmentProfile.EnergyTransaction": {
       "@type": "@id"
     },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
-    },
     "cim:Curve.curveStyle": {
       "@type": "@id"
     },
@@ -3015,28 +2517,7 @@
     "cim:Customer.Customer": {
       "@type": "@id"
     },
-    "cim:Customer.CustomerAccounts": {
-      "@type": "@id"
-    },
-    "cim:Customer.CustomerAgreements": {
-      "@type": "@id"
-    },
-    "cim:Customer.CustomerNotifications": {
-      "@type": "@id"
-    },
-    "cim:Customer.EndDevices": {
-      "@type": "@id"
-    },
-    "cim:Customer.ErpPersons": {
-      "@type": "@id"
-    },
     "cim:Customer.OutagePlan": {
-      "@type": "@id"
-    },
-    "cim:Customer.ServiceRequest": {
-      "@type": "@id"
-    },
-    "cim:Customer.TroubleTickets": {
       "@type": "@id"
     },
     "cim:Customer.kind": {
@@ -3051,35 +2532,14 @@
     "cim:Customer.vip": {
       "@type": "xsd:boolean"
     },
-    "cim:CustomerAccount.AccountNotification": {
-      "@type": "@id"
-    },
     "cim:CustomerAccount.Customer": {
-      "@type": "@id"
-    },
-    "cim:CustomerAccount.CustomerAgreements": {
-      "@type": "@id"
-    },
-    "cim:CustomerAccount.CustomerBillingInfos": {
-      "@type": "@id"
-    },
-    "cim:CustomerAccount.ErpInvoicees": {
       "@type": "@id"
     },
     "cim:CustomerAccount.MeterReadSchedule": {
       "@type": "@id"
     },
-    "cim:CustomerAccount.PaymentTransactions": {
-      "@type": "@id"
-    },
-    "cim:CustomerAccount.WorkBillingInfos": {
-      "@type": "@id"
-    },
     "cim:CustomerAccount.lastBillAmount": {
       "@type": "xsd:decimal"
-    },
-    "cim:CustomerAgreement.AuxiliaryAgreements": {
-      "@type": "@id"
     },
     "cim:CustomerAgreement.Customer": {
       "@type": "@id"
@@ -3090,9 +2550,6 @@
     "cim:CustomerAgreement.MeterReadSchedule": {
       "@type": "@id"
     },
-    "cim:CustomerAgreement.MeterReadings": {
-      "@type": "@id"
-    },
     "cim:CustomerAgreement.ServiceCategory": {
       "@type": "@id"
     },
@@ -3100,9 +2557,6 @@
       "@type": "@id"
     },
     "cim:CustomerAgreement.StandardIndustryCode": {
-      "@type": "@id"
-    },
-    "cim:CustomerAgreement.UsagePoints": {
       "@type": "@id"
     },
     "cim:CustomerAgreement.isPrePay": {
@@ -3134,9 +2588,6 @@
     },
     "cim:CustomerBillingInfo.pymtPlanAmt": {
       "@type": "xsd:decimal"
-    },
-    "cim:CustomerConsumer.CustChildOf": {
-      "@type": "@id"
     },
     "cim:CustomerNotification.Customer": {
       "@type": "@id"
@@ -3183,12 +2634,6 @@
     "cim:DCBaseTerminal.DCTopologicalNode": {
       "@type": "@id"
     },
-    "cim:DCConductingEquipment.DCTerminals": {
-      "@type": "@id"
-    },
-    "cim:DCConductingEquipment.ProtectiveActionAdjustment": {
-      "@type": "@id"
-    },
     "cim:DCConductingEquipment.ratedUdc": {
       "@type": "xsd:float"
     },
@@ -3196,12 +2641,6 @@
       "@type": "@id"
     },
     "cim:DCConverterUnit.operationMode": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCTopologicalNode": {
       "@type": "@id"
     },
     "cim:DCGround.inductance": {
@@ -3231,9 +2670,6 @@
     "cim:DCNode.DCEquipmentContainer": {
       "@type": "@id"
     },
-    "cim:DCNode.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:DCNode.DCTopologicalNode": {
       "@type": "@id"
     },
@@ -3252,16 +2688,7 @@
     "cim:DCTerminal.DCConductingEquipment": {
       "@type": "@id"
     },
-    "cim:DCTopologicalIsland.DCTopologicalNodes": {
-      "@type": "@id"
-    },
     "cim:DCTopologicalNode.DCEquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCTerminals": {
       "@type": "@id"
     },
     "cim:DCTopologicalNode.DCTopologicalIsland": {
@@ -3345,9 +2772,6 @@
     "cim:DERMonitorableParameter.DERParameter": {
       "@type": "@id"
     },
-    "cim:DERMonitorableParameter.DispatchSchedule": {
-      "@type": "@id"
-    },
     "cim:DERMonitorableParameter.flowDirection": {
       "@type": "@id"
     },
@@ -3378,9 +2802,6 @@
     "cim:DatasetArg.OperationDatasetArgDescription": {
       "@type": "@id"
     },
-    "cim:DatasetArgDescription.OperationDatasetArg": {
-      "@type": "@id"
-    },
     "cim:DateAndOrTime.date": {
       "@type": "xsd:date"
     },
@@ -3398,9 +2819,6 @@
     },
     "cim:DateTimeInterval.start": {
       "@type": "xsd:dateTime"
-    },
-    "cim:DayType.SeasonDayTypeSchedules": {
-      "@type": "@id"
     },
     "cim:DecimalQuantity.currency": {
       "@type": "@id"
@@ -3486,19 +2904,10 @@
     "cim:DeploymentDate.removedDate": {
       "@type": "xsd:dateTime"
     },
-    "cim:Design.ErpBOMs": {
-      "@type": "@id"
-    },
     "cim:Design.ErpQuoteLineItem": {
       "@type": "@id"
     },
     "cim:Design.Work": {
-      "@type": "@id"
-    },
-    "cim:Design.WorkCostDetails": {
-      "@type": "@id"
-    },
-    "cim:Design.WorkTasks": {
       "@type": "@id"
     },
     "cim:Design.costEstimate": {
@@ -3509,15 +2918,6 @@
     },
     "cim:Design.price": {
       "@type": "xsd:decimal"
-    },
-    "cim:DesignLocation.DesignLocationCUs": {
-      "@type": "@id"
-    },
-    "cim:DesignLocation.ErpBomItemDatas": {
-      "@type": "@id"
-    },
-    "cim:DesignLocation.MiscCostItems": {
-      "@type": "@id"
     },
     "cim:DesignLocation.spanLength": {
       "@type": "xsd:float"
@@ -3549,9 +2949,6 @@
     "cim:DiagnosisDataSet.preliminaryDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:Diagram.DiagramElements": {
-      "@type": "@id"
-    },
     "cim:Diagram.DiagramStyle": {
       "@type": "@id"
     },
@@ -3571,9 +2968,6 @@
       "@type": "xsd:float"
     },
     "cim:DiagramObject.Diagram": {
-      "@type": "@id"
-    },
-    "cim:DiagramObject.DiagramObjectPoints": {
       "@type": "@id"
     },
     "cim:DiagramObject.DiagramObjectStyle": {
@@ -3597,9 +2991,6 @@
     "cim:DiagramObject.rotation": {
       "@type": "xsd:float"
     },
-    "cim:DiagramObjectGluePoint.DiagramObjectPoints": {
-      "@type": "@id"
-    },
     "cim:DiagramObjectPoint.DiagramObject": {
       "@type": "@id"
     },
@@ -3617,12 +3008,6 @@
     },
     "cim:DiagramObjectPoint.zPosition": {
       "@type": "xsd:float"
-    },
-    "cim:DiagramObjectStyle.StyledObjects": {
-      "@type": "@id"
-    },
-    "cim:DiagramStyle.Diagram": {
-      "@type": "@id"
     },
     "cim:DimensionsInfo.sizeDepth": {
       "@type": "xsd:float"
@@ -3717,14 +3102,8 @@
     "cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal": {
       "@type": "@id"
     },
-    "cim:DiscontinuousExcitationControlUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:DiscontinuousExcitationControlUserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:Discrete.DiscreteValues": {
-      "@type": "@id"
     },
     "cim:Discrete.ValueAliasSet": {
       "@type": "@id"
@@ -3777,9 +3156,6 @@
     "cim:DispatchInstReply.startTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:DispatchSchedule.DERCurveData": {
-      "@type": "@id"
-    },
     "cim:DispatchSchedule.DERMonitorableParameter": {
       "@type": "@id"
     },
@@ -3801,15 +3177,6 @@
     "cim:DispatchSchedule.timeIntervalUnit": {
       "@type": "@id"
     },
-    "cim:DistributedResourceActualEvent.InstructionClearing": {
-      "@type": "@id"
-    },
-    "cim:DistributedResourceActualEvent.InstructionClearingDOT": {
-      "@type": "@id"
-    },
-    "cim:DistributedResourceActualEvent.ResourcePerformanceEvaluations": {
-      "@type": "@id"
-    },
     "cim:DistributedResourceActualEvent.totalPowerAdjustment": {
       "@type": "xsd:float"
     },
@@ -3828,16 +3195,10 @@
     "cim:DobleStandard.standardNumber": {
       "@type": "@id"
     },
-    "cim:Document.ActivityRecord": {
-      "@type": "@id"
-    },
     "cim:Document.Approver": {
       "@type": "@id"
     },
     "cim:Document.Author": {
-      "@type": "@id"
-    },
-    "cim:Document.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:Document.Editor": {
@@ -3948,9 +3309,6 @@
     "cim:DrumBoiler.drumBoilerRating": {
       "@type": "xsd:float"
     },
-    "cim:DuctBank.WireSpacingInfos": {
-      "@type": "@id"
-    },
     "cim:DuctBank.circuitCount": {
       "@type": "xsd:integer"
     },
@@ -4002,9 +3360,6 @@
     "cim:Earthquake.magnitude": {
       "@type": "xsd:float"
     },
-    "cim:Editor.Documents": {
-      "@type": "@id"
-    },
     "cim:EmissionAccount.ThermalGeneratingUnit": {
       "@type": "@id"
     },
@@ -4027,12 +3382,6 @@
       "@type": "xsd:boolean"
     },
     "cim:EndDevice.Customer": {
-      "@type": "@id"
-    },
-    "cim:EndDevice.EndDeviceEvents": {
-      "@type": "@id"
-    },
-    "cim:EndDevice.EndDeviceFunctions": {
       "@type": "@id"
     },
     "cim:EndDevice.EndDeviceInfo": {
@@ -4149,13 +3498,7 @@
     "cim:EndDeviceControl.secondaryDeviceTiming": {
       "@type": "@id"
     },
-    "cim:EndDeviceControlType.EndDeviceControls": {
-      "@type": "@id"
-    },
     "cim:EndDeviceEvent.EndDevice": {
-      "@type": "@id"
-    },
-    "cim:EndDeviceEvent.EndDeviceEventDetails": {
       "@type": "@id"
     },
     "cim:EndDeviceEvent.EndDeviceEventType": {
@@ -4173,13 +3516,7 @@
     "cim:EndDeviceEventDetail.value": {
       "@type": "@id"
     },
-    "cim:EndDeviceEventType.EndDeviceEvents": {
-      "@type": "@id"
-    },
     "cim:EndDeviceFunction.EndDevice": {
-      "@type": "@id"
-    },
-    "cim:EndDeviceFunction.Registers": {
       "@type": "@id"
     },
     "cim:EndDeviceFunction.enabled": {
@@ -4195,9 +3532,6 @@
       "@type": "@id"
     },
     "cim:EndDeviceGroup.version": {
-      "@type": "@id"
-    },
-    "cim:EndDeviceInfo.EndDevices": {
       "@type": "@id"
     },
     "cim:EndDeviceInfo.capability": {
@@ -4231,9 +3565,6 @@
       "@type": "@id"
     },
     "cim:EnergyConsumer.EnergyConsumerAction": {
-      "@type": "@id"
-    },
-    "cim:EnergyConsumer.EnergyConsumerPhase": {
       "@type": "@id"
     },
     "cim:EnergyConsumer.LoadDynamics": {
@@ -4308,19 +3639,10 @@
     "cim:EnergyGroup.p": {
       "@type": "xsd:float"
     },
-    "cim:EnergyMarket.Bids": {
-      "@type": "@id"
-    },
     "cim:EnergyMarket.MarketResults": {
       "@type": "@id"
     },
     "cim:EnergyMarket.RTO": {
-      "@type": "@id"
-    },
-    "cim:EnergyMarket.Settlements": {
-      "@type": "@id"
-    },
-    "cim:EnergyPriceCurve.FTRs": {
       "@type": "@id"
     },
     "cim:EnergyPriceIndex.RegisteredGenerator": {
@@ -4338,9 +3660,6 @@
     "cim:EnergyPriceIndex.validPeriod": {
       "@type": "@id"
     },
-    "cim:EnergyProduct.EnergyTransactions": {
-      "@type": "@id"
-    },
     "cim:EnergyProduct.GenerationProvider": {
       "@type": "@id"
     },
@@ -4353,16 +3672,10 @@
     "cim:EnergyProfile.TransactionBid": {
       "@type": "@id"
     },
-    "cim:EnergySchedulingType.EnergySource": {
-      "@type": "@id"
-    },
     "cim:EnergySource.EnergySchedulingType": {
       "@type": "@id"
     },
     "cim:EnergySource.EnergySourceAction": {
-      "@type": "@id"
-    },
-    "cim:EnergySource.EnergySourcePhase": {
       "@type": "@id"
     },
     "cim:EnergySource.activePower": {
@@ -4416,25 +3729,13 @@
     "cim:EnergySourcePhase.phase": {
       "@type": "@id"
     },
-    "cim:EnergyTransaction.CurtailmentProfiles": {
-      "@type": "@id"
-    },
     "cim:EnergyTransaction.EnergyProduct": {
-      "@type": "@id"
-    },
-    "cim:EnergyTransaction.EnergyProfiles": {
       "@type": "@id"
     },
     "cim:EnergyTransaction.Export_SubControlArea": {
       "@type": "@id"
     },
     "cim:EnergyTransaction.Import_SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:EnergyTransaction.LossProfiles": {
-      "@type": "@id"
-    },
-    "cim:EnergyTransaction.TieLines": {
       "@type": "@id"
     },
     "cim:EnergyTransaction.TransmissionReservation": {
@@ -4503,37 +3804,13 @@
     "cim:EnvironmentalCodedValue.weatherKind": {
       "@type": "@id"
     },
-    "cim:EnvironmentalDataAuthority.AlertTypeList": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalDataAuthority.PhenomenonClassification": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalDataProvider.EnvironmentalAlert": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalDataProvider.EnvironmentalInformation": {
-      "@type": "@id"
-    },
     "cim:EnvironmentalDiscrete.EnvironmentalInformation": {
       "@type": "@id"
     },
     "cim:EnvironmentalDiscrete.kind": {
       "@type": "@id"
     },
-    "cim:EnvironmentalInformation.EnvironmentalAnalog": {
-      "@type": "@id"
-    },
     "cim:EnvironmentalInformation.EnvironmentalDataProvider": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalInformation.EnvironmentalDiscrete": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalInformation.EnvironmentalPhenomenon": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalInformation.EnvironmentalStringMeasurement": {
       "@type": "@id"
     },
     "cim:EnvironmentalInformation.created": {
@@ -4545,16 +3822,7 @@
     "cim:EnvironmentalLocationType.kind": {
       "@type": "@id"
     },
-    "cim:EnvironmentalMonitoringStation.EnvironmentalAnalog": {
-      "@type": "@id"
-    },
     "cim:EnvironmentalMonitoringStation.Location": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalMonitoringStation.ReportingCapability": {
-      "@type": "@id"
-    },
-    "cim:EnvironmentalMonitoringStation.UsagePoint": {
       "@type": "@id"
     },
     "cim:EnvironmentalMonitoringStation.dstObserved": {
@@ -4584,28 +3852,7 @@
     "cim:Equipment.AdditionalEquipmentContainer": {
       "@type": "@id"
     },
-    "cim:Equipment.ContingencyEquipment": {
-      "@type": "@id"
-    },
-    "cim:Equipment.EqiupmentLimitSeriesComponent": {
-      "@type": "@id"
-    },
     "cim:Equipment.EquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:Equipment.Faults": {
-      "@type": "@id"
-    },
-    "cim:Equipment.LimitDependencyModel": {
-      "@type": "@id"
-    },
-    "cim:Equipment.OperationalLimitSet": {
-      "@type": "@id"
-    },
-    "cim:Equipment.PinEquipment": {
-      "@type": "@id"
-    },
-    "cim:Equipment.ProtectiveActionEquipment": {
       "@type": "@id"
     },
     "cim:Equipment.aggregate": {
@@ -4619,12 +3866,6 @@
     },
     "cim:Equipment.normallyInService": {
       "@type": "xsd:boolean"
-    },
-    "cim:EquipmentContainer.AdditionalGroupedEquipment": {
-      "@type": "@id"
-    },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
     },
     "cim:EquipmentFault.Terminal": {
       "@type": "@id"
@@ -4734,9 +3975,6 @@
     "cim:EquivalentInjection.x2": {
       "@type": "xsd:float"
     },
-    "cim:EquivalentNetwork.EquivalentEquipments": {
-      "@type": "@id"
-    },
     "cim:EquivalentShunt.b": {
       "@type": "xsd:float"
     },
@@ -4746,9 +3984,6 @@
     "cim:ErpBOM.Design": {
       "@type": "@id"
     },
-    "cim:ErpBOM.ErpBomItemDatas": {
-      "@type": "@id"
-    },
     "cim:ErpBomItemData.DesignLocation": {
       "@type": "@id"
     },
@@ -4756,9 +3991,6 @@
       "@type": "@id"
     },
     "cim:ErpBomItemData.TypeAsset": {
-      "@type": "@id"
-    },
-    "cim:ErpCompetency.ErpPersons": {
       "@type": "@id"
     },
     "cim:ErpInventory.Asset": {
@@ -4771,9 +4003,6 @@
       "@type": "@id"
     },
     "cim:ErpInvoice.CustomerAccount": {
-      "@type": "@id"
-    },
-    "cim:ErpInvoice.ErpInvoiceLineItems": {
       "@type": "@id"
     },
     "cim:ErpInvoice.amount": {
@@ -4797,16 +4026,10 @@
     "cim:ErpInvoice.transactionDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:ErpInvoiceLineItem.ComponentErpInvoiceLineItems": {
-      "@type": "@id"
-    },
     "cim:ErpInvoiceLineItem.ContainerErpInvoiceLineItem": {
       "@type": "@id"
     },
     "cim:ErpInvoiceLineItem.ErpInvoice": {
-      "@type": "@id"
-    },
-    "cim:ErpInvoiceLineItem.ErpJournalEntries": {
       "@type": "@id"
     },
     "cim:ErpInvoiceLineItem.ErpPayableLineItem": {
@@ -4854,9 +4077,6 @@
     "cim:ErpItemMaster.status": {
       "@type": "@id"
     },
-    "cim:ErpJournal.ErpJournalEntries": {
-      "@type": "@id"
-    },
     "cim:ErpJournalEntry.ErpInvoiceLineItem": {
       "@type": "@id"
     },
@@ -4885,12 +4105,6 @@
       "@type": "@id"
     },
     "cim:ErpLedBudLineItem.status": {
-      "@type": "@id"
-    },
-    "cim:ErpLedger.ErpLedgerEntries": {
-      "@type": "@id"
-    },
-    "cim:ErpLedgerBudget.ErpLedBudLineItems": {
       "@type": "@id"
     },
     "cim:ErpLedgerEntry.ErpJounalEntry": {
@@ -4929,9 +4143,6 @@
     "cim:ErpPOLineItem.ErpReqLineItem": {
       "@type": "@id"
     },
-    "cim:ErpPayable.ErpPayableLineItems": {
-      "@type": "@id"
-    },
     "cim:ErpPayableLineItem.ErpInvoiceLineItem": {
       "@type": "@id"
     },
@@ -4941,28 +4152,7 @@
     "cim:ErpPayableLineItem.status": {
       "@type": "@id"
     },
-    "cim:ErpPersonnel.ErpPersons": {
-      "@type": "@id"
-    },
     "cim:ErpPersonnel.status": {
-      "@type": "@id"
-    },
-    "cim:ErpProjectAccounting.ErpTimeEntries": {
-      "@type": "@id"
-    },
-    "cim:ErpProjectAccounting.Projects": {
-      "@type": "@id"
-    },
-    "cim:ErpProjectAccounting.WorkCostDetails": {
-      "@type": "@id"
-    },
-    "cim:ErpProjectAccounting.Works": {
-      "@type": "@id"
-    },
-    "cim:ErpPurchaseOrder.ErpPOLineItems": {
-      "@type": "@id"
-    },
-    "cim:ErpQuote.ErpQuoteLineItems": {
       "@type": "@id"
     },
     "cim:ErpQuoteLineItem.AssetModelCatalogueItem": {
@@ -4981,9 +4171,6 @@
       "@type": "@id"
     },
     "cim:ErpQuoteLineItem.status": {
-      "@type": "@id"
-    },
-    "cim:ErpRecDelvLineItem.Assets": {
       "@type": "@id"
     },
     "cim:ErpRecDelvLineItem.ErpInvoiceLineItem": {
@@ -5005,12 +4192,6 @@
       "@type": "@id"
     },
     "cim:ErpRecLineItem.status": {
-      "@type": "@id"
-    },
-    "cim:ErpReceivable.ErpRecLineItems": {
-      "@type": "@id"
-    },
-    "cim:ErpReceiveDelivery.ErpRecDelvLineItems": {
       "@type": "@id"
     },
     "cim:ErpReqLineItem.ErpPOLineItem": {
@@ -5040,9 +4221,6 @@
     "cim:ErpReqLineItem.status": {
       "@type": "@id"
     },
-    "cim:ErpRequisition.ErpReqLineItems": {
-      "@type": "@id"
-    },
     "cim:ErpSiteLevelData.LandProperty": {
       "@type": "@id"
     },
@@ -5058,20 +4236,11 @@
     "cim:ErpTimeEntry.status": {
       "@type": "@id"
     },
-    "cim:ErpTimeSheet.ErpTimeEntries": {
-      "@type": "@id"
-    },
-    "cim:EstimatedRestorationTime.Outage": {
-      "@type": "@id"
-    },
     "cim:EstimatedRestorationTime.confidenceKind": {
       "@type": "@id"
     },
     "cim:EstimatedRestorationTime.ert": {
       "@type": "xsd:dateTime"
-    },
-    "cim:ExPostLoss.ExPostLossResults": {
-      "@type": "@id"
     },
     "cim:ExPostLossResults.ExPostLoss": {
       "@type": "@id"
@@ -5097,9 +4266,6 @@
     "cim:ExPostMarketRegionResults.exPostClearedPrice": {
       "@type": "xsd:float"
     },
-    "cim:ExPostPricing.ExPostResults": {
-      "@type": "@id"
-    },
     "cim:ExPostPricing.energyPrice": {
       "@type": "xsd:float"
     },
@@ -5117,9 +4283,6 @@
     },
     "cim:ExPostPricingResults.lossLMP": {
       "@type": "xsd:float"
-    },
-    "cim:ExPostResource.ExPostResourceResults": {
-      "@type": "@id"
     },
     "cim:ExPostResourceResults.ExPostResource": {
       "@type": "@id"
@@ -8088,14 +7251,8 @@
     "cim:ExcitationSystemDynamics.VoltageCompensatorDynamics": {
       "@type": "@id"
     },
-    "cim:ExcitationSystemUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:ExcitationSystemUserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:ExpectedEnergy.ExpectedEnergyValues": {
-      "@type": "@id"
     },
     "cim:ExpectedEnergy.intervalStartTime": {
       "@type": "xsd:dateTime"
@@ -8220,9 +7377,6 @@
     "cim:Fault.phases": {
       "@type": "@id"
     },
-    "cim:FaultCauseType.ConfigurationEvent": {
-      "@type": "@id"
-    },
     "cim:FaultImpedance.rGround": {
       "@type": "xsd:float"
     },
@@ -8247,13 +7401,7 @@
     "cim:Feeder.NormalEnergizingSubstation": {
       "@type": "@id"
     },
-    "cim:Feeder.NormalHeadTerminal": {
-      "@type": "@id"
-    },
     "cim:FieldDispatchHistory.Crew": {
-      "@type": "@id"
-    },
-    "cim:FieldDispatchHistory.FieldDispatchStep": {
       "@type": "@id"
     },
     "cim:FieldDispatchHistory.PlannedOutage": {
@@ -8273,12 +7421,6 @@
     },
     "cim:FieldDispatchStep.sequenceNumber": {
       "@type": "xsd:integer"
-    },
-    "cim:FieldSafetySupervisor.IssuedSafetyDocuments": {
-      "@type": "@id"
-    },
-    "cim:FieldSafetySupervisor.ReleasedSafetyDocuments": {
-      "@type": "@id"
     },
     "cim:FinancialInfo.Asset": {
       "@type": "@id"
@@ -8304,9 +7446,6 @@
     "cim:FinancialInfo.warrantyEndDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:FiveMinAuxiliaryData.AuxillaryValues": {
-      "@type": "@id"
-    },
     "cim:FiveMinAuxiliaryData.intervalStartTime": {
       "@type": "xsd:dateTime"
     },
@@ -8325,25 +7464,7 @@
     "cim:Flowgate.CongestionRevenueRight": {
       "@type": "@id"
     },
-    "cim:Flowgate.ConstraintResults": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.ContractDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.FTRs": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.FlowgateRelief": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.FlowgateValue": {
-      "@type": "@id"
-    },
     "cim:Flowgate.From_SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.GeneratingUnitDynamicValues": {
       "@type": "@id"
     },
     "cim:Flowgate.GenericConstraints": {
@@ -8352,31 +7473,10 @@
     "cim:Flowgate.HostControlArea": {
       "@type": "@id"
     },
-    "cim:Flowgate.InterTie": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.InterTieResults": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.MktTerminal": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.RegisteredInterTie": {
-      "@type": "@id"
-    },
     "cim:Flowgate.SecurityConstraints": {
       "@type": "@id"
     },
     "cim:Flowgate.To_SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.TranmissionRightEntitlement": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.TransmissionCapacity": {
-      "@type": "@id"
-    },
-    "cim:Flowgate.ViolationLimits": {
       "@type": "@id"
     },
     "cim:Flowgate.direction": {
@@ -8443,9 +7543,6 @@
       "@type": "@id"
     },
     "cim:FormerReference.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:FossilFuel.FuelAllocationSchedules": {
       "@type": "@id"
     },
     "cim:FossilFuel.ThermalGeneratingUnit": {
@@ -8613,9 +7710,6 @@
     "cim:FuelRegion.RTO": {
       "@type": "@id"
     },
-    "cim:FuelRegion.RegisteredGenerator": {
-      "@type": "@id"
-    },
     "cim:FuelRegion.lastModified": {
       "@type": "xsd:dateTime"
     },
@@ -8624,33 +7718,6 @@
     },
     "cim:GasPrice.gasPriceIndex": {
       "@type": "xsd:float"
-    },
-    "cim:Gate.GateInputPin": {
-      "@type": "@id"
-    },
-    "cim:Gate.PinGate": {
-      "@type": "@id"
-    },
-    "cim:Gate.ProtectiveActionCom": {
-      "@type": "@id"
-    },
-    "cim:Gate.ProtectiveActionEnabled": {
-      "@type": "@id"
-    },
-    "cim:Gate.RemedialActionScheme": {
-      "@type": "@id"
-    },
-    "cim:Gate.StageTrigger": {
-      "@type": "@id"
-    },
-    "cim:Gate.StageTriggerArmed": {
-      "@type": "@id"
-    },
-    "cim:Gate.StageTriggerCom": {
-      "@type": "@id"
-    },
-    "cim:Gate.TriggerCondition": {
-      "@type": "@id"
     },
     "cim:Gate.kind": {
       "@type": "@id"
@@ -8706,9 +7773,6 @@
     "cim:GenUnitOpSchedule.GeneratingUnit": {
       "@type": "@id"
     },
-    "cim:GeneralClearing.GeneralClearingResults": {
-      "@type": "@id"
-    },
     "cim:GeneralClearingResults.GeneralClearing": {
       "@type": "@id"
     },
@@ -8730,13 +7794,7 @@
     "cim:GeneratingBid.NotificationTimeCurve": {
       "@type": "@id"
     },
-    "cim:GeneratingBid.RampRateCurve": {
-      "@type": "@id"
-    },
     "cim:GeneratingBid.RegisteredGenerator": {
-      "@type": "@id"
-    },
-    "cim:GeneratingBid.SecurityConstraints": {
       "@type": "@id"
     },
     "cim:GeneratingBid.StartUpCostCurve": {
@@ -8790,19 +7848,7 @@
     "cim:GeneratingBid.upTimeMax": {
       "@type": "xsd:float"
     },
-    "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GenUnitOpCostCurves": {
-      "@type": "@id"
-    },
     "cim:GeneratingUnit.GenUnitOpSchedule": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.GrossToNetActivePowerCurves": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.RotatingMachine": {
       "@type": "@id"
     },
     "cim:GeneratingUnit.allocSpinResP": {
@@ -8940,9 +7986,6 @@
     "cim:GeneratingUnitDynamicValues.sensitivity": {
       "@type": "xsd:float"
     },
-    "cim:GenerationProvider.ProvidedBy": {
-      "@type": "@id"
-    },
     "cim:GeneratorTypeAsset.maxP": {
       "@type": "xsd:float"
     },
@@ -8994,12 +8037,6 @@
     "cim:GenericAction.PowerSystemResource": {
       "@type": "@id"
     },
-    "cim:GenericConstraints.Flowgate": {
-      "@type": "@id"
-    },
-    "cim:GenericConstraints.TransmissionCapacity": {
-      "@type": "@id"
-    },
     "cim:GenericConstraints.intervalEndTime": {
       "@type": "xsd:dateTime"
     },
@@ -9014,9 +8051,6 @@
     },
     "cim:GenericDataSetVersion.published": {
       "@type": "xsd:date"
-    },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
     },
     "cim:GeosphericAnalog.kind": {
       "@type": "@id"
@@ -11778,43 +10812,16 @@
     "cim:HeatRateCurve.isNetGrossP": {
       "@type": "xsd:boolean"
     },
-    "cim:HeatRecoveryBoiler.CombustionTurbines": {
-      "@type": "@id"
-    },
     "cim:HeatRecoveryBoiler.steamSupplyRating2": {
       "@type": "xsd:float"
     },
     "cim:HostControlArea.AdjacentCASet": {
       "@type": "@id"
     },
-    "cim:HostControlArea.BidSelfSched": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.CnodeDistributionFactor": {
-      "@type": "@id"
-    },
     "cim:HostControlArea.Controls": {
       "@type": "@id"
     },
-    "cim:HostControlArea.Flowgate": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.LossClearingResults": {
-      "@type": "@id"
-    },
     "cim:HostControlArea.RTO": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.SubControlAreas": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.SysLoadDistribuFactor": {
-      "@type": "@id"
-    },
-    "cim:HostControlArea.TransferInterface": {
       "@type": "@id"
     },
     "cim:HostControlArea.areaControlMode": {
@@ -11835,16 +10842,10 @@
     "cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit": {
       "@type": "@id"
     },
-    "cim:HydroGeneratingUnit.HydroGeneratingEfficiencyCurves": {
-      "@type": "@id"
-    },
     "cim:HydroGeneratingUnit.HydroPowerPlant": {
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.PenstockLossCurve": {
-      "@type": "@id"
-    },
-    "cim:HydroGeneratingUnit.TailbayLossCurve": {
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.dropHeight": {
@@ -11860,12 +10861,6 @@
       "@type": "@id"
     },
     "cim:HydroPowerPlant.GenSourcePumpDischargeReservoir": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroGeneratingUnits": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroPumps": {
       "@type": "@id"
     },
     "cim:HydroPowerPlant.Reservoir": {
@@ -12021,13 +11016,7 @@
     "cim:IEEEStandard.standardNumber": {
       "@type": "@id"
     },
-    "cim:IOPoint.BilateralToIOPoint": {
-      "@type": "@id"
-    },
     "cim:IOPoint.IOPointSource": {
-      "@type": "@id"
-    },
-    "cim:IOPointSource.IOPoint": {
       "@type": "@id"
     },
     "cim:IPAccessPoint.addressType": {
@@ -12039,9 +11028,6 @@
     "cim:ISOStandard.standardNumber": {
       "@type": "@id"
     },
-    "cim:ISOUpperLayer.UpperLayerPublicX509Certificate": {
-      "@type": "@id"
-    },
     "cim:ISOUpperLayer.aeInvoke": {
       "@type": "xsd:integer"
     },
@@ -12051,19 +11037,10 @@
     "cim:ISOUpperLayer.apInvoke": {
       "@type": "xsd:integer"
     },
-    "cim:IdentifiedObject.DiagramObjects": {
-      "@type": "@id"
-    },
     "cim:IdentifiedObject.InstanceSet": {
       "@type": "@id"
     },
-    "cim:IdentifiedObject.Names": {
-      "@type": "@id"
-    },
     "cim:IdentifiedObject.PropertiesCIMDataObject": {
-      "@type": "@id"
-    },
-    "cim:IdentifiedObject.TargetingCIMDataObject": {
       "@type": "@id"
     },
     "cim:InUseDate.inUseDate": {
@@ -12078,15 +11055,6 @@
     "cim:InadvertentAccount.SubControlArea": {
       "@type": "@id"
     },
-    "cim:Incident.CustomerNotifications": {
-      "@type": "@id"
-    },
-    "cim:Incident.Hazard": {
-      "@type": "@id"
-    },
-    "cim:Incident.IncidentHazard": {
-      "@type": "@id"
-    },
     "cim:Incident.Location": {
       "@type": "@id"
     },
@@ -12097,9 +11065,6 @@
       "@type": "@id"
     },
     "cim:Incident.TroubleOrder": {
-      "@type": "@id"
-    },
-    "cim:Incident.TroubleTickets": {
       "@type": "@id"
     },
     "cim:Incident.UnplannedOutage": {
@@ -12117,9 +11082,6 @@
     "cim:IncrementalDatasetArg.IncrementalDatasetArgDescription": {
       "@type": "@id"
     },
-    "cim:IncrementalDatasetArgDescription.IncrementalDatasetArg": {
-      "@type": "@id"
-    },
     "cim:IncrementalHeatRateCurve.ThermalGeneratingUnit": {
       "@type": "@id"
     },
@@ -12135,9 +11097,6 @@
     "cim:IndividualPnode.MktConnectivityNode": {
       "@type": "@id"
     },
-    "cim:IndividualPnode.PnodeDistributionFactor": {
-      "@type": "@id"
-    },
     "cim:InflowForecast.Reservoir": {
       "@type": "@id"
     },
@@ -12147,22 +11106,10 @@
     "cim:InspectionAnalog.kind": {
       "@type": "@id"
     },
-    "cim:InspectionDataSet.AccordingToSchedules": {
-      "@type": "@id"
-    },
     "cim:InspectionDiscrete.kind": {
       "@type": "@id"
     },
-    "cim:InstanceSet.DatasetArg": {
-      "@type": "@id"
-    },
-    "cim:InstanceSet.InstanceSetMember": {
-      "@type": "@id"
-    },
     "cim:InstructionClearing.ActualDemandResponseEvent": {
-      "@type": "@id"
-    },
-    "cim:InstructionClearing.ResourceDeploymentStatus": {
       "@type": "@id"
     },
     "cim:InstructionClearingDOT.DemandResponseActualEvent": {
@@ -12222,17 +11169,11 @@
     "cim:IntegerQuantity.value": {
       "@type": "xsd:integer"
     },
-    "cim:InterTieBid.RampRateCurve": {
-      "@type": "@id"
-    },
     "cim:InterTieBid.RegisteredInterTie": {
       "@type": "@id"
     },
     "cim:InterTieBid.minHourlyBlock": {
       "@type": "xsd:integer"
-    },
-    "cim:InterTieClearing.InterTieResults": {
-      "@type": "@id"
     },
     "cim:InterTieDispatchResponse.RegisteredInterTie": {
       "@type": "@id"
@@ -12273,9 +11214,6 @@
     "cim:InterchangeSchedule.InterTie": {
       "@type": "@id"
     },
-    "cim:InterchangeSchedule.InterchangeETCData": {
-      "@type": "@id"
-    },
     "cim:InterchangeSchedule.RegisteredInterTie": {
       "@type": "@id"
     },
@@ -12306,17 +11244,11 @@
     "cim:IntermittentResourceEligibility.RegisteredResource": {
       "@type": "@id"
     },
-    "cim:InternalControlArea.CurrentEmergencySI": {
-      "@type": "@id"
-    },
     "cim:InternalControlArea.CurrentScheduledInterchange": {
       "@type": "@id"
     },
     "cim:InternalLocation.floor": {
       "@type": "xsd:integer"
-    },
-    "cim:InterrupterUnit.Bushing": {
-      "@type": "@id"
     },
     "cim:InterrupterUnit.OperatingMechanism": {
       "@type": "@id"
@@ -12333,9 +11265,6 @@
     "cim:IntervalBlock.ReadingType": {
       "@type": "@id"
     },
-    "cim:IrregularIntervalSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:IrregularTimePoint.IntervalSchedule": {
       "@type": "@id"
     },
@@ -12348,9 +11277,6 @@
     "cim:IrregularTimePoint.value2": {
       "@type": "xsd:float"
     },
-    "cim:Issuer.Documents": {
-      "@type": "@id"
-    },
     "cim:Joint.configurationKind": {
       "@type": "@id"
     },
@@ -12360,13 +11286,7 @@
     "cim:Jumper.JumperAction": {
       "@type": "@id"
     },
-    "cim:JumperAction.ACLineSegments": {
-      "@type": "@id"
-    },
     "cim:JumperAction.Clamp": {
-      "@type": "@id"
-    },
-    "cim:JumperAction.JumpedEquipments": {
       "@type": "@id"
     },
     "cim:JumperAction.Jumper": {
@@ -12406,18 +11326,6 @@
       "@type": "@id"
     },
     "cim:LaborelecStandard.standardNumber": {
-      "@type": "@id"
-    },
-    "cim:LandProperty.ErpOrganisationRoles": {
-      "@type": "@id"
-    },
-    "cim:LandProperty.ErpPersonRoles": {
-      "@type": "@id"
-    },
-    "cim:LandProperty.ErpSiteLevelDatas": {
-      "@type": "@id"
-    },
-    "cim:LandProperty.LocationGrants": {
       "@type": "@id"
     },
     "cim:LandProperty.demographicKind": {
@@ -12522,16 +11430,7 @@
     "cim:LoadAggregate.LoadStatic": {
       "@type": "@id"
     },
-    "cim:LoadArea.SubLoadAreas": {
-      "@type": "@id"
-    },
     "cim:LoadBid.AreaLoadBid": {
-      "@type": "@id"
-    },
-    "cim:LoadBid.LoadReductionPriceCurve": {
-      "@type": "@id"
-    },
-    "cim:LoadBid.RampRateCurve": {
       "@type": "@id"
     },
     "cim:LoadBid.RegisteredLoad": {
@@ -12623,9 +11522,6 @@
     },
     "cim:LoadDistributionFactor.qDistFactor": {
       "@type": "xsd:float"
-    },
-    "cim:LoadDynamics.EnergyConsumer": {
-      "@type": "@id"
     },
     "cim:LoadFollowingInst.RegisteredResource": {
       "@type": "@id"
@@ -12738,9 +11634,6 @@
     "cim:LoadReductionPriceCurve.LoadBid": {
       "@type": "@id"
     },
-    "cim:LoadResponseCharacteristic.EnergyConsumer": {
-      "@type": "@id"
-    },
     "cim:LoadResponseCharacteristic.exponentModel": {
       "@type": "xsd:boolean"
     },
@@ -12828,49 +11721,19 @@
     "cim:LoadStatic.staticLoadModelType": {
       "@type": "@id"
     },
-    "cim:LoadUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:LoadUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
     "cim:LocalReliabilityArea.RTO": {
       "@type": "@id"
     },
-    "cim:LocalReliabilityArea.RegisteredGenerator": {
-      "@type": "@id"
-    },
-    "cim:Location.Assets": {
-      "@type": "@id"
-    },
-    "cim:Location.ConfigurationEvents": {
-      "@type": "@id"
-    },
     "cim:Location.CoordinateSystem": {
-      "@type": "@id"
-    },
-    "cim:Location.Crew": {
-      "@type": "@id"
-    },
-    "cim:Location.EnvironmentalLocationKind": {
-      "@type": "@id"
-    },
-    "cim:Location.EnvironmentalMonitoringStation": {
-      "@type": "@id"
-    },
-    "cim:Location.Fault": {
       "@type": "@id"
     },
     "cim:Location.Incident": {
       "@type": "@id"
     },
     "cim:Location.OutageOrder": {
-      "@type": "@id"
-    },
-    "cim:Location.PositionPoints": {
-      "@type": "@id"
-    },
-    "cim:Location.PowerSystemResources": {
       "@type": "@id"
     },
     "cim:Location.SwitchingOrder": {
@@ -12903,9 +11766,6 @@
     "cim:LocationGrant.LandProperty": {
       "@type": "@id"
     },
-    "cim:LossClearing.LossClearingResults": {
-      "@type": "@id"
-    },
     "cim:LossClearingResults.HostControlArea": {
       "@type": "@id"
     },
@@ -12936,9 +11796,6 @@
     "cim:MPMClearing.LMPMFinalFlag": {
       "@type": "@id"
     },
-    "cim:MPMClearing.MPMTestResults": {
-      "@type": "@id"
-    },
     "cim:MPMClearing.SMPMFinalFlag": {
       "@type": "@id"
     },
@@ -12949,15 +11806,6 @@
       "@type": "@id"
     },
     "cim:MPMResourceStatus.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:MPMTestCategory.MPMResourceStatus": {
-      "@type": "@id"
-    },
-    "cim:MPMTestCategory.MPMTestResults": {
-      "@type": "@id"
-    },
-    "cim:MPMTestCategory.MPMTestThreshold": {
       "@type": "@id"
     },
     "cim:MPMTestCategory.purposeFlag": {
@@ -12995,9 +11843,6 @@
     },
     "cim:MPMTestThreshold.price": {
       "@type": "xsd:float"
-    },
-    "cim:MSSAggregation.MeteredSubSystem": {
-      "@type": "@id"
     },
     "cim:MSSAggregation.RTO": {
       "@type": "@id"
@@ -13044,26 +11889,11 @@
     "cim:MaintenanceWorkTask.transformerMaintenanceKind": {
       "@type": "@id"
     },
-    "cim:MajorChargeGroup.MktScheduledEvent": {
-      "@type": "@id"
-    },
     "cim:MajorChargeGroup.effectiveDate": {
       "@type": "xsd:dateTime"
     },
     "cim:MajorChargeGroup.terminationDate": {
       "@type": "xsd:dateTime"
-    },
-    "cim:Manufacturer.ProductAssetModels": {
-      "@type": "@id"
-    },
-    "cim:Market.MarketFactors": {
-      "@type": "@id"
-    },
-    "cim:Market.MarketProducts": {
-      "@type": "@id"
-    },
-    "cim:Market.MarketRun": {
-      "@type": "@id"
     },
     "cim:Market.actualEnd": {
       "@type": "xsd:dateTime"
@@ -13101,9 +11931,6 @@
     "cim:MarketActualEvent.eventStatus": {
       "@type": "@id"
     },
-    "cim:MarketCaseClearing.MarketProductClearing": {
-      "@type": "@id"
-    },
     "cim:MarketCaseClearing.modifiedDate": {
       "@type": "xsd:dateTime"
     },
@@ -13118,9 +11945,6 @@
     },
     "cim:MarketFactors.intervalStartTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:MarketInvoice.MarketInvoiceLineItems": {
-      "@type": "@id"
     },
     "cim:MarketInvoice.amount": {
       "@type": "xsd:decimal"
@@ -13142,9 +11966,6 @@
     },
     "cim:MarketInvoice.transactionDateTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:MarketInvoiceLineItem.ComponentMarketInvoiceLineItems": {
-      "@type": "@id"
     },
     "cim:MarketInvoiceLineItem.ContainerMarketInvoiceLineItem": {
       "@type": "@id"
@@ -13170,9 +11991,6 @@
     "cim:MarketInvoiceLineItem.previousAmount": {
       "@type": "xsd:float"
     },
-    "cim:MarketLedger.MarketLedgerEntries": {
-      "@type": "@id"
-    },
     "cim:MarketLedgerEntry.MarketLedger": {
       "@type": "@id"
     },
@@ -13191,18 +12009,6 @@
     "cim:MarketLedgerEntry.transactionDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:MarketParticipant.Bid": {
-      "@type": "@id"
-    },
-    "cim:MarketParticipant.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:MarketParticipant.SchedulingCoordinator": {
-      "@type": "@id"
-    },
-    "cim:MarketPerson.MarketSkills": {
-      "@type": "@id"
-    },
     "cim:MarketPerson.electronicAddressAlternate": {
       "@type": "@id"
     },
@@ -13218,34 +12024,13 @@
     "cim:MarketPerson.status": {
       "@type": "@id"
     },
-    "cim:MarketPlan.PlannedMarket": {
-      "@type": "@id"
-    },
     "cim:MarketPlan.tradingDay": {
       "@type": "xsd:dateTime"
-    },
-    "cim:MarketProduct.BidError": {
-      "@type": "@id"
-    },
-    "cim:MarketProduct.BidPriceCap": {
-      "@type": "@id"
-    },
-    "cim:MarketProduct.CommodityDefinition": {
-      "@type": "@id"
     },
     "cim:MarketProduct.Market": {
       "@type": "@id"
     },
     "cim:MarketProduct.MarketRegionResults": {
-      "@type": "@id"
-    },
-    "cim:MarketProduct.ProductBids": {
-      "@type": "@id"
-    },
-    "cim:MarketProduct.ReserveReqs": {
-      "@type": "@id"
-    },
-    "cim:MarketProduct.ResourceAwardInstruction": {
       "@type": "@id"
     },
     "cim:MarketProduct.marketProductType": {
@@ -13262,15 +12047,6 @@
     },
     "cim:MarketQualificationRequirement.status": {
       "@type": "xsd:integer"
-    },
-    "cim:MarketRegion.ExPostMarketRegionResults": {
-      "@type": "@id"
-    },
-    "cim:MarketRegion.MarketRegionResults": {
-      "@type": "@id"
-    },
-    "cim:MarketRegion.ReserveDemandCurve": {
-      "@type": "@id"
     },
     "cim:MarketRegionResults.AncillaryServiceClearing": {
       "@type": "@id"
@@ -13350,9 +12126,6 @@
     "cim:MarketRun.Market": {
       "@type": "@id"
     },
-    "cim:MarketRun.MarketActualEvent": {
-      "@type": "@id"
-    },
     "cim:MarketRun.PlannedMarket": {
       "@type": "@id"
     },
@@ -13392,9 +12165,6 @@
     "cim:MarketSkill.effectiveDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:MarketStatement.MarketStatementLineItem": {
-      "@type": "@id"
-    },
     "cim:MarketStatement.end": {
       "@type": "xsd:dateTime"
     },
@@ -13406,9 +12176,6 @@
     },
     "cim:MarketStatement.transactionDate": {
       "@type": "xsd:dateTime"
-    },
-    "cim:MarketStatementLineItem.ComponentMarketStatementLineItem": {
-      "@type": "@id"
     },
     "cim:MarketStatementLineItem.ContainerMarketStatementLineItem": {
       "@type": "@id"
@@ -13467,9 +12234,6 @@
     "cim:MarketStatementLineItem.previousQuantity": {
       "@type": "xsd:float"
     },
-    "cim:Marketer.HoldsTitleTo_EnergyProducts": {
-      "@type": "@id"
-    },
     "cim:MaterialItem.TypeMaterial": {
       "@type": "@id"
     },
@@ -13488,16 +12252,7 @@
     "cim:Measurement.MeasurementAction": {
       "@type": "@id"
     },
-    "cim:Measurement.MeasurementCalculatorInput": {
-      "@type": "@id"
-    },
-    "cim:Measurement.PinMeasurement": {
-      "@type": "@id"
-    },
     "cim:Measurement.PowerSystemResource": {
-      "@type": "@id"
-    },
-    "cim:Measurement.ProtectiveActionAdjustment": {
       "@type": "@id"
     },
     "cim:Measurement.Terminal": {
@@ -13513,12 +12268,6 @@
       "@type": "@id"
     },
     "cim:MeasurementAction.Measurement": {
-      "@type": "@id"
-    },
-    "cim:MeasurementCalculator.MeasurementCalculatorInput": {
-      "@type": "@id"
-    },
-    "cim:MeasurementCalculator.PinMeasurement": {
       "@type": "@id"
     },
     "cim:MeasurementCalculator.kind": {
@@ -13560,9 +12309,6 @@
     "cim:MeasurementValueQuality.MeasurementValue": {
       "@type": "@id"
     },
-    "cim:MeasurementValueSource.MeasurementValues": {
-      "@type": "@id"
-    },
     "cim:MechLoad1.a": {
       "@type": "xsd:float"
     },
@@ -13581,9 +12327,6 @@
     "cim:MechanicalLoadDynamics.SynchronousMachineDynamics": {
       "@type": "@id"
     },
-    "cim:MechanicalLoadUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:MechanicalLoadUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
@@ -13599,32 +12342,11 @@
     "cim:MerchantAccount.MerchantAgreement": {
       "@type": "@id"
     },
-    "cim:MerchantAccount.VendorShifts": {
-      "@type": "@id"
-    },
     "cim:MerchantAccount.currentBalance": {
       "@type": "xsd:decimal"
     },
     "cim:MerchantAccount.provisionalBalance": {
       "@type": "xsd:decimal"
-    },
-    "cim:MerchantAgreement.MerchantAccounts": {
-      "@type": "@id"
-    },
-    "cim:Meter.MeterMultipliers": {
-      "@type": "@id"
-    },
-    "cim:Meter.MeterReadings": {
-      "@type": "@id"
-    },
-    "cim:Meter.MeterReplacementWorkTasks": {
-      "@type": "@id"
-    },
-    "cim:Meter.MeterServiceWorkTask": {
-      "@type": "@id"
-    },
-    "cim:Meter.VendingTransactions": {
-      "@type": "@id"
     },
     "cim:MeterMultiplier.Meter": {
       "@type": "@id"
@@ -13635,37 +12357,7 @@
     "cim:MeterMultiplier.value": {
       "@type": "xsd:float"
     },
-    "cim:MeterReadSchedule.CustomerAccount": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.CustomerAgreement": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.EndDevice": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.EndDeviceGroup": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.ReadingType": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.TimeSchedule": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.UsagePoint": {
-      "@type": "@id"
-    },
-    "cim:MeterReadSchedule.UsagePointGroup": {
-      "@type": "@id"
-    },
     "cim:MeterReading.CustomerAgreement": {
-      "@type": "@id"
-    },
-    "cim:MeterReading.EndDeviceEvents": {
-      "@type": "@id"
-    },
-    "cim:MeterReading.IntervalBlocks": {
       "@type": "@id"
     },
     "cim:MeterReading.Meter": {
@@ -13690,9 +12382,6 @@
       "@type": "@id"
     },
     "cim:MeteredSubSystem.MSSAggregation": {
-      "@type": "@id"
-    },
-    "cim:MeteredSubSystem.MSSZone": {
       "@type": "@id"
     },
     "cim:MetrologyRequirement.reason": {
@@ -13749,34 +12438,13 @@
     "cim:MktCombinedCyclePlant.AggregatedPnode": {
       "@type": "@id"
     },
-    "cim:MktCombinedCyclePlant.CombinedCycleLogicalConfiguration": {
-      "@type": "@id"
-    },
-    "cim:MktConnectivityNode.CnodeDistributionFactor": {
-      "@type": "@id"
-    },
     "cim:MktConnectivityNode.IndividualPnode": {
-      "@type": "@id"
-    },
-    "cim:MktConnectivityNode.LossPenaltyFactor": {
-      "@type": "@id"
-    },
-    "cim:MktConnectivityNode.NodeConstraintTerm": {
       "@type": "@id"
     },
     "cim:MktConnectivityNode.RTO": {
       "@type": "@id"
     },
-    "cim:MktConnectivityNode.RegisteredResource": {
-      "@type": "@id"
-    },
     "cim:MktConnectivityNode.SysLoadDistribuFactor": {
-      "@type": "@id"
-    },
-    "cim:MktContingency.ConstraintResults": {
-      "@type": "@id"
-    },
-    "cim:MktContingency.ContingencyConstraintLimit": {
       "@type": "@id"
     },
     "cim:MktContingency.TransferInterfaceSolutionA": {
@@ -13794,12 +12462,6 @@
     "cim:MktContingency.screeningFlag": {
       "@type": "xsd:boolean"
     },
-    "cim:MktControlArea.ControlAreaSolutionData": {
-      "@type": "@id"
-    },
-    "cim:MktGeneratingUnit.GeneratingUnitDynamicValues": {
-      "@type": "@id"
-    },
     "cim:MktHeatRateCurve.RegisteredGenerator": {
       "@type": "@id"
     },
@@ -13812,16 +12474,10 @@
     "cim:MktMeasurement.ByTiePoint": {
       "@type": "@id"
     },
-    "cim:MktMeasurement.DynamicSchedule": {
-      "@type": "@id"
-    },
     "cim:MktMeasurement.ForTiePoint": {
       "@type": "@id"
     },
     "cim:MktMeasurement.Pnode": {
-      "@type": "@id"
-    },
-    "cim:MktMeasurement.ViolationLimit": {
       "@type": "@id"
     },
     "cim:MktPowerTransformer.EndAFlow": {
@@ -13836,40 +12492,10 @@
     "cim:MktSeriesCompensator.EndBFlow": {
       "@type": "@id"
     },
-    "cim:MktShuntCompensator.ShuntCompensatorDynamicData": {
-      "@type": "@id"
-    },
-    "cim:MktSwitch.SwitchStatus": {
-      "@type": "@id"
-    },
-    "cim:MktTapChanger.TapChangerDynamicData": {
-      "@type": "@id"
-    },
     "cim:MktTerminal.Flowgate": {
       "@type": "@id"
     },
-    "cim:MktTerminal.TerminalConstraintTerm": {
-      "@type": "@id"
-    },
-    "cim:MktThermalGeneratingUnit.CombinedCycleConfigurationMember": {
-      "@type": "@id"
-    },
-    "cim:MktUserAttribute.AttributeProperty": {
-      "@type": "@id"
-    },
-    "cim:ModelAuthority.ModelingAuthoritySets": {
-      "@type": "@id"
-    },
-    "cim:ModelAuthoritySet.ModelSpecification": {
-      "@type": "@id"
-    },
     "cim:ModelAuthoritySet.ModelingAuthority": {
-      "@type": "@id"
-    },
-    "cim:ModelFrameType.ModelFrame": {
-      "@type": "@id"
-    },
-    "cim:ModelOperation.ModelOperationArg": {
       "@type": "@id"
     },
     "cim:ModelOperation.ModelOperationDescription": {
@@ -13896,19 +12522,7 @@
     "cim:ModelOperationArgDescription.multiplicityMinimum": {
       "@type": "xsd:integer"
     },
-    "cim:ModelOperationDescription.ModelOperation": {
-      "@type": "@id"
-    },
-    "cim:ModelOperationDescription.OperationDatasetArgDescription": {
-      "@type": "@id"
-    },
-    "cim:ModelOperationSequence.ModelOperation": {
-      "@type": "@id"
-    },
     "cim:ModelPartSpecification.FrameworkPart": {
-      "@type": "@id"
-    },
-    "cim:ModelPartSpecification.Model": {
       "@type": "@id"
     },
     "cim:ModelPartVersion.ModelSpecification": {
@@ -13959,24 +12573,6 @@
     "cim:NameType.NameTypeAuthority": {
       "@type": "@id"
     },
-    "cim:NameType.Names": {
-      "@type": "@id"
-    },
-    "cim:NameTypeAuthority.NameTypes": {
-      "@type": "@id"
-    },
-    "cim:NetworkFrame.FrameworkPart": {
-      "@type": "@id"
-    },
-    "cim:NetworkModelProject.ContainedProject": {
-      "@type": "@id"
-    },
-    "cim:NetworkModelProject2.Child": {
-      "@type": "@id"
-    },
-    "cim:NetworkModelProjectChange.NetworkModelProjectChangeVersion": {
-      "@type": "@id"
-    },
     "cim:NetworkModelProjectChangeVersion.ChangeSet": {
       "@type": "@id"
     },
@@ -14001,12 +12597,6 @@
     "cim:NetworkModelProjectComponent.ContainingProject": {
       "@type": "@id"
     },
-    "cim:NetworkModelProjectComponent.ProjectARelationships": {
-      "@type": "@id"
-    },
-    "cim:NetworkModelProjectComponent.ProjectBRelationships": {
-      "@type": "@id"
-    },
     "cim:NetworkModelProjectComponent2.Parent": {
       "@type": "@id"
     },
@@ -14028,12 +12618,6 @@
     "cim:NetworkModelProjectRelationship.ProjectB": {
       "@type": "@id"
     },
-    "cim:NetworkModelProjectStage.ChangeSets": {
-      "@type": "@id"
-    },
-    "cim:NetworkModelProjectStage.DenpendecyDependingStage": {
-      "@type": "@id"
-    },
     "cim:NetworkModelProjectStage.DependencyDependentOnStage": {
       "@type": "@id"
     },
@@ -14045,9 +12629,6 @@
     },
     "cim:NetworkModelProjectStage.plannedCommissionedDate": {
       "@type": "xsd:dateTime"
-    },
-    "cim:NetworkModelProjectState.NetworkModelProjectChangeVersion": {
-      "@type": "@id"
     },
     "cim:NoLoadTest.EnergisedEnd": {
       "@type": "@id"
@@ -14073,23 +12654,11 @@
     "cim:NonConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:NonConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
-    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
       "@type": "@id"
     },
     "cim:NonStandardItem.amount": {
       "@type": "xsd:decimal"
-    },
-    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints": {
-      "@type": "@id"
     },
     "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
       "@type": "@id"
@@ -14120,9 +12689,6 @@
     },
     "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
       "@type": "xsd:integer"
-    },
-    "cim:NotificationTimeCurve.GeneratingBids": {
-      "@type": "@id"
     },
     "cim:ObjectModification.ObjectReverseModification": {
       "@type": "@id"
@@ -14178,9 +12744,6 @@
     "cim:OilSpecimen.sampleContainer": {
       "@type": "@id"
     },
-    "cim:OldCrew.Capabilities": {
-      "@type": "@id"
-    },
     "cim:OldCrew.Route": {
       "@type": "@id"
     },
@@ -14191,18 +12754,6 @@
       "@type": "@id"
     },
     "cim:OldPerson.ErpPersonnel": {
-      "@type": "@id"
-    },
-    "cim:OldPerson.LandPropertyRoles": {
-      "@type": "@id"
-    },
-    "cim:OldPerson.MeasurementValues": {
-      "@type": "@id"
-    },
-    "cim:OldPerson.OrganisationRoles": {
-      "@type": "@id"
-    },
-    "cim:OldPerson.Skills": {
       "@type": "@id"
     },
     "cim:OldPerson.status": {
@@ -14253,31 +12804,13 @@
     "cim:OldTransformerTankInfo.oilPreservationKind": {
       "@type": "@id"
     },
-    "cim:OldWorkTask.ContractorItems": {
-      "@type": "@id"
-    },
     "cim:OldWorkTask.Design": {
-      "@type": "@id"
-    },
-    "cim:OldWorkTask.LaborItems": {
-      "@type": "@id"
-    },
-    "cim:OldWorkTask.MiscCostItems": {
       "@type": "@id"
     },
     "cim:OldWorkTask.OverheadCost": {
       "@type": "@id"
     },
-    "cim:OldWorkTask.Usages": {
-      "@type": "@id"
-    },
-    "cim:OldWorkTask.WorkCostDetails": {
-      "@type": "@id"
-    },
     "cim:OldWorkTask.WorkFlowStep": {
-      "@type": "@id"
-    },
-    "cim:OneCallRequest.WorkLocations": {
       "@type": "@id"
     },
     "cim:OneCallRequest.explosivesUsed": {
@@ -14310,9 +12843,6 @@
     "cim:OpenTieSchedule.value": {
       "@type": "xsd:boolean"
     },
-    "cim:OperatingMechanism.InterrupterUnit": {
-      "@type": "@id"
-    },
     "cim:OperatingMechanismInfo.closeAmps": {
       "@type": "xsd:float"
     },
@@ -14337,9 +12867,6 @@
     "cim:OperatingMechanismInfo.tripVoltage": {
       "@type": "xsd:float"
     },
-    "cim:OperatingParticipant.OperatingShare": {
-      "@type": "@id"
-    },
     "cim:OperatingShare.OperatingParticipant": {
       "@type": "@id"
     },
@@ -14348,9 +12875,6 @@
     },
     "cim:OperatingShare.percentage": {
       "@type": "xsd:float"
-    },
-    "cim:OperationalLimit.LimitScalingLimit": {
-      "@type": "@id"
     },
     "cim:OperationalLimit.OperationalLimitSet": {
       "@type": "@id"
@@ -14361,16 +12885,7 @@
     "cim:OperationalLimitSet.Equipment": {
       "@type": "@id"
     },
-    "cim:OperationalLimitSet.OperationalLimitValue": {
-      "@type": "@id"
-    },
     "cim:OperationalLimitSet.Terminal": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.OperationalLimit": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.SourceOperationalLimitTypeScaling": {
       "@type": "@id"
     },
     "cim:OperationalLimitType.TargetOperationalLimitmTypeScaling": {
@@ -14406,12 +12921,6 @@
     "cim:OperationalUpdatedRating.PlannedOutage": {
       "@type": "@id"
     },
-    "cim:OperationsSafetySupervisor.IssuedSafetyDocuments": {
-      "@type": "@id"
-    },
-    "cim:OperationsSafetySupervisor.ReleasedSafetyDocuments": {
-      "@type": "@id"
-    },
     "cim:OperatonalLimitTypeScaling.SourceOperationalLimitType": {
       "@type": "@id"
     },
@@ -14420,12 +12929,6 @@
     },
     "cim:OperatonalLimitTypeScaling.scalingPercent": {
       "@type": "xsd:float"
-    },
-    "cim:Operator.Incidents": {
-      "@type": "@id"
-    },
-    "cim:Operator.SwitchingSteps": {
-      "@type": "@id"
     },
     "cim:OrgPnodeAllocation.Pnode": {
       "@type": "@id"
@@ -14448,12 +12951,6 @@
     "cim:Organisation.ParentOrganisation": {
       "@type": "@id"
     },
-    "cim:Organisation.Roles": {
-      "@type": "@id"
-    },
-    "cim:Organisation.SwitchingPlanRequest": {
-      "@type": "@id"
-    },
     "cim:Organisation.electronicAddress": {
       "@type": "@id"
     },
@@ -14469,28 +12966,10 @@
     "cim:Organisation.streetAddress": {
       "@type": "@id"
     },
-    "cim:OrganisationRole.ConfigurationEvents": {
-      "@type": "@id"
-    },
     "cim:OrganisationRole.Organisation": {
       "@type": "@id"
     },
     "cim:Outage.EstimatedRestorationTime": {
-      "@type": "@id"
-    },
-    "cim:Outage.Faults": {
-      "@type": "@id"
-    },
-    "cim:Outage.Incident": {
-      "@type": "@id"
-    },
-    "cim:Outage.OutageIsolationEquipment": {
-      "@type": "@id"
-    },
-    "cim:Outage.PlannedSwitchActions": {
-      "@type": "@id"
-    },
-    "cim:Outage.SwitchingPlans": {
       "@type": "@id"
     },
     "cim:Outage.actualPeriod": {
@@ -14529,13 +13008,7 @@
     "cim:OutageArea.outageAreaKind": {
       "@type": "@id"
     },
-    "cim:OutageOrder.Location": {
-      "@type": "@id"
-    },
     "cim:OutageOrder.OutagePlan": {
-      "@type": "@id"
-    },
-    "cim:OutagePlan.Customer": {
       "@type": "@id"
     },
     "cim:OutagePlan.OutageOrder": {
@@ -14652,17 +13125,8 @@
     "cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics": {
       "@type": "@id"
     },
-    "cim:OverexcitationLimiterUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:OverexcitationLimiterUserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:OverheadCost.WorkCostDetails": {
-      "@type": "@id"
-    },
-    "cim:OverheadCost.WorkTasks": {
-      "@type": "@id"
     },
     "cim:OverheadCost.cost": {
       "@type": "xsd:decimal"
@@ -14688,16 +13152,10 @@
     "cim:PFVArControllerType1Dynamics.VoltageAdjusterDynamics": {
       "@type": "@id"
     },
-    "cim:PFVArControllerType1UserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:PFVArControllerType1UserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
     "cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics": {
-      "@type": "@id"
-    },
-    "cim:PFVArControllerType2UserDefined.ProprietaryParameterDynamics": {
       "@type": "@id"
     },
     "cim:PFVArControllerType2UserDefined.proprietary": {
@@ -14814,9 +13272,6 @@
     "cim:PSREvent.kind": {
       "@type": "@id"
     },
-    "cim:PSRType.PowerSystemResources": {
-      "@type": "@id"
-    },
     "cim:PWRSteamSupply.coldLegFBLagTC": {
       "@type": "xsd:float"
     },
@@ -14910,9 +13365,6 @@
     "cim:PanDisplay.transmissionMode": {
       "@type": "@id"
     },
-    "cim:PanPricing.PanPricingDetails": {
-      "@type": "@id"
-    },
     "cim:PanPricing.providerID": {
       "@type": "xsd:integer"
     },
@@ -14943,14 +13395,8 @@
     "cim:PanPricingDetail.priceTierCount": {
       "@type": "xsd:integer"
     },
-    "cim:ParentOrganization.Organisation": {
-      "@type": "@id"
-    },
     "cim:Participation.factor": {
       "@type": "xsd:float"
-    },
-    "cim:PassThroughBill.ChargeProfiles": {
-      "@type": "@id"
     },
     "cim:PassThroughBill.MarketStatementLineItem": {
       "@type": "@id"
@@ -15009,9 +13455,6 @@
     "cim:Pcontrol.VSCtype1": {
       "@type": "@id"
     },
-    "cim:PendingCalculation.IntervalBlocks": {
-      "@type": "@id"
-    },
     "cim:PendingCalculation.ReadingType": {
       "@type": "@id"
     },
@@ -15033,9 +13476,6 @@
     "cim:PenstockLossCurve.HydroGeneratingUnit": {
       "@type": "@id"
     },
-    "cim:PerLengthDCLineParameter.DCLineSegments": {
-      "@type": "@id"
-    },
     "cim:PerLengthDCLineParameter.capacitance": {
       "@type": "xsd:float"
     },
@@ -15045,13 +13485,7 @@
     "cim:PerLengthDCLineParameter.resistance": {
       "@type": "xsd:float"
     },
-    "cim:PerLengthImpedance.ACLineSegments": {
-      "@type": "@id"
-    },
     "cim:PerLengthLineParameter.WireAssemblyInfo": {
-      "@type": "@id"
-    },
-    "cim:PerLengthPhaseImpedance.PhaseImpedanceData": {
       "@type": "@id"
     },
     "cim:PerLengthPhaseImpedance.conductorCount": {
@@ -15081,9 +13515,6 @@
     "cim:PerLengthSequenceImpedance.x0": {
       "@type": "xsd:float"
     },
-    "cim:Period.Point": {
-      "@type": "@id"
-    },
     "cim:Period.resolution": {
       "@type": "xsd:duration"
     },
@@ -15094,9 +13525,6 @@
       "@type": "xsd:integer"
     },
     "cim:PeriodicStatisticalCalculation.calculationIntervalUnit": {
-      "@type": "@id"
-    },
-    "cim:Person.Roles": {
       "@type": "@id"
     },
     "cim:Person.electronicAddress": {
@@ -15115,9 +13543,6 @@
       "@type": "@id"
     },
     "cim:PersonPropertyRole.Person": {
-      "@type": "@id"
-    },
-    "cim:PersonRole.ConfigurationEvents": {
       "@type": "@id"
     },
     "cim:PersonRole.Person": {
@@ -15195,12 +13620,6 @@
     "cim:PhaseTapChangerNonLinear.xMin": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
       "@type": "@id"
     },
@@ -15210,13 +13629,7 @@
     "cim:PhaseTapChangerTabular.PhaseTapChangerTable": {
       "@type": "@id"
     },
-    "cim:PhenomenonClassification.ClassificationCondition": {
-      "@type": "@id"
-    },
     "cim:PhenomenonClassification.EnvironmentalDataAuthority": {
-      "@type": "@id"
-    },
-    "cim:PhenomenonClassification.EnvironmentalPhenomenon": {
       "@type": "@id"
     },
     "cim:PinBranchGroup.BranchGroup": {
@@ -15249,9 +13662,6 @@
     "cim:PlannedMarket.MarketPlan": {
       "@type": "@id"
     },
-    "cim:PlannedMarket.MarketRun": {
-      "@type": "@id"
-    },
     "cim:PlannedMarket.marketEndTime": {
       "@type": "xsd:dateTime"
     },
@@ -15259,9 +13669,6 @@
       "@type": "xsd:dateTime"
     },
     "cim:PlannedMarket.marketType": {
-      "@type": "@id"
-    },
-    "cim:PlannedMarketEvent.MarketActualEvent": {
       "@type": "@id"
     },
     "cim:PlannedMarketEvent.plannedTime": {
@@ -15273,53 +13680,17 @@
     "cim:PlannedOutage.OutagePlan": {
       "@type": "@id"
     },
-    "cim:PlannedOutage.UpdatedRatings": {
-      "@type": "@id"
-    },
     "cim:PlannedOutageNotification.SwitchingPlan": {
-      "@type": "@id"
-    },
-    "cim:Pnode.CommodityDefinition": {
-      "@type": "@id"
-    },
-    "cim:Pnode.DeliveryTransactionBids": {
-      "@type": "@id"
-    },
-    "cim:Pnode.ExPostResults": {
-      "@type": "@id"
-    },
-    "cim:Pnode.MktMeasurement": {
-      "@type": "@id"
-    },
-    "cim:Pnode.OrgPnodeAllocation": {
-      "@type": "@id"
-    },
-    "cim:Pnode.PnodeResults": {
       "@type": "@id"
     },
     "cim:Pnode.RTO": {
       "@type": "@id"
     },
-    "cim:Pnode.ReceiptTransactionBids": {
-      "@type": "@id"
-    },
-    "cim:Pnode.RegisteredResources": {
-      "@type": "@id"
-    },
     "cim:Pnode.SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:Pnode.Trade": {
       "@type": "@id"
     },
     "cim:Pnode.isPublic": {
       "@type": "xsd:boolean"
-    },
-    "cim:PnodeClearing.CommodityPrice": {
-      "@type": "@id"
-    },
-    "cim:PnodeClearing.PnodeResults": {
-      "@type": "@id"
     },
     "cim:PnodeDistributionFactor.AggregatedPnode": {
       "@type": "@id"
@@ -15372,9 +13743,6 @@
     "cim:Point.Period": {
       "@type": "@id"
     },
-    "cim:Point.Price": {
-      "@type": "@id"
-    },
     "cim:Point.position": {
       "@type": "xsd:integer"
     },
@@ -15383,12 +13751,6 @@
     },
     "cim:Point.secondaryQuantity": {
       "@type": "xsd:decimal"
-    },
-    "cim:PointOfSale.CashierShifts": {
-      "@type": "@id"
-    },
-    "cim:Pole.Streetlights": {
-      "@type": "@id"
     },
     "cim:Pole.baseKind": {
       "@type": "@id"
@@ -15441,20 +13803,11 @@
     "cim:PotentialTransformerInfo.tertiaryRatio": {
       "@type": "@id"
     },
-    "cim:PowerCutZone.EnergyConsumers": {
-      "@type": "@id"
-    },
     "cim:PowerCutZone.cutLevel1": {
       "@type": "xsd:float"
     },
     "cim:PowerCutZone.cutLevel2": {
       "@type": "xsd:float"
-    },
-    "cim:PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
-      "@type": "@id"
-    },
-    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
-      "@type": "@id"
     },
     "cim:PowerElectronicsConnection.WindTurbineType3or4Dynamics": {
       "@type": "@id"
@@ -15561,56 +13914,17 @@
     "cim:PowerSystemResource.AssetDatasheet": {
       "@type": "@id"
     },
-    "cim:PowerSystemResource.Assets": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.ConfigurationEvent": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Controls": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.GenericAction": {
-      "@type": "@id"
-    },
     "cim:PowerSystemResource.Location": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.Measurements": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.OperatingShare": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.OperationalTags": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemResource.PSREvents": {
       "@type": "@id"
     },
     "cim:PowerSystemResource.PSRType": {
       "@type": "@id"
     },
-    "cim:PowerSystemResource.VerificationAction": {
-      "@type": "@id"
-    },
     "cim:PowerSystemStabilizerDynamics.ExcitationSystemDynamics": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemStabilizerDynamics.RemoteInputSignal": {
-      "@type": "@id"
-    },
-    "cim:PowerSystemStabilizerUserDefined.ProprietaryParameterDynamics": {
       "@type": "@id"
     },
     "cim:PowerSystemStabilizerUserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:PowerTransformer.PowerTransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformer.TransformerTanks": {
-      "@type": "@id"
     },
     "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
       "@type": "xsd:float"
@@ -15669,17 +13983,11 @@
     "cim:PowerTransformerEnd.x0": {
       "@type": "xsd:float"
     },
-    "cim:PowerTransformerInfo.TransformerTankInfos": {
-      "@type": "@id"
-    },
     "cim:Price.Point": {
       "@type": "@id"
     },
     "cim:Price.amount": {
       "@type": "xsd:decimal"
-    },
-    "cim:PriceDescriptor.CommodityPrice": {
-      "@type": "@id"
     },
     "cim:PriceDescriptor.marketType": {
       "@type": "@id"
@@ -15688,9 +13996,6 @@
       "@type": "@id"
     },
     "cim:PricingStructure.ServiceCategory": {
-      "@type": "@id"
-    },
-    "cim:PricingStructure.Transactions": {
       "@type": "@id"
     },
     "cim:PricingStructure.dailyCeilingUsage": {
@@ -15714,9 +14019,6 @@
     "cim:Priority.rank": {
       "@type": "xsd:integer"
     },
-    "cim:Procedure.ProcedureDataSets": {
-      "@type": "@id"
-    },
     "cim:Procedure.kind": {
       "@type": "@id"
     },
@@ -15732,22 +14034,13 @@
     "cim:ProcedureDataSet.completedDateTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:ProductAssetModel.Asset": {
-      "@type": "@id"
-    },
     "cim:ProductAssetModel.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.AssetModelCatalogueItems": {
       "@type": "@id"
     },
     "cim:ProductAssetModel.CatalogAssetType": {
       "@type": "@id"
     },
     "cim:ProductAssetModel.Manufacturer": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.OperationalRestrictions": {
       "@type": "@id"
     },
     "cim:ProductAssetModel.corporateStandardKind": {
@@ -15760,18 +14053,6 @@
       "@type": "@id"
     },
     "cim:ProductBid.Bid": {
-      "@type": "@id"
-    },
-    "cim:ProductBid.BidDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:ProductBid.BidHourlyProductSchedule": {
-      "@type": "@id"
-    },
-    "cim:ProductBid.BidSchedule": {
-      "@type": "@id"
-    },
-    "cim:ProductBid.BidSelfSched": {
       "@type": "@id"
     },
     "cim:ProductBid.MarketProduct": {
@@ -15807,19 +14088,10 @@
     "cim:Project.ParentProject": {
       "@type": "@id"
     },
-    "cim:Project.SubProjects": {
-      "@type": "@id"
-    },
-    "cim:Project.Works": {
-      "@type": "@id"
-    },
     "cim:Project.budget": {
       "@type": "xsd:decimal"
     },
     "cim:PropertyOrganisationRole.LandProperty": {
-      "@type": "@id"
-    },
-    "cim:PropertyUnit.CompatibleUnits": {
       "@type": "@id"
     },
     "cim:PropertyUnit.activityCode": {
@@ -15906,14 +14178,8 @@
     "cim:ProprietaryParameterDynamics.parameterNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ProtectedSwitch.RecloseSequences": {
-      "@type": "@id"
-    },
     "cim:ProtectedSwitch.breakingCapacity": {
       "@type": "xsd:float"
-    },
-    "cim:ProtectionEquipment.ProtectiveAction": {
-      "@type": "@id"
     },
     "cim:ProtectionEquipment.highLimit": {
       "@type": "xsd:float"
@@ -15980,12 +14246,6 @@
     },
     "cim:ProtectiveActionAdjustment.setValue": {
       "@type": "xsd:float"
-    },
-    "cim:ProtectiveActionCollection.ProtectiveAction": {
-      "@type": "@id"
-    },
-    "cim:ProtectiveActionCollection.StageTrigger": {
-      "@type": "@id"
     },
     "cim:ProtectiveActionEquipment.Equipment": {
       "@type": "@id"
@@ -17091,9 +15351,6 @@
     "cim:Qregulator.Delay": {
       "@type": "@id"
     },
-    "cim:Qregulator.HVDClookUpTable": {
-      "@type": "@id"
-    },
     "cim:Qregulator.VSCtype1": {
       "@type": "@id"
     },
@@ -17133,9 +15390,6 @@
     "cim:Quality61850.validity": {
       "@type": "@id"
     },
-    "cim:Quantity.Point": {
-      "@type": "@id"
-    },
     "cim:RMRDetermination.Bid": {
       "@type": "@id"
     },
@@ -17166,51 +15420,6 @@
     "cim:RMRStartUpTimeCurve.RegisteredGenerator": {
       "@type": "@id"
     },
-    "cim:RTO.AdjacentCASet": {
-      "@type": "@id"
-    },
-    "cim:RTO.AggregateNode": {
-      "@type": "@id"
-    },
-    "cim:RTO.CommodityDefinition": {
-      "@type": "@id"
-    },
-    "cim:RTO.EnergyMarkets": {
-      "@type": "@id"
-    },
-    "cim:RTO.FuelRegion": {
-      "@type": "@id"
-    },
-    "cim:RTO.HostControlArea": {
-      "@type": "@id"
-    },
-    "cim:RTO.LocalReliabilityArea": {
-      "@type": "@id"
-    },
-    "cim:RTO.MSSAggregation": {
-      "@type": "@id"
-    },
-    "cim:RTO.MktConnectivityNode": {
-      "@type": "@id"
-    },
-    "cim:RTO.Pnodes": {
-      "@type": "@id"
-    },
-    "cim:RTO.SecurityConstraints": {
-      "@type": "@id"
-    },
-    "cim:RTO.SecurityConstraintsLinear": {
-      "@type": "@id"
-    },
-    "cim:RTO.SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:RTO.TransmissionContractRight": {
-      "@type": "@id"
-    },
-    "cim:RTO.TransmissionRightChain": {
-      "@type": "@id"
-    },
     "cim:RUCAwardInstruction.RUCAward": {
       "@type": "xsd:float"
     },
@@ -17233,9 +15442,6 @@
       "@type": "xsd:dateTime"
     },
     "cim:RUCAwardInstruction.updateType": {
-      "@type": "@id"
-    },
-    "cim:RUCZone.LossClearingResults": {
       "@type": "@id"
     },
     "cim:RaiseLowerCommand.ValueAliasSet": {
@@ -17277,12 +15483,6 @@
     "cim:RatioTapChanger.tculControlMode": {
       "@type": "@id"
     },
-    "cim:RatioTapChangerTable.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
-      "@type": "@id"
-    },
     "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
       "@type": "@id"
     },
@@ -17291,12 +15491,6 @@
     },
     "cim:RationalNumber.numerator": {
       "@type": "xsd:integer"
-    },
-    "cim:ReactiveCapabilityCurve.EquivalentInjection": {
-      "@type": "@id"
-    },
-    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines": {
-      "@type": "@id"
     },
     "cim:ReactiveCapabilityCurve.coolantTemperature": {
       "@type": "xsd:float"
@@ -17331,25 +15525,13 @@
     "cim:ReadingQuality.timeStamp": {
       "@type": "xsd:dateTime"
     },
-    "cim:ReadingQualityType.ReadingQualities": {
-      "@type": "@id"
-    },
     "cim:ReadingType.Channel": {
-      "@type": "@id"
-    },
-    "cim:ReadingType.ConsumptionTariffIntervals": {
-      "@type": "@id"
-    },
-    "cim:ReadingType.IntervalBlocks": {
       "@type": "@id"
     },
     "cim:ReadingType.MeterReadSchedule": {
       "@type": "@id"
     },
     "cim:ReadingType.PendingCalculation": {
-      "@type": "@id"
-    },
-    "cim:ReadingType.Readings": {
       "@type": "@id"
     },
     "cim:ReadingType.accumulation": {
@@ -17403,12 +15585,6 @@
     "cim:Receipt.CashierShift": {
       "@type": "@id"
     },
-    "cim:Receipt.Tenders": {
-      "@type": "@id"
-    },
-    "cim:Receipt.Transactions": {
-      "@type": "@id"
-    },
     "cim:Receipt.VendorShift": {
       "@type": "@id"
     },
@@ -17445,16 +15621,10 @@
     "cim:Reconditioning.Asset": {
       "@type": "@id"
     },
-    "cim:Reconditioning.TransformerObservations": {
-      "@type": "@id"
-    },
     "cim:Reconditioning.dateTime": {
       "@type": "xsd:dateTime"
     },
     "cim:RedLine.status": {
-      "@type": "@id"
-    },
-    "cim:Register.Channels": {
       "@type": "@id"
     },
     "cim:Register.EndDeviceFunction": {
@@ -17511,15 +15681,6 @@
     "cim:RegisteredControllableLoad.reqNoticeTime": {
       "@type": "xsd:float"
     },
-    "cim:RegisteredDistributedResource.ResourcePerformanceRatings": {
-      "@type": "@id"
-    },
-    "cim:RegisteredDistributedResource.ResponseMethods": {
-      "@type": "@id"
-    },
-    "cim:RegisteredGenerator.AuxillaryObject": {
-      "@type": "@id"
-    },
     "cim:RegisteredGenerator.EnergyPriceIndex": {
       "@type": "@id"
     },
@@ -17527,9 +15688,6 @@
       "@type": "@id"
     },
     "cim:RegisteredGenerator.FuelRegion": {
-      "@type": "@id"
-    },
-    "cim:RegisteredGenerator.GeneratingBids": {
       "@type": "@id"
     },
     "cim:RegisteredGenerator.LocalReliabilityArea": {
@@ -17575,12 +15733,6 @@
       "@type": "@id"
     },
     "cim:RegisteredGenerator.StartUpTimeCurve": {
-      "@type": "@id"
-    },
-    "cim:RegisteredGenerator.Trade": {
-      "@type": "@id"
-    },
-    "cim:RegisteredGenerator.UnitInitialConditions": {
       "@type": "@id"
     },
     "cim:RegisteredGenerator.capacityFactor": {
@@ -17736,12 +15888,6 @@
     "cim:RegisteredInterTie.InterTieBid": {
       "@type": "@id"
     },
-    "cim:RegisteredInterTie.InterTieDispatchResponse": {
-      "@type": "@id"
-    },
-    "cim:RegisteredInterTie.InterchangeSchedule": {
-      "@type": "@id"
-    },
     "cim:RegisteredInterTie.direction": {
       "@type": "@id"
     },
@@ -17756,12 +15902,6 @@
     },
     "cim:RegisteredInterTie.minHourlyBlockLimit": {
       "@type": "xsd:integer"
-    },
-    "cim:RegisteredLoad.AuxillaryObject": {
-      "@type": "@id"
-    },
-    "cim:RegisteredLoad.LoadBids": {
-      "@type": "@id"
     },
     "cim:RegisteredLoad.blockLoadTransfer": {
       "@type": "xsd:boolean"
@@ -17784,58 +15924,16 @@
     "cim:RegisteredResource.AggregateNode": {
       "@type": "@id"
     },
-    "cim:RegisteredResource.AllocationResultValues": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.Commitments": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ContractDistributionFactor": {
-      "@type": "@id"
-    },
     "cim:RegisteredResource.DefaultBid": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.DispatchInstReply": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.DopInstruction": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.DotInstruction": {
       "@type": "@id"
     },
     "cim:RegisteredResource.ECAFlag": {
       "@type": "@id"
     },
-    "cim:RegisteredResource.ExPostResourceResults": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ExpectedEnergyValues": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.FormerReference": {
-      "@type": "@id"
-    },
     "cim:RegisteredResource.HostControlArea": {
       "@type": "@id"
     },
-    "cim:RegisteredResource.Instructions": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.IntermittentResourceEligibility": {
-      "@type": "@id"
-    },
     "cim:RegisteredResource.LMPMFlag": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.LoadFollowingInst": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.LoadFollowingOperatorInput": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.MPMResourceStatus": {
       "@type": "@id"
     },
     "cim:RegisteredResource.MarketParticipant": {
@@ -17844,37 +15942,13 @@
     "cim:RegisteredResource.MktConnectivityNode": {
       "@type": "@id"
     },
-    "cim:RegisteredResource.OrgResOwnership": {
-      "@type": "@id"
-    },
     "cim:RegisteredResource.Pnode": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.RMROperatorInput": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.RUCAwardInstruction": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ResourceAncillaryServiceQualification": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ResourceAwardInstruction": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ResourceDispatchResults": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.ResourceLoadFollowingInst": {
       "@type": "@id"
     },
     "cim:RegisteredResource.ResourceVerifiableCosts": {
       "@type": "@id"
     },
     "cim:RegisteredResource.SMPMFlag": {
-      "@type": "@id"
-    },
-    "cim:RegisteredResource.SubstitutionResourceList": {
       "@type": "@id"
     },
     "cim:RegisteredResource.commercialOpDate": {
@@ -17937,9 +16011,6 @@
     "cim:RegisteredResource.resourceAdequacyFlag": {
       "@type": "@id"
     },
-    "cim:RegularIntervalSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:RegularIntervalSchedule.endTime": {
       "@type": "xsd:dateTime"
     },
@@ -17963,15 +16034,6 @@
     },
     "cim:RegulatingCondEq.controlEnabled": {
       "@type": "xsd:boolean"
-    },
-    "cim:RegulatingControl.ProtectiveActionRegulation": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.RegulationSchedule": {
-      "@type": "@id"
     },
     "cim:RegulatingControl.Terminal": {
       "@type": "@id"
@@ -18012,9 +16074,6 @@
     "cim:RegulationSchedule.RegulatingControl": {
       "@type": "@id"
     },
-    "cim:RegulationSchedule.VoltageControlZones": {
-      "@type": "@id"
-    },
     "cim:RelativeDisplacement.displacement": {
       "@type": "xsd:float"
     },
@@ -18031,12 +16090,6 @@
       "@type": "xsd:float"
     },
     "cim:RemedialActionScheme.GateArmed": {
-      "@type": "@id"
-    },
-    "cim:RemedialActionScheme.Stage": {
-      "@type": "@id"
-    },
-    "cim:RemedialActionScheme.TriggerCondition": {
       "@type": "@id"
     },
     "cim:RemedialActionScheme.armed": {
@@ -18144,9 +16197,6 @@
     "cim:RemoteSource.sensorMinimum": {
       "@type": "xsd:float"
     },
-    "cim:RemoteUnit.RemotePoints": {
-      "@type": "@id"
-    },
     "cim:RemoteUnit.remoteUnitType": {
       "@type": "@id"
     },
@@ -18158,9 +16208,6 @@
     },
     "cim:RepairWorkTask.emergency": {
       "@type": "xsd:boolean"
-    },
-    "cim:ReportingCapability.EnvironmentalAnalog": {
-      "@type": "@id"
     },
     "cim:ReportingCapability.EnvironmentalMonitoringStation": {
       "@type": "@id"
@@ -18174,16 +16221,7 @@
     "cim:ReportingCapability.reportingMethod": {
       "@type": "@id"
     },
-    "cim:ReportingGroup.BusNameMarker": {
-      "@type": "@id"
-    },
     "cim:ReportingGroup.ReportingSuperGroup": {
-      "@type": "@id"
-    },
-    "cim:ReportingGroup.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:ReportingSuperGroup.ReportingGroup": {
       "@type": "@id"
     },
     "cim:ReserveDemandCurve.ASRequirements": {
@@ -18210,25 +16248,10 @@
     "cim:ReserveReqCurve.ReserveReq": {
       "@type": "@id"
     },
-    "cim:Reservoir.HydroPowerPlants": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.InflowForecasts": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.LevelVsVolumeCurves": {
-      "@type": "@id"
-    },
     "cim:Reservoir.SpillsFromReservoir": {
       "@type": "@id"
     },
-    "cim:Reservoir.SpillsIntoReservoirs": {
-      "@type": "@id"
-    },
     "cim:Reservoir.TargetLevelSchedule": {
-      "@type": "@id"
-    },
-    "cim:Reservoir.UpstreamFromHydroPowerPlants": {
       "@type": "@id"
     },
     "cim:Reservoir.activeStorageCapacity": {
@@ -18268,9 +16291,6 @@
       "@type": "@id"
     },
     "cim:ResourceAwardInstruction.RegisteredResource": {
-      "@type": "@id"
-    },
-    "cim:ResourceAwardInstruction.SelfScheduleBreakdown": {
       "@type": "@id"
     },
     "cim:ResourceAwardInstruction.awardMW": {
@@ -18453,12 +16473,6 @@
     "cim:ResourceCertification.type": {
       "@type": "@id"
     },
-    "cim:ResourceClearing.ResourceDispatchResults": {
-      "@type": "@id"
-    },
-    "cim:ResourceClearing.ResourceLoadFollowingInst": {
-      "@type": "@id"
-    },
     "cim:ResourceDeploymentStatus.InstructionClearing": {
       "@type": "@id"
     },
@@ -18506,9 +16520,6 @@
     },
     "cim:ResourceDispatchResults.upperLimit": {
       "@type": "xsd:float"
-    },
-    "cim:ResourceGroup.ResourceGroupReqs": {
-      "@type": "@id"
     },
     "cim:ResourceGroup.status": {
       "@type": "@id"
@@ -18559,9 +16570,6 @@
       "@type": "xsd:float"
     },
     "cim:ResourcePerformanceEvaluation.DemandResponseActualEvent": {
-      "@type": "@id"
-    },
-    "cim:ResourcePerformanceEvaluation.ResourcePerformanceTimeSeriesFactors": {
       "@type": "@id"
     },
     "cim:ResourcePerformanceEvaluation.effectiveEndTime": {
@@ -18642,9 +16650,6 @@
     "cim:ResourceVerifiableCosts.ResourceOperationMaintenanceCost": {
       "@type": "@id"
     },
-    "cim:ResourceVerifiableCosts.ResourceStartupCost": {
-      "@type": "@id"
-    },
     "cim:ResponseMethod.RegisteredResource": {
       "@type": "@id"
     },
@@ -18662,9 +16667,6 @@
     },
     "cim:RevisionHistory.revisionDateTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:RiskScore.AssetHealthScore": {
-      "@type": "@id"
     },
     "cim:RiskScore.kind": {
       "@type": "@id"
@@ -18711,9 +16713,6 @@
     "cim:RotatingMachineDynamics.statorResistance": {
       "@type": "xsd:float"
     },
-    "cim:Route.Crews": {
-      "@type": "@id"
-    },
     "cim:Route.status": {
       "@type": "@id"
     },
@@ -18725,9 +16724,6 @@
     },
     "cim:SVC.inductiveRating": {
       "@type": "xsd:float"
-    },
-    "cim:SVCUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
     },
     "cim:SVCUserDefined.proprietary": {
       "@type": "xsd:boolean"
@@ -18762,9 +16758,6 @@
     "cim:ScheduledCurrentLimitValue.value": {
       "@type": "xsd:float"
     },
-    "cim:ScheduledEvent.Assets": {
-      "@type": "@id"
-    },
     "cim:ScheduledEvent.ScheduledEventData": {
       "@type": "@id"
     },
@@ -18777,9 +16770,6 @@
     "cim:ScheduledEventData.InspectionDataSet": {
       "@type": "@id"
     },
-    "cim:ScheduledEventData.ScheduledEvents": {
-      "@type": "@id"
-    },
     "cim:ScheduledEventData.estimatedWindow": {
       "@type": "@id"
     },
@@ -18787,9 +16777,6 @@
       "@type": "@id"
     },
     "cim:ScheduledEventData.status": {
-      "@type": "@id"
-    },
-    "cim:ScheduledLimitDependency.ScheduledLimitValues": {
       "@type": "@id"
     },
     "cim:ScheduledLimitValue.ScheduledLimitDependency": {
@@ -18801,25 +16788,10 @@
     "cim:ScheduledVoltageLimitValue.value": {
       "@type": "xsd:float"
     },
-    "cim:SchedulingCoordinator.FromSCTrade": {
-      "@type": "@id"
-    },
     "cim:SchedulingCoordinator.LoadRatio": {
       "@type": "@id"
     },
     "cim:SchedulingCoordinator.MarketParticipant": {
-      "@type": "@id"
-    },
-    "cim:SchedulingCoordinator.SubmitFromSCTrade": {
-      "@type": "@id"
-    },
-    "cim:SchedulingCoordinator.SubmitToSCTrade": {
-      "@type": "@id"
-    },
-    "cim:SchedulingCoordinator.ToSCTrade": {
-      "@type": "@id"
-    },
-    "cim:SchedulingCoordinator.TransmissionContractRight": {
       "@type": "@id"
     },
     "cim:SchedulingCoordinator.creditFlag": {
@@ -18834,9 +16806,6 @@
     "cim:SchedulingPoint.Flowgate": {
       "@type": "@id"
     },
-    "cim:SchedulingPoint.InterchangeSchedule": {
-      "@type": "@id"
-    },
     "cim:Seal.AssetContainer": {
       "@type": "@id"
     },
@@ -18847,12 +16816,6 @@
       "@type": "@id"
     },
     "cim:Seal.kind": {
-      "@type": "@id"
-    },
-    "cim:Season.ScheduledLimits": {
-      "@type": "@id"
-    },
-    "cim:Season.SeasonDayTypeSchedules": {
       "@type": "@id"
     },
     "cim:Season.endDate": {
@@ -18868,12 +16831,6 @@
       "@type": "@id"
     },
     "cim:SecurityConstraintSum.BaseCaseConstraintLimit": {
-      "@type": "@id"
-    },
-    "cim:SecurityConstraintSum.ConstraintTerms": {
-      "@type": "@id"
-    },
-    "cim:SecurityConstraintSum.ContingencyConstraintLimits": {
       "@type": "@id"
     },
     "cim:SecurityConstraintSum.DefaultConstraintLimit": {
@@ -18948,21 +16905,6 @@
     "cim:SeriesCompensator.x0": {
       "@type": "xsd:float"
     },
-    "cim:SeriesEquipmentDependentLimit.EquipmentLimitSeriesComponent": {
-      "@type": "@id"
-    },
-    "cim:ServiceCategory.ConfigurationEvents": {
-      "@type": "@id"
-    },
-    "cim:ServiceCategory.CustomerAgreements": {
-      "@type": "@id"
-    },
-    "cim:ServiceCategory.PricingStructures": {
-      "@type": "@id"
-    },
-    "cim:ServiceCategory.UsagePoints": {
-      "@type": "@id"
-    },
     "cim:ServiceCategory.kind": {
       "@type": "@id"
     },
@@ -18974,21 +16916,6 @@
     },
     "cim:ServiceGuarantee.payAmount": {
       "@type": "xsd:decimal"
-    },
-    "cim:ServiceLocation.Asset": {
-      "@type": "@id"
-    },
-    "cim:ServiceLocation.EndDevices": {
-      "@type": "@id"
-    },
-    "cim:ServiceLocation.ServiceRequest": {
-      "@type": "@id"
-    },
-    "cim:ServiceLocation.TroubleTicket": {
-      "@type": "@id"
-    },
-    "cim:ServiceLocation.UsagePoints": {
-      "@type": "@id"
     },
     "cim:ServiceLocation.needsInspection": {
       "@type": "xsd:boolean"
@@ -19002,18 +16929,6 @@
     "cim:ServiceMultiplier.value": {
       "@type": "xsd:float"
     },
-    "cim:ServicePoint.PODTransmissionPath": {
-      "@type": "@id"
-    },
-    "cim:ServicePoint.PORTransmissionPath": {
-      "@type": "@id"
-    },
-    "cim:ServicePoint.SinkReservation": {
-      "@type": "@id"
-    },
-    "cim:ServicePoint.SourceReservation": {
-      "@type": "@id"
-    },
     "cim:ServicePointOutageSummary.criticalCount": {
       "@type": "xsd:integer"
     },
@@ -19026,9 +16941,6 @@
     "cim:ServiceRequest.ServiceLocation": {
       "@type": "@id"
     },
-    "cim:ServiceRequest.WorkTimeSchedule": {
-      "@type": "@id"
-    },
     "cim:ServiceRequest.appointmentRequested": {
       "@type": "xsd:boolean"
     },
@@ -19036,15 +16948,6 @@
       "@type": "@id"
     },
     "cim:ServiceRequest.serviceKind": {
-      "@type": "@id"
-    },
-    "cim:ServiceSupplier.BankAccounts": {
-      "@type": "@id"
-    },
-    "cim:ServiceSupplier.CustomerAgreements": {
-      "@type": "@id"
-    },
-    "cim:ServiceSupplier.UsagePoints": {
       "@type": "@id"
     },
     "cim:ServiceSupplier.kind": {
@@ -19123,12 +17026,6 @@
       "@type": "xsd:float"
     },
     "cim:ShuntCompensator.ShuntCompensatorAction": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.ShuntCompensatorPhase": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.SvShuntCompensatorSections": {
       "@type": "@id"
     },
     "cim:ShuntCompensator.aVRDelay": {
@@ -19287,25 +17184,7 @@
     "cim:SpaceAnalog.kind": {
       "@type": "@id"
     },
-    "cim:Specification.AssetProperites": {
-      "@type": "@id"
-    },
-    "cim:Specification.AssetPropertyCurves": {
-      "@type": "@id"
-    },
-    "cim:Specification.Mediums": {
-      "@type": "@id"
-    },
-    "cim:Specification.Ratings": {
-      "@type": "@id"
-    },
-    "cim:Specification.ReliabilityInfos": {
-      "@type": "@id"
-    },
     "cim:Specimen.AssetTestSampleTaker": {
-      "@type": "@id"
-    },
-    "cim:Specimen.LabTestDataSet": {
       "@type": "@id"
     },
     "cim:Specimen.ambientTemperatureAtSampling": {
@@ -19321,9 +17200,6 @@
       "@type": "xsd:dateTime"
     },
     "cim:Stage.RemedialActionScheme": {
-      "@type": "@id"
-    },
-    "cim:Stage.StageTrigger": {
       "@type": "@id"
     },
     "cim:Stage.priority": {
@@ -19353,9 +17229,6 @@
     "cim:StageTrigger.priority": {
       "@type": "xsd:integer"
     },
-    "cim:StandardIndustryCode.CustomerAgreements": {
-      "@type": "@id"
-    },
     "cim:StartIgnFuelCurve.StartupModel": {
       "@type": "@id"
     },
@@ -19374,16 +17247,10 @@
     "cim:StartRampCurve.hotStandbyRamp": {
       "@type": "xsd:float"
     },
-    "cim:StartUpCostCurve.GeneratingBid": {
-      "@type": "@id"
-    },
     "cim:StartUpEnergyCurve.RegisteredGenerator": {
       "@type": "@id"
     },
     "cim:StartUpFuelCurve.RegisteredGenerator": {
-      "@type": "@id"
-    },
-    "cim:StartUpTimeCurve.GeneratingBid": {
       "@type": "@id"
     },
     "cim:StartUpTimeCurve.RegisteredGenerator": {
@@ -19453,9 +17320,6 @@
       "@type": "xsd:float"
     },
     "cim:StaticVarCompensatorDynamics.StaticVarCompensator": {
-      "@type": "@id"
-    },
-    "cim:StatisticalCalculation.CalculationMethodOrder": {
       "@type": "@id"
     },
     "cim:StatisticalCalculation.calculationMode": {
@@ -19533,9 +17397,6 @@
     "cim:Streetlight.lightRating": {
       "@type": "xsd:float"
     },
-    "cim:StringMeasurement.StringMeasurementValues": {
-      "@type": "@id"
-    },
     "cim:StringMeasurementValue.StringMeasurement": {
       "@type": "@id"
     },
@@ -19543,9 +17404,6 @@
       "@type": "@id"
     },
     "cim:StringQuantity.unit": {
-      "@type": "@id"
-    },
-    "cim:Structure.StructureSupports": {
       "@type": "@id"
     },
     "cim:Structure.fumigantAppliedDate": {
@@ -19593,55 +17451,10 @@
     "cim:SubControlArea.AreaReserveSpecification": {
       "@type": "@id"
     },
-    "cim:SubControlArea.BidSelfSched": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.CnodeDistributionFactor": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.ExPostLossResults": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.Export_EnergyTransactions": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.From_Flowgate": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.GeneralClearingResults": {
-      "@type": "@id"
-    },
     "cim:SubControlArea.HostControlArea": {
       "@type": "@id"
     },
-    "cim:SubControlArea.Import_EnergyTransactions": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.InadvertentAccount": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.LossClearingResults": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.Pnode": {
-      "@type": "@id"
-    },
     "cim:SubControlArea.RTO": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.Receive_DynamicSchedules": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.Send_DynamicSchedules": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.SideA_TieLines": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.SideB_TieLines": {
-      "@type": "@id"
-    },
-    "cim:SubControlArea.To_Flowgate": {
       "@type": "@id"
     },
     "cim:SubControlArea.constantCoefficient": {
@@ -19668,43 +17481,16 @@
     "cim:SubControlArea.quadraticCoefficient": {
       "@type": "xsd:float"
     },
-    "cim:SubGeographicalRegion.DCLines": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
       "@type": "@id"
     },
     "cim:SubLoadArea.LoadArea": {
       "@type": "@id"
     },
-    "cim:SubLoadArea.LoadGroups": {
-      "@type": "@id"
-    },
-    "cim:Substation.Bays": {
-      "@type": "@id"
-    },
-    "cim:Substation.DCConverterUnit": {
-      "@type": "@id"
-    },
     "cim:Substation.NamingFeeder": {
       "@type": "@id"
     },
-    "cim:Substation.NormalEnergizedFeeder": {
-      "@type": "@id"
-    },
-    "cim:Substation.NormalEnergizingFeeder": {
-      "@type": "@id"
-    },
     "cim:Substation.Region": {
-      "@type": "@id"
-    },
-    "cim:Substation.VoltageLevels": {
       "@type": "@id"
     },
     "cim:SubstitutionResourceList.RegisteredResource": {
@@ -19815,16 +17601,7 @@
     "cim:Switch.CompositeSwitch": {
       "@type": "@id"
     },
-    "cim:Switch.SvSwitch": {
-      "@type": "@id"
-    },
     "cim:Switch.SwitchAction": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchPhase": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchSchedules": {
       "@type": "@id"
     },
     "cim:Switch.locked": {
@@ -19938,9 +17715,6 @@
     "cim:SwitchStatus.switchStatus": {
       "@type": "@id"
     },
-    "cim:SwitchingAction.Crew": {
-      "@type": "@id"
-    },
     "cim:SwitchingAction.Operator": {
       "@type": "@id"
     },
@@ -19968,9 +17742,6 @@
     "cim:SwitchingEvent.SwitchingAction": {
       "@type": "@id"
     },
-    "cim:SwitchingOrder.Location": {
-      "@type": "@id"
-    },
     "cim:SwitchingOrder.SwitchingPlan": {
       "@type": "@id"
     },
@@ -19986,22 +17757,10 @@
     "cim:SwitchingPlan.PlannedOutageNotification": {
       "@type": "@id"
     },
-    "cim:SwitchingPlan.SafetyDocuments": {
-      "@type": "@id"
-    },
-    "cim:SwitchingPlan.SwitchingAction": {
-      "@type": "@id"
-    },
     "cim:SwitchingPlan.SwitchingOrder": {
       "@type": "@id"
     },
     "cim:SwitchingPlan.SwitchingPlanRequest": {
-      "@type": "@id"
-    },
-    "cim:SwitchingPlan.SwitchingStepGroups": {
-      "@type": "@id"
-    },
-    "cim:SwitchingPlan.WorkTasks": {
       "@type": "@id"
     },
     "cim:SwitchingPlan.approvedDateTime": {
@@ -20017,9 +17776,6 @@
       "@type": "xsd:integer"
     },
     "cim:SwitchingPlanRequest.RequestingOrganization": {
-      "@type": "@id"
-    },
-    "cim:SwitchingPlanRequest.SwitchingPlan": {
       "@type": "@id"
     },
     "cim:SwitchingPlanRequest.forwardSwitchingDateTimeInterval": {
@@ -20050,9 +17806,6 @@
       "@type": "xsd:integer"
     },
     "cim:SwitchingStepGroup.SwitchingPlan": {
-      "@type": "@id"
-    },
-    "cim:SwitchingStepGroup.SwitchingStep": {
       "@type": "@id"
     },
     "cim:SwitchingStepGroup.isFreeSequence": {
@@ -20187,16 +17940,10 @@
     "cim:SynchronousMachineDynamics.ExcitationSystemDynamics": {
       "@type": "@id"
     },
-    "cim:SynchronousMachineDynamics.GenICompensationForGenJ": {
-      "@type": "@id"
-    },
     "cim:SynchronousMachineDynamics.MechanicalLoadDynamics": {
       "@type": "@id"
     },
     "cim:SynchronousMachineDynamics.SynchronousMachine": {
-      "@type": "@id"
-    },
-    "cim:SynchronousMachineDynamics.TurbineGovernorDynamics": {
       "@type": "@id"
     },
     "cim:SynchronousMachineEquivalentCircuit.r1d": {
@@ -20274,9 +18021,6 @@
     "cim:SynchronousMachineTimeConstantReactance.xQuadTrans": {
       "@type": "xsd:float"
     },
-    "cim:SynchronousMachineUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:SynchronousMachineUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
@@ -20289,16 +18033,10 @@
     "cim:SysLoadDistributionFactor.factor": {
       "@type": "xsd:float"
     },
-    "cim:TACArea.AreaLoadCurve": {
-      "@type": "@id"
-    },
     "cim:TAPPIStandard.standardEdition": {
       "@type": "@id"
     },
     "cim:TAPPIStandard.standardNumber": {
-      "@type": "@id"
-    },
-    "cim:TCPAccessPoint.PublicX509Certificate": {
       "@type": "@id"
     },
     "cim:TCPAccessPoint.keepAliveTime": {
@@ -20331,9 +18069,6 @@
     "cim:TapChanger.TapChangerControl": {
       "@type": "@id"
     },
-    "cim:TapChanger.TapSchedules": {
-      "@type": "@id"
-    },
     "cim:TapChanger.controlEnabled": {
       "@type": "xsd:boolean"
     },
@@ -20363,9 +18098,6 @@
     },
     "cim:TapChanger.subsequentDelay": {
       "@type": "xsd:float"
-    },
-    "cim:TapChangerControl.TapChanger": {
-      "@type": "@id"
     },
     "cim:TapChangerControl.limitVoltage": {
       "@type": "xsd:float"
@@ -20508,9 +18240,6 @@
     "cim:TemperatureDependentLimitPoint.temperature": {
       "@type": "xsd:float"
     },
-    "cim:TemperatureDependentLimitTable.TemperatureLimitTablePoint": {
-      "@type": "@id"
-    },
     "cim:TemperaturePolynomialLimit.coefficient0": {
       "@type": "xsd:float"
     },
@@ -20525,9 +18254,6 @@
     },
     "cim:TemperaturePolynomialLimit.coefficient4": {
       "@type": "xsd:float"
-    },
-    "cim:TenMinAuxiliaryData.AuxillaryData": {
-      "@type": "@id"
     },
     "cim:TenMinAuxiliaryData.intervalStartTime": {
       "@type": "xsd:dateTime"
@@ -20553,12 +18279,6 @@
     "cim:Tender.kind": {
       "@type": "@id"
     },
-    "cim:Terminal.AuxiliaryEquipment": {
-      "@type": "@id"
-    },
-    "cim:Terminal.BranchGroupTerminal": {
-      "@type": "@id"
-    },
     "cim:Terminal.Bushing": {
       "@type": "@id"
     },
@@ -20571,40 +18291,10 @@
     "cim:Terminal.ConnectivityNode": {
       "@type": "@id"
     },
-    "cim:Terminal.ConverterDCSides": {
-      "@type": "@id"
-    },
-    "cim:Terminal.EquipmentFaults": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasFirstMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasSecondMutualCoupling": {
-      "@type": "@id"
-    },
     "cim:Terminal.NormalHeadFeeder": {
       "@type": "@id"
     },
-    "cim:Terminal.PinTerminal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:Terminal.RemoteInputSignal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.SvPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TieFlow": {
-      "@type": "@id"
-    },
     "cim:Terminal.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TransformerEnd": {
       "@type": "@id"
     },
     "cim:Terminal.phases": {
@@ -20615,15 +18305,6 @@
     },
     "cim:TestDataSet.specimenToLabDateTime": {
       "@type": "xsd:dateTime"
-    },
-    "cim:TestStandard.AssetAnalog": {
-      "@type": "@id"
-    },
-    "cim:TestStandard.AssetDiscrete": {
-      "@type": "@id"
-    },
-    "cim:TestStandard.AssetString": {
-      "@type": "@id"
     },
     "cim:TestStandard.testMethod": {
       "@type": "@id"
@@ -20676,18 +18357,6 @@
     "cim:ThermalGeneratingUnit.CombinedCyclePlant": {
       "@type": "@id"
     },
-    "cim:ThermalGeneratingUnit.EmissionCurves": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.EmmissionAccounts": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FossilFuels": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FuelAllocationSchedules": {
-      "@type": "@id"
-    },
     "cim:ThermalGeneratingUnit.HeatInputCurve": {
       "@type": "@id"
     },
@@ -20705,9 +18374,6 @@
     },
     "cim:ThermalGeneratingUnit.oMCost": {
       "@type": "xsd:float"
-    },
-    "cim:TieFlow.AltTieMeas": {
-      "@type": "@id"
     },
     "cim:TieFlow.ControlArea": {
       "@type": "@id"
@@ -20728,12 +18394,6 @@
       "@type": "@id"
     },
     "cim:TieLine.SideB_SubControlArea": {
-      "@type": "@id"
-    },
-    "cim:TiePoint.ByMktMeasurement": {
-      "@type": "@id"
-    },
-    "cim:TiePoint.ForMktMeasurement": {
       "@type": "@id"
     },
     "cim:TiePoint.tiePointMWRating": {
@@ -20766,9 +18426,6 @@
     "cim:TimeSchedule.MeterReadSchedule": {
       "@type": "@id"
     },
-    "cim:TimeSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:TimeSchedule.disabled": {
       "@type": "xsd:boolean"
     },
@@ -20793,34 +18450,16 @@
     "cim:TopologicalIsland.AngleRefTopologicalNode": {
       "@type": "@id"
     },
-    "cim:TopologicalIsland.TopologicalNodes": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.AngleRefTopologicalIsland": {
       "@type": "@id"
     },
     "cim:TopologicalNode.BaseVoltage": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.BusNameMarker": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.ConnectivityNodes": {
-      "@type": "@id"
-    },
     "cim:TopologicalNode.ReportingGroup": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.Terminal": {
       "@type": "@id"
     },
     "cim:TopologicalNode.TopologicalIsland": {
@@ -20854,9 +18493,6 @@
       "@type": "@id"
     },
     "cim:Trade.To_SC": {
-      "@type": "@id"
-    },
-    "cim:Trade.TradeError": {
       "@type": "@id"
     },
     "cim:Trade.TradeProduct": {
@@ -20916,13 +18552,7 @@
     "cim:TradeError.startTime": {
       "@type": "xsd:dateTime"
     },
-    "cim:TradeProduct.Trade": {
-      "@type": "@id"
-    },
     "cim:TradeProduct.tradeType": {
-      "@type": "@id"
-    },
-    "cim:TradingHubPrice.TradingHubValues": {
       "@type": "@id"
     },
     "cim:TradingHubPrice.intervalStartTime": {
@@ -20961,9 +18591,6 @@
     "cim:Transaction.Receipt": {
       "@type": "@id"
     },
-    "cim:Transaction.UserAttributes": {
-      "@type": "@id"
-    },
     "cim:Transaction.VendorShift": {
       "@type": "@id"
     },
@@ -20982,13 +18609,7 @@
     "cim:TransactionBid.Delivery_Pnode": {
       "@type": "@id"
     },
-    "cim:TransactionBid.EnergyProfiles": {
-      "@type": "@id"
-    },
     "cim:TransactionBid.Receipt_Pnode": {
-      "@type": "@id"
-    },
-    "cim:TransactionBid.TransactionBidResults": {
       "@type": "@id"
     },
     "cim:TransactionBid.TransmissionReservation": {
@@ -21002,9 +18623,6 @@
     },
     "cim:TransactionBid.payCongestion": {
       "@type": "xsd:boolean"
-    },
-    "cim:TransactionBidClearing.TransactionBidResults": {
-      "@type": "@id"
     },
     "cim:TransactionBidResults.TransactionBid": {
       "@type": "@id"
@@ -21042,9 +18660,6 @@
     "cim:TransferInterfaceSolution.transferLimit": {
       "@type": "xsd:float"
     },
-    "cim:TransformerCoreAdmittance.TransformerEnd": {
-      "@type": "@id"
-    },
     "cim:TransformerCoreAdmittance.TransformerEndInfo": {
       "@type": "@id"
     },
@@ -21066,12 +18681,6 @@
     "cim:TransformerEnd.CoreAdmittance": {
       "@type": "@id"
     },
-    "cim:TransformerEnd.FromMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.FromWindingInsulations": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.PhaseTapChanger": {
       "@type": "@id"
     },
@@ -21082,12 +18691,6 @@
       "@type": "@id"
     },
     "cim:TransformerEnd.Terminal": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.ToMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.ToWindingInsulations": {
       "@type": "@id"
     },
     "cim:TransformerEnd.bmagSat": {
@@ -21112,27 +18715,6 @@
       "@type": "xsd:float"
     },
     "cim:TransformerEndInfo.CoreAdmittance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndNoLoadTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndOpenCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.EnergisedEndShortCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.FromMeshImpedances": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.GroundedEndShortCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.OpenEndOpenCircuitTests": {
-      "@type": "@id"
-    },
-    "cim:TransformerEndInfo.ToMeshImpedances": {
       "@type": "@id"
     },
     "cim:TransformerEndInfo.TransformerStarImpedance": {
@@ -21192,16 +18774,10 @@
     "cim:TransformerMeshImpedance.x0": {
       "@type": "xsd:float"
     },
-    "cim:TransformerObservation.BushingInsultationPFs": {
-      "@type": "@id"
-    },
     "cim:TransformerObservation.Reconditioning": {
       "@type": "@id"
     },
     "cim:TransformerObservation.Transformer": {
-      "@type": "@id"
-    },
-    "cim:TransformerObservation.WindingInsulationPFs": {
       "@type": "@id"
     },
     "cim:TransformerObservation.bushingTemp": {
@@ -21218,9 +18794,6 @@
     },
     "cim:TransformerObservation.topOilTemp": {
       "@type": "xsd:float"
-    },
-    "cim:TransformerStarImpedance.TransformerEnd": {
-      "@type": "@id"
     },
     "cim:TransformerStarImpedance.TransformerEndInfo": {
       "@type": "@id"
@@ -21240,12 +18813,6 @@
     "cim:TransformerTank.PowerTransformer": {
       "@type": "@id"
     },
-    "cim:TransformerTank.TransformerObservations": {
-      "@type": "@id"
-    },
-    "cim:TransformerTank.TransformerTankEnds": {
-      "@type": "@id"
-    },
     "cim:TransformerTankEnd.TransformerTank": {
       "@type": "@id"
     },
@@ -21253,9 +18820,6 @@
       "@type": "@id"
     },
     "cim:TransformerTankInfo.PowerTransformerInfo": {
-      "@type": "@id"
-    },
-    "cim:TransformerTankInfo.TransformerEndInfos": {
       "@type": "@id"
     },
     "cim:TransformerTest.basePower": {
@@ -21288,12 +18852,6 @@
     "cim:TransmissionCapacity.totalTransmissionCapacity": {
       "@type": "xsd:float"
     },
-    "cim:TransmissionCorridor.ContainedIn": {
-      "@type": "@id"
-    },
-    "cim:TransmissionCorridor.TransmissionRightOfWays": {
-      "@type": "@id"
-    },
     "cim:TransmissionInterfaceRightEntitlement.ContractRight": {
       "@type": "@id"
     },
@@ -21315,9 +18873,6 @@
     "cim:TransmissionPath.PointOfReceipt": {
       "@type": "@id"
     },
-    "cim:TransmissionPath.TransmissionReservation": {
-      "@type": "@id"
-    },
     "cim:TransmissionPath.availTransferCapability": {
       "@type": "xsd:float"
     },
@@ -21328,12 +18883,6 @@
       "@type": "xsd:float"
     },
     "cim:TransmissionProduct.TransmissionProvider": {
-      "@type": "@id"
-    },
-    "cim:TransmissionProvider.For": {
-      "@type": "@id"
-    },
-    "cim:TransmissionProvider.TransmissionProducts": {
       "@type": "@id"
     },
     "cim:TransmissionReservation.EnergyTransaction": {
@@ -21354,13 +18903,7 @@
     "cim:TransmissionRightChain.Chain_ContractRight": {
       "@type": "@id"
     },
-    "cim:TransmissionRightChain.Ind_ContractRight": {
-      "@type": "@id"
-    },
     "cim:TransmissionRightChain.RTO": {
-      "@type": "@id"
-    },
-    "cim:TransmissionRightOfWay.MktLine": {
       "@type": "@id"
     },
     "cim:TransmissionRightOfWay.TransmissionCorridor": {
@@ -21381,19 +18924,10 @@
     "cim:TroubleOrder.Location": {
       "@type": "@id"
     },
-    "cim:TroubleOrder.TroubleTicket": {
-      "@type": "@id"
-    },
     "cim:TroubleOrder.UnplannedOutage": {
       "@type": "@id"
     },
-    "cim:TroubleOrder.WorkTask": {
-      "@type": "@id"
-    },
     "cim:TroubleOrder.plannedExecutionInterval": {
-      "@type": "@id"
-    },
-    "cim:TroubleReporter.TroubleTicket": {
       "@type": "@id"
     },
     "cim:TroubleSymptoms.TroubleTicket": {
@@ -21420,13 +18954,7 @@
     "cim:TroubleTicket.Customer": {
       "@type": "@id"
     },
-    "cim:TroubleTicket.Hazard": {
-      "@type": "@id"
-    },
     "cim:TroubleTicket.Incident": {
-      "@type": "@id"
-    },
-    "cim:TroubleTicket.IncidentHazard": {
       "@type": "@id"
     },
     "cim:TroubleTicket.Location": {
@@ -21510,37 +19038,16 @@
     "cim:TurbineGovernorDynamics.TurbineLoadControllerDynamics": {
       "@type": "@id"
     },
-    "cim:TurbineGovernorUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:TurbineGovernorUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
     "cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics": {
       "@type": "@id"
     },
-    "cim:TurbineLoadControllerUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:TurbineLoadControllerUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
-    "cim:TypeAssetCatalogue.TypeAssets": {
-      "@type": "@id"
-    },
     "cim:TypeAssetCatalogue.status": {
-      "@type": "@id"
-    },
-    "cim:TypeMaterial.CUMaterialItems": {
-      "@type": "@id"
-    },
-    "cim:TypeMaterial.ErpIssueInventories": {
-      "@type": "@id"
-    },
-    "cim:TypeMaterial.ErpReqLineItems": {
-      "@type": "@id"
-    },
-    "cim:TypeMaterial.MaterialItems": {
       "@type": "@id"
     },
     "cim:TypeMaterial.estUnitCost": {
@@ -21569,12 +19076,6 @@
     },
     "cim:UnavailabilitySwitchAction.open": {
       "@type": "xsd:boolean"
-    },
-    "cim:UnavailablitySchedule.DependsOn": {
-      "@type": "@id"
-    },
-    "cim:UnavailablitySchedule.Impacts": {
-      "@type": "@id"
     },
     "cim:UnderexcLim2Simplified.kui": {
       "@type": "xsd:float"
@@ -21807,9 +19308,6 @@
     "cim:UnderexcitationLimiterDynamics.RemoteInputSignal": {
       "@type": "@id"
     },
-    "cim:UnderexcitationLimiterUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:UnderexcitationLimiterUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
@@ -21855,15 +19353,6 @@
     "cim:UnplannedOutage.FieldDispatchHistory": {
       "@type": "@id"
     },
-    "cim:UnplannedOutage.Incident": {
-      "@type": "@id"
-    },
-    "cim:UnplannedOutage.TroubleOrder": {
-      "@type": "@id"
-    },
-    "cim:UnplannedOutage.TroubleTicket": {
-      "@type": "@id"
-    },
     "cim:UnplannedOutage.causeKind": {
       "@type": "@id"
     },
@@ -21876,16 +19365,7 @@
     "cim:Usage.status": {
       "@type": "@id"
     },
-    "cim:UsagePoint.ConfigurationEvents": {
-      "@type": "@id"
-    },
     "cim:UsagePoint.CustomerAgreement": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.EndDeviceEvents": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.EndDevices": {
       "@type": "@id"
     },
     "cim:UsagePoint.EnvironmentalMonitoringStation": {
@@ -21894,22 +19374,10 @@
     "cim:UsagePoint.MeterReadSchedule": {
       "@type": "@id"
     },
-    "cim:UsagePoint.MeterReadings": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.MeterServiceWorkTasks": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.Register": {
-      "@type": "@id"
-    },
     "cim:UsagePoint.ServiceCategory": {
       "@type": "@id"
     },
     "cim:UsagePoint.ServiceLocation": {
-      "@type": "@id"
-    },
-    "cim:UsagePoint.ServiceMultipliers": {
       "@type": "@id"
     },
     "cim:UsagePoint.ServiceSupplier": {
@@ -21963,9 +19431,6 @@
     "cim:UsagePointGroup.MeterReadSchedule": {
       "@type": "@id"
     },
-    "cim:UsagePointLocation.UsagePoints": {
-      "@type": "@id"
-    },
     "cim:UserAttribute.PropertySpecification": {
       "@type": "@id"
     },
@@ -22008,16 +19473,10 @@
     "cim:VCompIEEEType1.xc": {
       "@type": "xsd:float"
     },
-    "cim:VCompIEEEType2.GenICompensationForGenJ": {
-      "@type": "@id"
-    },
     "cim:VCompIEEEType2.tr": {
       "@type": "xsd:float"
     },
     "cim:VSCDynamics.VsConverter": {
-      "@type": "@id"
-    },
-    "cim:VSCUserDefined.ProprietaryParameterDynamics": {
       "@type": "@id"
     },
     "cim:VSCUserDefined.proprietary": {
@@ -22047,18 +19506,6 @@
     "cim:VSCtype1.Umode": {
       "@type": "@id"
     },
-    "cim:ValueAliasSet.Commands": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Discretes": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.RaiseLowerCommands": {
-      "@type": "@id"
-    },
-    "cim:ValueAliasSet.Values": {
-      "@type": "@id"
-    },
     "cim:ValueToAlias.ValueAliasSet": {
       "@type": "@id"
     },
@@ -22074,16 +19521,7 @@
     "cim:Vehicle.usageKind": {
       "@type": "@id"
     },
-    "cim:Vendor.VendorShifts": {
-      "@type": "@id"
-    },
     "cim:VendorShift.MerchantAccount": {
-      "@type": "@id"
-    },
-    "cim:VendorShift.Receipts": {
-      "@type": "@id"
-    },
-    "cim:VendorShift.Transactions": {
       "@type": "@id"
     },
     "cim:VendorShift.Vendor": {
@@ -22131,9 +19569,6 @@
     "cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics": {
       "@type": "@id"
     },
-    "cim:VoltageAdjusterUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:VoltageAdjusterUserDefined.proprietary": {
       "@type": "xsd:boolean"
     },
@@ -22141,9 +19576,6 @@
       "@type": "@id"
     },
     "cim:VoltageCompensatorDynamics.RemoteInputSignal": {
-      "@type": "@id"
-    },
-    "cim:VoltageCompensatorUserDefined.ProprietaryParameterDynamics": {
       "@type": "@id"
     },
     "cim:VoltageCompensatorUserDefined.proprietary": {
@@ -22156,9 +19588,6 @@
       "@type": "@id"
     },
     "cim:VoltageLevel.BaseVoltage": {
-      "@type": "@id"
-    },
-    "cim:VoltageLevel.Bays": {
       "@type": "@id"
     },
     "cim:VoltageLevel.Substation": {
@@ -22175,9 +19604,6 @@
     },
     "cim:VoltageLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:VsCapabilityCurve.VsConverterDCSides": {
-      "@type": "@id"
     },
     "cim:VsConverter.CapabilityCurve": {
       "@type": "@id"
@@ -22269,9 +19695,6 @@
     "cim:WindAeroTwoDimIEC.thetazero": {
       "@type": "xsd:float"
     },
-    "cim:WindContCurrLimIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
-    },
     "cim:WindContCurrLimIEC.WindTurbineType3or4IEC": {
       "@type": "@id"
     },
@@ -22295,9 +19718,6 @@
     },
     "cim:WindContCurrLimIEC.upqumax": {
       "@type": "xsd:float"
-    },
-    "cim:WindContPType3IEC.WindDynamicsLookupTable": {
-      "@type": "@id"
     },
     "cim:WindContPType3IEC.WindTurbineType3IEC": {
       "@type": "@id"
@@ -22512,9 +19932,6 @@
     "cim:WindContQLimIEC.qmin": {
       "@type": "xsd:float"
     },
-    "cim:WindContQPQULimIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
-    },
     "cim:WindContQPQULimIEC.WindTurbineType3or4IEC": {
       "@type": "@id"
     },
@@ -22523,9 +19940,6 @@
     },
     "cim:WindContQPQULimIEC.tufiltql": {
       "@type": "xsd:float"
-    },
-    "cim:WindContRotorRIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
     },
     "cim:WindContRotorRIEC.WindGenTurbineType2IEC": {
       "@type": "@id"
@@ -22626,9 +20040,6 @@
     "cim:WindGenType3aIEC.tic": {
       "@type": "xsd:float"
     },
-    "cim:WindGenType3bIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
-    },
     "cim:WindGenType3bIEC.mwtcwp": {
       "@type": "xsd:boolean"
     },
@@ -22680,9 +20091,6 @@
     "cim:WindMechIEC.kdrt": {
       "@type": "xsd:float"
     },
-    "cim:WindPitchContPowerIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
-    },
     "cim:WindPitchContPowerIEC.WindGenTurbineType1bIEC": {
       "@type": "@id"
     },
@@ -22711,12 +20119,6 @@
       "@type": "xsd:float"
     },
     "cim:WindPlantDynamics.RemoteInputSignal": {
-      "@type": "@id"
-    },
-    "cim:WindPlantDynamics.WindTurbineType3or4Dynamics": {
-      "@type": "@id"
-    },
-    "cim:WindPlantFreqPcontrolIEC.WindDynamicsLookupTable": {
       "@type": "@id"
     },
     "cim:WindPlantFreqPcontrolIEC.WindPlantIEC": {
@@ -22771,9 +20173,6 @@
       "@type": "@id"
     },
     "cim:WindPlantIEC.WindPlantReactiveControlIEC": {
-      "@type": "@id"
-    },
-    "cim:WindPlantReactiveControlIEC.WindDynamicsLookupTable": {
       "@type": "@id"
     },
     "cim:WindPlantReactiveControlIEC.WindPlantIEC": {
@@ -22833,14 +20232,8 @@
     "cim:WindPlantReactiveControlIEC.xrefmin": {
       "@type": "xsd:float"
     },
-    "cim:WindPlantUserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:WindPlantUserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:WindProtectionIEC.WindDynamicsLookupTable": {
-      "@type": "@id"
     },
     "cim:WindProtectionIEC.WindTurbineType1or2IEC": {
       "@type": "@id"
@@ -22956,14 +20349,8 @@
     "cim:WindTurbineType4bIEC.WindMechIEC": {
       "@type": "@id"
     },
-    "cim:WindType1or2UserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
-    },
     "cim:WindType1or2UserDefined.proprietary": {
       "@type": "xsd:boolean"
-    },
-    "cim:WindType3or4UserDefined.ProprietaryParameterDynamics": {
-      "@type": "@id"
     },
     "cim:WindType3or4UserDefined.proprietary": {
       "@type": "xsd:boolean"
@@ -22981,18 +20368,6 @@
       "@type": "xsd:float"
     },
     "cim:WindingInsulation.status": {
-      "@type": "@id"
-    },
-    "cim:WireAssemblyInfo.PerLengthLineParameter": {
-      "@type": "@id"
-    },
-    "cim:WireAssemblyInfo.WirePhaseInfo": {
-      "@type": "@id"
-    },
-    "cim:WireInfo.ACLineSegmentPhase": {
-      "@type": "@id"
-    },
-    "cim:WireInfo.WirePhaseInfo": {
       "@type": "@id"
     },
     "cim:WireInfo.coreRadius": {
@@ -23049,9 +20424,6 @@
     "cim:WirePhaseInfo.phaseInfo": {
       "@type": "@id"
     },
-    "cim:WirePosition.WirePhaseInfo": {
-      "@type": "@id"
-    },
     "cim:WirePosition.WireSpacingInfo": {
       "@type": "@id"
     },
@@ -23064,9 +20436,6 @@
     "cim:WirePosition.yCoord": {
       "@type": "xsd:float"
     },
-    "cim:WireSegment.WireSegmentPhases": {
-      "@type": "@id"
-    },
     "cim:WireSegmentPhase.WireSegment": {
       "@type": "@id"
     },
@@ -23076,13 +20445,7 @@
     "cim:WireSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:WireSpacingInfo.ACLineSegment": {
-      "@type": "@id"
-    },
     "cim:WireSpacingInfo.DuctBank": {
-      "@type": "@id"
-    },
-    "cim:WireSpacingInfo.WirePositions": {
       "@type": "@id"
     },
     "cim:WireSpacingInfo.isCable": {
@@ -23100,9 +20463,6 @@
     "cim:Work.BusinessCase": {
       "@type": "@id"
     },
-    "cim:Work.Designs": {
-      "@type": "@id"
-    },
     "cim:Work.ErpProjectAccounting": {
       "@type": "@id"
     },
@@ -23110,12 +20470,6 @@
       "@type": "@id"
     },
     "cim:Work.WorkBillingInfo": {
-      "@type": "@id"
-    },
-    "cim:Work.WorkFlowSteps": {
-      "@type": "@id"
-    },
-    "cim:Work.WorkTasks": {
       "@type": "@id"
     },
     "cim:Work.requestDateTime": {
@@ -23134,9 +20488,6 @@
       "@type": "@id"
     },
     "cim:WorkBillingInfo.CustomerAccount": {
-      "@type": "@id"
-    },
-    "cim:WorkBillingInfo.Works": {
       "@type": "@id"
     },
     "cim:WorkBillingInfo.costEstimate": {
@@ -23160,9 +20511,6 @@
     "cim:WorkBillingInfo.workPrice": {
       "@type": "xsd:decimal"
     },
-    "cim:WorkCostDetail.ContractorItems": {
-      "@type": "@id"
-    },
     "cim:WorkCostDetail.CostType": {
       "@type": "@id"
     },
@@ -23170,12 +20518,6 @@
       "@type": "@id"
     },
     "cim:WorkCostDetail.ErpProjectAccounting": {
-      "@type": "@id"
-    },
-    "cim:WorkCostDetail.LaborItems": {
-      "@type": "@id"
-    },
-    "cim:WorkCostDetail.MiscCostItems": {
       "@type": "@id"
     },
     "cim:WorkCostDetail.OverheadCost": {
@@ -23202,28 +20544,13 @@
     "cim:WorkFlowStep.Work": {
       "@type": "@id"
     },
-    "cim:WorkFlowStep.WorkTasks": {
-      "@type": "@id"
-    },
     "cim:WorkFlowStep.sequenceNumber": {
       "@type": "xsd:integer"
     },
     "cim:WorkFlowStep.status": {
       "@type": "@id"
     },
-    "cim:WorkLocation.BaseWorks": {
-      "@type": "@id"
-    },
     "cim:WorkLocation.OneCallRequest": {
-      "@type": "@id"
-    },
-    "cim:WorkTask.Assets": {
-      "@type": "@id"
-    },
-    "cim:WorkTask.MaterialItems": {
-      "@type": "@id"
-    },
-    "cim:WorkTask.ProcedureDataSet": {
       "@type": "@id"
     },
     "cim:WorkTask.SwitchingPlan": {

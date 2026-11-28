@@ -73,12 +73,6 @@
     "gad:ConductorDistance.toSequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ConductorDistanceSpacing.ConductorDistance": {
-      "@type": "@id"
-    },
-    "cim:ConductorGroupPosition.SubConductorPosition": {
-      "@type": "@id"
-    },
     "cim:ConductorGroupPosition.orientation": {
       "@type": "xsd:float"
     },
@@ -90,9 +84,6 @@
     },
     "cim:ConductorPosition.sequenceNumber": {
       "@type": "xsd:integer"
-    },
-    "gad:EarthResistivity.WireAssemblies": {
-      "@type": "@id"
     },
     "gad:EarthResistivity.earthModelType": {
       "@type": "@id"
@@ -106,9 +97,6 @@
     "cim:Equipment.EquipmentContainer": {
       "@type": "@id"
     },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
-    },
     "cim:EquivalentDistanceSpacing.averageNeutralDistanceToGround": {
       "@type": "xsd:float"
     },
@@ -120,15 +108,6 @@
     },
     "cim:EquivalentDistanceSpacing.phaseToPhaseGMD": {
       "@type": "xsd:float"
-    },
-    "cim:MultiCircuitGroup.WireSpacing": {
-      "@type": "@id"
-    },
-    "gad:PerLengthImpedance.WireConfiguration": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformer.TransformerTanks": {
-      "@type": "@id"
     },
     "cim:RegularBundlePosition.subConductorCount": {
       "@type": "xsd:integer"
@@ -148,40 +127,16 @@
     "cim:SubConductorPosition.subConductorNumber": {
       "@type": "xsd:integer"
     },
-    "gad:TransformerBankConfiguration.TankConfiguration": {
-      "@type": "@id"
-    },
     "gad:TransformerCore.TankConfiguration": {
       "@type": "@id"
     },
     "cim:TransformerCore.TransformerTank": {
       "@type": "@id"
     },
-    "cim:TransformerCore.TransformerWindings": {
-      "@type": "@id"
-    },
     "cim:TransformerCore.form": {
       "@type": "@id"
     },
-    "gad:TransformerEnd.FromTransformerWinding": {
-      "@type": "@id"
-    },
-    "gad:TransformerEnd.ToTransformerWinding": {
-      "@type": "@id"
-    },
-    "gad:TransformerEnd.TransformerLugs": {
-      "@type": "@id"
-    },
-    "cim:TransformerLug.AutoTransformerWinding": {
-      "@type": "@id"
-    },
-    "cim:TransformerLug.FromTransformerWinding": {
-      "@type": "@id"
-    },
     "gad:TransformerLug.TankConfiguration": {
-      "@type": "@id"
-    },
-    "cim:TransformerLug.ToTransformerWinding": {
       "@type": "@id"
     },
     "gad:TransformerLug.TransformerEnd": {
@@ -202,34 +157,7 @@
     "gad:TransformerTank.TankConfiguration": {
       "@type": "@id"
     },
-    "cim:TransformerTank.TransformerCore": {
-      "@type": "@id"
-    },
-    "cim:TransformerTank.TransformerLug": {
-      "@type": "@id"
-    },
-    "cim:TransformerTank.TransformerWindings": {
-      "@type": "@id"
-    },
     "gad:TransformerTankConfiguration.BankConfiguration": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerCore": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerLugs": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerPhaseEnd": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerTank": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerTankEnd": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerWinding": {
       "@type": "@id"
     },
     "gad:TransformerTankConfiguration.loadLoss": {
@@ -277,16 +205,10 @@
     "cim:TransformerWinding.connection": {
       "@type": "@id"
     },
-    "gad:WireConfiguration.ACLineSegements": {
-      "@type": "@id"
-    },
     "gad:WireConfiguration.EarthResistivity": {
       "@type": "@id"
     },
     "gad:WireConfiguration.PerLengthImpedance": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.WireSequence": {
       "@type": "@id"
     },
     "gad:WireConfiguration.WireSpacing": {
@@ -307,22 +229,13 @@
     "gad:WireSequenceConfiguration.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:WireSpacing.ACLineSegment": {
-      "@type": "@id"
-    },
     "cim:WireSpacing.MultiCircuitGroup": {
-      "@type": "@id"
-    },
-    "gad:WireSpacing.WireConfiguration": {
       "@type": "@id"
     },
     "cim:WireSpacing.isTemplate": {
       "@type": "xsd:boolean"
     },
     "cim:XYConductorPosition.XYSpacing": {
-      "@type": "@id"
-    },
-    "cim:XYSpacing.XYConductorPosition": {
       "@type": "@id"
     }
   }

@@ -42,9 +42,6 @@
     "cim:ACDCConverter.udc": {
       "@type": "xsd:float"
     },
-    "cim:ConductingEquipment.SvStatus": {
-      "@type": "@id"
-    },
     "cim:CsConverter.alpha": {
       "@type": "xsd:float"
     },
@@ -52,12 +49,6 @@
       "@type": "xsd:float"
     },
     "cim:DCTopologicalIsland.DCTopologicalNodes": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCTopologicalIsland": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.SvShuntCompensatorSections": {
       "@type": "@id"
     },
     "cim:SvInjection.TopologicalNode": {
@@ -111,31 +102,10 @@
     "cim:SvVoltage.v": {
       "@type": "xsd:float"
     },
-    "cim:Switch.SvSwitch": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.SvTapStep": {
-      "@type": "@id"
-    },
-    "cim:Terminal.SvPowerFlow": {
-      "@type": "@id"
-    },
     "cim:TopologicalIsland.AngleRefTopologicalNode": {
       "@type": "@id"
     },
     "cim:TopologicalIsland.TopologicalNodes": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.AngleRefTopologicalIsland": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.TopologicalIsland": {
       "@type": "@id"
     },
     "cim:VsConverter.delta": {

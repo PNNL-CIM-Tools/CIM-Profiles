@@ -20,6 +20,7 @@ def test_context_datatypes_follow_field_metadata():
     datatypes = property_datatypes(build_context(cimhub))
     assert datatypes['ACLineSegment.r'] == 'xsd:float'                 # CIMUnit
     assert datatypes['Terminal.ConductingEquipment'] == '@id'          # association
+    assert 'ConductingEquipment.Terminals' not in datatypes            # its inverse end
     assert datatypes['EnergyConsumer.phaseConnection'] == '@id'        # enumeration
     assert datatypes['ACDCTerminal.connected'] == 'xsd:boolean'
     assert datatypes['ACDCTerminal.sequenceNumber'] == 'xsd:integer'
@@ -98,9 +99,9 @@ class Agent(Identity):
 
 @dataclass
 class Dataset(Identity):
-    issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT})
-    creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT})
-    Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad']})
+    issued: Optional[str] = field(default=None, metadata={'type': 'Attribute', 'namespace': DCT, 'serialize': True})
+    creator: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': DCT, 'serialize': True})
+    Agent: Optional[Agent] = field(default=None, metadata={'type': 'Association', 'namespace': NAMESPACES['gad'], 'serialize': True})
 """
 
 

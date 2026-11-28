@@ -48,9 +48,6 @@
     "cim:ACLineSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:BaseVoltage.ConductingEquipment": {
-      "@type": "@id"
-    },
     "cim:BaseVoltage.nominalVoltage": {
       "@type": "xsd:float"
     },
@@ -64,9 +61,6 @@
       "@type": "@id"
     },
     "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
       "@type": "@id"
     },
     "cim:Equipment.EquipmentContainer": {

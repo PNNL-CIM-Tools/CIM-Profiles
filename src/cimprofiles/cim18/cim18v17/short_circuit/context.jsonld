@@ -208,9 +208,6 @@
     "cim:PowerElectronicsConnection.maxIFault": {
       "@type": "xsd:float"
     },
-    "cim:PowerTransformer.PowerTransformerEnd": {
-      "@type": "@id"
-    },
     "cim:PowerTransformer.beforeShCircuitHighestOperatingCurrent": {
       "@type": "xsd:float"
     },
@@ -276,12 +273,6 @@
     },
     "cim:SynchronousMachine.x2": {
       "@type": "xsd:float"
-    },
-    "cim:Terminal.HasFirstMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasSecondMutualCoupling": {
-      "@type": "@id"
     },
     "cim:TransformerCore.b0": {
       "@type": "xsd:float"

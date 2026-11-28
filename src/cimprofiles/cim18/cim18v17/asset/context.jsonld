@@ -48,9 +48,6 @@
     "cim:Asset.retiredReason": {
       "@type": "@id"
     },
-    "cim:AssetContainer.Assets": {
-      "@type": "@id"
-    },
     "cim:AssetOwner.Ownerships": {
       "@type": "@id"
     },
@@ -70,27 +67,6 @@
       "@type": "@id"
     },
     "cim:CathodicSystem.OverheadStructure": {
-      "@type": "@id"
-    },
-    "cim:InterrupterUnit.FixedContactBushing": {
-      "@type": "@id"
-    },
-    "cim:InterrupterUnit.MovingContactBushing": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Anchor": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Brace": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.CathodicSystem": {
-      "@type": "@id"
-    },
-    "cim:Ownership.AssetOwner": {
-      "@type": "@id"
-    },
-    "cim:Terminal.Bushing": {
       "@type": "@id"
     }
   }

@@ -40,19 +40,10 @@
     "cim:Circle.outerRadius": {
       "@type": "xsd:float"
     },
-    "cim:CoordinateSystem.Geometry": {
-      "@type": "@id"
-    },
-    "cim:CoordinateSystem.Location": {
-      "@type": "@id"
-    },
     "cim:GeometricElement.Geometry": {
       "@type": "@id"
     },
     "cim:Geometry.CoordinateSystem": {
-      "@type": "@id"
-    },
-    "cim:Geometry.GeometricElement": {
       "@type": "@id"
     },
     "cim:Geometry.Location": {
@@ -76,21 +67,6 @@
     "cim:Location.CoordinateSystem": {
       "@type": "@id"
     },
-    "cim:Location.Geometry": {
-      "@type": "@id"
-    },
-    "gad:Location.PositionPoints": {
-      "@type": "@id"
-    },
-    "cim:Location.PowerSystemResources": {
-      "@type": "@id"
-    },
-    "cim:Polygon.InnerBoundaryLineElement": {
-      "@type": "@id"
-    },
-    "cim:PositionPoint.Circle": {
-      "@type": "@id"
-    },
     "gad:PositionPoint.Location": {
       "@type": "@id"
     },
@@ -101,9 +77,6 @@
       "@type": "xsd:integer"
     },
     "cim:PowerSystemResource.Location": {
-      "@type": "@id"
-    },
-    "cim:RelativeHeight.PositionPoint": {
       "@type": "@id"
     },
     "cim:RelativeHeight.verticalOffset": {

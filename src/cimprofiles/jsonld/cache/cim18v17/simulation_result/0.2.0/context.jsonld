@@ -30,9 +30,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCTerminal.SignalRecorder": {
-      "@type": "@id"
-    },
     "cim:ClearSimulationEvent.ClearedFaultEvent": {
       "@type": "@id"
     },
@@ -44,9 +41,6 @@
     },
     "cim:ClearSimulationEvent.eventTime": {
       "@type": "xsd:float"
-    },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -90,20 +84,8 @@
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
     },
-    "cim:DynamicsFunctionBlock.SignalRecorder": {
-      "@type": "@id"
-    },
     "cim:DynamicsFunctionBlock.enabled": {
       "@type": "xsd:boolean"
-    },
-    "cim:Fault.ClearSimulationEvent": {
-      "@type": "@id"
-    },
-    "cim:IdentifiedObject.ParameterEvent": {
-      "@type": "@id"
-    },
-    "cim:ParameterEvent.ClearSimulationEvent": {
-      "@type": "@id"
     },
     "cim:ParameterEvent.SimulationEvents": {
       "@type": "@id"
@@ -128,9 +110,6 @@
     },
     "cim:ParameterEvent.rampDuration": {
       "@type": "xsd:float"
-    },
-    "cim:PowerFlowSettings.SimulationSettings": {
-      "@type": "@id"
     },
     "cim:PowerFlowSettings.activePowerTolerance": {
       "@type": "xsd:float"
@@ -192,12 +171,6 @@
     "cim:PowerFlowSettings.voltageTolerance": {
       "@type": "xsd:float"
     },
-    "cim:SignalConfiguration.SignalRecorder": {
-      "@type": "@id"
-    },
-    "cim:SignalConfiguration.SimulationResult": {
-      "@type": "@id"
-    },
     "cim:SignalRecorder.RecordedSignalAt": {
       "@type": "@id"
     },
@@ -219,22 +192,10 @@
     "cim:SignalRecorder.signalKind": {
       "@type": "@id"
     },
-    "cim:SimulationEvents.ClearSimulationEvent": {
-      "@type": "@id"
-    },
-    "cim:SimulationEvents.ParameterEvent": {
-      "@type": "@id"
-    },
-    "cim:SimulationEvents.SimulationResult": {
-      "@type": "@id"
-    },
     "cim:SimulationResult.SignalConfiguration": {
       "@type": "@id"
     },
     "cim:SimulationResult.SimulationEvents": {
-      "@type": "@id"
-    },
-    "cim:SimulationResult.SimulationResultCharacteristic": {
       "@type": "@id"
     },
     "cim:SimulationResult.SimulationSettings": {
@@ -253,9 +214,6 @@
       "@type": "@id"
     },
     "cim:SimulationSettings.PowerFlowSettings": {
-      "@type": "@id"
-    },
-    "cim:SimulationSettings.SimulationResult": {
       "@type": "@id"
     },
     "cim:SimulationSettings.duration": {

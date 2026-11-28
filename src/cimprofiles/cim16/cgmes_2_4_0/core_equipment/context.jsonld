@@ -31,9 +31,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCConverter.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:ACDCConverter.PccTerminal": {
       "@type": "@id"
     },
@@ -73,9 +70,6 @@
     "cim:ACDCTerminal.BusNameMarker": {
       "@type": "@id"
     },
-    "cim:ACDCTerminal.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
@@ -97,15 +91,6 @@
     "cim:AsynchronousMachine.nominalSpeed": {
       "@type": "xsd:float"
     },
-    "cim:BaseVoltage.ConductingEquipment": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TransformerEnds": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.VoltageLevel": {
-      "@type": "@id"
-    },
     "cim:BaseVoltage.nominalVoltage": {
       "@type": "xsd:float"
     },
@@ -124,16 +109,10 @@
     "cim:BusNameMarker.ReportingGroup": {
       "@type": "@id"
     },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
-    },
     "cim:BusNameMarker.priority": {
       "@type": "xsd:integer"
     },
     "cim:ConductingEquipment.BaseVoltage": {
-      "@type": "@id"
-    },
-    "cim:ConductingEquipment.Terminals": {
       "@type": "@id"
     },
     "cim:Conductor.length": {
@@ -142,28 +121,10 @@
     "cim:ConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:ConformLoadGroup.ConformLoadSchedules": {
-      "@type": "@id"
-    },
-    "cim:ConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
     "cim:ConformLoadSchedule.ConformLoadGroup": {
       "@type": "@id"
     },
     "cim:ConnectivityNode.ConnectivityNodeContainer": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.TieFlow": {
       "@type": "@id"
     },
     "cim:ControlArea.type": {
@@ -199,9 +160,6 @@
     "cim:CurrentLimit.value": {
       "@type": "xsd:float"
     },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
-    },
     "cim:Curve.curveStyle": {
       "@type": "@id"
     },
@@ -229,16 +187,10 @@
     "cim:DCBaseTerminal.DCNode": {
       "@type": "@id"
     },
-    "cim:DCConductingEquipment.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:DCConverterUnit.Substation": {
       "@type": "@id"
     },
     "cim:DCConverterUnit.operationMode": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCNodes": {
       "@type": "@id"
     },
     "cim:DCGround.inductance": {
@@ -266,9 +218,6 @@
       "@type": "xsd:float"
     },
     "cim:DCNode.DCEquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:DCNode.DCTerminals": {
       "@type": "@id"
     },
     "cim:DCSeriesDevice.inductance": {
@@ -325,14 +274,8 @@
     "cim:Equipment.EquipmentContainer": {
       "@type": "@id"
     },
-    "cim:Equipment.OperationalLimitSet": {
-      "@type": "@id"
-    },
     "cim:Equipment.aggregate": {
       "@type": "xsd:boolean"
-    },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
     },
     "cim:EquivalentBranch.r": {
       "@type": "xsd:float"
@@ -367,9 +310,6 @@
     "cim:EquivalentInjection.regulationCapability": {
       "@type": "xsd:boolean"
     },
-    "cim:EquivalentNetwork.EquivalentEquipments": {
-      "@type": "@id"
-    },
     "cim:EquivalentShunt.b": {
       "@type": "xsd:float"
     },
@@ -395,12 +335,6 @@
       "@type": "@id"
     },
     "cim:FossilFuel.fossilFuelType": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.ControlAreaGeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:GeneratingUnit.RotatingMachine": {
       "@type": "@id"
     },
     "cim:GeneratingUnit.genControlSource": {
@@ -448,19 +382,10 @@
     "cim:GeneratingUnit.variableCost": {
       "@type": "xsd:decimal"
     },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
-    },
     "cim:HydroGeneratingUnit.HydroPowerPlant": {
       "@type": "@id"
     },
     "cim:HydroGeneratingUnit.energyConversionCapability": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroGeneratingUnits": {
-      "@type": "@id"
-    },
-    "cim:HydroPowerPlant.HydroPumps": {
       "@type": "@id"
     },
     "cim:HydroPowerPlant.hydroPlantStorageType": {
@@ -475,9 +400,6 @@
     "cim:IEC61970CIMVersion.date": {
       "@type": "xsd:date"
     },
-    "cim:IdentifiedObject.Names": {
-      "@type": "@id"
-    },
     "cim:LimitSet.isPercentageLimits": {
       "@type": "xsd:boolean"
     },
@@ -491,9 +413,6 @@
       "@type": "xsd:float"
     },
     "cim:LoadGroup.SubLoadArea": {
-      "@type": "@id"
-    },
-    "cim:LoadResponseCharacteristic.EnergyConsumer": {
       "@type": "@id"
     },
     "cim:LoadResponseCharacteristic.exponentModel": {
@@ -535,22 +454,10 @@
     "cim:Name.NameType": {
       "@type": "@id"
     },
-    "cim:NameType.Names": {
-      "@type": "@id"
-    },
     "cim:NonConformLoad.LoadGroup": {
       "@type": "@id"
     },
-    "cim:NonConformLoadGroup.EnergyConsumers": {
-      "@type": "@id"
-    },
-    "cim:NonConformLoadGroup.NonConformLoadSchedules": {
-      "@type": "@id"
-    },
     "cim:NonConformLoadSchedule.NonConformLoadGroup": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
       "@type": "@id"
     },
     "cim:NonlinearShuntCompensatorPoint.NonlinearShuntCompensator": {
@@ -574,13 +481,7 @@
     "cim:OperationalLimitSet.Equipment": {
       "@type": "@id"
     },
-    "cim:OperationalLimitSet.OperationalLimitValue": {
-      "@type": "@id"
-    },
     "cim:OperationalLimitSet.Terminal": {
-      "@type": "@id"
-    },
-    "cim:OperationalLimitType.OperationalLimit": {
       "@type": "@id"
     },
     "cim:OperationalLimitType.acceptableDuration": {
@@ -590,9 +491,6 @@
       "@type": "@id"
     },
     "entsoe:OperationalLimitType.limitType": {
-      "@type": "@id"
-    },
-    "cim:PerLengthDCLineParameter.DCLineSegments": {
       "@type": "@id"
     },
     "cim:PerLengthDCLineParameter.capacitance": {
@@ -628,12 +526,6 @@
     "cim:PhaseTapChangerNonLinear.xMin": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
       "@type": "@id"
     },
@@ -641,9 +533,6 @@
       "@type": "xsd:float"
     },
     "cim:PhaseTapChangerTabular.PhaseTapChangerTable": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformer.PowerTransformerEnd": {
       "@type": "@id"
     },
     "cim:PowerTransformerEnd.PowerTransformer": {
@@ -682,19 +571,7 @@
     "cim:RatioTapChanger.tculControlMode": {
       "@type": "@id"
     },
-    "cim:RatioTapChangerTable.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
-      "@type": "@id"
-    },
     "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
-      "@type": "@id"
-    },
-    "cim:ReactiveCapabilityCurve.EquivalentInjection": {
-      "@type": "@id"
-    },
-    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachines": {
       "@type": "@id"
     },
     "cim:RegularIntervalSchedule.endTime": {
@@ -706,22 +583,13 @@
     "cim:RegulatingCondEq.RegulatingControl": {
       "@type": "@id"
     },
-    "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
-    },
     "cim:RegulatingControl.Terminal": {
       "@type": "@id"
     },
     "cim:RegulatingControl.mode": {
       "@type": "@id"
     },
-    "cim:ReportingGroup.BusNameMarker": {
-      "@type": "@id"
-    },
     "cim:RotatingMachine.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "cim:RotatingMachine.HydroPump": {
       "@type": "@id"
     },
     "cim:RotatingMachine.ratedPowerFactor": {
@@ -778,28 +646,10 @@
     "cim:StaticVarCompensator.voltageSetPoint": {
       "@type": "xsd:float"
     },
-    "cim:SubGeographicalRegion.DCLines": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
-    "cim:SubLoadArea.LoadGroups": {
-      "@type": "@id"
-    },
-    "cim:Substation.DCConverterUnit": {
-      "@type": "@id"
-    },
     "cim:Substation.Region": {
-      "@type": "@id"
-    },
-    "cim:Substation.VoltageLevels": {
       "@type": "@id"
     },
     "cim:Switch.normalOpen": {
@@ -847,9 +697,6 @@
     "cim:TapChanger.normalStep": {
       "@type": "xsd:integer"
     },
-    "cim:TapChangerControl.TapChanger": {
-      "@type": "@id"
-    },
     "cim:TapChangerTablePoint.b": {
       "@type": "xsd:float"
     },
@@ -874,22 +721,7 @@
     "cim:Terminal.ConnectivityNode": {
       "@type": "@id"
     },
-    "cim:Terminal.ConverterDCSides": {
-      "@type": "@id"
-    },
-    "cim:Terminal.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TieFlow": {
-      "@type": "@id"
-    },
-    "cim:Terminal.TransformerEnd": {
-      "@type": "@id"
-    },
     "cim:Terminal.phases": {
-      "@type": "@id"
-    },
-    "cim:ThermalGeneratingUnit.FossilFuels": {
       "@type": "@id"
     },
     "cim:TieFlow.ControlArea": {
@@ -904,12 +736,6 @@
     "cim:TransformerEnd.BaseVoltage": {
       "@type": "@id"
     },
-    "cim:TransformerEnd.PhaseTapChanger": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.RatioTapChanger": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.Terminal": {
       "@type": "@id"
     },
@@ -917,9 +743,6 @@
       "@type": "xsd:integer"
     },
     "cim:VoltageLevel.BaseVoltage": {
-      "@type": "@id"
-    },
-    "cim:VoltageLevel.Bays": {
       "@type": "@id"
     },
     "cim:VoltageLevel.Substation": {
@@ -933,9 +756,6 @@
     },
     "cim:VoltageLimit.value": {
       "@type": "xsd:float"
-    },
-    "cim:VsCapabilityCurve.VsConverterDCSides": {
-      "@type": "@id"
     },
     "cim:VsConverter.CapabilityCurve": {
       "@type": "@id"

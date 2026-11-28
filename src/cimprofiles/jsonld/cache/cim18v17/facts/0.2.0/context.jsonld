@@ -51,6 +51,9 @@
     "cim:CurrentDroopControlFunction.targetValueInductive": {
       "@type": "xsd:float"
     },
+    "cim:CurrentDroopOverride.SSSCController": {
+      "@type": "@id"
+    },
     "cim:CurrentDroopOverride.droopCapacitive": {
       "@type": "xsd:float"
     },
@@ -71,9 +74,6 @@
     },
     "cim:CurrentDroopOverride.targetValueInductiveI": {
       "@type": "xsd:float"
-    },
-    "cim:CurrentDroopOverride.SSSCController": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -102,7 +102,7 @@
     "cim:Curve.y3Unit": {
       "@type": "@id"
     },
-    "cim:Curve.CurveDatas": {
+    "cim:CurveData.Curve": {
       "@type": "@id"
     },
     "cim:CurveData.xvalue": {
@@ -116,9 +116,6 @@
     },
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
-    },
-    "cim:CurveData.Curve": {
-      "@type": "@id"
     },
     "cim:Equipment.aggregate": {
       "@type": "xsd:boolean"
@@ -162,14 +159,17 @@
     "cim:FACTSEquipment.slope": {
       "@type": "xsd:float"
     },
-    "cim:FACTSEquipment.LossCurve": {
-      "@type": "@id"
-    },
     "cim:LossCurve.FACTSEquipment": {
       "@type": "@id"
     },
     "cim:RegulatingCondEq.controlEnabled": {
       "@type": "xsd:boolean"
+    },
+    "cim:SSSCController.CurrentDroopOverride": {
+      "@type": "@id"
+    },
+    "cim:SSSCController.SSSCSimulationSettings": {
+      "@type": "@id"
     },
     "cim:SSSCController.maxInjectionU": {
       "@type": "xsd:float"
@@ -186,29 +186,20 @@
     "cim:SSSCController.mode": {
       "@type": "@id"
     },
-    "cim:SSSCController.CurrentDroopOverride": {
-      "@type": "@id"
-    },
-    "cim:SSSCController.SSSCSimulationSettings": {
-      "@type": "@id"
+    "cim:SSSCSimulationSettings.deltaX": {
+      "@type": "xsd:float"
     },
     "cim:SSSCSimulationSettings.isEstimateDLDVSensitive": {
       "@type": "xsd:boolean"
     },
-    "cim:SSSCSimulationSettings.maxIterations": {
-      "@type": "xsd:integer"
-    },
-    "cim:SSSCSimulationSettings.deltaX": {
-      "@type": "xsd:float"
-    },
     "cim:SSSCSimulationSettings.maxCorrectionX": {
       "@type": "xsd:float"
     },
+    "cim:SSSCSimulationSettings.maxIterations": {
+      "@type": "xsd:integer"
+    },
     "cim:SSSCSimulationSettings.maxMismatch": {
       "@type": "xsd:float"
-    },
-    "cim:SSSCSimulationSettings.SSSCController": {
-      "@type": "@id"
     },
     "cim:StaticVarCompensator.capacitiveRating": {
       "@type": "xsd:float"
@@ -219,23 +210,23 @@
     "cim:StaticVarCompensator.q": {
       "@type": "xsd:float"
     },
-    "cim:StaticVarCompensator.slope": {
-      "@type": "xsd:float"
-    },
     "cim:StaticVarCompensator.sVCControlMode": {
       "@type": "@id"
+    },
+    "cim:StaticVarCompensator.slope": {
+      "@type": "xsd:float"
     },
     "cim:StaticVarCompensator.voltageSetPoint": {
       "@type": "xsd:float"
     },
-    "cim:TCSCCompensationPoint.section": {
-      "@type": "xsd:integer"
+    "cim:TCSCCompensationPoint.ThyristorControlledSeriesCompensator": {
+      "@type": "@id"
     },
     "cim:TCSCCompensationPoint.compensationZ": {
       "@type": "xsd:float"
     },
-    "cim:TCSCCompensationPoint.ThyristorControlledSeriesCompensator": {
-      "@type": "@id"
+    "cim:TCSCCompensationPoint.section": {
+      "@type": "xsd:integer"
     },
     "cim:Terminal.phases": {
       "@type": "@id"
@@ -254,9 +245,6 @@
     },
     "cim:ThyristorControlledSeriesCompensator.reconnectionI": {
       "@type": "xsd:float"
-    },
-    "cim:ThyristorControlledSeriesCompensator.TCSCCompensationPoint": {
-      "@type": "@id"
     },
     "cim:VoltageInjectionControlFunction.targetValue": {
       "@type": "xsd:float"

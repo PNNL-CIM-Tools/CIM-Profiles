@@ -70,9 +70,6 @@
     "cim:Asset.retiredReason": {
       "@type": "@id"
     },
-    "cim:AssetContainer.Assets": {
-      "@type": "@id"
-    },
     "cim:AssetDeployment.Asset": {
       "@type": "@id"
     },
@@ -88,12 +85,6 @@
     "cim:AssetDeployment.likelihoodOfFailure": {
       "@type": "xsd:integer"
     },
-    "cim:AssetInfo.PowerSystemResources": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.NetworkAssetDeployment": {
-      "@type": "@id"
-    },
     "cim:BreakerAssetDeployment.breakerApplication": {
       "@type": "@id"
     },
@@ -104,18 +95,6 @@
       "@type": "@id"
     },
     "cim:PowerTransformerAssetDeployment.transformerApplication": {
-      "@type": "@id"
-    },
-    "gad:TransformerBankConfiguration.AssetDeployments": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.WireSequence": {
-      "@type": "@id"
-    },
-    "cim:WireInfo.ACLineSegmentPhase": {
-      "@type": "@id"
-    },
-    "gad:WireInfo.WireSequenceConfiguration": {
       "@type": "@id"
     },
     "gad:WireSequenceConfiguration.WireConfiguration": {

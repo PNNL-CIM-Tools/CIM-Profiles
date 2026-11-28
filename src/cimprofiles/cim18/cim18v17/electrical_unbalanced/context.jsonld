@@ -77,12 +77,6 @@
     "cim:BatteryUnit.ratedE": {
       "@type": "xsd:float"
     },
-    "gad:EarthResistivity.PerLengthLineParameter": {
-      "@type": "@id"
-    },
-    "gad:EarthResistivity.WireAssemblies": {
-      "@type": "@id"
-    },
     "gad:EarthResistivity.earthModelType": {
       "@type": "@id"
     },
@@ -140,9 +134,6 @@
     "cim:Equipment.networkAnalysisEnabled": {
       "@type": "xsd:boolean"
     },
-    "cim:GeneratingUnit.RotatingMachine": {
-      "@type": "@id"
-    },
     "cim:GeneratingUnit.maxOperatingP": {
       "@type": "xsd:float"
     },
@@ -163,9 +154,6 @@
     },
     "cim:LinearShuntCompensatorPhase.gPerSection": {
       "@type": "xsd:float"
-    },
-    "cim:LoadResponseCharacteristic.EnergyConsumer": {
-      "@type": "@id"
     },
     "cim:LoadResponseCharacteristic.exponentModel": {
       "@type": "xsd:boolean"
@@ -224,12 +212,6 @@
     "gad:MatrixImpedanceData.x": {
       "@type": "xsd:float"
     },
-    "cim:NonlinearShuntCompensator.NonlinearShuntCompensatorPoints": {
-      "@type": "@id"
-    },
-    "cim:NonlinearShuntCompensatorPhase.NonlinearShuntCompensatorPhasePoints": {
-      "@type": "@id"
-    },
     "cim:NonlinearShuntCompensatorPhasePoint.NonlinearShuntCompensatorPhase": {
       "@type": "@id"
     },
@@ -254,9 +236,6 @@
     "cim:NonlinearShuntCompensatorPoint.sectionNumber": {
       "@type": "xsd:integer"
     },
-    "cim:PerLengthImpedance.ACLineSegments": {
-      "@type": "@id"
-    },
     "gad:PerLengthImpedance.WireConfiguration": {
       "@type": "@id"
     },
@@ -280,9 +259,6 @@
     },
     "cim:PerLengthLineParameter.calculatedTemperature": {
       "@type": "xsd:float"
-    },
-    "cim:PerLengthPhaseImpedance.PhaseImpedanceData": {
-      "@type": "@id"
     },
     "cim:PerLengthPhaseImpedance.conductorCount": {
       "@type": "xsd:integer"
@@ -313,9 +289,6 @@
     },
     "cim:PhaseImpedanceData.x": {
       "@type": "xsd:float"
-    },
-    "cim:PowerElectronicsConnection.PowerElectronicsUnit": {
-      "@type": "@id"
     },
     "cim:PowerElectronicsConnection.maxQ": {
       "@type": "xsd:float"
@@ -410,9 +383,6 @@
     "cim:ShuntCompensatorPhase.normalSections": {
       "@type": "xsd:integer"
     },
-    "cim:Switch.SwitchPhase": {
-      "@type": "@id"
-    },
     "cim:Switch.ratedCurrent": {
       "@type": "xsd:float"
     },
@@ -455,15 +425,6 @@
     "cim:TransformerCore.g": {
       "@type": "xsd:float"
     },
-    "cim:TransformerEnd.FromMeshImpedance": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.ToMeshImpedance": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.rground": {
       "@type": "xsd:float"
     },
@@ -494,9 +455,6 @@
     "gad:TransformerTank.TankConfiguration": {
       "@type": "@id"
     },
-    "cim:TransformerTank.TransformerCore": {
-      "@type": "@id"
-    },
     "cim:TransformerTank.baseS": {
       "@type": "xsd:float"
     },
@@ -511,15 +469,6 @@
     },
     "cim:TransformerTank.percentMagnetizingCurrent": {
       "@type": "xsd:float"
-    },
-    "gad:TransformerTankConfiguration.TransformerCore": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerTank": {
-      "@type": "@id"
-    },
-    "gad:TransformerTankConfiguration.TransformerWinding": {
-      "@type": "@id"
     },
     "gad:TransformerTankConfiguration.baseS": {
       "@type": "xsd:float"
@@ -536,16 +485,7 @@
     "gad:TransformerTankConfiguration.percentMagnetizingCurrent": {
       "@type": "xsd:float"
     },
-    "gad:TransformerWinding.AutoTransformer": {
-      "@type": "@id"
-    },
-    "cim:TransformerWinding.FromMeshImpedance": {
-      "@type": "@id"
-    },
     "gad:TransformerWinding.TankConfiguration": {
-      "@type": "@id"
-    },
-    "cim:TransformerWinding.ToMeshImpedance": {
       "@type": "@id"
     },
     "cim:TransformerWinding.baseS": {
@@ -567,9 +507,6 @@
       "@type": "xsd:float"
     },
     "gad:VoltageRegulator.construction": {
-      "@type": "@id"
-    },
-    "gad:WireConfiguration.ACLineSegements": {
       "@type": "@id"
     },
     "gad:WireConfiguration.EarthResistivity": {

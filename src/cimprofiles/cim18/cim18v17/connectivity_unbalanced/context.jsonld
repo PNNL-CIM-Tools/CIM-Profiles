@@ -37,12 +37,6 @@
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ACLineSegment.ACLineSegmentPhases": {
-      "@type": "@id"
-    },
-    "cim:ACLineSegment.Clamp": {
-      "@type": "@id"
-    },
     "cim:ACLineSegment.MultiCircuitGroup": {
       "@type": "@id"
     },
@@ -61,9 +55,6 @@
     "cim:ACLineSegmentPhase.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "gad:AutoTransformer.AutoTransformerEnd": {
-      "@type": "@id"
-    },
     "gad:AutoTransformer.AutoTransformerWinding": {
       "@type": "@id"
     },
@@ -78,21 +69,6 @@
     },
     "cim:BasePower.basePower": {
       "@type": "xsd:float"
-    },
-    "cim:BaseVoltage.ConductingEquipment": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.ConnectivityNode": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TopologicalNode": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.TransformerEnds": {
-      "@type": "@id"
-    },
-    "cim:BaseVoltage.VoltageLevel": {
-      "@type": "@id"
     },
     "cim:BaseVoltage.nominalVoltage": {
       "@type": "xsd:float"
@@ -118,23 +94,11 @@
     "cim:Clamp.lengthFromTerminal1": {
       "@type": "xsd:float"
     },
-    "cim:CompositeSwitch.Switches": {
-      "@type": "@id"
-    },
     "cim:ConductingEquipment.BaseVoltage": {
-      "@type": "@id"
-    },
-    "cim:ConductingEquipment.Terminals": {
       "@type": "@id"
     },
     "cim:Conductor.length": {
       "@type": "xsd:float"
-    },
-    "cim:ConnectedArea.BoundaryTerminal": {
-      "@type": "@id"
-    },
-    "cim:ConnectedArea.ContainedArea": {
-      "@type": "@id"
     },
     "cim:ConnectedArea.ContainedWithin": {
       "@type": "@id"
@@ -148,20 +112,8 @@
     "cim:ConnectivityNode.ConnectivityNodeContainer": {
       "@type": "@id"
     },
-    "cim:ConnectivityNode.Terminals": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.ConnectivityNodes": {
-      "@type": "@id"
-    },
-    "cim:ConnectivityNodeContainer.TopologicalNode": {
-      "@type": "@id"
-    },
     "cim:Cut.lengthFromTerminal1": {
       "@type": "xsd:float"
-    },
-    "cim:EnergyConsumer.EnergyConsumerPhase": {
-      "@type": "@id"
     },
     "cim:EnergyConsumer.customerCount": {
       "@type": "xsd:integer"
@@ -179,9 +131,6 @@
       "@type": "@id"
     },
     "cim:EnergyConsumerPhase.phases": {
-      "@type": "@id"
-    },
-    "cim:EnergySource.EnergySourcePhase": {
       "@type": "@id"
     },
     "cim:EnergySource.grounded": {
@@ -208,43 +157,13 @@
     "cim:Equipment.normallyInService": {
       "@type": "xsd:boolean"
     },
-    "cim:EquipmentContainer.AdditionalGroupedEquipment": {
-      "@type": "@id"
-    },
-    "cim:EquipmentContainer.Equipments": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NormalEnergizedSubstation": {
-      "@type": "@id"
-    },
     "cim:Feeder.NormalEnergizingSubstation": {
-      "@type": "@id"
-    },
-    "cim:Feeder.NormalHeadTerminal": {
-      "@type": "@id"
-    },
-    "cim:GeographicalRegion.Regions": {
       "@type": "@id"
     },
     "cim:Line.Region": {
       "@type": "@id"
     },
-    "cim:MultiCircuitGroup.ACLineSegment": {
-      "@type": "@id"
-    },
-    "cim:MultiCircuitGroup.AdditionalTerminal": {
-      "@type": "@id"
-    },
-    "cim:MultiCircuitGroup.ReferenceTerminal": {
-      "@type": "@id"
-    },
-    "cim:MultiCircuitGroup.SharedPhases": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChanger.TransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:PowerElectronicsConnection.PowerElectronicsConnectionPhase": {
       "@type": "@id"
     },
     "gad:PowerElectronicsConnection.phaseConnection": {
@@ -259,12 +178,6 @@
     "cim:PowerElectronicsConnectionPhase.phases": {
       "@type": "@id"
     },
-    "cim:PowerTransformer.PowerTransformerEnd": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformer.TransformerTanks": {
-      "@type": "@id"
-    },
     "cim:PowerTransformerEnd.PowerTransformer": {
       "@type": "@id"
     },
@@ -277,9 +190,6 @@
     "cim:RatioTapChanger.TransformerEnd": {
       "@type": "@id"
     },
-    "gad:RotatingMachine.RotatingMachinePhase": {
-      "@type": "@id"
-    },
     "gad:RotatingMachinePhase.RotatingMachine": {
       "@type": "@id"
     },
@@ -287,9 +197,6 @@
       "@type": "@id"
     },
     "cim:SeriesCompensator.compensatorType": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.ShuntCompensatorPhase": {
       "@type": "@id"
     },
     "cim:ShuntCompensator.compensatorType": {
@@ -310,19 +217,7 @@
     "gad:ShuntCompensatorPhase.phases": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.Lines": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
-    "cim:Substation.Bays": {
-      "@type": "@id"
-    },
-    "cim:Substation.NormalEnergizedFeeder": {
       "@type": "@id"
     },
     "cim:Substation.NormalEnergizingFeeder": {
@@ -331,13 +226,7 @@
     "cim:Substation.Region": {
       "@type": "@id"
     },
-    "cim:Substation.VoltageLevels": {
-      "@type": "@id"
-    },
     "cim:Switch.CompositeSwitch": {
-      "@type": "@id"
-    },
-    "cim:Switch.SwitchPhase": {
       "@type": "@id"
     },
     "cim:Switch.areaBoundary": {
@@ -382,9 +271,6 @@
     "cim:Terminal.ReferencedCircuitGroup": {
       "@type": "@id"
     },
-    "cim:Terminal.TransformerEnd": {
-      "@type": "@id"
-    },
     "cim:Terminal.phases": {
       "@type": "@id"
     },
@@ -400,9 +286,6 @@
     "cim:TransformerEnd.BaseVoltage": {
       "@type": "@id"
     },
-    "gad:TransformerEnd.FromTransformerWinding": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.PhaseTapChanger": {
       "@type": "@id"
     },
@@ -410,9 +293,6 @@
       "@type": "@id"
     },
     "cim:TransformerEnd.Terminal": {
-      "@type": "@id"
-    },
-    "gad:TransformerEnd.ToTransformerWinding": {
       "@type": "@id"
     },
     "cim:TransformerEnd.endNumber": {
@@ -433,12 +313,6 @@
     "cim:TransformerTank.PowerTransformer": {
       "@type": "@id"
     },
-    "cim:TransformerTank.TransformerWindings": {
-      "@type": "@id"
-    },
-    "gad:TransformerWinding.AutoTransformer": {
-      "@type": "@id"
-    },
     "gad:TransformerWinding.FromTransformerEnd": {
       "@type": "@id"
     },
@@ -454,16 +328,10 @@
     "cim:VoltageLevel.BaseVoltage": {
       "@type": "@id"
     },
-    "cim:VoltageLevel.Bays": {
-      "@type": "@id"
-    },
     "cim:VoltageLevel.Substation": {
       "@type": "@id"
     },
     "gad:VoltageRegulator.construction": {
-      "@type": "@id"
-    },
-    "cim:WireSegment.WireSegmentPhases": {
       "@type": "@id"
     },
     "cim:WireSegmentPhase.WireSegment": {

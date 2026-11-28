@@ -31,9 +31,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ACDCConverter.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:ACDCConverter.PccTerminal": {
       "@type": "@id"
     },
@@ -106,17 +103,11 @@
     "cim:ACDCTerminal.sequenceNumber": {
       "@type": "xsd:integer"
     },
-    "cim:ACPointOfCommonCoupling.DCConverterUnit": {
-      "@type": "@id"
-    },
     "cim:BipolarDCSystem.DCBiPole": {
       "@type": "@id"
     },
     "cim:BipolarDCSystem.isRigid": {
       "@type": "xsd:boolean"
-    },
-    "cim:BusNameMarker.Terminal": {
-      "@type": "@id"
     },
     "cim:BusNameMarker.TopologicalNode": {
       "@type": "@id"
@@ -165,9 +156,6 @@
     },
     "cim:CsConverter.targetIdc": {
       "@type": "xsd:float"
-    },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -220,12 +208,6 @@
     "cim:DCBiPole.BipolarDCSystem": {
       "@type": "@id"
     },
-    "cim:DCBiPole.DCPole": {
-      "@type": "@id"
-    },
-    "cim:DCConductingEquipment.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:DCConductingEquipment.ratedCurrent": {
       "@type": "xsd:float"
     },
@@ -248,12 +230,6 @@
       "@type": "@id"
     },
     "cim:DCConverterUnit.operationMode": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCEquipmentContainer.DCTopologicalNode": {
       "@type": "@id"
     },
     "cim:DCEquipmentContainer.HVDCInterconnectionDynamics": {
@@ -292,9 +268,6 @@
     "cim:DCNode.DCPointOfCommonCoupling": {
       "@type": "@id"
     },
-    "cim:DCNode.DCTerminals": {
-      "@type": "@id"
-    },
     "cim:DCNode.DCTopologicalNode": {
       "@type": "@id"
     },
@@ -310,9 +283,6 @@
     "cim:DCPole.DCBiPole": {
       "@type": "@id"
     },
-    "cim:DCPole.DCConverterUnit": {
-      "@type": "@id"
-    },
     "cim:DCPole.DCLine": {
       "@type": "@id"
     },
@@ -320,9 +290,6 @@
       "@type": "@id"
     },
     "cim:DCPole.DirectCurrentPoleController": {
-      "@type": "@id"
-    },
-    "nc:DCPole.PowerSchedule": {
       "@type": "@id"
     },
     "cim:DCPole.maxEconomicP": {
@@ -351,15 +318,6 @@
     },
     "cim:DCShunt.resistance": {
       "@type": "xsd:float"
-    },
-    "cim:DCSubstation.DCConverterUnit": {
-      "@type": "@id"
-    },
-    "cim:DCSubstation.DCSubstationBipole": {
-      "@type": "@id"
-    },
-    "cim:DCSubstation.DCSubstationPole": {
-      "@type": "@id"
     },
     "cim:DCSubstation.Substation": {
       "@type": "@id"
@@ -400,25 +358,10 @@
     "cim:DCTerminal.DCConductingEquipment": {
       "@type": "@id"
     },
-    "cim:DCTerminal.PinDCTerminal": {
-      "@type": "@id"
-    },
-    "cim:DCTerminal.SvDCPowerFlow": {
-      "@type": "@id"
-    },
     "cim:DCTerminal.polarity": {
       "@type": "@id"
     },
-    "cim:DCTieCorridor.DCPole": {
-      "@type": "@id"
-    },
     "cim:DCTieCorridor.DirectCurrentMasterController": {
-      "@type": "@id"
-    },
-    "nc:DCTieCorridor.MustRunSchedule": {
-      "@type": "@id"
-    },
-    "nc:DCTieCorridor.PowerSchedule": {
       "@type": "@id"
     },
     "nc:DCTieCorridor.SchedulingArea": {
@@ -439,37 +382,16 @@
     "cim:DCTieCorridor.rampingKind": {
       "@type": "@id"
     },
-    "cim:DCTopologicalIsland.DCTopologicalNodes": {
-      "@type": "@id"
-    },
     "cim:DCTopologicalNode.DCEquipmentContainer": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCNodes": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.DCTerminals": {
       "@type": "@id"
     },
     "cim:DCTopologicalNode.DCTopologicalIsland": {
       "@type": "@id"
     },
-    "cim:DCTopologicalNode.SvDCVoltage": {
-      "@type": "@id"
-    },
     "cim:DirectCurrentBipoleController.DirectCurrentMasterController": {
       "@type": "@id"
     },
-    "cim:DirectCurrentBipoleController.DirectCurrentPoleController": {
-      "@type": "@id"
-    },
     "cim:DirectCurrentMasterController.DCTieCorridor": {
-      "@type": "@id"
-    },
-    "cim:DirectCurrentMasterController.DirectCurrentBipoleController": {
-      "@type": "@id"
-    },
-    "cim:DirectCurrentMasterController.DirectCurrentPoleController": {
       "@type": "@id"
     },
     "cim:DirectCurrentPoleController.DCPole": {
@@ -496,12 +418,6 @@
     "cim:Equipment.normallyInService": {
       "@type": "xsd:boolean"
     },
-    "cim:GeographicalRegion.Regions": {
-      "@type": "@id"
-    },
-    "cim:HVDCInterconnectionDynamics.DCEquipmentContainer": {
-      "@type": "@id"
-    },
     "cim:MonopolarDCSystem.DCPole": {
       "@type": "@id"
     },
@@ -509,9 +425,6 @@
       "@type": "xsd:boolean"
     },
     "nc:MustRunSchedule.DCTieCorridor": {
-      "@type": "@id"
-    },
-    "nc:MustRunSchedule.MustRunTimePoint": {
       "@type": "@id"
     },
     "nc:MustRunTimePoint.MustRunSchedule": {
@@ -528,9 +441,6 @@
     },
     "nc:MustRunTimePoint.mustRunQ": {
       "@type": "xsd:float"
-    },
-    "cim:PerLengthDCLineParameter.DCLineSegments": {
-      "@type": "@id"
     },
     "cim:PerLengthDCLineParameter.capacitance": {
       "@type": "xsd:float"
@@ -562,19 +472,7 @@
     "nc:SchedulingArea.DCTieCorridor": {
       "@type": "@id"
     },
-    "cim:SubGeographicalRegion.DCLines": {
-      "@type": "@id"
-    },
     "cim:SubGeographicalRegion.Region": {
-      "@type": "@id"
-    },
-    "cim:SubGeographicalRegion.Substations": {
-      "@type": "@id"
-    },
-    "cim:Substation.DCConverterUnit": {
-      "@type": "@id"
-    },
-    "cim:Substation.DCSubstation": {
       "@type": "@id"
     },
     "cim:Substation.Region": {
@@ -592,9 +490,6 @@
     "cim:SvDCVoltage.v": {
       "@type": "xsd:float"
     },
-    "cim:Terminal.ConverterDCSides": {
-      "@type": "@id"
-    },
     "cim:TieCorridor.delayRegulatingReserve": {
       "@type": "xsd:float"
     },
@@ -603,9 +498,6 @@
     },
     "cim:TieCorridor.thresholdRegulatingReserve": {
       "@type": "xsd:float"
-    },
-    "cim:TopologicalNode.BusNameMarker": {
-      "@type": "@id"
     },
     "cim:TopologicalNode.busNumber": {
       "@type": "xsd:integer"
@@ -616,25 +508,16 @@
     "cim:TopologicalNode.qInjection": {
       "@type": "xsd:float"
     },
-    "cim:VSCDynamics.VsConverter": {
-      "@type": "@id"
-    },
     "cim:VsCapabilityCurve.VsConverter": {
       "@type": "@id"
     },
     "cim:VsCapabilityCurve.referenceVoltage": {
       "@type": "xsd:float"
     },
-    "cim:VsConverter.CapabilityCurve": {
-      "@type": "@id"
-    },
     "cim:VsConverter.VSCDynamics": {
       "@type": "@id"
     },
     "nc:VsConverter.VsConverterRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:VsConverter.VsConverterSchedule": {
       "@type": "@id"
     },
     "cim:VsConverter.delta": {
@@ -683,9 +566,6 @@
       "@type": "@id"
     },
     "nc:VsConverterSchedule.VsConverter": {
-      "@type": "@id"
-    },
-    "nc:VsConverterSchedule.VsConverterTimePoint": {
       "@type": "@id"
     },
     "nc:VsConverterTimePoint.VsConverterSchedule": {

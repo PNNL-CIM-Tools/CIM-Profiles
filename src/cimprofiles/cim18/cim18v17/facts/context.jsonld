@@ -75,9 +75,6 @@
     "cim:CurrentDroopOverride.targetValueInductiveI": {
       "@type": "xsd:float"
     },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
-    },
     "cim:Curve.curveStyle": {
       "@type": "@id"
     },
@@ -131,9 +128,6 @@
     },
     "cim:Equipment.normallyInService": {
       "@type": "xsd:boolean"
-    },
-    "cim:FACTSEquipment.LossCurve": {
-      "@type": "@id"
     },
     "cim:FACTSEquipment.maxC": {
       "@type": "xsd:float"
@@ -192,9 +186,6 @@
     "cim:SSSCController.mode": {
       "@type": "@id"
     },
-    "cim:SSSCSimulationSettings.SSSCController": {
-      "@type": "@id"
-    },
     "cim:SSSCSimulationSettings.deltaX": {
       "@type": "xsd:float"
     },
@@ -238,9 +229,6 @@
       "@type": "xsd:integer"
     },
     "cim:Terminal.phases": {
-      "@type": "@id"
-    },
-    "cim:ThyristorControlledSeriesCompensator.TCSCCompensationPoint": {
       "@type": "@id"
     },
     "cim:ThyristorControlledSeriesCompensator.compensationZ": {

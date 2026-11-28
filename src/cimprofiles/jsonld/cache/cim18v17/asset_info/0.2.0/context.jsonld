@@ -31,9 +31,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:Agent.AgentRole": {
-      "@type": "@id"
-    },
     "cim:AgentRole.Agent": {
       "@type": "@id"
     },
@@ -47,12 +44,6 @@
       "@type": "xsd:float"
     },
     "cim:Asset.AssetInfo": {
-      "@type": "@id"
-    },
-    "cim:Asset.ProcedureDataSet": {
-      "@type": "@id"
-    },
-    "cim:AssetInfo.Asset": {
       "@type": "@id"
     },
     "cim:AssetInfo.CatalogAssetType": {
@@ -86,9 +77,6 @@
       "@type": "xsd:float"
     },
     "cim:BareWireInfo.wireConstructionKind": {
-      "@type": "@id"
-    },
-    "gad:BatteryInfo.ElectricVehicleInfo": {
       "@type": "@id"
     },
     "gad:BatteryInfo.batteryType": {
@@ -256,9 +244,6 @@
     "cim:CatalogAssetType.AssetInfo": {
       "@type": "@id"
     },
-    "cim:CatalogAssetType.ProductAssetModel": {
-      "@type": "@id"
-    },
     "cim:CatalogAssetType.TypeAssetCatalogue": {
       "@type": "@id"
     },
@@ -273,12 +258,6 @@
     },
     "cim:CatalogAssetType.stockItem": {
       "@type": "xsd:boolean"
-    },
-    "cim:CathodicSystem.OverheadStructure": {
-      "@type": "@id"
-    },
-    "gad:ChargingConnectorInfo.ChargingStation": {
-      "@type": "@id"
     },
     "gad:ChargingConnectorInfo.connectorType": {
       "@type": "@id"
@@ -343,9 +322,6 @@
     "cim:ConcentricNeutralCableInfo.neutralStrandRadius": {
       "@type": "xsd:float"
     },
-    "cim:ConductingAssetInfo.ShortCircuitRespone": {
-      "@type": "@id"
-    },
     "cim:ConductingAssetInfo.phaseCount": {
       "@type": "@id"
     },
@@ -388,9 +364,6 @@
     "cim:Dimension.ProductAssetModel": {
       "@type": "@id"
     },
-    "cim:Dimension.TransportStructureInfo": {
-      "@type": "@id"
-    },
     "cim:Dimension.sizeDepth": {
       "@type": "xsd:float"
     },
@@ -402,9 +375,6 @@
     },
     "cim:Dimension.sizeWidth": {
       "@type": "xsd:float"
-    },
-    "cim:DimensionsInfo.ConstructedStructureInfo": {
-      "@type": "@id"
     },
     "cim:DimensionsInfo.sizeDepth": {
       "@type": "xsd:float"
@@ -496,9 +466,6 @@
     "cim:InterrupterUnitInfo.interruptingMedium": {
       "@type": "@id"
     },
-    "cim:InverterCapabilities.InverterInfo": {
-      "@type": "@id"
-    },
     "cim:InverterCapabilities.isModeCapableActivePowerReactivePower": {
       "@type": "xsd:boolean"
     },
@@ -558,9 +525,6 @@
     },
     "cim:InverterInfo.susceptanceOffline": {
       "@type": "xsd:float"
-    },
-    "cim:Manufacturer.ProductAssetModels": {
-      "@type": "@id"
     },
     "cim:MarineStructureInfo.kind": {
       "@type": "@id"
@@ -658,25 +622,13 @@
     "cim:OperatingMechanismInfo.tripVoltage": {
       "@type": "xsd:float"
     },
-    "gad:OperationalLimitSet.AssetInfo": {
-      "@type": "@id"
-    },
     "cim:OverheadStructure.CathodicSystem": {
-      "@type": "@id"
-    },
-    "cim:OverheadStructure.Crossarm": {
       "@type": "@id"
     },
     "cim:OverheadWireInfo.wireConstructionKind": {
       "@type": "@id"
     },
     "cim:PipeBusbarInfo.pipeType": {
-      "@type": "@id"
-    },
-    "cim:PowerTransformerInfo.TransformerTankInfos": {
-      "@type": "@id"
-    },
-    "cim:Procedure.ProcedureDataSets": {
       "@type": "@id"
     },
     "cim:ProcedureDataSet.Asset": {
@@ -692,9 +644,6 @@
       "@type": "@id"
     },
     "cim:ProductAssetModel.CatalogAssetType": {
-      "@type": "@id"
-    },
-    "cim:ProductAssetModel.Dimension": {
       "@type": "@id"
     },
     "cim:ProductAssetModel.Manufacturer": {
@@ -823,9 +772,6 @@
     "cim:ShuntReactorInfo.TapChangerInfo": {
       "@type": "@id"
     },
-    "gad:SolarArrayInfo.SolarPanels": {
-      "@type": "@id"
-    },
     "gad:SolarArrayInfo.orientationAzimuth": {
       "@type": "xsd:float"
     },
@@ -858,24 +804,6 @@
     },
     "cim:SoundInfo.minSoundPressureLevel": {
       "@type": "xsd:float"
-    },
-    "cim:Specification.AssetRequirement": {
-      "@type": "@id"
-    },
-    "cim:Specification.CoolingInfo": {
-      "@type": "@id"
-    },
-    "cim:Specification.Mediums": {
-      "@type": "@id"
-    },
-    "cim:Specification.ReliabilityInfos": {
-      "@type": "@id"
-    },
-    "cim:Specification.SoundInfo": {
-      "@type": "@id"
-    },
-    "cim:Specification.SurfaceTreatmentInfo": {
-      "@type": "@id"
     },
     "cim:StatComInfo.activePowerSourceType": {
       "@type": "@id"
@@ -963,9 +891,6 @@
     },
     "cim:SwitchInfo.ratedInterruptingTime": {
       "@type": "xsd:float"
-    },
-    "cim:TapChangerInfo.ShuntReactorInfo": {
-      "@type": "@id"
     },
     "cim:TapChangerInfo.bil": {
       "@type": "xsd:float"
@@ -1087,13 +1012,7 @@
     "cim:TubeBusbarInfo.wallThickness": {
       "@type": "xsd:float"
     },
-    "cim:TypeAssetCatalogue.TypeAssets": {
-      "@type": "@id"
-    },
     "cim:UndergroundStructureInfo.kind": {
-      "@type": "@id"
-    },
-    "gad:WireInfo.WireBundleInfo": {
       "@type": "@id"
     },
     "cim:WireInfo.constructionKind": {

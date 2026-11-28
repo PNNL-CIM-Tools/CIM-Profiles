@@ -58,13 +58,7 @@
     "nc:ACDCTimePoint.targetUdc": {
       "@type": "xsd:float"
     },
-    "nc:ActivePowerLimit.ActivePowerLimitSchedule": {
-      "@type": "@id"
-    },
     "nc:ActivePowerLimitSchedule.ActivePowerLimit": {
-      "@type": "@id"
-    },
-    "nc:ActivePowerLimitSchedule.ActivePowerLimitTimePoint": {
       "@type": "@id"
     },
     "nc:ActivePowerLimitTimePoint.ActivePowerLimitSchedule": {
@@ -76,13 +70,7 @@
     "nc:ActivePowerLimitTimePoint.value": {
       "@type": "xsd:float"
     },
-    "nc:ApparentPowerLimit.ApparentPowerLimitSchedule": {
-      "@type": "@id"
-    },
     "nc:ApparentPowerLimitSchedule.ApparentPowerLimit": {
-      "@type": "@id"
-    },
-    "nc:ApparentPowerLimitSchedule.ApparentPowerLimitTimePoint": {
       "@type": "@id"
     },
     "nc:ApparentPowerLimitTimePoint.ApparentPowerLimitSchedule": {
@@ -93,21 +81,6 @@
     },
     "nc:ApparentPowerLimitTimePoint.value": {
       "@type": "xsd:float"
-    },
-    "nc:AreaDispatchableUnit.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:AssessedElement.AssessedElementRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:AssessedElement.AssessedElementSchedule": {
-      "@type": "@id"
-    },
-    "nc:AssessedElement.AssessedElementWithContingency": {
-      "@type": "@id"
-    },
-    "nc:AssessedElement.AssessedElementWithRemedialAction": {
-      "@type": "@id"
     },
     "nc:AssessedElement.appointedMargin": {
       "@type": "xsd:float"
@@ -193,9 +166,6 @@
     "nc:AssessedElementRegularSchedule.AssessedElement": {
       "@type": "@id"
     },
-    "nc:AssessedElementRegularSchedule.AssessedElementRegularTimePoint": {
-      "@type": "@id"
-    },
     "nc:AssessedElementRegularTimePoint.AssessedElementRegularSchedule": {
       "@type": "@id"
     },
@@ -215,9 +185,6 @@
       "@type": "xsd:float"
     },
     "nc:AssessedElementSchedule.AssessedElement": {
-      "@type": "@id"
-    },
-    "nc:AssessedElementSchedule.AssessedElementTimePoint": {
       "@type": "@id"
     },
     "nc:AssessedElementTimePoint.AssessedElementSchedule": {
@@ -256,9 +223,6 @@
     "nc:AssessedElementWithContingency.AssessedElement": {
       "@type": "@id"
     },
-    "nc:AssessedElementWithContingency.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
     "nc:AssessedElementWithContingency.combinationConstraintKind": {
       "@type": "@id"
     },
@@ -271,9 +235,6 @@
     "nc:AssessedElementWithRemedialAction.AssessedElement": {
       "@type": "@id"
     },
-    "nc:AssessedElementWithRemedialAction.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
     "nc:AssessedElementWithRemedialAction.combinationConstraintKind": {
       "@type": "@id"
     },
@@ -282,12 +243,6 @@
     },
     "nc:AssessedElementWithRemedialAction.normalEnabled": {
       "@type": "xsd:boolean"
-    },
-    "nc:AsynchronousMachine.AsynchronousMachineRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:AsynchronousMachine.AsynchronousMachineSchedule": {
-      "@type": "@id"
     },
     "nc:AsynchronousMachineRegularSchedule.AsynchronousMachine": {
       "@type": "@id"
@@ -298,9 +253,6 @@
     "nc:AsynchronousMachineSchedule.AsynchronousMachine": {
       "@type": "@id"
     },
-    "nc:AsynchronousMachineSchedule.AsynchronousMachineTimePoint": {
-      "@type": "@id"
-    },
     "nc:AsynchronousMachineTimePoint.AsynchronousMachineSchedule": {
       "@type": "@id"
     },
@@ -309,15 +261,6 @@
     },
     "nc:AsynchronousMachineTimePoint.atTime": {
       "@type": "xsd:dateTime"
-    },
-    "nc:AutomationFunction.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
-    "nc:AvailabilitySchedule.ActualSchedule": {
-      "@type": "@id"
-    },
-    "nc:AvailabilitySchedule.PlannedSchedule": {
-      "@type": "@id"
     },
     "nc:AvailabilityTimePoint.GenericAvailabilitySchedule": {
       "@type": "@id"
@@ -355,13 +298,7 @@
     "nc:BaseTimeSeries.timeSeriesKind": {
       "@type": "@id"
     },
-    "nc:BatteryUnit.BatteryUnitSchedule": {
-      "@type": "@id"
-    },
     "nc:BatteryUnitSchedule.BatteryUnit": {
-      "@type": "@id"
-    },
-    "nc:BatteryUnitSchedule.BatteryUnitTimePoint": {
       "@type": "@id"
     },
     "nc:BatteryUnitTimePoint.BatteryUnitSchedule": {
@@ -375,15 +312,6 @@
     },
     "nc:BatteryUnitTimePoint.storedE": {
       "@type": "xsd:float"
-    },
-    "nc:BiddingZone.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:BiddingZoneBorder.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:CapacitySchedule.CapacityTimePoint": {
-      "@type": "@id"
     },
     "nc:CapacityTimePoint.CapacitySchedule": {
       "@type": "@id"
@@ -415,19 +343,10 @@
     "nc:CapacityTimePoint.minQ": {
       "@type": "xsd:float"
     },
-    "nc:Contingency.ContingencySchedule": {
-      "@type": "@id"
-    },
-    "nc:Contingency.ContingencyWithRemedialAction": {
-      "@type": "@id"
-    },
     "cim:Contingency.mustStudy": {
       "@type": "xsd:boolean"
     },
     "nc:ContingencySchedule.Contingency": {
-      "@type": "@id"
-    },
-    "nc:ContingencySchedule.ContingencyTimePoint": {
       "@type": "@id"
     },
     "nc:ContingencyTimePoint.ContingencySchedule": {
@@ -445,9 +364,6 @@
     "nc:ContingencyWithRemedialAction.Contingency": {
       "@type": "@id"
     },
-    "nc:ContingencyWithRemedialAction.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
     "nc:ContingencyWithRemedialAction.combinationConstraintKind": {
       "@type": "@id"
     },
@@ -457,9 +373,6 @@
     "nc:ContingencyWithRemedialAction.normalEnabled": {
       "@type": "xsd:boolean"
     },
-    "nc:ControlArea.ControlAreaRegularSchedule": {
-      "@type": "@id"
-    },
     "nc:ControlAreaRegularSchedule.ControlArea": {
       "@type": "@id"
     },
@@ -468,9 +381,6 @@
     },
     "nc:ControlAreaRegularSchedule.pTolerance": {
       "@type": "xsd:float"
-    },
-    "nc:ControlAreaSchedule.ControlAreaTimePoint": {
-      "@type": "@id"
     },
     "nc:ControlAreaTimePoint.ControlAreaSchedule": {
       "@type": "@id"
@@ -483,9 +393,6 @@
     },
     "nc:ControlAreaTimePoint.pTolerance": {
       "@type": "xsd:float"
-    },
-    "nc:CostVolumePotentialSchedule.CostVolumePotentialTimePoint": {
-      "@type": "@id"
     },
     "nc:CostVolumePotentialTimePoint.CostVolumePotentialSchedule": {
       "@type": "@id"
@@ -501,12 +408,6 @@
     },
     "nc:CostVolumePotentialTimePoint.price": {
       "@type": "xsd:decimal"
-    },
-    "nc:CrossBorderRelevance.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
-    "nc:CsConverter.CsConverterSchedule": {
-      "@type": "@id"
     },
     "nc:CsConverterRegularSchedule.CsConverter": {
       "@type": "@id"
@@ -526,9 +427,6 @@
     "nc:CsConverterRegularSchedule.targetIdc": {
       "@type": "xsd:float"
     },
-    "nc:CsConverterSchedule.CsConverterTimePoint": {
-      "@type": "@id"
-    },
     "nc:CsConverterTimePoint.CsConverterSchedule": {
       "@type": "@id"
     },
@@ -547,13 +445,7 @@
     "nc:CsConverterTimePoint.targetIdc": {
       "@type": "xsd:float"
     },
-    "nc:CurrentLimit.CurrentLimitSchedule": {
-      "@type": "@id"
-    },
     "nc:CurrentLimitSchedule.CurrentLimit": {
-      "@type": "@id"
-    },
-    "cim:Curve.CurveDatas": {
       "@type": "@id"
     },
     "cim:Curve.curveStyle": {
@@ -598,15 +490,6 @@
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
     },
-    "nc:DCPole.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:DCTieCorridor.MustRunSchedule": {
-      "@type": "@id"
-    },
-    "nc:DCTieCorridor.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:EnablingTimePoint.GenericEnablingSchedule": {
       "@type": "@id"
     },
@@ -616,13 +499,7 @@
     "nc:EnablingTimePoint.enabled": {
       "@type": "xsd:boolean"
     },
-    "nc:EnergyBlockComponent.EnergyBlockOrder": {
-      "@type": "@id"
-    },
     "nc:EnergyBlockOrder.EnergyBlockComponent": {
-      "@type": "@id"
-    },
-    "nc:EnergyBlockOrder.GenericSequenceSchedule": {
       "@type": "@id"
     },
     "nc:EnergyBlockOrder.normalParticipationFactor": {
@@ -643,12 +520,6 @@
     "nc:EnergyBlockOrder.sequence": {
       "@type": "xsd:integer"
     },
-    "nc:EnergyConnection.EnergyConnectionSchedule": {
-      "@type": "@id"
-    },
-    "nc:EnergyConnection.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:EnergyConnectionRegularSchedule.EnergyConnection": {
       "@type": "@id"
     },
@@ -659,9 +530,6 @@
       "@type": "xsd:float"
     },
     "nc:EnergyConnectionSchedule.EnergyConnection": {
-      "@type": "@id"
-    },
-    "nc:EnergyConnectionSchedule.EnergyConnectionTimePoint": {
       "@type": "@id"
     },
     "nc:EnergyConnectionTimePoint.EnergyConnectionSchedule": {
@@ -676,30 +544,6 @@
     "nc:EnergyConnectionTimePoint.q": {
       "@type": "xsd:float"
     },
-    "nc:EnergyConsumer.PowerShiftKeySchedule": {
-      "@type": "@id"
-    },
-    "nc:EnergyGroup.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:EnergySource.PowerShiftKeySchedule": {
-      "@type": "@id"
-    },
-    "nc:Equipment.InServiceRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:Equipment.InServiceSchedule": {
-      "@type": "@id"
-    },
-    "nc:EquivalentInjection.EquivalentInjectionRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:EquivalentInjection.EquivalentInjectionSchedule": {
-      "@type": "@id"
-    },
-    "nc:EquivalentInjection.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:EquivalentInjectionRegularSchedule.EquivalentInjection": {
       "@type": "@id"
     },
@@ -713,9 +557,6 @@
       "@type": "xsd:float"
     },
     "nc:EquivalentInjectionSchedule.EquivalentInjection": {
-      "@type": "@id"
-    },
-    "nc:EquivalentInjectionSchedule.EquivalentInjectionTimePoint": {
       "@type": "@id"
     },
     "nc:EquivalentInjectionTimePoint.EquivalentInjectionSchedule": {
@@ -736,9 +577,6 @@
     "nc:EventSchedule.ActualAvailabilitySchedule": {
       "@type": "@id"
     },
-    "nc:EventSchedule.EventTimePoint": {
-      "@type": "@id"
-    },
     "nc:EventSchedule.PlannedAvailabilitySchedule": {
       "@type": "@id"
     },
@@ -754,12 +592,6 @@
     "nc:EventTimePoint.isActive": {
       "@type": "xsd:boolean"
     },
-    "nc:ExternalNetworkInjection.ExternalNetowrkInjectionSchedule": {
-      "@type": "@id"
-    },
-    "nc:ExternalNetworkInjection.ExternalNetworkinjectionRegularSchedule": {
-      "@type": "@id"
-    },
     "nc:ExternalNetworkInjectionRegularSchedule.ExternalNetworkinjection": {
       "@type": "@id"
     },
@@ -770,9 +602,6 @@
       "@type": "xsd:float"
     },
     "nc:ExternalNetworkInjectionSchedule.ExternalNetworkInjection": {
-      "@type": "@id"
-    },
-    "nc:ExternalNetworkInjectionSchedule.ExternalNetworkinjectionTimePoint": {
       "@type": "@id"
     },
     "nc:ExternalNetworkInjectionTimePoint.ExternalNetworkInjectionSchedule": {
@@ -787,28 +616,7 @@
     "nc:ExternalNetworkInjectionTimePoint.q": {
       "@type": "xsd:float"
     },
-    "nc:FunctionBlock.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnit.GeneratingUnitSchedule": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnit.MustRunSchedule": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnit.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnit.PowerShiftKeySchedule": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnit.UnitCostSchedule": {
-      "@type": "@id"
-    },
     "nc:GeneratingUnitSchedule.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "nc:GeneratingUnitSchedule.GeneratingUnitTimePoint": {
       "@type": "@id"
     },
     "nc:GeneratingUnitTimePoint.GeneratingUnitSchedule": {
@@ -819,9 +627,6 @@
     },
     "nc:GeneratingUnitTimePoint.normalPF": {
       "@type": "xsd:float"
-    },
-    "nc:GenericAvailableSchedule.AvailabilityTimePoint": {
-      "@type": "@id"
     },
     "nc:GenericAvailableSchedule.RemedialAction": {
       "@type": "@id"
@@ -841,9 +646,6 @@
     "nc:GenericEnablingSchedule.CrossBorderRelevance": {
       "@type": "@id"
     },
-    "nc:GenericEnablingSchedule.EnablingTimePoint": {
-      "@type": "@id"
-    },
     "nc:GenericEnablingSchedule.FunctionBlock": {
       "@type": "@id"
     },
@@ -854,12 +656,6 @@
       "@type": "@id"
     },
     "nc:GenericSequenceSchedule.EnergyBlockOrder": {
-      "@type": "@id"
-    },
-    "nc:GenericSequenceSchedule.SequenceTimePoint": {
-      "@type": "@id"
-    },
-    "nc:GenericValueSchedule.GenericValueTimePoint": {
       "@type": "@id"
     },
     "nc:GenericValueSchedule.RangeConstraint": {
@@ -883,9 +679,6 @@
     "nc:GridStateAlteration.GridStateAlterationRemedialAction": {
       "@type": "@id"
     },
-    "nc:GridStateAlteration.GridStateAlterationSchedule": {
-      "@type": "@id"
-    },
     "nc:GridStateAlteration.enabled": {
       "@type": "xsd:boolean"
     },
@@ -904,16 +697,7 @@
     "nc:GridStateAlteration.timePerStage": {
       "@type": "xsd:duration"
     },
-    "nc:GridStateAlterationCollection.GridStateAlteration": {
-      "@type": "@id"
-    },
-    "nc:GridStateAlterationRemedialAction.GridStateAlteration": {
-      "@type": "@id"
-    },
     "nc:GridStateAlterationSchedule.GridStateAlteration": {
-      "@type": "@id"
-    },
-    "nc:GridStateAlterationSchedule.GridStateAlterationTimePoint": {
       "@type": "@id"
     },
     "nc:GridStateAlterationTimePoint.GridStateAlterationSchedule": {
@@ -927,12 +711,6 @@
     },
     "nc:GridStateAlterationTimePoint.participationFactor": {
       "@type": "xsd:float"
-    },
-    "nc:HourPattern.BaseRegularIntervalSchedule": {
-      "@type": "@id"
-    },
-    "nc:HourPattern.HourPeriod": {
-      "@type": "@id"
     },
     "nc:HourPattern.energyDemandKind": {
       "@type": "@id"
@@ -949,16 +727,10 @@
     "nc:HourPeriod.startTime": {
       "@type": "xsd:time"
     },
-    "nc:HydroPump.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:InServiceRegularSchedule.Equipment": {
       "@type": "@id"
     },
     "nc:InServiceSchedule.Equipment": {
-      "@type": "@id"
-    },
-    "nc:InServiceSchedule.InServiceTimePoint": {
       "@type": "@id"
     },
     "nc:InServiceTimePoint.InServiceSchedule": {
@@ -966,9 +738,6 @@
     },
     "nc:InServiceTimePoint.atTime": {
       "@type": "xsd:dateTime"
-    },
-    "nc:InfeedLimit.InfeedLimitSchedule": {
-      "@type": "@id"
     },
     "cim:InfeedLimit.normalValueA": {
       "@type": "xsd:float"
@@ -985,9 +754,6 @@
     "nc:InfeedLimitSchedule.InfeedLimit": {
       "@type": "@id"
     },
-    "nc:InfeedLimitSchedule.InfeedLimitTimePoint": {
-      "@type": "@id"
-    },
     "nc:InfeedLimitTimePoint.InfeedLimitSchedule": {
       "@type": "@id"
     },
@@ -999,9 +765,6 @@
     },
     "nc:InfeedLimitTimePoint.valueW": {
       "@type": "xsd:float"
-    },
-    "cim:IrregularIntervalSchedule.TimePoints": {
-      "@type": "@id"
     },
     "cim:IrregularTimePoint.IntervalSchedule": {
       "@type": "@id"
@@ -1022,9 +785,6 @@
       "@type": "@id"
     },
     "nc:MustRunSchedule.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "nc:MustRunSchedule.MustRunTimePoint": {
       "@type": "@id"
     },
     "nc:MustRunTimePoint.MustRunSchedule": {
@@ -1061,15 +821,6 @@
       "@type": "xsd:duration"
     },
     "nc:PowerBidDependency.kind": {
-      "@type": "@id"
-    },
-    "nc:PowerBidSchedule.DependentBidDelay": {
-      "@type": "@id"
-    },
-    "nc:PowerBidSchedule.PowerBidDependency": {
-      "@type": "@id"
-    },
-    "nc:PowerBidSchedule.PowerBidScheduleTimePoint": {
       "@type": "@id"
     },
     "nc:PowerBidSchedule.activationCost": {
@@ -1141,15 +892,6 @@
     "nc:PowerBidScheduleTimePoint.stepIncrementP": {
       "@type": "xsd:float"
     },
-    "nc:PowerElectronicsUnit.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:PowerRemedialAction.PowerRemedialActionSchedule": {
-      "@type": "@id"
-    },
-    "nc:PowerRemedialAction.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:PowerRemedialAction.maxRegulatingDown": {
       "@type": "xsd:float"
     },
@@ -1157,9 +899,6 @@
       "@type": "xsd:float"
     },
     "nc:PowerRemedialActionSchedule.PowerRemedialAction": {
-      "@type": "@id"
-    },
-    "nc:PowerRemedialActionSchedule.PowerRemedialActionTimePoint": {
       "@type": "@id"
     },
     "nc:PowerRemedialActionTimePoint.PowerRemedialActionSchedule": {
@@ -1213,9 +952,6 @@
     "nc:PowerSchedule.PowerScheduleAction": {
       "@type": "@id"
     },
-    "nc:PowerSchedule.PowerTimePoint": {
-      "@type": "@id"
-    },
     "nc:PowerSchedule.ScheduleResource": {
       "@type": "@id"
     },
@@ -1228,9 +964,6 @@
     "nc:PowerSchedule.powerScheduleKind": {
       "@type": "@id"
     },
-    "nc:PowerScheduleAction.PowerSchedule": {
-      "@type": "@id"
-    },
     "nc:PowerShiftKeySchedule.EnergyConsumer": {
       "@type": "@id"
     },
@@ -1238,9 +971,6 @@
       "@type": "@id"
     },
     "nc:PowerShiftKeySchedule.GeneratingUnit": {
-      "@type": "@id"
-    },
-    "nc:PowerShiftKeySchedule.ParticipationFactorTimePoint": {
       "@type": "@id"
     },
     "nc:PowerTimePoint.PowerSchedule": {
@@ -1270,15 +1000,6 @@
     "nc:PowerTimePoint.q": {
       "@type": "xsd:float"
     },
-    "nc:PowerTransferCorridor.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
-    "nc:RangeConstraint.GenericValueSchedule": {
-      "@type": "@id"
-    },
-    "cim:RegularIntervalSchedule.TimePoints": {
-      "@type": "@id"
-    },
     "cim:RegularIntervalSchedule.endTime": {
       "@type": "xsd:dateTime"
     },
@@ -1300,12 +1021,6 @@
     "cim:RegularTimePoint.value3": {
       "@type": "xsd:float"
     },
-    "nc:RegulatingControl.RegulatingControlRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:RegulatingControl.RegulatingControlSchedule": {
-      "@type": "@id"
-    },
     "nc:RegulatingControlRegularSchedule.RegulatingControl": {
       "@type": "@id"
     },
@@ -1325,9 +1040,6 @@
       "@type": "@id"
     },
     "nc:RegulatingControlSchedule.RegulatingControl": {
-      "@type": "@id"
-    },
-    "nc:RegulatingControlSchedule.RegulatingControlTimePoint": {
       "@type": "@id"
     },
     "nc:RegulatingControlTimePoint.RegulatingControlSchedule": {
@@ -1351,15 +1063,6 @@
     "nc:RegulatingControlTimePoint.targetValueUnitMultiplier": {
       "@type": "@id"
     },
-    "nc:RemedialAction.GenericAvailableSchedule": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionDependency.GenericEnablingSchedule": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionGroup.RemedialActionGroupSchedule": {
-      "@type": "@id"
-    },
     "nc:RemedialActionGroup.maxRegulatingDown": {
       "@type": "xsd:float"
     },
@@ -1367,9 +1070,6 @@
       "@type": "xsd:float"
     },
     "nc:RemedialActionGroupSchedule.RemedialActionGroup": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionGroupSchedule.RemedialActionGroupTimePoint": {
       "@type": "@id"
     },
     "nc:RemedialActionGroupTimePoint.RemedialActionGroupSchedule": {
@@ -1384,15 +1084,6 @@
     "nc:RemedialActionGroupTimePoint.maxRegulatingUp": {
       "@type": "xsd:float"
     },
-    "nc:RemedialActionSchedule.EventSchedule": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionSchedule.GenericValueSchedule": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionScheme.RemedialActionSchemeSchedule": {
-      "@type": "@id"
-    },
     "cim:RemedialActionScheme.armed": {
       "@type": "xsd:boolean"
     },
@@ -1406,9 +1097,6 @@
       "@type": "xsd:boolean"
     },
     "nc:RemedialActionSchemeSchedule.ArmedRemedialAction": {
-      "@type": "@id"
-    },
-    "nc:RemedialActionSchemeSchedule.RemedialActionSchemeTimePoint": {
       "@type": "@id"
     },
     "nc:RemedialActionSchemeSchedule.SchemeRemedialAction": {
@@ -1426,18 +1114,6 @@
     "nc:RemedialActionSchemeTimePoint.inService": {
       "@type": "xsd:boolean"
     },
-    "nc:ScheduleResource.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:SchedulingArea.PowerSchedule": {
-      "@type": "@id"
-    },
-    "nc:SchemeRemedialAction.RemedialActionSchemeSchedule": {
-      "@type": "@id"
-    },
-    "nc:Season.BaseRegularIntervalSchedule": {
-      "@type": "@id"
-    },
     "nc:SequenceTimePoint.GenericSequenceSchedule": {
       "@type": "@id"
     },
@@ -1447,13 +1123,7 @@
     "nc:SequenceTimePoint.sequence": {
       "@type": "xsd:integer"
     },
-    "nc:ShuntCompensator.ShuntCompensatorSchedule": {
-      "@type": "@id"
-    },
     "nc:ShuntCompensatorSchedule.ShuntCompensator": {
-      "@type": "@id"
-    },
-    "nc:ShuntCompensatorSchedule.ShuntCompensatorTimePoint": {
       "@type": "@id"
     },
     "nc:ShuntCompensatorTimePoint.ShuntCompensatorSchedule": {
@@ -1464,9 +1134,6 @@
     },
     "nc:ShuntCompensatorTimePoint.sections": {
       "@type": "xsd:float"
-    },
-    "nc:StageTriggerSchedule.StageTriggerTimePoint": {
-      "@type": "@id"
     },
     "nc:StageTriggerTimePoint.StageTriggerSchedule": {
       "@type": "@id"
@@ -1480,13 +1147,7 @@
     "nc:StageTriggerTimePoint.inService": {
       "@type": "xsd:boolean"
     },
-    "nc:StaticVarCompensator.StaticVarCompensatorSchedule": {
-      "@type": "@id"
-    },
     "nc:StaticVarCompensatorSchedule.StaticVarCompensator": {
-      "@type": "@id"
-    },
-    "nc:StaticVarCompensatorSchedule.StaticVarCompensatorTimePoint": {
       "@type": "@id"
     },
     "nc:StaticVarCompensatorTimePoint.StaticVarCompensatorSchedule": {
@@ -1498,19 +1159,10 @@
     "nc:StaticVarCompensatorTimePoint.q": {
       "@type": "xsd:float"
     },
-    "nc:Switch.SwitchRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:Switch.SwitchSchedule": {
-      "@type": "@id"
-    },
     "nc:SwitchRegularSchedule.Switch": {
       "@type": "@id"
     },
     "nc:SwitchSchedule.Switch": {
-      "@type": "@id"
-    },
-    "nc:SwitchSchedule.SwitchTimePoint": {
       "@type": "@id"
     },
     "nc:SwitchTimePoint.SwitchSchedule": {
@@ -1518,12 +1170,6 @@
     },
     "nc:SwitchTimePoint.atTime": {
       "@type": "xsd:dateTime"
-    },
-    "nc:SynchronousMachine.SynchronousMachineRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:SynchronousMachine.SynchronousMachineSchedule": {
-      "@type": "@id"
     },
     "nc:SynchronousMachineRegularSchedule.SynchronousMachine": {
       "@type": "@id"
@@ -1534,9 +1180,6 @@
     "nc:SynchronousMachineSchedule.SynchronousMachine": {
       "@type": "@id"
     },
-    "nc:SynchronousMachineSchedule.SynchronousMachineTimePoint": {
-      "@type": "@id"
-    },
     "nc:SynchronousMachineTimePoint.SynchronousMachineSchedule": {
       "@type": "@id"
     },
@@ -1544,15 +1187,6 @@
       "@type": "xsd:dateTime"
     },
     "nc:SynchronousMachineTimePoint.operatingMode": {
-      "@type": "@id"
-    },
-    "nc:TapChanger.TapRegularSchedule": {
-      "@type": "@id"
-    },
-    "nc:TapChangerControl.TapChangerControlSchedule": {
-      "@type": "@id"
-    },
-    "nc:TapChangerControlSchedule.RegulatingControlTimePoint": {
       "@type": "@id"
     },
     "nc:TapChangerControlSchedule.TapChangerControl": {
@@ -1573,9 +1207,6 @@
     "nc:UnitCostSchedule.GeneratingUnit": {
       "@type": "@id"
     },
-    "nc:UnitCostSchedule.UnitCostTimePoint": {
-      "@type": "@id"
-    },
     "nc:UnitCostTimePoint.UnitCostSchedule": {
       "@type": "@id"
     },
@@ -1588,9 +1219,6 @@
     "nc:UnitCostTimePoint.warmStartupCost": {
       "@type": "xsd:decimal"
     },
-    "nc:VoltageAngleSchedule.VoltageAngletimePoint": {
-      "@type": "@id"
-    },
     "nc:VoltageAngleTimePoint.VoltageAngleSchedule": {
       "@type": "@id"
     },
@@ -1600,13 +1228,7 @@
     "nc:VoltageAngleTimePoint.value": {
       "@type": "xsd:float"
     },
-    "nc:VoltageLimit.VoltageLimitSchedule": {
-      "@type": "@id"
-    },
     "nc:VoltageLimitSchedule.VoltageLimit": {
-      "@type": "@id"
-    },
-    "nc:VoltageLimitSchedule.VoltageLimitTimePoint": {
       "@type": "@id"
     },
     "nc:VoltageLimitTimePoint.VoltageLimitSchedule": {
@@ -1618,13 +1240,7 @@
     "nc:VoltageLimitTimePoint.value": {
       "@type": "xsd:float"
     },
-    "nc:VsConverter.VsConverterSchedule": {
-      "@type": "@id"
-    },
     "nc:VsConverterSchedule.VsConverter": {
-      "@type": "@id"
-    },
-    "nc:VsConverterSchedule.VsConverterTimePoint": {
       "@type": "@id"
     },
     "nc:VsConverterTimePoint.VsConverterSchedule": {

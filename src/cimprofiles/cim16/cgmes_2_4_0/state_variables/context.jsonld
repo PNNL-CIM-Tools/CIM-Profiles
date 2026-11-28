@@ -102,18 +102,6 @@
     "cim:TopologicalIsland.TopologicalNodes": {
       "@type": "@id"
     },
-    "cim:TopologicalNode.AngleRefTopologicalIsland": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.TopologicalIsland": {
-      "@type": "@id"
-    },
     "cim:VsConverter.delta": {
       "@type": "xsd:float"
     },

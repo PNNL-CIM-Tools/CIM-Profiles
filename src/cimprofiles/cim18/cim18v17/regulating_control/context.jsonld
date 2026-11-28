@@ -37,9 +37,6 @@
     "cim:AutomationFunction.normalEnabled": {
       "@type": "xsd:boolean"
     },
-    "cim:ConnectionAngleTapChanger.ConnectionAngleTapChangerTable": {
-      "@type": "@id"
-    },
     "cim:ConnectionAngleTapChanger.connectionAngleStepSize": {
       "@type": "xsd:float"
     },
@@ -60,9 +57,6 @@
     },
     "cim:ConnectionAngleTapChangerTable.windingConnectionAngle": {
       "@type": "xsd:float"
-    },
-    "cim:Curve.CurveDatas": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -105,15 +99,6 @@
     },
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
-    },
-    "cim:EquipmentController.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTabular": {
-      "@type": "@id"
     },
     "cim:ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable": {
       "@type": "@id"
@@ -166,12 +151,6 @@
     "cim:PhaseTapChangerNonLinear.xMax": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
       "@type": "@id"
     },
@@ -187,13 +166,7 @@
     "cim:RatioTapChanger.stepVoltageIncrement": {
       "@type": "xsd:float"
     },
-    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
-      "@type": "@id"
-    },
     "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
-      "@type": "@id"
-    },
-    "cim:ReactiveCapabilityCurve.InitiallyUsedBySynchronousMachine": {
       "@type": "@id"
     },
     "cim:ReactiveCapabilityCurve.SynchronousMachine": {
@@ -216,9 +189,6 @@
     },
     "cim:RegulatingCondEq.controlEnabled": {
       "@type": "xsd:boolean"
-    },
-    "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
     },
     "cim:RegulatingControl.Terminal": {
       "@type": "@id"
@@ -275,9 +245,6 @@
       "@type": "xsd:float"
     },
     "cim:SynchronousMachine.InitialReactiveCapabilityCurve": {
-      "@type": "@id"
-    },
-    "cim:SynchronousMachine.ReactiveCapabilityCurve": {
       "@type": "@id"
     },
     "cim:SynchronousMachine.aVRToManualLag": {
@@ -337,9 +304,6 @@
     "cim:TapChanger.subsequentDelay": {
       "@type": "xsd:float"
     },
-    "cim:TapChangerControl.TapChanger": {
-      "@type": "@id"
-    },
     "cim:TapChangerControl.lineDropCompensation": {
       "@type": "xsd:boolean"
     },
@@ -372,15 +336,6 @@
     },
     "gad:TapChangerControl.reversingPowerThreshold": {
       "@type": "xsd:float"
-    },
-    "cim:Terminal.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.PhaseTapChanger": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.RatioTapChanger": {
-      "@type": "@id"
     }
   }
 }

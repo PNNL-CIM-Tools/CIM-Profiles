@@ -53,19 +53,19 @@
     "cim:ActivePowerControlFunction.targetValue": {
       "@type": "xsd:float"
     },
+    "cim:AreaInterchangeController.ControlArea": {
+      "@type": "@id"
+    },
     "cim:AreaInterchangeController.pTolerance": {
       "@type": "xsd:float"
     },
-    "cim:AreaInterchangeController.ControlArea": {
+    "cim:AutomationBlockGroup.AutomationFunction": {
       "@type": "@id"
     },
     "cim:AutomationBlockGroup.priority": {
       "@type": "xsd:integer"
     },
-    "cim:AutomationBlockGroup.FunctionBlock": {
-      "@type": "@id"
-    },
-    "cim:AutomationBlockGroup.AutomationFunction": {
+    "cim:AutomationFunction.PartOf": {
       "@type": "@id"
     },
     "cim:AutomationFunction.enabled": {
@@ -74,19 +74,13 @@
     "cim:AutomationFunction.normalEnabled": {
       "@type": "xsd:boolean"
     },
-    "cim:AutomationFunction.AutomationBlockGroup": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.HasPart": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.FunctionBlock": {
-      "@type": "@id"
-    },
-    "cim:AutomationFunction.PartOf": {
-      "@type": "@id"
-    },
     "cim:CompensatorController.mode": {
+      "@type": "@id"
+    },
+    "cim:ControlArea.AreaInterchangeController": {
+      "@type": "@id"
+    },
+    "cim:ControlArea.PowerFrequencyController": {
       "@type": "@id"
     },
     "cim:ControlArea.netInterchange": {
@@ -98,17 +92,8 @@
     "cim:ControlArea.type": {
       "@type": "@id"
     },
-    "cim:ControlArea.AreaInterchangeController": {
-      "@type": "@id"
-    },
-    "cim:ControlArea.PowerFrequencyController": {
-      "@type": "@id"
-    },
     "cim:ControlFunctionBlock.isDiscrete": {
       "@type": "xsd:boolean"
-    },
-    "cim:ControlFunctionBlock.targetDeadband": {
-      "@type": "xsd:float"
     },
     "cim:ControlFunctionBlock.maxAllowedTargetValue": {
       "@type": "xsd:float"
@@ -120,6 +105,9 @@
       "@type": "xsd:float"
     },
     "cim:ControlFunctionBlock.normalMinAllowedTargetValue": {
+      "@type": "xsd:float"
+    },
+    "cim:ControlFunctionBlock.targetDeadband": {
       "@type": "xsd:float"
     },
     "cim:CurrentControlFunction.targetValue": {
@@ -143,6 +131,9 @@
     "cim:CurrentDroopControlFunction.targetValueInductive": {
       "@type": "xsd:float"
     },
+    "cim:CurrentDroopOverride.SSSCController": {
+      "@type": "@id"
+    },
     "cim:CurrentDroopOverride.droopCapacitive": {
       "@type": "xsd:float"
     },
@@ -163,9 +154,6 @@
     },
     "cim:CurrentDroopOverride.targetValueInductiveI": {
       "@type": "xsd:float"
-    },
-    "cim:CurrentDroopOverride.SSSCController": {
-      "@type": "@id"
     },
     "cim:Curve.curveStyle": {
       "@type": "@id"
@@ -194,7 +182,7 @@
     "cim:Curve.y3Unit": {
       "@type": "@id"
     },
-    "cim:Curve.CurveDatas": {
+    "cim:CurveData.Curve": {
       "@type": "@id"
     },
     "cim:CurveData.xvalue": {
@@ -209,9 +197,6 @@
     "cim:CurveData.y3value": {
       "@type": "xsd:float"
     },
-    "cim:CurveData.Curve": {
-      "@type": "@id"
-    },
     "cim:DCCurrentControlFunction.droop": {
       "@type": "xsd:float"
     },
@@ -221,10 +206,7 @@
     "cim:DCCurrentControlFunction.targetValue": {
       "@type": "xsd:float"
     },
-    "cim:DCSubstationBipole.DirectCurrentSubstationBipoleController": {
-      "@type": "@id"
-    },
-    "cim:DCSubstationPole.DirectCurrentSubstationPoleController": {
+    "cim:DCTieCorridor.DirectCurrentMasterController": {
       "@type": "@id"
     },
     "cim:DCTieCorridor.maxRegulatingReserve": {
@@ -242,9 +224,6 @@
     "cim:DCTieCorridor.rampingKind": {
       "@type": "@id"
     },
-    "cim:DCTieCorridor.DirectCurrentMasterController": {
-      "@type": "@id"
-    },
     "cim:DCVoltageControlFunction.targetValue": {
       "@type": "xsd:float"
     },
@@ -254,16 +233,7 @@
     "cim:DirectCurrentEquipmentController.mode": {
       "@type": "@id"
     },
-    "cim:DirectCurrentMasterController.DirectCurrentBipoleController": {
-      "@type": "@id"
-    },
-    "cim:DirectCurrentMasterController.DirectCurrentSubstationController": {
-      "@type": "@id"
-    },
     "cim:DirectCurrentMasterController.DCTieCorridor": {
-      "@type": "@id"
-    },
-    "cim:DirectCurrentPoleController.ACDCConverterController": {
       "@type": "@id"
     },
     "cim:DirectCurrentSubstationBipoleController.DCSubstationBipole": {
@@ -275,20 +245,11 @@
     "cim:DirectCurrentSubstationPoleController.DCSubstationPole": {
       "@type": "@id"
     },
-    "cim:EquipmentController.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:FACTSEquipment.LossCurve": {
-      "@type": "@id"
-    },
     "cim:FrequencyControlFunction.frequencyBias": {
       "@type": "xsd:float"
     },
     "cim:FrequencyControlFunction.targetValue": {
       "@type": "xsd:float"
-    },
-    "cim:FrequencyMonitoringTerminal.priority": {
-      "@type": "xsd:integer"
     },
     "cim:FrequencyMonitoringTerminal.PowerFrequencyController": {
       "@type": "@id"
@@ -296,17 +257,8 @@
     "cim:FrequencyMonitoringTerminal.Terminal": {
       "@type": "@id"
     },
-    "cim:FunctionBlock.enabled": {
-      "@type": "xsd:boolean"
-    },
-    "cim:FunctionBlock.normalEnabled": {
-      "@type": "xsd:boolean"
-    },
-    "cim:FunctionBlock.Input": {
-      "@type": "@id"
-    },
-    "cim:FunctionBlock.FunctionOutputVariable": {
-      "@type": "@id"
+    "cim:FrequencyMonitoringTerminal.priority": {
+      "@type": "xsd:integer"
     },
     "cim:FunctionBlock.AutomationBlockGroup": {
       "@type": "@id"
@@ -317,8 +269,11 @@
     "cim:FunctionBlock.FunctionBlockType": {
       "@type": "@id"
     },
-    "cim:FunctionBlockType.FunctionBlock": {
-      "@type": "@id"
+    "cim:FunctionBlock.enabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:FunctionBlock.normalEnabled": {
+      "@type": "xsd:boolean"
     },
     "cim:FunctionInputVariable.Function": {
       "@type": "@id"
@@ -332,17 +287,8 @@
     "cim:ImpedanceControlFunction.targetValue": {
       "@type": "xsd:float"
     },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTablePoint": {
+    "cim:ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable": {
       "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTable.ImpedanceTapChangerTabular": {
-      "@type": "@id"
-    },
-    "cim:ImpedanceTapChangerTablePoint.ratio": {
-      "@type": "xsd:float"
-    },
-    "cim:ImpedanceTapChangerTablePoint.step": {
-      "@type": "xsd:integer"
     },
     "cim:ImpedanceTapChangerTablePoint.angle": {
       "@type": "xsd:float"
@@ -356,6 +302,12 @@
     "cim:ImpedanceTapChangerTablePoint.rEnd3": {
       "@type": "xsd:float"
     },
+    "cim:ImpedanceTapChangerTablePoint.ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:ImpedanceTapChangerTablePoint.step": {
+      "@type": "xsd:integer"
+    },
     "cim:ImpedanceTapChangerTablePoint.xEnd1": {
       "@type": "xsd:float"
     },
@@ -364,9 +316,6 @@
     },
     "cim:ImpedanceTapChangerTablePoint.xEnd3": {
       "@type": "xsd:float"
-    },
-    "cim:ImpedanceTapChangerTablePoint.ImpedanceTapChangerTable": {
-      "@type": "@id"
     },
     "cim:ImpedanceTapChangerTabular.ImpedanceTapChangerTable": {
       "@type": "@id"
@@ -395,22 +344,13 @@
     "cim:PhaseTapChangerNonLinear.xMax": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTablePoint": {
-      "@type": "@id"
-    },
-    "cim:PhaseTapChangerTable.PhaseTapChangerTabular": {
+    "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
       "@type": "@id"
     },
     "cim:PhaseTapChangerTablePoint.angle": {
       "@type": "xsd:float"
     },
-    "cim:PhaseTapChangerTablePoint.PhaseTapChangerTable": {
-      "@type": "@id"
-    },
     "cim:PhaseTapChangerTabular.PhaseTapChangerTable": {
-      "@type": "@id"
-    },
-    "cim:PowerElectronicsConnectionController.PowerElectronicsUnitController": {
       "@type": "@id"
     },
     "cim:PowerElectronicsUnitController.PowerElectronicsConnectionController": {
@@ -419,13 +359,10 @@
     "cim:PowerFactorControlFunction.targetValue": {
       "@type": "xsd:float"
     },
-    "cim:PowerFrequencyController.mode": {
-      "@type": "@id"
-    },
-    "cim:PowerFrequencyController.FrequencyMonitoringTerminal": {
-      "@type": "@id"
-    },
     "cim:PowerFrequencyController.ControlArea": {
+      "@type": "@id"
+    },
+    "cim:PowerFrequencyController.mode": {
       "@type": "@id"
     },
     "nc:PowerTransferCorridor.enabled": {
@@ -434,25 +371,19 @@
     "nc:PowerTransferCorridor.normalEnabled": {
       "@type": "xsd:boolean"
     },
-    "nc:PropertyReference.FunctionOutputVariable": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChanger.stepVoltageIncrement": {
-      "@type": "xsd:float"
-    },
     "cim:RatioTapChanger.RatioTapChangerTable": {
       "@type": "@id"
     },
     "cim:RatioTapChanger.TransformerEnd": {
       "@type": "@id"
     },
-    "cim:RatioTapChangerTable.RatioTapChanger": {
-      "@type": "@id"
-    },
-    "cim:RatioTapChangerTable.RatioTapChangerTablePoint": {
-      "@type": "@id"
+    "cim:RatioTapChanger.stepVoltageIncrement": {
+      "@type": "xsd:float"
     },
     "cim:RatioTapChangerTablePoint.RatioTapChangerTable": {
+      "@type": "@id"
+    },
+    "cim:ReactiveCapabilityCurve.SynchronousMachine": {
       "@type": "@id"
     },
     "cim:ReactiveCapabilityCurve.coolantTemperature": {
@@ -464,19 +395,22 @@
     "cim:ReactiveCapabilityCurve.referenceVoltage": {
       "@type": "xsd:float"
     },
-    "cim:ReactiveCapabilityCurve.SynchronousMachine": {
-      "@type": "@id"
-    },
     "cim:ReactivePowerControlFunction.targetValue": {
       "@type": "xsd:float"
-    },
-    "cim:RegulatingCondEq.controlEnabled": {
-      "@type": "xsd:boolean"
     },
     "cim:RegulatingCondEq.EquipmentController": {
       "@type": "@id"
     },
     "cim:RegulatingCondEq.RegulatingControl": {
+      "@type": "@id"
+    },
+    "cim:RegulatingCondEq.controlEnabled": {
+      "@type": "xsd:boolean"
+    },
+    "cim:RegulatingControl.Terminal": {
+      "@type": "@id"
+    },
+    "gad:RegulatingControl.ctPhase": {
       "@type": "@id"
     },
     "gad:RegulatingControl.ctRatio": {
@@ -494,6 +428,15 @@
     "cim:RegulatingControl.minAllowedTargetValue": {
       "@type": "xsd:float"
     },
+    "cim:RegulatingControl.mode": {
+      "@type": "@id"
+    },
+    "cim:RegulatingControl.monitoredPhase": {
+      "@type": "@id"
+    },
+    "gad:RegulatingControl.ptPhase": {
+      "@type": "@id"
+    },
     "gad:RegulatingControl.ptRatio": {
       "@type": "xsd:float"
     },
@@ -509,28 +452,16 @@
     "cim:RegulatingControl.targetValue": {
       "@type": "xsd:float"
     },
-    "gad:RegulatingControl.ctPhase": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.mode": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.monitoredPhase": {
-      "@type": "@id"
-    },
-    "gad:RegulatingControl.ptPhase": {
-      "@type": "@id"
-    },
     "cim:RegulatingControl.targetValueUnitMultiplier": {
       "@type": "@id"
     },
-    "cim:RegulatingControl.RegulatingCondEq": {
-      "@type": "@id"
-    },
-    "cim:RegulatingControl.Terminal": {
-      "@type": "@id"
-    },
     "cim:RotatingMachineController.mode": {
+      "@type": "@id"
+    },
+    "cim:SSSCController.CurrentDroopOverride": {
+      "@type": "@id"
+    },
+    "cim:SSSCController.SSSCSimulationSettings": {
       "@type": "@id"
     },
     "cim:SSSCController.maxInjectionU": {
@@ -548,32 +479,20 @@
     "cim:SSSCController.mode": {
       "@type": "@id"
     },
-    "cim:SSSCController.CurrentDroopOverride": {
-      "@type": "@id"
-    },
-    "cim:SSSCController.SSSCSimulationSettings": {
-      "@type": "@id"
+    "cim:SSSCSimulationSettings.deltaX": {
+      "@type": "xsd:float"
     },
     "cim:SSSCSimulationSettings.isEstimateDLDVSensitive": {
       "@type": "xsd:boolean"
     },
-    "cim:SSSCSimulationSettings.maxIterations": {
-      "@type": "xsd:integer"
-    },
-    "cim:SSSCSimulationSettings.deltaX": {
-      "@type": "xsd:float"
-    },
     "cim:SSSCSimulationSettings.maxCorrectionX": {
       "@type": "xsd:float"
     },
+    "cim:SSSCSimulationSettings.maxIterations": {
+      "@type": "xsd:integer"
+    },
     "cim:SSSCSimulationSettings.maxMismatch": {
       "@type": "xsd:float"
-    },
-    "cim:SSSCSimulationSettings.SSSCController": {
-      "@type": "@id"
-    },
-    "nc:ScheduleResource.ScheduleResourceController": {
-      "@type": "@id"
     },
     "nc:ScheduleResourceController.ScheduleResource": {
       "@type": "@id"
@@ -587,11 +506,11 @@
     "cim:StaticVarCompensator.q": {
       "@type": "xsd:float"
     },
-    "cim:StaticVarCompensator.slope": {
-      "@type": "xsd:float"
-    },
     "cim:StaticVarCompensator.sVCControlMode": {
       "@type": "@id"
+    },
+    "cim:StaticVarCompensator.slope": {
+      "@type": "xsd:float"
     },
     "cim:StaticVarCompensator.voltageSetPoint": {
       "@type": "xsd:float"
@@ -599,19 +518,19 @@
     "cim:SubstationController.mode": {
       "@type": "@id"
     },
-    "cim:SynchronousMachine.ReactiveCapabilityCurve": {
+    "cim:TCSCCompensationPoint.ThyristorControlledSeriesCompensator": {
       "@type": "@id"
-    },
-    "cim:TCSCCompensationPoint.section": {
-      "@type": "xsd:integer"
     },
     "cim:TCSCCompensationPoint.compensationZ": {
       "@type": "xsd:float"
     },
-    "cim:TCSCCompensationPoint.ThyristorControlledSeriesCompensator": {
-      "@type": "@id"
+    "cim:TCSCCompensationPoint.section": {
+      "@type": "xsd:integer"
     },
     "cim:TCSCController.mode": {
+      "@type": "@id"
+    },
+    "cim:TapChanger.TapChangerControl": {
       "@type": "@id"
     },
     "cim:TapChanger.controlEnabled": {
@@ -626,6 +545,9 @@
     "cim:TapChanger.highStep": {
       "@type": "xsd:integer"
     },
+    "cim:TapChanger.initialDelay": {
+      "@type": "xsd:float"
+    },
     "cim:TapChanger.lowStep": {
       "@type": "xsd:integer"
     },
@@ -635,8 +557,14 @@
     "cim:TapChanger.neutralStep": {
       "@type": "xsd:integer"
     },
+    "cim:TapChanger.neutralU": {
+      "@type": "xsd:float"
+    },
     "cim:TapChanger.normalStep": {
       "@type": "xsd:integer"
+    },
+    "cim:TapChanger.ptPhase": {
+      "@type": "@id"
     },
     "cim:TapChanger.ptRatio": {
       "@type": "xsd:float"
@@ -644,31 +572,10 @@
     "cim:TapChanger.step": {
       "@type": "xsd:float"
     },
-    "cim:TapChanger.initialDelay": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChanger.neutralU": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChanger.ptPhase": {
-      "@type": "@id"
-    },
     "cim:TapChanger.subsequentDelay": {
       "@type": "xsd:float"
     },
-    "cim:TapChanger.TapSchedules": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.TapChangerControl": {
-      "@type": "@id"
-    },
     "cim:TapChangerControl.lineDropCompensation": {
-      "@type": "xsd:boolean"
-    },
-    "gad:TapChangerControl.reverseToNeutral": {
-      "@type": "xsd:boolean"
-    },
-    "gad:TapChangerControl.reversible": {
       "@type": "xsd:boolean"
     },
     "cim:TapChangerControl.lineDropR": {
@@ -689,20 +596,17 @@
     "cim:TapChangerControl.reverseLineDropX": {
       "@type": "xsd:float"
     },
+    "gad:TapChangerControl.reverseToNeutral": {
+      "@type": "xsd:boolean"
+    },
+    "gad:TapChangerControl.reversible": {
+      "@type": "xsd:boolean"
+    },
     "gad:TapChangerControl.reversingDelay": {
       "@type": "xsd:float"
     },
     "gad:TapChangerControl.reversingPowerThreshold": {
       "@type": "xsd:float"
-    },
-    "cim:TapChangerControl.TapChanger": {
-      "@type": "@id"
-    },
-    "cim:TapChangerTablePoint.ratio": {
-      "@type": "xsd:float"
-    },
-    "cim:TapChangerTablePoint.step": {
-      "@type": "xsd:integer"
     },
     "cim:TapChangerTablePoint.b": {
       "@type": "xsd:float"
@@ -713,25 +617,16 @@
     "cim:TapChangerTablePoint.r": {
       "@type": "xsd:float"
     },
+    "cim:TapChangerTablePoint.ratio": {
+      "@type": "xsd:float"
+    },
+    "cim:TapChangerTablePoint.step": {
+      "@type": "xsd:integer"
+    },
     "cim:TapChangerTablePoint.x": {
       "@type": "xsd:float"
     },
     "cim:TapSchedule.TapChanger": {
-      "@type": "@id"
-    },
-    "cim:Terminal.FrequencyMonitoringTerminal": {
-      "@type": "@id"
-    },
-    "cim:Terminal.RegulatingControl": {
-      "@type": "@id"
-    },
-    "cim:ThyristorControlledSeriesCompensator.TCSCCompensationPoint": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.PhaseTapChanger": {
-      "@type": "@id"
-    },
-    "cim:TransformerEnd.RatioTapChanger": {
       "@type": "@id"
     },
     "cim:VoltageControlFunction.targetValue": {

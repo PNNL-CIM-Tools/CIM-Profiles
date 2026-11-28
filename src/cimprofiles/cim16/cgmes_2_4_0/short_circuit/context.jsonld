@@ -351,12 +351,6 @@
     "cim:SynchronousMachine.x2": {
       "@type": "xsd:float"
     },
-    "cim:Terminal.HasFirstMutualCoupling": {
-      "@type": "@id"
-    },
-    "cim:Terminal.HasSecondMutualCoupling": {
-      "@type": "@id"
-    },
     "cim:TransformerEnd.grounded": {
       "@type": "xsd:boolean"
     },

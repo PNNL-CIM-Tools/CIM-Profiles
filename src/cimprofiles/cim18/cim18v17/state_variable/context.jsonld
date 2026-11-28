@@ -30,18 +30,6 @@
     "dcat:endDate": {
       "@type": "xsd:dateTimeStamp"
     },
-    "cim:ConductingEquipment.SvStatus": {
-      "@type": "@id"
-    },
-    "cim:DCTerminal.SvDCPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:DCTopologicalNode.SvDCVoltage": {
-      "@type": "@id"
-    },
-    "cim:ShuntCompensator.SvShuntCompensatorSections": {
-      "@type": "@id"
-    },
     "cim:SvDCPowerFlow.DCTerminal": {
       "@type": "@id"
     },
@@ -122,21 +110,6 @@
     },
     "cim:SvVoltage.v": {
       "@type": "xsd:float"
-    },
-    "cim:Switch.SvSwitch": {
-      "@type": "@id"
-    },
-    "cim:TapChanger.SvTapStep": {
-      "@type": "@id"
-    },
-    "cim:Terminal.SvPowerFlow": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvInjection": {
-      "@type": "@id"
-    },
-    "cim:TopologicalNode.SvVoltage": {
-      "@type": "@id"
     }
   }
 }
