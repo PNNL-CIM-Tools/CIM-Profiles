@@ -11,7 +11,7 @@ import pytest
 
 from cimprofiles.build_merged_profiles import _first_line, _module_source, build_release, merge_sources
 from cimprofiles.identity import Identity
-from cimprofiles.merge import merge_profiles, most_specific_base
+from cimprofiles.merge import merge_profiles, most_specific_bases
 from cimprofiles.units import UnitMultiplier, UnitSymbol
 
 # The fixture profiles of tests/fixtures/README.md, test_c first: its Terminal.ConductingEquipment
@@ -28,13 +28,22 @@ def test_most_specific_base_picks_the_deepest_candidate():
     parents = {'Terminal': {'Identity', 'ACDCTerminal'},
                'ACDCTerminal': {'IdentifiedObject'},
                'IdentifiedObject': {'Identity'}}
-    assert most_specific_base('Terminal', {'Identity', 'ACDCTerminal'}, parents) == 'ACDCTerminal'
+    assert most_specific_bases('Terminal', {('Identity',), ('ACDCTerminal',)}, parents) == ('ACDCTerminal',)
+
+
+def test_most_specific_bases_keeps_several_supertypes():
+    parents = {'Dataset': {'Identity', 'Model', 'Resource'}, 'Model': {'Entity'},
+               'Entity': {'Identity'}, 'Resource': {'Identity'}}
+    assert most_specific_bases('Dataset', {('Identity',), ('Model', 'Resource')}, parents) \
+        == ('Model', 'Resource')
+    assert most_specific_bases('Dataset', {('Entity',), ('Model', 'Resource')}, parents) \
+        == ('Model', 'Resource')
 
 
 def test_most_specific_base_rejects_unrelated_candidates():
     parents = {'X': {'A', 'B'}, 'A': {'Identity'}, 'B': {'Identity'}}
     with pytest.raises(ValueError, match="Conflicting base classes for 'X'"):
-        most_specific_base('X', {'A', 'B'}, parents)
+        most_specific_bases('X', {('A',), ('B',)}, parents)
 
 
 # Two parts in the shape of CIMTool output. Part B selects Terminal without
@@ -215,3 +224,44 @@ def test_merge_sources_rejects_a_part_without_namespaces():
     with pytest.raises(ValueError, match=r"\['part_b'\] declare no NAMESPACES"):
         merge_sources({'part_a': _part_source({'cim': 'http://cim#'}),
                        'part_b': _part_source(None)})
+
+
+# A class with two supertypes, as cimantic-graphs.xsl writes it, and a part that
+# selects Dataset without Model or Resource, so CIMTool flattened its base to Identity
+TWO_BASES = """from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Optional
+from cimprofiles.identity import Identity
+
+@dataclass(repr=False, eq=False)
+class Model(Identity):
+    title: Optional[str] = field(default=None)
+
+@dataclass(repr=False, eq=False)
+class Resource(Identity):
+    license: Optional[str] = field(default=None)
+
+@dataclass(repr=False, eq=False)
+class Dataset(Model, Resource):
+    temporal: Optional[str] = field(default=None)
+"""
+FLATTENED = """from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Optional
+from cimprofiles.identity import Identity
+
+@dataclass(repr=False, eq=False)
+class Dataset(Identity):
+    spatial: Optional[str] = field(default=None)
+"""
+
+
+def test_merges_keep_several_supertypes(monkeypatch):
+    source, _exported = merge_sources({'flattened': FLATTENED, 'two_bases': TWO_BASES})
+    assert 'class Dataset(Model, Resource):' in source
+    from_source = _module(monkeypatch, 'merged_two_bases', source)
+    at_runtime = merge_profiles(_module(monkeypatch, 'flattened', FLATTENED),
+                                _module(monkeypatch, 'two_bases', TWO_BASES))
+    for merged in (from_source, at_runtime):
+        assert merged.Dataset.__bases__ == (merged.Model, merged.Resource)
+        assert {'title', 'license', 'temporal', 'spatial'} <= {f.name for f in dataclasses.fields(merged.Dataset)}

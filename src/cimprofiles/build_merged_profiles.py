@@ -19,8 +19,9 @@ committed files in its package:
 
 Classes are merged by name across parts:
 
-- base class: the most specific one (see ``cimprofiles.merge.most_specific_base``),
-  since CIMTool drops intermediate classes a profile does not use;
+- base classes: the most specific ones (see ``cimprofiles.merge.most_specific_bases``),
+  since CIMTool drops intermediate classes a profile does not use. A class with
+  several supertypes keeps them all (``Dataset(Model, Resource)``);
 - ``@stereotype`` decorators: the union; ``@dataclass``: from a definition with
   the chosen base;
 - fields and enum members: the union, in first-seen order; a field defined more
@@ -47,7 +48,7 @@ from pathlib import Path
 import yaml
 
 from cimprofiles.dedupe_profile_fields import field_info
-from cimprofiles.merge import _topo_sort, merge_namespaces, most_specific_base
+from cimprofiles.merge import _topo_sort, merge_namespaces, most_specific_bases
 
 _log = logging.getLogger(__name__)
 
@@ -149,10 +150,10 @@ def _member_key(node: ast.stmt) -> str:
     return f'statement {ast.unparse(node)}'
 
 
-def _base_name(node: ast.ClassDef) -> str:
-    if len(node.bases) != 1:
-        raise ValueError(f'Expected one base class for {node.name}, got {len(node.bases)}')
-    return ast.unparse(node.bases[0])
+def _base_names(node: ast.ClassDef) -> tuple[str, ...]:
+    if not node.bases:
+        raise ValueError(f'Expected a base class for {node.name}')
+    return tuple(ast.unparse(base) for base in node.bases)
 
 
 # ── merging ────────────────────────────────────────────────────────────
@@ -181,8 +182,8 @@ def _merge_member(class_name: str, key: str, candidates: list[_Segment]) -> str:
 def _merge_class(name: str, definitions: list[_ClassDefinition],
                  parents: dict[str, set[str]]) -> str:
     """Return the merged source of one class."""
-    base = most_specific_base(name, {_base_name(d.node) for d in definitions}, parents)
-    with_base = next(d for d in definitions if _base_name(d.node) == base)
+    bases = most_specific_bases(name, {_base_names(d.node) for d in definitions}, parents)
+    with_base = next(d for d in definitions if _base_names(d.node) == bases)
 
     stereotypes: list[str] = []
     for definition in definitions:
@@ -198,7 +199,7 @@ def _merge_class(name: str, definitions: list[_ClassDefinition],
         for segment in definition.members:
             members[_member_key(segment.node)].append(segment)
 
-    lines = stereotypes + dataclass_decorators + [f'class {name}({base}):']
+    lines = stereotypes + dataclass_decorators + [f"class {name}({', '.join(bases)}):"]
     docstring = next((d.docstring for d in definitions if d.docstring), None)
     if docstring:
         lines.append(docstring)
@@ -267,7 +268,7 @@ def merge_sources(parts: dict[str, str]) -> tuple[str, list[str]]:
         raise ValueError(f'{sorted(set(parts) - declared)} declare no NAMESPACES; '
                          f'regenerate them with cimantic-graphs.xsl')
 
-    parents = {name: {_base_name(d.node) for d in definitions}
+    parents = {name: {base for d in definitions for base in _base_names(d.node)}
                for name, definitions in classes.items()}
     # A class depends on its bases and on anything its decorators use
     # (e.g. CIMStereotype), so those are defined first.

@@ -10,6 +10,10 @@
     "gb": "http://GB/placeholder/ext#",
     "nc": "http://entsoe.eu/ns/nc#",
     "eu": "http://iec.ch/TC57/CIM100-European#",
+    "adms": "http://www.w3.org/ns/adms#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "eumd": "https://cim4.eu/ns/Metadata-European#",
+    "prov": "http://www.w3.org/ns/prov#",
     "dct:conformsTo": {
       "@type": "@id"
     },
@@ -7072,17 +7076,41 @@
     "gad:BoundaryModel.FrameModels": {
       "@type": "@id"
     },
-    "cim:DateTimeInterval.end": {
-      "@type": "xsd:dateTime"
+    "eu:BoundaryPoint.ConnectivityNode": {
+      "@type": "@id"
     },
-    "cim:DateTimeInterval.start": {
-      "@type": "xsd:dateTime"
+    "eu:BoundaryPoint.isDirectCurrent": {
+      "@type": "xsd:boolean"
+    },
+    "eu:BoundaryPoint.isExcludedFromAreaInterchange": {
+      "@type": "xsd:boolean"
+    },
+    "dcat:Catalog": {
+      "@type": "@id"
+    },
+    "eu:ConnectivityNode.BoundaryPoint": {
+      "@type": "@id"
+    },
+    "dcat:Dataset": {
+      "@type": "@id"
+    },
+    "dcat:Distribution": {
+      "@type": "@id"
     },
     "gad:EdgeModel.ReplacedFrame": {
       "@type": "@id"
     },
     "gad:EdgeModel.TerminatedBoundaryModel": {
       "@type": "@id"
+    },
+    "prov:Entity.atLocation": {
+      "@type": "xsd:anyURI"
+    },
+    "prov:Entity.generatedAtTime": {
+      "@type": "xsd:dateTime"
+    },
+    "prov:Entity.invalidatedAtTime": {
+      "@type": "xsd:dateTime"
     },
     "gad:EquivalentModel.JoinedBoundaryModels": {
       "@type": "@id"
@@ -7123,49 +7151,49 @@
     "gad:GridAssembly.GridModelParts": {
       "@type": "@id"
     },
-    "gad:GridDataset.issued": {
-      "@type": "xsd:dateTime"
-    },
-    "gad:GridDataset.validityInterval": {
-      "@type": "@id"
-    },
-    "gad:GridDistribution.RealizedGridModel": {
-      "@type": "@id"
-    },
-    "gad:GridDistribution.Specifications": {
-      "@type": "@id"
-    },
-    "gad:GridDistribution.accessURL": {
-      "@type": "xsd:anyURI"
-    },
-    "gad:GridDistribution.byteSize": {
-      "@type": "xsd:integer"
-    },
-    "gad:GridModel.Distributions": {
-      "@type": "@id"
-    },
     "gad:GridModel.GridAssemblies": {
-      "@type": "@id"
-    },
-    "gad:GridModel.ModelAuthority": {
-      "@type": "@id"
-    },
-    "gad:GridModel.NamingAuthority": {
-      "@type": "@id"
-    },
-    "gad:GridSpecification.Distributions": {
       "@type": "@id"
     },
     "gad:Location.Frames": {
       "@type": "@id"
     },
-    "gad:ModelAuthority.GridModels": {
+    "eumd:Model.Model2": {
       "@type": "@id"
+    },
+    "md:Model.ModelDataset": {
+      "@type": "@id"
+    },
+    "md:Model.alternativeVersionOf": {
+      "@type": "@id"
+    },
+    "md:Model.created": {
+      "@type": "xsd:dateTime"
+    },
+    "md:Model.hasAlternativeVersion": {
+      "@type": "@id"
+    },
+    "md:Model.hasPreferredVersion": {
+      "@type": "@id"
+    },
+    "md:Model.modelingAuthoritySet": {
+      "@type": "xsd:anyURI"
+    },
+    "md:Model.preferredVersion": {
+      "@type": "@id"
+    },
+    "eumd:Model.processType": {
+      "@type": "@id"
+    },
+    "md:Model.scenarioTime": {
+      "@type": "xsd:dateTime"
     },
     "gad:ModelAuthority.ModeledFrames": {
       "@type": "@id"
     },
-    "gad:NamingAuthority.NamedGridModels": {
+    "eumd:ModelDataset.Model": {
+      "@type": "@id"
+    },
+    "dcat:Record": {
       "@type": "@id"
     },
     "gad:Reference.FrameworkEditions": {
@@ -7177,16 +7205,103 @@
     "gad:ReferenceModel.RepresentedReference": {
       "@type": "@id"
     },
-    "eu:BoundaryPoint.ConnectivityNode": {
+    "dct:Resource1": {
       "@type": "@id"
     },
-    "eu:BoundaryPoint.isDirectCurrent": {
-      "@type": "xsd:boolean"
+    "dct:Resource10": {
+      "@type": "@id"
     },
-    "eu:BoundaryPoint.isExcludedFromAreaInterchange": {
-      "@type": "xsd:boolean"
+    "dct:Resource11": {
+      "@type": "@id"
     },
-    "eu:ConnectivityNode.BoundaryPoint": {
+    "dct:Resource2": {
+      "@type": "@id"
+    },
+    "dct:Resource3": {
+      "@type": "@id"
+    },
+    "dct:Resource4": {
+      "@type": "@id"
+    },
+    "dct:Resource6": {
+      "@type": "@id"
+    },
+    "dcat:Resource7": {
+      "@type": "@id"
+    },
+    "dcat:Resource8": {
+      "@type": "@id"
+    },
+    "dcat:Service": {
+      "@type": "@id"
+    },
+    "dct:accessRights": {
+      "@type": "@id"
+    },
+    "dcat:accessService": {
+      "@type": "@id"
+    },
+    "dcat:byteSize": {
+      "@type": "xsd:decimal"
+    },
+    "dcat:compressFormat": {
+      "@type": "@id"
+    },
+    "dct:format": {
+      "@type": "@id"
+    },
+    "dcat:hasCurrentVersion": {
+      "@type": "@id"
+    },
+    "dct:hasPart": {
+      "@type": "@id"
+    },
+    "dcat:hasVersion": {
+      "@type": "@id"
+    },
+    "dct:isReferencedBy": {
+      "@type": "@id"
+    },
+    "dct:isRequiredBy": {
+      "@type": "@id"
+    },
+    "dct:license": {
+      "@type": "@id"
+    },
+    "dcat:mediaType": {
+      "@type": "@id"
+    },
+    "dct:modified": {
+      "@type": "xsd:date"
+    },
+    "dcat:nextVersion": {
+      "@type": "@id"
+    },
+    "dcat:previousVersion": {
+      "@type": "@id"
+    },
+    "dct:publisher": {
+      "@type": "@id"
+    },
+    "dct:relation": {
+      "@type": "@id"
+    },
+    "dct:source": {
+      "@type": "@id"
+    },
+    "dct:spatial": {
+      "@type": "@id"
+    },
+    "dcat:spatialResolutionInMeters": {
+      "@type": "xsd:decimal"
+    },
+    "dct:temporal": {
+      "@type": "@id"
+    },
+    "dcat:temporalResolution": {
+      "@type": "xsd:duration"
+    },
+    "dct:type": {
       "@type": "@id"
     },
     "cim:AirCompressor.CAESPlant": {

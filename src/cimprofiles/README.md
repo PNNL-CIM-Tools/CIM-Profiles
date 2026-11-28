@@ -305,8 +305,8 @@ Classes that appear in several parts are merged by name:
 
 - **Base class:** CIMTool drops intermediate classes a profile does not use, so one part
   may declare `Terminal(Identity)` and another `Terminal(ACDCTerminal)`. The most
-  specific candidate wins (`cimprofiles.merge.most_specific_base`). Unrelated candidates
-  raise.
+  specific candidate wins (`cimprofiles.merge.most_specific_bases`). Unrelated candidates
+  raise. A class with several supertypes keeps them all (`Dataset(Model, Resource)`).
 - **Fields and enum members:** the union. A field defined by several parts keeps the
   serialized association end, else the earliest part's. A different type or inverse is
   logged as a UML conflict.
@@ -345,8 +345,8 @@ parts, so re-run the build after regenerating any part.
    the first profile that defines them.
 
 When sub-profiles declare different base classes for the same class name, the most
-specific one is used (`most_specific_base`); unrelated bases raise rather than silently
-drop a lineage.
+specific ones are used (`most_specific_bases`), all of them for a class with several
+supertypes; unrelated bases raise rather than silently drop a lineage.
 
 To generate a static type-stub file for Pylance/mypy (the replacement for
 the hand-maintained `canonical.py`):
